@@ -288,12 +288,12 @@
     "ImageURL": ""
   },
   {
-    "Display Name": "Orbital 380mm HR Barrage",
+    "Display Name": "Orbital 380mm HE Barrage",
     "Type": "Stratagem",
     "Category": "Offensive",
     "Subcategory": "Orbital",
     "Warbond": "",
-    "InternalName": "orbital380mmhrbarrage",
+    "InternalName": "orbital380mmhebarrage",
     "ImageURL": ""
   },
   {

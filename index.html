@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+        />
+
+        <link rel="stylesheet" type="text/css" href="./css/custom.css" />
+        <link
+            rel="shortcut icon"
+            type="image/png"
+            href="./assets/images/hc-2000-bc-shade-eye.png"
+        />
+        <meta name="description" content="Helldivers 2 Randomizer" />
+        <title>Helldivers 2 Randomizer</title>
+    </head>
+    <body>
+        <div class="container mb-5">
+            <div class="row d-flex justify-content-center">
+                <div
+                    class="col-sm-12 col-lg-8 d-flex justify-content-center"
+                ></div>
+            </div>
+            <!-- HEADER -->
+            <div class="row d-flex justify-content-center mt-4">
+                <div class="d-flex col justify-content-center">
+                    <h1 class="text-light">Helldivers 2</h1>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div
+                    class="d-flex col ms-5 justify-content-center align-items-center"
+                >
+                    <h4 class="text-light mb-0 mx-2">Randomizer</h4>
+                </div>
+            </div>
+
+            <!-- MAIN BODY -->
+            <div class="row d-flex justify-content-center pt-3">
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col d-flex justify-content-start my-1">
+                            <div class="mx-2">
+                                <button
+                                    id="rollButton"
+                                    type="button"
+                                    class="btn btn-success"
+                                >
+                                    Roll Stratagems
+                                </button>
+                            </div>
+                            <div class="mx-2">
+                                <button
+                                    id="rollButton"
+                                    type="button"
+                                    class="btn btn-success"
+                                >
+                                    Roll Weapons
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+
+            <div class="mb-5 row d-flex justify-content-center">
+                <div class="col-sm-12 col-md-10 col-lg-8"></div>
+            </div>
+        </div>
+
+        <!-- RULES AND INFO MODAL -->
+        <div
+            class="modal fade"
+            id="rulesModal"
+            tabindex="-1"
+            aria-labelledby="rulesModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content bg-grey">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-light" id="rulesModalLabel">
+                            Rules and Info
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <div
+                            class="accordion accordion-flush"
+                            id="rulesAndInfoAccordion"
+                        >
+                            <div class="accordion-item bg-none">
+                                <h2 class="accordion-header">
+                                    <button
+                                        class="accordion-button collapsed text-light"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#rulesAccordion"
+                                        aria-expanded="false"
+                                        aria-controls="rulesAccordion"
+                                    >
+                                        Rules
+                                    </button>
+                                </h2>
+                                <div
+                                    id="rulesAccordion"
+                                    class="accordion-collapse collapse p-3"
+                                    aria-labelledby="Rules"
+                                    data-bs-parent="#rulesAndInfoAccordion"
+                                >
+                                    <ul class="modalAccordionList">
+                                        <li class="text-white">
+                                            Start a new playthrough with the
+                                            JAILBREAK frame, the starter
+                                            internal components (BST-G1/P10
+                                            booster, FCS-G1/P01 FCS, AG-J-098
+                                            JOSO generator), no OS tuning (alt),
+                                            and no weapons
+                                        </li>
+                                        <li class="text-white">
+                                            For every mission completed, roll
+                                            for a new part by clicking "ROLL",
+                                            with the correct stage you are in
+                                            selected from the dropdown
+                                        </li>
+                                        <li class="text-white">
+                                            If you complete the optional
+                                            objective for a mission, you may
+                                            roll for an additional part
+                                        </li>
+                                        <li class="text-white">
+                                            If you fail a mission for any
+                                            reason, the run is over. Press the
+                                            "RESET" button to restart your run.
+                                            Reset your OS tunings in game (not
+                                            applicable to ALT runs)
+                                        </li>
+                                        <li class="text-white">
+                                            Due to the fact that the Stun Needle
+                                            is de facto a mandatory weapon for
+                                            "Destroy the Ice Worm", you may use
+                                            it for this mission (R-Back Unit
+                                            variant, as in the base game) even
+                                            if you haven't acquired it through
+                                            random rewards
+                                        </li>
+                                        <li class="text-white">
+                                            You do not need to do the "Illegal
+                                            Entry" mission
+                                        </li>
+                                        <li class="text-white">
+                                            Completing the mission "Escape" is
+                                            not necessary if you are using the
+                                            mission replay feature. If you do
+                                            complete this mission (using mission
+                                            replay or otherwise) you may role
+                                            for another part
+                                        </li>
+                                        <li class="text-white">
+                                            ALT rule: do not reset OS tuning
+                                            after mission failure
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-none">
+                                <h2 class="accordion-header">
+                                    <button
+                                        class="accordion-button collapsed text-light"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#stagesAccordion"
+                                        aria-expanded="false"
+                                        aria-controls="stagesAccordion"
+                                    >
+                                        Stages
+                                    </button>
+                                </h2>
+                                <div
+                                    id="stagesAccordion"
+                                    class="accordion-collapse collapse p-3"
+                                    aria-labelledby="Rules"
+                                    data-bs-parent="#rulesAndInfoAccordion"
+                                >
+                                    <ul class="modalAccordionList">
+                                        <li class="text-white">
+                                            <b>Stage 1: </b>Start your run here,
+                                            and come back here after beating a
+                                            final boss
+                                        </li>
+                                        <li class="text-white">
+                                            <b>Stage 2: </b>Complete "Operation
+                                            Wallclimber"
+                                        </li>
+                                        <li class="text-white">
+                                            <b>Stage 3: </b>Complete "Steal the
+                                            Survey Data"
+                                        </li>
+                                        <li class="text-white">
+                                            <b>Stage 4: </b>Complete "Attack the
+                                            Old Spaceport"
+                                        </li>
+                                        <li class="text-white">
+                                            <b>Stage 5: </b>Complete
+                                            "Underground Exploration - Depth 3"
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-none">
+                                <h2 class="accordion-header">
+                                    <button
+                                        class="accordion-button collapsed text-light"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#faqAccordion"
+                                        aria-expanded="false"
+                                        aria-controls="faqAccordion"
+                                    >
+                                        FAQs
+                                    </button>
+                                </h2>
+                                <div
+                                    id="faqAccordion"
+                                    class="accordion-collapse collapse p-3"
+                                    aria-labelledby="Rules"
+                                    data-bs-parent="#rulesAndInfoAccordion"
+                                >
+                                    <ul class="modalAccordionList">
+                                        <li class="text-white">
+                                            <b
+                                                >Q: What the hell is a Denoiser
+                                                or a Weevil?</b
+                                            >
+                                            <p>
+                                                A: Denoisers are the PCA mechs
+                                                found in Watchpoint Alpha and
+                                                Institute City. Weevils are the
+                                                bipedal C-Weapon MTs that always
+                                                appear alongside Helianthus
+                                                machines. (And in case you
+                                                missed that in-game, Helianthi
+                                                are the grinder wheels).
+                                            </p>
+                                        </li>
+                                        <li class="text-white">
+                                            <b
+                                                >Q: I'm in the middle of a
+                                                playthrough and don't want to
+                                                and/or can't be bothered to beat
+                                                an ending to start over. Can I
+                                                do this challenge through
+                                                mission replays?</b
+                                            >
+                                            <p>
+                                                A: Of course, just make sure to
+                                                keep track of the correct order
+                                                and availability of missions.
+                                            </p>
+                                        </li>
+                                        <li class="text-white">
+                                            <b
+                                                >Q: If I'm using mission replay,
+                                                can I still do "Escape" for an
+                                                extra Stage 5 part roll?</b
+                                            >
+                                            <p>
+                                                A: Knock yourself out,
+                                                masochist.
+                                            </p>
+                                        </li>
+                                        <li class="text-white">
+                                            <b
+                                                >Q: Why all the arbitrary bonus
+                                                pay requirements for
+                                                challenges?</b
+                                            >
+                                            <p>
+                                                A: It's the easiest way for you
+                                                to check how many enemies you've
+                                                killed during the mission - all
+                                                costs are calculated at 90% of
+                                                the maximum bonus payout, give
+                                                or take a few enemies that may
+                                                have been missed while testing.
+                                            </p>
+                                        </li>
+                                        <li class="text-white">
+                                            <b
+                                                >Q: Do I have to do all 3
+                                                endings one after another or can
+                                                I do one again if I want to
+                                                grind some better parts?</b
+                                            >
+                                            <p>
+                                                A: The run was made with the
+                                                idea that you should indeed do
+                                                the endings in succession and
+                                                not redo any missions.
+                                            </p>
+                                        </li>
+                                        <li class="text-white">
+                                            <b>
+                                                Q: Is restarting a mission fair
+                                                game?
+                                            </b>
+                                            <p>
+                                                A: Nope. Live with your mistakes
+                                                and/or die by your mistakes.
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-none">
+                                <h2 class="accordion-header">
+                                    <button
+                                        class="accordion-button collapsed text-light"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#creditAccordion"
+                                        aria-expanded="false"
+                                        aria-controls="creditAccordion"
+                                    >
+                                        Credits
+                                    </button>
+                                </h2>
+                                <div
+                                    id="creditAccordion"
+                                    class="accordion-collapse collapse p-3"
+                                    aria-labelledby="Rules"
+                                    data-bs-parent="#rulesAndInfoAccordion"
+                                >
+                                    <ul class="modalAccordionList">
+                                        <li class="text-white">
+                                            This app is basically
+                                            u/PixelKatana's immaculately
+                                            prepared spreadsheets condensed into
+                                            one webpage for convenience. Huge
+                                            thanks to them for essentially
+                                            letting me copy all of their work.
+                                            You can find their original
+                                            spreadsheets
+                                            <a
+                                                target="_blank"
+                                                href="https://docs.google.com/spreadsheets/d/1h2H2mr_NGOSqG_F9D8O78ChCtyE0NEmXi1RzF5E7Mnw/edit#gid=1523984323"
+                                            >
+                                                here</a
+                                            >
+                                        </li>
+                                        <li class="text-white">
+                                            u/Fynzmirs and u/Vamprah for their
+                                            contributions to the aforementioned
+                                            spreadsheet
+                                        </li>
+                                        <li class="text-white">
+                                            u/_b1ack0ut for the initial idea of
+                                            a roguelike-styled run
+                                        </li>
+                                        <li class="text-white">
+                                            Would you like to contribute? If
+                                            you're code savvy, I could use some
+                                            help with colors and fonts, as well
+                                            as upcoming features. Feel free to
+                                            email me at
+                                            joebenwilson.dev@gmail.com with any
+                                            feedback/suggestions, or submit a PR
+                                            on
+                                            <a
+                                                href="https://github.com/Selenestica/ac6-roguelike-challenge"
+                                                >GitHub</a
+                                            >.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://kit.fontawesome.com/a018c01272.js"
+        crossorigin="anonymous"
+    ></script>
+    <script src="js/main.js"></script>
+</html>

@@ -410,7 +410,7 @@
     "Category": "Defensive",
     "Subcategory": "Emplacement",
     "Warbond": "",
-    "InternalName": "anti-personnelminefield",
+    "InternalName": "antipersonnelminefield",
     "ImageURL": ""
   },
   {

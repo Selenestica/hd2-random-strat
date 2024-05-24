@@ -1,4 +1,4 @@
-const stratagemList = [
+const stratagemsList = [
     {
         displayName: "Airburst Rocket Launcher",
         type: "Stratagem",
@@ -460,7 +460,7 @@ const stratagemList = [
     }
 ];
 
-const equipmentList = [
+const primariesList = [
     {
         displayName: "Liberator",
         type: "Equipment",
@@ -649,11 +649,14 @@ const equipmentList = [
         warbond: "DemocraticDetonation",
         internalName: "cb9explodingcrossbow",
         imageURL: ""
-    },
+    }
+];
+
+const secondariesList = [
     {
         displayName: "Peacemaker",
         type: "Equipment",
-        category: "Sidearm",
+        category: "Secondary",
         subcategory: "",
         warbond: "",
         internalName: "p2peacemaker",
@@ -662,7 +665,7 @@ const equipmentList = [
     {
         displayName: "Redeemer",
         type: "Equipment",
-        category: "Sidearm",
+        category: "Secondary",
         subcategory: "",
         warbond: "HelldiversMobilize",
         internalName: "p19redeemer",
@@ -671,7 +674,7 @@ const equipmentList = [
     {
         displayName: "Grenade Pistol",
         type: "Equipment",
-        category: "Sidearm",
+        category: "Secondary",
         subcategory: "",
         warbond: "DemocraticDetonation",
         internalName: "gp31grenadepistol",
@@ -680,7 +683,7 @@ const equipmentList = [
     {
         displayName: "Verdict",
         type: "Equipment",
-        category: "Sidearm",
+        category: "Secondary",
         subcategory: "",
         warbond: "PolarPatriots",
         internalName: "p113verdict",
@@ -689,12 +692,15 @@ const equipmentList = [
     {
         displayName: "Senator",
         type: "Equipment",
-        category: "Sidearm",
+        category: "Secondary",
         subcategory: "",
         warbond: "SteeledVeterans",
         internalName: "p4senator",
         imageURL: ""
-    },
+    }
+];
+
+const grenadesList = [
     {
         displayName: "High Explosive Grenade",
         type: "Equipment",

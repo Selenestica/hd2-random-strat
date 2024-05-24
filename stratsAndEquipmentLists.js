@@ -471,6 +471,24 @@ const primariesList = [
         imageURL: ""
     },
     {
+        displayName: "Pummeler",
+        type: "Equipment",
+        category: "Primary",
+        subcategory: "SubmachineGun",
+        warbond: "PolarPatriots",
+        internalName: "smg72pummeler",
+        imageURL: "smg72pummeler.png"
+    },
+    {
+        displayName: "Purifier",
+        type: "Equipment",
+        category: "Primary",
+        subcategory: "EnergyWeapon",
+        warbond: "PolarPatriots",
+        internalName: "plas101purifier",
+        imageURL: "plas101purifier.png"
+    },
+    {
         displayName: "Liberator Penetrator",
         type: "Equipment",
         category: "Primary",
@@ -507,15 +525,6 @@ const primariesList = [
         imageURL: ""
     },
     {
-        displayName: "Pummeler",
-        type: "Equipment",
-        category: "Primary",
-        subcategory: "SubmachineGun",
-        warbond: "PolarPatriots",
-        internalName: "smg72pummeler",
-        imageURL: ""
-    },
-    {
         displayName: "Punisher",
         type: "Equipment",
         category: "Primary",
@@ -523,6 +532,15 @@ const primariesList = [
         warbond: "HelldiversMobilize",
         internalName: "sg8punisher",
         imageURL: ""
+    },
+    {
+        displayName: "Tenderizer",
+        type: "Equipment",
+        category: "Primary",
+        subcategory: "AssaultRifle",
+        warbond: "PolarPatriots",
+        internalName: "ar61tenderizer",
+        imageURL: "ar61tenderizer.png"
     },
     {
         displayName: "Slugger",
@@ -558,6 +576,15 @@ const primariesList = [
         subcategory: "Shotgun",
         warbond: "HelldiversMobilize",
         internalName: "sg225spbreakerspraynpray",
+        imageURL: ""
+    },
+    {
+        displayName: "MP-98 Knight",
+        type: "Equipment",
+        category: "Primary",
+        subcategory: "SubmachineGun",
+        warbond: "paid",
+        internalName: "mp98knight",
         imageURL: ""
     },
     {
@@ -696,6 +723,15 @@ const secondariesList = [
         subcategory: "",
         warbond: "SteeledVeterans",
         internalName: "p4senator",
+        imageURL: ""
+    },
+    {
+        displayName: "Dagger",
+        type: "Equipment",
+        category: "Secondary",
+        subcategory: "",
+        warbond: "CuttingEdge",
+        internalName: "las7dagger",
         imageURL: ""
     }
 ];

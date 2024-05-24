@@ -15,7 +15,7 @@
         <link
             rel="shortcut icon"
             type="image/png"
-            href="./images/stratagems/zzzzz-1714326400precision.png"
+            href="./images/stratagems/orbitalprecisionstrike.png"
         />
         <meta name="description" content="Helldivers 2 Randomizer" />
         <title>Helldivers 2 Randomizer</title>
@@ -48,25 +48,42 @@
                         <div class="col d-flex justify-content-start my-1">
                             <div class="mx-2">
                                 <button
-                                    id="rollButton"
+                                    id="rollStratsButton"
                                     type="button"
                                     class="btn btn-success"
+                                    onclick="rollStratagems()"
                                 >
                                     Roll Stratagems
                                 </button>
                             </div>
                             <div class="mx-2">
                                 <button
-                                    id="rollButton"
+                                    id="rollEquipmentButton"
                                     type="button"
                                     class="btn btn-success"
+                                    onclick="rollEquipment()"
                                 >
-                                    Roll Weapons
+                                    Roll Equipment
                                 </button>
                             </div>
                         </div>
                     </div>
                     <hr />
+                    <div
+                        id="stratagemsContainer"
+                        class="row d-flex justify-content-center"
+                    >
+                        <div class="col-2 d-flex justify-content-center"></div>
+                        <div class="col-2 d-flex justify-content-center"></div>
+                        <div class="col-2 d-flex justify-content-center"></div>
+                        <div class="col-2 d-flex justify-content-center"></div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div
+                            id="equipmentContainer"
+                            class="col d-flex justify-content-center"
+                        ></div>
+                    </div>
                 </div>
             </div>
 
@@ -405,5 +422,6 @@
         src="https://kit.fontawesome.com/a018c01272.js"
         crossorigin="anonymous"
     ></script>
+    <script src="js/constants/stratsAndEquipmentLists.js"></script>
     <script src="js/main.js"></script>
 </html>

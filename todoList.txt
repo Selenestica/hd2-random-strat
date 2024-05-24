@@ -1,0 +1,2 @@
+feature ideas:
+- checkbox for AA modifier (3 stratagems)

@@ -1,2 +1,3 @@
 feature ideas:
 - checkbox for AA modifier (3 stratagems)
+- cleanup borders on some images

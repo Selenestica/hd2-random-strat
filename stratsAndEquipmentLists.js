@@ -1,3 +1,78 @@
+const grenadesList = [
+    {
+        displayName: "High Explosive Grenade",
+        type: "Equipment",
+        category: "Grenade",
+        subcategory: "",
+        warbond: "HelldiversMobilize",
+        internalName: "g12highexplosivegrenade",
+        imageURL: "g12highexplosivegrenade.png"
+    },
+    {
+        displayName: "Frag Grenade",
+        type: "Equipment",
+        category: "Grenade",
+        subcategory: "",
+        warbond: "HelldiversMobilize",
+        internalName: "g6fraggrenade",
+        imageURL: "g6fraggrenade.png"
+    },
+    {
+        displayName: "Impact Grenade",
+        type: "Equipment",
+        category: "Grenade",
+        subcategory: "",
+        warbond: "HelldiversMobilize",
+        internalName: "g16impactgrenade",
+        imageURL: "g16impactgrenade.png"
+    },
+    {
+        displayName: "Smoke Grenade",
+        type: "Equipment",
+        category: "Grenade",
+        subcategory: "",
+        warbond: "HelldiversMobilize",
+        internalName: "g3smokegrenade",
+        imageURL: "g3smokegrenade.png"
+    },
+    {
+        displayName: "Incendiary Grenade",
+        type: "Equipment",
+        category: "Grenade",
+        subcategory: "",
+        warbond: "SteeledVeterans",
+        internalName: "g10incendiarygrenade",
+        imageURL: "g10incendiarygrenade.png"
+    },
+    {
+        displayName: "Stun Grenade",
+        type: "Equipment",
+        category: "Grenade",
+        subcategory: "",
+        warbond: "CuttingEdge",
+        internalName: "g23stungrenade",
+        imageURL: "g23stungrenade.png"
+    },
+    {
+        displayName: "Thermite Grenade",
+        type: "Equipment",
+        category: "Grenade",
+        subcategory: "",
+        warbond: "DemocraticDetonation",
+        internalName: "g123thermitegrenade",
+        imageURL: "g123thermitegrenade.png"
+    },
+    {
+        displayName: "G-13 Incendiary Impact",
+        type: "Equipment",
+        category: "Grenade",
+        subcategory: "",
+        warbond: "PolarPatriots",
+        internalName: "g13incendiaryimpact",
+        imageURL: "g13incendiaryimpact.png"
+    }
+];
+
 const stratagemsList = [
     {
         displayName: "Airburst Rocket Launcher",
@@ -6,7 +81,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "rl77airburstrocketlauncher",
-        imageURL: ""
+        imageURL: "rl77airburstrocketlauncher.png"
     },
     {
         displayName: "Autocannon",
@@ -15,7 +90,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "ac8autocannon",
-        imageURL: ""
+        imageURL: "ac8autocannon.png"
     },
     {
         displayName: "Expendable Anti-Tank",
@@ -24,7 +99,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "eat17expendableantitank",
-        imageURL: ""
+        imageURL: "eat17expendableantitank.png"
     },
     {
         displayName: "Flamethrower",
@@ -33,7 +108,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "flam40flamethrower",
-        imageURL: ""
+        imageURL: "flam40flamethrower.png"
     },
     {
         displayName: "Laser Cannon",
@@ -42,7 +117,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "las98lasercannon",
-        imageURL: ""
+        imageURL: "las98lasercannon.png"
     },
     {
         displayName: "Stalwart",
@@ -51,7 +126,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "m105stalwart",
-        imageURL: ""
+        imageURL: "m105stalwart.png"
     },
     {
         displayName: "Machine Gun",
@@ -60,7 +135,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "mg43machinegun",
-        imageURL: ""
+        imageURL: "mg43machinegun.png"
     },
     {
         displayName: "Arc Thrower",
@@ -69,7 +144,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "arc3arcthrower",
-        imageURL: ""
+        imageURL: "arc3arcthrower.png"
     },
     {
         displayName: "Grenade Launcher",
@@ -78,7 +153,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "gl21grenadelauncher",
-        imageURL: ""
+        imageURL: "gl21grenadelauncher.png"
     },
     {
         displayName: "Anti-Material Rifle",
@@ -87,7 +162,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "apw1antimaterielrifle",
-        imageURL: ""
+        imageURL: "apw1antimaterielrifle.png"
     },
     {
         displayName: "Railgun",
@@ -96,7 +171,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "rs422railgun",
-        imageURL: ""
+        imageURL: "rs422railgun.png"
     },
     {
         displayName: "Recoilless Rifle",
@@ -105,7 +180,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "gr8recoillessrifle",
-        imageURL: ""
+        imageURL: "gr8recoillessrifle.png"
     },
     {
         displayName: "Spear",
@@ -114,7 +189,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "faf14spear",
-        imageURL: ""
+        imageURL: "faf14spear.png"
     },
     {
         displayName: "Quasar Cannon",
@@ -123,7 +198,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "las99quasarcannon",
-        imageURL: ""
+        imageURL: "las99quasarcannon.png"
     },
     {
         displayName: "Heavy Machine Gun",
@@ -132,7 +207,7 @@ const stratagemsList = [
         subcategory: "Weapons",
         warbond: "",
         internalName: "mg206heavymachinegun",
-        imageURL: ""
+        imageURL: "mg206heavymachinegun.png"
     },
     {
         displayName: "Guard Dog Laser",
@@ -141,7 +216,7 @@ const stratagemsList = [
         subcategory: "Backpacks",
         warbond: "",
         internalName: "axlas5guarddogrover",
-        imageURL: ""
+        imageURL: "axlas5guarddogrover.png"
     },
     {
         displayName: "Guard Dog Bullets",
@@ -150,7 +225,7 @@ const stratagemsList = [
         subcategory: "Backpacks",
         warbond: "",
         internalName: "ad334guarddog",
-        imageURL: ""
+        imageURL: "ad334guarddog.png"
     },
     {
         displayName: "Jump Pack",
@@ -159,7 +234,7 @@ const stratagemsList = [
         subcategory: "Backpacks",
         warbond: "",
         internalName: "lift850jumppack",
-        imageURL: ""
+        imageURL: "lift850jumppack.png"
     },
     {
         displayName: "Supply Pack",
@@ -168,7 +243,7 @@ const stratagemsList = [
         subcategory: "Backpacks",
         warbond: "",
         internalName: "b1supplypack",
-        imageURL: ""
+        imageURL: "b1supplypack.png"
     },
     {
         displayName: "Shield Generator Pack",
@@ -177,7 +252,7 @@ const stratagemsList = [
         subcategory: "Backpacks",
         warbond: "",
         internalName: "sh20shieldgeneratorpack",
-        imageURL: ""
+        imageURL: "sh20shieldgeneratorpack.png"
     },
     {
         displayName: "Ballistic Shield Backpack",
@@ -186,7 +261,7 @@ const stratagemsList = [
         subcategory: "Backpacks",
         warbond: "",
         internalName: "sh20ballisticshieldbackpack",
-        imageURL: ""
+        imageURL: "sh20ballisticshieldbackpack.png"
     },
     {
         displayName: "Patriot Exosuit",
@@ -195,7 +270,7 @@ const stratagemsList = [
         subcategory: "Vehicles",
         warbond: "",
         internalName: "exo45patriotexosuit",
-        imageURL: ""
+        imageURL: "exo45patriotexosuit.png"
     },
     {
         displayName: "Eagle Strafing Run",
@@ -204,7 +279,7 @@ const stratagemsList = [
         subcategory: "Eagle",
         warbond: "",
         internalName: "eaglestrafingrun",
-        imageURL: ""
+        imageURL: "eaglestrafingrun.png"
     },
     {
         displayName: "Eagle Airstrike",
@@ -213,7 +288,7 @@ const stratagemsList = [
         subcategory: "Eagle",
         warbond: "",
         internalName: "eagleairstrike",
-        imageURL: ""
+        imageURL: "eagleairstrike.png"
     },
     {
         displayName: "Eagle Cluster Bomb",
@@ -222,7 +297,7 @@ const stratagemsList = [
         subcategory: "Eagle",
         warbond: "",
         internalName: "eagleclusterbomb",
-        imageURL: ""
+        imageURL: "eagleclusterbomb.png"
     },
     {
         displayName: "Eagle Napalm Strike",
@@ -231,7 +306,7 @@ const stratagemsList = [
         subcategory: "Eagle",
         warbond: "",
         internalName: "eaglenapalmstrike",
-        imageURL: ""
+        imageURL: "eaglenapalmstrike.png"
     },
     {
         displayName: "Eagle Smoke Strike",
@@ -240,7 +315,7 @@ const stratagemsList = [
         subcategory: "Eagle",
         warbond: "",
         internalName: "eaglesmokestrike",
-        imageURL: ""
+        imageURL: "eaglesmokestrike.png"
     },
     {
         displayName: "Eagle 110mm Rocket Pods",
@@ -249,7 +324,7 @@ const stratagemsList = [
         subcategory: "Eagle",
         warbond: "",
         internalName: "eagle110mmrocketpods",
-        imageURL: ""
+        imageURL: "eagle110mmrocketpods.png"
     },
     {
         displayName: "Eagle 500kg Bomb",
@@ -258,7 +333,7 @@ const stratagemsList = [
         subcategory: "Eagle",
         warbond: "",
         internalName: "eagle500kgbomb",
-        imageURL: ""
+        imageURL: "eagle500kgbomb.png"
     },
     {
         displayName: "Orbital Precision Strike",
@@ -267,7 +342,7 @@ const stratagemsList = [
         subcategory: "Orbital",
         warbond: "",
         internalName: "orbitalprecisionstrike",
-        imageURL: ""
+        imageURL: "orbitalprecisionstrike.png"
     },
     {
         displayName: "Orbital Airburst Strike",
@@ -276,7 +351,7 @@ const stratagemsList = [
         subcategory: "Orbital",
         warbond: "",
         internalName: "orbitalairburststrike",
-        imageURL: ""
+        imageURL: "orbitalairburststrike.png"
     },
     {
         displayName: "Orbital 120mm HE Barrage",
@@ -285,7 +360,7 @@ const stratagemsList = [
         subcategory: "Orbital",
         warbond: "",
         internalName: "orbital120mmhebarrage",
-        imageURL: ""
+        imageURL: "orbital120mmhebarrage.png"
     },
     {
         displayName: "Orbital 380mm HE Barrage",
@@ -294,7 +369,7 @@ const stratagemsList = [
         subcategory: "Orbital",
         warbond: "",
         internalName: "orbital380mmhebarrage",
-        imageURL: ""
+        imageURL: "orbital380mmhebarrage.png"
     },
     {
         displayName: "Orbital Walking Barrage",
@@ -303,7 +378,7 @@ const stratagemsList = [
         subcategory: "Orbital",
         warbond: "",
         internalName: "orbitalwalkingbarrage",
-        imageURL: ""
+        imageURL: "orbitalwalkingbarrage.png"
     },
     {
         displayName: "Orbital Laser",
@@ -312,7 +387,7 @@ const stratagemsList = [
         subcategory: "Orbital",
         warbond: "",
         internalName: "orbitallaser",
-        imageURL: ""
+        imageURL: "orbitallaser.png"
     },
     {
         displayName: "Orbital Railcannon Strike",
@@ -321,7 +396,7 @@ const stratagemsList = [
         subcategory: "Orbital",
         warbond: "",
         internalName: "orbitalrailcannonstrike",
-        imageURL: ""
+        imageURL: "orbitalrailcannonstrike.png"
     },
     {
         displayName: "Orbital Gatling Barrage",
@@ -330,7 +405,7 @@ const stratagemsList = [
         subcategory: "Orbital",
         warbond: "",
         internalName: "orbitalgatlingbarrage",
-        imageURL: ""
+        imageURL: "orbitalgatlingbarrage.png"
     },
     {
         displayName: "Orbital Gas Strike",
@@ -339,7 +414,7 @@ const stratagemsList = [
         subcategory: "Orbital",
         warbond: "",
         internalName: "orbitalgasstrike",
-        imageURL: ""
+        imageURL: "orbitalgasstrike.png"
     },
     {
         displayName: "Orbital EMS Strike",
@@ -348,7 +423,7 @@ const stratagemsList = [
         subcategory: "Orbital",
         warbond: "",
         internalName: "orbitalemsstrike",
-        imageURL: ""
+        imageURL: "orbitalemsstrike.png"
     },
     {
         displayName: "Orbital Smoke Strike",
@@ -357,7 +432,7 @@ const stratagemsList = [
         subcategory: "Orbital",
         warbond: "",
         internalName: "orbitalsmokestrike",
-        imageURL: ""
+        imageURL: "orbitalsmokestrike.png"
     },
     {
         displayName: "Tesla Tower",
@@ -366,7 +441,7 @@ const stratagemsList = [
         subcategory: "Emplacement",
         warbond: "",
         internalName: "teslatower",
-        imageURL: ""
+        imageURL: "teslatower.png"
     },
     {
         displayName: "Mortar Sentry",
@@ -375,7 +450,7 @@ const stratagemsList = [
         subcategory: "Sentry",
         warbond: "",
         internalName: "mortarsentry",
-        imageURL: ""
+        imageURL: "mortarsentry.png"
     },
     {
         displayName: "EMS Mortar Sentry",
@@ -384,7 +459,7 @@ const stratagemsList = [
         subcategory: "Sentry",
         warbond: "",
         internalName: "emsmortarsentry",
-        imageURL: ""
+        imageURL: "emsmortarsentry.png"
     },
     {
         displayName: "Machine Gun Sentry",
@@ -393,7 +468,7 @@ const stratagemsList = [
         subcategory: "Sentry",
         warbond: "",
         internalName: "machinegunsentry",
-        imageURL: ""
+        imageURL: "machinegunsentry.png"
     },
     {
         displayName: "Gatling Sentry",
@@ -402,7 +477,7 @@ const stratagemsList = [
         subcategory: "Sentry",
         warbond: "",
         internalName: "gatlingsentry",
-        imageURL: ""
+        imageURL: "gatlingsentry.png"
     },
     {
         displayName: "Anti-Personnel Minefield",
@@ -411,7 +486,7 @@ const stratagemsList = [
         subcategory: "Emplacement",
         warbond: "",
         internalName: "antipersonnelminefield",
-        imageURL: ""
+        imageURL: "antipersonnelminefield.png"
     },
     {
         displayName: "Incendiary Mines",
@@ -420,7 +495,7 @@ const stratagemsList = [
         subcategory: "Emplacement",
         warbond: "",
         internalName: "incendiarymines",
-        imageURL: ""
+        imageURL: "incendiarymines.png"
     },
     {
         displayName: "Shield Generator Relay",
@@ -429,7 +504,7 @@ const stratagemsList = [
         subcategory: "Emplacement",
         warbond: "",
         internalName: "shieldgeneratorrelay",
-        imageURL: ""
+        imageURL: "shieldgeneratorrelay.png"
     },
     {
         displayName: "HMG Emplacement",
@@ -438,7 +513,7 @@ const stratagemsList = [
         subcategory: "Emplacement",
         warbond: "",
         internalName: "hmgemplacement",
-        imageURL: ""
+        imageURL: "hmgemplacement.png"
     },
     {
         displayName: "Autocannon Sentry",
@@ -447,7 +522,7 @@ const stratagemsList = [
         subcategory: "Sentry",
         warbond: "",
         internalName: "autocannonsentry",
-        imageURL: ""
+        imageURL: "autocannonsentry.png"
     },
     {
         displayName: "Rocket Sentry",
@@ -456,7 +531,7 @@ const stratagemsList = [
         subcategory: "Sentry",
         warbond: "",
         internalName: "rocketsentry",
-        imageURL: ""
+        imageURL: "rocketsentry.png"
     }
 ];
 
@@ -468,7 +543,7 @@ const primariesList = [
         subcategory: "AssaultRifle",
         warbond: "",
         internalName: "ar23liberator",
-        imageURL: ""
+        imageURL: "ar23liberator.png"
     },
     {
         displayName: "Pummeler",
@@ -495,7 +570,7 @@ const primariesList = [
         subcategory: "AssaultRifle",
         warbond: "HelldiversMobilize",
         internalName: "ar23pliberatorpenetrator",
-        imageURL: ""
+        imageURL: "ar23pliberatorpenetrator.png"
     },
     {
         displayName: "Liberator Concussive",
@@ -504,7 +579,7 @@ const primariesList = [
         subcategory: "AssaultRifle",
         warbond: "SteeledVeterans",
         internalName: "ar23cliberatorconcussive",
-        imageURL: ""
+        imageURL: "ar23cliberatorconcussive.png"
     },
     {
         displayName: "Adjudicator",
@@ -513,7 +588,7 @@ const primariesList = [
         subcategory: "AssaultRifle",
         warbond: "DemocraticDetonation",
         internalName: "br14adjudicator",
-        imageURL: ""
+        imageURL: "br14adjudicator.png"
     },
     {
         displayName: "Defender",
@@ -522,7 +597,7 @@ const primariesList = [
         subcategory: "SubmachineGun",
         warbond: "HelldiversMobilize",
         internalName: "smg37defender",
-        imageURL: ""
+        imageURL: "smg37defender.png"
     },
     {
         displayName: "Punisher",
@@ -531,7 +606,7 @@ const primariesList = [
         subcategory: "Shotgun",
         warbond: "HelldiversMobilize",
         internalName: "sg8punisher",
-        imageURL: ""
+        imageURL: "sg8punisher.png"
     },
     {
         displayName: "Tenderizer",
@@ -549,7 +624,7 @@ const primariesList = [
         subcategory: "Shotgun",
         warbond: "HelldiversMobilize",
         internalName: "sg8sslugger",
-        imageURL: ""
+        imageURL: "sg8sslugger.png"
     },
     {
         displayName: "Breaker",
@@ -558,7 +633,7 @@ const primariesList = [
         subcategory: "Shotgun",
         warbond: "HelldiversMobilize",
         internalName: "sg225breaker",
-        imageURL: ""
+        imageURL: "sg225breaker.png"
     },
     {
         displayName: "Breaker Incendiary",
@@ -567,7 +642,7 @@ const primariesList = [
         subcategory: "Shotgun",
         warbond: "SteeledVeterans",
         internalName: "sg225iebreakerincendiary",
-        imageURL: ""
+        imageURL: "sg225iebreakerincendiary.png"
     },
     {
         displayName: "Breaker Spray & Pray",
@@ -576,7 +651,7 @@ const primariesList = [
         subcategory: "Shotgun",
         warbond: "HelldiversMobilize",
         internalName: "sg225spbreakerspraynpray",
-        imageURL: ""
+        imageURL: "sg225spbreakerspraynpray.png"
     },
     {
         displayName: "MP-98 Knight",
@@ -585,7 +660,7 @@ const primariesList = [
         subcategory: "SubmachineGun",
         warbond: "paid",
         internalName: "mp98knight",
-        imageURL: ""
+        imageURL: "mp98knight.png"
     },
     {
         displayName: "Diligence",
@@ -594,7 +669,7 @@ const primariesList = [
         subcategory: "MarksmanRifle",
         warbond: "HelldiversMobilize",
         internalName: "r63diligence",
-        imageURL: ""
+        imageURL: "r63diligence.png"
     },
     {
         displayName: "Diligence Counter Sniper",
@@ -603,7 +678,7 @@ const primariesList = [
         subcategory: "MarksmanRifle",
         warbond: "HelldiversMobilize",
         internalName: "r63csdiligencecountersniper",
-        imageURL: ""
+        imageURL: "r63csdiligencecountersniper.png"
     },
     {
         displayName: "Scythe",
@@ -612,7 +687,7 @@ const primariesList = [
         subcategory: "EnergyWeapon",
         warbond: "HelldiversMobilize",
         internalName: "las5scythe",
-        imageURL: ""
+        imageURL: "las5scythe.png"
     },
     {
         displayName: "Sickle",
@@ -621,7 +696,7 @@ const primariesList = [
         subcategory: "EnergyWeapon",
         warbond: "CuttingEdge",
         internalName: "las16sickle",
-        imageURL: ""
+        imageURL: "las16sickle.png"
     },
     {
         displayName: "Scorcher",
@@ -630,7 +705,7 @@ const primariesList = [
         subcategory: "EnergyWeapon",
         warbond: "HelldiversMobilize",
         internalName: "plas1scorcher",
-        imageURL: ""
+        imageURL: "plas1scorcher.png"
     },
     {
         displayName: "Punisher Plasma",
@@ -639,7 +714,7 @@ const primariesList = [
         subcategory: "EnergyWeapon",
         warbond: "CuttingEdge",
         internalName: "sg8ppunisherplasma",
-        imageURL: ""
+        imageURL: "sg8ppunisherplasma.png"
     },
     {
         displayName: "Blitzer",
@@ -648,7 +723,7 @@ const primariesList = [
         subcategory: "EnergyWeapon",
         warbond: "CuttingEdge",
         internalName: "arc12blitzer",
-        imageURL: ""
+        imageURL: "arc12blitzer.png"
     },
     {
         displayName: "Dominator",
@@ -657,7 +732,7 @@ const primariesList = [
         subcategory: "Explosive",
         warbond: "SteeledVeterans",
         internalName: "jar5dominator",
-        imageURL: ""
+        imageURL: "jar5dominator.png"
     },
     {
         displayName: "Eruptor",
@@ -666,7 +741,7 @@ const primariesList = [
         subcategory: "Explosive",
         warbond: "DemocraticDetonation",
         internalName: "r36eruptor",
-        imageURL: ""
+        imageURL: "r36eruptor.png"
     },
     {
         displayName: "Exploding Crossbow",
@@ -675,7 +750,7 @@ const primariesList = [
         subcategory: "Explosive",
         warbond: "DemocraticDetonation",
         internalName: "cb9explodingcrossbow",
-        imageURL: ""
+        imageURL: "cb9explodingcrossbow.png"
     }
 ];
 
@@ -687,7 +762,7 @@ const secondariesList = [
         subcategory: "",
         warbond: "",
         internalName: "p2peacemaker",
-        imageURL: ""
+        imageURL: "p2peacemaker.png"
     },
     {
         displayName: "Redeemer",
@@ -696,7 +771,7 @@ const secondariesList = [
         subcategory: "",
         warbond: "HelldiversMobilize",
         internalName: "p19redeemer",
-        imageURL: ""
+        imageURL: "p19redeemer.png"
     },
     {
         displayName: "Grenade Pistol",
@@ -705,7 +780,7 @@ const secondariesList = [
         subcategory: "",
         warbond: "DemocraticDetonation",
         internalName: "gp31grenadepistol",
-        imageURL: ""
+        imageURL: "gp31grenadepistol.png"
     },
     {
         displayName: "Verdict",
@@ -714,7 +789,7 @@ const secondariesList = [
         subcategory: "",
         warbond: "PolarPatriots",
         internalName: "p113verdict",
-        imageURL: ""
+        imageURL: "p113verdict.png"
     },
     {
         displayName: "Senator",
@@ -723,7 +798,7 @@ const secondariesList = [
         subcategory: "",
         warbond: "SteeledVeterans",
         internalName: "p4senator",
-        imageURL: ""
+        imageURL: "p4senator.png"
     },
     {
         displayName: "Dagger",
@@ -732,81 +807,6 @@ const secondariesList = [
         subcategory: "",
         warbond: "CuttingEdge",
         internalName: "las7dagger",
-        imageURL: ""
-    }
-];
-
-const grenadesList = [
-    {
-        displayName: "High Explosive Grenade",
-        type: "Equipment",
-        category: "Grenade",
-        subcategory: "",
-        warbond: "",
-        internalName: "highexplosivegrenade",
-        imageURL: ""
-    },
-    {
-        displayName: "Frag Grenade",
-        type: "Equipment",
-        category: "Grenade",
-        subcategory: "",
-        warbond: "",
-        internalName: "fraggrenade",
-        imageURL: ""
-    },
-    {
-        displayName: "Impact Grenade",
-        type: "Equipment",
-        category: "Grenade",
-        subcategory: "",
-        warbond: "HelldiversMobilize",
-        internalName: "impactgrenade",
-        imageURL: ""
-    },
-    {
-        displayName: "Smoke Grenade",
-        type: "Equipment",
-        category: "Grenade",
-        subcategory: "",
-        warbond: "HelldiversMobilize",
-        internalName: "smokegrenade",
-        imageURL: ""
-    },
-    {
-        displayName: "Incendiary Grenade",
-        type: "Equipment",
-        category: "Grenade",
-        subcategory: "",
-        warbond: "",
-        internalName: "incendiarygrenade",
-        imageURL: ""
-    },
-    {
-        displayName: "Stun Grenade",
-        type: "Equipment",
-        category: "Grenade",
-        subcategory: "",
-        warbond: "",
-        internalName: "stungrenade",
-        imageURL: ""
-    },
-    {
-        displayName: "Thermite Grenade",
-        type: "Equipment",
-        category: "Grenade",
-        subcategory: "",
-        warbond: "",
-        internalName: "thermitegrenade",
-        imageURL: ""
-    },
-    {
-        displayName: "Incendiary Impact",
-        type: "Equipment",
-        category: "Grenade",
-        subcategory: "",
-        warbond: "",
-        internalName: "incendiaryimpact",
-        imageURL: ""
+        imageURL: "las7dagger.png"
     }
 ];

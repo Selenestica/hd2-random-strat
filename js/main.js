@@ -50,7 +50,7 @@ const rollEquipment = () => {
 };
 
 const getRandomUniqueNumbers = (max = 4, list) => {
-    if ((max = 1)) {
+    if (max === 1) {
         return Math.floor(Math.random() * list.length);
     }
     let numbers = [];

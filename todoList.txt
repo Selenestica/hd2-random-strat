@@ -3,6 +3,8 @@ to do:
 - randomizer options. will probably need to add tags attribute to each stratagem. an array (e.g. ["backpack", "supportWeapon"] tags for AC-8 Autocannon, ["supportWeapon"] for AMR)
   - one backpack
   - one support weapon
+- emancipator exosuit needs image
+- code for equipment randomizer
 
 feature ideas:
 - checkbox for AA modifier (3 stratagems)

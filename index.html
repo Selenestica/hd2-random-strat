@@ -47,14 +47,45 @@
                     <div class="row d-flex justify-content-between">
                         <div class="col d-flex justify-content-center my-1">
                             <div class="mx-2">
-                                <button
+                                <!-- <button
                                     id="rollStratsButton"
                                     type="button"
                                     class="btn btn-success"
                                     onclick="rollStratagems()"
                                 >
                                     Roll Stratagems
-                                </button>
+                                </button> -->
+                                <div class="btn-group">
+                                    <button
+                                        class="btn btn-primary"
+                                        onclick="rollStratagems()"
+                                        type="button"
+                                    >
+                                        Roll Stratagems {4}
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        <span class="visually-hidden"
+                                            >Toggle Dropdown</span
+                                        >
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >3</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"
+                                                >4</a
+                                            >
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="mx-2">
                                 <button
@@ -225,6 +256,85 @@
                                     data-bs-parent="#optionsAccordion"
                                 >
                                     <div id="warbondsChecklistContainer"></div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-none">
+                                <h2 class="accordion-header">
+                                    <button
+                                        class="accordion-button collapsed text-light"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#randomizerSettingsAccordion"
+                                        aria-expanded="false"
+                                        aria-controls="randomizerSettingsAccordion"
+                                    >
+                                        Randomizer Settings
+                                    </button>
+                                </h2>
+                                <div
+                                    id="randomizerSettingsAccordion"
+                                    class="accordion-collapse collapse p-3"
+                                    aria-labelledby="Rules"
+                                    data-bs-parent="#optionsAccordion"
+                                >
+                                    <div>
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input optionalCheckbox"
+                                                type="checkbox"
+                                                value=""
+                                                id="completelyRandomCheck"
+                                            />
+                                            <label
+                                                class="form-check-label"
+                                                for="completelyRandomCheck"
+                                            >
+                                                <div>
+                                                    <b class="text-white"
+                                                        >Completely random</b
+                                                    >
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input optionalCheckbox"
+                                                type="checkbox"
+                                                value=""
+                                                id="oneSupportCheck"
+                                            />
+                                            <label
+                                                class="form-check-label"
+                                                for="oneSupportCheck"
+                                            >
+                                                <div>
+                                                    <b class="text-white"
+                                                        >Only roll one support
+                                                        weapon</b
+                                                    >
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input optionalCheckbox"
+                                                type="checkbox"
+                                                value=""
+                                                id="oneBackpackCheck"
+                                            />
+                                            <label
+                                                class="form-check-label"
+                                                for="oneBackpackCheck"
+                                            >
+                                                <div>
+                                                    <b class="text-white"
+                                                        >Only roll one
+                                                        backpack</b
+                                                    >
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

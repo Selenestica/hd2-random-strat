@@ -100,9 +100,9 @@ const rollEquipment = () => {
     // removes mp98 knight initially
     let scPrimariesList = workingPrimsList ?? primsList;
     if (!superCitizenCheckBox.checked) {
-        for (let n = 0; n < list.length; n++) {
-            if (list[n].internalName === "mp98knight") {
-                list.splice(n, 1);
+        for (let n = 0; n < scPrimariesList.length; n++) {
+            if (scPrimariesList[n].internalName === "mp98knight") {
+                scPrimariesList.splice(n, 1);
             }
         }
     } else if (superCitizenCheckBox.checked) {

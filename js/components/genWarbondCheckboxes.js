@@ -2,7 +2,7 @@ const warbondsChecklistContainer = document.getElementById(
     "warbondsChecklistContainer"
 );
 const warbondsList = [
-    "Super Citizen",
+    "Super Citizen Edition",
     "Helldivers Mobilize",
     "Steeled Veterans",
     "Cutting Edge",
@@ -19,6 +19,7 @@ const genWarbondCheckboxes = () => {
                 type="checkbox"
                 value=""
                 id="warbond${i}"
+                ${i !== 0 ? "checked" : ""}
             />
             <label
                 class="form-check-label"

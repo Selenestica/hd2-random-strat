@@ -2,6 +2,7 @@ const stratagemsContainer = document.getElementById("stratagemsContainer");
 const equipmentContainer = document.getElementById("equipmentContainer");
 const rollStratsButton = document.getElementById("rollStratsButton");
 const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
+const superCitizenCheckBox = document.getElementById("warbond0");
 const oneSupportCheck = document.getElementById("oneSupportCheck");
 const oneBackpackCheck = document.getElementById("oneBackpackCheck");
 
@@ -10,6 +11,10 @@ let stratsList = [...stratagemsList];
 let primsList = [...primariesList];
 let secondsList = [...secondariesList];
 let grensList = [...grenadesList];
+
+let workingPrimsList;
+let workingSecondsList;
+let workingGrensList;
 
 let oneBackpack = false;
 let oneSupportWeapon = false;
@@ -35,7 +40,24 @@ for (let z = 0; z < warbondCheckboxes.length; z++) {
     });
 }
 
-const filterEquipment = () => {};
+const filterEquipment = async () => {
+    const equipmentLists = [primsList, secondsList, grensList];
+    for (let i = 0; i < equipmentLists.length; i++) {
+        let tempList = [...equipmentLists[i]];
+        equipmentLists[i] = await tempList.filter(
+            (equip) =>
+                checkedWarbonds.includes(equip.warbondCode) ||
+                equip.warbondCode === "default"
+        );
+        if (i === 0) {
+            workingPrimsList = equipmentLists[i];
+        } else if (i === 1) {
+            workingSecondsList = equipmentLists[i];
+        } else if (i === 2) {
+            workingGrensList = equipmentLists[i];
+        }
+    }
+};
 
 const setMaxStrats = (val) => {
     maxStrats = val;
@@ -68,10 +90,33 @@ const rollStratagems = () => {
 };
 
 const rollEquipment = () => {
-    // loop through warbond checks and filter out unchecked warbonds
-    // make copies of equipment lists and only grab equipment from checked warbonds
     equipmentContainer.innerHTML = "";
-    const equipmentLists = [primsList, secondsList, grensList];
+    const equipmentLists = [
+        workingPrimsList ?? primsList,
+        workingSecondsList ?? secondsList,
+        workingGrensList ?? grensList
+    ];
+
+    // removes mp98 knight initially
+    let scPrimariesList = workingPrimsList ?? primsList;
+    if (!superCitizenCheckBox.checked) {
+        for (let n = 0; n < list.length; n++) {
+            if (list[n].internalName === "mp98knight") {
+                list.splice(n, 1);
+            }
+        }
+    } else if (superCitizenCheckBox.checked) {
+        scPrimariesList.push({
+            displayName: "MP-98 Knight",
+            type: "Equipment",
+            category: "Primary",
+            tags: ["SubmachineGun"],
+            warbond: "Super Citizen",
+            warbondCode: "warbond0",
+            internalName: "mp98knight",
+            imageURL: "mp98knight.png"
+        });
+    }
     for (let i = 0; i < equipmentLists.length; i++) {
         const randomNumber = getRandomUniqueNumbers(1, equipmentLists[i]);
         const equipment = equipmentLists[i][randomNumber];

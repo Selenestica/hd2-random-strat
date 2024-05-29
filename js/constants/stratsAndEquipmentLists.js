@@ -4,7 +4,8 @@ const grenadesList = [
         type: "Equipment",
         category: "Grenade",
         tags: [],
-        warbond: "Helldivers Mobilize",
+        warbond: "Default",
+        warbondCode: "default",
         internalName: "g12highexplosivegrenade",
         imageURL: "g12highexplosivegrenade.png"
     },
@@ -14,6 +15,7 @@ const grenadesList = [
         category: "Grenade",
         tags: [],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "g6fraggrenade",
         imageURL: "g6fraggrenade.png"
     },
@@ -23,6 +25,7 @@ const grenadesList = [
         category: "Grenade",
         tags: [],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "g16impactgrenade",
         imageURL: "g16impactgrenade.png"
     },
@@ -32,6 +35,7 @@ const grenadesList = [
         category: "Grenade",
         tags: [],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "g3smokegrenade",
         imageURL: "g3smokegrenade.png"
     },
@@ -41,6 +45,7 @@ const grenadesList = [
         category: "Grenade",
         tags: [],
         warbond: "Steeled Veterans",
+        warbondCode: "warbond2",
         internalName: "g10incendiarygrenade",
         imageURL: "g10incendiarygrenade.png"
     },
@@ -50,6 +55,7 @@ const grenadesList = [
         category: "Grenade",
         tags: [],
         warbond: "Cutting Edge",
+        warbondCode: "warbond3",
         internalName: "g23stungrenade",
         imageURL: "g23stungrenade.png"
     },
@@ -59,6 +65,7 @@ const grenadesList = [
         category: "Grenade",
         tags: [],
         warbond: "Democratic Detonation",
+        warbondCode: "warbond4",
         internalName: "g123thermitegrenade",
         imageURL: "g123thermitegrenade.png"
     },
@@ -68,6 +75,7 @@ const grenadesList = [
         category: "Grenade",
         tags: [],
         warbond: "Polar Patriots",
+        warbondCode: "warbond5",
         internalName: "g13incendiaryimpact",
         imageURL: "g13incendiaryimpact.png"
     }
@@ -550,7 +558,8 @@ const primariesList = [
         type: "Equipment",
         category: "Primary",
         tags: ["AssaultRifle"],
-        warbond: "",
+        warbond: "Default",
+        warbondCode: "default",
         internalName: "ar23liberator",
         imageURL: "ar23liberator.png"
     },
@@ -560,6 +569,7 @@ const primariesList = [
         category: "Primary",
         tags: ["SubmachineGun"],
         warbond: "Polar Patriots",
+        warbondCode: "warbond5",
         internalName: "smg72pummeler",
         imageURL: "smg72pummeler.png"
     },
@@ -569,6 +579,7 @@ const primariesList = [
         category: "Primary",
         tags: ["EnergyWeapon"],
         warbond: "Polar Patriots",
+        warbondCode: "warbond5",
         internalName: "plas101purifier",
         imageURL: "plas101purifier.png"
     },
@@ -578,6 +589,7 @@ const primariesList = [
         category: "Primary",
         tags: ["AssaultRifle"],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "ar23pliberatorpenetrator",
         imageURL: "ar23pliberatorpenetrator.png"
     },
@@ -587,6 +599,7 @@ const primariesList = [
         category: "Primary",
         tags: ["AssaultRifle"],
         warbond: "Steeled Veterans",
+        warbondCode: "warbond2",
         internalName: "ar23cliberatorconcussive",
         imageURL: "ar23cliberatorconcussive.png"
     },
@@ -596,6 +609,7 @@ const primariesList = [
         category: "Primary",
         tags: ["AssaultRifle"],
         warbond: "Democratic Detonation",
+        warbondCode: "warbond4",
         internalName: "br14adjudicator",
         imageURL: "br14adjudicator.png"
     },
@@ -605,6 +619,7 @@ const primariesList = [
         category: "Primary",
         tags: ["SubmachineGun"],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "smg37defender",
         imageURL: "smg37defender.png"
     },
@@ -614,6 +629,7 @@ const primariesList = [
         category: "Primary",
         tags: ["Shotgun"],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "sg8punisher",
         imageURL: "sg8punisher.png"
     },
@@ -623,6 +639,7 @@ const primariesList = [
         category: "Primary",
         tags: ["AssaultRifle"],
         warbond: "Polar Patriots",
+        warbondCode: "warbond5",
         internalName: "ar61tenderizer",
         imageURL: "ar61tenderizer.png"
     },
@@ -632,6 +649,7 @@ const primariesList = [
         category: "Primary",
         tags: ["Shotgun"],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "sg8sslugger",
         imageURL: "sg8sslugger.png"
     },
@@ -641,6 +659,7 @@ const primariesList = [
         category: "Primary",
         tags: ["Shotgun"],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "sg225breaker",
         imageURL: "sg225breaker.png"
     },
@@ -650,6 +669,7 @@ const primariesList = [
         category: "Primary",
         tags: ["Shotgun"],
         warbond: "Steeled Veterans",
+        warbondCode: "warbond2",
         internalName: "sg225iebreakerincendiary",
         imageURL: "sg225iebreakerincendiary.png"
     },
@@ -659,6 +679,7 @@ const primariesList = [
         category: "Primary",
         tags: ["Shotgun"],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "sg225spbreakerspraynpray",
         imageURL: "sg225spbreakerspraynpray.png"
     },
@@ -668,6 +689,7 @@ const primariesList = [
         category: "Primary",
         tags: ["SubmachineGun"],
         warbond: "Super Citizen",
+        warbondCode: "warbond0",
         internalName: "mp98knight",
         imageURL: "mp98knight.png"
     },
@@ -677,6 +699,7 @@ const primariesList = [
         category: "Primary",
         tags: ["MarksmanRifle"],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "r63diligence",
         imageURL: "r63diligence.png"
     },
@@ -686,6 +709,7 @@ const primariesList = [
         category: "Primary",
         tags: ["MarksmanRifle"],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "r63csdiligencecountersniper",
         imageURL: "r63csdiligencecountersniper.png"
     },
@@ -695,6 +719,7 @@ const primariesList = [
         category: "Primary",
         tags: ["EnergyWeapon"],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "las5scythe",
         imageURL: "las5scythe.png"
     },
@@ -704,6 +729,7 @@ const primariesList = [
         category: "Primary",
         tags: ["EnergyWeapon"],
         warbond: "Cutting Edge",
+        warbondCode: "warbond3",
         internalName: "las16sickle",
         imageURL: "las16sickle.png"
     },
@@ -713,6 +739,7 @@ const primariesList = [
         category: "Primary",
         tags: ["EnergyWeapon"],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "plas1scorcher",
         imageURL: "plas1scorcher.png"
     },
@@ -722,6 +749,7 @@ const primariesList = [
         category: "Primary",
         tags: ["EnergyWeapon"],
         warbond: "Cutting Edge",
+        warbondCode: "warbond3",
         internalName: "sg8ppunisherplasma",
         imageURL: "sg8ppunisherplasma.png"
     },
@@ -731,6 +759,7 @@ const primariesList = [
         category: "Primary",
         tags: ["EnergyWeapon"],
         warbond: "Cutting Edge",
+        warbondCode: "warbond3",
         internalName: "arc12blitzer",
         imageURL: "arc12blitzer.png"
     },
@@ -740,6 +769,7 @@ const primariesList = [
         category: "Primary",
         tags: ["Explosive"],
         warbond: "Steeled Veterans",
+        warbondCode: "warbond2",
         internalName: "jar5dominator",
         imageURL: "jar5dominator.png"
     },
@@ -749,6 +779,7 @@ const primariesList = [
         category: "Primary",
         tags: ["Explosive"],
         warbond: "Democratic Detonation",
+        warbondCode: "warbond4",
         internalName: "r36eruptor",
         imageURL: "r36eruptor.png"
     },
@@ -758,6 +789,7 @@ const primariesList = [
         category: "Primary",
         tags: ["Explosive"],
         warbond: "Democratic Detonation",
+        warbondCode: "warbond4",
         internalName: "cb9explodingcrossbow",
         imageURL: "cb9explodingcrossbow.png"
     }
@@ -769,7 +801,8 @@ const secondariesList = [
         type: "Equipment",
         category: "Secondary",
         tags: [],
-        warbond: "",
+        warbond: "Default",
+        warbondCode: "default",
         internalName: "p2peacemaker",
         imageURL: "p2peacemaker.png"
     },
@@ -779,6 +812,7 @@ const secondariesList = [
         category: "Secondary",
         tags: [],
         warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
         internalName: "p19redeemer",
         imageURL: "p19redeemer.png"
     },
@@ -788,6 +822,7 @@ const secondariesList = [
         category: "Secondary",
         tags: [],
         warbond: "Democratic Detonation",
+        warbondCode: "warbond4",
         internalName: "gp31grenadepistol",
         imageURL: "gp31grenadepistol.png"
     },
@@ -797,6 +832,7 @@ const secondariesList = [
         category: "Secondary",
         tags: [],
         warbond: "Polar Patriots",
+        warbondCode: "warbond5",
         internalName: "p113verdict",
         imageURL: "p113verdict.png"
     },
@@ -806,6 +842,7 @@ const secondariesList = [
         category: "Secondary",
         tags: [],
         warbond: "Steeled Veterans",
+        warbondCode: "warbond2",
         internalName: "p4senator",
         imageURL: "p4senator.png"
     },
@@ -815,6 +852,7 @@ const secondariesList = [
         category: "Secondary",
         tags: [],
         warbond: "Cutting Edge",
+        warbondCode: "warbond3",
         internalName: "las7dagger",
         imageURL: "las7dagger.png"
     }

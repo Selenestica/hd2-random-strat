@@ -1,10 +1,9 @@
 to do:
-- add modal for warbond selector, randomizer options, etc
+- add modal for warbond selector, randomizer options, super citizen edition, etc
 - randomizer options. will probably need to add tags attribute to each stratagem. an array (e.g. ["backpack", "supportWeapon"] tags for AC-8 Autocannon, ["supportWeapon"] for AMR)
   - one backpack
   - one support weapon
 - emancipator exosuit needs image
-- code for equipment randomizer
 
 feature ideas:
 - checkbox for AA modifier (3 stratagems)

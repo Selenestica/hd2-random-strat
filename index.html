@@ -67,6 +67,16 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="col d-flex my-1 justify-content-end">
+                            <button
+                                class="btn btn-primary"
+                                type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#optionsModal"
+                            >
+                                Options
+                            </button>
+                        </div>
                     </div>
                     <hr />
                     <div
@@ -85,25 +95,115 @@
             </div>
         </div>
 
-        <!-- RULES AND INFO MODAL -->
+        <!-- <div class="accordion-item bg-none">
+            <h2 class="accordion-header">
+                <button
+                    class="accordion-button collapsed text-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faqAccordion"
+                    aria-expanded="false"
+                    aria-controls="faqAccordion"
+                >
+                    FAQs
+                </button>
+            </h2>
+            <div
+                id="faqAccordion"
+                class="accordion-collapse collapse p-3"
+                aria-labelledby="Rules"
+                data-bs-parent="#rulesAndInfoAccordion"
+            >
+                <ul class="modalAccordionList">
+                    <li class="text-white">
+                        <b>Q: Who is this app for?</b>
+                        <p>
+                            A: This web app was made for
+                            Helldivers who have unlocked all
+                            stratagems (and ideally,
+                            equipment) and are looking for a
+                            fun way to spice up their dives.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="accordion-item bg-none">
+            <h2 class="accordion-header">
+                <button
+                    class="accordion-button collapsed text-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#creditAccordion"
+                    aria-expanded="false"
+                    aria-controls="creditAccordion"
+                >
+                    Credits
+                </button>
+            </h2>
+            <div
+                id="creditAccordion"
+                class="accordion-collapse collapse p-3"
+                aria-labelledby="Rules"
+                data-bs-parent="#rulesAndInfoAccordion"
+            >
+                <ul class="modalAccordionList">
+                    <li class="text-white">
+                        This app is basically
+                        u/PixelKatana's immaculately
+                        prepared spreadsheets condensed into
+                        one webpage for convenience. Huge
+                        thanks to them for essentially
+                        letting me copy all of their work.
+                        You can find their original
+                        spreadsheets
+                        <a
+                            target="_blank"
+                            href="https://docs.google.com/spreadsheets/d/1h2H2mr_NGOSqG_F9D8O78ChCtyE0NEmXi1RzF5E7Mnw/edit#gid=1523984323"
+                        >
+                            here</a
+                        >
+                    </li>
+                    <li class="text-white">
+                        Would you like to contribute? If
+                        you're code savvy, I could use some
+                        help with colors and fonts, as well
+                        as upcoming features. Feel free to
+                        email me at
+                        joebenwilson.dev@gmail.com with any
+                        feedback/suggestions, or submit a PR
+                        on
+                        <a
+                            href="https://github.com/Selenestica/hd2-random-strat"
+                            >GitHub</a
+                        >.
+                    </li>
+                </ul>
+            </div>
+        </div> -->
+
+        <!-- OPTIONS MODAL -->
         <div
             class="modal fade"
-            id="rulesModal"
+            id="optionsModal"
             tabindex="-1"
-            aria-labelledby="rulesModalLabel"
+            aria-labelledby="optionsModalLabel"
             aria-hidden="true"
         >
             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                 <div class="modal-content bg-grey">
                     <div class="modal-header">
-                        <h5 class="modal-title text-light" id="rulesModalLabel">
-                            Rules and Info
+                        <h5
+                            class="modal-title text-light"
+                            id="optionsModalLabel"
+                        >
+                            Options
                         </h5>
                     </div>
                     <div class="modal-body">
                         <div
                             class="accordion accordion-flush"
-                            id="rulesAndInfoAccordion"
+                            id="optionsAccordion"
                         >
                             <div class="accordion-item bg-none">
                                 <h2 class="accordion-header">
@@ -111,283 +211,20 @@
                                         class="accordion-button collapsed text-light"
                                         type="button"
                                         data-bs-toggle="collapse"
-                                        data-bs-target="#rulesAccordion"
+                                        data-bs-target="#warbondsAccordion"
                                         aria-expanded="false"
-                                        aria-controls="rulesAccordion"
+                                        aria-controls="warbondsAccordion"
                                     >
-                                        Rules
+                                        Warbonds and Editions
                                     </button>
                                 </h2>
                                 <div
-                                    id="rulesAccordion"
+                                    id="warbondsAccordion"
                                     class="accordion-collapse collapse p-3"
                                     aria-labelledby="Rules"
-                                    data-bs-parent="#rulesAndInfoAccordion"
+                                    data-bs-parent="#optionsAccordion"
                                 >
-                                    <ul class="modalAccordionList">
-                                        <li class="text-white">
-                                            Start a new playthrough with the
-                                            JAILBREAK frame, the starter
-                                            internal components (BST-G1/P10
-                                            booster, FCS-G1/P01 FCS, AG-J-098
-                                            JOSO generator), no OS tuning (alt),
-                                            and no weapons
-                                        </li>
-                                        <li class="text-white">
-                                            For every mission completed, roll
-                                            for a new part by clicking "ROLL",
-                                            with the correct stage you are in
-                                            selected from the dropdown
-                                        </li>
-                                        <li class="text-white">
-                                            If you complete the optional
-                                            objective for a mission, you may
-                                            roll for an additional part
-                                        </li>
-                                        <li class="text-white">
-                                            If you fail a mission for any
-                                            reason, the run is over. Press the
-                                            "RESET" button to restart your run.
-                                            Reset your OS tunings in game (not
-                                            applicable to ALT runs)
-                                        </li>
-                                        <li class="text-white">
-                                            Due to the fact that the Stun Needle
-                                            is de facto a mandatory weapon for
-                                            "Destroy the Ice Worm", you may use
-                                            it for this mission (R-Back Unit
-                                            variant, as in the base game) even
-                                            if you haven't acquired it through
-                                            random rewards
-                                        </li>
-                                        <li class="text-white">
-                                            You do not need to do the "Illegal
-                                            Entry" mission
-                                        </li>
-                                        <li class="text-white">
-                                            Completing the mission "Escape" is
-                                            not necessary if you are using the
-                                            mission replay feature. If you do
-                                            complete this mission (using mission
-                                            replay or otherwise) you may role
-                                            for another part
-                                        </li>
-                                        <li class="text-white">
-                                            ALT rule: do not reset OS tuning
-                                            after mission failure
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="accordion-item bg-none">
-                                <h2 class="accordion-header">
-                                    <button
-                                        class="accordion-button collapsed text-light"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#stagesAccordion"
-                                        aria-expanded="false"
-                                        aria-controls="stagesAccordion"
-                                    >
-                                        Stages
-                                    </button>
-                                </h2>
-                                <div
-                                    id="stagesAccordion"
-                                    class="accordion-collapse collapse p-3"
-                                    aria-labelledby="Rules"
-                                    data-bs-parent="#rulesAndInfoAccordion"
-                                >
-                                    <ul class="modalAccordionList">
-                                        <li class="text-white">
-                                            <b>Stage 1: </b>Start your run here,
-                                            and come back here after beating a
-                                            final boss
-                                        </li>
-                                        <li class="text-white">
-                                            <b>Stage 2: </b>Complete "Operation
-                                            Wallclimber"
-                                        </li>
-                                        <li class="text-white">
-                                            <b>Stage 3: </b>Complete "Steal the
-                                            Survey Data"
-                                        </li>
-                                        <li class="text-white">
-                                            <b>Stage 4: </b>Complete "Attack the
-                                            Old Spaceport"
-                                        </li>
-                                        <li class="text-white">
-                                            <b>Stage 5: </b>Complete
-                                            "Underground Exploration - Depth 3"
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="accordion-item bg-none">
-                                <h2 class="accordion-header">
-                                    <button
-                                        class="accordion-button collapsed text-light"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#faqAccordion"
-                                        aria-expanded="false"
-                                        aria-controls="faqAccordion"
-                                    >
-                                        FAQs
-                                    </button>
-                                </h2>
-                                <div
-                                    id="faqAccordion"
-                                    class="accordion-collapse collapse p-3"
-                                    aria-labelledby="Rules"
-                                    data-bs-parent="#rulesAndInfoAccordion"
-                                >
-                                    <ul class="modalAccordionList">
-                                        <li class="text-white">
-                                            <b
-                                                >Q: What the hell is a Denoiser
-                                                or a Weevil?</b
-                                            >
-                                            <p>
-                                                A: Denoisers are the PCA mechs
-                                                found in Watchpoint Alpha and
-                                                Institute City. Weevils are the
-                                                bipedal C-Weapon MTs that always
-                                                appear alongside Helianthus
-                                                machines. (And in case you
-                                                missed that in-game, Helianthi
-                                                are the grinder wheels).
-                                            </p>
-                                        </li>
-                                        <li class="text-white">
-                                            <b
-                                                >Q: I'm in the middle of a
-                                                playthrough and don't want to
-                                                and/or can't be bothered to beat
-                                                an ending to start over. Can I
-                                                do this challenge through
-                                                mission replays?</b
-                                            >
-                                            <p>
-                                                A: Of course, just make sure to
-                                                keep track of the correct order
-                                                and availability of missions.
-                                            </p>
-                                        </li>
-                                        <li class="text-white">
-                                            <b
-                                                >Q: If I'm using mission replay,
-                                                can I still do "Escape" for an
-                                                extra Stage 5 part roll?</b
-                                            >
-                                            <p>
-                                                A: Knock yourself out,
-                                                masochist.
-                                            </p>
-                                        </li>
-                                        <li class="text-white">
-                                            <b
-                                                >Q: Why all the arbitrary bonus
-                                                pay requirements for
-                                                challenges?</b
-                                            >
-                                            <p>
-                                                A: It's the easiest way for you
-                                                to check how many enemies you've
-                                                killed during the mission - all
-                                                costs are calculated at 90% of
-                                                the maximum bonus payout, give
-                                                or take a few enemies that may
-                                                have been missed while testing.
-                                            </p>
-                                        </li>
-                                        <li class="text-white">
-                                            <b
-                                                >Q: Do I have to do all 3
-                                                endings one after another or can
-                                                I do one again if I want to
-                                                grind some better parts?</b
-                                            >
-                                            <p>
-                                                A: The run was made with the
-                                                idea that you should indeed do
-                                                the endings in succession and
-                                                not redo any missions.
-                                            </p>
-                                        </li>
-                                        <li class="text-white">
-                                            <b>
-                                                Q: Is restarting a mission fair
-                                                game?
-                                            </b>
-                                            <p>
-                                                A: Nope. Live with your mistakes
-                                                and/or die by your mistakes.
-                                            </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="accordion-item bg-none">
-                                <h2 class="accordion-header">
-                                    <button
-                                        class="accordion-button collapsed text-light"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#creditAccordion"
-                                        aria-expanded="false"
-                                        aria-controls="creditAccordion"
-                                    >
-                                        Credits
-                                    </button>
-                                </h2>
-                                <div
-                                    id="creditAccordion"
-                                    class="accordion-collapse collapse p-3"
-                                    aria-labelledby="Rules"
-                                    data-bs-parent="#rulesAndInfoAccordion"
-                                >
-                                    <ul class="modalAccordionList">
-                                        <li class="text-white">
-                                            This app is basically
-                                            u/PixelKatana's immaculately
-                                            prepared spreadsheets condensed into
-                                            one webpage for convenience. Huge
-                                            thanks to them for essentially
-                                            letting me copy all of their work.
-                                            You can find their original
-                                            spreadsheets
-                                            <a
-                                                target="_blank"
-                                                href="https://docs.google.com/spreadsheets/d/1h2H2mr_NGOSqG_F9D8O78ChCtyE0NEmXi1RzF5E7Mnw/edit#gid=1523984323"
-                                            >
-                                                here</a
-                                            >
-                                        </li>
-                                        <li class="text-white">
-                                            u/Fynzmirs and u/Vamprah for their
-                                            contributions to the aforementioned
-                                            spreadsheet
-                                        </li>
-                                        <li class="text-white">
-                                            u/_b1ack0ut for the initial idea of
-                                            a roguelike-styled run
-                                        </li>
-                                        <li class="text-white">
-                                            Would you like to contribute? If
-                                            you're code savvy, I could use some
-                                            help with colors and fonts, as well
-                                            as upcoming features. Feel free to
-                                            email me at
-                                            joebenwilson.dev@gmail.com with any
-                                            feedback/suggestions, or submit a PR
-                                            on
-                                            <a
-                                                href="https://github.com/Selenestica/ac6-roguelike-challenge"
-                                                >GitHub</a
-                                            >.
-                                        </li>
-                                    </ul>
+                                    <div id="warbondsChecklistContainer"></div>
                                 </div>
                             </div>
                         </div>
@@ -416,5 +253,6 @@
         crossorigin="anonymous"
     ></script>
     <script src="js/constants/stratsAndEquipmentLists.js"></script>
+    <script src="js/components/genWarbondCheckboxes.js"></script>
     <script src="js/main.js"></script>
 </html>

@@ -1,11 +1,22 @@
 const stratagemsContainer = document.getElementById("stratagemsContainer");
 const equipmentContainer = document.getElementById("equipmentContainer");
+const rollStratsButton = document.getElementById("rollStratsButton");
+
+let maxStrats = 4;
+
+const setMaxStrats = (val) => {
+    maxStrats = val;
+    rollStratsButton.innerHTML = `Roll Stratagems (${val})`;
+};
 
 const rollStratagems = () => {
     // get random numbers that arent the same and get the strats at those indices
     stratagemsContainer.innerHTML = "";
     // will need to make the first arg below dynamic (3 or 4 or whatever)
-    const randomUniqueNumbers = getRandomUniqueNumbers(4, stratagemsList);
+    const randomUniqueNumbers = getRandomUniqueNumbers(
+        maxStrats,
+        stratagemsList
+    );
 
     for (let i = 0; i < randomUniqueNumbers.length; i++) {
         const stratagem = stratagemsList[randomUniqueNumbers[i]];

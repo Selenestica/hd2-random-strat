@@ -1,6 +1,5 @@
 to do:
 - hook up functions to checkboxes in options modal
-- hook up function in roll stratagem dropdown for stratagem amount
 - emancipator exosuit needs image
 
 feature ideas:

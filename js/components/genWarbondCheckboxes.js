@@ -15,7 +15,7 @@ const genWarbondCheckboxes = () => {
         warbondsChecklistContainer.innerHTML += `                                    
           <div class="form-check">
             <input
-                class="form-check-input optionalCheckbox"
+                class="form-check-input warbondCheckboxes"
                 type="checkbox"
                 value=""
                 id="warbond${i}"

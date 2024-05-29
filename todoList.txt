@@ -4,3 +4,4 @@ to do:
 
 feature ideas:
 - cleanup borders on some images
+- save options in local storage

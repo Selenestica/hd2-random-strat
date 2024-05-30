@@ -67,8 +67,18 @@ const setMaxStrats = (val) => {
 const rollStratagems = () => {
     // get random numbers that arent the same and get the strats at those indices
     stratagemsContainer.innerHTML = "";
+
+    // if oneSupportWeapon or oneBackpack is checked, then account for those
+    const oneSupportWeapon = oneSupportCheck.checked;
+    const oneBackpack = oneBackpackCheck.checked;
+
     // will need to make the first arg below dynamic (3 or 4 or whatever)
-    const randomUniqueNumbers = getRandomUniqueNumbers(maxStrats, stratsList);
+    const randomUniqueNumbers = getRandomUniqueNumbers(
+        maxStrats,
+        stratsList,
+        oneSupportWeapon,
+        oneBackpack
+    );
 
     for (let i = 0; i < randomUniqueNumbers.length; i++) {
         const stratagem = stratsList[randomUniqueNumbers[i]];
@@ -105,6 +115,7 @@ const rollEquipment = () => {
                 scPrimariesList.splice(n, 1);
             }
         }
+        // adds it in initially
     } else if (superCitizenCheckBox.checked) {
         scPrimariesList.push({
             displayName: "MP-98 Knight",
@@ -118,7 +129,9 @@ const rollEquipment = () => {
         });
     }
     for (let i = 0; i < equipmentLists.length; i++) {
-        const randomNumber = getRandomUniqueNumbers(1, equipmentLists[i]);
+        const randomNumber = Math.floor(
+            Math.random() * equipmentLists[i].length
+        );
         const equipment = equipmentLists[i][randomNumber];
         equipmentContainer.innerHTML += `
         <div class="col-3 d-flex justify-content-center">
@@ -137,15 +150,46 @@ const rollEquipment = () => {
     }
 };
 
-const getRandomUniqueNumbers = (max = 4, list) => {
-    if (max === 1) {
-        return Math.floor(Math.random() * list.length);
-    }
+const getRandomUniqueNumbers = (
+    max = 4,
+    list,
+    oneSupportWeapon,
+    oneBackpack
+) => {
+    let hasBackpack = false;
+    let hasSupportWeapon = false;
     let numbers = [];
     let randomNumber = null;
     while (numbers.length < max) {
         randomNumber = Math.floor(Math.random() * list.length);
-        if (!numbers.includes(randomNumber)) {
+        if (
+            (list[randomNumber].tags.includes("Weapons") && hasSupportWeapon) ||
+            (list[randomNumber].tags.includes("Backpacks") && hasBackpack) ||
+            numbers.includes(randomNumber)
+        ) {
+            continue;
+        } else {
+            if (
+                oneSupportWeapon &&
+                list[randomNumber].tags.includes("Weapons")
+            ) {
+                numbers.push(randomNumber);
+                hasSupportWeapon = true;
+                if (list[randomNumber].tags.includes("Backpacks")) {
+                    hasBackpack = true;
+                }
+                continue;
+            } else if (
+                oneBackpack &&
+                list[randomNumber].tags.includes("Backpacks")
+            ) {
+                numbers.push(randomNumber);
+                hasBackpack = true;
+                if (list[randomNumber].tags.includes("Weapons")) {
+                    hasSupportWeapon = true;
+                }
+                continue;
+            }
             numbers.push(randomNumber);
         }
     }

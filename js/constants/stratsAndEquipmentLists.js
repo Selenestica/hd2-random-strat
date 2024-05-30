@@ -86,7 +86,7 @@ const stratagemsList = [
         displayName: "Airburst Rocket Launcher",
         type: "Stratagem",
         category: "Supply",
-        tags: ["Weapons", "Backpack"],
+        tags: ["Weapons", "Backpacks"],
         warbond: "",
         internalName: "rl77airburstrocketlauncher",
         imageURL: "rl77airburstrocketlauncher.png"
@@ -95,7 +95,7 @@ const stratagemsList = [
         displayName: "Autocannon",
         type: "Stratagem",
         category: "Supply",
-        tags: ["Weapons", "Backpack"],
+        tags: ["Weapons", "Backpacks"],
         warbond: "",
         internalName: "ac8autocannon",
         imageURL: "ac8autocannon.png"
@@ -185,7 +185,7 @@ const stratagemsList = [
         displayName: "Recoilless Rifle",
         type: "Stratagem",
         category: "Supply",
-        tags: ["Weapons", "Backpack"],
+        tags: ["Weapons", "Backpacks"],
         warbond: "",
         internalName: "gr8recoillessrifle",
         imageURL: "gr8recoillessrifle.png"
@@ -194,7 +194,7 @@ const stratagemsList = [
         displayName: "Spear",
         type: "Stratagem",
         category: "Supply",
-        tags: ["Weapons", "Backpack"],
+        tags: ["Weapons", "Backpacks"],
         warbond: "",
         internalName: "faf14spear",
         imageURL: "faf14spear.png"

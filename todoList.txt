@@ -1,10 +1,10 @@
 to do:
-- hook up functions to checkboxes in options modal
-  - randomizer options
-- emancipator exosuit needs image
+- add modal for FAQs, info, credits
+
 
 feature ideas:
 - cleanup borders on some images
 - save options in local storage
 
 bugs:
+- emancipator exosuit needs image

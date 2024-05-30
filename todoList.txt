@@ -1,6 +1,6 @@
 to do:
-- add modal for FAQs, info, credits
-
+- edit credits
+- add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 
 feature ideas:
 - cleanup borders on some images

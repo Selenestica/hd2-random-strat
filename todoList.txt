@@ -3,8 +3,11 @@ to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 
 feature ideas:
+- add booster randomizer
+- add DDR codes to stratagems
 - cleanup borders on some images
 - save options in local storage
+- add armor randomizer
 
 bugs:
 - emancipator exosuit needs image

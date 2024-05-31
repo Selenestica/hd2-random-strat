@@ -8,6 +8,7 @@ feature ideas:
 - cleanup borders on some images
 - save options in local storage
 - add armor randomizer
+- when a stratagem or equipment is clicked, a modal opens up with tips for that item
 
 bugs:
 - emancipator exosuit needs image

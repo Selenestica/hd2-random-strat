@@ -61,4 +61,9 @@ body {
 
 .itemCards {
     background-color: rgb(71, 71, 71);
+    cursor: pointer;
+}
+
+.itemCards:hover {
+    border: 1px solid yellow;
 }

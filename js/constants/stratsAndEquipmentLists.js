@@ -1,8 +1,8 @@
 const grenadesList = [
     {
-        displayName: "G-12 High Explosive Grenade",
+        displayName: "G-12 High Explosive grenade",
         type: "Equipment",
-        category: "Grenade",
+        category: "grenade",
         tags: [],
         warbond: "Default",
         warbondCode: "default",
@@ -10,9 +10,9 @@ const grenadesList = [
         imageURL: "g12highexplosivegrenade.png"
     },
     {
-        displayName: "G-6 Frag Grenade",
+        displayName: "G-6 Frag grenade",
         type: "Equipment",
-        category: "Grenade",
+        category: "grenade",
         tags: [],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -20,9 +20,9 @@ const grenadesList = [
         imageURL: "g6fraggrenade.png"
     },
     {
-        displayName: "G-16 Impact Grenade",
+        displayName: "G-16 Impact grenade",
         type: "Equipment",
-        category: "Grenade",
+        category: "grenade",
         tags: [],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -30,9 +30,9 @@ const grenadesList = [
         imageURL: "g16impactgrenade.png"
     },
     {
-        displayName: "G-3 Smoke Grenade",
+        displayName: "G-3 Smoke grenade",
         type: "Equipment",
-        category: "Grenade",
+        category: "grenade",
         tags: [],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -40,9 +40,9 @@ const grenadesList = [
         imageURL: "g3smokegrenade.png"
     },
     {
-        displayName: "G-10 Incendiary Grenade",
+        displayName: "G-10 Incendiary grenade",
         type: "Equipment",
-        category: "Grenade",
+        category: "grenade",
         tags: [],
         warbond: "Steeled Veterans",
         warbondCode: "warbond2",
@@ -50,9 +50,9 @@ const grenadesList = [
         imageURL: "g10incendiarygrenade.png"
     },
     {
-        displayName: "G-23 Stun Grenade",
+        displayName: "G-23 Stun grenade",
         type: "Equipment",
-        category: "Grenade",
+        category: "grenade",
         tags: [],
         warbond: "Cutting Edge",
         warbondCode: "warbond3",
@@ -60,9 +60,9 @@ const grenadesList = [
         imageURL: "g23stungrenade.png"
     },
     {
-        displayName: "G-123 Thermite Grenade",
+        displayName: "G-123 Thermite grenade",
         type: "Equipment",
-        category: "Grenade",
+        category: "grenade",
         tags: [],
         warbond: "Democratic Detonation",
         warbondCode: "warbond4",
@@ -72,7 +72,7 @@ const grenadesList = [
     {
         displayName: "G-13 Incendiary Impact",
         type: "Equipment",
-        category: "Grenade",
+        category: "grenade",
         tags: [],
         warbond: "Polar Patriots",
         warbondCode: "warbond5",
@@ -155,7 +155,7 @@ const stratagemsList = [
         imageURL: "arc3arcthrower.png"
     },
     {
-        displayName: "Grenade Launcher",
+        displayName: "grenade Launcher",
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
@@ -556,7 +556,7 @@ const primariesList = [
     {
         displayName: "AR-23 Liberator",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["AssaultRifle"],
         warbond: "Default",
         warbondCode: "default",
@@ -566,7 +566,7 @@ const primariesList = [
     {
         displayName: "SMG-72 Pummeler",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["SubmachineGun"],
         warbond: "Polar Patriots",
         warbondCode: "warbond5",
@@ -576,7 +576,7 @@ const primariesList = [
     {
         displayName: "PLAS-101 Purifier",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["EnergyWeapon"],
         warbond: "Polar Patriots",
         warbondCode: "warbond5",
@@ -586,7 +586,7 @@ const primariesList = [
     {
         displayName: "AR-23P Liberator Penetrator",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["AssaultRifle"],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -596,7 +596,7 @@ const primariesList = [
     {
         displayName: "AR-23C Liberator Concussive",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["AssaultRifle"],
         warbond: "Steeled Veterans",
         warbondCode: "warbond2",
@@ -606,7 +606,7 @@ const primariesList = [
     {
         displayName: "BR-14 Adjudicator",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["AssaultRifle"],
         warbond: "Democratic Detonation",
         warbondCode: "warbond4",
@@ -616,7 +616,7 @@ const primariesList = [
     {
         displayName: "SMG-37 Defender",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["SubmachineGun"],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -626,7 +626,7 @@ const primariesList = [
     {
         displayName: "SG-8 Punisher",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["Shotgun"],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -636,7 +636,7 @@ const primariesList = [
     {
         displayName: "AR-61 Tenderizer",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["AssaultRifle"],
         warbond: "Polar Patriots",
         warbondCode: "warbond5",
@@ -646,7 +646,7 @@ const primariesList = [
     {
         displayName: "SG-8S Slugger",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["Shotgun"],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -656,7 +656,7 @@ const primariesList = [
     {
         displayName: "SG-225 Breaker",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["Shotgun"],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -666,7 +666,7 @@ const primariesList = [
     {
         displayName: "SG-225IE Breaker Incendiary",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["Shotgun"],
         warbond: "Steeled Veterans",
         warbondCode: "warbond2",
@@ -676,7 +676,7 @@ const primariesList = [
     {
         displayName: "SG-225SP Breaker Spray & Pray",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["Shotgun"],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -686,7 +686,7 @@ const primariesList = [
     {
         displayName: "MP-98 Knight",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["SubmachineGun"],
         warbond: "Super Citizen",
         warbondCode: "warbond0",
@@ -696,7 +696,7 @@ const primariesList = [
     {
         displayName: "R-63 Diligence",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["MarksmanRifle"],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -706,7 +706,7 @@ const primariesList = [
     {
         displayName: "R-63CS Diligence Counter Sniper",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["MarksmanRifle"],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -716,7 +716,7 @@ const primariesList = [
     {
         displayName: " LAS-5 Scythe",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["EnergyWeapon"],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -726,7 +726,7 @@ const primariesList = [
     {
         displayName: "LAS-16 Sickle",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["EnergyWeapon"],
         warbond: "Cutting Edge",
         warbondCode: "warbond3",
@@ -736,7 +736,7 @@ const primariesList = [
     {
         displayName: "PLAS-1 Scorcher",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["EnergyWeapon"],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -746,7 +746,7 @@ const primariesList = [
     {
         displayName: "SG-8P Punisher Plasma",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["EnergyWeapon"],
         warbond: "Cutting Edge",
         warbondCode: "warbond3",
@@ -756,7 +756,7 @@ const primariesList = [
     {
         displayName: "ARC-12 Blitzer",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["EnergyWeapon"],
         warbond: "Cutting Edge",
         warbondCode: "warbond3",
@@ -766,7 +766,7 @@ const primariesList = [
     {
         displayName: "JAR-5 Dominator",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["Explosive"],
         warbond: "Steeled Veterans",
         warbondCode: "warbond2",
@@ -776,7 +776,7 @@ const primariesList = [
     {
         displayName: "R-36 Eruptor",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["Explosive"],
         warbond: "Democratic Detonation",
         warbondCode: "warbond4",
@@ -786,7 +786,7 @@ const primariesList = [
     {
         displayName: "CB-9 Exploding Crossbow",
         type: "Equipment",
-        category: "Primary",
+        category: "primary",
         tags: ["Explosive"],
         warbond: "Democratic Detonation",
         warbondCode: "warbond4",
@@ -799,7 +799,7 @@ const secondariesList = [
     {
         displayName: "P-2 Peacemaker",
         type: "Equipment",
-        category: "Secondary",
+        category: "secondary",
         tags: [],
         warbond: "Default",
         warbondCode: "default",
@@ -809,7 +809,7 @@ const secondariesList = [
     {
         displayName: "P-19 Redeemer",
         type: "Equipment",
-        category: "Secondary",
+        category: "secondary",
         tags: [],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -817,9 +817,9 @@ const secondariesList = [
         imageURL: "p19redeemer.png"
     },
     {
-        displayName: "GP-31 Grenade Pistol",
+        displayName: "GP-31 grenade Pistol",
         type: "Equipment",
-        category: "Secondary",
+        category: "secondary",
         tags: [],
         warbond: "Democratic Detonation",
         warbondCode: "warbond4",
@@ -829,7 +829,7 @@ const secondariesList = [
     {
         displayName: "P-113 Verdict",
         type: "Equipment",
-        category: "Secondary",
+        category: "secondary",
         tags: [],
         warbond: "Polar Patriots",
         warbondCode: "warbond5",
@@ -839,7 +839,7 @@ const secondariesList = [
     {
         displayName: "P-4 Senator",
         type: "Equipment",
-        category: "Secondary",
+        category: "secondary",
         tags: [],
         warbond: "Steeled Veterans",
         warbondCode: "warbond2",
@@ -849,7 +849,7 @@ const secondariesList = [
     {
         displayName: "LAS-7 Dagger",
         type: "Equipment",
-        category: "Secondary",
+        category: "secondary",
         tags: [],
         warbond: "Cutting Edge",
         warbondCode: "warbond3",
@@ -862,7 +862,7 @@ const boostersList = [
     {
         displayName: "Expert Extraction Pilot",
         type: "Equipment",
-        category: "Booster",
+        category: "booster",
         tags: [],
         warbond: "Democratic Detonation",
         warbondCode: "warbond4",
@@ -872,7 +872,7 @@ const boostersList = [
     {
         displayName: "Motivational Shocks",
         type: "Equipment",
-        category: "Booster",
+        category: "booster",
         tags: [],
         warbond: "Polar Patriots",
         warbondCode: "warbond5",
@@ -882,7 +882,7 @@ const boostersList = [
     {
         displayName: "Flexible Reinforcement Budget",
         type: "Equipment",
-        category: "Booster",
+        category: "booster",
         tags: [],
         warbond: "Steeled Veterans",
         warbondCode: "warbond2",
@@ -892,7 +892,7 @@ const boostersList = [
     {
         displayName: "Hellpod Space Optimization",
         type: "Equipment",
-        category: "Booster",
+        category: "booster",
         tags: [],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -902,7 +902,7 @@ const boostersList = [
     {
         displayName: "Increased Reinforcement Budget",
         type: "Equipment",
-        category: "Booster",
+        category: "booster",
         tags: [],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -912,7 +912,7 @@ const boostersList = [
     {
         displayName: "Localization Confusion",
         type: "Equipment",
-        category: "Booster",
+        category: "booster",
         tags: [],
         warbond: "Cutting Edge",
         warbondCode: "warbond3",
@@ -922,7 +922,7 @@ const boostersList = [
     {
         displayName: "Muscle Enhancement",
         type: "Equipment",
-        category: "Booster",
+        category: "booster",
         tags: [],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -932,7 +932,7 @@ const boostersList = [
     {
         displayName: "Stamina Enhancement",
         type: "Equipment",
-        category: "Booster",
+        category: "booster",
         tags: [],
         warbond: "Heldivers Mobilize",
         warbondCode: "warbond1",
@@ -942,7 +942,7 @@ const boostersList = [
     {
         displayName: "UAV Recon",
         type: "Equipment",
-        category: "Booster",
+        category: "booster",
         tags: [],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",
@@ -952,7 +952,7 @@ const boostersList = [
     {
         displayName: "Vitality Enhancement",
         type: "Equipment",
-        category: "Booster",
+        category: "booster",
         tags: [],
         warbond: "Helldivers Mobilize",
         warbondCode: "warbond1",

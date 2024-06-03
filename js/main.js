@@ -86,9 +86,10 @@ const rollStratagems = () => {
 
     for (let i = 0; i < randomUniqueNumbers.length; i++) {
         const stratagem = stratsList[randomUniqueNumbers[i]];
+        console.log(stratagem);
         stratagemsContainer.innerHTML += `
           <div class="col-3 d-flex justify-content-center">
-            <div class="card itemCards">
+            <div class="card itemCards" onclick="setItemModalContent('${stratagem.internalName}', 'stratagem')">
               <img
                   src="./images/stratagems/${stratagem.imageURL}"
                   class="img-card-top"
@@ -125,7 +126,7 @@ const rollEquipment = () => {
         scPrimariesList.push({
             displayName: "MP-98 Knight",
             type: "Equipment",
-            category: "Primary",
+            category: "primary",
             tags: ["SubmachineGun"],
             warbond: "Super Citizen",
             warbondCode: "warbond0",
@@ -148,7 +149,7 @@ const rollEquipment = () => {
             const equipment = equipmentLists[i][randomNumber];
             equipmentContainer.innerHTML += `
               <div class="col-3 d-flex justify-content-center">
-                <div class="card itemCards">
+                <div class="card itemCards" onclick="setItemModalContent('${equipment.internalName}', '${equipment.category}')">
                   <img
                       src="./images/equipment/${equipment.imageURL}"
                       class="img-card-top"

@@ -1,7 +1,5 @@
 to do:
-- edit credits
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
-
 
 feature ideas:
 - add DDR codes to stratagems

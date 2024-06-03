@@ -253,7 +253,7 @@
         <!-- ITEM MODAL -->
         <div
             class="modal fade"
-            id="infoModal"
+            id="itemModal"
             tabindex="-1"
             aria-labelledby="itemModalLabel"
             aria-hidden="true"
@@ -266,100 +266,7 @@
                             id="itemModalLabel"
                         ></h5>
                     </div>
-                    <div class="modal-body">
-                        <div class="accordion-item bg-none">
-                            <h2 class="accordion-header">
-                                <button
-                                    class="accordion-button collapsed text-light"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#faqAccordion"
-                                    aria-expanded="false"
-                                    aria-controls="faqAccordion"
-                                >
-                                    FAQs
-                                </button>
-                            </h2>
-                            <div
-                                id="faqAccordion"
-                                class="accordion-collapse collapse p-3"
-                                aria-labelledby="Rules"
-                                data-bs-parent="#rulesAndInfoAccordion"
-                            >
-                                <ul class="modalAccordionList">
-                                    <li class="text-white">
-                                        <b>Q: Who is this app for?</b>
-                                        <p>
-                                            A: This web app was made for
-                                            Helldivers who have unlocked all
-                                            stratagems (and ideally, equipment)
-                                            and are looking for a fun way to
-                                            spice up their dives.
-                                        </p>
-                                    </li>
-                                    <li class="text-white">
-                                        <b
-                                            >Q: What if I don't want to bring
-                                            multiple support weapon/backpack
-                                            stratagems?</b
-                                        >
-                                        <p>
-                                            A: In the Options menu, in the
-                                            Randomizer Settings tab, you will be
-                                            able to customize the randomizer.
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="accordion-item bg-none">
-                            <h2 class="accordion-header">
-                                <button
-                                    class="accordion-button collapsed text-light"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#creditAccordion"
-                                    aria-expanded="false"
-                                    aria-controls="creditAccordion"
-                                >
-                                    Credits
-                                </button>
-                            </h2>
-                            <div
-                                id="creditAccordion"
-                                class="accordion-collapse collapse p-3"
-                                aria-labelledby="Rules"
-                                data-bs-parent="#rulesAndInfoAccordion"
-                            >
-                                <ul class="modalAccordionList">
-                                    <li class="text-white">
-                                        I came across this idea while browsing
-                                        Reddit. After a quick Google search, I
-                                        found that
-                                        <a href="https://hd2random.com/"
-                                            >someone had already made a web app
-                                            for this challenge</a
-                                        >
-                                        (very cool). However, I had my own ideas
-                                        regarding layout, more features, etc,
-                                        and so here we are!
-                                    </li>
-                                    <li class="text-white">
-                                        Would you like to contribute? If you're
-                                        code savvy, I could use some help with
-                                        colors and fonts, as well as upcoming
-                                        features. Feel free to email me at
-                                        joebenwilson.dev@gmail.com with any
-                                        feedback/suggestions, or submit a PR on
-                                        <a
-                                            href="https://github.com/Selenestica/hd2-random-strat"
-                                            >GitHub</a
-                                        >.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="modal-body" id="itemModalBody"></div>
                     <div class="modal-footer">
                         <button
                             type="button"

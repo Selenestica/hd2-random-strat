@@ -45,13 +45,13 @@ body {
 .cursor-pointer {
     cursor: pointer;
 }
-.stratagemNameContainer {
+.itemNameContainer {
     padding: 0.5rem !important;
     display: flex;
     justify-content: center;
 }
 
-.stratagemNameContainer > p {
+.itemNameContainer > p {
     margin-bottom: 0rem !important;
 }
 

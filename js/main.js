@@ -86,16 +86,19 @@ const rollStratagems = () => {
 
     for (let i = 0; i < randomUniqueNumbers.length; i++) {
         const stratagem = stratsList[randomUniqueNumbers[i]];
-        console.log(stratagem);
         stratagemsContainer.innerHTML += `
           <div class="col-3 d-flex justify-content-center">
-            <div class="card itemCards" onclick="setItemModalContent('${stratagem.internalName}', 'stratagem')">
+            <div class="card itemCards" 
+              onclick="setItemModalContent('${stratagem.internalName}', 'stratagem')"
+              data-bs-toggle="modal"
+              data-bs-target="#itemModal" 
+            >
               <img
                   src="./images/stratagems/${stratagem.imageURL}"
                   class="img-card-top"
                   alt="${stratagem.displayName}"
               />
-              <div class="card-body stratagemNameContainer align-items-center">
+              <div class="card-body itemNameContainer align-items-center">
                   <p class="card-title text-white">${stratagem.displayName}</p>
               </div>
             </div>
@@ -149,13 +152,17 @@ const rollEquipment = () => {
             const equipment = equipmentLists[i][randomNumber];
             equipmentContainer.innerHTML += `
               <div class="col-3 d-flex justify-content-center">
-                <div class="card itemCards" onclick="setItemModalContent('${equipment.internalName}', '${equipment.category}')">
+                <div class="card itemCards" 
+                  data-bs-toggle="modal"
+                  data-bs-target="#itemModal" 
+                  onclick="setItemModalContent('${equipment.internalName}', '${equipment.category}')"
+                >
                   <img
                       src="./images/equipment/${equipment.imageURL}"
                       class="img-card-top"
                       alt="${equipment.displayName}"
                   />
-                  <div class="card-body stratagemNameContainer align-items-center">
+                  <div class="card-body itemNameContainer align-items-center">
                       <p class="card-title text-white">${equipment.displayName}</p>
                   </div>
                 </div>

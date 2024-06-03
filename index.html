@@ -137,7 +137,7 @@
             aria-labelledby="optionsModalLabel"
             aria-hidden="true"
         >
-            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content bg-grey">
                     <div class="modal-header">
                         <h5
@@ -193,44 +193,256 @@
                                     aria-labelledby="Rules"
                                     data-bs-parent="#optionsAccordion"
                                 >
-                                    <div>
-                                        <div class="form-check">
-                                            <input
-                                                class="form-check-input optionalCheckbox"
-                                                type="checkbox"
-                                                value=""
-                                                id="oneSupportCheck"
-                                            />
-                                            <label
-                                                class="form-check-label"
-                                                for="oneSupportCheck"
-                                            >
-                                                <div>
-                                                    <b class="text-white"
-                                                        >Only roll one support
-                                                        weapon</b
+                                    <div id="randomizerOptionsChecksContainer">
+                                        <div class="d-flex row my-2">
+                                            <h5 class="text-white">General</h5>
+                                            <div>
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input optionalCheckbox"
+                                                        type="checkbox"
+                                                        value=""
+                                                        id="oneSupportCheck"
+                                                    />
+                                                    <label
+                                                        class="form-check-label text-white"
+                                                        for="oneSupportCheck"
                                                     >
+                                                        Only roll one support
+                                                        weapon
+                                                    </label>
                                                 </div>
-                                            </label>
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input optionalCheckbox"
+                                                        type="checkbox"
+                                                        value=""
+                                                        id="oneBackpackCheck"
+                                                    />
+                                                    <label
+                                                        class="form-check-label text-white"
+                                                        for="oneBackpackCheck"
+                                                    >
+                                                        Only roll one backpack
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="form-check">
-                                            <input
-                                                class="form-check-input optionalCheckbox"
-                                                type="checkbox"
-                                                value=""
-                                                id="oneBackpackCheck"
-                                            />
-                                            <label
-                                                class="form-check-label"
-                                                for="oneBackpackCheck"
-                                            >
+                                        <div class="d-flex row">
+                                            <div class="col">
+                                                <h5 class="text-white my-2">
+                                                    Eagles
+                                                </h5>
                                                 <div>
-                                                    <b class="text-white"
-                                                        >Only roll one
-                                                        backpack</b
-                                                    >
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="radio"
+                                                            name="eagleRadio"
+                                                            id="onlyEaglesRadio"
+                                                            value="onlyEagles"
+                                                        />
+                                                        <label
+                                                            class="text-white form-check-label"
+                                                            for="onlyEaglesRadio"
+                                                        >
+                                                            Only Eagles
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="radio"
+                                                            name="eagleRadio"
+                                                            id="noEaglesRadio"
+                                                            value="noEagles"
+                                                        />
+                                                        <label
+                                                            class="text-white form-check-label"
+                                                            for="noEaglesRadio"
+                                                        >
+                                                            No Eagles
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="radio"
+                                                            name="eagleRadio"
+                                                            id="defaultEaglesRadio"
+                                                            value="defaultEagles"
+                                                            checked
+                                                        />
+                                                        <label
+                                                            class="text-white form-check-label"
+                                                            for="defaultEaglesRadio"
+                                                        >
+                                                            Default
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                            </label>
+                                            </div>
+                                            <div class="col">
+                                                <h5 class="text-white my-2">
+                                                    Orbitals
+                                                </h5>
+                                                <div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="radio"
+                                                            name="orbitalsRadio"
+                                                            id="onlyOrbitalsRadio"
+                                                            value="onlyOrbital"
+                                                        />
+                                                        <label
+                                                            class="text-white form-check-label"
+                                                            for="onlyOrbitalsRadio"
+                                                        >
+                                                            Only Orbitals
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="radio"
+                                                            name="orbitalsRadio"
+                                                            id="noOrbitalsRadio"
+                                                            value="noOrbitals"
+                                                        />
+                                                        <label
+                                                            class="text-white form-check-label"
+                                                            for="noOrbitalsRadio"
+                                                        >
+                                                            No Orbitals
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="radio"
+                                                            name="orbitalsRadio"
+                                                            id="defaultOrbitalsRadio"
+                                                            value="defaultOrbitals"
+                                                            checked
+                                                        />
+                                                        <label
+                                                            class="text-white form-check-label"
+                                                            for="defaultOrbitalsRadio"
+                                                        >
+                                                            Default
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex row">
+                                            <div class="col">
+                                                <h5 class="text-white my-2">
+                                                    Defense
+                                                </h5>
+                                                <div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="radio"
+                                                            name="defenseRadio"
+                                                            id="onlyDefenseRadio"
+                                                            value="onlyOrbital"
+                                                        />
+                                                        <label
+                                                            class="text-white form-check-label"
+                                                            for="onlyDefenseRadio"
+                                                        >
+                                                            Only Defense
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="radio"
+                                                            name="defenseRadio"
+                                                            id="noDefenseRadio"
+                                                            value="noOrbitals"
+                                                        />
+                                                        <label
+                                                            class="text-white form-check-label"
+                                                            for="noDefenseRadio"
+                                                        >
+                                                            No Defense
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="radio"
+                                                            name="defenseRadio"
+                                                            id="defaultDefenseRadio"
+                                                            value="defaultOrbitals"
+                                                            checked
+                                                        />
+                                                        <label
+                                                            class="text-white form-check-label"
+                                                            for="defaultDefenseRadio"
+                                                        >
+                                                            Default
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <h5 class="text-white my-2">
+                                                    Supply
+                                                </h5>
+                                                <div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="radio"
+                                                            name="supplyRadio"
+                                                            id="onlySupplyRadio"
+                                                            value="onlyOrbital"
+                                                        />
+                                                        <label
+                                                            class="text-white form-check-label"
+                                                            for="onlySupplyRadio"
+                                                        >
+                                                            Only Supply
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="radio"
+                                                            name="supplyRadio"
+                                                            id="noSupplyRadio"
+                                                            value="noOrbitals"
+                                                        />
+                                                        <label
+                                                            class="text-white form-check-label"
+                                                            for="noSupplyRadio"
+                                                        >
+                                                            No Supply
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input
+                                                            class="form-check-input"
+                                                            type="radio"
+                                                            name="supplyRadio"
+                                                            id="defaultSupplyRadio"
+                                                            value="defaultOrbitals"
+                                                            checked
+                                                        />
+                                                        <label
+                                                            class="text-white form-check-label"
+                                                            for="defaultSupplyRadio"
+                                                        >
+                                                            Default
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -341,18 +553,6 @@
                                             able to customize the randomizer.
                                         </p>
                                     </li>
-                                    <!-- <li class="text-white">
-                                        <b
-                                            >Q: What if I don't want to bring
-                                            multiple support weapon/backpack
-                                            stratagems?</b
-                                        >
-                                        <p>
-                                            A: In the Options menu, in the
-                                            Randomizer Settings tab, you will be
-                                            able to customize the randomizer.
-                                        </p>
-                                    </li> -->
                                 </ul>
                             </div>
                         </div>

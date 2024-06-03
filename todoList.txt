@@ -11,6 +11,7 @@ feature ideas:
   - all/no/default orbitals
   - all/no/default eagles
   - all/no/default defensive
+  - all/no/default supply
 - add separate page for weapons/stratagem list with the modals for each one
 - add page for enemies with tips for each one?
 

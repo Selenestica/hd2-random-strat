@@ -58,3 +58,7 @@ body {
 .stratagemImage {
     height: 3rem;
 }
+
+.itemCards {
+    background-color: rgb(71, 71, 71);
+}

@@ -2,8 +2,8 @@ to do:
 - edit credits
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 
+
 feature ideas:
-- add booster randomizer
 - add DDR codes to stratagems
 - cleanup borders on some images
 - save options in local storage
@@ -13,6 +13,9 @@ feature ideas:
   - all/no/default orbitals
   - all/no/default eagles
   - all/no/default defensive
+- add separate page for weapons/stratagem list with the modals for each one
+- add page for enemies with tips for each one?
 
 bugs:
 - emancipator exosuit needs image
+- when no booster is able to be given (no warbonds selected), booster column looks bad

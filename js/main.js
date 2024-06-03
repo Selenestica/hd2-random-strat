@@ -11,10 +11,12 @@ let stratsList = [...stratagemsList];
 let primsList = [...primariesList];
 let secondsList = [...secondariesList];
 let grensList = [...grenadesList];
+let boostsList = [...boostersList];
 
 let workingPrimsList;
 let workingSecondsList;
 let workingGrensList;
+let workingBoostsList;
 
 let oneBackpack = false;
 let oneSupportWeapon = false;
@@ -41,7 +43,7 @@ for (let z = 0; z < warbondCheckboxes.length; z++) {
 }
 
 const filterEquipment = async () => {
-    const equipmentLists = [primsList, secondsList, grensList];
+    const equipmentLists = [primsList, secondsList, grensList, boostsList];
     for (let i = 0; i < equipmentLists.length; i++) {
         let tempList = [...equipmentLists[i]];
         equipmentLists[i] = await tempList.filter(
@@ -55,6 +57,8 @@ const filterEquipment = async () => {
             workingSecondsList = equipmentLists[i];
         } else if (i === 2) {
             workingGrensList = equipmentLists[i];
+        } else if (i === 3) {
+            workingBoostsList = equipmentLists[i];
         }
     }
 };
@@ -84,14 +88,14 @@ const rollStratagems = () => {
         const stratagem = stratsList[randomUniqueNumbers[i]];
         stratagemsContainer.innerHTML += `
           <div class="col-3 d-flex justify-content-center">
-            <div class="card">
+            <div class="card itemCards">
               <img
                   src="./images/stratagems/${stratagem.imageURL}"
                   class="img-card-top"
                   alt="${stratagem.displayName}"
               />
               <div class="card-body stratagemNameContainer align-items-center">
-                  <p class="card-title">${stratagem.displayName}</p>
+                  <p class="card-title text-white">${stratagem.displayName}</p>
               </div>
             </div>
           </div>
@@ -104,7 +108,8 @@ const rollEquipment = () => {
     const equipmentLists = [
         workingPrimsList ?? primsList,
         workingSecondsList ?? secondsList,
-        workingGrensList ?? grensList
+        workingGrensList ?? grensList,
+        workingBoostsList ?? boostsList
     ];
 
     // removes mp98 knight initially
@@ -129,24 +134,33 @@ const rollEquipment = () => {
         });
     }
     for (let i = 0; i < equipmentLists.length; i++) {
-        const randomNumber = Math.floor(
-            Math.random() * equipmentLists[i].length
-        );
-        const equipment = equipmentLists[i][randomNumber];
-        equipmentContainer.innerHTML += `
-        <div class="col-3 d-flex justify-content-center">
-          <div class="card">
-            <img
-                src="./images/equipment/${equipment.imageURL}"
-                class="img-card-top"
-                alt="${equipment.displayName}"
-            />
-            <div class="card-body stratagemNameContainer align-items-center">
-                <p class="card-title">${equipment.displayName}</p>
-            </div>
-          </div>
-        </div>
-      `;
+        if (equipmentLists[i].length === 0) {
+            equipmentContainer.innerHTML += `
+              <div class="col-3 d-flex justify-content-center">
+                <div class="card itemCards">
+                </div>
+              </div>
+            `;
+        } else {
+            const randomNumber = Math.floor(
+                Math.random() * equipmentLists[i].length
+            );
+            const equipment = equipmentLists[i][randomNumber];
+            equipmentContainer.innerHTML += `
+              <div class="col-3 d-flex justify-content-center">
+                <div class="card itemCards">
+                  <img
+                      src="./images/equipment/${equipment.imageURL}"
+                      class="img-card-top"
+                      alt="${equipment.displayName}"
+                  />
+                  <div class="card-body stratagemNameContainer align-items-center">
+                      <p class="card-title text-white">${equipment.displayName}</p>
+                  </div>
+                </div>
+              </div>
+            `;
+        }
     }
 };
 

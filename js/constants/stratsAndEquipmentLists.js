@@ -817,7 +817,7 @@ const secondariesList = [
         imageURL: "p19redeemer.png"
     },
     {
-        displayName: "GP-31 grenade Pistol",
+        displayName: "GP-31 Grenade Pistol",
         type: "Equipment",
         category: "secondary",
         tags: [],

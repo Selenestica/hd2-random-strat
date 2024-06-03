@@ -19,19 +19,14 @@ const setItemModalContent = (internalName, category) => {
     const [item] = listToSearch.filter(
         (listItem) => listItem.internalName === internalName
     );
-    console.log(item, internalName, listToSearch);
+    itemModalLabel.innerText = `
+      ${item.displayName}
+    `;
     itemModalBody.innerHTML = `
-      <div class="col-3 d-flex justify-content-center">
-        <div class="card itemCards">
-          <img
-              src="./images/${imagesSubdirectory}/${item.imageURL}"
-              class="img-card-top"
-              alt="${item.displayName}"
-          />
-          <div class="card-body itemNameContainer align-items-center">
-              <p class="card-title text-white">${item.displayName}</p>
-          </div>
-        </div>
-      </div>
+      <img
+          src="./images/${imagesSubdirectory}/${item.imageURL}"
+          class="img-card-top"
+          alt="${item.displayName}"
+      />
     `;
 };

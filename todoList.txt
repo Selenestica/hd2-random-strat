@@ -9,6 +9,10 @@ feature ideas:
 - save options in local storage
 - add armor randomizer
 - when a stratagem or equipment is clicked, a modal opens up with tips for that item
+- add the following randomizer options.
+  - all/no/default orbitals
+  - all/no/default eagles
+  - all/no/default defensive
 
 bugs:
 - emancipator exosuit needs image

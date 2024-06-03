@@ -857,3 +857,106 @@ const secondariesList = [
         imageURL: "las7dagger.png"
     }
 ];
+
+const boostersList = [
+    {
+        displayName: "Expert Extraction Pilot",
+        type: "Equipment",
+        category: "Booster",
+        tags: [],
+        warbond: "Democratic Detonation",
+        warbondCode: "warbond4",
+        internalName: "expertextractionpilot",
+        imageURL: "expertextractionpilot.png"
+    },
+    {
+        displayName: "Motivational Shocks",
+        type: "Equipment",
+        category: "Booster",
+        tags: [],
+        warbond: "Polar Patriots",
+        warbondCode: "warbond5",
+        internalName: "motivationalshocks",
+        imageURL: "motivationalshocks.png"
+    },
+    {
+        displayName: "Flexible Reinforcement Budget",
+        type: "Equipment",
+        category: "Booster",
+        tags: [],
+        warbond: "Steeled Veterans",
+        warbondCode: "warbond2",
+        internalName: "flexiblereinforcementbudget",
+        imageURL: "flexiblereinforcementbudget.png"
+    },
+    {
+        displayName: "Hellpod Space Optimization",
+        type: "Equipment",
+        category: "Booster",
+        tags: [],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "hellpodspaceoptimization",
+        imageURL: "hellpodspaceoptimization.png"
+    },
+    {
+        displayName: "Increased Reinforcement Budget",
+        type: "Equipment",
+        category: "Booster",
+        tags: [],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "increasedreinforcementbudget",
+        imageURL: "increasedreinforcementbudget.png"
+    },
+    {
+        displayName: "Localization Confusion",
+        type: "Equipment",
+        category: "Booster",
+        tags: [],
+        warbond: "Cutting Edge",
+        warbondCode: "warbond3",
+        internalName: "localizationconfusion",
+        imageURL: "localizationconfusion.png"
+    },
+    {
+        displayName: "Muscle Enhancement",
+        type: "Equipment",
+        category: "Booster",
+        tags: [],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "muscleenhancement",
+        imageURL: "muscleenhancement.png"
+    },
+    {
+        displayName: "Stamina Enhancement",
+        type: "Equipment",
+        category: "Booster",
+        tags: [],
+        warbond: "Heldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "staminaenhancement",
+        imageURL: "staminaenhancement.png"
+    },
+    {
+        displayName: "UAV Recon",
+        type: "Equipment",
+        category: "Booster",
+        tags: [],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "uavrecon",
+        imageURL: "uavrecon.png"
+    },
+    {
+        displayName: "Vitality Enhancement",
+        type: "Equipment",
+        category: "Booster",
+        tags: [],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "vitalityenhancement",
+        imageURL: "vitalityenhancement.png"
+    }
+];

@@ -5,6 +5,9 @@ const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 const superCitizenCheckBox = document.getElementById("warbond0");
 const oneSupportCheck = document.getElementById("oneSupportCheck");
 const oneBackpackCheck = document.getElementById("oneBackpackCheck");
+const onlyEaglesRadio = document.getElementById("onlyEaglesRadio");
+const noEaglesRadio = document.getElementById("noEaglesRadio");
+const defaultEaglesRadio = document.getElementById("defaultEaglesRadio");
 
 let maxStrats = 4;
 let stratsList = [...stratagemsList];

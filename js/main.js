@@ -8,6 +8,30 @@ const oneBackpackCheck = document.getElementById("oneBackpackCheck");
 const onlyEaglesRadio = document.getElementById("onlyEaglesRadio");
 const noEaglesRadio = document.getElementById("noEaglesRadio");
 const defaultEaglesRadio = document.getElementById("defaultEaglesRadio");
+const onlyOrbitalsRadio = document.getElementById("onlyOrbitalsRadio");
+const noOrbitalsRadio = document.getElementById("noOrbitalsRadio");
+const defaultOrbitalsRadio = document.getElementById("defaultOrbitalsRadio");
+const onlyDefenseRadio = document.getElementById("onlyDefenseRadio");
+const noDefenseRadio = document.getElementById("noDefenseRadio");
+const defaultDefenseRadio = document.getElementById("defaultDefenseRadio");
+const onlySupplyRadio = document.getElementById("onlySupplyRadio");
+const noSupplyRadio = document.getElementById("noSupplyRadio");
+const defaultSupplyRadio = document.getElementById("defaultSupplyRadio");
+
+const stratOptionRadios = [
+    onlyEaglesRadio,
+    noEaglesRadio,
+    defaultEaglesRadio,
+    onlyOrbitalsRadio,
+    noOrbitalsRadio,
+    defaultOrbitalsRadio,
+    onlyDefenseRadio,
+    noDefenseRadio,
+    defaultDefenseRadio,
+    onlySupplyRadio,
+    noSupplyRadio,
+    defaultSupplyRadio
+];
 
 let maxStrats = 4;
 let stratsList = [...stratagemsList];
@@ -23,6 +47,7 @@ let workingBoostsList;
 
 let oneBackpack = false;
 let oneSupportWeapon = false;
+
 let checkedWarbonds = [
     "warbond0",
     "warbond1",
@@ -31,6 +56,40 @@ let checkedWarbonds = [
     "warbond4",
     "warbond5"
 ];
+
+for (let x = 0; x < stratOptionRadios.length; x++) {
+    stratOptionRadios[x].addEventListener("change", (e) => {
+        if (onlyEaglesRadio.checked) {
+            disableOtherRadios("eagle");
+        } else if (onlyOrbitalsRadio.checked) {
+            disableOtherRadios("orbital");
+        } else if (onlyDefenseRadio.checked) {
+            disableOtherRadios("defense");
+        } else if (onlySupplyRadio.checked) {
+            disableOtherRadios("supply");
+        } else {
+            enableRadios();
+        }
+    });
+}
+
+const disableOtherRadios = (radio) => {
+    oneSupportCheck.disabled = true;
+    oneBackpackCheck.disabled = true;
+    for (let i = 0; i < stratOptionRadios.length; i++) {
+        if (!stratOptionRadios[i].name.includes(radio)) {
+            stratOptionRadios[i].disabled = true;
+        }
+    }
+};
+
+const enableRadios = () => {
+    oneSupportCheck.disabled = false;
+    oneBackpackCheck.disabled = false;
+    for (let i = 0; i < stratOptionRadios.length; i++) {
+        stratOptionRadios[i].disabled = false;
+    }
+};
 
 for (let z = 0; z < warbondCheckboxes.length; z++) {
     warbondCheckboxes[z].addEventListener("change", (e) => {
@@ -75,9 +134,10 @@ const rollStratagems = () => {
     // get random numbers that arent the same and get the strats at those indices
     stratagemsContainer.innerHTML = "";
 
-    // if oneSupportWeapon or oneBackpack is checked, then account for those
-    const oneSupportWeapon = oneSupportCheck.checked;
-    const oneBackpack = oneBackpackCheck.checked;
+    // if oneSupportWeapon or oneBackpack is checked and enabled, then account for those
+    const oneSupportWeapon =
+        oneSupportCheck.checked && !oneSupportCheck.disabled;
+    const oneBackpack = oneBackpackCheck.checked && !oneBackpackCheck.disabled;
 
     // will need to make the first arg below dynamic (3 or 4 or whatever)
     const randomUniqueNumbers = getRandomUniqueNumbers(

@@ -60,13 +60,13 @@ let checkedWarbonds = [
 for (let x = 0; x < stratOptionRadios.length; x++) {
     stratOptionRadios[x].addEventListener("change", (e) => {
         if (onlyEaglesRadio.checked) {
-            disableOtherRadios("eagle");
+            disableOtherRadios("Eagle");
         } else if (onlyOrbitalsRadio.checked) {
-            disableOtherRadios("orbital");
+            disableOtherRadios("Orbital");
         } else if (onlyDefenseRadio.checked) {
-            disableOtherRadios("defense");
+            disableOtherRadios("Defense");
         } else if (onlySupplyRadio.checked) {
-            disableOtherRadios("supply");
+            disableOtherRadios("Supply");
         } else {
             enableRadios();
         }
@@ -77,7 +77,7 @@ const disableOtherRadios = (radio) => {
     oneSupportCheck.disabled = true;
     oneBackpackCheck.disabled = true;
     for (let i = 0; i < stratOptionRadios.length; i++) {
-        if (!stratOptionRadios[i].name.includes(radio)) {
+        if (stratOptionRadios[i].name !== radio) {
             stratOptionRadios[i].disabled = true;
         }
     }
@@ -130,7 +130,7 @@ const setMaxStrats = (val) => {
     rollStratsButton.innerHTML = `Roll Stratagems (${val})`;
 };
 
-const rollStratagems = () => {
+const rollStratagems = async () => {
     // get random numbers that arent the same and get the strats at those indices
     stratagemsContainer.innerHTML = "";
 
@@ -139,16 +139,19 @@ const rollStratagems = () => {
         oneSupportCheck.checked && !oneSupportCheck.disabled;
     const oneBackpack = oneBackpackCheck.checked && !oneBackpackCheck.disabled;
 
+    // if "only" or "no" strat type options checked, modify the strat list here
+    const filteredStratList = await filterStratList();
+
     // will need to make the first arg below dynamic (3 or 4 or whatever)
     const randomUniqueNumbers = getRandomUniqueNumbers(
         maxStrats,
-        stratsList,
+        filteredStratList,
         oneSupportWeapon,
         oneBackpack
     );
 
     for (let i = 0; i < randomUniqueNumbers.length; i++) {
-        const stratagem = stratsList[randomUniqueNumbers[i]];
+        const stratagem = filteredStratList[randomUniqueNumbers[i]];
         stratagemsContainer.innerHTML += `
           <div class="col-3 d-flex justify-content-center">
             <div class="card itemCards" 
@@ -233,6 +236,25 @@ const rollEquipment = () => {
             `;
         }
     }
+};
+
+const filterStratList = () => {
+    let newList;
+    const onlyRadios = [
+        onlyDefenseRadio,
+        onlyEaglesRadio,
+        onlyOrbitalsRadio,
+        onlySupplyRadio
+    ];
+    for (let i = 0; i < onlyRadios.length; i++) {
+        if (onlyRadios[i].checked) {
+            newList = stratsList.filter(
+                (strat) => strat.category === onlyRadios[i].name
+            );
+        }
+    }
+    console.log(newList);
+    return newList;
 };
 
 const getRandomUniqueNumbers = (

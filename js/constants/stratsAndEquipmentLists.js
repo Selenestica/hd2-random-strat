@@ -292,7 +292,7 @@ const stratagemsList = [
     {
         displayName: "Eagle Strafing Run",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Eagle",
         tags: ["Eagle"],
         warbond: "",
         internalName: "eaglestrafingrun",
@@ -301,7 +301,7 @@ const stratagemsList = [
     {
         displayName: "Eagle Airstrike",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Eagle",
         tags: ["Eagle"],
         warbond: "",
         internalName: "eagleairstrike",
@@ -310,7 +310,7 @@ const stratagemsList = [
     {
         displayName: "Eagle Cluster Bomb",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Eagle",
         tags: ["Eagle"],
         warbond: "",
         internalName: "eagleclusterbomb",
@@ -319,7 +319,7 @@ const stratagemsList = [
     {
         displayName: "Eagle Napalm Strike",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Eagle",
         tags: ["Eagle"],
         warbond: "",
         internalName: "eaglenapalmstrike",
@@ -328,7 +328,7 @@ const stratagemsList = [
     {
         displayName: "Eagle Smoke Strike",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Eagle",
         tags: ["Eagle"],
         warbond: "",
         internalName: "eaglesmokestrike",
@@ -337,7 +337,7 @@ const stratagemsList = [
     {
         displayName: "Eagle 110mm Rocket Pods",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Eagle",
         tags: ["Eagle"],
         warbond: "",
         internalName: "eagle110mmrocketpods",
@@ -346,7 +346,7 @@ const stratagemsList = [
     {
         displayName: "Eagle 500kg Bomb",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Eagle",
         tags: ["Eagle"],
         warbond: "",
         internalName: "eagle500kgbomb",
@@ -355,7 +355,7 @@ const stratagemsList = [
     {
         displayName: "Orbital Precision Strike",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Orbital",
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalprecisionstrike",
@@ -364,7 +364,7 @@ const stratagemsList = [
     {
         displayName: "Orbital Airburst Strike",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Orbital",
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalairburststrike",
@@ -373,7 +373,7 @@ const stratagemsList = [
     {
         displayName: "Orbital 120mm HE Barrage",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Orbital",
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbital120mmhebarrage",
@@ -382,7 +382,7 @@ const stratagemsList = [
     {
         displayName: "Orbital 380mm HE Barrage",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Orbital",
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbital380mmhebarrage",
@@ -391,7 +391,7 @@ const stratagemsList = [
     {
         displayName: "Orbital Walking Barrage",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Orbital",
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalwalkingbarrage",
@@ -400,7 +400,7 @@ const stratagemsList = [
     {
         displayName: "Orbital Laser",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Orbital",
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitallaser",
@@ -409,7 +409,7 @@ const stratagemsList = [
     {
         displayName: "Orbital Railcannon Strike",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Orbital",
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalrailcannonstrike",
@@ -418,7 +418,7 @@ const stratagemsList = [
     {
         displayName: "Orbital Gatling Barrage",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Orbital",
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalgatlingbarrage",
@@ -427,7 +427,7 @@ const stratagemsList = [
     {
         displayName: "Orbital Gas Strike",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Orbital",
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalgasstrike",
@@ -436,7 +436,7 @@ const stratagemsList = [
     {
         displayName: "Orbital EMS Strike",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Orbital",
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalemsstrike",
@@ -445,7 +445,7 @@ const stratagemsList = [
     {
         displayName: "Orbital Smoke Strike",
         type: "Stratagem",
-        category: "Offensive",
+        category: "Orbital",
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalsmokestrike",
@@ -454,7 +454,7 @@ const stratagemsList = [
     {
         displayName: "Tesla Tower",
         type: "Stratagem",
-        category: "Defensive",
+        category: "Defense",
         tags: ["Emplacement"],
         warbond: "",
         internalName: "teslatower",
@@ -463,7 +463,7 @@ const stratagemsList = [
     {
         displayName: "Mortar Sentry",
         type: "Stratagem",
-        category: "Defensive",
+        category: "Defense",
         tags: ["Sentry"],
         warbond: "",
         internalName: "mortarsentry",
@@ -472,7 +472,7 @@ const stratagemsList = [
     {
         displayName: "EMS Mortar Sentry",
         type: "Stratagem",
-        category: "Defensive",
+        category: "Defense",
         tags: ["Sentry"],
         warbond: "",
         internalName: "emsmortarsentry",
@@ -481,7 +481,7 @@ const stratagemsList = [
     {
         displayName: "Machine Gun Sentry",
         type: "Stratagem",
-        category: "Defensive",
+        category: "Defense",
         tags: ["Sentry"],
         warbond: "",
         internalName: "machinegunsentry",
@@ -490,7 +490,7 @@ const stratagemsList = [
     {
         displayName: "Gatling Sentry",
         type: "Stratagem",
-        category: "Defensive",
+        category: "Defense",
         tags: ["Sentry"],
         warbond: "",
         internalName: "gatlingsentry",
@@ -499,7 +499,7 @@ const stratagemsList = [
     {
         displayName: "Anti-Personnel Minefield",
         type: "Stratagem",
-        category: "Defensive",
+        category: "Defense",
         tags: ["Emplacement"],
         warbond: "",
         internalName: "antipersonnelminefield",
@@ -508,7 +508,7 @@ const stratagemsList = [
     {
         displayName: "Incendiary Mines",
         type: "Stratagem",
-        category: "Defensive",
+        category: "Defense",
         tags: ["Emplacement"],
         warbond: "",
         internalName: "incendiarymines",
@@ -517,7 +517,7 @@ const stratagemsList = [
     {
         displayName: "Shield Generator Relay",
         type: "Stratagem",
-        category: "Defensive",
+        category: "Defense",
         tags: ["Emplacement"],
         warbond: "",
         internalName: "shieldgeneratorrelay",
@@ -526,7 +526,7 @@ const stratagemsList = [
     {
         displayName: "HMG Emplacement",
         type: "Stratagem",
-        category: "Defensive",
+        category: "Defense",
         tags: ["Emplacement"],
         warbond: "",
         internalName: "hmgemplacement",
@@ -535,7 +535,7 @@ const stratagemsList = [
     {
         displayName: "Autocannon Sentry",
         type: "Stratagem",
-        category: "Defensive",
+        category: "Defense",
         tags: ["Sentry"],
         warbond: "",
         internalName: "autocannonsentry",
@@ -544,7 +544,7 @@ const stratagemsList = [
     {
         displayName: "Rocket Sentry",
         type: "Stratagem",
-        category: "Defensive",
+        category: "Defense",
         tags: ["Sentry"],
         warbond: "",
         internalName: "rocketsentry",

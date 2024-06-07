@@ -238,22 +238,40 @@ const rollEquipment = () => {
     }
 };
 
-const filterStratList = () => {
+const filterStratList = async () => {
     let newList;
+    let categoriesToFilter = [];
     const onlyRadios = [
         onlyDefenseRadio,
         onlyEaglesRadio,
         onlyOrbitalsRadio,
         onlySupplyRadio
     ];
+    const noRadios = [
+        noDefenseRadio,
+        noOrbitalsRadio,
+        noEaglesRadio,
+        noSupplyRadio
+    ];
+    // check if a "only" radio is checked
     for (let i = 0; i < onlyRadios.length; i++) {
         if (onlyRadios[i].checked) {
-            newList = stratsList.filter(
+            newList = await stratsList.filter(
                 (strat) => strat.category === onlyRadios[i].name
             );
+            return newList;
         }
     }
-    console.log(newList);
+
+    // check if any "no" radios are checked and not disabled
+    for (let j = 0; j < noRadios.length; j++) {
+        if (noRadios[j].checked && !noRadios[j].disabled) {
+            categoriesToFilter.push(noRadios[j].name);
+        }
+    }
+    newList = await stratsList.filter(
+        (strat) => !categoriesToFilter.includes(strat.category)
+    );
     return newList;
 };
 

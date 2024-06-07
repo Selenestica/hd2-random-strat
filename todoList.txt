@@ -7,14 +7,9 @@ feature ideas:
 - save options in local storage
 - add armor randomizer
 - when a stratagem or equipment is clicked, a modal opens up with tips for that item
-- add the following randomizer options.
-  - all/no/default orbitals
-  - all/no/default eagles
-  - all/no/default defensive
-  - all/no/default supply
 - add separate page for weapons/stratagem list with the modals for each one
 - add page for enemies with tips for each one?
 
 bugs:
-- emancipator exosuit needs image
 - when no booster is able to be given (no warbonds selected), booster column looks bad
+- clean up images for weapons

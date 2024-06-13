@@ -10,6 +10,16 @@ const grenadesList = [
         imageURL: "g12highexplosivegrenade.png"
     },
     {
+        displayName: "K-2 Throwing Knife",
+        type: "Equipment",
+        category: "knife",
+        tags: [],
+        warbond: "Viper Commandos",
+        warbondCode: "warbond6",
+        internalName: "k2throwingknife",
+        imageURL: "k2throwingknife.png"
+    },
+    {
         displayName: "G-6 Frag grenade",
         type: "Equipment",
         category: "grenade",
@@ -564,6 +574,16 @@ const primariesList = [
         imageURL: "ar23liberator.png"
     },
     {
+        displayName: "AR-23a Liberator Carbine",
+        type: "Equipment",
+        category: "primary",
+        tags: ["AssaultRifle"],
+        warbond: "Viper Commandos",
+        warbondCode: "warbond6",
+        internalName: "ar23aliberatorcarbine",
+        imageURL: "ar23aliberatorcarbine.png"
+    },
+    {
         displayName: "SMG-72 Pummeler",
         type: "Equipment",
         category: "primary",
@@ -807,6 +827,16 @@ const secondariesList = [
         imageURL: "p2peacemaker.png"
     },
     {
+        displayName: "SG-22 Bushwhacker",
+        type: "Equipment",
+        category: "secondary",
+        tags: ["Shotgun"],
+        warbond: "Viper Commandos",
+        warbondCode: "warbond6",
+        internalName: "sg22bushwhacker",
+        imageURL: "sg22bushwhacker.png"
+    },
+    {
         displayName: "P-19 Redeemer",
         type: "Equipment",
         category: "secondary",
@@ -868,6 +898,16 @@ const boostersList = [
         warbondCode: "warbond4",
         internalName: "expertextractionpilot",
         imageURL: "expertextractionpilot.png"
+    },
+    {
+        displayName: "Experimental Infusion",
+        type: "Equipment",
+        category: "booster",
+        tags: [],
+        warbond: "Viper Commandos",
+        warbondCode: "warbond6",
+        internalName: "experimentalinfusion",
+        imageURL: "experimentalinfusion.png"
     },
     {
         displayName: "Motivational Shocks",

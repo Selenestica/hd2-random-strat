@@ -14,3 +14,4 @@ bugs:
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 - clean up images for weapons
 - add image for link preview
+- add images for Viper Commandos equipment

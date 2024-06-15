@@ -2,13 +2,8 @@ to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 
 feature ideas:
-- add DDR codes to stratagems
-- cleanup borders on some images
+- cleanup borders on images
 - save options in local storage
-- add armor randomizer
-- when a stratagem or equipment is clicked, a modal opens up with tips for that item
-- add separate page for weapons/stratagem list with the modals for each one
-- add page for enemies with tips for each one?
 
 bugs:
 - when no booster is able to be given (no warbonds selected), booster column looks bad

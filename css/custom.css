@@ -67,3 +67,54 @@ body {
 .itemCards:hover {
     border: 1px solid yellow;
 }
+
+@media only screen and (max-width: 650px) {
+    #stratText {
+        display: none;
+    }
+    #equipText {
+        display: none;
+    }
+    #optionsText {
+        display: none;
+    }
+    #stratIcon {
+        display: block;
+    }
+    #equipIcon {
+        display: block;
+    }
+    #optionsIcon {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 651px) {
+    #stratText {
+        display: block;
+    }
+    #equipText {
+        display: block;
+    }
+    #optionsText {
+        display: block;
+    }
+    #stratIcon {
+        display: none;
+    }
+    #equipIcon {
+        display: none;
+    }
+    #optionsIcon {
+        display: none;
+    }
+}
+
+#armorTypeButton {
+    cursor: default;
+    color: white !important;
+}
+
+#armorTypeButton:hover {
+    background-color: #6c757d;
+}

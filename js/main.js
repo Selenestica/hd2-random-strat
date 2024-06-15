@@ -17,6 +17,7 @@ const defaultDefenseRadio = document.getElementById("defaultDefenseRadio");
 const onlySupplyRadio = document.getElementById("onlySupplyRadio");
 const noSupplyRadio = document.getElementById("noSupplyRadio");
 const defaultSupplyRadio = document.getElementById("defaultSupplyRadio");
+const armorTypeButton = document.getElementById("armorTypeButton");
 
 const stratOptionRadios = [
     onlyEaglesRadio,
@@ -128,6 +129,13 @@ const filterEquipment = async () => {
 const setMaxStrats = (val) => {
     maxStrats = val;
     rollStratsButton.innerHTML = `Roll Stratagems (${val})`;
+};
+
+const rollArmor = () => {
+    const armorTypes = ["Light", "Medium", "Heavy"];
+    const randArmorIndex = Math.floor(Math.random() * armorTypes.length);
+    const randArmorType = armorTypes[randArmorIndex];
+    armorTypeButton.innerText = randArmorType;
 };
 
 const rollStratagems = async () => {

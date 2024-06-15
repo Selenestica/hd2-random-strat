@@ -77,7 +77,12 @@
                                         type="button"
                                         id="rollStratsButton"
                                     >
-                                        Stratagems
+                                        <span id="stratText"> Stratagems </span>
+                                        <span id="stratIcon">
+                                            <i
+                                                class="fa-solid fa-jet-fighter"
+                                            ></i
+                                        ></span>
                                     </button>
                                 </div>
                             </div>
@@ -88,8 +93,32 @@
                                     class="btn btn-success"
                                     onclick="rollEquipment()"
                                 >
-                                    Equipment
+                                    <span id="equipText">Equipment</span>
+                                    <span id="equipIcon">
+                                        <i class="fa-solid fa-person-rifle"></i
+                                    ></span>
                                 </button>
+                            </div>
+                            <div>
+                                <div class="btn-group" role="group">
+                                    <div
+                                        id="armorTypeButton"
+                                        type="button"
+                                        class="btn btn-secondary"
+                                    >
+                                        Armor
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button
+                                            id="rollArmorButton"
+                                            type="button"
+                                            class="btn btn-success"
+                                            onclick="rollArmor()"
+                                        >
+                                            <i class="fa-solid fa-shield"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col d-flex my-1 justify-content-end">
@@ -99,7 +128,11 @@
                                 data-bs-toggle="modal"
                                 data-bs-target="#optionsModal"
                             >
-                                Options
+                                <i
+                                    id="optionsIcon"
+                                    class="fa-solid fa-gear"
+                                ></i>
+                                <span id="optionsText"> Options </span>
                             </button>
                         </div>
                     </div>
@@ -554,17 +587,14 @@
                                     </li>
                                     <li class="text-white">
                                         <b
-                                            >Q: What you be adding an armor
-                                            randomizer?</b
+                                            >Q: What you be adding a randomizer
+                                            for specific armor sets?</b
                                         >
                                         <p>
                                             A: Seeing as how many armor sets are
                                             only available in the Superstore, I
                                             won't be adding a randomizer that
-                                            rolls for specific armor sets. I
-                                            will, however, implement an armor
-                                            type randomizer (light, medium, or
-                                            heavy) in the future.
+                                            rolls for specific armor sets.
                                         </p>
                                     </li>
                                     <li class="text-white">

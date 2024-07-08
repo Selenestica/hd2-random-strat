@@ -2,8 +2,10 @@ to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 
 feature ideas:
-- cleanup borders on images
+- cleanup borders on equipment
+- use SVGs for stratagems
 - save options in local storage
+- add link to buymeacoffee
 
 bugs:
 - when no booster is able to be given (no warbonds selected), booster column looks bad

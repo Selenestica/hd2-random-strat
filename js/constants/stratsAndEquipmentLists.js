@@ -560,6 +560,24 @@ const stratagemsList = [
         internalName: "rocketsentry",
         imageURL: "rocketsentry.png"
     }
+    // {
+    //     displayName: "MLS-4X Commando Rocket Launcher",
+    //     type: "Stratagem",
+    //     category: "Supply",
+    //     tags: ["Weapons"],
+    //     warbond: "",
+    //     internalName: "mls4xcommandorocketlauncher",
+    //     imageURL: "mls4xcommandorocketlauncher.png"
+    // },
+    // {
+    //     displayName: "Anti-Tank Mines",
+    //     type: "Stratagem",
+    //     category: "Defense",
+    //     tags: ["Emplacement"],
+    //     warbond: "",
+    //     internalName: "antitankmines",
+    //     imageURL: "antitankmines.png"
+    // }
 ];
 
 const primariesList = [

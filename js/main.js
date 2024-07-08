@@ -168,7 +168,7 @@ const rollStratagems = async () => {
               data-bs-target="#itemModal" 
             >
               <img
-                  src="./images/stratagems/${stratagem.imageURL}"
+                  src="./images/svgs/${stratagem.imageURL}"
                   class="img-card-top"
                   alt="${stratagem.displayName}"
               />

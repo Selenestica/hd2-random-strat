@@ -99,7 +99,7 @@ const stratagemsList = [
         tags: ["Weapons", "Backpacks"],
         warbond: "",
         internalName: "rl77airburstrocketlauncher",
-        imageURL: "rl77airburstrocketlauncher.png"
+        imageURL: "rl77airburstrocketlauncher.svg"
     },
     {
         displayName: "Autocannon",
@@ -108,7 +108,7 @@ const stratagemsList = [
         tags: ["Weapons", "Backpacks"],
         warbond: "",
         internalName: "ac8autocannon",
-        imageURL: "ac8autocannon.png"
+        imageURL: "ac8autocannon.svg"
     },
     {
         displayName: "Expendable Anti-Tank",
@@ -117,7 +117,7 @@ const stratagemsList = [
         tags: ["Weapons"],
         warbond: "",
         internalName: "eat17expendableantitank",
-        imageURL: "eat17expendableantitank.png"
+        imageURL: "eat17expendableantitank.svg"
     },
     {
         displayName: "Flamethrower",
@@ -126,7 +126,7 @@ const stratagemsList = [
         tags: ["Weapons"],
         warbond: "",
         internalName: "flam40flamethrower",
-        imageURL: "flam40flamethrower.png"
+        imageURL: "flam40flamethrower.svg"
     },
     {
         displayName: "Laser Cannon",
@@ -135,7 +135,7 @@ const stratagemsList = [
         tags: ["Weapons"],
         warbond: "",
         internalName: "las98lasercannon",
-        imageURL: "las98lasercannon.png"
+        imageURL: "las98lasercannon.svg"
     },
     {
         displayName: "Stalwart",
@@ -144,7 +144,7 @@ const stratagemsList = [
         tags: ["Weapons"],
         warbond: "",
         internalName: "m105stalwart",
-        imageURL: "m105stalwart.png"
+        imageURL: "m105stalwart.svg"
     },
     {
         displayName: "Machine Gun",
@@ -153,7 +153,7 @@ const stratagemsList = [
         tags: ["Weapons"],
         warbond: "",
         internalName: "mg43machinegun",
-        imageURL: "mg43machinegun.png"
+        imageURL: "mg43machinegun.svg"
     },
     {
         displayName: "Arc Thrower",
@@ -162,7 +162,7 @@ const stratagemsList = [
         tags: ["Weapons"],
         warbond: "",
         internalName: "arc3arcthrower",
-        imageURL: "arc3arcthrower.png"
+        imageURL: "arc3arcthrower.svg"
     },
     {
         displayName: "grenade Launcher",
@@ -171,7 +171,7 @@ const stratagemsList = [
         tags: ["Weapons"],
         warbond: "",
         internalName: "gl21grenadelauncher",
-        imageURL: "gl21grenadelauncher.png"
+        imageURL: "gl21grenadelauncher.svg"
     },
     {
         displayName: "Anti-Material Rifle",
@@ -180,7 +180,7 @@ const stratagemsList = [
         tags: ["Weapons"],
         warbond: "",
         internalName: "apw1antimaterielrifle",
-        imageURL: "apw1antimaterielrifle.png"
+        imageURL: "apw1antimaterielrifle.svg"
     },
     {
         displayName: "Railgun",
@@ -189,7 +189,7 @@ const stratagemsList = [
         tags: ["Weapons"],
         warbond: "",
         internalName: "rs422railgun",
-        imageURL: "rs422railgun.png"
+        imageURL: "rs422railgun.svg"
     },
     {
         displayName: "Recoilless Rifle",
@@ -198,7 +198,7 @@ const stratagemsList = [
         tags: ["Weapons", "Backpacks"],
         warbond: "",
         internalName: "gr8recoillessrifle",
-        imageURL: "gr8recoillessrifle.png"
+        imageURL: "gr8recoillessrifle.svg"
     },
     {
         displayName: "Spear",
@@ -207,7 +207,7 @@ const stratagemsList = [
         tags: ["Weapons", "Backpacks"],
         warbond: "",
         internalName: "faf14spear",
-        imageURL: "faf14spear.png"
+        imageURL: "faf14spear.svg"
     },
     {
         displayName: "Quasar Cannon",
@@ -216,7 +216,7 @@ const stratagemsList = [
         tags: ["Weapons"],
         warbond: "",
         internalName: "las99quasarcannon",
-        imageURL: "las99quasarcannon.png"
+        imageURL: "las99quasarcannon.svg"
     },
     {
         displayName: "Heavy Machine Gun",
@@ -225,7 +225,7 @@ const stratagemsList = [
         tags: ["Weapons"],
         warbond: "",
         internalName: "mg206heavymachinegun",
-        imageURL: "mg206heavymachinegun.png"
+        imageURL: "mg206heavymachinegun.svg"
     },
     {
         displayName: "Guard Dog Laser",
@@ -234,7 +234,7 @@ const stratagemsList = [
         tags: ["Backpacks"],
         warbond: "",
         internalName: "axlas5guarddogrover",
-        imageURL: "axlas5guarddogrover.png"
+        imageURL: "axlas5guarddogrover.svg"
     },
     {
         displayName: "Guard Dog Bullets",
@@ -243,7 +243,7 @@ const stratagemsList = [
         tags: ["Backpacks"],
         warbond: "",
         internalName: "ad334guarddog",
-        imageURL: "ad334guarddog.png"
+        imageURL: "ad334guarddog.svg"
     },
     {
         displayName: "Jump Pack",
@@ -252,7 +252,7 @@ const stratagemsList = [
         tags: ["Backpacks"],
         warbond: "",
         internalName: "lift850jumppack",
-        imageURL: "lift850jumppack.png"
+        imageURL: "lift850jumppack.svg"
     },
     {
         displayName: "Supply Pack",
@@ -261,7 +261,7 @@ const stratagemsList = [
         tags: ["Backpacks"],
         warbond: "",
         internalName: "b1supplypack",
-        imageURL: "b1supplypack.png"
+        imageURL: "b1supplypack.svg"
     },
     {
         displayName: "Shield Generator Pack",
@@ -270,7 +270,7 @@ const stratagemsList = [
         tags: ["Backpacks"],
         warbond: "",
         internalName: "sh20shieldgeneratorpack",
-        imageURL: "sh20shieldgeneratorpack.png"
+        imageURL: "sh20shieldgeneratorpack.svg"
     },
     {
         displayName: "Ballistic Shield Backpack",
@@ -279,7 +279,7 @@ const stratagemsList = [
         tags: ["Backpacks"],
         warbond: "",
         internalName: "sh20ballisticshieldbackpack",
-        imageURL: "sh20ballisticshieldbackpack.png"
+        imageURL: "sh20ballisticshieldbackpack.svg"
     },
     {
         displayName: "Patriot Exosuit",
@@ -288,7 +288,7 @@ const stratagemsList = [
         tags: ["Vehicles"],
         warbond: "",
         internalName: "exo45patriotexosuit",
-        imageURL: "exo45patriotexosuit.png"
+        imageURL: "exo45patriotexosuit.svg"
     },
     {
         displayName: "Emancipator Exosuit",
@@ -297,7 +297,7 @@ const stratagemsList = [
         tags: ["Vehicles"],
         warbond: "",
         internalName: "exo49emancipatorexosuit",
-        imageURL: "exo49emancipatorexosuit.png"
+        imageURL: "exo49emancipatorexosuit.svg"
     },
     {
         displayName: "Eagle Strafing Run",
@@ -306,7 +306,7 @@ const stratagemsList = [
         tags: ["Eagle"],
         warbond: "",
         internalName: "eaglestrafingrun",
-        imageURL: "eaglestrafingrun.png"
+        imageURL: "eaglestrafingrun.svg"
     },
     {
         displayName: "Eagle Airstrike",
@@ -315,7 +315,7 @@ const stratagemsList = [
         tags: ["Eagle"],
         warbond: "",
         internalName: "eagleairstrike",
-        imageURL: "eagleairstrike.png"
+        imageURL: "eagleairstrike.svg"
     },
     {
         displayName: "Eagle Cluster Bomb",
@@ -324,7 +324,7 @@ const stratagemsList = [
         tags: ["Eagle"],
         warbond: "",
         internalName: "eagleclusterbomb",
-        imageURL: "eagleclusterbomb.png"
+        imageURL: "eagleclusterbomb.svg"
     },
     {
         displayName: "Eagle Napalm Strike",
@@ -333,7 +333,7 @@ const stratagemsList = [
         tags: ["Eagle"],
         warbond: "",
         internalName: "eaglenapalmstrike",
-        imageURL: "eaglenapalmstrike.png"
+        imageURL: "eaglenapalmstrike.svg"
     },
     {
         displayName: "Eagle Smoke Strike",
@@ -342,7 +342,7 @@ const stratagemsList = [
         tags: ["Eagle"],
         warbond: "",
         internalName: "eaglesmokestrike",
-        imageURL: "eaglesmokestrike.png"
+        imageURL: "eaglesmokestrike.svg"
     },
     {
         displayName: "Eagle 110mm Rocket Pods",
@@ -351,7 +351,7 @@ const stratagemsList = [
         tags: ["Eagle"],
         warbond: "",
         internalName: "eagle110mmrocketpods",
-        imageURL: "eagle110mmrocketpods.png"
+        imageURL: "eagle110mmrocketpods.svg"
     },
     {
         displayName: "Eagle 500kg Bomb",
@@ -360,7 +360,7 @@ const stratagemsList = [
         tags: ["Eagle"],
         warbond: "",
         internalName: "eagle500kgbomb",
-        imageURL: "eagle500kgbomb.png"
+        imageURL: "eagle500kgbomb.svg"
     },
     {
         displayName: "Orbital Precision Strike",
@@ -369,7 +369,7 @@ const stratagemsList = [
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalprecisionstrike",
-        imageURL: "orbitalprecisionstrike.png"
+        imageURL: "orbitalprecisionstrike.svg"
     },
     {
         displayName: "Orbital Airburst Strike",
@@ -378,7 +378,7 @@ const stratagemsList = [
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalairburststrike",
-        imageURL: "orbitalairburststrike.png"
+        imageURL: "orbitalairburststrike.svg"
     },
     {
         displayName: "Orbital 120mm HE Barrage",
@@ -387,7 +387,7 @@ const stratagemsList = [
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbital120mmhebarrage",
-        imageURL: "orbital120mmhebarrage.png"
+        imageURL: "orbital120mmhebarrage.svg"
     },
     {
         displayName: "Orbital 380mm HE Barrage",
@@ -396,7 +396,7 @@ const stratagemsList = [
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbital380mmhebarrage",
-        imageURL: "orbital380mmhebarrage.png"
+        imageURL: "orbital380mmhebarrage.svg"
     },
     {
         displayName: "Orbital Walking Barrage",
@@ -405,7 +405,7 @@ const stratagemsList = [
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalwalkingbarrage",
-        imageURL: "orbitalwalkingbarrage.png"
+        imageURL: "orbitalwalkingbarrage.svg"
     },
     {
         displayName: "Orbital Laser",
@@ -414,7 +414,7 @@ const stratagemsList = [
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitallaser",
-        imageURL: "orbitallaser.png"
+        imageURL: "orbitallaser.svg"
     },
     {
         displayName: "Orbital Railcannon Strike",
@@ -423,7 +423,7 @@ const stratagemsList = [
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalrailcannonstrike",
-        imageURL: "orbitalrailcannonstrike.png"
+        imageURL: "orbitalrailcannonstrike.svg"
     },
     {
         displayName: "Orbital Gatling Barrage",
@@ -432,7 +432,7 @@ const stratagemsList = [
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalgatlingbarrage",
-        imageURL: "orbitalgatlingbarrage.png"
+        imageURL: "orbitalgatlingbarrage.svg"
     },
     {
         displayName: "Orbital Gas Strike",
@@ -441,7 +441,7 @@ const stratagemsList = [
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalgasstrike",
-        imageURL: "orbitalgasstrike.png"
+        imageURL: "orbitalgasstrike.svg"
     },
     {
         displayName: "Orbital EMS Strike",
@@ -450,7 +450,7 @@ const stratagemsList = [
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalemsstrike",
-        imageURL: "orbitalemsstrike.png"
+        imageURL: "orbitalemsstrike.svg"
     },
     {
         displayName: "Orbital Smoke Strike",
@@ -459,7 +459,7 @@ const stratagemsList = [
         tags: ["Orbital"],
         warbond: "",
         internalName: "orbitalsmokestrike",
-        imageURL: "orbitalsmokestrike.png"
+        imageURL: "orbitalsmokestrike.svg"
     },
     {
         displayName: "Tesla Tower",
@@ -468,7 +468,7 @@ const stratagemsList = [
         tags: ["Emplacement"],
         warbond: "",
         internalName: "teslatower",
-        imageURL: "teslatower.png"
+        imageURL: "teslatower.svg"
     },
     {
         displayName: "Mortar Sentry",
@@ -477,7 +477,7 @@ const stratagemsList = [
         tags: ["Sentry"],
         warbond: "",
         internalName: "mortarsentry",
-        imageURL: "mortarsentry.png"
+        imageURL: "mortarsentry.svg"
     },
     {
         displayName: "EMS Mortar Sentry",
@@ -486,7 +486,7 @@ const stratagemsList = [
         tags: ["Sentry"],
         warbond: "",
         internalName: "emsmortarsentry",
-        imageURL: "emsmortarsentry.png"
+        imageURL: "emsmortarsentry.svg"
     },
     {
         displayName: "Machine Gun Sentry",
@@ -495,7 +495,7 @@ const stratagemsList = [
         tags: ["Sentry"],
         warbond: "",
         internalName: "machinegunsentry",
-        imageURL: "machinegunsentry.png"
+        imageURL: "machinegunsentry.svg"
     },
     {
         displayName: "Gatling Sentry",
@@ -504,7 +504,7 @@ const stratagemsList = [
         tags: ["Sentry"],
         warbond: "",
         internalName: "gatlingsentry",
-        imageURL: "gatlingsentry.png"
+        imageURL: "gatlingsentry.svg"
     },
     {
         displayName: "Anti-Personnel Minefield",
@@ -513,7 +513,7 @@ const stratagemsList = [
         tags: ["Emplacement"],
         warbond: "",
         internalName: "antipersonnelminefield",
-        imageURL: "antipersonnelminefield.png"
+        imageURL: "antipersonnelminefield.svg"
     },
     {
         displayName: "Incendiary Mines",
@@ -522,7 +522,7 @@ const stratagemsList = [
         tags: ["Emplacement"],
         warbond: "",
         internalName: "incendiarymines",
-        imageURL: "incendiarymines.png"
+        imageURL: "incendiarymines.svg"
     },
     {
         displayName: "Shield Generator Relay",
@@ -531,7 +531,7 @@ const stratagemsList = [
         tags: ["Emplacement"],
         warbond: "",
         internalName: "shieldgeneratorrelay",
-        imageURL: "shieldgeneratorrelay.png"
+        imageURL: "shieldgeneratorrelay.svg"
     },
     {
         displayName: "HMG Emplacement",
@@ -540,7 +540,7 @@ const stratagemsList = [
         tags: ["Emplacement"],
         warbond: "",
         internalName: "hmgemplacement",
-        imageURL: "hmgemplacement.png"
+        imageURL: "hmgemplacement.svg"
     },
     {
         displayName: "Autocannon Sentry",
@@ -549,7 +549,7 @@ const stratagemsList = [
         tags: ["Sentry"],
         warbond: "",
         internalName: "autocannonsentry",
-        imageURL: "autocannonsentry.png"
+        imageURL: "autocannonsentry.svg"
     },
     {
         displayName: "Rocket Sentry",
@@ -558,7 +558,7 @@ const stratagemsList = [
         tags: ["Sentry"],
         warbond: "",
         internalName: "rocketsentry",
-        imageURL: "rocketsentry.png"
+        imageURL: "rocketsentry.svg"
     }
     // {
     //     displayName: "MLS-4X Commando Rocket Launcher",

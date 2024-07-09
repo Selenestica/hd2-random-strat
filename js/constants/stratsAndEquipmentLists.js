@@ -559,16 +559,16 @@ const stratagemsList = [
         warbond: "",
         internalName: "rocketsentry",
         imageURL: "rocketsentry.svg"
+    },
+    {
+        displayName: "MLS-4X Commando Rocket Launcher",
+        type: "Stratagem",
+        category: "Supply",
+        tags: ["Weapons"],
+        warbond: "",
+        internalName: "mls4xcommandorocketlauncher",
+        imageURL: "mls4xcommandorocketlauncher.svg"
     }
-    // {
-    //     displayName: "MLS-4X Commando Rocket Launcher",
-    //     type: "Stratagem",
-    //     category: "Supply",
-    //     tags: ["Weapons"],
-    //     warbond: "",
-    //     internalName: "mls4xcommandorocketlauncher",
-    //     imageURL: "mls4xcommandorocketlauncher.png"
-    // },
     // {
     //     displayName: "Anti-Tank Mines",
     //     type: "Stratagem",

@@ -3,7 +3,6 @@ to do:
 
 feature ideas:
 - cleanup borders on equipment
-- use SVGs for stratagems
 - save options in local storage
 - add link to buymeacoffee
 

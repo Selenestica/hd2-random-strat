@@ -289,36 +289,38 @@ const getRandomUniqueNumbers = (
     oneSupportWeapon,
     oneBackpack
 ) => {
+    let hasVehicle = false;
     let hasBackpack = false;
     let hasSupportWeapon = false;
     let numbers = [];
     let randomNumber = null;
     while (numbers.length < max) {
         randomNumber = Math.floor(Math.random() * list.length);
+        const tags = list[randomNumber].tags;
         if (
-            (list[randomNumber].tags.includes("Weapons") && hasSupportWeapon) ||
-            (list[randomNumber].tags.includes("Backpacks") && hasBackpack) ||
+            (tags.includes("Weapons") && hasSupportWeapon) ||
+            (tags.includes("Backpacks") && hasBackpack) ||
+            (tags.includes("Vehicles") && hasVehicle) ||
             numbers.includes(randomNumber)
         ) {
             continue;
         } else {
-            if (
-                oneSupportWeapon &&
-                list[randomNumber].tags.includes("Weapons")
-            ) {
+            if (tags.includes("Vehicles")) {
+                hasVehicle = true;
+                numbers.push(randomNumber);
+                continue;
+            }
+            if (oneSupportWeapon && tags.includes("Weapons")) {
                 numbers.push(randomNumber);
                 hasSupportWeapon = true;
-                if (list[randomNumber].tags.includes("Backpacks")) {
+                if (tags.includes("Backpacks")) {
                     hasBackpack = true;
                 }
                 continue;
-            } else if (
-                oneBackpack &&
-                list[randomNumber].tags.includes("Backpacks")
-            ) {
+            } else if (oneBackpack && tags.includes("Backpacks")) {
                 numbers.push(randomNumber);
                 hasBackpack = true;
-                if (list[randomNumber].tags.includes("Weapons")) {
+                if (tags.includes("Weapons")) {
                     hasSupportWeapon = true;
                 }
                 continue;

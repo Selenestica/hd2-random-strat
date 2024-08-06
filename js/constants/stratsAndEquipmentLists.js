@@ -568,16 +568,16 @@ const stratagemsList = [
         warbond: "",
         internalName: "mls4xcommandorocketlauncher",
         imageURL: "mls4xcommandorocketlauncher.svg"
+    },
+    {
+        displayName: "Anti-Tank Mines",
+        type: "Stratagem",
+        category: "Defense",
+        tags: ["Emplacement"],
+        warbond: "",
+        internalName: "antitankmines",
+        imageURL: "antitankmines.svg"
     }
-    // {
-    //     displayName: "Anti-Tank Mines",
-    //     type: "Stratagem",
-    //     category: "Defense",
-    //     tags: ["Emplacement"],
-    //     warbond: "",
-    //     internalName: "antitankmines",
-    //     imageURL: "antitankmines.png"
-    // }
 ];
 
 const primariesList = [

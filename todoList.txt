@@ -2,16 +2,12 @@ to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 
 feature ideas:
-- cleanup borders on equipment
 - save options in local storage
 - add link to buymeacoffee
 - enemy randomizer
-- planet randomizer
 - difficulty randomizer
 - button to randomize everything at once
-- normalize equipment images
 
 bugs:
 - when no booster is able to be given (no warbonds selected), booster column looks bad
-- clean up images for weapons
 - add image for link preview

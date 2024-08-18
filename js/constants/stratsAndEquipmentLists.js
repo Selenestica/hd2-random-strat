@@ -830,6 +830,26 @@ const primariesList = [
         warbondCode: "warbond4",
         internalName: "cb9explodingcrossbow",
         imageURL: "cb9explodingcrossbow.png"
+    },
+    {
+        displayName: "SG-451 Cookout",
+        type: "Equipment",
+        category: "primary",
+        tags: ["Shotgun"],
+        warbond: "Freedom's Flame",
+        warbondCode: "warbond7",
+        internalName: "sg451punisher",
+        imageURL: "sg451punisher.png"
+    },
+    {
+        displayName: "FLAM-66 Torcher",
+        type: "Equipment",
+        category: "primary",
+        tags: ["Special"],
+        warbond: "Freedom's Flame",
+        warbondCode: "warbond7",
+        internalName: "flam66torcher",
+        imageURL: "flam66torcher.png"
     }
 ];
 
@@ -903,6 +923,16 @@ const secondariesList = [
         warbondCode: "warbond3",
         internalName: "las7dagger",
         imageURL: "las7dagger.png"
+    },
+    {
+        displayName: "P-72 Crisper",
+        type: "Equipment",
+        category: "secondary",
+        tags: [],
+        warbond: "Cutting Edge",
+        warbondCode: "warbond7",
+        internalName: "p72crisper",
+        imageURL: "p72crisper.png"
     }
 ];
 
@@ -1016,5 +1046,15 @@ const boostersList = [
         warbondCode: "warbond1",
         internalName: "vitalityenhancement",
         imageURL: "vitalityenhancement.png"
+    },
+    {
+        displayName: "Firebomb Hellpods",
+        type: "Equipment",
+        category: "booster",
+        tags: [],
+        warbond: "Freedom's Flame",
+        warbondCode: "warbond7",
+        internalName: "firebombhellpods",
+        imageURL: "firebombhellpods.png"
     }
 ];

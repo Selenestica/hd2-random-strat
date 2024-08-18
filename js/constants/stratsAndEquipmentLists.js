@@ -838,8 +838,8 @@ const primariesList = [
         tags: ["Shotgun"],
         warbond: "Freedom's Flame",
         warbondCode: "warbond7",
-        internalName: "sg451punisher",
-        imageURL: "sg451punisher.png"
+        internalName: "sg451cookout",
+        imageURL: "sg451cookout.png"
     },
     {
         displayName: "FLAM-66 Torcher",

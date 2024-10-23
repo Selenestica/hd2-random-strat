@@ -1,4 +1,5 @@
 to do:
+- add new stratagems and weapons
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 
 feature ideas:

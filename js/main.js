@@ -45,6 +45,7 @@ let workingPrimsList;
 let workingSecondsList;
 let workingGrensList;
 let workingBoostsList;
+let workingStratsList;
 
 let oneBackpack = false;
 let oneSupportWeapon = false;
@@ -103,31 +104,40 @@ for (let z = 0; z < warbondCheckboxes.length; z++) {
             const indexToRemove = checkedWarbonds.indexOf(e.srcElement.id);
             checkedWarbonds.splice(indexToRemove, 1);
         }
-        filterEquipment();
+        filterItemsByWarbond();
     });
 }
 
-const filterEquipment = async () => {
-    const equipmentLists = [primsList, secondsList, grensList, boostsList];
-    for (let i = 0; i < equipmentLists.length; i++) {
-        let tempList = [...equipmentLists[i]];
-        equipmentLists[i] = await tempList.filter(
-            (equip) =>
-                checkedWarbonds.includes(equip.warbondCode) ||
-                equip.warbondCode === "default"
+const filterItemsByWarbond = async () => {
+    const itemsList = [
+        primsList,
+        secondsList,
+        grensList,
+        boostsList,
+        stratsList
+    ];
+    for (let i = 0; i < itemsList.length; i++) {
+        let tempList = [...itemsList[i]];
+        itemsList[i] = await tempList.filter(
+            (item) =>
+                checkedWarbonds.includes(item.warbondCode) ||
+                item.warbondCode === "default"
         );
         if (i === 0) {
-            workingPrimsList = equipmentLists[i];
+            workingPrimsList = itemsList[i];
         } else if (i === 1) {
-            workingSecondsList = equipmentLists[i];
+            workingSecondsList = itemsList[i];
         } else if (i === 2) {
-            workingGrensList = equipmentLists[i];
+            workingGrensList = itemsList[i];
         } else if (i === 3) {
-            workingBoostsList = equipmentLists[i];
+            workingBoostsList = itemsList[i];
+        } else if (i === 4) {
+            workingStratsList = itemsList[i];
         }
     }
 };
 
+// old code, consider removing
 const setMaxStrats = (val) => {
     maxStrats = val;
     rollStratsButton.innerHTML = `Roll Stratagems (${val})`;
@@ -151,6 +161,7 @@ const rollStratagems = async () => {
 
     // if "only" or "no" strat type options checked, modify the strat list here
     const filteredStratList = await filterStratList();
+    console.log(filteredStratList);
 
     // will need to make the first arg below dynamic (3 or 4 or whatever)
     const randomUniqueNumbers = getRandomUniqueNumbers(
@@ -249,6 +260,7 @@ const rollEquipment = () => {
 };
 
 const filterStratList = async () => {
+    let warbondFilteredStratList = workingStratsList ?? stratsList;
     let newList;
     let categoriesToFilter = [];
     const onlyRadios = [
@@ -266,7 +278,7 @@ const filterStratList = async () => {
     // check if a "only" radio is checked
     for (let i = 0; i < onlyRadios.length; i++) {
         if (onlyRadios[i].checked) {
-            newList = await stratsList.filter(
+            newList = await warbondFilteredStratList.filter(
                 (strat) => strat.category === onlyRadios[i].name
             );
             return newList;
@@ -279,9 +291,10 @@ const filterStratList = async () => {
             categoriesToFilter.push(noRadios[j].name);
         }
     }
-    newList = await stratsList.filter(
+    newList = await warbondFilteredStratList.filter(
         (strat) => !categoriesToFilter.includes(strat.category)
     );
+
     return newList;
 };
 

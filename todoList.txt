@@ -1,11 +1,17 @@
 to do:
 - add new stratagems and weapons
-- add version number
+  - orbital napalm barrage
+  - sterilizer
+  - dog breath
+  - stim pistol
+  - gas grenade
+  - make sure chemical agents strats dont show up when that warbond isnt checked
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 
 feature ideas:
 - save options in local storage
 - add link to buymeacoffee
+- buy nvigneux a coffee
 - enemy randomizer
 - difficulty randomizer
 - button to randomize everything at once

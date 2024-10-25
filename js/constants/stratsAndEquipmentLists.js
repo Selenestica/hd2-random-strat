@@ -1,6 +1,16 @@
 const grenadesList = [
     {
-        displayName: "G-12 High Explosive grenade",
+        displayName: "G-12 High Explosive",
+        type: "Equipment",
+        category: "grenade",
+        tags: [],
+        warbond: "Default",
+        warbondCode: "default",
+        internalName: "g12highexplosivegrenade",
+        imageURL: "g12highexplosivegrenade.png"
+    },
+    {
+        displayName: "G-4 Gas",
         type: "Equipment",
         category: "grenade",
         tags: [],
@@ -20,7 +30,7 @@ const grenadesList = [
         imageURL: "k2throwingknife.png"
     },
     {
-        displayName: "G-6 Frag grenade",
+        displayName: "G-6 Frag",
         type: "Equipment",
         category: "grenade",
         tags: [],
@@ -30,7 +40,7 @@ const grenadesList = [
         imageURL: "g6fraggrenade.png"
     },
     {
-        displayName: "G-16 Impact grenade",
+        displayName: "G-16 Impact",
         type: "Equipment",
         category: "grenade",
         tags: [],
@@ -40,7 +50,7 @@ const grenadesList = [
         imageURL: "g16impactgrenade.png"
     },
     {
-        displayName: "G-3 Smoke grenade",
+        displayName: "G-3 Smoke",
         type: "Equipment",
         category: "grenade",
         tags: [],
@@ -50,7 +60,7 @@ const grenadesList = [
         imageURL: "g3smokegrenade.png"
     },
     {
-        displayName: "G-10 Incendiary grenade",
+        displayName: "G-10 Incendiary",
         type: "Equipment",
         category: "grenade",
         tags: [],
@@ -60,7 +70,7 @@ const grenadesList = [
         imageURL: "g10incendiarygrenade.png"
     },
     {
-        displayName: "G-23 Stun grenade",
+        displayName: "G-23 Stun",
         type: "Equipment",
         category: "grenade",
         tags: [],
@@ -70,7 +80,7 @@ const grenadesList = [
         imageURL: "g23stungrenade.png"
     },
     {
-        displayName: "G-123 Thermite grenade",
+        displayName: "G-123 Thermite",
         type: "Equipment",
         category: "grenade",
         tags: [],
@@ -100,6 +110,24 @@ const stratagemsList = [
         warbond: "",
         internalName: "rl77airburstrocketlauncher",
         imageURL: "rl77airburstrocketlauncher.svg"
+    },
+    {
+        displayName: "TX-41 Sterilizer",
+        type: "Stratagem",
+        category: "Supply",
+        tags: ["Weapons"],
+        warbond: "warbond8",
+        internalName: "tx41sterilizer",
+        imageURL: "tx41sterilizer.svg"
+    },
+    {
+        displayName: "AX/TX-13 Dog Breath",
+        type: "Stratagem",
+        category: "Supply",
+        tags: ["Backpacks"],
+        warbond: "warbond8",
+        internalName: "axtx13guarddogdogbreath",
+        imageURL: "axtx13guarddogdogbreath.svg"
     },
     {
         displayName: "Autocannon",
@@ -370,6 +398,15 @@ const stratagemsList = [
         warbond: "",
         internalName: "orbitalprecisionstrike",
         imageURL: "orbitalprecisionstrike.svg"
+    },
+    {
+        displayName: "Orbital Napalm Barrage",
+        type: "Stratagem",
+        category: "Orbital",
+        tags: ["Orbital"],
+        warbond: "",
+        internalName: "orbitalnapalmbarrage",
+        imageURL: "orbitalnapalmbarrage.svg"
     },
     {
         displayName: "Orbital Airburst Strike",
@@ -863,6 +900,16 @@ const secondariesList = [
         warbondCode: "default",
         internalName: "p2peacemaker",
         imageURL: "p2peacemaker.png"
+    },
+    {
+        displayName: "P-11 Stim Pistol",
+        type: "Equipment",
+        category: "secondary",
+        tags: [],
+        warbond: "Chemical Agents",
+        warbondCode: "warbond8",
+        internalName: "p11stimpistol",
+        imageURL: "p11stimpistol.png"
     },
     {
         displayName: "SG-22 Bushwhacker",

@@ -4,8 +4,8 @@ const grenadesList = [
         type: "Equipment",
         category: "grenade",
         tags: [],
-        warbond: "Default",
-        warbondCode: "default",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "g12highexplosivegrenade",
         imageURL: "g12highexplosivegrenade.png"
     },
@@ -14,8 +14,8 @@ const grenadesList = [
         type: "Equipment",
         category: "grenade",
         tags: [],
-        warbond: "Default",
-        warbondCode: "default",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "g12highexplosivegrenade",
         imageURL: "g12highexplosivegrenade.png"
     },
@@ -107,7 +107,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons", "Backpacks"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "rl77airburstrocketlauncher",
         imageURL: "rl77airburstrocketlauncher.svg"
     },
@@ -116,7 +117,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "warbond8",
+        warbond: "Chemical Agents",
+        warbondCode: "warbond8",
         internalName: "tx41sterilizer",
         imageURL: "tx41sterilizer.svg"
     },
@@ -125,7 +127,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Backpacks"],
-        warbond: "warbond8",
+        warbond: "Chemical Agents",
+        warbondCode: "warbond8",
         internalName: "axtx13guarddogdogbreath",
         imageURL: "axtx13guarddogdogbreath.svg"
     },
@@ -134,7 +137,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons", "Backpacks"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "ac8autocannon",
         imageURL: "ac8autocannon.svg"
     },
@@ -143,7 +147,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "eat17expendableantitank",
         imageURL: "eat17expendableantitank.svg"
     },
@@ -152,7 +157,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "flam40flamethrower",
         imageURL: "flam40flamethrower.svg"
     },
@@ -161,7 +167,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "las98lasercannon",
         imageURL: "las98lasercannon.svg"
     },
@@ -170,7 +177,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "m105stalwart",
         imageURL: "m105stalwart.svg"
     },
@@ -179,7 +187,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "mg43machinegun",
         imageURL: "mg43machinegun.svg"
     },
@@ -188,7 +197,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "arc3arcthrower",
         imageURL: "arc3arcthrower.svg"
     },
@@ -197,7 +207,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "gl21grenadelauncher",
         imageURL: "gl21grenadelauncher.svg"
     },
@@ -206,7 +217,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "apw1antimaterielrifle",
         imageURL: "apw1antimaterielrifle.svg"
     },
@@ -215,7 +227,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "rs422railgun",
         imageURL: "rs422railgun.svg"
     },
@@ -224,7 +237,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons", "Backpacks"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "gr8recoillessrifle",
         imageURL: "gr8recoillessrifle.svg"
     },
@@ -233,7 +247,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons", "Backpacks"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "faf14spear",
         imageURL: "faf14spear.svg"
     },
@@ -242,7 +257,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "las99quasarcannon",
         imageURL: "las99quasarcannon.svg"
     },
@@ -251,7 +267,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "mg206heavymachinegun",
         imageURL: "mg206heavymachinegun.svg"
     },
@@ -260,7 +277,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Backpacks"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "axlas5guarddogrover",
         imageURL: "axlas5guarddogrover.svg"
     },
@@ -269,7 +287,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Backpacks"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "ad334guarddog",
         imageURL: "ad334guarddog.svg"
     },
@@ -278,7 +297,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Backpacks"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "lift850jumppack",
         imageURL: "lift850jumppack.svg"
     },
@@ -287,7 +307,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Backpacks"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "b1supplypack",
         imageURL: "b1supplypack.svg"
     },
@@ -296,7 +317,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Backpacks"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "sh20shieldgeneratorpack",
         imageURL: "sh20shieldgeneratorpack.svg"
     },
@@ -305,7 +327,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Backpacks"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "sh20ballisticshieldbackpack",
         imageURL: "sh20ballisticshieldbackpack.svg"
     },
@@ -314,7 +337,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Vehicles"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "exo45patriotexosuit",
         imageURL: "exo45patriotexosuit.svg"
     },
@@ -323,7 +347,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Vehicles"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "exo49emancipatorexosuit",
         imageURL: "exo49emancipatorexosuit.svg"
     },
@@ -332,7 +357,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Eagle",
         tags: ["Eagle"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "eaglestrafingrun",
         imageURL: "eaglestrafingrun.svg"
     },
@@ -341,7 +367,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Eagle",
         tags: ["Eagle"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "eagleairstrike",
         imageURL: "eagleairstrike.svg"
     },
@@ -350,7 +377,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Eagle",
         tags: ["Eagle"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "eagleclusterbomb",
         imageURL: "eagleclusterbomb.svg"
     },
@@ -359,7 +387,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Eagle",
         tags: ["Eagle"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "eaglenapalmstrike",
         imageURL: "eaglenapalmstrike.svg"
     },
@@ -368,7 +397,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Eagle",
         tags: ["Eagle"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "eaglesmokestrike",
         imageURL: "eaglesmokestrike.svg"
     },
@@ -377,7 +407,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Eagle",
         tags: ["Eagle"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "eagle110mmrocketpods",
         imageURL: "eagle110mmrocketpods.svg"
     },
@@ -386,7 +417,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Eagle",
         tags: ["Eagle"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "eagle500kgbomb",
         imageURL: "eagle500kgbomb.svg"
     },
@@ -395,7 +427,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Orbital",
         tags: ["Orbital"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "orbitalprecisionstrike",
         imageURL: "orbitalprecisionstrike.svg"
     },
@@ -404,7 +437,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Orbital",
         tags: ["Orbital"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "orbitalnapalmbarrage",
         imageURL: "orbitalnapalmbarrage.svg"
     },
@@ -413,7 +447,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Orbital",
         tags: ["Orbital"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "orbitalairburststrike",
         imageURL: "orbitalairburststrike.svg"
     },
@@ -422,7 +457,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Orbital",
         tags: ["Orbital"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "orbital120mmhebarrage",
         imageURL: "orbital120mmhebarrage.svg"
     },
@@ -431,7 +467,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Orbital",
         tags: ["Orbital"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "orbital380mmhebarrage",
         imageURL: "orbital380mmhebarrage.svg"
     },
@@ -440,7 +477,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Orbital",
         tags: ["Orbital"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "orbitalwalkingbarrage",
         imageURL: "orbitalwalkingbarrage.svg"
     },
@@ -449,7 +487,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Orbital",
         tags: ["Orbital"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "orbitallaser",
         imageURL: "orbitallaser.svg"
     },
@@ -458,7 +497,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Orbital",
         tags: ["Orbital"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "orbitalrailcannonstrike",
         imageURL: "orbitalrailcannonstrike.svg"
     },
@@ -467,7 +507,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Orbital",
         tags: ["Orbital"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "orbitalgatlingbarrage",
         imageURL: "orbitalgatlingbarrage.svg"
     },
@@ -476,7 +517,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Orbital",
         tags: ["Orbital"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "orbitalgasstrike",
         imageURL: "orbitalgasstrike.svg"
     },
@@ -485,7 +527,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Orbital",
         tags: ["Orbital"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "orbitalemsstrike",
         imageURL: "orbitalemsstrike.svg"
     },
@@ -494,7 +537,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Orbital",
         tags: ["Orbital"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "orbitalsmokestrike",
         imageURL: "orbitalsmokestrike.svg"
     },
@@ -503,7 +547,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Defense",
         tags: ["Emplacement"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "teslatower",
         imageURL: "teslatower.svg"
     },
@@ -512,7 +557,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Defense",
         tags: ["Sentry"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "mortarsentry",
         imageURL: "mortarsentry.svg"
     },
@@ -521,7 +567,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Defense",
         tags: ["Sentry"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "emsmortarsentry",
         imageURL: "emsmortarsentry.svg"
     },
@@ -530,7 +577,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Defense",
         tags: ["Sentry"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "machinegunsentry",
         imageURL: "machinegunsentry.svg"
     },
@@ -539,7 +587,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Defense",
         tags: ["Sentry"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "gatlingsentry",
         imageURL: "gatlingsentry.svg"
     },
@@ -548,7 +597,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Defense",
         tags: ["Emplacement"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "antipersonnelminefield",
         imageURL: "antipersonnelminefield.svg"
     },
@@ -557,7 +607,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Defense",
         tags: ["Emplacement"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "incendiarymines",
         imageURL: "incendiarymines.svg"
     },
@@ -566,7 +617,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Defense",
         tags: ["Emplacement"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "shieldgeneratorrelay",
         imageURL: "shieldgeneratorrelay.svg"
     },
@@ -575,7 +627,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Defense",
         tags: ["Emplacement"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "hmgemplacement",
         imageURL: "hmgemplacement.svg"
     },
@@ -584,7 +637,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Defense",
         tags: ["Sentry"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "autocannonsentry",
         imageURL: "autocannonsentry.svg"
     },
@@ -593,7 +647,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Defense",
         tags: ["Sentry"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "rocketsentry",
         imageURL: "rocketsentry.svg"
     },
@@ -602,7 +657,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "mls4xcommandorocketlauncher",
         imageURL: "mls4xcommandorocketlauncher.svg"
     },
@@ -611,7 +667,8 @@ const stratagemsList = [
         type: "Stratagem",
         category: "Defense",
         tags: ["Emplacement"],
-        warbond: "",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "antitankmines",
         imageURL: "antitankmines.svg"
     }
@@ -623,8 +680,8 @@ const primariesList = [
         type: "Equipment",
         category: "primary",
         tags: ["AssaultRifle"],
-        warbond: "Default",
-        warbondCode: "default",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "ar23liberator",
         imageURL: "ar23liberator.png"
     },
@@ -896,8 +953,8 @@ const secondariesList = [
         type: "Equipment",
         category: "secondary",
         tags: [],
-        warbond: "Default",
-        warbondCode: "default",
+        warbond: "None",
+        warbondCode: "none",
         internalName: "p2peacemaker",
         imageURL: "p2peacemaker.png"
     },

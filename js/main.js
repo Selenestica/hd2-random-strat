@@ -121,7 +121,7 @@ const filterItemsByWarbond = async () => {
         itemsList[i] = await tempList.filter(
             (item) =>
                 checkedWarbonds.includes(item.warbondCode) ||
-                item.warbondCode === "default"
+                item.warbondCode === "none"
         );
         if (i === 0) {
             workingPrimsList = itemsList[i];
@@ -161,7 +161,6 @@ const rollStratagems = async () => {
 
     // if "only" or "no" strat type options checked, modify the strat list here
     const filteredStratList = await filterStratList();
-    console.log(filteredStratList);
 
     // will need to make the first arg below dynamic (3 or 4 or whatever)
     const randomUniqueNumbers = getRandomUniqueNumbers(

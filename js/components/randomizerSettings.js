@@ -5,8 +5,11 @@
 //     "defenseAndSupplyOptions"
 // );
 
-const TOP_ROW = ["Eagle", "Orbital"]
-const BOTTOM_ROW = ["Defense", "Supply"]
+
+const EAGLE_RADIOS = ["onlyEaglesRadio", "noEaglesRadio", "defaultEaglesRadio"]
+const ORBITALS_RADIOS = ["onlyOrbitalsRadio", "noOrbitalsRadio", "defaultOrbitalsRadio"]
+const DEFENSE_RADIOS = ["onlyDefenseRadio", "noDefenseRadio", "defaultDefenseRadio"]
+const SUPPLY_RADIOS = ["onlySupplyRadio", "noSupplyRadio", "defaultSupplyRadio"]
 
 const genSettingsRadios = () => {
     

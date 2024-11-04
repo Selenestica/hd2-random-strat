@@ -1092,6 +1092,16 @@ const boostersList = [
         imageURL: "expertextractionpilot.png"
     },
     {
+        displayName: "Dead Sprint",
+        type: "Equipment",
+        category: "booster",
+        tags: [],
+        warbond: "Truth Enforcers",
+        warbondCode: "warbond9",
+        internalName: "deadsprint",
+        imageURL: "deadsprint.png"
+    },
+    {
         displayName: "Experimental Infusion",
         type: "Equipment",
         category: "booster",

@@ -16,8 +16,8 @@ const grenadesList = [
         tags: [],
         warbond: "None",
         warbondCode: "none",
-        internalName: "g12highexplosivegrenade",
-        imageURL: "g12highexplosivegrenade.png"
+        internalName: "g4gasgrenade",
+        imageURL: "g4gasgrenade.png"
     },
     {
         displayName: "K-2 Throwing Knife",
@@ -696,6 +696,36 @@ const primariesList = [
         imageURL: "ar23aliberatorcarbine.png"
     },
     {
+        displayName: "SG-20 Halt",
+        type: "Equipment",
+        category: "primary",
+        tags: ["Shotgun"],
+        warbond: "Truth Enforcers",
+        warbondCode: "warbond9",
+        internalName: "sg20halt",
+        imageURL: "sg20halt.png"
+    },
+    {
+        displayName: "SMG-32 Reprimand",
+        type: "Equipment",
+        category: "primary",
+        tags: ["Submachinegun"],
+        warbond: "Truth Enforcers",
+        warbondCode: "warbond9",
+        internalName: "smg32reprimand",
+        imageURL: "smg32reprimand.png"
+    },
+    {
+        displayName: "R-2124 Constitution",
+        type: "Equipment",
+        category: "primary",
+        tags: ["MarksmanRifle"],
+        warbond: "None",
+        warbondCode: "none",
+        internalName: "r2124constitution",
+        imageURL: "r2124constitution.png"
+    },
+    {
         displayName: "SMG-72 Pummeler",
         type: "Equipment",
         category: "primary",
@@ -967,6 +997,16 @@ const secondariesList = [
         warbondCode: "warbond8",
         internalName: "p11stimpistol",
         imageURL: "p11stimpistol.png"
+    },
+    {
+        displayName: "PLAS-15 Loyalist",
+        type: "Equipment",
+        category: "secondary",
+        tags: [],
+        warbond: "Truth Enforcers",
+        warbondCode: "warbond9",
+        internalName: "plas15loyalist",
+        imageURL: "plas15loyalist.png"
     },
     {
         displayName: "SG-22 Bushwhacker",

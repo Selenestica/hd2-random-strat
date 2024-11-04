@@ -10,7 +10,8 @@ const warbondsList = [
     "Polar Patriots",
     "Viper Commandos",
     "Freedom's Flame",
-    "Chemical Agents"
+    "Chemical Agents",
+    "Truth Enforcers"
 ];
 
 const genWarbondCheckboxes = () => {

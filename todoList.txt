@@ -10,6 +10,7 @@ feature ideas:
 - difficulty randomizer
 - button to randomize everything at once
 
+
 bugs:
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 - add image for link preview

@@ -12,6 +12,7 @@ feature ideas:
 - add links to YouTube videos
 - add link to low sodium Helldivers discord
 
+
 bugs:
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 - add image for link preview

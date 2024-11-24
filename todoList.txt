@@ -11,6 +11,7 @@ feature ideas:
 - button to randomize everything at once
 - add links to YouTube videos
 - add link to low sodium Helldivers discord
+- holding click on stratagem or equipment icon will change it
 
 bugs:
 - when no booster is able to be given (no warbonds selected), booster column looks bad

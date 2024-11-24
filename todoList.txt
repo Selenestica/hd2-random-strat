@@ -12,6 +12,7 @@ feature ideas:
 - add links to YouTube videos
 - add link to low sodium Helldivers discord
 - holding click on stratagem or equipment icon will change it
+- add armor passives randomizer of armor size randomizer
 
 bugs:
 - when no booster is able to be given (no warbonds selected), booster column looks bad

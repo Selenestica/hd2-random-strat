@@ -176,7 +176,7 @@ const rollStratagems = async () => {
         stratagemsContainer.innerHTML += `
           <div class="col-3 d-flex justify-content-center">
             <div class="card itemCards" 
-              onclick="setItemModalContent('${stratagem.internalName}', 'stratagem')"
+              onclick="holdToChangeItem('${stratagem.internalName}', 'stratagem')"
               data-bs-toggle="modal"
               data-bs-target="#itemModal" 
             >
@@ -242,7 +242,7 @@ const rollEquipment = () => {
                 <div class="card itemCards" 
                   data-bs-toggle="modal"
                   data-bs-target="#itemModal" 
-                  onclick="setItemModalContent('${equipment.internalName}', '${equipment.category}')"
+                  onclick="holdToChangeItem('${equipment.internalName}', '${equipment.category}')"
                 >
                   <img
                       src="./images/equipment/${equipment.imageURL}"

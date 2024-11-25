@@ -13,9 +13,6 @@ provide a platform for learning and collaboration.
 
 We welcome contributions to this project! Whether you're fixing bugs, adding new features, your input is valuable.
 
-For detailed information on how to contribute, including guidelines for code contributions and instructions for
-submitting new image sets, please see our [CONTRIBUTING](CONTRIBUTING.md) file.
-
 ## 🐛 Reporting Issues
 
 Found a bug or have a suggestion? Open an issue on GitHub:
@@ -27,6 +24,6 @@ Found a bug or have a suggestion? Open an issue on GitHub:
 
 ## 🙏 Credits and Attributions
 
- is built on the shoulders of giants. We're grateful to the creators and maintainers of all our dependencies,
+This project is built on the shoulders of giants. We're grateful to the creators and maintainers of all our dependencies,
 including but not limited to:
 

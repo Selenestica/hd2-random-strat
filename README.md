@@ -1,0 +1,1 @@
+An ad free and open source Helldivers 2 stratagem and equipment randomizer.

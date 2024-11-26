@@ -26,5 +26,7 @@ Found a bug or have a suggestion? Open an issue on GitHub:
 
 This project is built on the shoulders of giants. We're grateful to the creators of the assets we use,
 including but not limited to:
-Nvigneux, for the stratagem SVGs (https://github.com/nvigneux/Helldivers-2-Stratagems-icons-svg)
+
+Nvigneux, for the stratagem SVGs 
+- (https://github.com/nvigneux/Helldivers-2-Stratagems-icons-svg)
 

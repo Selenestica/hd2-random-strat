@@ -13,15 +13,6 @@ provide a platform for learning and collaboration.
 
 We welcome contributions to this project! Whether you're fixing bugs, adding new features, your input is valuable.
 
-## 🐛 Reporting Issues
-
-Found a bug or have a suggestion? Open an issue on GitHub:
-
-2. Click "New Issue".
-3. Choose the appropriate template (Bug Report, Feature Request, or Image Update/Addition).
-4. Provide a clear title and detailed description.
-5. Add relevant labels if necessary.
-
 ## 🙏 Credits and Attributions
 
 This project is built on the shoulders of giants. We're grateful to the creators of the assets we use,
@@ -30,3 +21,5 @@ including but not limited to:
 Nvigneux, for the stratagem SVGs 
 - (https://github.com/nvigneux/Helldivers-2-Stratagems-icons-svg)
 
+Helldivers Wiki, for the equipment images
+- (https://helldivers.wiki.gg/wiki/Helldivers_2)

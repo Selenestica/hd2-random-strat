@@ -1,1 +1,1 @@
-console.log("head will go here"
+const page = "here"

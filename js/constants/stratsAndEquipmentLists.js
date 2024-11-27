@@ -1213,7 +1213,14 @@ const boostersList = [
     }
 ];
 
-const armorPassivesList = [   "Advanced Filtration",
+const armorPassivesList = [   
+    {
+        displayName: "Advanced Filtration",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: ""
+    },
     "Democracy Protects",
     "Electrical Conduit",
     "Engineering Kit",

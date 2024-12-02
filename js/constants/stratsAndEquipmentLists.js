@@ -1219,7 +1219,8 @@ const armorPassivesList = [
         type: "Equipment",
         category: "armor",
         tags: [],
-        warbond: ""
+        warbond: "",
+        warbondCode: "warbond8"
     },
     "Democracy Protects",
     "Electrical Conduit",

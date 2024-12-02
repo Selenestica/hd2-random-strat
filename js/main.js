@@ -141,8 +141,8 @@ const filterItemsByWarbond = async () => {
 
 const rollArmor = () => {
     const armorTypes = ["Light", "Medium", "Heavy"];
-    const randArmorIndex = Math.floor(Math.random() * armorTypes.length);
-    const randArmorType = armorTypes[randArmorIndex];
+    const randArmorIndex = Math.floor(Math.random() * armorPassivesList.length);
+    const randArmorType = armorPassivesList[randArmorIndex].displayName;
     armorTypeButton.innerText = randArmorType;
 };
 

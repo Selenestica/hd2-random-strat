@@ -1220,7 +1220,9 @@ const armorPassivesList = [
         category: "armor",
         tags: [],
         warbond: "",
-        warbondCode: "warbond8"
+        warbondCode: "",
+        internalName: "advancedfiltration",
+        imageURL: ""
     },
     "Democracy Protects",
     "Electrical Conduit",

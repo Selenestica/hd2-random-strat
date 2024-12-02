@@ -59,6 +59,7 @@ let checkedWarbonds = [
     "warbond5",
     "warbond6",
     "warbond7",
+    "warbond8",
     "warbond9"
 ];
 

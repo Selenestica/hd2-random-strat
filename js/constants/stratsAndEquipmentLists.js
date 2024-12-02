@@ -1224,9 +1224,36 @@ const armorPassivesList = [
         internalName: "advancedfiltration",
         imageURL: ""
     },
-    "Democracy Protects",
-    "Electrical Conduit",
-    "Engineering Kit",
+    {
+        displayName: "Democracy Protects",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "democracyprotects",
+        imageURL: ""
+    },
+    {
+        displayName: "Electrical Conduit",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "electricalconduit",
+        imageURL: ""
+    },
+    {
+        displayName: "Engineering Kit",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "engineeringkit",
+        imageURL: ""
+    },
     "Extra Padding",
     "Fortified",
     "Inflammable",
@@ -1234,4 +1261,5 @@ const armorPassivesList = [
     "Peak Physique",
     "Scout",
     "Servo-Assisted",
-    "Unflinching"]
+    "Unflinching"
+]

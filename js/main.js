@@ -34,12 +34,12 @@ const stratOptionRadios = [
     defaultSupplyRadio
 ];
 
-let maxStrats = 4;
-let stratsList = [...stratagemsList];
-let primsList = [...primariesList];
-let secondsList = [...secondariesList];
-let grensList = [...grenadesList];
-let boostsList = [...boostersList];
+let stratsList = [...STRATAGEMS];
+let primsList = [...PRIMARIES];
+let secondsList = [...SECONDARIES];
+let grensList = [...GRENADES];
+let boostsList = [...BOOSTERS];
+let armorPassivesList = [...ARMOR_PASSIVES];
 
 let workingPrimsList;
 let workingSecondsList;
@@ -138,12 +138,6 @@ const filterItemsByWarbond = async () => {
     }
 };
 
-// old code, consider removing
-const setMaxStrats = (val) => {
-    maxStrats = val;
-    rollStratsButton.innerHTML = `Roll Stratagems (${val})`;
-};
-
 const rollArmor = () => {
     const armorTypes = ["Light", "Medium", "Heavy"];
     const randArmorIndex = Math.floor(Math.random() * armorTypes.length);
@@ -165,7 +159,6 @@ const rollStratagems = async () => {
 
     // will need to make the first arg below dynamic (3 or 4 or whatever)
     const randomUniqueNumbers = getRandomUniqueNumbers(
-        maxStrats,
         filteredStratList,
         oneSupportWeapon,
         oneBackpack
@@ -298,18 +291,14 @@ const filterStratList = async () => {
     return newList;
 };
 
-const getRandomUniqueNumbers = (
-    max = 4,
-    list,
-    oneSupportWeapon,
-    oneBackpack
-) => {
+const getRandomUniqueNumbers = (list, oneSupportWeapon, oneBackpack) => {
     let hasVehicle = false;
     let hasBackpack = false;
     let hasSupportWeapon = false;
     let numbers = [];
     let randomNumber = null;
-    while (numbers.length < max) {
+    const MAX_NUM_OF_STRATS = 4;
+    while (numbers.length < MAX_NUM_OF_STRATS) {
         randomNumber = Math.floor(Math.random() * list.length);
         const tags = list[randomNumber].tags;
         if (

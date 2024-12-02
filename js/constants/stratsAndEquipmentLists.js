@@ -1213,7 +1213,7 @@ const boostersList = [
     }
 ];
 
-const armorPassivesList = [   
+const armorPassivesList = [
     {
         displayName: "Advanced Filtration",
         type: "Equipment",
@@ -1254,12 +1254,84 @@ const armorPassivesList = [
         internalName: "engineeringkit",
         imageURL: ""
     },
-    "Extra Padding",
-    "Fortified",
-    "Inflammable",
-    "Med-Kit",
-    "Peak Physique",
-    "Scout",
-    "Servo-Assisted",
-    "Unflinching"
-]
+    {
+        displayName: "Extra Padding",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "extrapadding",
+        imageURL: ""
+    },
+    {
+        displayName: "Fortified",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "fortified",
+        imageURL: ""
+    },
+    {
+        displayName: "Inflammable",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "inflammable",
+        imageURL: ""
+    },
+    {
+        displayName: "Med-Kit",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "medkit",
+        imageURL: ""
+    },
+    {
+        displayName: "Peak Physique",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "peakphysique",
+        imageURL: ""
+    },
+    {
+        displayName: "Scout",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "scout",
+        imageURL: ""
+    },
+    {
+        displayName: "Servo-Assisted",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "servoassisted",
+        imageURL: ""
+    },
+    {
+        displayName: "Unflinching",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "unflinching",
+        imageURL: ""
+    }
+];

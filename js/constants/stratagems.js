@@ -100,7 +100,7 @@ const STRATAGEMS = [
         imageURL: "arc3arcthrower.svg"
     },
     {
-        displayName: "grenade Launcher",
+        displayName: "Grenade Launcher",
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],

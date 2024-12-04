@@ -1,1 +1,1 @@
-const footer = `<div>this will be a footer containing author name, email, and links to other sites possibly</div>`
+const footer = 

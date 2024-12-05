@@ -11,6 +11,7 @@ feature ideas:
 - add link to low sodium Helldivers discord
 - holding click on stratagem or equipment icon will change it
 - add armor randomizer with armor images instead of armor passives randomizer
+- add drop-down to armor randomizer to pick between randomizing type, set, or passive
 
 bugs:
 - when no booster is able to be given (no warbonds selected), booster column looks bad

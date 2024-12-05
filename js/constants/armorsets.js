@@ -29,4 +29,14 @@ const ARMOR_SETS = [
         internalName: "ce07demolitionspecialist",
         imageURL: "ce07demolitionspecialist.png"
     },
+    {
+        displayName: "CE-67 Titan",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Light"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "ce67titan",
+        imageURL: "ce67titan.png"
+    },
 ]

@@ -159,4 +159,14 @@ const ARMOR_SETS = [
         internalName: "uf16inspector",
         imageURL: "uf16inspector.png"
     },
+    {
+        displayName: "AF-02 Haz-Master",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Chemical Agents",
+        warbondCode: "warbond8",
+        internalName: "af02hazmaster",
+        imageURL: "af02hazmaster.png"
+    },
 ]

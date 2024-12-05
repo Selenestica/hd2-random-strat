@@ -1,0 +1,1 @@
+const ARMOR_SETS = []

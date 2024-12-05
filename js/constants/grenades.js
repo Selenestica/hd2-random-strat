@@ -14,8 +14,8 @@ const GRENADES = [
         type: "Equipment",
         category: "grenade",
         tags: [],
-        warbond: "None",
-        warbondCode: "none",
+        warbond: "Chemical Agents",
+        warbondCode: "warbond8",
         internalName: "g4gasgrenade",
         imageURL: "g4gasgrenade.png"
     },

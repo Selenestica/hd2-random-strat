@@ -24,7 +24,7 @@ const ARMOR_PASSIVES = [
         type: "Equipment",
         category: "armor",
         tags: [],
-        warbond: "",
+        warbond: "Cutting Edge",
         warbondCode: "",
         internalName: "electricalconduit",
         imageURL: ""

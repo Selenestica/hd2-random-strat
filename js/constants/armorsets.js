@@ -39,4 +39,24 @@ const ARMOR_SETS = [
         internalName: "ce67titan",
         imageURL: "ce67titan.png"
     },
+    {
+        displayName: "CE-74 Breaker",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Light"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "ce74breaker",
+        imageURL: "ce74breaker.png"
+    },
+    {
+        displayName: "CM-21 Trench Paramedic",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Light"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "cm21trenchparamedic",
+        imageURL: "cm21trenchparamedic.png"
+    },
 ]

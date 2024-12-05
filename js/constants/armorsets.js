@@ -169,4 +169,44 @@ const ARMOR_SETS = [
         internalName: "af02hazmaster",
         imageURL: "af02hazmaster.png"
     },
+    {
+        displayName: "AF-91 Field Chemist",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "af91fieldchemist",
+        imageURL: "af91fieldchemist.png"
+    },
+    {
+        displayName: "B-01 Tactical",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "None",
+        warbondCode: "none",
+        internalName: "b01tactical",
+        imageURL: "b01tactical.png"
+    },
+    {
+        displayName: "B-24 Enforcer",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "b24enforcer",
+        imageURL: "b24enforcer.png"
+    },
+    {
+        displayName: "CE-27 Ground Breaker",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Democratic Detonation",
+        warbondCode: "warbond4",
+        internalName: "ce27groundbreaker",
+        imageURL: "ce27groundbreaker.png"
+    },
 ]

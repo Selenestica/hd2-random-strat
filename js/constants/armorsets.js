@@ -149,4 +149,14 @@ const ARMOR_SETS = [
         internalName: "sc37legionnaire",
         imageURL: "sc37legionnaire.png"
     },
+    {
+        displayName: "UF-16 Inspector",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Light"],
+        warbond: "Truth Enforcers",
+        warbondCode: "warbond9",
+        internalName: "uf16inspector",
+        imageURL: "uf16inspector.png"
+    },
 ]

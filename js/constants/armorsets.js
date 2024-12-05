@@ -25,7 +25,7 @@ const ARMOR_SETS = [
         category: "armor",
         tags: ["Light"],
         warbond: "Democratic Detonation",
-        warbondCode: "warbond6",
+        warbondCode: "warbond4",
         internalName: "ce07demolitionspecialist",
         imageURL: "ce07demolitionspecialist.png"
     },

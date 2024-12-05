@@ -109,4 +109,44 @@ const ARMOR_SETS = [
         internalName: "i09heatseeker",
         imageURL: "i09heatseeker.png"
     },
+    {
+        displayName: "PH-9 Predator",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Light"],
+        warbond: "Viper Commandos",
+        warbondCode: "warbond6",
+        internalName: "ph9predator",
+        imageURL: "ph9predator.png"
+    },
+    {
+        displayName: "SC-30 Trailblazer Scout",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Light"],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "sc30trailblazerscout",
+        imageURL: "sc30trailblazerscout.png"
+    },
+    {
+        displayName: "SC-34 Infiltrator",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Light"],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "sc34infiltrator",
+        imageURL: "sc34infiltrator.png"
+    },
+    {
+        displayName: "SC-37 Legionnaire",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Light"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "sc37legionnaire",
+        imageURL: "sc37legionnaire.png"
+    },
 ]

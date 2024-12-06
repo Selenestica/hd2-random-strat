@@ -209,4 +209,84 @@ const ARMOR_SETS = [
         internalName: "ce27groundbreaker",
         imageURL: "ce27groundbreaker.png"
     },
+    {
+        displayName: "CE-35 Trench Engineer",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "ce35trenchengineer",
+        imageURL: "ce35trenchengineer.png"
+    },
+    {
+        displayName: "CE-81 Juggernaut",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "ce81juggernaut",
+        imageURL: "ce81juggernaut.png"
+    },
+    {
+        displayName: "CM-09 Bonesnapper",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "cm09bonesnapper",
+        imageURL: "cm09bonesnapper.png"
+    },
+    {
+        displayName: "CM-10 Clinician",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "cm10clinician",
+        imageURL: "cm10clinician.png"
+    },
+    {
+        displayName: "CM-14 Physician",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "cm14physician",
+        imageURL: "cm14physician.png"
+    },
+    {
+        displayName: "CW-9 White Wolf",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "cw9whitewolf",
+        imageURL: "cw9whitewolf.png"
+    },
+    {
+        displayName: "DP-00 Tactical",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "None",
+        warbondCode: "none",
+        internalName: "dp00tactical",
+        imageURL: "dp00tactical.png"
+    },
+    {
+        displayName: "DP-11 Champion of the People",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "dp11championofthepeople",
+        imageURL: "dp11championofthepeople.png"
+    },
 ]

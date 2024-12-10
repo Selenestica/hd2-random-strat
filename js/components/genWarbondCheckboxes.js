@@ -2,16 +2,16 @@ const warbondsChecklistContainer = document.getElementById(
     "warbondsChecklistContainer"
 );
 const warbondsList = [
-    "Super Citizen Edition",
-    "Helldivers Mobilize",
-    "Steeled Veterans",
-    "Cutting Edge",
-    "Democratic Detonation",
-    "Polar Patriots",
-    "Viper Commandos",
-    "Freedom's Flame",
-    "Chemical Agents",
-    "Truth Enforcers"
+    "Super Citizen Edition", // warbond0
+    "Helldivers Mobilize", // warbond1
+    "Steeled Veterans", // warbond2
+    "Cutting Edge", // warbond3
+    "Democratic Detonation", // warbond4
+    "Polar Patriots", // warbond5
+    "Viper Commandos", // warbond6
+    "Freedom's Flame", // warbond7
+    "Chemical Agents", // warbond8
+    "Truth Enforcers" // warbond9
 ];
 
 const genWarbondCheckboxes = () => {

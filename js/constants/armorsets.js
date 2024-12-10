@@ -75,7 +75,7 @@ const ARMOR_SETS = [
         category: "armor",
         tags: ["Light"],
         warbond: "Cutting Edge",
-        warbondCode: "warbond4",
+        warbondCode: "warbond3",
         internalName: "ex00prototypex",
         imageURL: "ex00prototypex.png"
     },
@@ -289,4 +289,287 @@ const ARMOR_SETS = [
         internalName: "dp11championofthepeople",
         imageURL: "dp11championofthepeople.png"
     },
-]
+    {
+        displayName: "DP-40 Hero of the Federation",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "dp40heroofthefederation",
+        imageURL: "dp40heroofthefederation.png"
+    },
+    {
+        displayName: "DP-53 Savior of the Free",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Super Citizen Edition",
+        warbondCode: "warbond0",
+        internalName: "dp53saviorofthefree",
+        imageURL: "dp53saviorofthefree.png"
+    },
+    {
+        displayName: "EX-03 Prototype 3",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Cutting Edge",
+        warbondCode: "warbond3",
+        internalName: "ex03prototype3",
+        imageURL: "ex03prototype3.png"
+    },
+    {
+        displayName: "EX-16 Prototype 16",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Cutting Edge",
+        warbondCode: "warbond3",
+        internalName: "ex16prototype16",
+        imageURL: "ex16prototype16.png"
+    },
+    {
+        displayName: "FS-34 Exterminator",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "fs34exterminator",
+        imageURL: "fs34exterminator.png"
+    },
+    {
+        displayName: "I-92 Fire Fighter",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "i92firefighter",
+        imageURL: "i92firefighter.png"
+    },
+    {
+        displayName: "I-102 Draconaught",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Freedom's Flame",
+        warbondCode: "warbond7",
+        internalName: "i102draconaught",
+        imageURL: "i102draconaught.png"
+    },
+    {
+        displayName: "PH-56 Jaguar",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "ph56jaguar",
+        imageURL: "ph56jaguar.png"
+    },
+    {
+        displayName: "SA-04 Combat Technician",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "sa04combattechnician",
+        imageURL: "sa04combattechnician.png"
+    },
+    {
+        displayName: "SA-12 Servo Assisted",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Steeled Veterans",
+        warbondCode: "warbond2",
+        internalName: "sa12servoassisted",
+        imageURL: "sa12servoassisted.png"
+    },
+    {
+        displayName: "SA-25 Steel Trooper",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Steeled Veterans",
+        warbondCode: "warbond2",
+        internalName: "sa25steeltrooper",
+        imageURL: "sa25steeltrooper.png"
+    },
+    {
+        displayName: "SA-15 Drone Master",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "sa15dronemaster",
+        imageURL: "sa15dronemaster.png"
+    },
+    {
+        displayName: "TR-7 Ambassador of the Brand",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Pre-order Bonus",
+        warbondCode: "preorderbonus",
+        internalName: "tr7ambassadorofthebrand",
+        imageURL: "tr7ambassadorofthebrand.png"
+    },
+    {
+        displayName: "TR-9 Cavalier of Democracy",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Pre-order Bonus",
+        warbondCode: "preorderbonus",
+        internalName: "tr9cavalierofdemocracy",
+        imageURL: "tr9cavalierofdemocracy.png"
+    },
+    {
+        displayName: "TR-40 Golden Eagle",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "None",
+        warbondCode: "none",
+        internalName: "tr40goldeneagle",
+        imageURL: "tr40goldeneagle.png"
+    },
+    {
+        displayName: "TR-117 Alpha Commander",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Twitch Drop",
+        warbondCode: "twitchdrop",
+        internalName: "tr117alphacommander",
+        imageURL: "tr117alphacommander.png"
+    },
+    {
+        displayName: "UF-50 Bloodhound",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Truth Enforcers",
+        warbondCode: "warbond9",
+        internalName: "uf50bloodhound",
+        imageURL: "uf50bloodhound.png"
+    },
+    {
+        displayName: "UF-84 Doubt Killer",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "uf84doubtkiller",
+        imageURL: "uf84doubtkiller.png"
+    },
+    {
+        displayName: "AF-52 Lockdown",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "af52lockdown",
+        imageURL: "af52lockdown.png"
+    },
+    {
+        displayName: "B-27 Fortified Commando",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "b27fortifiedcommando",
+        imageURL: "b27fortifiedcommando.png"
+    },
+    {
+        displayName: "CE-64 Grenadier",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "ce64grenadier",
+        imageURL: "ce64grenadier.png"
+    },
+    {
+        displayName: "CE-101 Guerilla Gorilla",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "ce101guerillagorilla",
+        imageURL: "ce101guerillagorilla.png"
+    },
+    {
+        displayName: "CM-17 Butcher",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "cm17butcher",
+        imageURL: "cm17butcher.png"
+    },
+    {
+        displayName: "CW-22 Kodiak",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Polar Patriots",
+        warbondCode: "warbond5",
+        internalName: "cw22kodiak",
+        imageURL: "cw22kodiak.png"
+    },
+    {
+        displayName: "CW-36 Winter Warrior",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Polar Patriots",
+        warbondCode: "warbond5",
+        internalName: "cw36winterwarrior",
+        imageURL: "cw36winterwarrior.png"
+    },
+    {
+        displayName: "FS-05 Marksman",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "fs05marksman",
+        imageURL: "fs05marksman.png"
+    },
+    {
+        displayName: "FS-11 Executioner",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "fs11executioner",
+        imageURL: "fs11executioner.png"
+    }
+];
+
+/*
+    "Super Citizen Edition", // warbond0
+    "Helldivers Mobilize",// warbond1
+    "Steeled Veterans",// warbond2
+    "Cutting Edge",// warbond3
+    "Democratic Detonation",// warbond4
+    "Polar Patriots",// warbond5
+    "Viper Commandos",// warbond6
+    "Freedom's Flame",// warbond7
+    "Chemical Agents",// warbond8
+    "Truth Enforcers"// warbond9
+*/

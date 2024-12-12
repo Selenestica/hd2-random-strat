@@ -578,6 +578,56 @@ const ARMOR_SETS = [
         warbondCode: "warbond4",
         internalName: "fs55devastator",
         imageURL: "fs55devastator.png"
+    },
+    {
+        displayName: "FS-51 Dreadnought",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "fs51dreadnought",
+        imageURL: "fs51dreadnought.png"
+    },
+    {
+        displayName: "I-44 Salamander",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "i44salamander",
+        imageURL: "i44salamander.png"
+    },
+    {
+        displayName: "PH-202 Twigsnapper",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Viper Commandos",
+        warbondCode: "warbond6",
+        internalName: "ph202twigsnapper",
+        imageURL: "ph202twigsnapper.png"
+    },
+    {
+        displayName: "SA-32 Dynamo",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Steeled Veterans",
+        warbondCode: "warbond2",
+        internalName: "sa32dynamo",
+        imageURL: "sa32dynamo.png"
+    },
+    {
+        displayName: "TR-62 Knight",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Pre-Order Bonus",
+        warbondCode: "preorderbonus",
+        internalName: "tr62knight",
+        imageURL: "tr62knight.png"
     }
 ];
 

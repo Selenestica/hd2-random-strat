@@ -558,6 +558,26 @@ const ARMOR_SETS = [
         warbondCode: "superstore",
         internalName: "fs11executioner",
         imageURL: "fs11executioner.png"
+    },
+    {
+        displayName: "FS-23 Battle Master",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Helldivers Mobilize",
+        warbondCode: "warbond1",
+        internalName: "fs23battlemaster",
+        imageURL: "fs23battlemaster.png"
+    },
+    {
+        displayName: "FS-55 Devastator",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Democratic Detonation",
+        warbondCode: "warbond4",
+        internalName: "fs55devastator",
+        imageURL: "fs55devastator.png"
     }
 ];
 

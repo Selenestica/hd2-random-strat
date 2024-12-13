@@ -10,6 +10,36 @@ const STRATAGEMS = [
         imageURL: "rl77airburstrocketlauncher.svg"
     },
     {
+        displayName: "Directional Shield",
+        type: "Stratagem",
+        category: "Supply",
+        tags: ["Backpacks"],
+        warbond: "Urban Legends",
+        warbondCode: "warbond10",
+        internalName: "sh51directionalshield",
+        imageURL: "sh51directionalshield.svg"
+    },
+    {
+        displayName: "Flame Sentry",
+        type: "Stratagem",
+        category: "Defense",
+        tags: ["Sentry"],
+        warbond: "Urban Legends",
+        warbondCode: "warbond10",
+        internalName: "aflam40flamesentry",
+        imageURL: "aflam40flamesentry.svg"
+    },
+    {
+        displayName: "Anti-Tank Emplacement",
+        type: "Stratagem",
+        category: "Defense",
+        tags: ["Emplacement"],
+        warbond: "Urban Legends",
+        warbondCode: "warbond10",
+        internalName: "eat12antitankemplacement",
+        imageURL: "eat12antitankemplacement.svg"
+    },
+    {
         displayName: "TX-41 Sterilizer",
         type: "Stratagem",
         category: "Supply",

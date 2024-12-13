@@ -10,6 +10,16 @@ const SECONDARIES = [
         imageURL: "p2peacemaker.png"
     },
     {
+        displayName: "CQC-19 Stun Lance",
+        type: "Equipment",
+        category: "secondary",
+        tags: [],
+        warbond: "Urban Legends",
+        warbondCode: "warbond10",
+        internalName: "cqc19stunlance",
+        imageURL: "cqc19stunlance.png"
+    },
+    {
         displayName: "P-11 Stim Pistol",
         type: "Equipment",
         category: "secondary",

@@ -40,7 +40,7 @@ const STRATAGEMS = [
         imageURL: "eat12antitankemplacement.svg"
     },
     {
-        displayName: "TX-41 Sterilizer",
+        displayName: "Sterilizer",
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],
@@ -50,7 +50,7 @@ const STRATAGEMS = [
         imageURL: "tx41sterilizer.svg"
     },
     {
-        displayName: "AX/TX-13 Dog Breath",
+        displayName: " Guard Dog Breath",
         type: "Stratagem",
         category: "Supply",
         tags: ["Backpacks"],
@@ -580,7 +580,7 @@ const STRATAGEMS = [
         imageURL: "rocketsentry.svg"
     },
     {
-        displayName: "MLS-4X Commando Rocket Launcher",
+        displayName: "Commando",
         type: "Stratagem",
         category: "Supply",
         tags: ["Weapons"],

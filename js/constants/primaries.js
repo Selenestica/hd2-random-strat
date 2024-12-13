@@ -1,6 +1,6 @@
 const PRIMARIES = [
     {
-        displayName: "AR-23 Liberator",
+        displayName: "Liberator",
         type: "Equipment",
         category: "primary",
         tags: ["AssaultRifle"],
@@ -10,7 +10,7 @@ const PRIMARIES = [
         imageURL: "ar23liberator.png"
     },
     {
-        displayName: "AR-23a Liberator Carbine",
+        displayName: "Liberator Carbine",
         type: "Equipment",
         category: "primary",
         tags: ["AssaultRifle"],
@@ -20,7 +20,7 @@ const PRIMARIES = [
         imageURL: "ar23aliberatorcarbine.png"
     },
     {
-        displayName: "SG-20 Halt",
+        displayName: "Halt",
         type: "Equipment",
         category: "primary",
         tags: ["Shotgun"],
@@ -30,7 +30,7 @@ const PRIMARIES = [
         imageURL: "sg20halt.png"
     },
     {
-        displayName: "SMG-32 Reprimand",
+        displayName: "Reprimand",
         type: "Equipment",
         category: "primary",
         tags: ["Submachinegun"],
@@ -40,7 +40,7 @@ const PRIMARIES = [
         imageURL: "smg32reprimand.png"
     },
     {
-        displayName: "R-2124 Constitution",
+        displayName: "Constitution",
         type: "Equipment",
         category: "primary",
         tags: ["MarksmanRifle"],
@@ -50,7 +50,7 @@ const PRIMARIES = [
         imageURL: "r2124constitution.png"
     },
     {
-        displayName: "SMG-72 Pummeler",
+        displayName: "Pummeler",
         type: "Equipment",
         category: "primary",
         tags: ["SubmachineGun"],
@@ -60,7 +60,7 @@ const PRIMARIES = [
         imageURL: "smg72pummeler.png"
     },
     {
-        displayName: "PLAS-101 Purifier",
+        displayName: "Purifier",
         type: "Equipment",
         category: "primary",
         tags: ["EnergyWeapon"],
@@ -70,7 +70,7 @@ const PRIMARIES = [
         imageURL: "plas101purifier.png"
     },
     {
-        displayName: "AR-23P Liberator Penetrator",
+        displayName: "Liberator Penetrator",
         type: "Equipment",
         category: "primary",
         tags: ["AssaultRifle"],
@@ -80,7 +80,7 @@ const PRIMARIES = [
         imageURL: "ar23pliberatorpenetrator.png"
     },
     {
-        displayName: "AR-23C Liberator Concussive",
+        displayName: "Liberator Concussive",
         type: "Equipment",
         category: "primary",
         tags: ["AssaultRifle"],
@@ -90,7 +90,7 @@ const PRIMARIES = [
         imageURL: "ar23cliberatorconcussive.png"
     },
     {
-        displayName: "BR-14 Adjudicator",
+        displayName: "Adjudicator",
         type: "Equipment",
         category: "primary",
         tags: ["AssaultRifle"],
@@ -100,7 +100,7 @@ const PRIMARIES = [
         imageURL: "br14adjudicator.png"
     },
     {
-        displayName: "SMG-37 Defender",
+        displayName: "Defender",
         type: "Equipment",
         category: "primary",
         tags: ["SubmachineGun"],
@@ -110,7 +110,7 @@ const PRIMARIES = [
         imageURL: "smg37defender.png"
     },
     {
-        displayName: "SG-8 Punisher",
+        displayName: "Punisher",
         type: "Equipment",
         category: "primary",
         tags: ["Shotgun"],
@@ -120,7 +120,7 @@ const PRIMARIES = [
         imageURL: "sg8punisher.png"
     },
     {
-        displayName: "AR-61 Tenderizer",
+        displayName: "Tenderizer",
         type: "Equipment",
         category: "primary",
         tags: ["AssaultRifle"],
@@ -130,7 +130,7 @@ const PRIMARIES = [
         imageURL: "ar61tenderizer.png"
     },
     {
-        displayName: "SG-8S Slugger",
+        displayName: "Slugger",
         type: "Equipment",
         category: "primary",
         tags: ["Shotgun"],
@@ -140,7 +140,7 @@ const PRIMARIES = [
         imageURL: "sg8sslugger.png"
     },
     {
-        displayName: "SG-225 Breaker",
+        displayName: "Breaker",
         type: "Equipment",
         category: "primary",
         tags: ["Shotgun"],
@@ -150,7 +150,7 @@ const PRIMARIES = [
         imageURL: "sg225breaker.png"
     },
     {
-        displayName: "SG-225IE Breaker Incendiary",
+        displayName: "Breaker Incendiary",
         type: "Equipment",
         category: "primary",
         tags: ["Shotgun"],
@@ -160,7 +160,7 @@ const PRIMARIES = [
         imageURL: "sg225iebreakerincendiary.png"
     },
     {
-        displayName: "SG-225SP Breaker Spray & Pray",
+        displayName: "Breaker Spray & Pray",
         type: "Equipment",
         category: "primary",
         tags: ["Shotgun"],
@@ -170,7 +170,7 @@ const PRIMARIES = [
         imageURL: "sg225spbreakerspraynpray.png"
     },
     {
-        displayName: "MP-98 Knight",
+        displayName: "Knight",
         type: "Equipment",
         category: "primary",
         tags: ["SubmachineGun"],
@@ -180,7 +180,7 @@ const PRIMARIES = [
         imageURL: "mp98knight.png"
     },
     {
-        displayName: "R-63 Diligence",
+        displayName: "Diligence",
         type: "Equipment",
         category: "primary",
         tags: ["MarksmanRifle"],
@@ -190,7 +190,7 @@ const PRIMARIES = [
         imageURL: "r63diligence.png"
     },
     {
-        displayName: "R-63CS Diligence Counter Sniper",
+        displayName: "Diligence Counter Sniper",
         type: "Equipment",
         category: "primary",
         tags: ["MarksmanRifle"],
@@ -200,7 +200,7 @@ const PRIMARIES = [
         imageURL: "r63csdiligencecountersniper.png"
     },
     {
-        displayName: " LAS-5 Scythe",
+        displayName: "Scythe",
         type: "Equipment",
         category: "primary",
         tags: ["EnergyWeapon"],
@@ -210,7 +210,7 @@ const PRIMARIES = [
         imageURL: "las5scythe.png"
     },
     {
-        displayName: "LAS-16 Sickle",
+        displayName: "Sickle",
         type: "Equipment",
         category: "primary",
         tags: ["EnergyWeapon"],
@@ -220,7 +220,7 @@ const PRIMARIES = [
         imageURL: "las16sickle.png"
     },
     {
-        displayName: "PLAS-1 Scorcher",
+        displayName: "Scorcher",
         type: "Equipment",
         category: "primary",
         tags: ["EnergyWeapon"],
@@ -230,7 +230,7 @@ const PRIMARIES = [
         imageURL: "plas1scorcher.png"
     },
     {
-        displayName: "SG-8P Punisher Plasma",
+        displayName: "Punisher Plasma",
         type: "Equipment",
         category: "primary",
         tags: ["EnergyWeapon"],
@@ -240,7 +240,7 @@ const PRIMARIES = [
         imageURL: "sg8ppunisherplasma.png"
     },
     {
-        displayName: "ARC-12 Blitzer",
+        displayName: "Blitzer",
         type: "Equipment",
         category: "primary",
         tags: ["EnergyWeapon"],
@@ -250,7 +250,7 @@ const PRIMARIES = [
         imageURL: "arc12blitzer.png"
     },
     {
-        displayName: "JAR-5 Dominator",
+        displayName: "Dominator",
         type: "Equipment",
         category: "primary",
         tags: ["Explosive"],
@@ -260,7 +260,7 @@ const PRIMARIES = [
         imageURL: "jar5dominator.png"
     },
     {
-        displayName: "R-36 Eruptor",
+        displayName: "Eruptor",
         type: "Equipment",
         category: "primary",
         tags: ["Explosive"],
@@ -270,7 +270,7 @@ const PRIMARIES = [
         imageURL: "r36eruptor.png"
     },
     {
-        displayName: "CB-9 Exploding Crossbow",
+        displayName: "Exploding Crossbow",
         type: "Equipment",
         category: "primary",
         tags: ["Explosive"],
@@ -280,7 +280,7 @@ const PRIMARIES = [
         imageURL: "cb9explodingcrossbow.png"
     },
     {
-        displayName: "SG-451 Cookout",
+        displayName: "Cookout",
         type: "Equipment",
         category: "primary",
         tags: ["Shotgun"],
@@ -290,7 +290,7 @@ const PRIMARIES = [
         imageURL: "sg451cookout.png"
     },
     {
-        displayName: "FLAM-66 Torcher",
+        displayName: "Torcher",
         type: "Equipment",
         category: "primary",
         tags: ["Special"],

@@ -1,6 +1,6 @@
 const SECONDARIES = [
     {
-        displayName: "P-2 Peacemaker",
+        displayName: "Peacemaker",
         type: "Equipment",
         category: "secondary",
         tags: [],
@@ -10,7 +10,7 @@ const SECONDARIES = [
         imageURL: "p2peacemaker.png"
     },
     {
-        displayName: "CQC-19 Stun Lance",
+        displayName: "Stun Lance",
         type: "Equipment",
         category: "secondary",
         tags: [],
@@ -20,7 +20,7 @@ const SECONDARIES = [
         imageURL: "cqc19stunlance.png"
     },
     {
-        displayName: "P-11 Stim Pistol",
+        displayName: "Stim Pistol",
         type: "Equipment",
         category: "secondary",
         tags: [],
@@ -30,7 +30,7 @@ const SECONDARIES = [
         imageURL: "p11stimpistol.png"
     },
     {
-        displayName: "PLAS-15 Loyalist",
+        displayName: "Loyalist",
         type: "Equipment",
         category: "secondary",
         tags: [],
@@ -40,7 +40,7 @@ const SECONDARIES = [
         imageURL: "plas15loyalist.png"
     },
     {
-        displayName: "SG-22 Bushwhacker",
+        displayName: "Bushwhacker",
         type: "Equipment",
         category: "secondary",
         tags: ["Shotgun"],
@@ -50,7 +50,7 @@ const SECONDARIES = [
         imageURL: "sg22bushwhacker.png"
     },
     {
-        displayName: "P-19 Redeemer",
+        displayName: "Redeemer",
         type: "Equipment",
         category: "secondary",
         tags: [],
@@ -60,7 +60,7 @@ const SECONDARIES = [
         imageURL: "p19redeemer.png"
     },
     {
-        displayName: "GP-31 Grenade Pistol",
+        displayName: "Grenade Pistol",
         type: "Equipment",
         category: "secondary",
         tags: [],
@@ -70,7 +70,7 @@ const SECONDARIES = [
         imageURL: "gp31grenadepistol.png"
     },
     {
-        displayName: "P-113 Verdict",
+        displayName: "Verdict",
         type: "Equipment",
         category: "secondary",
         tags: [],
@@ -80,7 +80,7 @@ const SECONDARIES = [
         imageURL: "p113verdict.png"
     },
     {
-        displayName: "P-4 Senator",
+        displayName: "Senator",
         type: "Equipment",
         category: "secondary",
         tags: [],
@@ -90,7 +90,7 @@ const SECONDARIES = [
         imageURL: "p4senator.png"
     },
     {
-        displayName: "LAS-7 Dagger",
+        displayName: "Dagger",
         type: "Equipment",
         category: "secondary",
         tags: [],
@@ -100,7 +100,7 @@ const SECONDARIES = [
         imageURL: "las7dagger.png"
     },
     {
-        displayName: "P-72 Crisper",
+        displayName: "Crisper",
         type: "Equipment",
         category: "secondary",
         tags: [],

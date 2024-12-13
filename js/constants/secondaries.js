@@ -20,6 +20,16 @@ const SECONDARIES = [
         imageURL: "cqc19stunlance.png"
     },
     {
+        displayName: "Stun Baton",
+        type: "Equipment",
+        category: "secondary",
+        tags: [],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "cqc30stunbaton",
+        imageURL: "cqc30stunbaton.png"
+    },
+    {
         displayName: "Stim Pistol",
         type: "Equipment",
         category: "secondary",

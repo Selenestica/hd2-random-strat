@@ -10,6 +10,26 @@ const ARMOR_SETS = [
         imageURL: "af50noxiousranger.png"
     },
     {
+        displayName: "SR-24 Street Scout",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Light"],
+        warbond: "Urban Legends",
+        warbondCode: "warbond10",
+        internalName: "sr24streetscout",
+        imageURL: "sr24streetscout.png"
+    },
+    {
+        displayName: "SR-18 Road Block",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Urban Legends",
+        warbondCode: "warbond10",
+        internalName: "sr18roadblock",
+        imageURL: "sr18roadblock.png"
+    },
+    {
         displayName: "B-08 Light Gunner",
         type: "Equipment",
         category: "armor",

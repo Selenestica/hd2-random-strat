@@ -20,6 +20,16 @@ const BOOSTERS = [
         imageURL: "deadsprint.png"
     },
     {
+        displayName: "Armed Resupply Pods",
+        type: "Equipment",
+        category: "booster",
+        tags: [],
+        warbond: "Urban Legends",
+        warbondCode: "warbond10",
+        internalName: "armedresupplypods",
+        imageURL: "armedresupplypods.png"
+    },
+    {
         displayName: "Experimental Infusion",
         type: "Equipment",
         category: "booster",

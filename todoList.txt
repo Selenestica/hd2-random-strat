@@ -1,5 +1,6 @@
 to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
+- add images for new stuff
 
 feature ideas:
 - save options in local storage

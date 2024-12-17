@@ -1,5 +1,7 @@
 to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
+- add images for new stuff
+- when no booster is able to be given (no warbonds selected), booster column looks bad
 
 feature ideas:
 - save options in local storage
@@ -14,4 +16,4 @@ feature ideas:
 - add drop-down to armor randomizer to pick between randomizing type, set, or passive
 
 bugs:
-- when no booster is able to be given (no warbonds selected), booster column looks bad
+

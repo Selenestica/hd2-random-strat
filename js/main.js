@@ -60,7 +60,8 @@ let checkedWarbonds = [
     "warbond6",
     "warbond7",
     "warbond8",
-    "warbond9"
+    "warbond9",
+    "warbond10"
 ];
 
 for (let x = 0; x < stratOptionRadios.length; x++) {

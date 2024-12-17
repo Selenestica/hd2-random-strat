@@ -11,7 +11,7 @@ provide a platform for learning and collaboration.
 
 ## 🤝 Contributing
 
-We welcome contributions to this project! Whether you're fixing bugs oradding new features, your input is valuable.
+We welcome contributions to this project! Whether you're fixing bugs or adding new features, your input is valuable.
 
 ## 🙏 Credits and Attributions
 

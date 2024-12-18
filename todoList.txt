@@ -1,6 +1,8 @@
 to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 - add images for new equipment
+  - Urban Legends
+- add Killzone collab equipment
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 
 feature ideas:

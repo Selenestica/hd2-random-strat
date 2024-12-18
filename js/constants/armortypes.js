@@ -1,1 +1,0 @@
-const ARMOR_TYPES = ["Light", "Medium", "Heavy"]

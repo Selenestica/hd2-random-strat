@@ -111,13 +111,8 @@ body {
     }
 }
 
-#armorTypeButton {
-    cursor: default;
-    color: white !important;
-}
-
-#armorTypeButton:hover {
-    background-color: #6c757d;
+#armorDisplayDiv {
+    color: white;
 }
 
 .shuffle-icon {

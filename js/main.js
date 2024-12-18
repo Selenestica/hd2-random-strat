@@ -17,7 +17,6 @@ const defaultDefenseRadio = document.getElementById("defaultDefenseRadio");
 const onlySupplyRadio = document.getElementById("onlySupplyRadio");
 const noSupplyRadio = document.getElementById("noSupplyRadio");
 const defaultSupplyRadio = document.getElementById("defaultSupplyRadio");
-const armorTypeButton = document.getElementById("armorTypeButton");
 
 const stratOptionRadios = [
     onlyEaglesRadio,
@@ -39,7 +38,6 @@ let primsList = [...PRIMARIES];
 let secondsList = [...SECONDARIES];
 let grensList = [...GRENADES];
 let boostsList = [...BOOSTERS];
-let armorPassivesList = [...ARMOR_PASSIVES];
 
 let workingPrimsList;
 let workingSecondsList;
@@ -138,13 +136,6 @@ const filterItemsByWarbond = async () => {
             workingStratsList = itemsList[i];
         }
     }
-};
-
-const rollArmor = () => {
-    const armorTypes = ["Light", "Medium", "Heavy"];
-    const randArmorIndex = Math.floor(Math.random() * armorPassivesList.length);
-    const randArmorType = armorPassivesList[randArmorIndex].displayName;
-    armorTypeButton.innerText = randArmorType;
 };
 
 const rollStratagems = async () => {

@@ -118,5 +118,15 @@ const ARMOR_PASSIVES = [
         warbondCode: "",
         internalName: "unflinching",
         imageURL: ""
+    },
+    {
+        displayName: "Siege Ready",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "siegeready",
+        imageURL: ""
     }
 ];

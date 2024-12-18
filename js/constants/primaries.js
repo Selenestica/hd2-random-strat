@@ -10,6 +10,16 @@ const PRIMARIES = [
         imageURL: "ar23liberator.png"
     },
     {
+        displayName: "StA-52 Assault Rifle",
+        type: "Equipment",
+        category: "primary",
+        tags: ["AssaultRifle"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "sta52assaultrifle",
+        imageURL: "sta52assaultrifle.png"
+    },
+    {
         displayName: "Liberator Carbine",
         type: "Equipment",
         category: "primary",

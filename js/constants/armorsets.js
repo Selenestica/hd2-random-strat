@@ -316,7 +316,7 @@ const ARMOR_SETS = [
         tags: ["Medium"],
         warbond: "Superstore",
         warbondCode: "superstore",
-        internalName: ac1dutiful",
+        internalName: "ac1dutiful",
         imageURL: "ac1dutiful.png"
     },
     {

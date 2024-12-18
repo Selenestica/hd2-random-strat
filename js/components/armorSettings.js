@@ -3,7 +3,7 @@ const armorPassiveCheck = document.getElementById("armorPassiveCheck");
 const armorSizeCheck = document.getElementById("armorSizeCheck");
 const armorDisplayDiv = document.getElementById("armorDisplayDiv");
 let armorPassivesList = [...ARMOR_PASSIVES];
-let armorSetsList = [...ARMOR_SETS];
+// let armorSetsList = [...ARMOR_SETS];
 let armorSizesList = [...ARMOR_SIZES];
 
 const getSelectedArmorRollType = () => {

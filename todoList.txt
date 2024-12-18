@@ -1,6 +1,6 @@
 to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
-- add images for new stuff
+- add images for new equipment
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 
 feature ideas:
@@ -12,7 +12,6 @@ feature ideas:
 - button to randomize everything at once
 - add link to low sodium Helldivers discord
 - holding click on stratagem or equipment icon will change it
-- add armor randomizer with armor images instead of armor passives randomizer
 - add drop-down to armor randomizer to pick between randomizing type, set, or passive
 
 bugs:

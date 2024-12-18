@@ -310,6 +310,16 @@ const ARMOR_SETS = [
         imageURL: "dp11championofthepeople.png"
     },
     {
+        displayName: "AC-1 Dutiful",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Medium"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: ac1dutiful",
+        imageURL: "ac1dutiful.png"
+    },
+    {
         displayName: "DP-40 Hero of the Federation",
         type: "Equipment",
         category: "armor",
@@ -662,4 +672,5 @@ const ARMOR_SETS = [
     "Freedom's Flame",// warbond7
     "Chemical Agents",// warbond8
     "Truth Enforcers"// warbond9
+    "Urban Legends" warbond 10
 */

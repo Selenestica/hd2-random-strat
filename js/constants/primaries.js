@@ -10,6 +10,26 @@ const PRIMARIES = [
         imageURL: "ar23liberator.png"
     },
     {
+        displayName: "StA-11 SMG",
+        type: "Equipment",
+        category: "primary",
+        tags: ["Submachinegun"],
+        warbond: "None",
+        warbondCode: "none",
+        internalName: "sta11smg",
+        imageURL: "sta11smg.png"
+    },
+    {
+        displayName: "PLAS-39 Accelerator Rifle",
+        type: "Equipment",
+        category: "primary",
+        tags: ["MarksmanRifle"],
+        warbond: "None",
+        warbondCode: "none",
+        internalName: "plas39acceleratorrifle",
+        imageURL: "plas39acceleratorrifle.png"
+    },
+    {
         displayName: "StA-52 Assault Rifle",
         type: "Equipment",
         category: "primary",

@@ -10,6 +10,16 @@ const ARMOR_PASSIVES = [
         imageURL: ""
     },
     {
+        displayName: "Acclimated",
+        type: "Equipment",
+        category: "armor",
+        tags: [],
+        warbond: "",
+        warbondCode: "",
+        internalName: "acclimated",
+        imageURL: ""
+    },
+    {
         displayName: "Democracy Protects",
         type: "Equipment",
         category: "armor",

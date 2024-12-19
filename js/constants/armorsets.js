@@ -10,6 +10,16 @@ const ARMOR_SETS = [
         imageURL: "af50noxiousranger.png"
     },
     {
+        displayName: "AC-2 Obedient",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Light"],
+        warbond: "None",
+        warbondCode: "none",
+        internalName: "ac2obedient",
+        imageURL: "ac2obedient.png"
+    },
+    {
         displayName: "SR-24 Street Scout",
         type: "Equipment",
         category: "armor",

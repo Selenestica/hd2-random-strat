@@ -16,5 +16,6 @@ feature ideas:
 - holding click on stratagem or equipment icon will change it
 - add drop-down to armor randomizer to pick between randomizing type, set, or passive
 
+
 bugs:
 

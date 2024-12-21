@@ -12,7 +12,8 @@ const warbondsList = [
     "Freedom's Flame", // warbond7
     "Chemical Agents", // warbond8
     "Truth Enforcers",
-    "Urban Legends"
+    "Urban Legends",
+    "Superstore"
 ];
 
 const genWarbondCheckboxes = () => {

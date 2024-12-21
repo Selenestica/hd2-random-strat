@@ -260,6 +260,16 @@ const STRATAGEMS = [
         imageURL: "sh20ballisticshieldbackpack.svg"
     },
     {
+        displayName: "Fast Recon Vehicle",
+        type: "Stratagem",
+        category: "Supply",
+        tags: ["Vehicles"],
+        warbond: "None",
+        warbondCode: "none",
+        internalName: "fastreconvehicle",
+        imageURL: "fastreconvehicle.svg"
+    },
+    {
         displayName: "Patriot Exosuit",
         type: "Stratagem",
         category: "Supply",

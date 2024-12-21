@@ -25,7 +25,7 @@ const SECONDARIES = [
         category: "secondary",
         tags: [],
         warbond: "Superstore",
-        warbondCode: "superstore",
+        warbondCode: "warbond11",
         internalName: "cqc30stunbaton",
         imageURL: "cqc30stunbaton.png"
     },

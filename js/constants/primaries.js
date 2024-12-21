@@ -35,7 +35,7 @@ const PRIMARIES = [
         category: "primary",
         tags: ["AssaultRifle"],
         warbond: "Superstore",
-        warbondCode: "superstore",
+        warbondCode: "warbond11",
         internalName: "sta52assaultrifle",
         imageURL: "sta52assaultrifle.png"
     },

@@ -1,15 +1,13 @@
 to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 - when no booster is able to be given (no warbonds selected), booster column looks bad
-- armor randomizer option for armor set
-- add armor image row above equipment row
-- add images for armor passives, sets, and sizes
 - rename GRENADES constant and file to THROWABLES
 - add tags for THROWABLES
-- images for armor sizes will be fontawesome icons
-  - ninja for Light
-  - person shield for Heavy
-  - person for Medium
+- Road Block armor needs image
+- armor set randomizer needs to filter by warbonds
+- put Pre-Order Bonus and Superstore options after Super Citizen Edition
+  - then rearrange indices to accomodate
+
 
 feature ideas:
 - save options in local storage

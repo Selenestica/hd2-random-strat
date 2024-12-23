@@ -14,34 +14,37 @@ const getSelectedArmorRollType = () => {
     ];
     for (let i = 0; i < armorChecks.length; i++) {
         if (armorChecks[i].el.classList.contains("active")) {
-            return armorChecks[i].list;
+            return armorChecks[i];
         }
     }
 };
 
 const rollArmor = async () => {
-    const armorRollList = await getSelectedArmorRollType();
-    const randArmorIndex = Math.floor(Math.random() * armorRollList.length);
-    const rolledArmor = armorRollList[randArmorIndex];
-    armorContainer.innerHTML = `
-    <div class="col-12 d-flex justify-content-center">
-        <div class="row d-flex justify-content-center">
-            <div class="col-6 d-flex justify-co>
-                <div class="card itemCards" 
-                    onclick="holdToChangeItem('${rolledArmor.internalName}', '${rolledArmor.category}')"
-                >
+    const activeArmorList = await getSelectedArmorRollType();
+    const randArmorIndex = Math.floor(
+        Math.random() * activeArmorList.list.length
+    );
+    const rolledArmor = activeArmorList.list[randArmorIndex];
+    let armorImage = `                    
                     <img
                         src="./images/armor/${rolledArmor.imageURL}"
                         class="img-card-top"
                         alt="${rolledArmor.displayName}"
-                    />
-                </div>
+                    />`;
+    if (rolledArmor.tags.includes("ArmorSize")) {
+        armorImage = await getArmorSizeIcon(rolledArmor.internalName);
+    }
+    armorContainer.innerHTML = `
+          <div class="col-3 d-flex justify-content-center">
+            <div class="card itemCards" 
+              onclick="holdToChangeItem('${rolledArmor.internalName}', 'stratagem')"
+            >
+                ${armorImage}
+              <div class="card-body itemNameContainer align-items-center">
+                  <p class="card-title text-white">${rolledArmor.displayName}</p>
+              </div>
             </div>
-            <div class="col-6 mx-2 d-flex justify-content-center align-items-center">
-                <p class="card-title text-white">${rolledArmor.displayName}</p>
-            </div>
-        </div>
-    </div>
+          </div>
     `;
 };
 
@@ -64,4 +67,13 @@ const clearActiveArmorRollType = () => {
             return;
         }
     }
+};
+
+const getArmorSizeIcon = async (size) => {
+    if (size === "light") {
+        return `<i class="fa-solid fa-4x p-1 d-flex justify-content-center fa-user-ninja"></i>`;
+    } else if (size === "medium") {
+        return `<i class="fa-solid fa-4x p-1 d-flex justify-content-center fa-user"></i>`;
+    }
+    return `<i class="fa-solid fa-4x p-1 d-flex justify-content-center fa-user-shield"></i>`;
 };

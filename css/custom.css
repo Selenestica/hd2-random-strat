@@ -79,6 +79,12 @@ body {
     #optionsText {
         display: none;
     }
+    #armorButtonText {
+        display: none;
+    }
+    #armorButtonIcon {
+        display: block;
+    }
     #stratIcon {
         display: block;
     }
@@ -99,6 +105,12 @@ body {
     }
     #optionsText {
         display: block;
+    }
+    #armorButtonText {
+        display: block;
+    }
+    #armorButtonIcon {
+        display: none;
     }
     #stratIcon {
         display: none;

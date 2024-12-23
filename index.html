@@ -101,24 +101,6 @@
                                     ></span>
                                 </button>
                             </div>
-                        </div>
-                        <div class="col d-flex my-1 justify-content-end">
-                            <button
-                                class="btn btn-primary"
-                                type="button"
-                                data-bs-toggle="modal"
-                                data-bs-target="#optionsModal"
-                            >
-                                <i
-                                    id="optionsIcon"
-                                    class="fa-solid fa-gear"
-                                ></i>
-                                <span id="optionsText"> Options </span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row mt-1 d-flex justify-content-center">
-                        <div class="col d-flex justify-content-start">
                             <div class="btn-group" role="group">
                                 <div class="btn-group">
                                     <button
@@ -128,7 +110,10 @@
                                         onclick="rollArmor()"
                                         data-bs-auto-close="outside"
                                     >
-                                        Armor
+                                        <span id="armorButtonText">Armor</span>
+                                        <span id="armorButtonIcon">
+                                            <i class="fa-solid fa-shield"></i
+                                        ></span>
                                     </button>
                                     <button
                                         type="button"
@@ -175,11 +160,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col d-flex my-1 justify-content-end">
+                            <button
+                                class="btn btn-primary"
+                                type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#optionsModal"
+                            >
+                                <i
+                                    id="optionsIcon"
+                                    class="fa-solid fa-gear"
+                                ></i>
+                                <span id="optionsText"> Options </span>
+                            </button>
+                        </div>
                     </div>
                     <hr />
                     <div
                         id="armorContainer"
-                        class="d-flex row justify-content-center mx-2"
+                        class="d-flex row justify-content-start"
                     ></div>
                     <div
                         id="equipmentContainer"

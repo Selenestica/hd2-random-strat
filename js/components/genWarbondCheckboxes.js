@@ -13,7 +13,8 @@ const warbondsList = [
     "Chemical Agents", // warbond8
     "Truth Enforcers",
     "Urban Legends",
-    "Superstore"
+    "Superstore",
+    "Pre-Order Bonus"
 ];
 
 const genWarbondCheckboxes = () => {

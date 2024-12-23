@@ -60,7 +60,8 @@ let checkedWarbonds = [
     "warbond8",
     "warbond9",
     "warbond10",
-    "warbond11"
+    "warbond11",
+    "warbond12"
 ];
 
 for (let x = 0; x < stratOptionRadios.length; x++) {
@@ -151,7 +152,6 @@ const rollStratagems = async () => {
     // if "only" or "no" strat type options checked, modify the strat list here
     const filteredStratList = await filterStratList();
 
-    // will need to make the first arg below dynamic (3 or 4 or whatever)
     const randomUniqueNumbers = getRandomUniqueNumbers(
         filteredStratList,
         oneSupportWeapon,

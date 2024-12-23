@@ -1,6 +1,6 @@
 const ARMOR_SIZES = [
     {
-        displayName: "Light",
+        displayName: "Light Armor",
         type: "Equipment",
         category: "armor",
         tags: ["ArmorSize"],
@@ -10,7 +10,7 @@ const ARMOR_SIZES = [
         imageURL: ""
     },
     {
-        displayName: "Medium",
+        displayName: "Medium Armor",
         type: "Equipment",
         category: "armor",
         tags: ["ArmorSize"],
@@ -20,7 +20,7 @@ const ARMOR_SIZES = [
         imageURL: ""
     },
     {
-        displayName: "Heavy",
+        displayName: "Heavy Armor",
         type: "Equipment",
         category: "armor",
         tags: ["ArmorSize"],

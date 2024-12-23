@@ -455,7 +455,7 @@ const ARMOR_SETS = [
         category: "armor",
         tags: ["Medium"],
         warbond: "Pre-order Bonus",
-        warbondCode: "preorderbonus",
+        warbondCode: "warbond12",
         internalName: "tr7ambassadorofthebrand",
         imageURL: "tr7ambassadorofthebrand.png"
     },
@@ -465,7 +465,7 @@ const ARMOR_SETS = [
         category: "armor",
         tags: ["Medium"],
         warbond: "Pre-order Bonus",
-        warbondCode: "preorderbonus",
+        warbondCode: "warbond12",
         internalName: "tr9cavalierofdemocracy",
         imageURL: "tr9cavalierofdemocracy.png"
     },
@@ -665,7 +665,7 @@ const ARMOR_SETS = [
         category: "armor",
         tags: ["Heavy"],
         warbond: "Pre-Order Bonus",
-        warbondCode: "preorderbonus",
+        warbondCode: "warbond12",
         internalName: "tr62knight",
         imageURL: "tr62knight.png"
     },

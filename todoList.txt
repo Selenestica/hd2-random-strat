@@ -1,9 +1,5 @@
 to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
-- add images for new equipment
-  - Urban Legends and Stun Baton
-	- Killzone collab equipment
-	- FRV
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 - armor randomizer option for armor set
 - add armor image row above equipment row
@@ -22,3 +18,4 @@ feature ideas:
 
 bugs:
 
+ 

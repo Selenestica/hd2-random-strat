@@ -6,6 +6,10 @@ to do:
 - add images for armor passives, sets, and sizes
 - rename GRENADES constant and file to THROWABLES
 - add tags for THROWABLES
+- images for armor sizes will be fontawesome icons
+  - ninja for Light
+  - person shield for Heavy
+  - person for Medium
 
 feature ideas:
 - save options in local storage

@@ -7,7 +7,7 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "advancedfiltration",
-        imageURL: ""
+        imageURL: "advancedfiltration.png"
     },
     {
         displayName: "Acclimated",
@@ -17,7 +17,7 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "acclimated",
-        imageURL: ""
+        imageURL: "acclimated.png"
     },
     {
         displayName: "Democracy Protects",
@@ -27,7 +27,7 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "democracyprotects",
-        imageURL: ""
+        imageURL: "democracyprotects.png"
     },
     {
         displayName: "Electrical Conduit",
@@ -37,7 +37,7 @@ const ARMOR_PASSIVES = [
         warbond: "Cutting Edge",
         warbondCode: "",
         internalName: "electricalconduit",
-        imageURL: ""
+        imageURL: "electricalconduit.png"
     },
     {
         displayName: "Engineering Kit",
@@ -47,7 +47,7 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "engineeringkit",
-        imageURL: ""
+        imageURL: "engineeringkit.png"
     },
     {
         displayName: "Extra Padding",
@@ -57,7 +57,7 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "extrapadding",
-        imageURL: ""
+        imageURL: "extrapadding.png"
     },
     {
         displayName: "Fortified",
@@ -67,7 +67,7 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "fortified",
-        imageURL: ""
+        imageURL: "fortified.png"
     },
     {
         displayName: "Inflammable",
@@ -77,7 +77,7 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "inflammable",
-        imageURL: ""
+        imageURL: "inflammable.png"
     },
     {
         displayName: "Med-Kit",
@@ -87,7 +87,7 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "medkit",
-        imageURL: ""
+        imageURL: "medkit.png"
     },
     {
         displayName: "Peak Physique",
@@ -97,7 +97,7 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "peakphysique",
-        imageURL: ""
+        imageURL: "peakphysique.png"
     },
     {
         displayName: "Scout",
@@ -107,7 +107,7 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "scout",
-        imageURL: ""
+        imageURL: "scout.png"
     },
     {
         displayName: "Servo-Assisted",
@@ -117,7 +117,7 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "servoassisted",
-        imageURL: ""
+        imageURL: "servoassisted.png"
     },
     {
         displayName: "Unflinching",
@@ -127,7 +127,7 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "unflinching",
-        imageURL: ""
+        imageURL: "unflinching.png"
     },
     {
         displayName: "Siege Ready",
@@ -137,6 +137,6 @@ const ARMOR_PASSIVES = [
         warbond: "",
         warbondCode: "",
         internalName: "siegeready",
-        imageURL: ""
+        imageURL: "siegeready.png"
     }
 ];

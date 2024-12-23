@@ -164,8 +164,6 @@ const rollStratagems = async () => {
           <div class="col-3 d-flex justify-content-center">
             <div class="card itemCards" 
               onclick="holdToChangeItem('${stratagem.internalName}', 'stratagem')"
-              data-bs-toggle="modal"
-              data-bs-target="#itemModal" 
             >
               <img
                   src="./images/svgs/${stratagem.imageURL}"
@@ -227,8 +225,6 @@ const rollEquipment = () => {
             equipmentContainer.innerHTML += `
               <div class="col-3 d-flex justify-content-center">
                 <div class="card itemCards" 
-                  data-bs-toggle="modal"
-                  data-bs-target="#itemModal" 
                   onclick="holdToChangeItem('${equipment.internalName}', '${equipment.category}')"
                 >
                   <img

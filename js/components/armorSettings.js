@@ -21,10 +21,28 @@ const getSelectedArmorRollType = () => {
 
 const rollArmor = async () => {
     const armorRollList = await getSelectedArmorRollType();
-    console.log(armorRollList);
     const randArmorIndex = Math.floor(Math.random() * armorRollList.length);
-    const randArmorType = armorRollList[randArmorIndex].displayName;
-    armorContainer.innerText = randArmorType;
+    const rolledArmor = armorRollList[randArmorIndex];
+    armorContainer.innerHTML = `
+    <div class="col-12 d-flex justify-content-center">
+        <div class="row d-flex justify-content-center">
+            <div class="col-6 d-flex justify-co>
+                <div class="card itemCards" 
+                    onclick="holdToChangeItem('${rolledArmor.internalName}', '${rolledArmor.category}')"
+                >
+                    <img
+                        src="./images/armorsets/${rolledArmor.imageURL}"
+                        class="img-card-top"
+                        alt="${rolledArmor.displayName}"
+                    />
+                </div>
+            </div>
+            <div class="col-6 mx-2 d-flex justify-content-center align-items-center">
+                <p class="card-title text-white">${rolledArmor.displayName}</p>
+            </div>
+        </div>
+    </div>
+    `;
 };
 
 const setArmorRollType = (type) => {

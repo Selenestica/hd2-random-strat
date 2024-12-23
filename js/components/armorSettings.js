@@ -1,14 +1,14 @@
 const armorPassiveCheck = document.getElementById("armorPassiveCheck");
-// const armorSetCheck = document.getElementById("armorSetCheck");
+const armorSetCheck = document.getElementById("armorSetCheck");
 const armorSizeCheck = document.getElementById("armorSizeCheck");
-const armorDisplayDiv = document.getElementById("armorDisplayDiv");
+const armorContainer = document.getElementById("armorContainer");
 let armorPassivesList = [...ARMOR_PASSIVES];
-// let armorSetsList = [...ARMOR_SETS];
+let armorSetsList = [...ARMOR_SETS];
 let armorSizesList = [...ARMOR_SIZES];
 
 const getSelectedArmorRollType = () => {
     const armorChecks = [
-        // { el: armorSetCheck, list: armorSetsList },
+        { el: armorSetCheck, list: armorSetsList },
         { el: armorSizeCheck, list: armorSizesList },
         { el: armorPassiveCheck, list: armorPassivesList }
     ];
@@ -24,7 +24,7 @@ const rollArmor = async () => {
     console.log(armorRollList);
     const randArmorIndex = Math.floor(Math.random() * armorRollList.length);
     const randArmorType = armorRollList[randArmorIndex].displayName;
-    armorDisplayDiv.innerText = randArmorType;
+    armorContainer.innerText = randArmorType;
 };
 
 const setArmorRollType = (type) => {
@@ -33,18 +33,13 @@ const setArmorRollType = (type) => {
         armorPassiveCheck.classList.add("active");
     } else if (type === "size") {
         armorSizeCheck.classList.add("active");
+    } else if (type === "set") {
+        armorSetCheck.classList.add("active");
     }
-    // else if (type === "set") {
-    //   armorSetCheck.classList.add("active")
-    // }
 };
 
 const clearActiveArmorRollType = () => {
-    const armorChecks = [
-        // armorSetCheck,
-        armorSizeCheck,
-        armorPassiveCheck
-    ];
+    const armorChecks = [armorSetCheck, armorSizeCheck, armorPassiveCheck];
     for (let i = 0; i < armorChecks.length; i++) {
         if (armorChecks[i].classList.contains("active")) {
             armorChecks[i].classList.remove("active");

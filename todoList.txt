@@ -4,6 +4,8 @@ to do:
 - armor randomizer option for armor set
 - add armor image row above equipment row
 - add images for armor passives, sets, and sizes
+- rename GRENADES constant and file to THROWABLES
+- add tags for THROWABLES
 
 feature ideas:
 - save options in local storage

@@ -668,6 +668,16 @@ const ARMOR_SETS = [
         warbondCode: "preorderbonus",
         internalName: "tr62knight",
         imageURL: "tr62knight.png"
+    },
+    {
+        displayName: "SR-64 Cinderblock",
+        type: "Equipment",
+        category: "armor",
+        tags: ["Heavy"],
+        warbond: "Superstore",
+        warbondCode: "superstore",
+        internalName: "sr64cinderblock",
+        imageURL: "sr64cinderblock.png"
     }
 ];
 

@@ -31,7 +31,7 @@ const rollArmor = async () => {
                     onclick="holdToChangeItem('${rolledArmor.internalName}', '${rolledArmor.category}')"
                 >
                     <img
-                        src="./images/armorsets/${rolledArmor.imageURL}"
+                        src="./images/armor/${rolledArmor.imageURL}"
                         class="img-card-top"
                         alt="${rolledArmor.displayName}"
                     />

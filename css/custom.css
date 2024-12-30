@@ -82,6 +82,9 @@ body {
     #armorButtonText {
         display: none;
     }
+    .armorSizeLogo {
+        font-size: 2rem;
+    }
     #armorButtonIcon {
         display: block;
     }
@@ -109,6 +112,9 @@ body {
     #armorButtonText {
         display: block;
     }
+    .armorSizeLogo {
+        font-size: 4rem;
+    }
     #armorButtonIcon {
         display: none;
     }
@@ -125,6 +131,11 @@ body {
 
 #armorContainer {
     color: white;
+}
+
+.armorLogo {
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .shuffle-icon {

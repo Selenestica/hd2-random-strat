@@ -35,15 +35,17 @@ const rollArmor = async () => {
         armorImage = await getArmorSizeIcon(rolledArmor.internalName);
     }
     armorContainer.innerHTML = `
-          <div class="col-3 d-flex justify-content-center">
-            <div class="card itemCards" 
+          <div class="col-2 d-flex justify-content-center">
+            <div class="card itemCards armorLogo" 
               onclick="holdToChangeItem('${rolledArmor.internalName}', 'stratagem')"
             >
                 ${armorImage}
-              <div class="card-body itemNameContainer align-items-center">
+            </div>
+          </div>
+          <div class="col-10 d-flex justify-content-start">
+              <div class="card-body d-flex align-items-center">
                   <p class="card-title text-white">${rolledArmor.displayName}</p>
               </div>
-            </div>
           </div>
     `;
 };
@@ -71,9 +73,9 @@ const clearActiveArmorRollType = () => {
 
 const getArmorSizeIcon = async (size) => {
     if (size === "light") {
-        return `<i class="fa-solid fa-4x p-1 d-flex justify-content-center fa-user-ninja"></i>`;
+        return `<i class="fa-solid armorSizeLogo p-1 d-flex justify-content-center fa-user-ninja"></i>`;
     } else if (size === "medium") {
-        return `<i class="fa-solid fa-4x p-1 d-flex justify-content-center fa-user"></i>`;
+        return `<i class="fa-solid armorSizeLogo p-1 d-flex justify-content-center fa-user"></i>`;
     }
-    return `<i class="fa-solid fa-4x p-1 d-flex justify-content-center fa-user-shield"></i>`;
+    return `<i class="fa-solid armorSizeLogo p-1 d-flex justify-content-center fa-user-shield"></i>`;
 };

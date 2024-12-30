@@ -36,12 +36,12 @@ const stratOptionRadios = [
 let stratsList = [...STRATAGEMS];
 let primsList = [...PRIMARIES];
 let secondsList = [...SECONDARIES];
-let grensList = [...GRENADES];
+let throwsList = [...THROWABLES];
 let boostsList = [...BOOSTERS];
 
 let workingPrimsList;
 let workingSecondsList;
-let workingGrensList;
+let workingThrowsList;
 let workingBoostsList;
 let workingStratsList;
 
@@ -115,7 +115,7 @@ const filterItemsByWarbond = async () => {
     const itemsList = [
         primsList,
         secondsList,
-        grensList,
+        throwsList,
         boostsList,
         stratsList
     ];
@@ -131,7 +131,7 @@ const filterItemsByWarbond = async () => {
         } else if (i === 1) {
             workingSecondsList = itemsList[i];
         } else if (i === 2) {
-            workingGrensList = itemsList[i];
+            workingThrowsList = itemsList[i];
         } else if (i === 3) {
             workingBoostsList = itemsList[i];
         } else if (i === 4) {
@@ -184,7 +184,7 @@ const rollEquipment = () => {
     const equipmentLists = [
         workingPrimsList ?? primsList,
         workingSecondsList ?? secondsList,
-        workingGrensList ?? grensList,
+        workingThrowsList ?? throwsList,
         workingBoostsList ?? boostsList
     ];
 

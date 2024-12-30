@@ -1,4 +1,4 @@
-const GRENADES = [
+const THROWABLES = [
     {
         displayName: "G-12 High Explosive",
         type: "Equipment",

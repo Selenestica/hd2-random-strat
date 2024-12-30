@@ -188,27 +188,6 @@ const rollEquipment = () => {
         workingBoostsList ?? boostsList
     ];
 
-    // removes mp98 knight initially
-    let scPrimariesList = workingPrimsList ?? primsList;
-    if (!superCitizenCheckBox.checked) {
-        for (let n = 0; n < scPrimariesList.length; n++) {
-            if (scPrimariesList[n].internalName === "mp98knight") {
-                scPrimariesList.splice(n, 1);
-            }
-        }
-        // adds it in initially
-    } else if (superCitizenCheckBox.checked) {
-        scPrimariesList.push({
-            displayName: "MP-98 Knight",
-            type: "Equipment",
-            category: "primary",
-            tags: ["SubmachineGun"],
-            warbond: "Super Citizen",
-            warbondCode: "warbond0",
-            internalName: "mp98knight",
-            imageURL: "mp98knight.png"
-        });
-    }
     for (let i = 0; i < equipmentLists.length; i++) {
         if (equipmentLists[i].length === 0) {
             equipmentContainer.innerHTML += `

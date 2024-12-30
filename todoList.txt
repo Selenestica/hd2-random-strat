@@ -2,7 +2,6 @@ to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 - add tags for THROWABLES
-- Road Block armor needs image
 - armor set randomizer needs to filter by warbonds
 - put Pre-Order Bonus and Superstore options after Super Citizen Edition
   - then rearrange indices to accomodate

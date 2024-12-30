@@ -26,7 +26,7 @@ const genWarbondCheckboxes = () => {
                 type="checkbox"
                 value=""
                 id="warbond${i}"
-                ${i !== 0 ? "checked" : ""}
+                checked
             />
             <label
                 class="form-check-label"

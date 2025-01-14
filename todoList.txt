@@ -16,6 +16,4 @@ feature ideas:
 - add link to low sodium Helldivers discord
 - holding click on stratagem or equipment icon will change it
 
-bugs:
-
  

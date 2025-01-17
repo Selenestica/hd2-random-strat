@@ -4,8 +4,7 @@ to do:
 - add tags for THROWABLES
 - armor set randomizer needs to filter by warbonds
 - put Pre-Order Bonus and Superstore options after Super Citizen Edition
-  - then rearrange indices to accomodate
-
+  - then rearrange indices to accommodate
 
 feature ideas:
 - save options in local storage

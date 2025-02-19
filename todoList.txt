@@ -2,7 +2,14 @@ to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 - add tags for THROWABLES
-- armor set randomizer needs to filter by warbonds
+- add new armor
+  - anniversary armor
+  - Servants of Freedom armor
+- add Servants of Freedom equipment and stratagems
+  - deployable hellbomb
+  - Seeker grenades
+  - Ultimatum
+  - DE Sickle
 - put Pre-Order Bonus and Superstore options after Super Citizen Edition
   - then rearrange indices to accommodate
 

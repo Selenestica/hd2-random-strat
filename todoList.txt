@@ -10,6 +10,7 @@ to do:
   - Seeker grenades
   - Ultimatum
   - DE Sickle
+- put Integrated Explosives icon in
 - put Pre-Order Bonus and Superstore options after Super Citizen Edition
   - then rearrange indices to accommodate
 

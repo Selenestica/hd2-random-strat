@@ -110,6 +110,16 @@ const SECONDARIES = [
     imageURL: 'las7dagger.png',
   },
   {
+    displayName: 'Talon',
+    type: 'Equipment',
+    category: 'secondary',
+    tags: [],
+    warbond: 'Borderline Justice',
+    warbondCode: 'warbond12',
+    internalName: 'las58talon',
+    imageURL: 'las58talon.png',
+  },
+  {
     displayName: 'Crisper',
     type: 'Equipment',
     category: 'secondary',

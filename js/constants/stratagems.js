@@ -230,6 +230,16 @@ const STRATAGEMS = [
     imageURL: 'lift850jumppack.svg',
   },
   {
+    displayName: 'Hover Pack',
+    type: 'Stratagem',
+    category: 'Supply',
+    tags: ['Backpacks'],
+    warbond: 'Borderline Justice',
+    warbondCode: 'warbond12',
+    internalName: 'lift860hoverpack',
+    imageURL: 'lift860hoverpack.svg',
+  },
+  {
     displayName: 'Supply Pack',
     type: 'Stratagem',
     category: 'Supply',

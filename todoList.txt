@@ -2,12 +2,12 @@ to do:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 - add tags for THROWABLES
-- add Servants of Freedom equipment and stratagems
-  - deployable hellbomb
-  - Seeker grenades
-  - Ultimatum
-  - DE Sickle
-- put Integrated Explosives icon in
+- add Borderline Justice equipment and stratagems
+  - new jump pack
+  - deadeye
+  - new secondary
+  - new armor passive
+  - new booster
 - put Pre-Order Bonus and Superstore options after Super Citizen Edition
   - then rearrange indices to accommodate
 

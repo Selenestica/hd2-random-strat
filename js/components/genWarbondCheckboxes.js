@@ -9,9 +9,10 @@ const warbondsList = [
   'Viper Commandos', // warbond6
   "Freedom's Flame", // warbond7
   'Chemical Agents', // warbond8
-  'Truth Enforcers',
-  'Urban Legends',
-  'Servants of Freedom',
+  'Truth Enforcers', // warbond9
+  'Urban Legends', // warbond10
+  'Servants of Freedom', // warbond11
+  'Borderline Justice', // warbond12
   'Superstore',
   'Pre-Order Bonus',
 ];

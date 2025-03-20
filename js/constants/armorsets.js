@@ -719,6 +719,36 @@ const ARMOR_SETS = [
     internalName: 'ie57hellbent',
     imageURL: 'ie57hellbent.png',
   },
+  {
+    displayName: 'GS-17 Frontier Marshal',
+    type: 'Equipment',
+    category: 'armor',
+    tags: ['Medium'],
+    warbond: 'Borderline Justice',
+    warbondCode: 'warbond12',
+    internalName: 'gs17frontiermarshal',
+    imageURL: 'gs17frontiermarshal.png',
+  },
+  {
+    displayName: 'GS-66 Lawmaker',
+    type: 'Equipment',
+    category: 'armor',
+    tags: ['Heavy'],
+    warbond: 'Borderline Justice',
+    warbondCode: 'warbond12',
+    internalName: 'gs66lawmaker',
+    imageURL: 'gs66lawmaker.png',
+  },
+  {
+    displayName: `GS-11 Democracy's Deputy`,
+    type: 'Equipment',
+    category: 'armor',
+    tags: ['Light'],
+    warbond: 'Superstore',
+    warbondCode: 'superstore',
+    internalName: 'gs11democracysdeputy',
+    imageURL: 'gs11democracysdeputy.png',
+  },
 ];
 
 /*

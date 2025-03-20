@@ -230,6 +230,16 @@ const PRIMARIES = [
     imageURL: 'r63csdiligencecountersniper.png',
   },
   {
+    displayName: 'Deadeye',
+    type: 'Equipment',
+    category: 'primary',
+    tags: ['MarksmanRifle'],
+    warbond: 'Borderline Justice',
+    warbondCode: 'warbond12',
+    internalName: 'r6deadeye',
+    imageURL: 'r6deadeye.png',
+  },
+  {
     displayName: 'Scythe',
     type: 'Equipment',
     category: 'primary',

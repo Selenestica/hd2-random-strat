@@ -149,4 +149,14 @@ const ARMOR_PASSIVES = [
     internalName: 'integratedexplosives',
     imageURL: 'integratedexplosives.png',
   },
+  {
+    displayName: 'Gunslinger',
+    type: 'Equipment',
+    category: 'armor',
+    tags: ['ArmorPassive'],
+    warbond: '',
+    warbondCode: '',
+    internalName: 'gunslinger',
+    imageURL: 'gunslinger.png',
+  },
 ];

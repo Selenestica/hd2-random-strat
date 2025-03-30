@@ -580,6 +580,16 @@ const STRATAGEMS = [
     imageURL: 'hmgemplacement.svg',
   },
   {
+    displayName: 'Grenadier Embattlement',
+    type: 'Stratagem',
+    category: 'Defense',
+    tags: ['Emplacement'],
+    warbond: 'None',
+    warbondCode: 'none',
+    internalName: 'grenadierembattlement',
+    imageURL: 'grenadierembattlement.svg',
+  },
+  {
     displayName: 'Autocannon Sentry',
     type: 'Stratagem',
     category: 'Defense',

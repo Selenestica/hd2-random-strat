@@ -140,13 +140,13 @@ const BOOSTERS = [
     imageURL: 'firebombhellpods.png',
   },
   {
-    displayName: 'Sample Extractor',
+    displayName: 'Sample Extricator',
     type: 'Equipment',
     category: 'booster',
     tags: [],
     warbond: 'Borderline Justice',
     warbondCode: 'warbond12',
-    internalName: 'sampleextractor',
-    imageURL: 'sampleextractor.png',
+    internalName: 'sampleextricator',
+    imageURL: 'sampleextricator.png',
   },
 ];

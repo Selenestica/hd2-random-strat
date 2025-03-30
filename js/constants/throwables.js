@@ -109,4 +109,14 @@ const THROWABLES = [
     internalName: 'g50seeker',
     imageURL: 'g50seeker.png',
   },
+  {
+    displayName: 'TED-63 Throwable Dynamite',
+    type: 'Equipment',
+    category: 'grenade',
+    tags: [],
+    warbond: 'Borderline Justice',
+    warbondCode: 'warbond12',
+    internalName: 'ted63throwabledynamite',
+    imageURL: 'ted63throwabledynamite.png',
+  },
 ];

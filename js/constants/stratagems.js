@@ -160,6 +160,16 @@ const STRATAGEMS = [
     imageURL: 'rs422railgun.svg',
   },
   {
+    displayName: 'W.A.S.P. Launcher',
+    type: 'Stratagem',
+    category: 'Supply',
+    tags: ['Weapons', 'Backpacks'],
+    warbond: 'None',
+    warbondCode: 'none',
+    internalName: 'wasplauncher',
+    imageURL: 'wasplauncher.svg',
+  },
+  {
     displayName: 'Recoilless Rifle',
     type: 'Stratagem',
     category: 'Supply',
@@ -548,6 +558,16 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'antipersonnelminefield',
     imageURL: 'antipersonnelminefield.svg',
+  },
+  {
+    displayName: 'Gas Mines',
+    type: 'Stratagem',
+    category: 'Defense',
+    tags: ['Emplacement'],
+    warbond: 'None',
+    warbondCode: 'none',
+    internalName: 'gasmines',
+    imageURL: 'gasmines.svg',
   },
   {
     displayName: 'Incendiary Mines',

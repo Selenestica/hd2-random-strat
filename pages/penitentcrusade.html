@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="../images/stratagems/orbitalprecisionstrike.png"
+    />
+    <meta
+      name="description"
+      content="Prove that you have the Strength and the Courage to dispense freedom with Super Earth's surplus arsenal!"
+    />
+    <title>Helldivers 2 Randomizer</title>
+  </head>
+
+  <body>
+    <div class="container mb-5">
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="d-flex col-12 justify-content-start">
+          <a href="../index.html">
+            <button class="btn" type="button">
+              <i class="fa-solid fa-2x text-light shuffle-icon fa-shuffle"></i>
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center mt-4">
+        <div class="d-flex col justify-content-center">
+          <h1 class="text-light">Helldivers 2</h1>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="d-flex col justify-content-center align-items-center">
+          <h4 class="text-light mb-0">Penitent Crusade</h4>
+          <button class="btn btn-secondary mx-2" type="button">alpha</button>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="d-flex col-sm-10 col-lg-5 my-3 justify-content-center">
+          <div class="btn-group">
+            <button
+              class="btn btn-success"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#missionCompleteModal"
+            >
+              <span> Mission Complete </span>
+            </button>
+          </div>
+        </div>
+        <div class="d-flex col-sm-10 col-lg-5 my-3 justify-content-center">
+          <div class="btn-group">
+            <button
+              class="btn btn-success"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#maxStarsModal"
+            >
+              <span id="stratText"> Max <i class="fa-solid fa-star"></i> </span>
+            </button>
+          </div>
+        </div>
+        <div id="acquiredItemsContainer"></div>
+      </div>
+    </div>
+
+    <!-- MISSION COMPLETE MODAL -->
+
+    <div
+      class="modal fade"
+      id="missionCompleteModal"
+      tabindex="-1"
+      aria-labelledby="missionCompleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="missionCompleteModalLabel">Choose one...</h5>
+          </div>
+          <div class="modal-body" id="missionCompleteModalBody">
+            <div class="justify-content-center">
+              <button class="btn btn-primary m-1" onclick="rollPCMC('1')" type="button">
+                Stratagem
+              </button>
+            </div>
+            <div class="justify-content-center">
+              <button class="btn btn-primary m-1" onclick="rollPCMC('2')" type="button">
+                Primary
+              </button>
+            </div>
+            <div class="justify-content-center">
+              <button class="btn btn-primary m-1" onclick="rollPCMC('3')" type="button">
+                Booster
+              </button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAX STARS MODAL -->
+
+    <div
+      class="modal fade"
+      id="maxStarsModal"
+      tabindex="-1"
+      aria-labelledby="maxStarsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="maxStarsModalLabel">Choose one...</h5>
+          </div>
+          <div class="modal-body" id="maxStarsModalBody">
+            <div class="justify-content-center">
+              <button class="btn btn-primary m-1" onclick="rollPCMS('1')" type="button">
+                Secondary
+              </button>
+            </div>
+            <div class="justify-content-center">
+              <button class="btn btn-primary m-1" onclick="rollPCMS('2')" type="button">
+                Throwable
+              </button>
+            </div>
+            <div class="justify-content-center">
+              <button class="btn btn-primary m-1" onclick="rollPCMS('3')" type="button">
+                Armor Passive
+              </button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://kit.fontawesome.com/a018c01272.js" crossorigin="anonymous"></script>
+  <script src="../js/constants/primaries.js"></script>
+  <script src="../js/constants/secondaries.js"></script>
+  <script src="../js/constants/boosters.js"></script>
+  <script src="../js/constants/throwables.js"></script>
+  <script src="../js/constants/stratagems.js"></script>
+  <script src="../js/constants/armorsets.js"></script>
+  <script src="../js/constants/armorsizes.js"></script>
+  <script src="../js/constants/armorpassives.js"></script>
+  <script src="../js/penitentcrusade.js"></script>
+</html>

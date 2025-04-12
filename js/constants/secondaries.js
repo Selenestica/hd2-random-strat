@@ -10,6 +10,16 @@ const SECONDARIES = [
     imageURL: 'p2peacemaker.png',
   },
   {
+    displayName: 'Combat Hatchet',
+    type: 'Equipment',
+    category: 'secondary',
+    tags: [],
+    warbond: 'Superstore',
+    warbondCode: 'warbond11',
+    internalName: 'cqc5combathatchet',
+    imageURL: 'cqc5combathatchet.png',
+  },
+  {
     displayName: 'Stun Lance',
     type: 'Equipment',
     category: 'secondary',

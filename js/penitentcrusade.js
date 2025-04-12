@@ -62,21 +62,31 @@ const generateItemCard = (item, imgDir) => {
     </div>`;
 };
 
+const removeItemFromList = (list, item) => {
+  const index = list.indexOf(item);
+  if (index > -1) {
+    list.splice(index, 1);
+  }
+};
+
 // logic for rolling mission complete rewards
 const rollPCMC = (type) => {
   if (type === '1') {
     const randomItem = newStrats[Math.floor(Math.random() * newStrats.length)];
     stratagemAccordionBody.innerHTML += generateItemCard(randomItem, 'svgs');
+    removeItemFromList(newStrats, randomItem);
     // missionCompleteModalBody.innerHTML = generateItemCard(randomItem, 'svgs');
   }
   if (type === '2') {
     const randomItem = newPrims[Math.floor(Math.random() * newPrims.length)];
     primaryAccordionBody.innerHTML += generateItemCard(randomItem, 'equipment');
+    removeItemFromList(newPrims, randomItem);
     // missionCompleteModalBody.innerHTML = generateItemCard(randomItem, 'equipment');
   }
   if (type === '3') {
     const randomItem = newBoosts[Math.floor(Math.random() * newBoosts.length)];
     boosterAccordionBody.innerHTML += generateItemCard(randomItem, 'equipment');
+    removeItemFromList(newBoosts, randomItem);
     // missionCompleteModalBody.innerHTML = generateItemCard(randomItem, 'equipment');
   }
 };
@@ -86,16 +96,19 @@ const rollPCMS = (type) => {
   if (type === '1') {
     const randomItem = newSecondaries[Math.floor(Math.random() * newSecondaries.length)];
     secondaryAccordionBody.innerHTML += generateItemCard(randomItem, 'equipment');
+    removeItemFromList(newSecondaries, randomItem);
     // missionCompleteModalBody.innerHTML = generateItemCard(randomItem, 'equipment');
   }
   if (type === '2') {
     const randomItem = newThrows[Math.floor(Math.random() * newThrows.length)];
     throwableAccordionBody.innerHTML += generateItemCard(randomItem, 'equipment');
+    removeItemFromList(newThrows, randomItem);
     // missionCompleteModalBody.innerHTML = generateItemCard(randomItem, 'equipment');
   }
   if (type === '3') {
     const randomItem = newArmorPassives[Math.floor(Math.random() * newArmorPassives.length)];
     armorPassiveAccordionBody.innerHTML += generateItemCard(randomItem, 'armor');
+    removeItemFromList(newArmorPassives, randomItem);
     // missionCompleteModalBody.innerHTML = generateItemCard(randomItem, 'armor');
   }
 };

@@ -1,7 +1,7 @@
 const acquiredMainItemsAccordion = document.getElementById('acquiredMainItemsAccordion');
 const acquiredStarItemsAccordion = document.getElementById('acquiredStarItemsAccordion');
 
-const accordionItem = (cats, index) => {
+const accordionItem = (cat, index) => {
   return `
       <div class="accordion-item">
         <h2 class="accordion-header" id="mainAccordionHeading${index}">
@@ -13,7 +13,7 @@ const accordionItem = (cats, index) => {
             aria-expanded="true"
             aria-controls="mainAccordionCollapse${index}"
           >
-            ${cats[index]}
+            ${cat}
           </button>
         </h2>
         <div
@@ -21,7 +21,7 @@ const accordionItem = (cats, index) => {
           class="accordion-collapse collapse show"
           aria-labelledby="mainAccordionHeading${index}"
         >
-          <div class="accordion-body d-flex row" id="${cats[index]}AccordionBody"></div>
+          <div class="accordion-body d-flex row" id="${cat}AccordionBody"></div>
         </div>
       </div>
     `;
@@ -32,11 +32,11 @@ const genAcquiredItemsAccordions = () => {
   const starAccordionCats = ['Secondaries', 'Throwables', 'Armors'];
 
   for (let i = 0; i < mainAccordionCats.length; i++) {
-    acquiredMainItemsAccordion.innerHTML += accordionItem(mainAccordionCats, i);
+    acquiredMainItemsAccordion.innerHTML += accordionItem(mainAccordionCats[i], i);
   }
 
   for (let j = 0; j < starAccordionCats.length; j++) {
-    acquiredStarItemsAccordion.innerHTML += accordionItem(starAccordionCats, j);
+    acquiredStarItemsAccordion.innerHTML += accordionItem(starAccordionCats[j], j);
   }
 };
 

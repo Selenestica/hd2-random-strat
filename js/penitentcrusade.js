@@ -116,27 +116,28 @@ const rollPCMC = (type) => {
 
 const clearRewardModal = () => {
   missionCompleteModalBody.innerHTML = '';
+  maxStarsModalBody.innerHTML = '';
   genRewardModalBodies();
 };
 
 // logic for rolling max stars rewards
 const rollPCMS = (type) => {
-  if (type === '1') {
+  if (type === '0') {
     const randomItem = newSecondaries[Math.floor(Math.random() * newSecondaries.length)];
-    secondaryAccordionBody.innerHTML += generateItemCard(randomItem, 'equipment');
-    missionCompleteModalBody.innerHTML = generateItemCard(randomItem, 'equipment');
+    secondaryAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment');
+    maxStarsModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment');
     removeItemFromList(newSecondaries, randomItem);
   }
-  if (type === '2') {
+  if (type === '1') {
     const randomItem = newThrows[Math.floor(Math.random() * newThrows.length)];
-    throwableAccordionBody.innerHTML += generateItemCard(randomItem, 'equipment');
-    missionCompleteModalBody.innerHTML = generateItemCard(randomItem, 'equipment');
+    throwableAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment');
+    maxStarsModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment');
     removeItemFromList(newThrows, randomItem);
   }
-  if (type === '3') {
+  if (type === '2') {
     const randomItem = newArmorPassives[Math.floor(Math.random() * newArmorPassives.length)];
-    armorPassiveAccordionBody.innerHTML += generateItemCard(randomItem, 'armor');
-    missionCompleteModalBody.innerHTML = generateItemCard(randomItem, 'armor');
+    armorPassiveAccordionBody.innerHTML += generateItemCard(randomItem, false, 'armor');
+    maxStarsModalBody.innerHTML = generateItemCard(randomItem, true, 'armor');
     removeItemFromList(newArmorPassives, randomItem);
   }
 };

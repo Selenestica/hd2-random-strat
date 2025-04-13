@@ -43,12 +43,19 @@
       <div class="row d-flex justify-content-center">
         <div class="d-flex col justify-content-center align-items-center">
           <h4 class="text-light mb-0">Penitent Crusade</h4>
-          <button class="btn btn-secondary mx-2" type="button">alpha</button>
+          <button
+            class="btn btn-secondary mx-2"
+            data-bs-toggle="modal"
+            data-bs-target="#missionCompleteModal"
+            type="button"
+          >
+            alpha
+          </button>
         </div>
       </div>
       <div class="row d-flex justify-content-center mt-5">
-        <div class="col justify-content-center">
-          <div class="btn-group">
+        <div class="col-6 justify-content-center">
+          <div class="btn-group my-2">
             <button
               class="btn btn-success"
               type="button"
@@ -60,8 +67,8 @@
           </div>
           <div class="accordion" id="acquiredMainItemsAccordion"></div>
         </div>
-        <div class="col justify-content-center">
-          <div class="btn-group">
+        <div class="col-6 justify-content-center">
+          <div class="btn-group my-2">
             <button
               class="btn btn-success"
               type="button"
@@ -84,31 +91,24 @@
       tabindex="-1"
       aria-labelledby="missionCompleteModalLabel"
       aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
     >
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
             <h5 class="modal-title text-light" id="missionCompleteModalLabel">Choose one...</h5>
           </div>
-          <div class="modal-body" id="missionCompleteModalBody">
-            <div class="justify-content-center">
-              <button class="btn btn-primary m-1" onclick="rollPCMC('1')" type="button">
-                Stratagem
-              </button>
-            </div>
-            <div class="justify-content-center">
-              <button class="btn btn-primary m-1" onclick="rollPCMC('2')" type="button">
-                Primary
-              </button>
-            </div>
-            <div class="justify-content-center">
-              <button class="btn btn-primary m-1" onclick="rollPCMC('3')" type="button">
-                Booster
-              </button>
-            </div>
-          </div>
+          <div class="modal-body d-flex justify-content-center" id="missionCompleteModalBody"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="clearRewardModal()"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -128,25 +128,16 @@
           <div class="modal-header">
             <h5 class="modal-title text-light" id="maxStarsModalLabel">Choose one...</h5>
           </div>
-          <div class="modal-body" id="maxStarsModalBody">
-            <div class="justify-content-center">
-              <button class="btn btn-primary m-1" onclick="rollPCMS('1')" type="button">
-                Secondary
-              </button>
-            </div>
-            <div class="justify-content-center">
-              <button class="btn btn-primary m-1" onclick="rollPCMS('2')" type="button">
-                Throwable
-              </button>
-            </div>
-            <div class="justify-content-center">
-              <button class="btn btn-primary m-1" onclick="rollPCMS('3')" type="button">
-                Armor Passive
-              </button>
-            </div>
-          </div>
+          <div class="modal-body d-flex justify-content-center" id="maxStarsModalBody"></div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="clearRewardModal()"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -169,4 +160,5 @@
   <script src="../js/constants/armorpassives.js"></script>
   <script src="../js/components/genAcquiredItemsAccordions.js"></script>
   <script src="../js/penitentcrusade.js"></script>
+  <script src="../js/components/genRewardModalBodies.js"></script>
 </html>

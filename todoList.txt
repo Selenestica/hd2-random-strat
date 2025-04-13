@@ -7,6 +7,13 @@ to do:
 - put Pre-Order Bonus and Superstore options after Super Citizen Edition
   - then rearrange indices to accommodate
 
+to do Penitent Crusade:
+- add a tier to each item 
+- weight each tier so that you're unlikely to rollw high-tier items and more likely to roll low-tier items
+- add local storage option
+- add rules, instructions, and flavor text
+- add modal for info and instructions that open ups when page is loaded
+
 feature ideas:
 - save options in local storage
 - add link to buymeacoffee

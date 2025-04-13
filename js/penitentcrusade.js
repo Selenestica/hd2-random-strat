@@ -1,11 +1,11 @@
 const missionCompleteModalBody = document.getElementById('missionCompleteModalBody');
 const maxStarsModalBody = document.getElementById('maxStarsModalBody');
-const primaryAccordionBody = document.getElementById('primaryAccordionBody');
-const secondaryAccordionBody = document.getElementById('secondaryAccordionBody');
-const stratagemAccordionBody = document.getElementById('stratagemAccordionBody');
-const throwableAccordionBody = document.getElementById('throwableAccordionBody');
-const armorPassiveAccordionBody = document.getElementById('armorPassiveAccordionBody');
-const boosterAccordionBody = document.getElementById('boosterAccordionBody');
+const primaryAccordionBody = document.getElementById('PrimariesAccordionBody');
+const secondaryAccordionBody = document.getElementById('SecondariesAccordionBody');
+const stratagemAccordionBody = document.getElementById('StratagemsAccordionBody');
+const throwableAccordionBody = document.getElementById('ThrowablesAccordionBody');
+const armorPassiveAccordionBody = document.getElementById('ArmorsAccordionBody');
+const boosterAccordionBody = document.getElementById('BoostersAccordionBody');
 
 let OGstratsList = [...STRATAGEMS];
 let OGprimsList = [...PRIMARIES];

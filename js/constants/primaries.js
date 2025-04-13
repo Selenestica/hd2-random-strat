@@ -8,6 +8,7 @@ const PRIMARIES = [
     warbondCode: 'none',
     internalName: 'ar23liberator',
     imageURL: 'ar23liberator.png',
+    tier: 'b',
   },
   {
     displayName: 'StA-11 SMG',
@@ -18,6 +19,7 @@ const PRIMARIES = [
     warbondCode: 'none',
     internalName: 'sta11smg',
     imageURL: 'sta11smg.png',
+    tier: 'b',
   },
   {
     displayName: 'PLAS-39 Accelerator Rifle',
@@ -28,6 +30,7 @@ const PRIMARIES = [
     warbondCode: 'none',
     internalName: 'plas39acceleratorrifle',
     imageURL: 'plas39acceleratorrifle.png',
+    tier: 'b',
   },
   {
     displayName: 'StA-52 Assault Rifle',
@@ -38,6 +41,7 @@ const PRIMARIES = [
     warbondCode: 'warbond11',
     internalName: 'sta52assaultrifle',
     imageURL: 'sta52assaultrifle.png',
+    tier: 'b',
   },
   {
     displayName: 'Liberator Carbine',
@@ -48,6 +52,7 @@ const PRIMARIES = [
     warbondCode: 'warbond6',
     internalName: 'ar23aliberatorcarbine',
     imageURL: 'ar23aliberatorcarbine.png',
+    tier: 'b',
   },
   {
     displayName: 'Halt',
@@ -58,6 +63,7 @@ const PRIMARIES = [
     warbondCode: 'warbond9',
     internalName: 'sg20halt',
     imageURL: 'sg20halt.png',
+    tier: 'b',
   },
   {
     displayName: 'Reprimand',
@@ -68,6 +74,7 @@ const PRIMARIES = [
     warbondCode: 'warbond9',
     internalName: 'smg32reprimand',
     imageURL: 'smg32reprimand.png',
+    tier: 'b',
   },
   {
     displayName: 'Constitution',
@@ -78,6 +85,7 @@ const PRIMARIES = [
     warbondCode: 'none',
     internalName: 'r2124constitution',
     imageURL: 'r2124constitution.png',
+    tier: 'b',
   },
   {
     displayName: 'Pummeler',
@@ -88,6 +96,7 @@ const PRIMARIES = [
     warbondCode: 'warbond5',
     internalName: 'smg72pummeler',
     imageURL: 'smg72pummeler.png',
+    tier: 'b',
   },
   {
     displayName: 'Purifier',
@@ -98,6 +107,7 @@ const PRIMARIES = [
     warbondCode: 'warbond5',
     internalName: 'plas101purifier',
     imageURL: 'plas101purifier.png',
+    tier: 'b',
   },
   {
     displayName: 'Liberator Penetrator',
@@ -108,6 +118,7 @@ const PRIMARIES = [
     warbondCode: 'warbond1',
     internalName: 'ar23pliberatorpenetrator',
     imageURL: 'ar23pliberatorpenetrator.png',
+    tier: 'b',
   },
   {
     displayName: 'Liberator Concussive',
@@ -118,6 +129,7 @@ const PRIMARIES = [
     warbondCode: 'warbond2',
     internalName: 'ar23cliberatorconcussive',
     imageURL: 'ar23cliberatorconcussive.png',
+    tier: 'b',
   },
   {
     displayName: 'Adjudicator',
@@ -128,6 +140,7 @@ const PRIMARIES = [
     warbondCode: 'warbond4',
     internalName: 'br14adjudicator',
     imageURL: 'br14adjudicator.png',
+    tier: 'b',
   },
   {
     displayName: 'Defender',
@@ -138,6 +151,7 @@ const PRIMARIES = [
     warbondCode: 'warbond1',
     internalName: 'smg37defender',
     imageURL: 'smg37defender.png',
+    tier: 'b',
   },
   {
     displayName: 'Punisher',
@@ -148,6 +162,7 @@ const PRIMARIES = [
     warbondCode: 'warbond1',
     internalName: 'sg8punisher',
     imageURL: 'sg8punisher.png',
+    tier: 'b',
   },
   {
     displayName: 'Tenderizer',
@@ -158,6 +173,7 @@ const PRIMARIES = [
     warbondCode: 'warbond5',
     internalName: 'ar61tenderizer',
     imageURL: 'ar61tenderizer.png',
+    tier: 'b',
   },
   {
     displayName: 'Slugger',
@@ -168,6 +184,7 @@ const PRIMARIES = [
     warbondCode: 'warbond1',
     internalName: 'sg8sslugger',
     imageURL: 'sg8sslugger.png',
+    tier: 'b',
   },
   {
     displayName: 'Breaker',
@@ -178,6 +195,7 @@ const PRIMARIES = [
     warbondCode: 'warbond1',
     internalName: 'sg225breaker',
     imageURL: 'sg225breaker.png',
+    tier: 'b',
   },
   {
     displayName: 'Breaker Incendiary',
@@ -188,6 +206,7 @@ const PRIMARIES = [
     warbondCode: 'warbond2',
     internalName: 'sg225iebreakerincendiary',
     imageURL: 'sg225iebreakerincendiary.png',
+    tier: 'b',
   },
   {
     displayName: 'Breaker Spray & Pray',
@@ -198,6 +217,7 @@ const PRIMARIES = [
     warbondCode: 'warbond1',
     internalName: 'sg225spbreakerspraynpray',
     imageURL: 'sg225spbreakerspraynpray.png',
+    tier: 'b',
   },
   {
     displayName: 'Knight',
@@ -208,6 +228,7 @@ const PRIMARIES = [
     warbondCode: 'warbond0',
     internalName: 'mp98knight',
     imageURL: 'mp98knight.png',
+    tier: 'b',
   },
   {
     displayName: 'Diligence',
@@ -218,6 +239,7 @@ const PRIMARIES = [
     warbondCode: 'warbond1',
     internalName: 'r63diligence',
     imageURL: 'r63diligence.png',
+    tier: 'b',
   },
   {
     displayName: 'Diligence Counter Sniper',
@@ -228,6 +250,7 @@ const PRIMARIES = [
     warbondCode: 'warbond1',
     internalName: 'r63csdiligencecountersniper',
     imageURL: 'r63csdiligencecountersniper.png',
+    tier: 'b',
   },
   {
     displayName: 'Deadeye',
@@ -238,6 +261,7 @@ const PRIMARIES = [
     warbondCode: 'warbond12',
     internalName: 'r6deadeye',
     imageURL: 'r6deadeye.png',
+    tier: 'b',
   },
   {
     displayName: 'Scythe',
@@ -248,6 +272,7 @@ const PRIMARIES = [
     warbondCode: 'warbond1',
     internalName: 'las5scythe',
     imageURL: 'las5scythe.png',
+    tier: 'b',
   },
   {
     displayName: 'Sickle',
@@ -258,6 +283,7 @@ const PRIMARIES = [
     warbondCode: 'warbond3',
     internalName: 'las16sickle',
     imageURL: 'las16sickle.png',
+    tier: 'b',
   },
   {
     displayName: 'Scorcher',
@@ -268,6 +294,7 @@ const PRIMARIES = [
     warbondCode: 'warbond1',
     internalName: 'plas1scorcher',
     imageURL: 'plas1scorcher.png',
+    tier: 'b',
   },
   {
     displayName: 'Punisher Plasma',
@@ -278,6 +305,7 @@ const PRIMARIES = [
     warbondCode: 'warbond3',
     internalName: 'sg8ppunisherplasma',
     imageURL: 'sg8ppunisherplasma.png',
+    tier: 'b',
   },
   {
     displayName: 'Blitzer',
@@ -288,6 +316,7 @@ const PRIMARIES = [
     warbondCode: 'warbond3',
     internalName: 'arc12blitzer',
     imageURL: 'arc12blitzer.png',
+    tier: 'b',
   },
   {
     displayName: 'Dominator',
@@ -298,6 +327,7 @@ const PRIMARIES = [
     warbondCode: 'warbond2',
     internalName: 'jar5dominator',
     imageURL: 'jar5dominator.png',
+    tier: 'b',
   },
   {
     displayName: 'Eruptor',
@@ -308,6 +338,7 @@ const PRIMARIES = [
     warbondCode: 'warbond4',
     internalName: 'r36eruptor',
     imageURL: 'r36eruptor.png',
+    tier: 'b',
   },
   {
     displayName: 'Exploding Crossbow',
@@ -318,6 +349,7 @@ const PRIMARIES = [
     warbondCode: 'warbond4',
     internalName: 'cb9explodingcrossbow',
     imageURL: 'cb9explodingcrossbow.png',
+    tier: 'b',
   },
   {
     displayName: 'Cookout',
@@ -328,6 +360,7 @@ const PRIMARIES = [
     warbondCode: 'warbond7',
     internalName: 'sg451cookout',
     imageURL: 'sg451cookout.png',
+    tier: 'b',
   },
   {
     displayName: 'Torcher',
@@ -338,6 +371,7 @@ const PRIMARIES = [
     warbondCode: 'warbond7',
     internalName: 'flam66torcher',
     imageURL: 'flam66torcher.png',
+    tier: 'b',
   },
   {
     displayName: 'LAS-17 Double Edge Sickle',
@@ -348,5 +382,6 @@ const PRIMARIES = [
     warbondCode: 'warbond11',
     internalName: 'las17doubleedgesickle',
     imageURL: 'las17doubleedgesickle.png',
+    tier: 'b',
   },
 ];

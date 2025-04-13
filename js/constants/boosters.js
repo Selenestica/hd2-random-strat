@@ -8,6 +8,7 @@ const BOOSTERS = [
     warbondCode: 'warbond4',
     internalName: 'expertextractionpilot',
     imageURL: 'expertextractionpilot.png',
+    tier: 'b',
   },
   {
     displayName: 'Dead Sprint',
@@ -18,6 +19,7 @@ const BOOSTERS = [
     warbondCode: 'warbond9',
     internalName: 'deadsprint',
     imageURL: 'deadsprint.png',
+    tier: 'b',
   },
   {
     displayName: 'Armed Resupply Pods',
@@ -28,6 +30,7 @@ const BOOSTERS = [
     warbondCode: 'warbond10',
     internalName: 'armedresupplypods',
     imageURL: 'armedresupplypods.png',
+    tier: 'b',
   },
   {
     displayName: 'Experimental Infusion',
@@ -38,6 +41,7 @@ const BOOSTERS = [
     warbondCode: 'warbond6',
     internalName: 'experimentalinfusion',
     imageURL: 'experimentalinfusion.png',
+    tier: 'b',
   },
   {
     displayName: 'Motivational Shocks',
@@ -48,6 +52,7 @@ const BOOSTERS = [
     warbondCode: 'warbond5',
     internalName: 'motivationalshocks',
     imageURL: 'motivationalshocks.png',
+    tier: 'b',
   },
   {
     displayName: 'Flexible Reinforcement Budget',
@@ -58,6 +63,7 @@ const BOOSTERS = [
     warbondCode: 'warbond2',
     internalName: 'flexiblereinforcementbudget',
     imageURL: 'flexiblereinforcementbudget.png',
+    tier: 'b',
   },
   {
     displayName: 'Hellpod Space Optimization',
@@ -68,6 +74,7 @@ const BOOSTERS = [
     warbondCode: 'warbond1',
     internalName: 'hellpodspaceoptimization',
     imageURL: 'hellpodspaceoptimization.png',
+    tier: 'b',
   },
   {
     displayName: 'Increased Reinforcement Budget',
@@ -78,6 +85,7 @@ const BOOSTERS = [
     warbondCode: 'warbond1',
     internalName: 'increasedreinforcementbudget',
     imageURL: 'increasedreinforcementbudget.png',
+    tier: 'b',
   },
   {
     displayName: 'Localization Confusion',
@@ -88,6 +96,7 @@ const BOOSTERS = [
     warbondCode: 'warbond3',
     internalName: 'localizationconfusion',
     imageURL: 'localizationconfusion.png',
+    tier: 'b',
   },
   {
     displayName: 'Muscle Enhancement',
@@ -98,6 +107,7 @@ const BOOSTERS = [
     warbondCode: 'warbond1',
     internalName: 'muscleenhancement',
     imageURL: 'muscleenhancement.png',
+    tier: 'b',
   },
   {
     displayName: 'Stamina Enhancement',
@@ -108,6 +118,7 @@ const BOOSTERS = [
     warbondCode: 'warbond1',
     internalName: 'staminaenhancement',
     imageURL: 'staminaenhancement.png',
+    tier: 'b',
   },
   {
     displayName: 'UAV Recon',
@@ -118,6 +129,7 @@ const BOOSTERS = [
     warbondCode: 'warbond1',
     internalName: 'uavrecon',
     imageURL: 'uavrecon.png',
+    tier: 'b',
   },
   {
     displayName: 'Vitality Enhancement',
@@ -128,6 +140,7 @@ const BOOSTERS = [
     warbondCode: 'warbond1',
     internalName: 'vitalityenhancement',
     imageURL: 'vitalityenhancement.png',
+    tier: 'b',
   },
   {
     displayName: 'Firebomb Hellpods',
@@ -138,6 +151,7 @@ const BOOSTERS = [
     warbondCode: 'warbond7',
     internalName: 'firebombhellpods',
     imageURL: 'firebombhellpods.png',
+    tier: 'b',
   },
   {
     displayName: 'Sample Extricator',
@@ -148,5 +162,6 @@ const BOOSTERS = [
     warbondCode: 'warbond12',
     internalName: 'sampleextricator',
     imageURL: 'sampleextricator.png',
+    tier: 'b',
   },
 ];

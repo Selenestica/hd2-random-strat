@@ -8,6 +8,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond8',
     internalName: 'af50noxiousranger',
     imageURL: 'af50noxiousranger.png',
+    tier: 'b',
   },
   {
     displayName: 'AC-2 Obedient',
@@ -18,6 +19,7 @@ const ARMOR_SETS = [
     warbondCode: 'none',
     internalName: 'ac2obedient',
     imageURL: 'ac2obedient.png',
+    tier: 'b',
   },
   {
     displayName: 'SR-24 Street Scout',
@@ -28,6 +30,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond10',
     internalName: 'sr24streetscout',
     imageURL: 'sr24streetscout.png',
+    tier: 'b',
   },
   {
     displayName: 'SR-18 Road Block',
@@ -38,6 +41,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond10',
     internalName: 'sr18roadblock',
     imageURL: 'sr18roadblock.png',
+    tier: 'b',
   },
   {
     displayName: 'B-08 Light Gunner',
@@ -48,6 +52,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'b08lightgunner',
     imageURL: 'b08lightgunner.png',
+    tier: 'b',
   },
   {
     displayName: 'CE-07 Demolition Specialist',
@@ -58,6 +63,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond4',
     internalName: 'ce07demolitionspecialist',
     imageURL: 'ce07demolitionspecialist.png',
+    tier: 'b',
   },
   {
     displayName: 'CE-67 Titan',
@@ -68,6 +74,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'ce67titan',
     imageURL: 'ce67titan.png',
+    tier: 'b',
   },
   {
     displayName: 'CE-74 Breaker',
@@ -78,6 +85,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'ce74breaker',
     imageURL: 'ce74breaker.png',
+    tier: 'b',
   },
   {
     displayName: 'CM-21 Trench Paramedic',
@@ -88,6 +96,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'cm21trenchparamedic',
     imageURL: 'cm21trenchparamedic.png',
+    tier: 'b',
   },
   {
     displayName: 'CW-4 Arctic Ranger',
@@ -98,6 +107,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond5',
     internalName: 'c4arcticranger',
     imageURL: 'c4arcticranger.png',
+    tier: 'b',
   },
   {
     displayName: 'EX-00 Prototype X',
@@ -108,6 +118,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond3',
     internalName: 'ex00prototypex',
     imageURL: 'ex00prototypex.png',
+    tier: 'b',
   },
   {
     displayName: 'FS-37 Ravager',
@@ -118,6 +129,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'fs37ravager',
     imageURL: 'fs37ravager.png',
+    tier: 'b',
   },
   {
     displayName: 'FS-38 Eradicator',
@@ -128,6 +140,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'fs38eradicator',
     imageURL: 'fs38eradicator.png',
+    tier: 'b',
   },
   {
     displayName: 'I-09 Heatseeker',
@@ -138,6 +151,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond7',
     internalName: 'i09heatseeker',
     imageURL: 'i09heatseeker.png',
+    tier: 'b',
   },
   {
     displayName: 'PH-9 Predator',
@@ -148,6 +162,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond6',
     internalName: 'ph9predator',
     imageURL: 'ph9predator.png',
+    tier: 'b',
   },
   {
     displayName: 'SC-30 Trailblazer Scout',
@@ -158,6 +173,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond1',
     internalName: 'sc30trailblazerscout',
     imageURL: 'sc30trailblazerscout.png',
+    tier: 'b',
   },
   {
     displayName: 'SC-34 Infiltrator',
@@ -168,6 +184,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond1',
     internalName: 'sc34infiltrator',
     imageURL: 'sc34infiltrator.png',
+    tier: 'b',
   },
   {
     displayName: 'SC-37 Legionnaire',
@@ -178,6 +195,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'sc37legionnaire',
     imageURL: 'sc37legionnaire.png',
+    tier: 'b',
   },
   {
     displayName: 'UF-16 Inspector',
@@ -188,6 +206,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond9',
     internalName: 'uf16inspector',
     imageURL: 'uf16inspector.png',
+    tier: 'b',
   },
   {
     displayName: 'AF-02 Haz-Master',
@@ -198,6 +217,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond8',
     internalName: 'af02hazmaster',
     imageURL: 'af02hazmaster.png',
+    tier: 'b',
   },
   {
     displayName: 'AF-91 Field Chemist',
@@ -208,6 +228,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'af91fieldchemist',
     imageURL: 'af91fieldchemist.png',
+    tier: 'b',
   },
   {
     displayName: 'B-01 Tactical',
@@ -218,6 +239,7 @@ const ARMOR_SETS = [
     warbondCode: 'none',
     internalName: 'b01tactical',
     imageURL: 'b01tactical.png',
+    tier: 'b',
   },
   {
     displayName: 'B-24 Enforcer',
@@ -228,6 +250,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'b24enforcer',
     imageURL: 'b24enforcer.png',
+    tier: 'b',
   },
   {
     displayName: 'CE-27 Ground Breaker',
@@ -238,6 +261,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond4',
     internalName: 'ce27groundbreaker',
     imageURL: 'ce27groundbreaker.png',
+    tier: 'b',
   },
   {
     displayName: 'CE-35 Trench Engineer',
@@ -248,6 +272,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond1',
     internalName: 'ce35trenchengineer',
     imageURL: 'ce35trenchengineer.png',
+    tier: 'b',
   },
   {
     displayName: 'CE-81 Juggernaut',
@@ -258,6 +283,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'ce81juggernaut',
     imageURL: 'ce81juggernaut.png',
+    tier: 'b',
   },
   {
     displayName: 'CM-09 Bonesnapper',
@@ -268,6 +294,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond1',
     internalName: 'cm09bonesnapper',
     imageURL: 'cm09bonesnapper.png',
+    tier: 'b',
   },
   {
     displayName: 'CM-10 Clinician',
@@ -278,6 +305,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'cm10clinician',
     imageURL: 'cm10clinician.png',
+    tier: 'b',
   },
   {
     displayName: 'CM-14 Physician',
@@ -288,6 +316,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond1',
     internalName: 'cm14physician',
     imageURL: 'cm14physician.png',
+    tier: 'b',
   },
   {
     displayName: 'CW-9 White Wolf',
@@ -298,6 +327,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'cw9whitewolf',
     imageURL: 'cw9whitewolf.png',
+    tier: 'b',
   },
   {
     displayName: 'DP-00 Tactical',
@@ -308,6 +338,7 @@ const ARMOR_SETS = [
     warbondCode: 'none',
     internalName: 'dp00tactical',
     imageURL: 'dp00tactical.png',
+    tier: 'b',
   },
   {
     displayName: 'DP-11 Champion of the People',
@@ -318,6 +349,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond1',
     internalName: 'dp11championofthepeople',
     imageURL: 'dp11championofthepeople.png',
+    tier: 'b',
   },
   {
     displayName: 'AC-1 Dutiful',
@@ -328,6 +360,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'ac1dutiful',
     imageURL: 'ac1dutiful.png',
+    tier: 'b',
   },
   {
     displayName: 'DP-40 Hero of the Federation',
@@ -338,6 +371,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond1',
     internalName: 'dp40heroofthefederation',
     imageURL: 'dp40heroofthefederation.png',
+    tier: 'b',
   },
   {
     displayName: 'DP-53 Savior of the Free',
@@ -348,6 +382,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond0',
     internalName: 'dp53saviorofthefree',
     imageURL: 'dp53saviorofthefree.png',
+    tier: 'b',
   },
   {
     displayName: 'EX-03 Prototype 3',
@@ -358,6 +393,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond3',
     internalName: 'ex03prototype3',
     imageURL: 'ex03prototype3.png',
+    tier: 'b',
   },
   {
     displayName: 'EX-16 Prototype 16',
@@ -368,6 +404,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond3',
     internalName: 'ex16prototype16',
     imageURL: 'ex16prototype16.png',
+    tier: 'b',
   },
   {
     displayName: 'FS-34 Exterminator',
@@ -378,6 +415,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'fs34exterminator',
     imageURL: 'fs34exterminator.png',
+    tier: 'b',
   },
   {
     displayName: 'I-92 Fire Fighter',
@@ -388,6 +426,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'i92firefighter',
     imageURL: 'i92firefighter.png',
+    tier: 'b',
   },
   {
     displayName: 'I-102 Draconaught',
@@ -398,6 +437,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond7',
     internalName: 'i102draconaught',
     imageURL: 'i102draconaught.png',
+    tier: 'b',
   },
   {
     displayName: 'PH-56 Jaguar',
@@ -408,6 +448,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'ph56jaguar',
     imageURL: 'ph56jaguar.png',
+    tier: 'b',
   },
   {
     displayName: 'SA-04 Combat Technician',
@@ -418,6 +459,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond1',
     internalName: 'sa04combattechnician',
     imageURL: 'sa04combattechnician.png',
+    tier: 'b',
   },
   {
     displayName: 'SA-12 Servo Assisted',
@@ -428,6 +470,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond2',
     internalName: 'sa12servoassisted',
     imageURL: 'sa12servoassisted.png',
+    tier: 'b',
   },
   {
     displayName: 'SA-25 Steel Trooper',
@@ -438,6 +481,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond2',
     internalName: 'sa25steeltrooper',
     imageURL: 'sa25steeltrooper.png',
+    tier: 'b',
   },
   {
     displayName: 'SA-15 Drone Master',
@@ -448,6 +492,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'sa15dronemaster',
     imageURL: 'sa15dronemaster.png',
+    tier: 'b',
   },
   {
     displayName: 'TR-7 Ambassador of the Brand',
@@ -458,6 +503,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond12',
     internalName: 'tr7ambassadorofthebrand',
     imageURL: 'tr7ambassadorofthebrand.png',
+    tier: 'b',
   },
   {
     displayName: 'TR-9 Cavalier of Democracy',
@@ -468,6 +514,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond12',
     internalName: 'tr9cavalierofdemocracy',
     imageURL: 'tr9cavalierofdemocracy.png',
+    tier: 'b',
   },
   {
     displayName: 'TR-40 Golden Eagle',
@@ -478,6 +525,7 @@ const ARMOR_SETS = [
     warbondCode: 'none',
     internalName: 'tr40goldeneagle',
     imageURL: 'tr40goldeneagle.png',
+    tier: 'b',
   },
   {
     displayName: 'TR-117 Alpha Commander',
@@ -488,6 +536,7 @@ const ARMOR_SETS = [
     warbondCode: 'twitchdrop',
     internalName: 'tr117alphacommander',
     imageURL: 'tr117alphacommander.png',
+    tier: 'b',
   },
   {
     displayName: 'UF-50 Bloodhound',
@@ -498,6 +547,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond9',
     internalName: 'uf50bloodhound',
     imageURL: 'uf50bloodhound.png',
+    tier: 'b',
   },
   {
     displayName: 'UF-84 Doubt Killer',
@@ -508,6 +558,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'uf84doubtkiller',
     imageURL: 'uf84doubtkiller.png',
+    tier: 'b',
   },
   {
     displayName: 'AF-52 Lockdown',
@@ -518,6 +569,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'af52lockdown',
     imageURL: 'af52lockdown.png',
+    tier: 'b',
   },
   {
     displayName: 'B-27 Fortified Commando',
@@ -528,6 +580,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'b27fortifiedcommando',
     imageURL: 'b27fortifiedcommando.png',
+    tier: 'b',
   },
   {
     displayName: 'CE-64 Grenadier',
@@ -538,6 +591,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'ce64grenadier',
     imageURL: 'ce64grenadier.png',
+    tier: 'b',
   },
   {
     displayName: 'CE-101 Guerilla Gorilla',
@@ -548,6 +602,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'ce101guerillagorilla',
     imageURL: 'ce101guerillagorilla.png',
+    tier: 'b',
   },
   {
     displayName: 'CM-17 Butcher',
@@ -558,6 +613,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'cm17butcher',
     imageURL: 'cm17butcher.png',
+    tier: 'b',
   },
   {
     displayName: 'CW-22 Kodiak',
@@ -568,6 +624,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond5',
     internalName: 'cw22kodiak',
     imageURL: 'cw22kodiak.png',
+    tier: 'b',
   },
   {
     displayName: 'CW-36 Winter Warrior',
@@ -578,6 +635,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond5',
     internalName: 'cw36winterwarrior',
     imageURL: 'cw36winterwarrior.png',
+    tier: 'b',
   },
   {
     displayName: 'FS-05 Marksman',
@@ -588,6 +646,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond1',
     internalName: 'fs05marksman',
     imageURL: 'fs05marksman.png',
+    tier: 'b',
   },
   {
     displayName: 'FS-11 Executioner',
@@ -598,6 +657,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'fs11executioner',
     imageURL: 'fs11executioner.png',
+    tier: 'b',
   },
   {
     displayName: 'FS-23 Battle Master',
@@ -608,6 +668,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond1',
     internalName: 'fs23battlemaster',
     imageURL: 'fs23battlemaster.png',
+    tier: 'b',
   },
   {
     displayName: 'FS-55 Devastator',
@@ -618,6 +679,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond4',
     internalName: 'fs55devastator',
     imageURL: 'fs55devastator.png',
+    tier: 'b',
   },
   {
     displayName: 'FS-51 Dreadnought',
@@ -628,6 +690,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'fs51dreadnought',
     imageURL: 'fs51dreadnought.png',
+    tier: 'b',
   },
   {
     displayName: 'I-44 Salamander',
@@ -638,6 +701,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'i44salamander',
     imageURL: 'i44salamander.png',
+    tier: 'b',
   },
   {
     displayName: 'PH-202 Twigsnapper',
@@ -648,6 +712,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond6',
     internalName: 'ph202twigsnapper',
     imageURL: 'ph202twigsnapper.png',
+    tier: 'b',
   },
   {
     displayName: 'SA-32 Dynamo',
@@ -658,6 +723,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond2',
     internalName: 'sa32dynamo',
     imageURL: 'sa32dynamo.png',
+    tier: 'b',
   },
   {
     displayName: 'TR-62 Knight',
@@ -668,6 +734,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond12',
     internalName: 'tr62knight',
     imageURL: 'tr62knight.png',
+    tier: 'b',
   },
   {
     displayName: 'SR-64 Cinderblock',
@@ -678,6 +745,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'sr64cinderblock',
     imageURL: 'sr64cinderblock.png',
+    tier: 'b',
   },
   {
     displayName: 'B-22 Model Citizen',
@@ -688,6 +756,7 @@ const ARMOR_SETS = [
     warbondCode: 'none',
     internalName: 'b22modelcitizen',
     imageURL: 'b22modelcitizen.png',
+    tier: 'b',
   },
   {
     displayName: 'IE-3 Martyr',
@@ -698,6 +767,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond11',
     internalName: 'ie3martyr',
     imageURL: 'ie3martyr.png',
+    tier: 'b',
   },
   {
     displayName: 'IE-12 Righteous',
@@ -708,6 +778,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond11',
     internalName: 'ie12righteous',
     imageURL: 'ie12righteous.png',
+    tier: 'b',
   },
   {
     displayName: 'IE-57 Hell-Bent',
@@ -718,6 +789,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'ie57hellbent',
     imageURL: 'ie57hellbent.png',
+    tier: 'b',
   },
   {
     displayName: 'GS-17 Frontier Marshal',
@@ -728,6 +800,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond12',
     internalName: 'gs17frontiermarshal',
     imageURL: 'gs17frontiermarshal.png',
+    tier: 'b',
   },
   {
     displayName: 'GS-66 Lawmaker',
@@ -738,6 +811,7 @@ const ARMOR_SETS = [
     warbondCode: 'warbond12',
     internalName: 'gs66lawmaker',
     imageURL: 'gs66lawmaker.png',
+    tier: 'b',
   },
   {
     displayName: `GS-11 Democracy's Deputy`,
@@ -748,6 +822,7 @@ const ARMOR_SETS = [
     warbondCode: 'superstore',
     internalName: 'gs11democracysdeputy',
     imageURL: 'gs11democracysdeputy.png',
+    tier: 'b',
   },
 ];
 

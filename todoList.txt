@@ -1,4 +1,8 @@
-to do:
+to do General:
+- make the home page a screen to choose which challenge you want to do
+- give the Randomizer it's own URL: /randomizer
+
+to do Randomizer:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 - add tags for THROWABLES
@@ -9,7 +13,7 @@ to do:
 
 to do Penitent Crusade:
 - add a tier to each item 
-- weight each tier so that you're unlikely to rollw high-tier items and more likely to roll low-tier items
+- weight each tier so that you're unlikely to roll high-tier items and more likely to roll low-tier items
 - add local storage option
 - add rules, instructions, and flavor text
 - add modal for info and instructions that open ups when page is loaded

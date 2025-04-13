@@ -8,6 +8,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'advancedfiltration',
     imageURL: 'advancedfiltration.png',
+    tier: 'b',
   },
   {
     displayName: 'Acclimated',
@@ -18,6 +19,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'acclimated',
     imageURL: 'acclimated.png',
+    tier: 'b',
   },
   {
     displayName: 'Democracy Protects',
@@ -28,6 +30,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'democracyprotects',
     imageURL: 'democracyprotects.png',
+    tier: 'b',
   },
   {
     displayName: 'Electrical Conduit',
@@ -38,6 +41,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'electricalconduit',
     imageURL: 'electricalconduit.png',
+    tier: 'b',
   },
   {
     displayName: 'Engineering Kit',
@@ -48,6 +52,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'engineeringkit',
     imageURL: 'engineeringkit.png',
+    tier: 'b',
   },
   {
     displayName: 'Extra Padding',
@@ -58,6 +63,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'extrapadding',
     imageURL: 'extrapadding.png',
+    tier: 'b',
   },
   {
     displayName: 'Fortified',
@@ -68,6 +74,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'fortified',
     imageURL: 'fortified.png',
+    tier: 'b',
   },
   {
     displayName: 'Inflammable',
@@ -78,6 +85,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'inflammable',
     imageURL: 'inflammable.png',
+    tier: 'b',
   },
   {
     displayName: 'Med-Kit',
@@ -88,6 +96,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'medkit',
     imageURL: 'medkit.png',
+    tier: 'b',
   },
   {
     displayName: 'Peak Physique',
@@ -98,6 +107,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'peakphysique',
     imageURL: 'peakphysique.png',
+    tier: 'b',
   },
   {
     displayName: 'Scout',
@@ -108,6 +118,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'scout',
     imageURL: 'scout.png',
+    tier: 'b',
   },
   {
     displayName: 'Servo-Assisted',
@@ -118,6 +129,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'servoassisted',
     imageURL: 'servoassisted.png',
+    tier: 'b',
   },
   {
     displayName: 'Unflinching',
@@ -128,6 +140,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'unflinching',
     imageURL: 'unflinching.png',
+    tier: 'b',
   },
   {
     displayName: 'Siege Ready',
@@ -138,6 +151,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'siegeready',
     imageURL: 'siegeready.png',
+    tier: 'b',
   },
   {
     displayName: 'Integrated Explosives',
@@ -148,6 +162,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'integratedexplosives',
     imageURL: 'integratedexplosives.png',
+    tier: 'b',
   },
   {
     displayName: 'Gunslinger',
@@ -158,5 +173,6 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'gunslinger',
     imageURL: 'gunslinger.png',
+    tier: 'b',
   },
 ];

@@ -6,6 +6,12 @@ const stratagemAccordionBody = document.getElementById('StratagemsAccordionBody'
 const throwableAccordionBody = document.getElementById('ThrowablesAccordionBody');
 const armorPassiveAccordionBody = document.getElementById('ArmorsAccordionBody');
 const boosterAccordionBody = document.getElementById('BoostersAccordionBody');
+const maxStarsModalLabel = document.getElementById('maxStarsModalLabel');
+const missionCompleteModalLabel = document.getElementById('missionCompleteModalLabel');
+const rewardModalHeaderItemName = document.getElementById('rewardModalHeaderItemName');
+const tierBadgeHeader = document.getElementById('tierBadgeHeader');
+
+let rerollSTierItem = true;
 
 let OGstratsList = [...STRATAGEMS];
 let OGprimsList = [...PRIMARIES];
@@ -65,7 +71,23 @@ const defaultArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
 
 const newBoosts = OGboostsList;
 
+const getRandomItem = (list) => {
+  const item = list[Math.floor(Math.random() * list.length)];
+  // reroll s tier items one time
+  if (item.tier === 's' && rerollSTierItem) {
+    rerollSTierItem = false;
+    return getRandomItem(list);
+  }
+  rerollSTierItem = true;
+  return item;
+};
+
 const generateItemCard = (item, inModal, imgDir) => {
+  // set the modal header to the item name and tier
+  rewardModalHeaderItemName.innerHTML = item.displayName;
+  tierBadgeHeader.innerHTML = item.tier;
+
+  // display the item image in the modal or accordion item
   let modalStyle = '';
   let modalTextStyle = 'pcItemCardText';
   if (inModal) {
@@ -95,51 +117,54 @@ const removeItemFromList = (list, item) => {
 // logic for rolling mission complete rewards
 const rollPCMC = (type) => {
   if (type === '0') {
-    const randomItem = newStrats[Math.floor(Math.random() * newStrats.length)];
+    // const randomItem = newStrats[Math.floor(Math.random() * newStrats.length)];
+    const randomItem = getRandomItem(newStrats);
     stratagemAccordionBody.innerHTML += generateItemCard(randomItem, false, 'svgs');
     missionCompleteModalBody.innerHTML = generateItemCard(randomItem, true, 'svgs');
     removeItemFromList(newStrats, randomItem);
   }
   if (type === '1') {
-    const randomItem = newPrims[Math.floor(Math.random() * newPrims.length)];
+    const randomItem = getRandomItem(newPrims);
     primaryAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment');
     missionCompleteModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment');
     removeItemFromList(newPrims, randomItem);
   }
   if (type === '2') {
-    const randomItem = newBoosts[Math.floor(Math.random() * newBoosts.length)];
+    const randomItem = getRandomItem(newBoosts);
     boosterAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment');
     missionCompleteModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment');
     removeItemFromList(newBoosts, randomItem);
   }
 };
 
-const clearRewardModal = () => {
-  missionCompleteModalBody.innerHTML = '';
-  maxStarsModalBody.innerHTML = '';
-  genRewardModalBodies();
-};
-
 // logic for rolling max stars rewards
 const rollPCMS = (type) => {
   if (type === '0') {
-    const randomItem = newSecondaries[Math.floor(Math.random() * newSecondaries.length)];
+    const randomItem = getRandomItem(newSecondaries);
     secondaryAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment');
     maxStarsModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment');
     removeItemFromList(newSecondaries, randomItem);
   }
   if (type === '1') {
-    const randomItem = newThrows[Math.floor(Math.random() * newThrows.length)];
+    const randomItem = getRandomItem(newThrows);
     throwableAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment');
     maxStarsModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment');
     removeItemFromList(newThrows, randomItem);
   }
   if (type === '2') {
-    const randomItem = newArmorPassives[Math.floor(Math.random() * newArmorPassives.length)];
+    const randomItem = getRandomItem(newArmorPassives);
     armorPassiveAccordionBody.innerHTML += generateItemCard(randomItem, false, 'armor');
     maxStarsModalBody.innerHTML = generateItemCard(randomItem, true, 'armor');
     removeItemFromList(newArmorPassives, randomItem);
   }
+};
+
+const clearRewardModal = () => {
+  missionCompleteModalBody.innerHTML = '';
+  maxStarsModalBody.innerHTML = '';
+  rewardModalHeaderItemName.innerHTML = 'Choose One...';
+  tierBadgeHeader.innerHTML = '';
+  genRewardModalBodies();
 };
 
 const addDefaultItemsToAccordions = () => {

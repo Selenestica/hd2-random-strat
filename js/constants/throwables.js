@@ -19,7 +19,7 @@ const THROWABLES = [
     warbondCode: 'warbond8',
     internalName: 'g4gasgrenade',
     imageURL: 'g4gasgrenade.png',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'K-2 Throwing Knife',
@@ -30,7 +30,7 @@ const THROWABLES = [
     warbondCode: 'warbond6',
     internalName: 'k2throwingknife',
     imageURL: 'k2throwingknife.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'G-6 Frag',
@@ -52,7 +52,7 @@ const THROWABLES = [
     warbondCode: 'warbond1',
     internalName: 'g16impactgrenade',
     imageURL: 'g16impactgrenade.png',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'G-3 Smoke',
@@ -63,7 +63,7 @@ const THROWABLES = [
     warbondCode: 'warbond1',
     internalName: 'g3smokegrenade',
     imageURL: 'g3smokegrenade.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'G-10 Incendiary',
@@ -85,7 +85,7 @@ const THROWABLES = [
     warbondCode: 'warbond3',
     internalName: 'g23stungrenade',
     imageURL: 'g23stungrenade.png',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'G-123 Thermite',
@@ -96,7 +96,7 @@ const THROWABLES = [
     warbondCode: 'warbond4',
     internalName: 'g123thermitegrenade',
     imageURL: 'g123thermitegrenade.png',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'G-13 Incendiary Impact',

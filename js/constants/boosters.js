@@ -8,7 +8,7 @@ const BOOSTERS = [
     warbondCode: 'warbond4',
     internalName: 'expertextractionpilot',
     imageURL: 'expertextractionpilot.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Dead Sprint',
@@ -41,7 +41,7 @@ const BOOSTERS = [
     warbondCode: 'warbond6',
     internalName: 'experimentalinfusion',
     imageURL: 'experimentalinfusion.png',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Motivational Shocks',
@@ -63,7 +63,7 @@ const BOOSTERS = [
     warbondCode: 'warbond2',
     internalName: 'flexiblereinforcementbudget',
     imageURL: 'flexiblereinforcementbudget.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Hellpod Space Optimization',
@@ -74,7 +74,7 @@ const BOOSTERS = [
     warbondCode: 'warbond1',
     internalName: 'hellpodspaceoptimization',
     imageURL: 'hellpodspaceoptimization.png',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Increased Reinforcement Budget',
@@ -107,7 +107,7 @@ const BOOSTERS = [
     warbondCode: 'warbond1',
     internalName: 'muscleenhancement',
     imageURL: 'muscleenhancement.png',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Stamina Enhancement',
@@ -118,7 +118,7 @@ const BOOSTERS = [
     warbondCode: 'warbond1',
     internalName: 'staminaenhancement',
     imageURL: 'staminaenhancement.png',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'UAV Recon',
@@ -140,7 +140,7 @@ const BOOSTERS = [
     warbondCode: 'warbond1',
     internalName: 'vitalityenhancement',
     imageURL: 'vitalityenhancement.png',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Firebomb Hellpods',
@@ -151,7 +151,7 @@ const BOOSTERS = [
     warbondCode: 'warbond7',
     internalName: 'firebombhellpods',
     imageURL: 'firebombhellpods.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Sample Extricator',
@@ -162,6 +162,11 @@ const BOOSTERS = [
     warbondCode: 'warbond12',
     internalName: 'sampleextricator',
     imageURL: 'sampleextricator.png',
-    tier: 'b',
+    tier: 'c',
   },
 ];
+
+// s: 4
+// a: 1
+// b: 6
+// c: 4

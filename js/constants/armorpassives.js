@@ -8,7 +8,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'advancedfiltration',
     imageURL: 'advancedfiltration.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Acclimated',
@@ -30,7 +30,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'democracyprotects',
     imageURL: 'democracyprotects.png',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Electrical Conduit',
@@ -41,7 +41,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'electricalconduit',
     imageURL: 'electricalconduit.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Engineering Kit',
@@ -52,7 +52,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'engineeringkit',
     imageURL: 'engineeringkit.png',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Extra Padding',
@@ -74,7 +74,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'fortified',
     imageURL: 'fortified.png',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Inflammable',
@@ -96,7 +96,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'medkit',
     imageURL: 'medkit.png',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Peak Physique',
@@ -107,7 +107,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'peakphysique',
     imageURL: 'peakphysique.png',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Scout',
@@ -140,7 +140,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'unflinching',
     imageURL: 'unflinching.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Siege Ready',
@@ -151,7 +151,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'siegeready',
     imageURL: 'siegeready.png',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Integrated Explosives',
@@ -162,7 +162,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'integratedexplosives',
     imageURL: 'integratedexplosives.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Gunslinger',
@@ -176,3 +176,8 @@ const ARMOR_PASSIVES = [
     tier: 'b',
   },
 ];
+
+// s: 3
+// a: 3
+// b: 6
+// c: 4

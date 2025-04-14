@@ -19,7 +19,7 @@ const STRATAGEMS = [
     warbondCode: 'warbond10',
     internalName: 'sh51directionalshield',
     imageURL: 'sh51directionalshield.svg',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Flame Sentry',
@@ -30,7 +30,7 @@ const STRATAGEMS = [
     warbondCode: 'warbond10',
     internalName: 'aflam40flamesentry',
     imageURL: 'aflam40flamesentry.svg',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Anti-Tank Emplacement',
@@ -41,7 +41,7 @@ const STRATAGEMS = [
     warbondCode: 'warbond10',
     internalName: 'eat12antitankemplacement',
     imageURL: 'eat12antitankemplacement.svg',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Sterilizer',
@@ -52,7 +52,7 @@ const STRATAGEMS = [
     warbondCode: 'warbond8',
     internalName: 'tx41sterilizer',
     imageURL: 'tx41sterilizer.svg',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: ' Guard Dog Breath',
@@ -63,7 +63,7 @@ const STRATAGEMS = [
     warbondCode: 'warbond8',
     internalName: 'axtx13guarddogdogbreath',
     imageURL: 'axtx13guarddogdogbreath.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Autocannon',
@@ -74,7 +74,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'ac8autocannon',
     imageURL: 'ac8autocannon.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Expendable Anti-Tank',
@@ -85,7 +85,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'eat17expendableantitank',
     imageURL: 'eat17expendableantitank.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Flamethrower',
@@ -129,7 +129,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'mg43machinegun',
     imageURL: 'mg43machinegun.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Arc Thrower',
@@ -162,7 +162,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'apw1antimaterielrifle',
     imageURL: 'apw1antimaterielrifle.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Railgun',
@@ -195,7 +195,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'gr8recoillessrifle',
     imageURL: 'gr8recoillessrifle.svg',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Spear',
@@ -217,7 +217,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'las99quasarcannon',
     imageURL: 'las99quasarcannon.svg',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Heavy Machine Gun',
@@ -250,7 +250,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'ad334guarddog',
     imageURL: 'ad334guarddog.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Jump Pack',
@@ -261,7 +261,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'lift850jumppack',
     imageURL: 'lift850jumppack.svg',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Hover Pack',
@@ -283,7 +283,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'b1supplypack',
     imageURL: 'b1supplypack.svg',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Shield Generator Pack',
@@ -294,7 +294,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'sh20shieldgeneratorpack',
     imageURL: 'sh20shieldgeneratorpack.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Ballistic Shield Backpack',
@@ -305,7 +305,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'sh20ballisticshieldbackpack',
     imageURL: 'sh20ballisticshieldbackpack.svg',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Fast Recon Vehicle',
@@ -316,7 +316,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'fastreconvehicle',
     imageURL: 'fastreconvehicle.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Patriot Exosuit',
@@ -327,7 +327,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'exo45patriotexosuit',
     imageURL: 'exo45patriotexosuit.svg',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Emancipator Exosuit',
@@ -338,7 +338,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'exo49emancipatorexosuit',
     imageURL: 'exo49emancipatorexosuit.svg',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Eagle Strafing Run',
@@ -349,7 +349,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'eaglestrafingrun',
     imageURL: 'eaglestrafingrun.svg',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Eagle Airstrike',
@@ -360,7 +360,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'eagleairstrike',
     imageURL: 'eagleairstrike.svg',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Eagle Cluster Bomb',
@@ -393,7 +393,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'eaglesmokestrike',
     imageURL: 'eaglesmokestrike.svg',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Eagle 110mm Rocket Pods',
@@ -415,7 +415,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'eagle500kgbomb',
     imageURL: 'eagle500kgbomb.svg',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Orbital Precision Strike',
@@ -437,7 +437,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'orbitalnapalmbarrage',
     imageURL: 'orbitalnapalmbarrage.svg',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Orbital Airburst Strike',
@@ -459,7 +459,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'orbital120mmhebarrage',
     imageURL: 'orbital120mmhebarrage.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Orbital 380mm HE Barrage',
@@ -470,7 +470,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'orbital380mmhebarrage',
     imageURL: 'orbital380mmhebarrage.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Orbital Walking Barrage',
@@ -481,7 +481,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'orbitalwalkingbarrage',
     imageURL: 'orbitalwalkingbarrage.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Orbital Laser',
@@ -492,7 +492,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'orbitallaser',
     imageURL: 'orbitallaser.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Orbital Railcannon Strike',
@@ -525,7 +525,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'orbitalgasstrike',
     imageURL: 'orbitalgasstrike.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Orbital EMS Strike',
@@ -536,7 +536,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'orbitalemsstrike',
     imageURL: 'orbitalemsstrike.svg',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Orbital Smoke Strike',
@@ -547,7 +547,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'orbitalsmokestrike',
     imageURL: 'orbitalsmokestrike.svg',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Tesla Tower',
@@ -580,7 +580,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'emsmortarsentry',
     imageURL: 'emsmortarsentry.svg',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Machine Gun Sentry',
@@ -591,7 +591,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'machinegunsentry',
     imageURL: 'machinegunsentry.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Gatling Sentry',
@@ -602,7 +602,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'gatlingsentry',
     imageURL: 'gatlingsentry.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Anti-Personnel Minefield',
@@ -624,7 +624,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'gasmines',
     imageURL: 'gasmines.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Incendiary Mines',
@@ -646,7 +646,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'shieldgeneratorrelay',
     imageURL: 'shieldgeneratorrelay.svg',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'HMG Emplacement',
@@ -657,7 +657,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'hmgemplacement',
     imageURL: 'hmgemplacement.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Grenadier Embattlement',
@@ -690,7 +690,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'rocketsentry',
     imageURL: 'rocketsentry.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Commando',
@@ -701,7 +701,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'mls4xcommandorocketlauncher',
     imageURL: 'mls4xcommandorocketlauncher.svg',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Anti-Tank Mines',
@@ -723,6 +723,6 @@ const STRATAGEMS = [
     warbondCode: 'warbond11',
     internalName: 'portablehellbomb',
     imageURL: 'portablehellbomb.svg',
-    tier: 'b',
+    tier: 'a',
   },
 ];

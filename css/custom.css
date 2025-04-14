@@ -153,3 +153,7 @@ body {
 .shuffle-icon {
   transform: rotateY(180deg);
 }
+
+.rewardModalHeaders {
+  display: block !important;
+}

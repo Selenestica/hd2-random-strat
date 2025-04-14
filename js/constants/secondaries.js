@@ -8,7 +8,7 @@ const SECONDARIES = [
     warbondCode: 'none',
     internalName: 'p2peacemaker',
     imageURL: 'p2peacemaker.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Combat Hatchet',
@@ -19,7 +19,7 @@ const SECONDARIES = [
     warbondCode: 'warbond11',
     internalName: 'cqc5combathatchet',
     imageURL: 'cqc5combathatchet.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Stun Lance',
@@ -30,7 +30,7 @@ const SECONDARIES = [
     warbondCode: 'warbond10',
     internalName: 'cqc19stunlance',
     imageURL: 'cqc19stunlance.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Stun Baton',
@@ -41,7 +41,7 @@ const SECONDARIES = [
     warbondCode: 'warbond11',
     internalName: 'cqc30stunbaton',
     imageURL: 'cqc30stunbaton.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Stim Pistol',
@@ -63,7 +63,7 @@ const SECONDARIES = [
     warbondCode: 'warbond9',
     internalName: 'plas15loyalist',
     imageURL: 'plas15loyalist.png',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Bushwhacker',
@@ -96,7 +96,7 @@ const SECONDARIES = [
     warbondCode: 'warbond4',
     internalName: 'gp31grenadepistol',
     imageURL: 'gp31grenadepistol.png',
-    tier: 'b',
+    tier: 's',
   },
   {
     displayName: 'Verdict',
@@ -107,7 +107,7 @@ const SECONDARIES = [
     warbondCode: 'warbond5',
     internalName: 'p113verdict',
     imageURL: 'p113verdict.png',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Senator',
@@ -118,7 +118,7 @@ const SECONDARIES = [
     warbondCode: 'warbond2',
     internalName: 'p4senator',
     imageURL: 'p4senator.png',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Dagger',
@@ -129,7 +129,7 @@ const SECONDARIES = [
     warbondCode: 'warbond3',
     internalName: 'las7dagger',
     imageURL: 'las7dagger.png',
-    tier: 'b',
+    tier: 'c',
   },
   {
     displayName: 'Talon',
@@ -140,7 +140,7 @@ const SECONDARIES = [
     warbondCode: 'warbond12',
     internalName: 'las58talon',
     imageURL: 'las58talon.png',
-    tier: 'b',
+    tier: 'a',
   },
   {
     displayName: 'Crisper',
@@ -162,6 +162,6 @@ const SECONDARIES = [
     warbondCode: 'warbond11',
     internalName: 'gp31ultimatum',
     imageURL: 'gp31ultimatum.png',
-    tier: 'b',
+    tier: 's',
   },
 ];

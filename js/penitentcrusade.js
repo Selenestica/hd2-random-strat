@@ -14,8 +14,16 @@ const rewardMissionModalHeaderItemName = document.getElementById(
   'rewardMissionModalHeaderItemName',
 );
 const tierBadgeHeaderMission = document.getElementById('tierBadgeHeaderMission');
+const buttonStratagem = document.getElementById('buttonStratagem');
+const buttonPrimary = document.getElementById('buttonPrimary');
+const buttonBooster = document.getElementById('buttonBooster');
+const buttonSecondary = document.getElementById('buttonSecondary');
+const buttonThrowable = document.getElementById('buttonThrowable');
+const buttonArmor = document.getElementById('buttonArmor');
+const flavorAndInstructionsModal = document.getElementById('flavorAndInstructionsModal');
 
 let rerollSTierItem = true;
+let numOfRerolls = 3;
 
 let OGstratsList = [...STRATAGEMS];
 let OGprimsList = [...PRIMARIES];
@@ -78,9 +86,10 @@ const newBoosts = OGboostsList;
 const getRandomItem = (list) => {
   const item = list[Math.floor(Math.random() * list.length)];
   // reroll s tier items one time
-  if (item.tier === 's' && rerollSTierItem) {
+  if (item.tier === 's' && rerollSTierItem && numOfRerolls > 0) {
     console.log('rerolling s tier item');
     rerollSTierItem = false;
+    numOfRerolls--;
     return getRandomItem(list);
   }
   rerollSTierItem = true;
@@ -118,11 +127,20 @@ const generateItemCard = (item, inModal, imgDir, type) => {
     </div>`;
 };
 
-const removeItemFromList = (list, item) => {
+// this isnt working and i have no idea why
+const checkIfListIsEmpty = (list, button) => {
+  console.log(list, button);
+  if (list.length === 0) {
+    button.classList.add('disabled');
+  }
+};
+
+const removeItemFromList = (list, item, button) => {
   const index = list.indexOf(item);
   if (index > -1) {
     list.splice(index, 1);
   }
+  checkIfListIsEmpty(list, button);
 };
 
 // logic for rolling mission complete rewards
@@ -132,19 +150,19 @@ const rollPCMC = (type) => {
     const randomItem = getRandomItem(newStrats);
     stratagemAccordionBody.innerHTML += generateItemCard(randomItem, false, 'svgs', 0);
     missionCompleteModalBody.innerHTML = generateItemCard(randomItem, true, 'svgs', 0);
-    removeItemFromList(newStrats, randomItem);
+    removeItemFromList(newStrats, randomItem, buttonStratagem);
   }
   if (type === '1') {
     const randomItem = getRandomItem(newPrims);
     primaryAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment', 0);
     missionCompleteModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment', 0);
-    removeItemFromList(newPrims, randomItem);
+    removeItemFromList(newPrims, randomItem, buttonPrimary);
   }
   if (type === '2') {
     const randomItem = getRandomItem(newBoosts);
     boosterAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment', 0);
     missionCompleteModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment', 0);
-    removeItemFromList(newBoosts, randomItem);
+    removeItemFromList(newBoosts, randomItem, buttonBooster);
   }
 };
 
@@ -154,19 +172,19 @@ const rollPCMS = (type) => {
     const randomItem = getRandomItem(newSecondaries);
     secondaryAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment', 1);
     maxStarsModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment', 1);
-    removeItemFromList(newSecondaries, randomItem);
+    removeItemFromList(newSecondaries, randomItem, buttonSecondary);
   }
   if (type === '1') {
     const randomItem = getRandomItem(newThrows);
     throwableAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment', 1);
     maxStarsModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment', 1);
-    removeItemFromList(newThrows, randomItem);
+    removeItemFromList(newThrows, randomItem, buttonThrowable);
   }
   if (type === '2') {
     const randomItem = getRandomItem(newArmorPassives);
     armorPassiveAccordionBody.innerHTML += generateItemCard(randomItem, false, 'armor', 1);
     maxStarsModalBody.innerHTML = generateItemCard(randomItem, true, 'armor', 1);
-    removeItemFromList(newArmorPassives, randomItem);
+    removeItemFromList(newArmorPassives, randomItem, buttonArmor);
   }
 };
 

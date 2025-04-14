@@ -49,7 +49,7 @@
             data-bs-target="#flavorAndInstructionsModal"
             type="button"
           >
-            alpha
+            <i class="fa-solid fa-circle-info"></i>
           </button>
         </div>
       </div>
@@ -155,6 +155,7 @@
       class="modal fade"
       id="flavorAndInstructionsModal"
       tabindex="-1"
+      open="true"
       aria-labelledby="flavorAndInstructionsModalLabel"
       aria-hidden="true"
     >
@@ -163,8 +164,39 @@
           <div class="modal-header">
             <h5 class="modal-title text-light" id="">A Chance for Redemption...</h5>
           </div>
-          <div class="modal-body d-flex justify-content-center">
-            <p class="text-white"></p>
+          <div class="modal-body row d-flex justify-content-center">
+            <h6 class="text-white">Background</h6>
+            <p class="text-white">
+              Your Helldivers faction failed to defend Moradesh, and High Command has ordered you
+              and your compatriots to undergo a Penitent Crusade in order to atone for your
+              faction's failure.
+            </p>
+            <h6 class="text-white">The Penitent Crusade</h6>
+            <p class="text-white">
+              Your squad will begin the crusade with a Medium (Level 3) difficulty operation, with
+              Super Earth's outdated and surplus equipment. After each successful operation, your
+              squad will begin a new operation at the next highest difficulty level. Your squad's
+              goal is to complete an operation at the highest difficulty level, Super Helldive
+              (Level 10). Only then will your Helldivers faction be redeemed.
+            </p>
+            <h6 class="text-white">Earning Rewards</h6>
+            <p class="text-white">
+              After each successful mission, each squad member will be rewarded with one of the
+              following items: a Primary weapon, a Stratagem, or a Booster. Press the "Mission
+              Complete" button, then choose your reward type. Furthermore, if your squad earns the
+              maximum amount of stars on the mission, each squad member may choose between a random
+              secondary, throwable, or armor passive. For this, press the "Max Stars" button, and
+              choose your reward type.
+            </p>
+            <h6 class="text-white">Using Your Equipment</h6>
+            <p class="text-white">
+              The equipment you see in the background is what you currently have unlocked, and
+              you're free to use. Any items you earn through mission rewards will appear there as
+              well. While you're in-mission, you may not use any stratagems that are available for
+              free (e.g. experimental weapons testing, etc.), unless it is a mission-specific
+              stratagem (e.g. Hellbomb, SSSD, SEAF Artillery, etc.). However, you're free to pick up
+              any weapons found in your environment.
+            </p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -189,6 +221,6 @@
   <script src="../js/constants/armorsizes.js"></script>
   <script src="../js/constants/armorpassives.js"></script>
   <script src="../js/components/genAcquiredItemsAccordions.js"></script>
-  <script src="../js/penitentcrusade.js"></script>
   <script src="../js/components/genRewardModalBodies.js"></script>
+  <script src="../js/penitentcrusade.js"></script>
 </html>

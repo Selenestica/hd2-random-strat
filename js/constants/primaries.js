@@ -272,7 +272,7 @@ const PRIMARIES = [
     warbondCode: 'warbond1',
     internalName: 'las5scythe',
     imageURL: 'las5scythe.png',
-    tier: 'c',
+    tier: 'b',
   },
   {
     displayName: 'Sickle',
@@ -294,7 +294,7 @@ const PRIMARIES = [
     warbondCode: 'warbond1',
     internalName: 'plas1scorcher',
     imageURL: 'plas1scorcher.png',
-    tier: 'a',
+    tier: 's',
   },
   {
     displayName: 'Punisher Plasma',

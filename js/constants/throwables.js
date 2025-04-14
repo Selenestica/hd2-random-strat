@@ -2,7 +2,7 @@ const THROWABLES = [
   {
     displayName: 'G-12 High Explosive',
     type: 'Equipment',
-    category: 'grenade',
+    category: 'throwable',
     tags: [],
     warbond: 'None',
     warbondCode: 'none',
@@ -13,7 +13,7 @@ const THROWABLES = [
   {
     displayName: 'G-4 Gas',
     type: 'Equipment',
-    category: 'grenade',
+    category: 'throwable',
     tags: [],
     warbond: 'Chemical Agents',
     warbondCode: 'warbond8',
@@ -24,7 +24,7 @@ const THROWABLES = [
   {
     displayName: 'K-2 Throwing Knife',
     type: 'Equipment',
-    category: 'knife',
+    category: 'throwable',
     tags: [],
     warbond: 'Viper Commandos',
     warbondCode: 'warbond6',
@@ -35,7 +35,7 @@ const THROWABLES = [
   {
     displayName: 'G-6 Frag',
     type: 'Equipment',
-    category: 'grenade',
+    category: 'throwable',
     tags: [],
     warbond: 'Helldivers Mobilize',
     warbondCode: 'warbond1',
@@ -46,7 +46,7 @@ const THROWABLES = [
   {
     displayName: 'G-16 Impact',
     type: 'Equipment',
-    category: 'grenade',
+    category: 'throwable',
     tags: [],
     warbond: 'Helldivers Mobilize',
     warbondCode: 'warbond1',
@@ -57,7 +57,7 @@ const THROWABLES = [
   {
     displayName: 'G-3 Smoke',
     type: 'Equipment',
-    category: 'grenade',
+    category: 'throwable',
     tags: [],
     warbond: 'Helldivers Mobilize',
     warbondCode: 'warbond1',
@@ -68,7 +68,7 @@ const THROWABLES = [
   {
     displayName: 'G-10 Incendiary',
     type: 'Equipment',
-    category: 'grenade',
+    category: 'throwable',
     tags: [],
     warbond: 'Steeled Veterans',
     warbondCode: 'warbond2',
@@ -79,7 +79,7 @@ const THROWABLES = [
   {
     displayName: 'G-23 Stun',
     type: 'Equipment',
-    category: 'grenade',
+    category: 'throwable',
     tags: [],
     warbond: 'Cutting Edge',
     warbondCode: 'warbond3',
@@ -90,7 +90,7 @@ const THROWABLES = [
   {
     displayName: 'G-123 Thermite',
     type: 'Equipment',
-    category: 'grenade',
+    category: 'throwable',
     tags: [],
     warbond: 'Democratic Detonation',
     warbondCode: 'warbond4',
@@ -101,7 +101,7 @@ const THROWABLES = [
   {
     displayName: 'G-13 Incendiary Impact',
     type: 'Equipment',
-    category: 'grenade',
+    category: 'throwable',
     tags: [],
     warbond: 'Polar Patriots',
     warbondCode: 'warbond5',
@@ -112,7 +112,7 @@ const THROWABLES = [
   {
     displayName: 'G-50 Seeker',
     type: 'Equipment',
-    category: 'grenade',
+    category: 'throwable',
     tags: [],
     warbond: 'Servants of Freedom',
     warbondCode: 'warbond11',
@@ -123,7 +123,7 @@ const THROWABLES = [
   {
     displayName: 'TED-63 Throwable Dynamite',
     type: 'Equipment',
-    category: 'grenade',
+    category: 'throwable',
     tags: [],
     warbond: 'Borderline Justice',
     warbondCode: 'warbond12',

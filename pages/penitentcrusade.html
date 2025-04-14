@@ -116,13 +116,14 @@
     </div>
 
     <!-- MAX STARS MODAL -->
-
     <div
       class="modal fade"
       id="maxStarsModal"
       tabindex="-1"
       aria-labelledby="maxStarsModalLabel"
       aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
     >
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
@@ -139,6 +140,29 @@
             >
               Close
             </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLAVOR AND INSTRUCTIONS MODAL -->
+    <div
+      class="modal fade"
+      id="flavorAndInstructionsModal"
+      tabindex="-1"
+      aria-labelledby="flavorAndInstructionsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="">A Chance for Redemption...</h5>
+          </div>
+          <div class="modal-body d-flex justify-content-center">
+            <p class="text-white"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

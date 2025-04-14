@@ -60,7 +60,8 @@
               class="btn btn-success"
               type="button"
               data-bs-toggle="modal"
-              data-bs-target="#missionCompleteModal"
+              data-bs-target="#rewardModal"
+              onclick="genRewardModalBody('a')"
             >
               <span> Mission Complete </span>
             </button>
@@ -73,7 +74,8 @@
               class="btn btn-success"
               type="button"
               data-bs-toggle="modal"
-              data-bs-target="#maxStarsModal"
+              data-bs-target="#rewardModal"
+              onclick="genRewardModalBody('b')"
             >
               <span id="stratText"> Max Stars </span>
             </button>
@@ -83,13 +85,13 @@
       </div>
     </div>
 
-    <!-- MISSION COMPLETE MODAL -->
+    <!-- REWARD MODAL -->
 
     <div
       class="modal fade"
-      id="missionCompleteModal"
+      id="rewardModal"
       tabindex="-1"
-      aria-labelledby="missionCompleteModalLabel"
+      aria-labelledby="rewardModalLabel"
       aria-hidden="true"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
@@ -97,45 +99,10 @@
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="rewardMissionModalHeaderItemName">
-              Choose one...
-            </h5>
-            <h5 class="tierBadge" id="tierBadgeHeaderMission"></h5>
+            <h5 class="modal-title text-light" id="rewardModalHeaderItemName">Choose one...</h5>
+            <h5 class="tierBadge" id="tierBadgeHeader"></h5>
           </div>
-          <div class="modal-body d-flex justify-content-center" id="missionCompleteModalBody"></div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              onclick="clearRewardModal()"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MAX STARS MODAL -->
-    <div
-      class="modal fade"
-      id="maxStarsModal"
-      tabindex="-1"
-      aria-labelledby="maxStarsModalLabel"
-      aria-hidden="true"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-    >
-      <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content bg-grey">
-          <div class="modal-header">
-            <h5 class="modal-title text-light" id="rewardStarsModalHeaderItemName">
-              Choose one...
-            </h5>
-            <h5 class="tierBadge" id="tierBadgeHeaderStars"></h5>
-          </div>
-          <div class="modal-body d-flex justify-content-center" id="maxStarsModalBody"></div>
+          <div class="modal-body d-flex justify-content-center" id="rewardModalBody"></div>
           <div class="modal-footer">
             <button
               type="button"
@@ -221,6 +188,5 @@
   <script src="../js/constants/armorsizes.js"></script>
   <script src="../js/constants/armorpassives.js"></script>
   <script src="../js/components/genAcquiredItemsAccordions.js"></script>
-  <script src="../js/components/genRewardModalBodies.js"></script>
   <script src="../js/penitentcrusade.js"></script>
 </html>

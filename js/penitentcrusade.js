@@ -6,14 +6,6 @@ const stratagemAccordionBody = document.getElementById('StratagemsAccordionBody'
 const throwableAccordionBody = document.getElementById('ThrowablesAccordionBody');
 const armorPassiveAccordionBody = document.getElementById('ArmorsAccordionBody');
 const boosterAccordionBody = document.getElementById('BoostersAccordionBody');
-const maxStarsModalLabel = document.getElementById('maxStarsModalLabel');
-const missionCompleteModalLabel = document.getElementById('missionCompleteModalLabel');
-const rewardStarsModalHeaderItemName = document.getElementById('rewardStarsModalHeaderItemName');
-const tierBadgeHeaderStars = document.getElementById('tierBadgeHeaderStars');
-const rewardMissionModalHeaderItemName = document.getElementById(
-  'rewardMissionModalHeaderItemName',
-);
-const tierBadgeHeaderMission = document.getElementById('tierBadgeHeaderMission');
 const buttonStratagem = document.getElementById('buttonStratagem');
 const buttonPrimary = document.getElementById('buttonPrimary');
 const buttonBooster = document.getElementById('buttonBooster');
@@ -21,6 +13,10 @@ const buttonSecondary = document.getElementById('buttonSecondary');
 const buttonThrowable = document.getElementById('buttonThrowable');
 const buttonArmor = document.getElementById('buttonArmor');
 const flavorAndInstructionsModal = document.getElementById('flavorAndInstructionsModal');
+const rewardModalBody = document.getElementById('rewardModalBody');
+const rewardModalLabel = document.getElementById('rewardModalLabel');
+const rewardModalHeaderItemName = document.getElementById('rewardModalHeaderItemName');
+const tierBadgeHeader = document.getElementById('tierBadgeHeader');
 
 let rerollSTierItem = true;
 let numOfRerolls = 3;
@@ -87,7 +83,6 @@ const getRandomItem = (list) => {
   const item = list[Math.floor(Math.random() * list.length)];
   // reroll s tier items one time
   if (item.tier === 's' && rerollSTierItem && numOfRerolls > 0) {
-    console.log('rerolling s tier item');
     rerollSTierItem = false;
     numOfRerolls--;
     return getRandomItem(list);
@@ -96,16 +91,10 @@ const getRandomItem = (list) => {
   return item;
 };
 
-const generateItemCard = (item, inModal, imgDir, type) => {
+const generateItemCard = (item, inModal, imgDir) => {
   // set the modal header to the item name and tier
-  if (type === 0) {
-    rewardMissionModalHeaderItemName.innerHTML = item.displayName;
-    tierBadgeHeaderMission.innerHTML = item.tier;
-  }
-  if (type === 1) {
-    rewardStarsModalHeaderItemName.innerHTML = item.displayName;
-    tierBadgeHeaderStars.innerHTML = item.tier;
-  }
+  rewardModalHeaderItemName.innerHTML = item.displayName;
+  tierBadgeHeader.innerHTML = item.tier;
 
   // display the item image in the modal or accordion item
   let modalStyle = '';
@@ -129,7 +118,6 @@ const generateItemCard = (item, inModal, imgDir, type) => {
 
 // this isnt working and i have no idea why
 const checkIfListIsEmpty = (list, button) => {
-  console.log(list, button);
   if (list.length === 0) {
     button.classList.add('disabled');
   }
@@ -144,58 +132,82 @@ const removeItemFromList = (list, item, button) => {
 };
 
 // logic for rolling mission complete rewards
-const rollPCMC = (type) => {
-  if (type === '0') {
-    // const randomItem = newStrats[Math.floor(Math.random() * newStrats.length)];
-    const randomItem = getRandomItem(newStrats);
-    stratagemAccordionBody.innerHTML += generateItemCard(randomItem, false, 'svgs', 0);
-    missionCompleteModalBody.innerHTML = generateItemCard(randomItem, true, 'svgs', 0);
-    removeItemFromList(newStrats, randomItem, buttonStratagem);
+const rollPCReward = (rewardType, modalType) => {
+  let button;
+  let list;
+  let accBody;
+  let imgURL;
+  if (modalType === 'a') {
+    if (rewardType === '0') {
+      button = buttonStratagem;
+      list = newStrats;
+      accBody = stratagemAccordionBody;
+      imgURL = 'svgs';
+    }
+    if (rewardType === '1') {
+      button = buttonPrimary;
+      list = newPrims;
+      accBody = primaryAccordionBody;
+      imgURL = 'equipment';
+    }
+    if (rewardType === '2') {
+      button = buttonBooster;
+      list = newBoosts;
+      accBody = boosterAccordionBody;
+      imgURL = 'equipment';
+    }
   }
-  if (type === '1') {
-    const randomItem = getRandomItem(newPrims);
-    primaryAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment', 0);
-    missionCompleteModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment', 0);
-    removeItemFromList(newPrims, randomItem, buttonPrimary);
+  if (modalType === 'b') {
+    if (rewardType === '0') {
+      button = buttonSecondary;
+      list = newSecondaries;
+      accBody = secondaryAccordionBody;
+      imgURL = 'equipment';
+    }
+    if (rewardType === '1') {
+      button = buttonThrowable;
+      list = newThrows;
+      accBody = throwableAccordionBody;
+      imgURL = 'equipment';
+    }
+    if (rewardType === '2') {
+      button = buttonArmor;
+      list = newArmorPassives;
+      accBody = armorPassiveAccordionBody;
+      imgURL = 'armor';
+    }
   }
-  if (type === '2') {
-    const randomItem = getRandomItem(newBoosts);
-    boosterAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment', 0);
-    missionCompleteModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment', 0);
-    removeItemFromList(newBoosts, randomItem, buttonBooster);
-  }
+  const randomItem = getRandomItem(list);
+  accBody.innerHTML += generateItemCard(randomItem, false, imgURL);
+  rewardModalBody.innerHTML = generateItemCard(randomItem, true, imgURL);
+  removeItemFromList(list, randomItem, button);
 };
 
-// logic for rolling max stars rewards
-const rollPCMS = (type) => {
-  if (type === '0') {
-    const randomItem = getRandomItem(newSecondaries);
-    secondaryAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment', 1);
-    maxStarsModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment', 1);
-    removeItemFromList(newSecondaries, randomItem, buttonSecondary);
+const genRewardModalBody = (modalType) => {
+  let rewardOptions = [];
+  if (modalType === 'a') {
+    rewardOptions = ['Stratagem', 'Primary', 'Booster'];
   }
-  if (type === '1') {
-    const randomItem = getRandomItem(newThrows);
-    throwableAccordionBody.innerHTML += generateItemCard(randomItem, false, 'equipment', 1);
-    maxStarsModalBody.innerHTML = generateItemCard(randomItem, true, 'equipment', 1);
-    removeItemFromList(newThrows, randomItem, buttonThrowable);
+  if (modalType === 'b') {
+    rewardOptions = ['Secondary', 'Throwable', 'Armor'];
   }
-  if (type === '2') {
-    const randomItem = getRandomItem(newArmorPassives);
-    armorPassiveAccordionBody.innerHTML += generateItemCard(randomItem, false, 'armor', 1);
-    maxStarsModalBody.innerHTML = generateItemCard(randomItem, true, 'armor', 1);
-    removeItemFromList(newArmorPassives, randomItem, buttonArmor);
+
+  for (let i = 0; i < rewardOptions.length; i++) {
+    rewardModalBody.innerHTML += `
+      <div class="justify-content-center">
+        <button class="btn btn-primary m-1" onclick="rollPCReward('${i}', '${modalType}')" id="button${rewardOptions[i]}" type="button">
+          ${rewardOptions[i]}
+        </button>
+      </div>
+    `;
   }
 };
 
 const clearRewardModal = () => {
-  missionCompleteModalBody.innerHTML = '';
-  maxStarsModalBody.innerHTML = '';
-  rewardStarsModalHeaderItemName.innerHTML = 'Choose One...';
-  tierBadgeHeaderStars.innerHTML = '';
-  rewardMissionModalHeaderItemName.innerHTML = 'Choose One...';
-  tierBadgeHeaderMission.innerHTML = '';
-  genRewardModalBodies();
+  rewardModalBody.innerHTML = '';
+  tierBadgeHeader.innerHTML = '';
+  rewardModalHeaderItemName.innerHTML = 'Choose One...';
+  genRewardModalBody();
 };
 
 const addDefaultItemsToAccordions = () => {
@@ -218,10 +230,8 @@ const addDefaultItemsToAccordions = () => {
       'armor',
     );
   }
-  rewardStarsModalHeaderItemName.innerHTML = 'Choose One...';
-  tierBadgeHeaderStars.innerHTML = '';
-  rewardMissionModalHeaderItemName.innerHTML = 'Choose One...';
-  tierBadgeHeaderMission.innerHTML = '';
+  rewardModalHeaderItemName.innerHTML = 'Choose One...';
+  tierBadgeHeader.innerHTML = '';
 };
 
 addDefaultItemsToAccordions();

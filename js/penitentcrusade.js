@@ -234,6 +234,7 @@ const removeItemFromList = (list, item) => {
 };
 
 const clearRewardModal = () => {
+  currentItems = [];
   rewardModalBody.innerHTML = '';
 };
 

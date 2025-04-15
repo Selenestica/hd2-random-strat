@@ -12,8 +12,8 @@ to do Randomizer:
   - then rearrange indices to accommodate
 
 to do Penitent Crusade:
-- add local storage option
 - add modal for info and instructions that open ups when page is loaded
+- catch for when a list of items is empty
 
 feature ideas:
 - save options in local storage

@@ -27,7 +27,7 @@ body {
 }
 
 .bg-grey {
-  background-color: grey;
+  background-color: rgb(71, 71, 71);
 }
 
 .accordion-collapse {
@@ -61,8 +61,7 @@ body {
 
 .itemCards {
   background-color: rgb(71, 71, 71);
-  width: 100%;
-  /* cursor: pointer; */
+  width: 50%;
 }
 
 .pcItemCards {
@@ -70,7 +69,8 @@ body {
 }
 
 .pcModalItemCards {
-  width: 50%;
+  width: 25%;
+  cursor: pointer;
 }
 
 .pcItemCardText {
@@ -78,6 +78,10 @@ body {
 }
 
 .itemCards:hover {
+  border: 1px solid yellow;
+}
+
+.pcItemCards:hover {
   border: 1px solid yellow;
 }
 
@@ -156,4 +160,12 @@ body {
 
 .rewardModalHeaders {
   display: block !important;
+}
+
+.acquiredItemsAccordionItem {
+  height: 250px;
+  overflow-y: overlay;
+  overflow-x: hidden;
+  scrollbar-color: #fff rgb(71, 71, 71);
+  background-color: rgb(71, 71, 71);
 }

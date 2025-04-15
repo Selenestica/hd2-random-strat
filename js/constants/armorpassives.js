@@ -18,7 +18,7 @@ const ARMOR_PASSIVES = [
     warbond: '',
     warbondCode: '',
     internalName: 'acclimated',
-    imageURL: 'acclimated.png',
+    imageURL: 'inflammable.png',
     tier: 'b',
   },
   {

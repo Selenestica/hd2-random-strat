@@ -11,10 +11,12 @@ const rewardModalBody = document.getElementById('rewardModalBody');
 const rewardModalLabel = document.getElementById('rewardModalLabel');
 const rewardModalHeaderItemName = document.getElementById('rewardModalHeaderItemName');
 const rewardModal = document.getElementById('rewardModal');
+const missionCompleteButton = document.getElementById('missionCompleteButton');
 
 let rerollHighTierItem = true;
 let numOfRerolls = 15;
 let currentItems = [];
+let numOfRolls = 0;
 
 let OGstratsList = [...STRATAGEMS];
 let OGprimsList = [...PRIMARIES];
@@ -79,6 +81,8 @@ const startNewRun = () => {
   rerollHighTierItem = true;
   numOfRerolls = 15;
   currentItems = [];
+  numOfRolls = 0;
+  missionCompleteButton.disabled = false;
   // open the modal to show the rules
   document.addEventListener('DOMContentLoaded', () => {
     const modal = new bootstrap.Modal(flavorAndInstructionsModal);
@@ -97,6 +101,10 @@ const claimItem = (currentItemIndex, listIndex) => {
   clearRewardModal();
   currentItems = [];
   saveProgress(item, listIndex);
+  if (numOfRolls >= 23) {
+    missionCompleteButton.disabled = true;
+  }
+  numOfRolls++;
 };
 
 const getItemCardParams = (index) => {
@@ -264,6 +272,7 @@ const clearSaveData = () => {
 };
 
 const saveProgress = (item, listIndex) => {
+  console.log(numOfRolls);
   let obj = {};
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (!penitentCrusadeSaveData) {
@@ -277,6 +286,7 @@ const saveProgress = (item, listIndex) => {
       newArmorPassives,
       newBoosts,
       seesRulesOnOpen: false,
+      numOfRolls,
     };
     localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
     return;
@@ -295,6 +305,7 @@ const saveProgress = (item, listIndex) => {
     newArmorPassives,
     newBoosts,
     seesRulesOnOpen: false,
+    numOfRolls,
   };
   localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
 };
@@ -311,10 +322,16 @@ const uploadSaveData = () => {
     newArmorPassives = data.newArmorPassives;
     newBoosts = data.newBoosts;
     seesRulesOnOpen = data.seesRulesOnOpen;
+    numOfRolls = data.numOfRolls;
     for (let i = 0; i < data.acquiredItems.length; i++) {
       const { item, listIndex } = data.acquiredItems[i];
       const { imgDir, accBody } = getItemCardParams(listIndex);
       accBody.innerHTML += generateItemCard(item, false, imgDir);
+    }
+    console.log('save data found', numOfRolls);
+    if (numOfRolls >= 3) {
+      console.log('mission complete');
+      missionCompleteButton.disabled = true;
     }
     return;
   }

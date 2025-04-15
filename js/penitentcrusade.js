@@ -328,9 +328,7 @@ const uploadSaveData = () => {
       const { imgDir, accBody } = getItemCardParams(listIndex);
       accBody.innerHTML += generateItemCard(item, false, imgDir);
     }
-    console.log('save data found', numOfRolls);
-    if (numOfRolls >= 3) {
-      console.log('mission complete');
+    if (numOfRolls >= 23) {
       missionCompleteButton.disabled = true;
     }
     return;

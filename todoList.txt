@@ -14,6 +14,8 @@ to do Randomizer:
 to do Penitent Crusade:
 - add local storage option
 - add modal for info and instructions that open ups when page is loaded
+- potential rebalancing ideas
+  - after each mission, three out of the six item types will be rolled. You can see what they are, and you can choose one.
 
 feature ideas:
 - save options in local storage

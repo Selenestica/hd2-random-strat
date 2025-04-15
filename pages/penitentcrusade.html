@@ -35,7 +35,7 @@
           </a>
         </div>
       </div>
-      <div class="row d-flex justify-content-center mt-4">
+      <div class="row d-flex justify-content-center mt-2">
         <div class="d-flex col justify-content-center">
           <h1 class="text-light">Helldivers 2</h1>
         </div>
@@ -53,33 +53,27 @@
           </button>
         </div>
       </div>
-      <div class="row d-flex justify-content-center mt-5">
-        <div class="col-6 justify-content-center">
+      <div class="row mt-2">
+        <div class="col-12 d-flex justify-content-center">
           <div class="btn-group my-2">
             <button
               class="btn btn-success"
               type="button"
               data-bs-toggle="modal"
               data-bs-target="#rewardModal"
-              onclick="genRewardModalBody('a')"
+              onclick="rollRewardOptions()"
             >
               <span> Mission Complete </span>
             </button>
           </div>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="col-6 justify-content-center">
           <div class="accordion" id="acquiredMainItemsAccordion"></div>
         </div>
         <div class="col-6 justify-content-center">
-          <div class="btn-group my-2">
-            <button
-              class="btn btn-success"
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#rewardModal"
-              onclick="genRewardModalBody('b')"
-            >
-              <span id="stratText"> Max Stars </span>
-            </button>
-          </div>
           <div class="accordion" id="acquiredStarItemsAccordion"></div>
         </div>
       </div>
@@ -96,13 +90,13 @@
       data-bs-backdrop="static"
       data-bs-keyboard="false"
     >
-      <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
             <h5 class="modal-title text-light" id="rewardModalHeaderItemName">Choose one...</h5>
             <h5 class="tierBadge" id="tierBadgeHeader"></h5>
           </div>
-          <div class="modal-body d-flex justify-content-center" id="rewardModalBody"></div>
+          <div class="modal-body d-flex row justify-content-center" id="rewardModalBody"></div>
           <div class="modal-footer">
             <button
               type="button"

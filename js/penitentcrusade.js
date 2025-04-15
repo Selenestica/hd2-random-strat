@@ -6,20 +6,14 @@ const stratagemAccordionBody = document.getElementById('StratagemsAccordionBody'
 const throwableAccordionBody = document.getElementById('ThrowablesAccordionBody');
 const armorPassiveAccordionBody = document.getElementById('ArmorsAccordionBody');
 const boosterAccordionBody = document.getElementById('BoostersAccordionBody');
-const buttonStratagem = document.getElementById('buttonStratagem');
-const buttonPrimary = document.getElementById('buttonPrimary');
-const buttonBooster = document.getElementById('buttonBooster');
-const buttonSecondary = document.getElementById('buttonSecondary');
-const buttonThrowable = document.getElementById('buttonThrowable');
-const buttonArmor = document.getElementById('buttonArmor');
 const flavorAndInstructionsModal = document.getElementById('flavorAndInstructionsModal');
 const rewardModalBody = document.getElementById('rewardModalBody');
 const rewardModalLabel = document.getElementById('rewardModalLabel');
 const rewardModalHeaderItemName = document.getElementById('rewardModalHeaderItemName');
-const tierBadgeHeader = document.getElementById('tierBadgeHeader');
+const rewardModal = document.getElementById('rewardModal');
 
 let rerollSTierItem = true;
-let numOfRerolls = 3;
+let numOfRerolls = 10;
 
 let OGstratsList = [...STRATAGEMS];
 let OGprimsList = [...PRIMARIES];
@@ -27,6 +21,12 @@ let OGsecondsList = [...SECONDARIES];
 let OGthrowsList = [...THROWABLES];
 let OGboostsList = [...BOOSTERS];
 let OGarmorPassivesList = [...ARMOR_PASSIVES];
+let newStrats = [];
+let newPrims = [];
+let newSeconds = [];
+let newThrows = [];
+let newArmorPassives = [];
+let newBoosts = [];
 
 const starterStratNames = [
   'Orbital EMS Strike',
@@ -42,42 +42,110 @@ const starterArmorPassiveNames = ['Extra Padding'];
 
 // remove starter items from the lists
 // create default item lists for later use
-const newStrats = OGstratsList.filter((strat) => {
+newStrats = OGstratsList.filter((strat) => {
   return !starterStratNames.includes(strat.displayName);
 });
 const defaultStrats = OGstratsList.filter((strat) => {
   return starterStratNames.includes(strat.displayName);
 });
 
-const newPrims = OGprimsList.filter((prim) => {
+newPrims = OGprimsList.filter((prim) => {
   return !starterPrimNames.includes(prim.displayName);
 });
 const defaultPrims = OGprimsList.filter((prim) => {
   return starterPrimNames.includes(prim.displayName);
 });
 
-const newSecondaries = OGsecondsList.filter((sec) => {
+newSecondaries = OGsecondsList.filter((sec) => {
   return !starterSecNames.includes(sec.displayName);
 });
 const defaultSeconds = OGsecondsList.filter((sec) => {
   return starterSecNames.includes(sec.displayName);
 });
 
-const newThrows = OGthrowsList.filter((throwable) => {
+newThrows = OGthrowsList.filter((throwable) => {
   return !starterThrowNames.includes(throwable.displayName);
 });
 const defaultThrows = OGthrowsList.filter((throwable) => {
   return starterThrowNames.includes(throwable.displayName);
 });
 
-const newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
+newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
   return !starterArmorPassiveNames.includes(armorPassive.displayName);
 });
 const defaultArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
   return starterArmorPassiveNames.includes(armorPassive.displayName);
 });
 
-const newBoosts = OGboostsList;
+newBoosts = OGboostsList;
+
+let currentItems = [];
+
+const claimItem = (currentItemIndex, listIndex) => {
+  const item = currentItems[currentItemIndex];
+  const { imgDir, list, accBody } = getItemCardParams(listIndex);
+  accBody.innerHTML += generateItemCard(item, false, imgDir);
+  removeItemFromList(list, item);
+  const modal = bootstrap.Modal.getInstance(rewardModal);
+  modal.hide();
+  clearRewardModal();
+  currentItems = [];
+  saveProgress(item, listIndex);
+};
+
+const getItemCardParams = (index) => {
+  let imgDir;
+  let list;
+  let accBody;
+  if (index === 0) {
+    imgDir = 'svgs';
+    list = newStrats;
+    accBody = stratagemAccordionBody;
+  }
+  if (index === 1) {
+    imgDir = 'equipment';
+    list = newPrims;
+    accBody = primaryAccordionBody;
+  }
+  if (index === 2) {
+    imgDir = 'equipment';
+    list = newBoosts;
+    accBody = boosterAccordionBody;
+  }
+  if (index === 3) {
+    imgDir = 'equipment';
+    list = newSecondaries;
+    accBody = secondaryAccordionBody;
+  }
+  if (index === 4) {
+    imgDir = 'equipment';
+    list = newThrows;
+    accBody = throwableAccordionBody;
+  }
+  if (index === 5) {
+    imgDir = 'armor';
+    list = newArmorPassives;
+    accBody = armorPassiveAccordionBody;
+  }
+  return { imgDir, list, accBody };
+};
+
+const rollRewardOptions = () => {
+  const itemsLists = [newStrats, newPrims, newBoosts, newSecondaries, newThrows, newArmorPassives];
+  const numbers = new Set();
+  while (numbers.size < 3) {
+    const randomNumber = Math.floor(Math.random() * itemsLists.length);
+    numbers.add(randomNumber);
+  }
+  const numsList = Array.from(numbers);
+  for (let i = 0; i < numsList.length; i++) {
+    const vals = getItemCardParams(numsList[i]);
+    const list = itemsLists[numsList[i]];
+    const randomItem = getRandomItem(list);
+    currentItems.push(randomItem);
+    rewardModalBody.innerHTML += generateItemCard(randomItem, true, vals.imgDir, i, numsList[i]);
+  }
+};
 
 const getRandomItem = (list) => {
   const item = list[Math.floor(Math.random() * list.length)];
@@ -85,26 +153,25 @@ const getRandomItem = (list) => {
   if (item.tier === 's' && rerollSTierItem && numOfRerolls > 0) {
     rerollSTierItem = false;
     numOfRerolls--;
+    console.log(numOfRerolls);
     return getRandomItem(list);
   }
   rerollSTierItem = true;
   return item;
 };
 
-const generateItemCard = (item, inModal, imgDir) => {
-  // set the modal header to the item name and tier
-  rewardModalHeaderItemName.innerHTML = item.displayName;
-  tierBadgeHeader.innerHTML = item.tier;
-
+const generateItemCard = (item, inModal, imgDir, currentItemIndex = null, listIndex = null) => {
   // display the item image in the modal or accordion item
-  let modalStyle = '';
+  let style = 'col-2';
   let modalTextStyle = 'pcItemCardText';
+  let fcn = '';
   if (inModal) {
-    modalStyle = 'pcModalItemCards';
+    style = 'pcModalItemCards col-6';
     modalTextStyle = '';
+    fcn = `claimItem(${currentItemIndex}, ${listIndex})`;
   }
   return `
-    <div class="card d-flex col-2 ${modalStyle} pcItemCards">
+    <div onclick="${fcn}" class="card d-flex ${style} pcItemCards mx-1">
       <img
           src="../images/${imgDir}/${item.imageURL}"
           class="img-card-top"
@@ -116,98 +183,15 @@ const generateItemCard = (item, inModal, imgDir) => {
     </div>`;
 };
 
-// this isnt working and i have no idea why
-const checkIfListIsEmpty = (list, button) => {
-  if (list.length === 0) {
-    button.classList.add('disabled');
-  }
-};
-
-const removeItemFromList = (list, item, button) => {
+const removeItemFromList = (list, item) => {
   const index = list.indexOf(item);
   if (index > -1) {
     list.splice(index, 1);
-  }
-  checkIfListIsEmpty(list, button);
-};
-
-// logic for rolling mission complete rewards
-const rollPCReward = (rewardType, modalType) => {
-  let button;
-  let list;
-  let accBody;
-  let imgURL;
-  if (modalType === 'a') {
-    if (rewardType === '0') {
-      button = buttonStratagem;
-      list = newStrats;
-      accBody = stratagemAccordionBody;
-      imgURL = 'svgs';
-    }
-    if (rewardType === '1') {
-      button = buttonPrimary;
-      list = newPrims;
-      accBody = primaryAccordionBody;
-      imgURL = 'equipment';
-    }
-    if (rewardType === '2') {
-      button = buttonBooster;
-      list = newBoosts;
-      accBody = boosterAccordionBody;
-      imgURL = 'equipment';
-    }
-  }
-  if (modalType === 'b') {
-    if (rewardType === '0') {
-      button = buttonSecondary;
-      list = newSecondaries;
-      accBody = secondaryAccordionBody;
-      imgURL = 'equipment';
-    }
-    if (rewardType === '1') {
-      button = buttonThrowable;
-      list = newThrows;
-      accBody = throwableAccordionBody;
-      imgURL = 'equipment';
-    }
-    if (rewardType === '2') {
-      button = buttonArmor;
-      list = newArmorPassives;
-      accBody = armorPassiveAccordionBody;
-      imgURL = 'armor';
-    }
-  }
-  const randomItem = getRandomItem(list);
-  accBody.innerHTML += generateItemCard(randomItem, false, imgURL);
-  rewardModalBody.innerHTML = generateItemCard(randomItem, true, imgURL);
-  removeItemFromList(list, randomItem, button);
-};
-
-const genRewardModalBody = (modalType) => {
-  let rewardOptions = [];
-  if (modalType === 'a') {
-    rewardOptions = ['Stratagem', 'Primary', 'Booster'];
-  }
-  if (modalType === 'b') {
-    rewardOptions = ['Secondary', 'Throwable', 'Armor'];
-  }
-
-  for (let i = 0; i < rewardOptions.length; i++) {
-    rewardModalBody.innerHTML += `
-      <div class="justify-content-center">
-        <button class="btn btn-primary m-1" onclick="rollPCReward('${i}', '${modalType}')" id="button${rewardOptions[i]}" type="button">
-          ${rewardOptions[i]}
-        </button>
-      </div>
-    `;
   }
 };
 
 const clearRewardModal = () => {
   rewardModalBody.innerHTML = '';
-  tierBadgeHeader.innerHTML = '';
-  rewardModalHeaderItemName.innerHTML = 'Choose One...';
-  genRewardModalBody();
 };
 
 const addDefaultItemsToAccordions = () => {
@@ -230,8 +214,61 @@ const addDefaultItemsToAccordions = () => {
       'armor',
     );
   }
-  rewardModalHeaderItemName.innerHTML = 'Choose One...';
-  tierBadgeHeader.innerHTML = '';
+};
+
+const saveProgress = (item, listIndex) => {
+  let obj = {};
+  const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
+  if (!penitentCrusadeSaveData) {
+    obj = {
+      acquiredItems: [{ item, listIndex }],
+      numOfRerolls,
+      newStrats,
+      newPrims,
+      newSeconds,
+      newThrows,
+      newArmorPassives,
+      newBoosts,
+    };
+    localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
+    return;
+  }
+  const data = JSON.parse(penitentCrusadeSaveData);
+  const acquiredItems = data.acquiredItems;
+  const newItem = { item, listIndex };
+  acquiredItems.push(newItem);
+  obj = {
+    acquiredItems,
+    numOfRerolls,
+    newStrats,
+    newPrims,
+    newSeconds,
+    newThrows,
+    newArmorPassives,
+    newBoosts,
+  };
+  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
+};
+
+const uploadSaveData = () => {
+  const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
+  if (penitentCrusadeSaveData) {
+    const data = JSON.parse(penitentCrusadeSaveData);
+    numOfRerolls = data.numOfRerolls;
+    newStrats = data.newStrats;
+    newPrims = data.newPrims;
+    newSeconds = data.newSeconds;
+    newThrows = data.newThrows;
+    newArmorPassives = data.newArmorPassives;
+    newBoosts = data.newBoosts;
+    for (let i = 0; i < data.acquiredItems.length; i++) {
+      const { item, listIndex } = data.acquiredItems[i];
+      const { imgDir, accBody } = getItemCardParams(listIndex);
+      accBody.innerHTML += generateItemCard(item, false, imgDir);
+    }
+  }
 };
 
 addDefaultItemsToAccordions();
+
+uploadSaveData();

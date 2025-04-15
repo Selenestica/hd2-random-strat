@@ -79,6 +79,11 @@ const startNewRun = () => {
   rerollHighTierItem = true;
   numOfRerolls = 15;
   currentItems = [];
+  // open the modal to show the rules
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = new bootstrap.Modal(flavorAndInstructionsModal);
+    modal.show();
+  });
   clearRewardModal();
 };
 
@@ -271,6 +276,7 @@ const saveProgress = (item, listIndex) => {
       newThrows,
       newArmorPassives,
       newBoosts,
+      seesRulesOnOpen: false,
     };
     localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
     return;
@@ -288,6 +294,7 @@ const saveProgress = (item, listIndex) => {
     newThrows,
     newArmorPassives,
     newBoosts,
+    seesRulesOnOpen: false,
   };
   localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
 };
@@ -303,6 +310,7 @@ const uploadSaveData = () => {
     newThrows = data.newThrows;
     newArmorPassives = data.newArmorPassives;
     newBoosts = data.newBoosts;
+    seesRulesOnOpen = data.seesRulesOnOpen;
     for (let i = 0; i < data.acquiredItems.length; i++) {
       const { item, listIndex } = data.acquiredItems[i];
       const { imgDir, accBody } = getItemCardParams(listIndex);

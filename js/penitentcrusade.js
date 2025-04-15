@@ -12,8 +12,9 @@ const rewardModalLabel = document.getElementById('rewardModalLabel');
 const rewardModalHeaderItemName = document.getElementById('rewardModalHeaderItemName');
 const rewardModal = document.getElementById('rewardModal');
 
-let rerollSTierItem = true;
-let numOfRerolls = 10;
+let rerollHighTierItem = true;
+let numOfRerolls = 15;
+let currentItems = [];
 
 let OGstratsList = [...STRATAGEMS];
 let OGprimsList = [...PRIMARIES];
@@ -42,44 +43,44 @@ const starterArmorPassiveNames = ['Extra Padding'];
 
 // remove starter items from the lists
 // create default item lists for later use
-newStrats = OGstratsList.filter((strat) => {
-  return !starterStratNames.includes(strat.displayName);
-});
 const defaultStrats = OGstratsList.filter((strat) => {
   return starterStratNames.includes(strat.displayName);
-});
-
-newPrims = OGprimsList.filter((prim) => {
-  return !starterPrimNames.includes(prim.displayName);
 });
 const defaultPrims = OGprimsList.filter((prim) => {
   return starterPrimNames.includes(prim.displayName);
 });
-
-newSecondaries = OGsecondsList.filter((sec) => {
-  return !starterSecNames.includes(sec.displayName);
-});
 const defaultSeconds = OGsecondsList.filter((sec) => {
   return starterSecNames.includes(sec.displayName);
 });
-
-newThrows = OGthrowsList.filter((throwable) => {
-  return !starterThrowNames.includes(throwable.displayName);
-});
 const defaultThrows = OGthrowsList.filter((throwable) => {
   return starterThrowNames.includes(throwable.displayName);
-});
-
-newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
-  return !starterArmorPassiveNames.includes(armorPassive.displayName);
 });
 const defaultArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
   return starterArmorPassiveNames.includes(armorPassive.displayName);
 });
 
-newBoosts = OGboostsList;
-
-let currentItems = [];
+const startNewRun = () => {
+  newStrats = OGstratsList.filter((strat) => {
+    return !starterStratNames.includes(strat.displayName);
+  });
+  newPrims = OGprimsList.filter((prim) => {
+    return !starterPrimNames.includes(prim.displayName);
+  });
+  newSeconds = OGsecondsList.filter((sec) => {
+    return !starterSecNames.includes(sec.displayName);
+  });
+  newThrows = OGthrowsList.filter((throwable) => {
+    return !starterThrowNames.includes(throwable.displayName);
+  });
+  newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
+    return !starterArmorPassiveNames.includes(armorPassive.displayName);
+  });
+  newBoosts = OGboostsList;
+  rerollHighTierItem = true;
+  numOfRerolls = 15;
+  currentItems = [];
+  clearRewardModal();
+};
 
 const claimItem = (currentItemIndex, listIndex) => {
   const item = currentItems[currentItemIndex];
@@ -97,41 +98,54 @@ const getItemCardParams = (index) => {
   let imgDir;
   let list;
   let accBody;
+  let type;
   if (index === 0) {
     imgDir = 'svgs';
     list = newStrats;
     accBody = stratagemAccordionBody;
+    type = 'Stratagem';
   }
   if (index === 1) {
     imgDir = 'equipment';
     list = newPrims;
     accBody = primaryAccordionBody;
+    type = 'Primary';
   }
   if (index === 2) {
     imgDir = 'equipment';
     list = newBoosts;
     accBody = boosterAccordionBody;
+    type = 'Booster';
   }
   if (index === 3) {
     imgDir = 'equipment';
-    list = newSecondaries;
+    list = newSeconds;
     accBody = secondaryAccordionBody;
+    type = 'Secondary';
   }
   if (index === 4) {
     imgDir = 'equipment';
     list = newThrows;
     accBody = throwableAccordionBody;
+    type = 'Throwable';
   }
   if (index === 5) {
     imgDir = 'armor';
     list = newArmorPassives;
     accBody = armorPassiveAccordionBody;
+    type = 'Armor Passive';
   }
-  return { imgDir, list, accBody };
+  return { imgDir, list, accBody, type };
 };
 
+// if too many of one item is rolled and theres nothing left in the list, the image will be blank and the item may show up in the wrong accordion
 const rollRewardOptions = () => {
-  const itemsLists = [newStrats, newPrims, newBoosts, newSecondaries, newThrows, newArmorPassives];
+  let itemsLists = [newStrats, newPrims, newBoosts, newSeconds, newThrows, newArmorPassives];
+  itemsLists = itemsLists.filter((list) => list.length > 0);
+  if (itemsLists.length < 3) {
+    console.log('not enough items to show');
+    return;
+  }
   const numbers = new Set();
   while (numbers.size < 3) {
     const randomNumber = Math.floor(Math.random() * itemsLists.length);
@@ -143,35 +157,51 @@ const rollRewardOptions = () => {
     const list = itemsLists[numsList[i]];
     const randomItem = getRandomItem(list);
     currentItems.push(randomItem);
-    rewardModalBody.innerHTML += generateItemCard(randomItem, true, vals.imgDir, i, numsList[i]);
+    rewardModalBody.innerHTML += generateItemCard(
+      randomItem,
+      true,
+      vals.imgDir,
+      i,
+      numsList[i],
+      vals.type,
+    );
   }
 };
 
 const getRandomItem = (list) => {
   const item = list[Math.floor(Math.random() * list.length)];
   // reroll s tier items one time
-  if (item.tier === 's' && rerollSTierItem && numOfRerolls > 0) {
-    rerollSTierItem = false;
+  if ((item.tier === 's' || item.tier === 'a') && rerollHighTierItem && numOfRerolls > 0) {
+    rerollHighTierItem = false;
     numOfRerolls--;
-    console.log(numOfRerolls);
     return getRandomItem(list);
   }
-  rerollSTierItem = true;
+  rerollHighTierItem = true;
   return item;
 };
 
-const generateItemCard = (item, inModal, imgDir, currentItemIndex = null, listIndex = null) => {
+const generateItemCard = (
+  item,
+  inModal,
+  imgDir,
+  currentItemIndex = null,
+  listIndex = null,
+  type = null,
+) => {
   // display the item image in the modal or accordion item
   let style = 'col-2';
   let modalTextStyle = 'pcItemCardText';
   let fcn = '';
+  let typeText = '';
   if (inModal) {
     style = 'pcModalItemCards col-6';
     modalTextStyle = '';
     fcn = `claimItem(${currentItemIndex}, ${listIndex})`;
+    typeText = `<p class="card-title fst-italic text-white">${type}</p>`;
   }
   return `
     <div onclick="${fcn}" class="card d-flex ${style} pcItemCards mx-1">
+    ${typeText}
       <img
           src="../images/${imgDir}/${item.imageURL}"
           class="img-card-top"
@@ -214,6 +244,18 @@ const addDefaultItemsToAccordions = () => {
       'armor',
     );
   }
+};
+
+const clearSaveData = () => {
+  localStorage.removeItem('penitentCrusadeSaveData');
+  startNewRun();
+  stratagemAccordionBody.innerHTML = '';
+  primaryAccordionBody.innerHTML = '';
+  secondaryAccordionBody.innerHTML = '';
+  throwableAccordionBody.innerHTML = '';
+  armorPassiveAccordionBody.innerHTML = '';
+  boosterAccordionBody.innerHTML = '';
+  addDefaultItemsToAccordions();
 };
 
 const saveProgress = (item, listIndex) => {
@@ -266,7 +308,9 @@ const uploadSaveData = () => {
       const { imgDir, accBody } = getItemCardParams(listIndex);
       accBody.innerHTML += generateItemCard(item, false, imgDir);
     }
+    return;
   }
+  startNewRun();
 };
 
 addDefaultItemsToAccordions();

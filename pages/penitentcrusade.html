@@ -53,8 +53,9 @@
           </button>
         </div>
       </div>
-      <div class="row mt-2">
-        <div class="col-12 d-flex justify-content-center">
+      <div class="row mt-2 justify-content-center">
+        <div class="col-2"></div>
+        <div class="col-8 d-flex justify-content-center">
           <div class="btn-group my-2">
             <button
               class="btn btn-success"
@@ -66,6 +67,16 @@
               <span> Mission Complete </span>
             </button>
           </div>
+        </div>
+        <div class="col-2 justify-content-end d-flex align-items-center">
+          <button
+            class="btn btn-danger"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#restartModal"
+          >
+            <i class="fa-solid fa-rotate"></i>
+          </button>
         </div>
       </div>
 
@@ -142,25 +153,66 @@
             </p>
             <h6 class="text-white">Earning Rewards</h6>
             <p class="text-white">
-              After each successful mission, each squad member will be rewarded with one of the
-              following items: a Primary weapon, a Stratagem, or a Booster. Press the "Mission
-              Complete" button, then choose your reward type. Furthermore, if your squad earns the
-              maximum amount of stars on the mission, each squad member may choose between a random
-              secondary, throwable, or armor passive. For this, press the "Max Stars" button, and
-              choose your reward type.
+              In order to appease High Command, you must complete each mission with the maximum
+              amount of stars in order to earn a reward. After a mission is completed with maximum
+              stars, press the "Mission Complete" button. You may choose one of the three items
+              presented to you. NOTE: High-tier equipment and stratagems are more likely to appear
+              as you progress through your crusade.
             </p>
             <h6 class="text-white">Using Your Equipment</h6>
             <p class="text-white">
-              The equipment you see in the background is what you currently have unlocked, and
-              you're free to use. Any items you earn through mission rewards will appear there as
-              well. While you're in-mission, you may not use any stratagems that are available for
-              free (e.g. experimental weapons testing, etc.), unless it is a mission-specific
-              stratagem (e.g. Hellbomb, SSSD, SEAF Artillery, etc.). However, you're free to pick up
-              any weapons found in your environment.
+              The equipment you see in the background is what you currently have unlocked. Any items
+              you earn through mission rewards will appear there as well. While you're in-mission,
+              you may not use any stratagems that are available for free (e.g. experimental weapons
+              testing, arsenal augmentations, etc). Only the stratagems you have unlocked and
+              objective-specific stratagems (e.g. Hellbomb, SSSD, SEAF Artillery, SOS, etc.) may be
+              used . However, you're free to pick up and use any stratagems found in your
+              environment (such as those that can be looted at Points of Interest).
+            </p>
+            <h6 class="text-white">Saving Your Progess</h6>
+            <p class="text-white">
+              Your rewards are saved in your browser's local storage. If you clear your browser's
+              local storage, your progress will be lost. If you want to clear your progress, you may
+              do so by pressing the "Restart" button. This will clear your progress and restart the
+              game. You will be prompted to confirm this action.
             </p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESTART MODAL -->
+    <div
+      class="modal fade"
+      id="restartModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="restartModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="">Clear Save Data</h5>
+          </div>
+          <div class="modal-body row d-flex justify-content-center">
+            <p class="text-white">
+              This will clear your save data and restart the game. Are you sure you want to do this?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button
+              type="button"
+              onclick="clearSaveData()"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Delete Save Data and Restart
+            </button>
           </div>
         </div>
       </div>

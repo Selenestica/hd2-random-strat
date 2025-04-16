@@ -18,7 +18,6 @@ to do Penitent Crusade:
   - if multiple saves detected, show a modal on load that lets you choose save
   - can switch between saves any time with a modal
 - add specialists (see specialist ideas below)
-- when a mission is failed, press "Mission Failed" button. You choose to remove one of three randomly selected items, and start the operation over
 - rare reroll token that randomly shows up as a reward
 
 feature ideas:

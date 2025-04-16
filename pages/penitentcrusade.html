@@ -56,16 +56,26 @@
       <div class="row mt-2 justify-content-center">
         <div class="col-2"></div>
         <div class="col-8 d-flex justify-content-center">
-          <div class="btn-group my-2">
+          <div class="btn-group my-2 mx-2">
             <button
               class="btn btn-success"
               type="button"
               data-bs-toggle="modal"
-              data-bs-target="#rewardModal"
+              data-bs-target="#itemOptionsModal"
               onclick="rollRewardOptions()"
               id="missionCompleteButton"
             >
               <span> Mission Complete </span>
+            </button>
+          </div>
+          <div class="btn-group my-2">
+            <button
+              class="btn btn-danger"
+              type="button"
+              onclick="rollPunishmentOptions()"
+              id="missionFailedButton"
+            >
+              <span> Mission Failed </span>
             </button>
           </div>
         </div>
@@ -91,13 +101,13 @@
       </div>
     </div>
 
-    <!-- REWARD MODAL -->
+    <!-- ITEM OPTIONS MODAL -->
 
     <div
       class="modal fade"
-      id="rewardModal"
+      id="itemOptionsModal"
       tabindex="-1"
-      aria-labelledby="rewardModalLabel"
+      aria-labelledby="itemOptionsModalLabel"
       aria-hidden="true"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
@@ -105,15 +115,17 @@
       <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="rewardModalHeaderItemName">Choose one...</h5>
+            <h5 class="modal-title text-light" id="itemOptionsModalHeaderItemName">
+              Choose one...
+            </h5>
             <h5 class="tierBadge" id="tierBadgeHeader"></h5>
           </div>
-          <div class="modal-body d-flex row justify-content-center" id="rewardModalBody"></div>
+          <div class="modal-body d-flex row justify-content-center" id="itemOptionsModalBody"></div>
           <div class="modal-footer">
             <button
               type="button"
               class="btn btn-secondary"
-              onclick="clearRewardModal()"
+              onclick="clearItemOptionsModal()"
               data-bs-dismiss="modal"
             >
               Close
@@ -147,19 +159,21 @@
             <h6 class="text-white fw-bold my-2">The Penitent Crusade</h6>
             <p class="text-white">
               Your squad will begin the crusade with a Medium (Level 3) difficulty operation, with
-              Super Earth's outdated and surplus equipment. After each successful operation, your
-              squad will begin a new operation at the next highest difficulty level. Your squad's
-              goal is to complete an operation at the highest difficulty level, Super Helldive
-              (Level 10). Only then will your Helldivers faction be redeemed. You may start this
-              crusade on any front.
+              Super Earth's outdated and surplus equipment. After completing each mission in an
+              operation, your squad will begin a new operation at the next highest difficulty level.
+              Your squad's goal is to complete an operation at the highest difficulty level, Super
+              Helldive (Level 10). Only then will your Helldivers faction be redeemed. You may start
+              this crusade on any front.
             </p>
             <h6 class="text-white fw-bold my-2">Earning Rewards</h6>
             <p class="text-white">
               In order to appease High Command and be rewarded for your efforts, you must complete
               each mission with the maximum amount of stars. After a mission is completed with
               maximum stars, press the "Mission Complete" button. You may choose one of the three
-              items presented to you. NOTE: High-tier equipment and stratagems are more likely to
-              appear as you progress through your crusade.
+              items presented to you.
+              <br />
+              NOTE: High-tier equipment and stratagems are more likely to appear as you progress
+              through your crusade.
             </p>
             <h6 class="text-white fw-bold my-2">Using Your Equipment</h6>
             <p class="text-white">
@@ -171,6 +185,14 @@
               used. However, you're free to pick up and use any stratagems found in your environment
               (such as those that can be looted at Points of Interest).
             </p>
+            <h6 class="text-white fw-bold my-2">Failure</h6>
+            <p class="text-white">
+              If your squad fails a mission, you must start a new operation on the difficulty that
+              you failed to complete. Furthermore, you must choose an item to be removed from your
+              inventory. Press the "Mission Failed" button, then choose an item to be taken from
+              you.
+            </p>
+
             <h6 class="text-white fw-bold my-2">Saving Your Progress</h6>
             <p class="text-white">
               Your rewards are saved in your browser's local storage. If you clear your browser's

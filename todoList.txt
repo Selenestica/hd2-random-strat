@@ -12,8 +12,14 @@ to do Randomizer:
   - then rearrange indices to accommodate
 
 to do Penitent Crusade:
-- add modal for info and instructions that open ups when page is loaded
 - catch for when a list of items is empty
+- add nice icon for app icon shortcuts
+- add multiple saves feature
+  - if multiple saves detected, show a modal on load that lets you choose save
+  - can switch between saves any time with a modal
+- add specialists (see specialist ideas below)
+- when a mission is failed, press "Mission Failed" button. You choose to remove one of three randomly selected items, and start the operation over
+- rare reroll token that randomly shows up as a reward
 
 feature ideas:
 - save options in local storage

@@ -7,16 +7,15 @@ const throwableAccordionBody = document.getElementById('ThrowablesAccordionBody'
 const armorPassiveAccordionBody = document.getElementById('ArmorsAccordionBody');
 const boosterAccordionBody = document.getElementById('BoostersAccordionBody');
 const flavorAndInstructionsModal = document.getElementById('flavorAndInstructionsModal');
-const rewardModalBody = document.getElementById('rewardModalBody');
-const rewardModalLabel = document.getElementById('rewardModalLabel');
-const rewardModalHeaderItemName = document.getElementById('rewardModalHeaderItemName');
-const rewardModal = document.getElementById('rewardModal');
+const itemOptionsModalBody = document.getElementById('itemOptionsModalBody');
+const itemOptionsModalLabel = document.getElementById('itemOptionsModalLabel');
+const itemOptionsModalHeaderItemName = document.getElementById('itemOptionsModalHeaderItemName');
+const itemOptionsModal = document.getElementById('itemOptionsModal');
 const missionCompleteButton = document.getElementById('missionCompleteButton');
 
 let rerollHighTierItem = true;
 let numOfRerolls = 15;
 let currentItems = [];
-let numOfRolls = 0;
 
 let OGstratsList = [...STRATAGEMS];
 let OGprimsList = [...PRIMARIES];
@@ -81,14 +80,13 @@ const startNewRun = () => {
   rerollHighTierItem = true;
   numOfRerolls = 15;
   currentItems = [];
-  numOfRolls = 0;
   missionCompleteButton.disabled = false;
   // open the modal to show the rules
   document.addEventListener('DOMContentLoaded', () => {
     const modal = new bootstrap.Modal(flavorAndInstructionsModal);
     modal.show();
   });
-  clearRewardModal();
+  clearItemOptionsModal();
 };
 
 const claimItem = (currentItemIndex, listIndex) => {
@@ -96,15 +94,46 @@ const claimItem = (currentItemIndex, listIndex) => {
   const { imgDir, list, accBody } = getItemCardParams(listIndex);
   accBody.innerHTML += generateItemCard(item, false, imgDir);
   removeItemFromList(list, item);
-  const modal = bootstrap.Modal.getInstance(rewardModal);
+  const modal = bootstrap.Modal.getInstance(itemOptionsModal);
   modal.hide();
-  clearRewardModal();
+  clearItemOptionsModal();
   currentItems = [];
   saveProgress(item, listIndex);
-  if (numOfRolls >= 23) {
-    missionCompleteButton.disabled = true;
+};
+
+const claimPunishment = (currentItemIndex, listIndex) => {
+  const item = currentItems[currentItemIndex];
+
+  // remove item from local storage
+  const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
+  const data = JSON.parse(penitentCrusadeSaveData);
+  const acquiredItems = data.acquiredItems;
+  const newAcquiredItems = acquiredItems.filter((acquiredItem) => {
+    return acquiredItem.item.displayName !== item.displayName;
+  });
+  const newData = {
+    ...data,
+    acquiredItems: newAcquiredItems,
+  };
+  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newData));
+
+  // remove item from accordion
+  const { list, accBody } = getItemCardParams(listIndex);
+  for (let i = 0; i < accBody.children.length; i++) {
+    const card = accBody.children[i];
+    if (card.children[0].alt === item.displayName) {
+      accBody.removeChild(card);
+      break;
+    }
   }
-  numOfRolls++;
+
+  // add that item back into the pool of potential rewards
+  list.push(item);
+
+  const modal = bootstrap.Modal.getInstance(itemOptionsModal);
+  modal.hide();
+  clearItemOptionsModal();
+  currentItems = [];
 };
 
 const getItemCardParams = (index) => {
@@ -170,13 +199,46 @@ const rollRewardOptions = () => {
     const list = itemsLists[numsList[i]];
     const randomItem = getRandomItem(list);
     currentItems.push(randomItem);
-    rewardModalBody.innerHTML += generateItemCard(
+    itemOptionsModalBody.innerHTML += generateItemCard(
       randomItem,
       true,
       vals.imgDir,
       i,
       numsList[i],
       vals.type,
+    );
+  }
+};
+
+const rollPunishmentOptions = () => {
+  let maxPunishmentItems = 3;
+  const acquiredItems = JSON.parse(localStorage.getItem('penitentCrusadeSaveData')).acquiredItems;
+  if (acquiredItems.length <= 0) {
+    return;
+  }
+  const modal = new bootstrap.Modal(itemOptionsModal);
+  modal.show();
+  if (acquiredItems.length < maxPunishmentItems) {
+    maxPunishmentItems = acquiredItems.length;
+  }
+  const numbers = new Set();
+  while (numbers.size < maxPunishmentItems) {
+    const randomNumber = Math.floor(Math.random() * acquiredItems.length);
+    numbers.add(randomNumber);
+  }
+  const numsList = Array.from(numbers);
+  for (let i = 0; i < numsList.length; i++) {
+    const vals = getItemCardParams(acquiredItems[numsList[i]].listIndex);
+    const randomItem = acquiredItems[numsList[i]].item;
+    currentItems.push(randomItem);
+    itemOptionsModalBody.innerHTML += generateItemCard(
+      randomItem,
+      true,
+      vals.imgDir,
+      i,
+      acquiredItems[numsList[i]].listIndex,
+      vals.type,
+      true,
     );
   }
 };
@@ -200,6 +262,7 @@ const generateItemCard = (
   currentItemIndex = null,
   listIndex = null,
   type = null,
+  missionFailed = false,
 ) => {
   // display the item image in the modal or accordion item
   let style = 'col-2';
@@ -209,7 +272,9 @@ const generateItemCard = (
   if (inModal) {
     style = 'pcModalItemCards col-6';
     modalTextStyle = '';
-    fcn = `claimItem(${currentItemIndex}, ${listIndex})`;
+    fcn = !missionFailed
+      ? `claimItem(${currentItemIndex}, ${listIndex})`
+      : `claimPunishment(${currentItemIndex}, ${listIndex})`;
     typeText = `<p class="card-title fst-italic text-white">${type}</p>`;
   }
   return `
@@ -233,9 +298,9 @@ const removeItemFromList = (list, item) => {
   }
 };
 
-const clearRewardModal = () => {
+const clearItemOptionsModal = () => {
   currentItems = [];
-  rewardModalBody.innerHTML = '';
+  itemOptionsModalBody.innerHTML = '';
 };
 
 const addDefaultItemsToAccordions = () => {
@@ -273,7 +338,6 @@ const clearSaveData = () => {
 };
 
 const saveProgress = (item, listIndex) => {
-  console.log(numOfRolls);
   let obj = {};
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (!penitentCrusadeSaveData) {
@@ -287,7 +351,6 @@ const saveProgress = (item, listIndex) => {
       newArmorPassives,
       newBoosts,
       seesRulesOnOpen: false,
-      numOfRolls,
     };
     localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
     return;
@@ -306,7 +369,6 @@ const saveProgress = (item, listIndex) => {
     newArmorPassives,
     newBoosts,
     seesRulesOnOpen: false,
-    numOfRolls,
   };
   localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
 };
@@ -323,14 +385,10 @@ const uploadSaveData = () => {
     newArmorPassives = data.newArmorPassives;
     newBoosts = data.newBoosts;
     seesRulesOnOpen = data.seesRulesOnOpen;
-    numOfRolls = data.numOfRolls;
     for (let i = 0; i < data.acquiredItems.length; i++) {
       const { item, listIndex } = data.acquiredItems[i];
       const { imgDir, accBody } = getItemCardParams(listIndex);
       accBody.innerHTML += generateItemCard(item, false, imgDir);
-    }
-    if (numOfRolls >= 23) {
-      missionCompleteButton.disabled = true;
     }
     return;
   }

@@ -9,13 +9,14 @@ const genPCSaveDataManagementModalInfo = () => {
   const savedGames = saveData.savedGames;
 
   for (let i = 0; i < savedGames.length; i++) {
+    const save = savedGames[i];
+    const isChecked = save.currentGame ? 'checked' : '';
     saveDataManagementModalSavesList.innerHTML += `
-      <input type="radio" class="btn-check" name="btnradio" id="savedGameOption${i}" autocomplete="off" checked>
-      <label class="btn btn-outline-primary text-white" for="savedGameOption${i}">${savedGames[i].dataName}</label>
+      <input type="radio" class="btn-check" name="btnradio" id="savedGameOption${i}" autocomplete="off" ${isChecked}>
+      <label class="btn btn-outline-primary text-white" for="savedGameOption${i}">${save.dataName}</label>
     `;
   }
 
-  // display save files
   // let user change name of save file
   // let user choose a save file to populate the website with
   // let user remove save files

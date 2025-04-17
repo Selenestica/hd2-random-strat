@@ -88,36 +88,35 @@ const startNewRun = () => {
   clearItemOptionsModal();
 };
 
-const claimItem = (currentItemIndex, listIndex) => {
+const getCurrentGame = async () => {
+  const savedGames = JSON.parse(localStorage.getItem('penitentCrusadeSaveData')).savedGames;
+  const currentGame = await savedGames.filter((sg) => {
+    return sg.currentGame === true;
+  });
+  if (currentGame.length !== 1) {
+    console.log('SAVED GAME DATA CORRUPTED', savedGames);
+    return;
+  }
+  return currentGame[0];
+};
+
+const claimItem = (currentItemIndex) => {
   const item = currentItems[currentItemIndex];
-  const { imgDir, list, accBody } = getItemCardParams(listIndex);
+  const { imgDir, list, accBody } = getItemMetaData(item);
   accBody.innerHTML += generateItemCard(item, false, imgDir);
   removeItemFromList(list, item);
   const modal = bootstrap.Modal.getInstance(itemOptionsModal);
   modal.hide();
   clearItemOptionsModal();
   currentItems = [];
-  saveProgress(item, listIndex);
+  saveProgress(item);
 };
 
-const claimPunishment = (currentItemIndex, listIndex) => {
+const claimPunishment = async (currentItemIndex) => {
   const item = currentItems[currentItemIndex];
 
-  // remove item from local storage
-  const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
-  const data = JSON.parse(penitentCrusadeSaveData);
-  const acquiredItems = data.acquiredItems;
-  const newAcquiredItems = acquiredItems.filter((acquiredItem) => {
-    return acquiredItem.item.displayName !== item.displayName;
-  });
-  const newData = {
-    ...data,
-    acquiredItems: newAcquiredItems,
-  };
-  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newData));
-
   // remove item from accordion
-  const { list, accBody } = getItemCardParams(listIndex);
+  const { listKeyName, list, accBody } = getItemMetaData(item);
   for (let i = 0; i < accBody.children.length; i++) {
     const card = accBody.children[i];
     if (card.children[0].alt === item.displayName) {
@@ -129,54 +128,89 @@ const claimPunishment = (currentItemIndex, listIndex) => {
   // add that item back into the pool of potential rewards
   list.push(item);
 
+  // remove item from local storage
+  const currentGame = await getCurrentGame();
+  const acquiredItems = currentGame.acquiredItems;
+  const newAcquiredItems = acquiredItems.filter((acquiredItem) => {
+    return acquiredItem.item.displayName !== item.displayName;
+  });
+
+  // create updated game data
+  const newCurrentGameData = {
+    ...currentGame,
+    [listKeyName]: list,
+    acquiredItems: newAcquiredItems,
+  };
+
+  // set the updated data into local storage
+  let saveData = JSON.parse(localStorage.getItem('penitentCrusadeSaveData'));
+  const notCurrentGames = await saveData.savedGames.filter((game) => {
+    return game.currentGame !== true;
+  });
+  notCurrentGames.push(newCurrentGameData);
+  saveData = {
+    ...saveData,
+    savedGames: notCurrentGames,
+  };
+
+  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(saveData));
+
   const modal = bootstrap.Modal.getInstance(itemOptionsModal);
   modal.hide();
   clearItemOptionsModal();
   currentItems = [];
 };
 
-const getItemCardParams = (index) => {
+const getItemMetaData = (item) => {
+  const { category, type } = item;
   let imgDir;
   let list;
   let accBody;
-  let type;
-  if (index === 0) {
+  let typeText;
+  let listKeyName;
+  if (type === 'Stratagem') {
     imgDir = 'svgs';
     list = newStrats;
     accBody = stratagemAccordionBody;
-    type = 'Stratagem';
+    typeText = 'Stratagem';
+    listKeyName = 'newStrats';
   }
-  if (index === 1) {
+  if (category === 'primary') {
     imgDir = 'equipment';
     list = newPrims;
     accBody = primaryAccordionBody;
-    type = 'Primary';
+    typeText = 'Primary';
+    listKeyName = 'newPrims';
   }
-  if (index === 2) {
+  if (category === 'booster') {
     imgDir = 'equipment';
     list = newBoosts;
     accBody = boosterAccordionBody;
-    type = 'Booster';
+    typeText = 'Booster';
+    listKeyName = 'newBoosts';
   }
-  if (index === 3) {
+  if (category === 'secondary') {
     imgDir = 'equipment';
     list = newSeconds;
     accBody = secondaryAccordionBody;
-    type = 'Secondary';
+    typeText = 'Secondary';
+    listKeyName = 'newSeconds';
   }
-  if (index === 4) {
+  if (category === 'throwable') {
     imgDir = 'equipment';
     list = newThrows;
     accBody = throwableAccordionBody;
-    type = 'Throwable';
+    typeText = 'Throwable';
+    listKeyName = 'newThrows';
   }
-  if (index === 5) {
+  if (category === 'armor') {
     imgDir = 'armor';
     list = newArmorPassives;
     accBody = armorPassiveAccordionBody;
-    type = 'Armor Passive';
+    typeText = 'Armor Passive';
+    listKeyName = 'newArmorPassives';
   }
-  return { imgDir, list, accBody, type };
+  return { imgDir, list, accBody, typeText, listKeyName };
 };
 
 // if too many of one item is rolled and theres nothing left in the list, the image will be blank and the item may show up in the wrong accordion
@@ -184,7 +218,7 @@ const rollRewardOptions = () => {
   let itemsLists = [newStrats, newPrims, newBoosts, newSeconds, newThrows, newArmorPassives];
   itemsLists = itemsLists.filter((list) => list.length > 0);
   if (itemsLists.length < 3) {
-    console.log('not enough items to show');
+    console.log('NOT ENOUGH ITEMS TO SHOW');
     return;
   }
   const numbers = new Set();
@@ -194,24 +228,24 @@ const rollRewardOptions = () => {
   }
   const numsList = Array.from(numbers);
   for (let i = 0; i < numsList.length; i++) {
-    const vals = getItemCardParams(numsList[i]);
     const list = itemsLists[numsList[i]];
     const randomItem = getRandomItem(list);
+    const vals = getItemMetaData(randomItem);
     currentItems.push(randomItem);
     itemOptionsModalBody.innerHTML += generateItemCard(
       randomItem,
       true,
       vals.imgDir,
       i,
-      numsList[i],
-      vals.type,
+      vals.typeText,
     );
   }
 };
 
-const rollPunishmentOptions = () => {
+const rollPunishmentOptions = async () => {
   let maxPunishmentItems = 3;
-  const acquiredItems = JSON.parse(localStorage.getItem('penitentCrusadeSaveData')).acquiredItems;
+  const game = await getCurrentGame();
+  const acquiredItems = game.acquiredItems;
   if (acquiredItems.length <= 0) {
     return;
   }
@@ -227,7 +261,7 @@ const rollPunishmentOptions = () => {
   }
   const numsList = Array.from(numbers);
   for (let i = 0; i < numsList.length; i++) {
-    const vals = getItemCardParams(acquiredItems[numsList[i]].listIndex);
+    const vals = getItemMetaData(acquiredItems[numsList[i]].item);
     const randomItem = acquiredItems[numsList[i]].item;
     currentItems.push(randomItem);
     itemOptionsModalBody.innerHTML += generateItemCard(
@@ -235,8 +269,7 @@ const rollPunishmentOptions = () => {
       true,
       vals.imgDir,
       i,
-      acquiredItems[numsList[i]].listIndex,
-      vals.type,
+      vals.typeText,
       true,
     );
   }
@@ -259,7 +292,6 @@ const generateItemCard = (
   inModal,
   imgDir,
   currentItemIndex = null,
-  listIndex = null,
   type = null,
   missionFailed = false,
 ) => {
@@ -272,8 +304,8 @@ const generateItemCard = (
     style = 'pcModalItemCards col-6';
     modalTextStyle = '';
     fcn = !missionFailed
-      ? `claimItem(${currentItemIndex}, ${listIndex})`
-      : `claimPunishment(${currentItemIndex}, ${listIndex})`;
+      ? `claimItem(${currentItemIndex})`
+      : `claimPunishment(${currentItemIndex})`;
     typeText = `<p class="card-title fst-italic text-white">${type}</p>`;
   }
   return `
@@ -336,14 +368,14 @@ const clearSaveData = () => {
   addDefaultItemsToAccordions();
 };
 
-const saveProgress = async (item, listIndex, newName = null) => {
+const saveProgress = async (item, newName = null) => {
   let obj = {};
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (!penitentCrusadeSaveData) {
     obj = {
       savedGames: [
         {
-          acquiredItems: [{ item, listIndex }],
+          acquiredItems: [{ item }],
           numOfRerolls,
           newStrats,
           newPrims,
@@ -365,9 +397,10 @@ const saveProgress = async (item, listIndex, newName = null) => {
     if (sg.currentGame === true) {
       const acquiredItems = sg.acquiredItems;
       const dataName = sg.dataName;
-      const newItem = { item, listIndex };
+      const newItem = { item };
       acquiredItems.push(newItem);
-      obj = {
+      sg = {
+        ...sg,
         acquiredItems,
         numOfRerolls,
         newStrats,
@@ -381,32 +414,33 @@ const saveProgress = async (item, listIndex, newName = null) => {
         currentGame: true,
       };
     }
+    return sg;
   });
+  obj = {
+    ...obj,
+    savedGames: newSavedGames,
+  };
 
-  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newSavedGames));
+  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
 };
 
 const uploadSaveData = async () => {
   // will need to go through each save and choose the one with currentGame === true
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (penitentCrusadeSaveData) {
-    const data = JSON.parse(penitentCrusadeSaveData);
+    const currentGame = await getCurrentGame();
 
-    const currentSavedGame = await data.savedGames.filter((sg) => {
-      return sg.currentGame === true;
-    });
-
-    numOfRerolls = currentSavedGame.numOfRerolls;
-    newStrats = currentSavedGame.newStrats;
-    newPrims = currentSavedGame.newPrims;
-    newSeconds = currentSavedGame.newSeconds;
-    newThrows = currentSavedGame.newThrows;
-    newArmorPassives = currentSavedGame.newArmorPassives;
-    newBoosts = currentSavedGame.newBoosts;
-    seesRulesOnOpen = currentSavedGame.seesRulesOnOpen;
-    for (let i = 0; i < currentSavedGame.acquiredItems.length; i++) {
-      const { item, listIndex } = currentSavedGame.acquiredItems[i];
-      const { imgDir, accBody } = getItemCardParams(listIndex);
+    numOfRerolls = currentGame.numOfRerolls;
+    newStrats = currentGame.newStrats;
+    newPrims = currentGame.newPrims;
+    newSeconds = currentGame.newSeconds;
+    newThrows = currentGame.newThrows;
+    newArmorPassives = currentGame.newArmorPassives;
+    newBoosts = currentGame.newBoosts;
+    seesRulesOnOpen = currentGame.seesRulesOnOpen;
+    for (let i = 0; i < currentGame.acquiredItems.length; i++) {
+      const { item } = currentGame.acquiredItems[i];
+      const { imgDir, accBody } = getItemMetaData(item);
       accBody.innerHTML += generateItemCard(item, false, imgDir);
     }
     return;

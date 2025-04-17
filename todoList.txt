@@ -19,6 +19,7 @@ to do Penitent Crusade:
   - can switch between saves any time with a modal
 - add specialists (see specialist ideas below)
 - rare reroll token that randomly shows up as a reward
+- add current difficulty and mission
 
 feature ideas:
 - save options in local storage

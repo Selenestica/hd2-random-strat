@@ -6,14 +6,14 @@ to do Randomizer:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 - add tags for THROWABLES
-- add Borderline Justice equipment and stratagems
-  - new armor passive
 - put Pre-Order Bonus and Superstore options after Super Citizen Edition
   - then rearrange indices to accommodate
 
 to do Penitent Crusade:
+- make it more clear that when you dont complete a mission with max stars, you continue with the challenge but you dont get rewarded
 - catch for when a list of items is empty
 - add nice icon for app icon shortcuts
+- add max number of rolls equal to the max number of missions to be played, minus one (21)
 - add multiple saves feature
   - if multiple saves detected, show a modal on load that lets you choose save
   - can switch between saves any time with a modal
@@ -30,4 +30,44 @@ feature ideas:
 - add link to low sodium Helldivers discord
 - holding click on stratagem or equipment icon will change it
 
+Penitent Crusade Specialist ideas:
+The Zealous Martyr
+ - ybwamahe Hellbomb backpack, combat hatchet, Integrated Explosives
+
+The Permacura Rep
+ - ybwamahe, stim pistol, medic armor, experimental infusion booster
+
+ The Sheriff
+ - ybwamahe, Deadeye, Talon or Senator, Gunslinger armor
+ - cannot roll a support weapon
+
+The Speedrunner
+ - ybwamahe, FRV, Expert Extraction Pilot
+
+The Viper Commando
+ - ybwamahe, Peak Physique armor, Lib Carbine, throwing knives
+
+The Pyromaniac
+ - ybwamahe, Firebomb Hellpods, Napalm Barrage, Torcher
+
+The Explosives Enthusiast
+ - ybwamahe, Eruptor, grenade pistol/ultimatum, integrated explosives armor
+
+The Lightning Bug
+ - ybwamahe, arc thrower, tesla tower, arc resistance armor
+
+The Scout Sniper
+ - ybwamahe, Plasma Accelerator, scout armor, stamina enhancement booster
+
+The Expendable
+ - ybwamahe, EAT, Commando, Firebomb Hellpods
+
+The OG
+ - ybwamahe, Liberator
+ - chance of rolling high tier items increased
+ - must always have B-01 Enforcer armor equipped
+
+The Support Specialist
+ - ybwamahe, Supply Pack, Halt
+ - can only roll supply stratagems
  

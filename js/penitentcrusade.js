@@ -42,7 +42,6 @@ const starterSecNames = ['Peacemaker', 'Stun Lance', 'Stun Baton', 'Combat Hatch
 const starterThrowNames = ['G-12 High Explosive'];
 const starterArmorPassiveNames = ['Extra Padding'];
 
-// remove starter items from the lists
 // create default item lists for later use
 const defaultStrats = OGstratsList.filter((strat) => {
   return starterStratNames.includes(strat.displayName);
@@ -245,7 +244,7 @@ const rollPunishmentOptions = () => {
 
 const getRandomItem = (list) => {
   const item = list[Math.floor(Math.random() * list.length)];
-  // reroll s tier items one time
+  // reroll s and a tier items one time
   if ((item.tier === 's' || item.tier === 'a') && rerollHighTierItem && numOfRerolls > 0) {
     rerollHighTierItem = false;
     numOfRerolls--;
@@ -351,12 +350,14 @@ const saveProgress = (item, listIndex) => {
       newArmorPassives,
       newBoosts,
       seesRulesOnOpen: false,
+      dataName: 'Unnamed Data #1',
     };
     localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
     return;
   }
   const data = JSON.parse(penitentCrusadeSaveData);
   const acquiredItems = data.acquiredItems;
+  const dataName = data.dataName;
   const newItem = { item, listIndex };
   acquiredItems.push(newItem);
   obj = {
@@ -369,6 +370,7 @@ const saveProgress = (item, listIndex) => {
     newArmorPassives,
     newBoosts,
     seesRulesOnOpen: false,
+    dataName,
   };
   localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
 };

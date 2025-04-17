@@ -27,12 +27,29 @@
   <body>
     <div class="container mb-5">
       <div class="row d-flex justify-content-center mt-2">
-        <div class="d-flex col-12 justify-content-start">
+        <div class="d-flex col-4 justify-content-start">
           <a href="../index.html">
             <button class="btn" type="button">
               <i class="fa-solid fa-2x text-light shuffle-icon fa-shuffle"></i>
             </button>
           </a>
+        </div>
+        <div class="d-flex col-4 justify-content-center">
+          <a class="mx-1" target="_blank" href="https://github.com/Selenestica/hd2-random-strat">
+            <i class="fa-2x fa-brands fa-github"></i>
+          </a>
+          <a class="mx-1" target="_blank" href="https://buymeacoffee.com/breakfasttaco">
+            <i class="fa-2x fa-solid fa-mug-saucer"></i>
+          </a>
+        </div>
+        <div class="d-flex col-4 justify-content-end">
+          <!-- <button
+            class="btn btn-primary"
+            onclick="genPCSaveDataManagementModalInfo()"
+            type="button"
+          >
+            <i class="fa-solid fa-2x text-light fa-floppy-disk"></i>
+          </button> -->
         </div>
       </div>
       <div class="row d-flex justify-content-center mt-2">
@@ -102,7 +119,6 @@
     </div>
 
     <!-- ITEM OPTIONS MODAL -->
-
     <div
       class="modal fade"
       id="itemOptionsModal"
@@ -241,6 +257,39 @@
         </div>
       </div>
     </div>
+
+    <!-- SAVE DATA MANAGEMENT MODAL -->
+    <div
+      class="modal fade"
+      id="saveDataManagementModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="saveDataManagementModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="">Save Data Management</h5>
+          </div>
+          <div
+            class="modal-body row d-flex justify-content-center"
+            id="saveDataManagementModalBody"
+          >
+            <p class="text-white">
+              Would you like to start a new run, or use one of the following save files?
+              <br />
+              NOTE: Your pre-existing save data will still be accessible if you start a new run.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 
   <script
@@ -259,4 +308,5 @@
   <script src="../js/constants/armorpassives.js"></script>
   <script src="../js/components/genAcquiredItemsAccordions.js"></script>
   <script src="../js/penitentcrusade.js"></script>
+  <script src="../js/components/genPCSaveDataManagementInfo.js"></script>
 </html>

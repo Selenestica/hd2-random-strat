@@ -233,25 +233,36 @@
       aria-labelledby="restartModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="">Clear Save Data</h5>
+            <h5 class="modal-title text-light" id="">Restart Run</h5>
           </div>
           <div class="modal-body row d-flex justify-content-center">
             <p class="text-white">
-              This will clear your save data and restart the game. Are you sure you want to do this?
+              You can save your current game and begin a new one, or you can delete your current
+              game and start fresh.
+              <br />
+              <br />
+              Either option will start a new game.
             </p>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <div class="modal-footer d-flex justify-content-between">
             <button
               type="button"
               onclick="clearSaveData()"
               class="btn btn-danger"
               data-bs-dismiss="modal"
             >
-              Delete Save Data and Restart
+              Delete Current Game and Restart
+            </button>
+            <button
+              type="button"
+              onclick="saveDataAndRestart()"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Save Current Game and Restart
             </button>
           </div>
         </div>

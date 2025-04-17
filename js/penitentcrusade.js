@@ -448,6 +448,19 @@ const uploadSaveData = async () => {
   startNewRun();
 };
 
+const saveDataAndRestart = () => {
+  const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
+  if (!penitentCrusadeSaveData) {
+    return;
+  }
+  const savedGames = JSON.parse(penitentCrusadeSaveData).savedGames;
+  if (savedGames.length > 5) {
+    console.log(
+      'you cant have more than 5 saves. please choose a save to remove before proceeding',
+    );
+  }
+};
+
 addDefaultItemsToAccordions();
 
 uploadSaveData();

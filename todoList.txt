@@ -10,7 +10,6 @@ to do Randomizer:
   - then rearrange indices to accommodate
 
 to do Penitent Crusade:
-- make it more clear that when you dont complete a mission with max stars, you continue with the challenge but you dont get rewarded
 - catch for when a list of items is empty
 - add nice icon for app icon shortcuts
 - add max number of rolls equal to the max number of missions to be played, minus one (21)
@@ -20,6 +19,8 @@ to do Penitent Crusade:
 - add specialists (see specialist ideas below)
 - rare reroll token that randomly shows up as a reward
 - add options for warbonds, in case some people dont have all the warbonds
+- add QR codes for data sharing
+- add Discord bot compatibility
 
 feature ideas:
 - save options in local storage

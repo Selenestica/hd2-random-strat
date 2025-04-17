@@ -1,9 +1,19 @@
 const saveDataManagementModal = document.getElementById('saveDataManagementModal');
+const saveDataManagementModalSavesList = document.getElementById(
+  'saveDataManagementModalSavesList',
+);
 
 const genPCSaveDataManagementModalInfo = () => {
   // get save files
-  const saveData = localStorage.getItem('penitentCrusadeSaveData');
-  console.log(JSON.parse(saveData));
+  const saveData = JSON.parse(localStorage.getItem('penitentCrusadeSaveData'));
+  const savedGames = saveData.savedGames;
+
+  for (let i = 0; i < savedGames.length; i++) {
+    saveDataManagementModalSavesList.innerHTML += `
+      <input type="radio" class="btn-check" name="btnradio" id="savedGameOption${i}" autocomplete="off" checked>
+      <label class="btn btn-outline-primary text-white" for="savedGameOption${i}">${savedGames[i].dataName}</label>
+    `;
+  }
 
   // display save files
   // let user change name of save file

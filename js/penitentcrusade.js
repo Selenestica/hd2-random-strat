@@ -336,59 +336,76 @@ const clearSaveData = () => {
   addDefaultItemsToAccordions();
 };
 
-const saveProgress = (item, listIndex) => {
+const saveProgress = async (item, listIndex, newName = null) => {
   let obj = {};
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (!penitentCrusadeSaveData) {
     obj = {
-      acquiredItems: [{ item, listIndex }],
-      numOfRerolls,
-      newStrats,
-      newPrims,
-      newSeconds,
-      newThrows,
-      newArmorPassives,
-      newBoosts,
-      seesRulesOnOpen: false,
-      dataName: 'Unnamed Data #1',
+      savedGames: [
+        {
+          acquiredItems: [{ item, listIndex }],
+          numOfRerolls,
+          newStrats,
+          newPrims,
+          newSeconds,
+          newThrows,
+          newArmorPassives,
+          newBoosts,
+          seesRulesOnOpen: false,
+          dataName: 'Unnamed Data #1',
+          currentGame: true,
+        },
+      ],
     };
     localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
     return;
   }
   const data = JSON.parse(penitentCrusadeSaveData);
-  const acquiredItems = data.acquiredItems;
-  const dataName = data.dataName;
-  const newItem = { item, listIndex };
-  acquiredItems.push(newItem);
-  obj = {
-    acquiredItems,
-    numOfRerolls,
-    newStrats,
-    newPrims,
-    newSeconds,
-    newThrows,
-    newArmorPassives,
-    newBoosts,
-    seesRulesOnOpen: false,
-    dataName,
-  };
-  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
+  const newSavedGames = await data.savedGames.map((sg) => {
+    if (sg.currentGame === true) {
+      const acquiredItems = sg.acquiredItems;
+      const dataName = sg.dataName;
+      const newItem = { item, listIndex };
+      acquiredItems.push(newItem);
+      obj = {
+        acquiredItems,
+        numOfRerolls,
+        newStrats,
+        newPrims,
+        newSeconds,
+        newThrows,
+        newArmorPassives,
+        newBoosts,
+        seesRulesOnOpen: false,
+        dataName: newName ?? dataName,
+        currentGame: true,
+      };
+    }
+  });
+
+  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newSavedGames));
 };
 
-const uploadSaveData = () => {
+const uploadSaveData = async () => {
+  // will need to go through each save and choose the one with currentGame === true
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (penitentCrusadeSaveData) {
     const data = JSON.parse(penitentCrusadeSaveData);
-    numOfRerolls = data.numOfRerolls;
-    newStrats = data.newStrats;
-    newPrims = data.newPrims;
-    newSeconds = data.newSeconds;
-    newThrows = data.newThrows;
-    newArmorPassives = data.newArmorPassives;
-    newBoosts = data.newBoosts;
-    seesRulesOnOpen = data.seesRulesOnOpen;
-    for (let i = 0; i < data.acquiredItems.length; i++) {
-      const { item, listIndex } = data.acquiredItems[i];
+
+    const currentSavedGame = await data.savedGames.filter((sg) => {
+      return sg.currentGame === true;
+    });
+
+    numOfRerolls = currentSavedGame.numOfRerolls;
+    newStrats = currentSavedGame.newStrats;
+    newPrims = currentSavedGame.newPrims;
+    newSeconds = currentSavedGame.newSeconds;
+    newThrows = currentSavedGame.newThrows;
+    newArmorPassives = currentSavedGame.newArmorPassives;
+    newBoosts = currentSavedGame.newBoosts;
+    seesRulesOnOpen = currentSavedGame.seesRulesOnOpen;
+    for (let i = 0; i < currentSavedGame.acquiredItems.length; i++) {
+      const { item, listIndex } = currentSavedGame.acquiredItems[i];
       const { imgDir, accBody } = getItemCardParams(listIndex);
       accBody.innerHTML += generateItemCard(item, false, imgDir);
     }

@@ -19,6 +19,7 @@ to do Penitent Crusade:
   - can switch between saves any time with a modal
 - add specialists (see specialist ideas below)
 - rare reroll token that randomly shows up as a reward
+- add options for warbonds, in case some people dont have all the warbonds
 
 feature ideas:
 - save options in local storage

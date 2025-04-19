@@ -4,22 +4,94 @@ const saveDataManagementModalSavesList = document.getElementById(
 );
 
 const genPCSaveDataManagementModalInfo = () => {
-  // get save files
   const saveData = JSON.parse(localStorage.getItem('penitentCrusadeSaveData'));
   const savedGames = saveData.savedGames;
 
   for (let i = 0; i < savedGames.length; i++) {
     const save = savedGames[i];
-    const isChecked = save.currentGame ? 'checked' : '';
+    const isDisabled = save.currentGame ? 'disabled' : '';
+    const displayCurrentText = save.currentGame ? '(Current)' : '';
     saveDataManagementModalSavesList.innerHTML += `
-      <input type="radio" class="btn-check" name="btnradio" id="savedGameOption${i}" autocomplete="off" ${isChecked}>
-      <label class="btn btn-outline-primary text-white" for="savedGameOption${i}">${save.dataName}</label>
+      <div class="my-1">
+        <input type="radio" class="btn-check" name="btnradio" id="savedGameOption${i}" autocomplete="off" ${isDisabled}>
+        <label class="btn btn-outline-primary text-white" for="savedGameOption${i}">${save.dataName} ${displayCurrentText}</label>
+      </div>
     `;
   }
 
-  // let user change name of save file
-  // let user choose a save file to populate the website with
-  // let user remove save files
   const modal = new bootstrap.Modal(saveDataManagementModal);
   modal.show();
+};
+
+const clearSaveDataManagementModal = () => {
+  saveDataManagementModalSavesList.innerHTML = '';
+};
+
+const getSavedGameIndex = () => {
+  const savedGamesOptions = saveDataManagementModalSavesList.children;
+  for (let i = 0; i < savedGamesOptions.length; i++) {
+    const option = savedGamesOptions[i].children[0];
+    if (option.checked) {
+      saveIndex = i;
+      break;
+    }
+  }
+  return saveIndex;
+};
+
+// delete saved game data
+const deleteSavedGameData = async () => {
+  // get the index of the saved game data
+  const saveIndex = getSavedGameIndex();
+
+  if (saveIndex !== undefined) {
+    // remove data from local storage here
+    const penitentCrusadeSaveData = JSON.parse(localStorage.getItem('penitentCrusadeSaveData'));
+    let tempArray = [...penitentCrusadeSaveData.savedGames];
+    tempArray.splice(saveIndex, 1);
+    console.log(tempArray);
+    let tempObj = {
+      ...penitentCrusadeSaveData,
+      savedGames: tempArray,
+    };
+    localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(tempObj));
+  }
+  clearSaveDataManagementModal();
+};
+
+// let user choose a save file to populate the website with
+const applySavedGameData = async () => {
+  const saveIndex = getSavedGameIndex();
+  // we just want to change the currentGame
+  const penitentCrusadeSaveData = JSON.parse(localStorage.getItem('penitentCrusadeSaveData'));
+  let tempArray = [...penitentCrusadeSaveData.savedGames];
+  const updatedSavedGames = await tempArray.map((sg, i) => {
+    if (saveIndex === i) {
+      sg.currentGame = true;
+      return sg;
+    }
+    if (saveIndex !== i) {
+      sg.currentGame = false;
+      return sg;
+    }
+    return sg;
+  });
+
+  const newSaveObj = {
+    ...penitentCrusadeSaveData,
+    savedGames: updatedSavedGames,
+  };
+  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newSaveObj));
+  // clear everything first
+  startNewRun();
+  stratagemAccordionBody.innerHTML = '';
+  primaryAccordionBody.innerHTML = '';
+  secondaryAccordionBody.innerHTML = '';
+  throwableAccordionBody.innerHTML = '';
+  armorPassiveAccordionBody.innerHTML = '';
+  boosterAccordionBody.innerHTML = '';
+  addDefaultItemsToAccordions();
+  // then upload the current save
+  uploadSaveData();
+  clearSaveDataManagementModal();
 };

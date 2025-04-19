@@ -250,11 +250,11 @@
           <div class="modal-footer d-flex justify-content-between">
             <button
               type="button"
-              onclick="clearSaveData()"
+              onclick="clearSaveDataAndRestart()"
               class="btn btn-danger"
               data-bs-dismiss="modal"
             >
-              Delete Current Game and Restart
+              Delete and Restart
             </button>
             <button
               type="button"
@@ -262,7 +262,7 @@
               class="btn btn-primary"
               data-bs-dismiss="modal"
             >
-              Save Current Game and Restart
+              Save and Restart
             </button>
           </div>
         </div>
@@ -301,8 +301,35 @@
               aria-label="Basic radio toggle button group"
             ></div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <div class="modal-footer row justify-content-between">
+            <div class="d-flex col justify-content-start">
+              <button
+                type="button"
+                onclick="clearSaveDataManagementModal()"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+            <div class="d-flex col justify-content-end">
+              <button
+                type="button"
+                onclick="deleteSavedGameData()"
+                class="btn btn-danger mx-2"
+                data-bs-dismiss="modal"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                onclick="applySavedGameData()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Apply
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -11,13 +11,19 @@ to do Randomizer:
 
 to do Penitent Crusade:
 - add nice icon for app icon shortcuts
-- add max number of rolls equal to the max number of missions to be played, minus one (21)
 - add multiple saves feature
-  - if multiple saves detected, show a modal on load that lets you choose save
+  - if multiple saves detected, show a modal on load that lets you choose save only if there is no current game
   - can switch between saves any time with a modal
+  - able to delete individual saves from the modal
+    - if deleting current save, call clearSaveDataAndRestart() function
+  - when restarting and deleting save, only delete current save
 - add specialists (see specialist ideas below)
 - rare reroll token that randomly shows up as a reward
 - add current difficulty and mission
+  - rolls will be counted, capping at 21
+  - when mission complete, rolls++
+  - if mission failed, subtract rolls equal to the number of missions they have to go back to restart operation
+  - in order to stop item farming by repeatedly failing missions, cap the number of rewards to 21
 
 feature ideas:
 - save options in local storage

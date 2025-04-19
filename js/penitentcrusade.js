@@ -356,7 +356,7 @@ const addDefaultItemsToAccordions = () => {
   }
 };
 
-const clearSaveData = () => {
+const clearSaveDataAndRestart = () => {
   localStorage.removeItem('penitentCrusadeSaveData');
   startNewRun();
   stratagemAccordionBody.innerHTML = '';
@@ -448,7 +448,15 @@ const uploadSaveData = async () => {
   startNewRun();
 };
 
-const saveDataAndRestart = () => {
+const getCurrentDateTime = () => {
+  const date = new Date();
+  const dateString = date.toLocaleDateString();
+  const timeString = date.toLocaleTimeString();
+  const dateTimeString = `${dateString} ${timeString}`;
+  return dateTimeString;
+};
+
+const saveDataAndRestart = async () => {
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (!penitentCrusadeSaveData) {
     return;
@@ -458,7 +466,67 @@ const saveDataAndRestart = () => {
     console.log(
       'you cant have more than 5 saves. please choose a save to remove before proceeding',
     );
+    // const modal = new bootstrap.Modal(saveDataManagementModal);
+    // modal.show();
+    // return
   }
+  // make all saved game data currentGame = false
+  let updatedSavedGames = await savedGames.map((sg) => {
+    sg.currentGame = false;
+    return sg;
+  });
+
+  // some of the same code as restarting a run, but we use this to populate the fresh save
+  newStrats = OGstratsList.filter((strat) => {
+    return !starterStratNames.includes(strat.displayName);
+  });
+  newPrims = OGprimsList.filter((prim) => {
+    return !starterPrimNames.includes(prim.displayName);
+  });
+  newSeconds = OGsecondsList.filter((sec) => {
+    return !starterSecNames.includes(sec.displayName);
+  });
+  newThrows = OGthrowsList.filter((throwable) => {
+    return !starterThrowNames.includes(throwable.displayName);
+  });
+  newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
+    return !starterArmorPassiveNames.includes(armorPassive.displayName);
+  });
+  newBoosts = OGboostsList;
+  rerollHighTierItem = true;
+  numOfRerolls = 15;
+  currentItems = [];
+  missionCompleteButton.disabled = false;
+
+  const dateTime = getCurrentDateTime();
+
+  const newSaveObj = {
+    acquiredItems: [],
+    numOfRerolls: 15,
+    newStrats,
+    newPrims,
+    newSeconds,
+    newThrows,
+    newArmorPassives,
+    newBoosts,
+    seesRulesOnOpen: false,
+    dataName: `Difficulty: 3, Mission: 1 | ${dateTime}`,
+    currentGame: true,
+  };
+
+  updatedSavedGames.push(newSaveObj);
+  const newPenitentCrusadeSaveData = {
+    savedGames: updatedSavedGames,
+  };
+  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newPenitentCrusadeSaveData));
+  clearItemOptionsModal();
+  stratagemAccordionBody.innerHTML = '';
+  primaryAccordionBody.innerHTML = '';
+  secondaryAccordionBody.innerHTML = '';
+  throwableAccordionBody.innerHTML = '';
+  armorPassiveAccordionBody.innerHTML = '';
+  boosterAccordionBody.innerHTML = '';
+  addDefaultItemsToAccordions();
 };
 
 addDefaultItemsToAccordions();

@@ -12,10 +12,13 @@ const itemOptionsModalLabel = document.getElementById('itemOptionsModalLabel');
 const itemOptionsModalHeaderItemName = document.getElementById('itemOptionsModalHeaderItemName');
 const itemOptionsModal = document.getElementById('itemOptionsModal');
 const missionCompleteButton = document.getElementById('missionCompleteButton');
+const missionFailedButton = document.getElementById('missionFailedButton');
+const missionCounterText = document.getElementById('missionCounterText');
 
 let rerollHighTierItem = true;
 let numOfRerolls = 15;
 let currentItems = [];
+let missionCounter = 1;
 
 let OGstratsList = [...STRATAGEMS];
 let OGprimsList = [...PRIMARIES];
@@ -79,12 +82,14 @@ const startNewRun = () => {
   rerollHighTierItem = true;
   numOfRerolls = 15;
   currentItems = [];
-  missionCompleteButton.disabled = false;
+  missionCounter = 1;
+  checkMissionButtons();
   // open the modal to show the rules
   document.addEventListener('DOMContentLoaded', () => {
     const modal = new bootstrap.Modal(flavorAndInstructionsModal);
     modal.show();
   });
+  missionCounterText.innerHTML = `${getMissionText()}`;
   clearItemOptionsModal();
 };
 
@@ -100,6 +105,100 @@ const getCurrentGame = async () => {
   return currentGame[0];
 };
 
+const checkMissionButtons = () => {
+  console.log(missionCounter);
+  if (missionCounter >= 21) {
+    missionCompleteButton.disabled = true;
+  }
+  if (missionCounter >= 22) {
+    missionFailedButton.disabled = true;
+  }
+  if (missionCounter < 21) {
+    missionCompleteButton.disabled = false;
+    missionFailedButton.disabled = false;
+  }
+};
+
+const getMissionText = () => {
+  if (missionCounter === 1) {
+    return 'Diff: 3, Mission: 1';
+  }
+  if (missionCounter === 2) {
+    return 'Diff: 3, Mission: 2';
+  }
+  if (missionCounter === 3) {
+    return 'Diff: 4, Mission: 1';
+  }
+  if (missionCounter === 4) {
+    return 'Diff: 4, Mission: 2';
+  }
+  if (missionCounter === 5) {
+    return 'Diff: 5, Mission: 1';
+  }
+  if (missionCounter === 6) {
+    return 'Diff: 5, Mission: 2';
+  }
+  if (missionCounter === 7) {
+    return 'Diff: 5, Mission: 3';
+  }
+  if (missionCounter === 8) {
+    return 'Diff: 6, Mission: 1';
+  }
+  if (missionCounter === 9) {
+    return 'Diff: 6, Mission: 2';
+  }
+  if (missionCounter === 10) {
+    return 'Diff: 6, Mission: 3';
+  }
+  if (missionCounter === 11) {
+    return 'Diff: 7, Mission: 1';
+  }
+  if (missionCounter === 12) {
+    return 'Diff: 7, Mission: 2';
+  }
+  if (missionCounter === 13) {
+    return 'Diff: 7, Mission: 3';
+  }
+  if (missionCounter === 14) {
+    return 'Diff: 8, Mission: 1';
+  }
+  if (missionCounter === 15) {
+    return 'Diff: 8, Mission: 2';
+  }
+  if (missionCounter === 16) {
+    return 'Diff: 8, Mission: 3';
+  }
+  if (missionCounter === 17) {
+    return 'Diff: 9, Mission: 1';
+  }
+  if (missionCounter === 18) {
+    return 'Diff: 9, Mission: 2';
+  }
+  if (missionCounter === 19) {
+    return 'Diff: 9, Mission: 3';
+  }
+  if (missionCounter === 20) {
+    return 'Diff: 10, Mission: 1';
+  }
+  if (missionCounter === 21) {
+    return 'Diff: 10, Mission: 2';
+  }
+  if (missionCounter === 22) {
+    return 'Redemption...';
+  }
+};
+
+const reduceMissionCounter = () => {
+  const reduceByOneArray = [2, 4, 6, 9, 12, 15, 18, 21];
+  const reduceByTwoArray = [7, 10, 13, 16, 19];
+  if (reduceByOneArray.includes(missionCounter)) {
+    missionCounter--;
+  }
+  if (reduceByTwoArray.includes(missionCounter)) {
+    missionCounter -= 2;
+  }
+};
+
 const claimItem = (currentItemIndex) => {
   const item = currentItems[currentItemIndex];
   const { imgDir, list, accBody } = getItemMetaData(item);
@@ -109,6 +208,8 @@ const claimItem = (currentItemIndex) => {
   modal.hide();
   clearItemOptionsModal();
   currentItems = [];
+  missionCounter++;
+  checkMissionButtons();
   saveProgress(item);
 };
 
@@ -135,11 +236,17 @@ const claimPunishment = async (currentItemIndex) => {
     return acquiredItem.item.displayName !== item.displayName;
   });
 
+  reduceMissionCounter();
+  checkMissionButtons();
+  missionCounterText.innerHTML = `${getMissionText()}`;
+
   // create updated game data
   const newCurrentGameData = {
     ...currentGame,
     [listKeyName]: list,
     acquiredItems: newAcquiredItems,
+    missionCounter,
+    dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
   };
 
   // set the updated data into local storage
@@ -147,6 +254,7 @@ const claimPunishment = async (currentItemIndex) => {
   const notCurrentGames = await saveData.savedGames.filter((game) => {
     return game.currentGame !== true;
   });
+
   notCurrentGames.push(newCurrentGameData);
   saveData = {
     ...saveData,
@@ -365,10 +473,11 @@ const clearSaveDataAndRestart = () => {
   throwableAccordionBody.innerHTML = '';
   armorPassiveAccordionBody.innerHTML = '';
   boosterAccordionBody.innerHTML = '';
+  missionCounterText.innerHTML = `${getMissionText()}`;
   addDefaultItemsToAccordions();
 };
 
-const saveProgress = async (item, newName = null) => {
+const saveProgress = async (item) => {
   let obj = {};
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (!penitentCrusadeSaveData) {
@@ -384,19 +493,20 @@ const saveProgress = async (item, newName = null) => {
           newArmorPassives,
           newBoosts,
           seesRulesOnOpen: false,
-          dataName: 'Unnamed Data #1',
+          dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
           currentGame: true,
+          missionCounter,
         },
       ],
     };
     localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
+    missionCounterText.innerHTML = `${getMissionText()}`;
     return;
   }
   const data = JSON.parse(penitentCrusadeSaveData);
   const newSavedGames = await data.savedGames.map((sg) => {
     if (sg.currentGame === true) {
       const acquiredItems = sg.acquiredItems;
-      const dataName = sg.dataName;
       const newItem = { item };
       acquiredItems.push(newItem);
       sg = {
@@ -410,8 +520,9 @@ const saveProgress = async (item, newName = null) => {
         newArmorPassives,
         newBoosts,
         seesRulesOnOpen: false,
-        dataName: newName ?? dataName,
+        dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
         currentGame: true,
+        missionCounter,
       };
     }
     return sg;
@@ -420,7 +531,7 @@ const saveProgress = async (item, newName = null) => {
     ...obj,
     savedGames: newSavedGames,
   };
-
+  missionCounterText.innerHTML = `${getMissionText()}`;
   localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
 };
 
@@ -438,6 +549,10 @@ const uploadSaveData = async () => {
     newArmorPassives = currentGame.newArmorPassives;
     newBoosts = currentGame.newBoosts;
     seesRulesOnOpen = currentGame.seesRulesOnOpen;
+    missionCounter = currentGame.missionCounter;
+    dataName = currentGame.dataName;
+    missionCounterText.innerHTML = `${getMissionText()}`;
+    checkMissionButtons();
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
       const { item } = currentGame.acquiredItems[i];
       const { imgDir, accBody } = getItemMetaData(item);
@@ -496,9 +611,8 @@ const saveDataAndRestart = async () => {
   rerollHighTierItem = true;
   numOfRerolls = 15;
   currentItems = [];
-  missionCompleteButton.disabled = false;
-
-  const dateTime = getCurrentDateTime();
+  missionCounter = 1;
+  missionCounterText.innerHTML = `${getMissionText()}`;
 
   const newSaveObj = {
     acquiredItems: [],
@@ -510,8 +624,9 @@ const saveDataAndRestart = async () => {
     newArmorPassives,
     newBoosts,
     seesRulesOnOpen: false,
-    dataName: `Difficulty: 3, Mission: 1 | ${dateTime}`,
+    dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
     currentGame: true,
+    missionCounter: 1,
   };
 
   updatedSavedGames.push(newSaveObj);

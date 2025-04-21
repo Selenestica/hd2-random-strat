@@ -49,7 +49,6 @@ const deleteSavedGameData = async () => {
     const penitentCrusadeSaveData = JSON.parse(localStorage.getItem('penitentCrusadeSaveData'));
     let tempArray = [...penitentCrusadeSaveData.savedGames];
     tempArray.splice(saveIndex, 1);
-    console.log(tempArray);
     let tempObj = {
       ...penitentCrusadeSaveData,
       savedGames: tempArray,

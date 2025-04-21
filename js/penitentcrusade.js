@@ -620,7 +620,7 @@ const saveDataAndRestart = async () => {
   currentItems = [];
   missionCounter = 1;
   missionCounterText.innerHTML = `${getMissionText()}`;
-
+  checkMissionButtons();
   const newSaveObj = {
     acquiredItems: [],
     numOfRerolls: 15,

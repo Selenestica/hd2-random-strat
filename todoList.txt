@@ -14,6 +14,7 @@ to do Penitent Crusade:
 - add nice icon for app icon shortcuts
 - add specialists (see specialist ideas below)
 - rare reroll token that randomly shows up as a reward
+- in order to stop item farming by repeatedly failing missions, cap the number of rewards to 21
 - add options for warbonds, in case some people dont have all the warbonds
 - add QR codes for data sharing
 - add Discord bot compatibility

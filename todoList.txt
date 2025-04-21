@@ -12,17 +12,15 @@ to do Randomizer:
 to do Penitent Crusade:
 - catch for when a list of items is empty
 - add nice icon for app icon shortcuts
-- add max number of rolls equal to the max number of missions to be played, minus one (21)
-- add multiple saves feature
-  - if multiple saves detected, show a modal on load that lets you choose save
-  - can switch between saves any time with a modal
 - add specialists (see specialist ideas below)
 - rare reroll token that randomly shows up as a reward
+- in order to stop item farming by repeatedly failing missions, cap the number of rewards to 21
 - add options for warbonds, in case some people dont have all the warbonds
 - add QR codes for data sharing
 - add Discord bot compatibility
 
 feature ideas:
+- add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons
 - save options in local storage
 - add link to buymeacoffee
 - buy nvigneux a coffee

@@ -16,6 +16,7 @@ to do Penitent Crusade:
 - in order to stop item farming by repeatedly failing missions, cap the number of rewards to 21
 
 feature ideas:
+- add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons
 - save options in local storage
 - add link to buymeacoffee
 - buy nvigneux a coffee

@@ -14,6 +14,7 @@ const itemOptionsModal = document.getElementById('itemOptionsModal');
 const missionCompleteButton = document.getElementById('missionCompleteButton');
 const missionFailedButton = document.getElementById('missionFailedButton');
 const missionCounterText = document.getElementById('missionCounterText');
+const oldDataDetectedModal = document.getElementById('oldDataDetectedModal');
 
 let rerollHighTierItem = true;
 let numOfRerolls = 15;
@@ -106,7 +107,6 @@ const getCurrentGame = async () => {
 };
 
 const checkMissionButtons = () => {
-  console.log(missionCounter);
   if (missionCounter >= 21) {
     missionCompleteButton.disabled = true;
   }
@@ -539,6 +539,13 @@ const uploadSaveData = async () => {
   // will need to go through each save and choose the one with currentGame === true
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (penitentCrusadeSaveData) {
+    if (!JSON.parse(penitentCrusadeSaveData).savedGames) {
+      localStorage.removeItem('penitentCrusadeSaveData');
+      const modal = new bootstrap.Modal(oldDataDetectedModal);
+      modal.show();
+      startNewRun();
+      return;
+    }
     const currentGame = await getCurrentGame();
 
     numOfRerolls = currentGame.numOfRerolls;

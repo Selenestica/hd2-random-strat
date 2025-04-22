@@ -10,7 +10,7 @@ to do Randomizer:
   - then rearrange indices to accommodate
 
 to do Penitent Crusade:
-- catch for when a list of items is empty
+- when mission fail, choose a and s tier items from acquiredItems, if any
 - add nice icon for app icon shortcuts
 - add specialists (see specialist ideas below)
 - rare reroll token that randomly shows up as a reward

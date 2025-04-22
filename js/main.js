@@ -33,6 +33,8 @@ const stratOptionRadios = [
   defaultSupplyRadio,
 ];
 
+const supplyAmountOptions = [oneSupportCheck, oneBackpackCheck];
+
 let stratsList = [...STRATAGEMS];
 let primsList = [...PRIMARIES];
 let secondsList = [...SECONDARIES];
@@ -63,10 +65,21 @@ let checkedWarbonds = [
   'warbond11',
   'warbond12',
   'warbond13',
+  'warbond14',
 ];
+
+for (let y = 0; y < supplyAmountOptions.length; y++) {
+  supplyAmountOptions[y].addEventListener('change', (e) => {
+    updateLocalStorage(supplyAmountOptions[y], 'supplyAmountOptions');
+  });
+}
 
 for (let x = 0; x < stratOptionRadios.length; x++) {
   stratOptionRadios[x].addEventListener('change', (e) => {
+    // update localStorage obj
+    updateLocalStorage(stratOptionRadios[x], 'stratagemOptions');
+
+    // now do the front end stuff
     if (onlyEaglesRadio.checked) {
       disableOtherRadios('Eagle');
     } else if (onlyOrbitalsRadio.checked) {
@@ -101,6 +114,10 @@ const enableRadios = () => {
 
 for (let z = 0; z < warbondCheckboxes.length; z++) {
   warbondCheckboxes[z].addEventListener('change', (e) => {
+    // update localStorage obj
+    updateLocalStorage(warbondCheckboxes[z], 'warbondOptions');
+
+    // now do the front end stuff
     if (e.target.checked && !checkedWarbonds.includes(e.srcElement.id)) {
       checkedWarbonds.push(e.srcElement.id);
     }
@@ -283,3 +300,109 @@ const getRandomUniqueNumbers = (list, oneSupportWeapon, oneBackpack) => {
   }
   return numbers;
 };
+
+const updateLocalStorage = (element, type) => {
+  const elID = element.id;
+  const checked = element.checked;
+  const randomizerOptions = JSON.parse(localStorage.getItem('randomizerOptions'));
+  let tempInnerObj;
+  let newObj;
+  // if (type !== 'stratagemOptions') {
+  tempInnerObj = {
+    ...randomizerOptions[type],
+    [elID]: checked,
+  };
+  newObj = {
+    ...randomizerOptions,
+    [type]: tempInnerObj,
+  };
+  // ok so if the user updates stratagems, then the other values need to be set to false
+  localStorage.setItem('randomizerOptions', JSON.stringify(newObj));
+  //   return;
+  // }
+  // tempInnerObj = {
+  //   stratagemOptions: {
+  //     ...randomizerOptions.stratagemOptions,
+  //     [elID]: checked,
+  //   },
+  // };
+  // newObj = {
+  //   ...randomizerOptions,
+  // };
+};
+
+const checkLocalStorageForOptionsPreferences = () => {
+  const randomizerOptions = localStorage.getItem('randomizerOptions');
+  if (!randomizerOptions) {
+    // create randomizerOptions object and put in local storage
+    const obj = {
+      warbondOptions: {
+        warbond0: true,
+        warbond1: true,
+        warbond2: true,
+        warbond3: true,
+        warbond4: true,
+        warbond5: true,
+        warbond6: true,
+        warbond7: true,
+        warbond8: true,
+        warbond9: true,
+        warbond10: true,
+        warbond11: true,
+        warbond12: true,
+        warbond13: true,
+        warbond14: true,
+      },
+      stratagemOptions: {
+        onlyEaglesRadio: false,
+        noEaglesRadio: false,
+        defaultEaglesRadio: true,
+        onlyOrbitalsRadio: false,
+        noOrbitalsRadio: false,
+        defaultOrbitalsRadio: true,
+        onlyDefenseRadio: false,
+        noDefenseRadio: false,
+        defaultDefenseRadio: true,
+        onlySupplyRadio: false,
+        noSupplyRadio: false,
+        defaultSupplyRadio: true,
+      },
+      supplyAmountOptions: {
+        oneBackpackCheck: false,
+        oneSupportCheck: false,
+      },
+    };
+    localStorage.setItem('randomizerOptions', JSON.stringify(obj));
+    return;
+  }
+  if (randomizerOptions) {
+    const data = JSON.parse(randomizerOptions);
+    const { warbondOptions, stratagemOptions, supplyAmountOptions } = data;
+    const list = [warbondOptions, stratagemOptions, supplyAmountOptions];
+    for (const outerKey in data) {
+      for (const innerKey in data[outerKey]) {
+        document.getElementById(innerKey).checked = data[outerKey][innerKey];
+      }
+    }
+    applyStoredOptionsToLists();
+  }
+};
+
+const applyStoredOptionsToLists = () => {
+  for (let i = 0; i < warbondCheckboxes.length; i++) {
+    // now do the front end stuff
+    const cb = warbondCheckboxes[i];
+    if (cb.checked && !checkedWarbonds.includes(cb.id)) {
+      checkedWarbonds.push(cb.id);
+    }
+    if (!cb.checked && checkedWarbonds.includes(cb.id)) {
+      const indexToRemove = checkedWarbonds.indexOf(cb.id);
+      checkedWarbonds.splice(indexToRemove, 1);
+    }
+  }
+  filterItemsByWarbond();
+
+  // will want to add the stratagems options here one day
+};
+
+checkLocalStorageForOptionsPreferences();

@@ -35,39 +35,57 @@ The Zealous Martyr
  - ybwamahe Hellbomb backpack, combat hatchet, Integrated Explosives
 
 The Permacura Rep
- - ybwamahe, stim pistol, medic armor, experimental infusion booster
+ - ybwamahe, stim pistol, medic armor
 
  The Sheriff
- - ybwamahe, Deadeye, Talon or Senator, Gunslinger armor
+ - ybwamahe, Talon or Senator, Gunslinger armor
  - cannot roll a support weapon
 
 The Speedrunner
- - ybwamahe, FRV, Expert Extraction Pilot
+ - ybwamahe, FRV, Expert Extraction Pilot/Dead Sprint booster
 
 The Viper Commando
  - ybwamahe, Peak Physique armor, Lib Carbine, throwing knives
 
 The Pyromaniac
- - ybwamahe, Firebomb Hellpods, Napalm Barrage, Torcher
-
-The Explosives Enthusiast
- - ybwamahe, Eruptor, grenade pistol/ultimatum, integrated explosives armor
+ - ybwamahe, Fire resistance armor, Eagle Napalm, Torcher
 
 The Lightning Bug
  - ybwamahe, arc thrower, tesla tower, arc resistance armor
 
 The Scout Sniper
- - ybwamahe, Plasma Accelerator, scout armor, stamina enhancement booster
+ - ybwamahe, Diligence, scout armor, UAV Recon booster
 
-The Expendable
+The Hellpod Enthusiast
  - ybwamahe, EAT, Commando, Firebomb Hellpods
+ - cannot roll Eagles or Orbitals
 
 The OG
  - ybwamahe, Liberator
  - chance of rolling high tier items increased
- - must always have B-01 Enforcer armor equipped
+ - must always have B-01 armor equipped
 
-The Support Specialist
- - ybwamahe, Supply Pack, Halt
- - can only roll supply stratagems
+ The Truth Enforcer
+ - ybwamahe, Reprimand/Halt, Unflinching armor
+
+ The Exterminator
+ - gas resistance armor, gas grenades, sterilizer
+
+ The Urban Soldier
+ - Siege Ready armor
+ - can only roll one-handed primaries
+
+ The Assault Trooper
+ - Acclimated armor
+ - can only use Stahl Arms primaries
+
+ The Shotgun Surgeon
+ - ybwamahe, Punisher, Bushwacker
+
+ The Loot Goblin
+ - Supply Pack, Sample Extricator booster
+
+ The Escape Artist
+ - ybwamahe, Jump pack, smoke grenades
+
  

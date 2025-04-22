@@ -15,6 +15,7 @@ const missionCompleteButton = document.getElementById('missionCompleteButton');
 const missionFailedButton = document.getElementById('missionFailedButton');
 const missionCounterText = document.getElementById('missionCounterText');
 const oldDataDetectedModal = document.getElementById('oldDataDetectedModal');
+const maxStarsPromptModal = document.getElementById('maxStarsPromptModal');
 
 let rerollHighTierItem = true;
 let numOfRerolls = 15;
@@ -321,8 +322,36 @@ const getItemMetaData = (item) => {
   return { imgDir, list, accBody, typeText, listKeyName };
 };
 
+const maxStarsNotEarned = async () => {
+  missionCounter++;
+  checkMissionButtons();
+  missionCounterText.innerHTML = `${getMissionText()}`;
+  // save progress just for missionCounter
+  const penitentCrusadeSaveData = JSON.parse(localStorage.getItem('penitentCrusadeSaveData'));
+  const updatedSavedGames = await penitentCrusadeSaveData.savedGames.map((sg) => {
+    if (sg.currentGame === true) {
+      sg.missionCounter = missionCounter;
+      return sg;
+    }
+    return sg;
+  });
+  let newObj = {
+    ...penitentCrusadeSaveData,
+    savedGames: updatedSavedGames,
+  };
+  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newObj));
+};
+
+const closeMaxStarsPromptModal = () => {
+  const modal = new bootstrap.Modal(maxStarsPromptModal);
+  modal.hide();
+  rollRewardOptions();
+};
+
 // if too many of one item is rolled and theres nothing left in the list, the image will be blank and the item may show up in the wrong accordion
 const rollRewardOptions = () => {
+  // ask if user earned max stars
+
   let itemsLists = [newStrats, newPrims, newBoosts, newSeconds, newThrows, newArmorPassives];
   itemsLists = itemsLists.filter((list) => list.length > 0);
   if (itemsLists.length < 3) {

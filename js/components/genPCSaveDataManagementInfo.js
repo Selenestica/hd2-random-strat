@@ -28,6 +28,7 @@ const clearSaveDataManagementModal = () => {
 };
 
 const getSavedGameIndex = () => {
+  let saveIndex;
   const savedGamesOptions = saveDataManagementModalSavesList.children;
   for (let i = 0; i < savedGamesOptions.length; i++) {
     const option = savedGamesOptions[i].children[0];
@@ -43,6 +44,10 @@ const getSavedGameIndex = () => {
 const deleteSavedGameData = async () => {
   // get the index of the saved game data
   const saveIndex = getSavedGameIndex();
+  if (saveIndex === undefined) {
+    clearSaveDataManagementModal();
+    return;
+  }
 
   if (saveIndex !== undefined) {
     // remove data from local storage here
@@ -61,6 +66,10 @@ const deleteSavedGameData = async () => {
 // let user choose a save file to populate the website with
 const applySavedGameData = async () => {
   const saveIndex = getSavedGameIndex();
+  if (saveIndex === undefined) {
+    clearSaveDataManagementModal();
+    return;
+  }
   // we just want to change the currentGame
   const penitentCrusadeSaveData = JSON.parse(localStorage.getItem('penitentCrusadeSaveData'));
   let tempArray = [...penitentCrusadeSaveData.savedGames];

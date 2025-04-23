@@ -68,6 +68,10 @@ body {
   background-color: rgb(71, 71, 71);
 }
 
+.specialistCards {
+  cursor: pointer;
+}
+
 .pcModalItemCards {
   width: 25%;
   cursor: pointer;

@@ -72,7 +72,16 @@
       </div>
       <div class="row mt-2 justify-content-center text-white" id="missionCounterText"></div>
       <div class="row mt-2 justify-content-center">
-        <div class="col-2"></div>
+        <div class="col-2 justify-content-start d-flex align-items-center">
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#specialistsModal"
+          >
+            <i class="fa-solid fa-person-rifle"></i>
+          </button>
+        </div>
         <div class="col-8 d-flex justify-content-center">
           <div class="btn-group my-2 mx-2">
             <button
@@ -150,7 +159,7 @@
       </div>
     </div>
 
-    <!-- ITEM OPTIONS MODAL -->
+    <!-- MAX STARS PROMPT MODAL -->
     <div
       class="modal fade"
       id="maxStarsPromptModal"
@@ -398,6 +407,58 @@
       </div>
     </div>
 
+    <!-- SPECIALISTS MODAL -->
+    <div
+      class="modal fade"
+      id="specialistsModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="specialistsModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="">Specialist Select</h5>
+          </div>
+          <div class="modal-body row d-flex justify-content-center" id="specialistsModalBody">
+            <p class="text-white">
+              You can choose to attempt the challenge as a specialist, changing your starting
+              equipment.
+              <br />
+              <br />
+              NOTE: You can only choose a class at the beginning of a run.
+            </p>
+            <div class="row d-flex" id="specialistsList"></div>
+          </div>
+          <div class="modal-footer row justify-content-between">
+            <div class="d-flex col justify-content-start">
+              <button
+                type="button"
+                onclick="clearSpecialistsModalBody()"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+            <div class="d-flex col justify-content-end">
+              <button
+                type="button"
+                onclick="applyClass()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- OLD DATA DETECTED MODAL -->
     <div
       class="modal fade"
@@ -442,7 +503,9 @@
   <script src="../js/constants/armorsets.js"></script>
   <script src="../js/constants/armorsizes.js"></script>
   <script src="../js/constants/armorpassives.js"></script>
+  <script src="../js/constants/specialists.js"></script>
   <script src="../js/components/genAcquiredItemsAccordions.js"></script>
   <script src="../js/penitentcrusade.js"></script>
   <script src="../js/components/genPCSaveDataManagementInfo.js"></script>
+  <script src="../js/components/specialistsModal.js"></script>
 </html>

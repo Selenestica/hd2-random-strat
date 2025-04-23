@@ -69,13 +69,4 @@ const genSpecialistsCards = () => {
   }
 };
 
-const applySpecialist = () => {
-  if (specialist === null) {
-    return;
-  }
-  specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
-  getStartingItems();
-  startNewRun(specialist);
-};
-
 genSpecialistsCards();

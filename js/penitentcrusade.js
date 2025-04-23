@@ -56,12 +56,38 @@ const startNewRun = (spec = null) => {
   });
   missionCounterText.innerHTML = `${getMissionText()}`;
   clearItemOptionsModal();
-  console.log(spec);
   if (spec !== null) {
-    console.log('did i get here?');
-
     addDefaultItemsToAccordions(spec);
   }
+};
+
+const getDefaultItems = () => {
+  const defaultStrats = OGstratsList.filter((strat) => {
+    return starterStratNames.includes(strat.displayName);
+  });
+  const defaultPrims = OGprimsList.filter((prim) => {
+    return starterPrimNames.includes(prim.displayName);
+  });
+  const defaultSeconds = OGsecondsList.filter((sec) => {
+    return starterSecNames.includes(sec.displayName);
+  });
+  const defaultThrows = OGthrowsList.filter((throwable) => {
+    return starterThrowNames.includes(throwable.displayName);
+  });
+  const defaultArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
+    return starterArmorPassiveNames.includes(armorPassive.displayName);
+  });
+  const defaultBoosters = OGboostsList.filter((booster) => {
+    return starterBoosterNames.includes(booster.displayName);
+  });
+  return {
+    defaultStrats,
+    defaultPrims,
+    defaultSeconds,
+    defaultThrows,
+    defaultArmorPassives,
+    defaultBoosters,
+  };
 };
 
 const getCurrentGame = async () => {
@@ -376,59 +402,25 @@ const clearItemOptionsModal = () => {
   itemOptionsModalBody.innerHTML = '';
 };
 
-const addDefaultItemsToAccordions = (spec = null) => {
+const addDefaultItemsToAccordions = async (spec = null) => {
   // create default item lists for later use
-  const defaultStrats = OGstratsList.filter((strat) => {
-    return starterStratNames.includes(strat.displayName);
-  });
-  const defaultPrims = OGprimsList.filter((prim) => {
-    return starterPrimNames.includes(prim.displayName);
-  });
-  const defaultSeconds = OGsecondsList.filter((sec) => {
-    return starterSecNames.includes(sec.displayName);
-  });
-  const defaultThrows = OGthrowsList.filter((throwable) => {
-    return starterThrowNames.includes(throwable.displayName);
-  });
-  const defaultArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
-    return starterArmorPassiveNames.includes(armorPassive.displayName);
-  });
-  const defaultBoosters = OGboostsList.filter((booster) => {
-    return starterBoosterNames.includes(booster.displayName);
-  });
+  const {
+    defaultArmorPassives,
+    defaultBoosters,
+    defaultPrims,
+    defaultSeconds,
+    defaultStrats,
+    defaultThrows,
+  } = await getDefaultItems();
 
+  // if a specialist was applied, reset the accordions
   if (spec !== null) {
-    // will have to pick and choose which items to show based on the selected specialist
     stratagemAccordionBody.innerHTML = '';
     primaryAccordionBody.innerHTML = '';
     secondaryAccordionBody.innerHTML = '';
     throwableAccordionBody.innerHTML = '';
     armorPassiveAccordionBody.innerHTML = '';
     boosterAccordionBody.innerHTML = '';
-
-    for (let i = 0; i < defaultStrats.length; i++) {
-      stratagemAccordionBody.innerHTML += generateItemCard(defaultStrats[i], false, 'svgs');
-    }
-    for (let i = 0; i < defaultPrims.length; i++) {
-      primaryAccordionBody.innerHTML += generateItemCard(defaultPrims[i], false, 'equipment');
-    }
-    for (let i = 0; i < defaultSeconds.length; i++) {
-      secondaryAccordionBody.innerHTML += generateItemCard(defaultSeconds[i], false, 'equipment');
-    }
-    for (let i = 0; i < defaultThrows.length; i++) {
-      throwableAccordionBody.innerHTML += generateItemCard(defaultThrows[i], false, 'equipment');
-    }
-    for (let i = 0; i < defaultArmorPassives.length; i++) {
-      armorPassiveAccordionBody.innerHTML += generateItemCard(
-        defaultArmorPassives[i],
-        false,
-        'armor',
-      );
-    }
-    for (let i = 0; i < defaultBoosters.length; i++) {
-      boosterAccordionBody.innerHTML += generateItemCard(defaultBoosters[i], false, 'equipment');
-    }
-    return;
   }
 
   for (let i = 0; i < defaultStrats.length; i++) {
@@ -468,14 +460,25 @@ const clearSaveDataAndRestart = () => {
   addDefaultItemsToAccordions();
 };
 
-const saveProgress = async (item) => {
+const applySpecialist = () => {
+  if (specialist === null) {
+    return;
+  }
+  specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
+  getStartingItems();
+  startNewRun(specialist);
+  saveProgress();
+};
+
+const saveProgress = async (item = null) => {
   let obj = {};
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (!penitentCrusadeSaveData) {
+    console.log(specialist, newArmorPassives);
     obj = {
       savedGames: [
         {
-          acquiredItems: [{ item }],
+          acquiredItems: item ? [{ item }] : [],
           numOfRerolls,
           newStrats,
           newPrims,
@@ -484,7 +487,9 @@ const saveProgress = async (item) => {
           newArmorPassives,
           newBoosts,
           seesRulesOnOpen: false,
-          dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
+          dataName: `${getMissionText()} | ${getCurrentDateTime()}${
+            specialist !== null ? ' | ' + SPECIALISTS[specialist].displayName : ''
+          }`,
           currentGame: true,
           missionCounter,
           specialist,

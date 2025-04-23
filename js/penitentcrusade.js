@@ -23,7 +23,7 @@ let numOfRerolls = 15;
 let currentItems = [];
 let missionCounter = 1;
 
-const startNewRun = () => {
+const startNewRun = (spec = null) => {
   newStrats = OGstratsList.filter((strat) => {
     return !starterStratNames.includes(strat.displayName);
   });
@@ -39,14 +39,15 @@ const startNewRun = () => {
   newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
     return !starterArmorPassiveNames.includes(armorPassive.displayName);
   });
-  newBoosters = OGboostsList.filter((booster) => {
+  newBoosts = OGboostsList.filter((booster) => {
     return !starterBoosterNames.includes(booster.displayName);
   });
+
   rerollHighTierItem = true;
   numOfRerolls = 15;
   currentItems = [];
   missionCounter = 1;
-  specialist = null;
+  specialist = spec;
   checkMissionButtons();
   // open the modal to show the rules
   document.addEventListener('DOMContentLoaded', () => {
@@ -55,6 +56,12 @@ const startNewRun = () => {
   });
   missionCounterText.innerHTML = `${getMissionText()}`;
   clearItemOptionsModal();
+  console.log(spec);
+  if (spec !== null) {
+    console.log('did i get here?');
+
+    addDefaultItemsToAccordions(spec);
+  }
 };
 
 const getCurrentGame = async () => {
@@ -369,7 +376,61 @@ const clearItemOptionsModal = () => {
   itemOptionsModalBody.innerHTML = '';
 };
 
-const addDefaultItemsToAccordions = () => {
+const addDefaultItemsToAccordions = (spec = null) => {
+  // create default item lists for later use
+  const defaultStrats = OGstratsList.filter((strat) => {
+    return starterStratNames.includes(strat.displayName);
+  });
+  const defaultPrims = OGprimsList.filter((prim) => {
+    return starterPrimNames.includes(prim.displayName);
+  });
+  const defaultSeconds = OGsecondsList.filter((sec) => {
+    return starterSecNames.includes(sec.displayName);
+  });
+  const defaultThrows = OGthrowsList.filter((throwable) => {
+    return starterThrowNames.includes(throwable.displayName);
+  });
+  const defaultArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
+    return starterArmorPassiveNames.includes(armorPassive.displayName);
+  });
+  const defaultBoosters = OGboostsList.filter((booster) => {
+    return starterBoosterNames.includes(booster.displayName);
+  });
+
+  if (spec !== null) {
+    // will have to pick and choose which items to show based on the selected specialist
+    stratagemAccordionBody.innerHTML = '';
+    primaryAccordionBody.innerHTML = '';
+    secondaryAccordionBody.innerHTML = '';
+    throwableAccordionBody.innerHTML = '';
+    armorPassiveAccordionBody.innerHTML = '';
+    boosterAccordionBody.innerHTML = '';
+
+    for (let i = 0; i < defaultStrats.length; i++) {
+      stratagemAccordionBody.innerHTML += generateItemCard(defaultStrats[i], false, 'svgs');
+    }
+    for (let i = 0; i < defaultPrims.length; i++) {
+      primaryAccordionBody.innerHTML += generateItemCard(defaultPrims[i], false, 'equipment');
+    }
+    for (let i = 0; i < defaultSeconds.length; i++) {
+      secondaryAccordionBody.innerHTML += generateItemCard(defaultSeconds[i], false, 'equipment');
+    }
+    for (let i = 0; i < defaultThrows.length; i++) {
+      throwableAccordionBody.innerHTML += generateItemCard(defaultThrows[i], false, 'equipment');
+    }
+    for (let i = 0; i < defaultArmorPassives.length; i++) {
+      armorPassiveAccordionBody.innerHTML += generateItemCard(
+        defaultArmorPassives[i],
+        false,
+        'armor',
+      );
+    }
+    for (let i = 0; i < defaultBoosters.length; i++) {
+      boosterAccordionBody.innerHTML += generateItemCard(defaultBoosters[i], false, 'equipment');
+    }
+    return;
+  }
+
   for (let i = 0; i < defaultStrats.length; i++) {
     stratagemAccordionBody.innerHTML += generateItemCard(defaultStrats[i], false, 'svgs');
   }
@@ -388,6 +449,9 @@ const addDefaultItemsToAccordions = () => {
       false,
       'armor',
     );
+  }
+  for (let i = 0; i < defaultBoosters.length; i++) {
+    boosterAccordionBody.innerHTML += generateItemCard(defaultBoosters[i], false, 'equipment');
   }
 };
 

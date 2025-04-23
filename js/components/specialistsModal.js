@@ -1,7 +1,7 @@
 const specialistsList = document.getElementById('specialistsList');
 const specialistCheckMarks = document.getElementsByClassName('specialistCheckMarks');
 const specialistNameText = document.getElementById('specialistNameText');
-let selectedSpecialist = null;
+let specialist = null;
 
 const setSpecialist = (index) => {
   // remove the checkmark from all other specialists
@@ -22,7 +22,7 @@ const setSpecialist = (index) => {
   specialistHeader.classList.remove('text-white');
 
   // set the selected specialist
-  selectedSpecialist = index;
+  specialist = index;
 };
 
 const genStarterItems = (starterItems) => {
@@ -70,10 +70,12 @@ const genSpecialistsCards = () => {
 };
 
 const applySpecialist = () => {
-  if (selectedSpecialist === null) {
+  if (specialist === null) {
     return;
   }
-  specialistNameText.innerHTML = SPECIALISTS[selectedSpecialist].displayName;
+  specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
+  getStartingItems();
+  startNewRun(specialist);
 };
 
 genSpecialistsCards();

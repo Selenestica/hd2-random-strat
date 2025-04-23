@@ -23,26 +23,33 @@ let starterSecNames = ['Peacemaker', 'Stun Lance', 'Stun Baton', 'Combat Hatchet
 let starterThrowNames = ['G-12 High Explosive'];
 let starterArmorPassiveNames = ['Extra Padding'];
 let starterBoosterNames = [];
-// let getStartingItems = () => {
-//   //
-// }
-
-// create default item lists for later use
-const defaultStrats = OGstratsList.filter((strat) => {
-  return starterStratNames.includes(strat.displayName);
-});
-const defaultPrims = OGprimsList.filter((prim) => {
-  return starterPrimNames.includes(prim.displayName);
-});
-const defaultSeconds = OGsecondsList.filter((sec) => {
-  return starterSecNames.includes(sec.displayName);
-});
-const defaultThrows = OGthrowsList.filter((throwable) => {
-  return starterThrowNames.includes(throwable.displayName);
-});
-const defaultArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
-  return starterArmorPassiveNames.includes(armorPassive.displayName);
-});
-const defaultBoosters = OGboostsList.filter((booster) => {
-  return starterBoosterNames.includes(booster.displayName);
-});
+let getStartingItems = () => {
+  if (specialist === null) {
+    return {
+      starterStratNames,
+      starterPrimNames,
+      starterSecNames,
+      starterThrowNames,
+      starterArmorPassiveNames,
+      starterBoosterNames,
+    };
+  }
+  starterPrimNames =
+    SPECIALISTS[specialist].primaries.length > 0
+      ? SPECIALISTS[specialist].primaries
+      : ['Constitution'];
+  starterStratNames = starterStratNames.concat(SPECIALISTS[specialist].stratagems);
+  starterSecNames =
+    SPECIALISTS[specialist].secondaries.length > 0
+      ? SPECIALISTS[specialist].secondaries
+      : starterSecNames;
+  starterThrowNames =
+    SPECIALISTS[specialist].throwables.length > 0
+      ? SPECIALISTS[specialist].throwables
+      : starterThrowNames;
+  starterArmorPassiveNames =
+    SPECIALISTS[specialist].armorPassives.length > 0
+      ? SPECIALISTS[specialist].armorPassives
+      : starterArmorPassiveNames;
+  starterBoosterNames = SPECIALISTS[specialist].boosters;
+};

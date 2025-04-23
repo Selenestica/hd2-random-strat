@@ -24,6 +24,19 @@ let starterThrowNames = ['G-12 High Explosive'];
 let starterArmorPassiveNames = ['Extra Padding'];
 let starterBoosterNames = [];
 let getStartingItems = () => {
+  starterStratNames = [
+    'Orbital EMS Strike',
+    'Orbital Smoke Strike',
+    'Eagle Smoke Strike',
+    'EMS Mortar Sentry',
+    'Shield Generator Relay',
+  ];
+  starterPrimNames = ['Constitution'];
+  starterSecNames = ['Peacemaker', 'Stun Lance', 'Stun Baton', 'Combat Hatchet'];
+  starterThrowNames = ['G-12 High Explosive'];
+  starterArmorPassiveNames = ['Extra Padding'];
+  starterBoosterNames = [];
+  console.log(specialist);
   if (specialist === null) {
     return {
       starterStratNames,

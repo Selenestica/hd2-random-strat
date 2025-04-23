@@ -10,6 +10,7 @@ to do Randomizer:
   - then rearrange indices to accommodate
 
 to do Penitent Crusade:
+- BUG: clear save data and restart option deletes ALL saves
 - when mission fail, choose a and s tier items from acquiredItems, if any
 - add nice icon for app icon shortcuts
 - add specialists (see specialist ideas below)

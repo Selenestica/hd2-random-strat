@@ -24,6 +24,10 @@ let currentItems = [];
 let missionCounter = 1;
 
 const startNewRun = (spec = null) => {
+  if (spec === null) {
+    specialistNameText.innerHTML = '';
+  }
+
   newStrats = OGstratsList.filter((strat) => {
     return !starterStratNames.includes(strat.displayName);
   });
@@ -412,6 +416,7 @@ const addDefaultItemsToAccordions = async (spec = null) => {
     defaultStrats,
     defaultThrows,
   } = await getDefaultItems();
+  console.log(spec, defaultArmorPassives);
 
   // if a specialist was applied, reset the accordions
   if (spec !== null) {
@@ -457,6 +462,7 @@ const clearSaveDataAndRestart = () => {
   armorPassiveAccordionBody.innerHTML = '';
   boosterAccordionBody.innerHTML = '';
   missionCounterText.innerHTML = `${getMissionText()}`;
+  specialistNameText.innerHTML = '';
   addDefaultItemsToAccordions();
 };
 
@@ -474,11 +480,10 @@ const saveProgress = async (item = null) => {
   let obj = {};
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (!penitentCrusadeSaveData) {
-    console.log(specialist, newArmorPassives);
     obj = {
       savedGames: [
         {
-          acquiredItems: item ? [{ item }] : [],
+          acquiredItems: item ? [item] : [],
           numOfRerolls,
           newStrats,
           newPrims,
@@ -503,12 +508,13 @@ const saveProgress = async (item = null) => {
   const data = JSON.parse(penitentCrusadeSaveData);
   const newSavedGames = await data.savedGames.map((sg) => {
     if (sg.currentGame === true) {
-      const acquiredItems = sg.acquiredItems;
-      const newItem = { item };
-      acquiredItems.push(newItem);
+      let updatedItems = sg.acquiredItems;
+      if (item) {
+        updatedItems.push(item);
+      }
       sg = {
         ...sg,
-        acquiredItems,
+        acquiredItems: updatedItems,
         numOfRerolls,
         newStrats,
         newPrims,
@@ -517,7 +523,9 @@ const saveProgress = async (item = null) => {
         newArmorPassives,
         newBoosts,
         seesRulesOnOpen: false,
-        dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
+        dataName: `${getMissionText()} | ${getCurrentDateTime()}${
+          specialist !== null ? ' | ' + SPECIALISTS[specialist].displayName : ''
+        }`,
         currentGame: true,
         missionCounter,
         specialist,
@@ -534,7 +542,7 @@ const saveProgress = async (item = null) => {
 };
 
 const uploadSaveData = async () => {
-  // will need to go through each save and choose the one with currentGame === true
+  console.log('hey');
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (penitentCrusadeSaveData) {
     if (!JSON.parse(penitentCrusadeSaveData).savedGames) {
@@ -545,7 +553,6 @@ const uploadSaveData = async () => {
       return;
     }
     const currentGame = await getCurrentGame();
-
     numOfRerolls = currentGame.numOfRerolls;
     newStrats = currentGame.newStrats;
     newPrims = currentGame.newPrims;
@@ -559,8 +566,20 @@ const uploadSaveData = async () => {
     specialist = currentGame.specialist;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
+    if (currentGame.specialist !== null) {
+      specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
+    }
+    stratagemAccordionBody.innerHTML = '';
+    primaryAccordionBody.innerHTML = '';
+    secondaryAccordionBody.innerHTML = '';
+    throwableAccordionBody.innerHTML = '';
+    armorPassiveAccordionBody.innerHTML = '';
+    boosterAccordionBody.innerHTML = '';
+    console.log(specialist);
+    await getStartingItems();
+    await addDefaultItemsToAccordions(specialist);
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
-      const { item } = currentGame.acquiredItems[i];
+      const item = currentGame.acquiredItems[i];
       const { imgDir, accBody } = getItemMetaData(item);
       accBody.innerHTML += generateItemCard(item, false, imgDir);
     }
@@ -641,9 +660,12 @@ const saveDataAndRestart = async () => {
   throwableAccordionBody.innerHTML = '';
   armorPassiveAccordionBody.innerHTML = '';
   boosterAccordionBody.innerHTML = '';
+  specialistNameText.innerHTML = '';
   addDefaultItemsToAccordions();
 };
 
-addDefaultItemsToAccordions();
+if (!localStorage.getItem('penitentCrusadeSaveData')) {
+  addDefaultItemsToAccordions();
+}
 
 uploadSaveData();

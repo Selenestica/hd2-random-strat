@@ -186,20 +186,20 @@
             <div class="col d-flex justify-content-end">
               <button
                 type="button"
-                class="btn btn-danger mx-2"
-                onclick="maxStarsNotEarned()"
-                data-bs-dismiss="modal"
-              >
-                No
-              </button>
-              <button
-                type="button"
                 class="btn btn-success"
                 onclick="closeMaxStarsPromptModal()"
                 data-bs-toggle="modal"
                 data-bs-target="#itemOptionsModal"
               >
                 Yes
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger mx-2"
+                onclick="maxStarsNotEarned()"
+                data-bs-dismiss="modal"
+              >
+                No
               </button>
             </div>
           </div>
@@ -419,8 +419,6 @@
       open="true"
       aria-labelledby="specialistsModalLabel"
       aria-hidden="true"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
     >
       <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <div class="modal-content bg-grey">
@@ -439,12 +437,7 @@
           </div>
           <div class="modal-footer row justify-content-between">
             <div class="d-flex col justify-content-start">
-              <button
-                type="button"
-                onclick="clearSpecialistsModalBody()"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Cancel
               </button>
             </div>
@@ -454,6 +447,7 @@
                 onclick="applySpecialist()"
                 class="btn btn-primary"
                 data-bs-dismiss="modal"
+                id="applySpecialistButton"
               >
                 Apply
               </button>
@@ -508,8 +502,11 @@
   <script src="../js/constants/armorsizes.js"></script>
   <script src="../js/constants/armorpassives.js"></script>
   <script src="../js/constants/specialists.js"></script>
-  <script src="../js/components/genAcquiredItemsAccordions.js"></script>
+  <script src="../js/utils/getMissionText.js"></script>
+  <script src="../js/utils/getCurrentDateTime.js"></script>
   <script src="../js/components/specialistsModal.js"></script>
+  <script src="../js/utils/getStartingItems.js"></script>
+  <script src="../js/components/genAcquiredItemsAccordions.js"></script>
   <script src="../js/penitentcrusade.js"></script>
   <script src="../js/components/genPCSaveDataManagementInfo.js"></script>
 </html>

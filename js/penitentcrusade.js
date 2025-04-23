@@ -16,53 +16,12 @@ const missionFailedButton = document.getElementById('missionFailedButton');
 const missionCounterText = document.getElementById('missionCounterText');
 const oldDataDetectedModal = document.getElementById('oldDataDetectedModal');
 const maxStarsPromptModal = document.getElementById('maxStarsPromptModal');
+const applySpecialistButton = document.getElementById('applySpecialistButton');
 
 let rerollHighTierItem = true;
 let numOfRerolls = 15;
 let currentItems = [];
 let missionCounter = 1;
-
-let OGstratsList = [...STRATAGEMS];
-let OGprimsList = [...PRIMARIES];
-let OGsecondsList = [...SECONDARIES];
-let OGthrowsList = [...THROWABLES];
-let OGboostsList = [...BOOSTERS];
-let OGarmorPassivesList = [...ARMOR_PASSIVES];
-let newStrats = [];
-let newPrims = [];
-let newSeconds = [];
-let newThrows = [];
-let newArmorPassives = [];
-let newBoosts = [];
-
-const starterStratNames = [
-  'Orbital EMS Strike',
-  'Orbital Smoke Strike',
-  'Eagle Smoke Strike',
-  'EMS Mortar Sentry',
-  'Shield Generator Relay',
-];
-const starterPrimNames = ['Constitution'];
-const starterSecNames = ['Peacemaker', 'Stun Lance', 'Stun Baton', 'Combat Hatchet'];
-const starterThrowNames = ['G-12 High Explosive'];
-const starterArmorPassiveNames = ['Extra Padding'];
-
-// create default item lists for later use
-const defaultStrats = OGstratsList.filter((strat) => {
-  return starterStratNames.includes(strat.displayName);
-});
-const defaultPrims = OGprimsList.filter((prim) => {
-  return starterPrimNames.includes(prim.displayName);
-});
-const defaultSeconds = OGsecondsList.filter((sec) => {
-  return starterSecNames.includes(sec.displayName);
-});
-const defaultThrows = OGthrowsList.filter((throwable) => {
-  return starterThrowNames.includes(throwable.displayName);
-});
-const defaultArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
-  return starterArmorPassiveNames.includes(armorPassive.displayName);
-});
 
 const startNewRun = () => {
   newStrats = OGstratsList.filter((strat) => {
@@ -80,11 +39,14 @@ const startNewRun = () => {
   newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
     return !starterArmorPassiveNames.includes(armorPassive.displayName);
   });
-  newBoosts = OGboostsList;
+  newBoosters = OGboostsList.filter((booster) => {
+    return !starterBoosterNames.includes(booster.displayName);
+  });
   rerollHighTierItem = true;
   numOfRerolls = 15;
   currentItems = [];
   missionCounter = 1;
+  specialist = null;
   checkMissionButtons();
   // open the modal to show the rules
   document.addEventListener('DOMContentLoaded', () => {
@@ -108,6 +70,12 @@ const getCurrentGame = async () => {
 };
 
 const checkMissionButtons = () => {
+  if (missionCounter > 1) {
+    applySpecialistButton.disabled = true;
+  }
+  if (missionCounter === 1) {
+    applySpecialistButton.disabled = false;
+  }
   if (missionCounter >= 21) {
     missionCompleteButton.disabled = true;
   }
@@ -117,75 +85,6 @@ const checkMissionButtons = () => {
   if (missionCounter < 21) {
     missionCompleteButton.disabled = false;
     missionFailedButton.disabled = false;
-  }
-};
-
-const getMissionText = () => {
-  if (missionCounter === 1) {
-    return 'Diff: 3, Mission: 1';
-  }
-  if (missionCounter === 2) {
-    return 'Diff: 3, Mission: 2';
-  }
-  if (missionCounter === 3) {
-    return 'Diff: 4, Mission: 1';
-  }
-  if (missionCounter === 4) {
-    return 'Diff: 4, Mission: 2';
-  }
-  if (missionCounter === 5) {
-    return 'Diff: 5, Mission: 1';
-  }
-  if (missionCounter === 6) {
-    return 'Diff: 5, Mission: 2';
-  }
-  if (missionCounter === 7) {
-    return 'Diff: 5, Mission: 3';
-  }
-  if (missionCounter === 8) {
-    return 'Diff: 6, Mission: 1';
-  }
-  if (missionCounter === 9) {
-    return 'Diff: 6, Mission: 2';
-  }
-  if (missionCounter === 10) {
-    return 'Diff: 6, Mission: 3';
-  }
-  if (missionCounter === 11) {
-    return 'Diff: 7, Mission: 1';
-  }
-  if (missionCounter === 12) {
-    return 'Diff: 7, Mission: 2';
-  }
-  if (missionCounter === 13) {
-    return 'Diff: 7, Mission: 3';
-  }
-  if (missionCounter === 14) {
-    return 'Diff: 8, Mission: 1';
-  }
-  if (missionCounter === 15) {
-    return 'Diff: 8, Mission: 2';
-  }
-  if (missionCounter === 16) {
-    return 'Diff: 8, Mission: 3';
-  }
-  if (missionCounter === 17) {
-    return 'Diff: 9, Mission: 1';
-  }
-  if (missionCounter === 18) {
-    return 'Diff: 9, Mission: 2';
-  }
-  if (missionCounter === 19) {
-    return 'Diff: 9, Mission: 3';
-  }
-  if (missionCounter === 20) {
-    return 'Diff: 10, Mission: 1';
-  }
-  if (missionCounter === 21) {
-    return 'Diff: 10, Mission: 2';
-  }
-  if (missionCounter === 22) {
-    return 'Redemption...';
   }
 };
 
@@ -348,7 +247,6 @@ const closeMaxStarsPromptModal = () => {
   rollRewardOptions();
 };
 
-// if too many of one item is rolled and theres nothing left in the list, the image will be blank and the item may show up in the wrong accordion
 const rollRewardOptions = () => {
   // ask if user earned max stars
 
@@ -525,6 +423,7 @@ const saveProgress = async (item) => {
           dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
           currentGame: true,
           missionCounter,
+          specialist,
         },
       ],
     };
@@ -552,6 +451,7 @@ const saveProgress = async (item) => {
         dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
         currentGame: true,
         missionCounter,
+        specialist,
       };
     }
     return sg;
@@ -587,6 +487,7 @@ const uploadSaveData = async () => {
     seesRulesOnOpen = currentGame.seesRulesOnOpen;
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;
+    specialist = currentGame.specialist;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
@@ -597,14 +498,6 @@ const uploadSaveData = async () => {
     return;
   }
   startNewRun();
-};
-
-const getCurrentDateTime = () => {
-  const date = new Date();
-  const dateString = date.toLocaleDateString();
-  const timeString = date.toLocaleTimeString();
-  const dateTimeString = `${dateString} ${timeString}`;
-  return dateTimeString;
 };
 
 const saveDataAndRestart = async () => {
@@ -648,6 +541,7 @@ const saveDataAndRestart = async () => {
   numOfRerolls = 15;
   currentItems = [];
   missionCounter = 1;
+  specialist = null;
   missionCounterText.innerHTML = `${getMissionText()}`;
   checkMissionButtons();
   const newSaveObj = {
@@ -663,6 +557,7 @@ const saveDataAndRestart = async () => {
     dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
     currentGame: true,
     missionCounter: 1,
+    specialist,
   };
 
   updatedSavedGames.push(newSaveObj);

@@ -59,6 +59,10 @@ body {
   height: 3rem;
 }
 
+#motImage {
+  width: 25%;
+}
+
 .itemCards {
   background-color: rgb(71, 71, 71);
   width: 100%;
@@ -66,6 +70,10 @@ body {
 
 .pcItemCards {
   background-color: rgb(71, 71, 71);
+}
+
+.specialistCards {
+  cursor: pointer;
 }
 
 .pcModalItemCards {

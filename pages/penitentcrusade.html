@@ -70,9 +70,22 @@
           </button>
         </div>
       </div>
-      <div class="row mt-2 justify-content-center text-white" id="missionCounterText"></div>
+      <div class="row mt-2 justify-content-center text-white">
+        <div class="col-4 text-white d-flex justify-content-start" id="specialistNameText"></div>
+        <div class="col-4 text-white d-flex justify-content-center" id="missionCounterText"></div>
+        <div class="col-4 d-flex justify-content-end"></div>
+      </div>
       <div class="row mt-2 justify-content-center">
-        <div class="col-2"></div>
+        <div class="col-2 justify-content-start d-flex align-items-center">
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#specialistsModal"
+          >
+            <i class="fa-solid fa-person-rifle"></i>
+          </button>
+        </div>
         <div class="col-8 d-flex justify-content-center">
           <div class="btn-group my-2 mx-2">
             <button
@@ -98,7 +111,7 @@
         </div>
         <div class="col-2 justify-content-end d-flex align-items-center">
           <button
-            class="btn btn-danger"
+            class="btn btn-warning"
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#restartModal"
@@ -150,7 +163,7 @@
       </div>
     </div>
 
-    <!-- ITEM OPTIONS MODAL -->
+    <!-- MAX STARS PROMPT MODAL -->
     <div
       class="modal fade"
       id="maxStarsPromptModal"
@@ -160,11 +173,21 @@
     >
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
-          <div
-            class="modal-body text-white d-flex row justify-content-center"
-            id="maxStarsPromptModalBody"
-          >
-            Did you earn the maximum amount of stars for this mission?
+          <div class="modal-body d-flex row justify-content-center">
+            <div class="row text-white d-flex justify-content-center">
+              Did you earn the maximum amount of stars for this mission?
+            </div>
+            <div class="row text-white d-flex justify-content-center align-items-center">
+              <img
+                src="/images/dressing/ministryOfTruthIcon.png"
+                class="img-fluid"
+                alt="ministry of truth eye"
+                id="motImage"
+              />
+              <small class="d-flex justify-content-center"
+                >NOTE: Lying will be considered treason.</small
+              >
+            </div>
           </div>
           <div class="modal-footer row justify-content-between">
             <div class="col d-flex justify-content-start">
@@ -173,20 +196,20 @@
             <div class="col d-flex justify-content-end">
               <button
                 type="button"
-                class="btn btn-danger mx-2"
-                onclick="maxStarsNotEarned()"
-                data-bs-dismiss="modal"
-              >
-                No
-              </button>
-              <button
-                type="button"
                 class="btn btn-success"
                 onclick="closeMaxStarsPromptModal()"
                 data-bs-toggle="modal"
                 data-bs-target="#itemOptionsModal"
               >
                 Yes
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger mx-2"
+                onclick="maxStarsNotEarned()"
+                data-bs-dismiss="modal"
+              >
+                No
               </button>
             </div>
           </div>
@@ -296,29 +319,20 @@
       aria-labelledby="restartModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
             <h5 class="modal-title text-light" id="">Restart Run</h5>
           </div>
           <div class="modal-body row d-flex justify-content-center">
             <p class="text-white">
-              You can save your current game and begin a new one, or you can delete your current
-              game and start fresh.
+              When you restart your run, your current run will be saved.
               <br />
               <br />
-              Either option will start a new game.
+              Restart run?
             </p>
           </div>
-          <div class="modal-footer d-flex justify-content-between">
-            <button
-              type="button"
-              onclick="clearSaveDataAndRestart()"
-              class="btn btn-danger"
-              data-bs-dismiss="modal"
-            >
-              Delete and Restart
-            </button>
+          <div class="modal-footer d-flex justify-content-end">
             <button
               type="button"
               onclick="saveDataAndRestart()"
@@ -343,7 +357,7 @@
       data-bs-backdrop="static"
       data-bs-keyboard="false"
     >
-      <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
             <h5 class="modal-title text-light" id="">Save Data Management</h5>
@@ -378,6 +392,14 @@
             <div class="d-flex col justify-content-end">
               <button
                 type="button"
+                onclick="clearSaveDataAndRestart()"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >
+                Delete ALL
+              </button>
+              <button
+                type="button"
                 onclick="deleteSavedGameData()"
                 class="btn btn-danger mx-2"
                 data-bs-dismiss="modal"
@@ -389,6 +411,52 @@
                 onclick="applySavedGameData()"
                 class="btn btn-primary"
                 data-bs-dismiss="modal"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPECIALISTS MODAL -->
+    <div
+      class="modal fade"
+      id="specialistsModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="specialistsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="">Specialist Select</h5>
+          </div>
+          <div class="modal-body row d-flex justify-content-center" id="specialistsModalBody">
+            <p class="text-white">
+              You can choose to attempt the challenge as a specialist, changing your starting
+              equipment.
+              <br />
+              <br />
+              NOTE: You can only choose a class at the beginning of a run.
+            </p>
+            <div class="row d-flex justify-content-center" id="specialistsList"></div>
+          </div>
+          <div class="modal-footer row justify-content-between">
+            <div class="d-flex col justify-content-start">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Cancel
+              </button>
+            </div>
+            <div class="d-flex col justify-content-end">
+              <button
+                type="button"
+                onclick="applySpecialist()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                id="applySpecialistButton"
               >
                 Apply
               </button>
@@ -442,6 +510,11 @@
   <script src="../js/constants/armorsets.js"></script>
   <script src="../js/constants/armorsizes.js"></script>
   <script src="../js/constants/armorpassives.js"></script>
+  <script src="../js/constants/specialists.js"></script>
+  <script src="../js/utils/getMissionText.js"></script>
+  <script src="../js/utils/getCurrentDateTime.js"></script>
+  <script src="../js/components/specialistsModal.js"></script>
+  <script src="../js/utils/getStartingItems.js"></script>
   <script src="../js/components/genAcquiredItemsAccordions.js"></script>
   <script src="../js/penitentcrusade.js"></script>
   <script src="../js/components/genPCSaveDataManagementInfo.js"></script>

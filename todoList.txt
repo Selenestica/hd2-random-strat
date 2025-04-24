@@ -10,6 +10,7 @@ to do Randomizer:
   - then rearrange indices to accommodate
 
 to do Penitent Crusade:
+- BUG: clear save data and restart option deletes ALL saves
 - when mission fail, choose a and s tier items from acquiredItems, if any
 - add nice icon for app icon shortcuts
 - add specialists (see specialist ideas below)
@@ -31,61 +32,7 @@ feature ideas:
 - holding click on stratagem or equipment icon will change it
 
 Penitent Crusade Specialist ideas:
-The Zealous Martyr
- - ybwamahe Hellbomb backpack, combat hatchet, Integrated Explosives
-
-The Permacura Rep
- - ybwamahe, stim pistol, medic armor
-
- The Sheriff
- - ybwamahe, Talon or Senator, Gunslinger armor
- - cannot roll a support weapon
-
-The Speedrunner
- - ybwamahe, FRV, Expert Extraction Pilot/Dead Sprint booster
-
-The Viper Commando
- - ybwamahe, Peak Physique armor, Lib Carbine, throwing knives
-
-The Pyromaniac
- - ybwamahe, Fire resistance armor, Eagle Napalm, Torcher
-
-The Lightning Bug
- - ybwamahe, arc thrower, tesla tower, arc resistance armor
-
-The Scout Sniper
- - ybwamahe, Diligence, scout armor, UAV Recon booster
-
-The Hellpod Enthusiast
- - ybwamahe, EAT, Commando, Firebomb Hellpods
- - cannot roll Eagles or Orbitals
-
-The OG
- - ybwamahe, Liberator
- - chance of rolling high tier items increased
- - must always have B-01 armor equipped
-
- The Truth Enforcer
- - ybwamahe, Reprimand/Halt, Unflinching armor
-
- The Exterminator
- - gas resistance armor, gas grenades, sterilizer
-
- The Urban Soldier
- - Siege Ready armor
- - can only roll one-handed primaries
-
- The Assault Trooper
- - Acclimated armor
- - can only use Stahl Arms primaries
-
  The Shotgun Surgeon
  - ybwamahe, Punisher, Bushwacker
-
- The Loot Goblin
- - Supply Pack, Sample Extricator booster
-
- The Escape Artist
- - ybwamahe, Jump pack, smoke grenades
 
  

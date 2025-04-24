@@ -16,55 +16,18 @@ const missionFailedButton = document.getElementById('missionFailedButton');
 const missionCounterText = document.getElementById('missionCounterText');
 const oldDataDetectedModal = document.getElementById('oldDataDetectedModal');
 const maxStarsPromptModal = document.getElementById('maxStarsPromptModal');
+const applySpecialistButton = document.getElementById('applySpecialistButton');
 
 let rerollHighTierItem = true;
 let numOfRerolls = 15;
 let currentItems = [];
 let missionCounter = 1;
 
-let OGstratsList = [...STRATAGEMS];
-let OGprimsList = [...PRIMARIES];
-let OGsecondsList = [...SECONDARIES];
-let OGthrowsList = [...THROWABLES];
-let OGboostsList = [...BOOSTERS];
-let OGarmorPassivesList = [...ARMOR_PASSIVES];
-let newStrats = [];
-let newPrims = [];
-let newSeconds = [];
-let newThrows = [];
-let newArmorPassives = [];
-let newBoosts = [];
+const startNewRun = (spec = null) => {
+  if (spec === null) {
+    specialistNameText.innerHTML = '';
+  }
 
-const starterStratNames = [
-  'Orbital EMS Strike',
-  'Orbital Smoke Strike',
-  'Eagle Smoke Strike',
-  'EMS Mortar Sentry',
-  'Shield Generator Relay',
-];
-const starterPrimNames = ['Constitution'];
-const starterSecNames = ['Peacemaker', 'Stun Lance', 'Stun Baton', 'Combat Hatchet'];
-const starterThrowNames = ['G-12 High Explosive'];
-const starterArmorPassiveNames = ['Extra Padding'];
-
-// create default item lists for later use
-const defaultStrats = OGstratsList.filter((strat) => {
-  return starterStratNames.includes(strat.displayName);
-});
-const defaultPrims = OGprimsList.filter((prim) => {
-  return starterPrimNames.includes(prim.displayName);
-});
-const defaultSeconds = OGsecondsList.filter((sec) => {
-  return starterSecNames.includes(sec.displayName);
-});
-const defaultThrows = OGthrowsList.filter((throwable) => {
-  return starterThrowNames.includes(throwable.displayName);
-});
-const defaultArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
-  return starterArmorPassiveNames.includes(armorPassive.displayName);
-});
-
-const startNewRun = () => {
   newStrats = OGstratsList.filter((strat) => {
     return !starterStratNames.includes(strat.displayName);
   });
@@ -80,11 +43,15 @@ const startNewRun = () => {
   newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
     return !starterArmorPassiveNames.includes(armorPassive.displayName);
   });
-  newBoosts = OGboostsList;
+  newBoosts = OGboostsList.filter((booster) => {
+    return !starterBoosterNames.includes(booster.displayName);
+  });
+
   rerollHighTierItem = true;
   numOfRerolls = 15;
   currentItems = [];
   missionCounter = 1;
+  specialist = spec;
   checkMissionButtons();
   // open the modal to show the rules
   document.addEventListener('DOMContentLoaded', () => {
@@ -93,6 +60,38 @@ const startNewRun = () => {
   });
   missionCounterText.innerHTML = `${getMissionText()}`;
   clearItemOptionsModal();
+  if (spec !== null) {
+    addDefaultItemsToAccordions(spec);
+  }
+};
+
+const getDefaultItems = () => {
+  const defaultStrats = OGstratsList.filter((strat) => {
+    return starterStratNames.includes(strat.displayName);
+  });
+  const defaultPrims = OGprimsList.filter((prim) => {
+    return starterPrimNames.includes(prim.displayName);
+  });
+  const defaultSeconds = OGsecondsList.filter((sec) => {
+    return starterSecNames.includes(sec.displayName);
+  });
+  const defaultThrows = OGthrowsList.filter((throwable) => {
+    return starterThrowNames.includes(throwable.displayName);
+  });
+  const defaultArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
+    return starterArmorPassiveNames.includes(armorPassive.displayName);
+  });
+  const defaultBoosters = OGboostsList.filter((booster) => {
+    return starterBoosterNames.includes(booster.displayName);
+  });
+  return {
+    defaultStrats,
+    defaultPrims,
+    defaultSeconds,
+    defaultThrows,
+    defaultArmorPassives,
+    defaultBoosters,
+  };
 };
 
 const getCurrentGame = async () => {
@@ -108,6 +107,12 @@ const getCurrentGame = async () => {
 };
 
 const checkMissionButtons = () => {
+  if (missionCounter > 1) {
+    applySpecialistButton.disabled = true;
+  }
+  if (missionCounter === 1) {
+    applySpecialistButton.disabled = false;
+  }
   if (missionCounter >= 21) {
     missionCompleteButton.disabled = true;
   }
@@ -117,75 +122,6 @@ const checkMissionButtons = () => {
   if (missionCounter < 21) {
     missionCompleteButton.disabled = false;
     missionFailedButton.disabled = false;
-  }
-};
-
-const getMissionText = () => {
-  if (missionCounter === 1) {
-    return 'Diff: 3, Mission: 1';
-  }
-  if (missionCounter === 2) {
-    return 'Diff: 3, Mission: 2';
-  }
-  if (missionCounter === 3) {
-    return 'Diff: 4, Mission: 1';
-  }
-  if (missionCounter === 4) {
-    return 'Diff: 4, Mission: 2';
-  }
-  if (missionCounter === 5) {
-    return 'Diff: 5, Mission: 1';
-  }
-  if (missionCounter === 6) {
-    return 'Diff: 5, Mission: 2';
-  }
-  if (missionCounter === 7) {
-    return 'Diff: 5, Mission: 3';
-  }
-  if (missionCounter === 8) {
-    return 'Diff: 6, Mission: 1';
-  }
-  if (missionCounter === 9) {
-    return 'Diff: 6, Mission: 2';
-  }
-  if (missionCounter === 10) {
-    return 'Diff: 6, Mission: 3';
-  }
-  if (missionCounter === 11) {
-    return 'Diff: 7, Mission: 1';
-  }
-  if (missionCounter === 12) {
-    return 'Diff: 7, Mission: 2';
-  }
-  if (missionCounter === 13) {
-    return 'Diff: 7, Mission: 3';
-  }
-  if (missionCounter === 14) {
-    return 'Diff: 8, Mission: 1';
-  }
-  if (missionCounter === 15) {
-    return 'Diff: 8, Mission: 2';
-  }
-  if (missionCounter === 16) {
-    return 'Diff: 8, Mission: 3';
-  }
-  if (missionCounter === 17) {
-    return 'Diff: 9, Mission: 1';
-  }
-  if (missionCounter === 18) {
-    return 'Diff: 9, Mission: 2';
-  }
-  if (missionCounter === 19) {
-    return 'Diff: 9, Mission: 3';
-  }
-  if (missionCounter === 20) {
-    return 'Diff: 10, Mission: 1';
-  }
-  if (missionCounter === 21) {
-    return 'Diff: 10, Mission: 2';
-  }
-  if (missionCounter === 22) {
-    return 'Redemption...';
   }
 };
 
@@ -348,11 +284,32 @@ const closeMaxStarsPromptModal = () => {
   rollRewardOptions();
 };
 
-// if too many of one item is rolled and theres nothing left in the list, the image will be blank and the item may show up in the wrong accordion
-const rollRewardOptions = () => {
-  // ask if user earned max stars
-
-  let itemsLists = [newStrats, newPrims, newBoosts, newSeconds, newThrows, newArmorPassives];
+const getrewardsItemsLists = () => {
+  let lists = [newStrats, newPrims, newSeconds, newThrows, newArmorPassives, newBoosts];
+  if (specialist === null) {
+    return lists;
+  }
+  lists = [newStrats];
+  if (SPECIALISTS[specialist].armorPassives.length === 0) {
+    lists.push(newArmorPassives);
+  }
+  if (SPECIALISTS[specialist].boosters.length === 0) {
+    lists.push(newBoosts);
+  }
+  if (SPECIALISTS[specialist].primaries.length === 0) {
+    lists.push(newPrims);
+  }
+  if (SPECIALISTS[specialist].secondaries.length === 0) {
+    lists.push(newSeconds);
+  }
+  if (SPECIALISTS[specialist].throwables.length === 0) {
+    lists.push(newThrows);
+  }
+  return lists;
+};
+const rollRewardOptions = async () => {
+  // when a specialist is applied, dont roll items that the user cant use
+  let itemsLists = await getrewardsItemsLists();
   itemsLists = itemsLists.filter((list) => list.length > 0);
   if (itemsLists.length < 3) {
     console.log('NOT ENOUGH ITEMS TO SHOW');
@@ -471,7 +428,27 @@ const clearItemOptionsModal = () => {
   itemOptionsModalBody.innerHTML = '';
 };
 
-const addDefaultItemsToAccordions = () => {
+const addDefaultItemsToAccordions = async (spec = null) => {
+  // create default item lists for later use
+  const {
+    defaultArmorPassives,
+    defaultBoosters,
+    defaultPrims,
+    defaultSeconds,
+    defaultStrats,
+    defaultThrows,
+  } = await getDefaultItems();
+
+  // if a specialist was applied, reset the accordions
+  if (spec !== null) {
+    stratagemAccordionBody.innerHTML = '';
+    primaryAccordionBody.innerHTML = '';
+    secondaryAccordionBody.innerHTML = '';
+    throwableAccordionBody.innerHTML = '';
+    armorPassiveAccordionBody.innerHTML = '';
+    boosterAccordionBody.innerHTML = '';
+  }
+
   for (let i = 0; i < defaultStrats.length; i++) {
     stratagemAccordionBody.innerHTML += generateItemCard(defaultStrats[i], false, 'svgs');
   }
@@ -491,29 +468,29 @@ const addDefaultItemsToAccordions = () => {
       'armor',
     );
   }
+  for (let i = 0; i < defaultBoosters.length; i++) {
+    boosterAccordionBody.innerHTML += generateItemCard(defaultBoosters[i], false, 'equipment');
+  }
 };
 
-const clearSaveDataAndRestart = () => {
-  localStorage.removeItem('penitentCrusadeSaveData');
-  startNewRun();
-  stratagemAccordionBody.innerHTML = '';
-  primaryAccordionBody.innerHTML = '';
-  secondaryAccordionBody.innerHTML = '';
-  throwableAccordionBody.innerHTML = '';
-  armorPassiveAccordionBody.innerHTML = '';
-  boosterAccordionBody.innerHTML = '';
-  missionCounterText.innerHTML = `${getMissionText()}`;
-  addDefaultItemsToAccordions();
+const applySpecialist = () => {
+  if (specialist === null) {
+    return;
+  }
+  specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
+  getStartingItems();
+  startNewRun(specialist);
+  saveProgress();
 };
 
-const saveProgress = async (item) => {
+const saveProgress = async (item = null) => {
   let obj = {};
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (!penitentCrusadeSaveData) {
     obj = {
       savedGames: [
         {
-          acquiredItems: [{ item }],
+          acquiredItems: item ? [item] : [],
           numOfRerolls,
           newStrats,
           newPrims,
@@ -522,9 +499,12 @@ const saveProgress = async (item) => {
           newArmorPassives,
           newBoosts,
           seesRulesOnOpen: false,
-          dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
+          dataName: `${getMissionText()} | ${getCurrentDateTime()}${
+            specialist !== null ? ' | ' + SPECIALISTS[specialist].displayName : ''
+          }`,
           currentGame: true,
           missionCounter,
+          specialist,
         },
       ],
     };
@@ -535,12 +515,13 @@ const saveProgress = async (item) => {
   const data = JSON.parse(penitentCrusadeSaveData);
   const newSavedGames = await data.savedGames.map((sg) => {
     if (sg.currentGame === true) {
-      const acquiredItems = sg.acquiredItems;
-      const newItem = { item };
-      acquiredItems.push(newItem);
+      let updatedItems = sg.acquiredItems;
+      if (item) {
+        updatedItems.push(item);
+      }
       sg = {
         ...sg,
-        acquiredItems,
+        acquiredItems: updatedItems,
         numOfRerolls,
         newStrats,
         newPrims,
@@ -549,9 +530,12 @@ const saveProgress = async (item) => {
         newArmorPassives,
         newBoosts,
         seesRulesOnOpen: false,
-        dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
+        dataName: `${getMissionText()} | ${getCurrentDateTime()}${
+          specialist !== null ? ' | ' + SPECIALISTS[specialist].displayName : ''
+        }`,
         currentGame: true,
         missionCounter,
+        specialist,
       };
     }
     return sg;
@@ -565,7 +549,6 @@ const saveProgress = async (item) => {
 };
 
 const uploadSaveData = async () => {
-  // will need to go through each save and choose the one with currentGame === true
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (penitentCrusadeSaveData) {
     if (!JSON.parse(penitentCrusadeSaveData).savedGames) {
@@ -576,7 +559,6 @@ const uploadSaveData = async () => {
       return;
     }
     const currentGame = await getCurrentGame();
-
     numOfRerolls = currentGame.numOfRerolls;
     newStrats = currentGame.newStrats;
     newPrims = currentGame.newPrims;
@@ -587,24 +569,28 @@ const uploadSaveData = async () => {
     seesRulesOnOpen = currentGame.seesRulesOnOpen;
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;
+    specialist = currentGame.specialist ?? null;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
+    if (currentGame.specialist !== null) {
+      specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
+    }
+    stratagemAccordionBody.innerHTML = '';
+    primaryAccordionBody.innerHTML = '';
+    secondaryAccordionBody.innerHTML = '';
+    throwableAccordionBody.innerHTML = '';
+    armorPassiveAccordionBody.innerHTML = '';
+    boosterAccordionBody.innerHTML = '';
+    await getStartingItems();
+    await addDefaultItemsToAccordions(specialist);
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
-      const { item } = currentGame.acquiredItems[i];
+      const item = currentGame.acquiredItems[i];
       const { imgDir, accBody } = getItemMetaData(item);
       accBody.innerHTML += generateItemCard(item, false, imgDir);
     }
     return;
   }
   startNewRun();
-};
-
-const getCurrentDateTime = () => {
-  const date = new Date();
-  const dateString = date.toLocaleDateString();
-  const timeString = date.toLocaleTimeString();
-  const dateTimeString = `${dateString} ${timeString}`;
-  return dateTimeString;
 };
 
 const saveDataAndRestart = async () => {
@@ -627,6 +613,9 @@ const saveDataAndRestart = async () => {
     return sg;
   });
 
+  specialist = null;
+  await getStartingItems();
+
   // some of the same code as restarting a run, but we use this to populate the fresh save
   newStrats = OGstratsList.filter((strat) => {
     return !starterStratNames.includes(strat.displayName);
@@ -643,7 +632,9 @@ const saveDataAndRestart = async () => {
   newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
     return !starterArmorPassiveNames.includes(armorPassive.displayName);
   });
-  newBoosts = OGboostsList;
+  newBoosts = OGboostsList.filter((booster) => {
+    return !starterBoosterNames.includes(booster.displayName);
+  });
   rerollHighTierItem = true;
   numOfRerolls = 15;
   currentItems = [];
@@ -663,6 +654,7 @@ const saveDataAndRestart = async () => {
     dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
     currentGame: true,
     missionCounter: 1,
+    specialist,
   };
 
   updatedSavedGames.push(newSaveObj);
@@ -677,9 +669,26 @@ const saveDataAndRestart = async () => {
   throwableAccordionBody.innerHTML = '';
   armorPassiveAccordionBody.innerHTML = '';
   boosterAccordionBody.innerHTML = '';
+  specialistNameText.innerHTML = '';
   addDefaultItemsToAccordions();
 };
 
-addDefaultItemsToAccordions();
+const clearSaveDataAndRestart = () => {
+  localStorage.removeItem('penitentCrusadeSaveData');
+  startNewRun();
+  stratagemAccordionBody.innerHTML = '';
+  primaryAccordionBody.innerHTML = '';
+  secondaryAccordionBody.innerHTML = '';
+  throwableAccordionBody.innerHTML = '';
+  armorPassiveAccordionBody.innerHTML = '';
+  boosterAccordionBody.innerHTML = '';
+  missionCounterText.innerHTML = `${getMissionText()}`;
+  specialistNameText.innerHTML = '';
+  addDefaultItemsToAccordions();
+};
+
+if (!localStorage.getItem('penitentCrusadeSaveData')) {
+  addDefaultItemsToAccordions();
+}
 
 uploadSaveData();

@@ -676,6 +676,7 @@ const saveDataAndRestart = async () => {
 const clearSaveDataAndRestart = () => {
   localStorage.removeItem('penitentCrusadeSaveData');
   startNewRun();
+  getStartingItems();
   stratagemAccordionBody.innerHTML = '';
   primaryAccordionBody.innerHTML = '';
   secondaryAccordionBody.innerHTML = '';

@@ -284,7 +284,7 @@ const closeMaxStarsPromptModal = () => {
   rollRewardOptions();
 };
 
-const getrewardsItemsLists = async () => {
+const getrewardsItemsLists = () => {
   let lists = [newStrats, newPrims, newSeconds, newThrows, newArmorPassives, newBoosts];
   if (specialist === null) {
     return lists;
@@ -473,20 +473,6 @@ const addDefaultItemsToAccordions = async (spec = null) => {
   }
 };
 
-const clearSaveDataAndRestart = () => {
-  localStorage.removeItem('penitentCrusadeSaveData');
-  startNewRun();
-  stratagemAccordionBody.innerHTML = '';
-  primaryAccordionBody.innerHTML = '';
-  secondaryAccordionBody.innerHTML = '';
-  throwableAccordionBody.innerHTML = '';
-  armorPassiveAccordionBody.innerHTML = '';
-  boosterAccordionBody.innerHTML = '';
-  missionCounterText.innerHTML = `${getMissionText()}`;
-  specialistNameText.innerHTML = '';
-  addDefaultItemsToAccordions();
-};
-
 const applySpecialist = () => {
   if (specialist === null) {
     return;
@@ -583,7 +569,7 @@ const uploadSaveData = async () => {
     seesRulesOnOpen = currentGame.seesRulesOnOpen;
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;
-    specialist = currentGame.specialist;
+    specialist = currentGame.specialist ?? null;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
     if (currentGame.specialist !== null) {
@@ -683,6 +669,20 @@ const saveDataAndRestart = async () => {
   throwableAccordionBody.innerHTML = '';
   armorPassiveAccordionBody.innerHTML = '';
   boosterAccordionBody.innerHTML = '';
+  specialistNameText.innerHTML = '';
+  addDefaultItemsToAccordions();
+};
+
+const clearSaveDataAndRestart = () => {
+  localStorage.removeItem('penitentCrusadeSaveData');
+  startNewRun();
+  stratagemAccordionBody.innerHTML = '';
+  primaryAccordionBody.innerHTML = '';
+  secondaryAccordionBody.innerHTML = '';
+  throwableAccordionBody.innerHTML = '';
+  armorPassiveAccordionBody.innerHTML = '';
+  boosterAccordionBody.innerHTML = '';
+  missionCounterText.innerHTML = `${getMissionText()}`;
   specialistNameText.innerHTML = '';
   addDefaultItemsToAccordions();
 };

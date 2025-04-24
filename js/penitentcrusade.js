@@ -284,10 +284,32 @@ const closeMaxStarsPromptModal = () => {
   rollRewardOptions();
 };
 
-const rollRewardOptions = () => {
-  // ask if user earned max stars
-
-  let itemsLists = [newStrats, newPrims, newBoosts, newSeconds, newThrows, newArmorPassives];
+const getrewardsItemsLists = async () => {
+  let lists = [newStrats, newPrims, newSeconds, newThrows, newArmorPassives, newBoosts];
+  if (specialist === null) {
+    return lists;
+  }
+  lists = [newStrats];
+  if (SPECIALISTS[specialist].armorPassives.length === 0) {
+    lists.push(newArmorPassives);
+  }
+  if (SPECIALISTS[specialist].boosters.length === 0) {
+    lists.push(newBoosts);
+  }
+  if (SPECIALISTS[specialist].primaries.length === 0) {
+    lists.push(newPrims);
+  }
+  if (SPECIALISTS[specialist].secondaries.length === 0) {
+    lists.push(newSeconds);
+  }
+  if (SPECIALISTS[specialist].throwables.length === 0) {
+    lists.push(newThrows);
+  }
+  return lists;
+};
+const rollRewardOptions = async () => {
+  // when a specialist is applied, dont roll items that the user cant use
+  let itemsLists = await getrewardsItemsLists();
   itemsLists = itemsLists.filter((list) => list.length > 0);
   if (itemsLists.length < 3) {
     console.log('NOT ENOUGH ITEMS TO SHOW');
@@ -416,7 +438,6 @@ const addDefaultItemsToAccordions = async (spec = null) => {
     defaultStrats,
     defaultThrows,
   } = await getDefaultItems();
-  console.log(spec, defaultArmorPassives);
 
   // if a specialist was applied, reset the accordions
   if (spec !== null) {
@@ -542,7 +563,6 @@ const saveProgress = async (item = null) => {
 };
 
 const uploadSaveData = async () => {
-  console.log('hey');
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (penitentCrusadeSaveData) {
     if (!JSON.parse(penitentCrusadeSaveData).savedGames) {
@@ -575,7 +595,6 @@ const uploadSaveData = async () => {
     throwableAccordionBody.innerHTML = '';
     armorPassiveAccordionBody.innerHTML = '';
     boosterAccordionBody.innerHTML = '';
-    console.log(specialist);
     await getStartingItems();
     await addDefaultItemsToAccordions(specialist);
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
@@ -608,6 +627,9 @@ const saveDataAndRestart = async () => {
     return sg;
   });
 
+  specialist = null;
+  await getStartingItems();
+
   // some of the same code as restarting a run, but we use this to populate the fresh save
   newStrats = OGstratsList.filter((strat) => {
     return !starterStratNames.includes(strat.displayName);
@@ -624,12 +646,13 @@ const saveDataAndRestart = async () => {
   newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
     return !starterArmorPassiveNames.includes(armorPassive.displayName);
   });
-  newBoosts = OGboostsList;
+  newBoosts = OGboostsList.filter((booster) => {
+    return !starterBoosterNames.includes(booster.displayName);
+  });
   rerollHighTierItem = true;
   numOfRerolls = 15;
   currentItems = [];
   missionCounter = 1;
-  specialist = null;
   missionCounterText.innerHTML = `${getMissionText()}`;
   checkMissionButtons();
   const newSaveObj = {

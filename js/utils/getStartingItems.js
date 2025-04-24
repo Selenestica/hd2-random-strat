@@ -36,7 +36,6 @@ let getStartingItems = () => {
   starterThrowNames = ['G-12 High Explosive'];
   starterArmorPassiveNames = ['Extra Padding'];
   starterBoosterNames = [];
-  console.log(specialist);
   if (specialist === null) {
     return {
       starterStratNames,

@@ -166,7 +166,7 @@ const claimPunishment = async (currentItemIndex) => {
   const currentGame = await getCurrentGame();
   const acquiredItems = currentGame.acquiredItems;
   const newAcquiredItems = acquiredItems.filter((acquiredItem) => {
-    return acquiredItem.item.displayName !== item.displayName;
+    return acquiredItem.displayName !== item.displayName;
   });
 
   reduceMissionCounter();
@@ -356,8 +356,8 @@ const rollPunishmentOptions = async () => {
   }
   const numsList = Array.from(numbers);
   for (let i = 0; i < numsList.length; i++) {
-    const vals = getItemMetaData(acquiredItems[numsList[i]].item);
-    const randomItem = acquiredItems[numsList[i]].item;
+    const vals = getItemMetaData(acquiredItems[numsList[i]]);
+    const randomItem = acquiredItems[numsList[i]];
     currentItems.push(randomItem);
     itemOptionsModalBody.innerHTML += generateItemCard(
       randomItem,

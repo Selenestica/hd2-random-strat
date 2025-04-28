@@ -372,7 +372,6 @@ const rollPunishmentOptions = async () => {
 
 const getRandomItemList = async (list) => {
   const num = Math.random();
-  console.log(num, missionCounter);
   const saList = await list.filter((item) => {
     return item.tier === 's' || item.tier === 'a';
   });
@@ -386,19 +385,19 @@ const getRandomItemList = async (list) => {
     return bcList;
   }
   if (missionCounter <= 7) {
-    if (num < 0.08) {
+    if (num < 0.05) {
       return saList;
     }
     return bcList;
   }
   if (missionCounter <= 16) {
-    if (num < 0.16) {
+    if (num < 0.08) {
       return saList;
     }
     return bcList;
   }
   if (missionCounter <= 21) {
-    if (num < 0.24) {
+    if (num < 0.11) {
       return saList;
     }
     return bcList;

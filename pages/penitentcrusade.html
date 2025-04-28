@@ -466,6 +466,31 @@
       </div>
     </div>
 
+    <!-- SHOW ALL ITEMS MODAL -->
+    <div
+      class="modal fade"
+      id="showAllItemsModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="showAllItemsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="showAllItemsModalTitle"></h5>
+          </div>
+          <div
+            class="modal-body row d-flex justify-content-center"
+            id="showAllItemsModalBody"
+          ></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- OLD DATA DETECTED MODAL -->
     <div
       class="modal fade"
@@ -514,6 +539,7 @@
   <script src="../js/utils/getMissionText.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
   <script src="../js/components/specialistsModal.js"></script>
+  <script src="../js/components/genShowAllItemsModal.js"></script>
   <script src="../js/utils/getStartingItems.js"></script>
   <script src="../js/components/genAcquiredItemsAccordions.js"></script>
   <script src="../js/penitentcrusade.js"></script>

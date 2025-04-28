@@ -8,10 +8,8 @@ const accordionItem = (cat, index, modifier) => {
           <button
             class="accordion-button text-white"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#mainAccordionCollapse${index + modifier}"
             aria-expanded="true"
-            aria-controls="mainAccordionCollapse${index + modifier}"
+            onclick=populateShowAllItemsModal("${cat}AccordionBody")
           >
             ${cat}
           </button>

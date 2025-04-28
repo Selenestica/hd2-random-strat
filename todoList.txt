@@ -10,10 +10,11 @@ to do Randomizer:
   - then rearrange indices to accommodate
 
 to do Penitent Crusade:
-- BUG: clear save data and restart option deletes ALL saves
+- take scroll bar away from accordions and maybe make items smaller?
+- balance
+  - rarity level for stratagems so s and a tier stratagems are very unlikely to be rolled early (but still possible)
 - when mission fail, choose a and s tier items from acquiredItems, if any
 - add nice icon for app icon shortcuts
-- add specialists (see specialist ideas below)
 - rare reroll token that randomly shows up as a reward
 - in order to stop item farming by repeatedly failing missions, cap the number of rewards to 21
 - add options for warbonds, in case some people dont have all the warbonds

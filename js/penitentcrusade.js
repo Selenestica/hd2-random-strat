@@ -18,8 +18,6 @@ const oldDataDetectedModal = document.getElementById('oldDataDetectedModal');
 const maxStarsPromptModal = document.getElementById('maxStarsPromptModal');
 const applySpecialistButton = document.getElementById('applySpecialistButton');
 
-let rerollHighTierItem = true;
-let numOfRerolls = 15;
 let currentItems = [];
 let missionCounter = 1;
 
@@ -47,8 +45,6 @@ const startNewRun = (spec = null) => {
     return !starterBoosterNames.includes(booster.displayName);
   });
 
-  rerollHighTierItem = true;
-  numOfRerolls = 15;
   currentItems = [];
   missionCounter = 1;
   specialist = spec;
@@ -284,11 +280,12 @@ const closeMaxStarsPromptModal = () => {
   rollRewardOptions();
 };
 
-const getrewardsItemsLists = () => {
+const getRewardsItemsLists = () => {
   let lists = [newStrats, newPrims, newSeconds, newThrows, newArmorPassives, newBoosts];
   if (specialist === null) {
     return lists;
   }
+
   lists = [newStrats];
   if (SPECIALISTS[specialist].armorPassives.length === 0) {
     lists.push(newArmorPassives);
@@ -307,15 +304,19 @@ const getrewardsItemsLists = () => {
   }
   return lists;
 };
+
 const rollRewardOptions = async () => {
-  // when a specialist is applied, dont roll items that the user cant use
-  let itemsLists = await getrewardsItemsLists();
+  let itemsLists = await getRewardsItemsLists();
   itemsLists = itemsLists.filter((list) => list.length > 0);
   if (itemsLists.length < 3) {
     console.log('NOT ENOUGH ITEMS TO SHOW');
     return;
   }
   const numbers = new Set();
+  // your first reward pool will always have a stratagem or primary
+  if (missionCounter === 1) {
+    numbers.add(0);
+  }
   while (numbers.size < 3) {
     const randomNumber = Math.floor(Math.random() * itemsLists.length);
     numbers.add(randomNumber);
@@ -323,9 +324,9 @@ const rollRewardOptions = async () => {
   const numsList = Array.from(numbers);
   for (let i = 0; i < numsList.length; i++) {
     const list = itemsLists[numsList[i]];
-    const randomItem = getRandomItem(list);
-    const vals = getItemMetaData(randomItem);
+    const randomItem = await getRandomItem(list);
     currentItems.push(randomItem);
+    const vals = getItemMetaData(randomItem);
     itemOptionsModalBody.innerHTML += generateItemCard(
       randomItem,
       true,
@@ -369,15 +370,44 @@ const rollPunishmentOptions = async () => {
   }
 };
 
-const getRandomItem = (list) => {
-  const item = list[Math.floor(Math.random() * list.length)];
-  // reroll s and a tier items one time
-  if ((item.tier === 's' || item.tier === 'a') && rerollHighTierItem && numOfRerolls > 0) {
-    rerollHighTierItem = false;
-    numOfRerolls--;
-    return getRandomItem(list);
+const getRandomItemList = async (list) => {
+  const num = Math.random();
+  console.log(num, missionCounter);
+  const saList = await list.filter((item) => {
+    return item.tier === 's' || item.tier === 'a';
+  });
+  const bcList = await list.filter((item) => {
+    return item.tier === 'b' || item.tier === 'c';
+  });
+  if (bcList.length === 0) {
+    return saList;
   }
-  rerollHighTierItem = true;
+  if (saList.length === 0) {
+    return bcList;
+  }
+  if (missionCounter <= 7) {
+    if (num < 0.08) {
+      return saList;
+    }
+    return bcList;
+  }
+  if (missionCounter <= 16) {
+    if (num < 0.16) {
+      return saList;
+    }
+    return bcList;
+  }
+  if (missionCounter <= 21) {
+    if (num < 0.24) {
+      return saList;
+    }
+    return bcList;
+  }
+};
+
+const getRandomItem = async (list) => {
+  const listToUse = await getRandomItemList(list);
+  const item = listToUse[Math.floor(Math.random() * listToUse.length)];
   return item;
 };
 
@@ -491,7 +521,6 @@ const saveProgress = async (item = null) => {
       savedGames: [
         {
           acquiredItems: item ? [item] : [],
-          numOfRerolls,
           newStrats,
           newPrims,
           newSeconds,
@@ -522,7 +551,6 @@ const saveProgress = async (item = null) => {
       sg = {
         ...sg,
         acquiredItems: updatedItems,
-        numOfRerolls,
         newStrats,
         newPrims,
         newSeconds,
@@ -559,7 +587,6 @@ const uploadSaveData = async () => {
       return;
     }
     const currentGame = await getCurrentGame();
-    numOfRerolls = currentGame.numOfRerolls;
     newStrats = currentGame.newStrats;
     newPrims = currentGame.newPrims;
     newSeconds = currentGame.newSeconds;
@@ -635,15 +662,12 @@ const saveDataAndRestart = async () => {
   newBoosts = OGboostsList.filter((booster) => {
     return !starterBoosterNames.includes(booster.displayName);
   });
-  rerollHighTierItem = true;
-  numOfRerolls = 15;
   currentItems = [];
   missionCounter = 1;
   missionCounterText.innerHTML = `${getMissionText()}`;
   checkMissionButtons();
   const newSaveObj = {
     acquiredItems: [],
-    numOfRerolls: 15,
     newStrats,
     newPrims,
     newSeconds,

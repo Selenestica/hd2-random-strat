@@ -10,9 +10,8 @@ to do Randomizer:
   - then rearrange indices to accommodate
 
 to do Penitent Crusade:
-- take scroll bar away from accordions and maybe make items smaller?
-- balance
-  - rarity level for stratagems so s and a tier stratagems are very unlikely to be rolled early (but still possible)
+- Super Penitent Crusade (unlockable after a complete normal mode)
+- system to track max stars missions, incomplete missions, and failed missions. adding points for each
 - when mission fail, choose a and s tier items from acquiredItems, if any
 - add nice icon for app icon shortcuts
 - rare reroll token that randomly shows up as a reward

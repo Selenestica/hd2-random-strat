@@ -109,12 +109,11 @@ const checkMissionButtons = () => {
   if (missionCounter === 1) {
     applySpecialistButton.disabled = false;
   }
-  if (missionCounter >= 21) {
-    missionCompleteButton.disabled = true;
-  }
   if (missionCounter >= 22) {
     missionFailedButton.disabled = true;
+    missionCompleteButton.disabled = true;
   }
+
   if (missionCounter < 21) {
     missionCompleteButton.disabled = false;
     missionFailedButton.disabled = false;
@@ -275,8 +274,21 @@ const maxStarsNotEarned = async () => {
 };
 
 const closeMaxStarsPromptModal = () => {
-  const modal = new bootstrap.Modal(maxStarsPromptModal);
-  modal.hide();
+  const mspModal = new bootstrap.Modal(maxStarsPromptModal);
+  mspModal.hide();
+
+  // if that was the last mission, dont show rewards because theyre done
+  if (missionCounter >= 21) {
+    missionCounter++;
+    checkMissionButtons();
+    missionCounterText.innerHTML = `${getMissionText()}`;
+    mspModal.hide();
+    saveProgress();
+    return;
+  }
+
+  const itemsModal = new bootstrap.Modal(itemOptionsModal);
+  itemsModal.show();
   rollRewardOptions();
 };
 

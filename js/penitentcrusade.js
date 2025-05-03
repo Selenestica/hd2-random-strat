@@ -13,11 +13,13 @@ const itemOptionsModalHeaderItemName = document.getElementById('itemOptionsModal
 const itemOptionsModal = document.getElementById('itemOptionsModal');
 const missionCompleteButton = document.getElementById('missionCompleteButton');
 const missionFailedButton = document.getElementById('missionFailedButton');
+const missionCompleteButtonDiv = document.getElementById('missionCompleteButtonDiv');
+const missionFailedButtonDiv = document.getElementById('missionFailedButtonDiv');
+const downloadPDFButtonDiv = document.getElementById('downloadPDFButtonDiv');
 const missionCounterText = document.getElementById('missionCounterText');
 const oldDataDetectedModal = document.getElementById('oldDataDetectedModal');
 const maxStarsPromptModal = document.getElementById('maxStarsPromptModal');
 const applySpecialistButton = document.getElementById('applySpecialistButton');
-
 let currentItems = [];
 let missionCounter = 1;
 
@@ -112,6 +114,10 @@ const checkMissionButtons = () => {
   if (missionCounter >= 22) {
     missionFailedButton.disabled = true;
     missionCompleteButton.disabled = true;
+    // hide the mission buttons, and show download items buttons
+    missionCompleteButton.style.display = 'none';
+    missionFailedButton.style.display = 'none';
+    downloadPDFButtonDiv.style.display = 'block';
   }
 
   if (missionCounter < 21) {

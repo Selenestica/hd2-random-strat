@@ -87,7 +87,12 @@
           </button>
         </div>
         <div class="col-8 d-flex justify-content-center">
-          <div class="btn-group my-2 mx-2">
+          <div class="btn-group my-2 mx-2" id="downloadPDFButtonDiv">
+            <button class="btn btn-primary" type="button" onclick="downloadItemsPDF()">
+              <span> Download Awards PDF </span>
+            </button>
+          </div>
+          <div class="btn-group my-2" id="missionCompleteButtonDiv">
             <button
               class="btn btn-success"
               type="button"
@@ -98,7 +103,7 @@
               <span> Mission Complete </span>
             </button>
           </div>
-          <div class="btn-group my-2">
+          <div class="btn-group my-2" id="missionFailedButtonDiv">
             <button
               class="btn btn-danger"
               type="button"
@@ -490,6 +495,31 @@
       </div>
     </div>
 
+    <!-- CHALLENGE COMPLETED MODAL -->
+    <div
+      class="modal fade"
+      id="challengeCompletedModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="challengeCompletedModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="challengeCompletedModalTitle"></h5>
+          </div>
+          <div
+            class="modal-body row d-flex justify-content-center"
+            id="challengeCompletedModalBody"
+          ></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- OLD DATA DETECTED MODAL -->
     <div
       class="modal fade"
@@ -518,6 +548,9 @@
         </div>
       </div>
     </div>
+
+    <!-- ACQUIRED ITEMS HIDDEN BODY -->
+    <div id="acquiredItemsHiddenBody"></div>
   </body>
 
   <script
@@ -537,6 +570,7 @@
   <script src="../js/constants/specialists.js"></script>
   <script src="../js/utils/getMissionText.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
+  <script src="../js/utils/downloadItemsPDF.js"></script>
   <script src="../js/components/specialistsModal.js"></script>
   <script src="../js/components/genShowAllItemsModal.js"></script>
   <script src="../js/utils/getStartingItems.js"></script>

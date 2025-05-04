@@ -62,7 +62,7 @@ const getMissionText = () => {
   if (missionCounter === 21) {
     return 'Diff: 10, Mission: 2';
   }
-  if (missionCounter === 22) {
+  if (missionCounter >= 22) {
     return 'Redemption...';
   }
 };

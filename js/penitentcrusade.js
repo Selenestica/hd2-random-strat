@@ -13,11 +13,13 @@ const itemOptionsModalHeaderItemName = document.getElementById('itemOptionsModal
 const itemOptionsModal = document.getElementById('itemOptionsModal');
 const missionCompleteButton = document.getElementById('missionCompleteButton');
 const missionFailedButton = document.getElementById('missionFailedButton');
+const missionCompleteButtonDiv = document.getElementById('missionCompleteButtonDiv');
+const missionFailedButtonDiv = document.getElementById('missionFailedButtonDiv');
+const downloadPDFButtonDiv = document.getElementById('downloadPDFButtonDiv');
 const missionCounterText = document.getElementById('missionCounterText');
 const oldDataDetectedModal = document.getElementById('oldDataDetectedModal');
 const maxStarsPromptModal = document.getElementById('maxStarsPromptModal');
 const applySpecialistButton = document.getElementById('applySpecialistButton');
-
 let currentItems = [];
 let missionCounter = 1;
 
@@ -109,15 +111,21 @@ const checkMissionButtons = () => {
   if (missionCounter === 1) {
     applySpecialistButton.disabled = false;
   }
-  if (missionCounter >= 21) {
-    missionCompleteButton.disabled = true;
-  }
   if (missionCounter >= 22) {
     missionFailedButton.disabled = true;
+    missionCompleteButton.disabled = true;
+    // hide the mission buttons, and show download items buttons
+    missionCompleteButton.style.display = 'none';
+    missionFailedButton.style.display = 'none';
+    downloadPDFButtonDiv.style.display = 'block';
   }
+
   if (missionCounter < 21) {
     missionCompleteButton.disabled = false;
     missionFailedButton.disabled = false;
+    missionCompleteButton.style.display = 'block';
+    missionFailedButton.style.display = 'block';
+    downloadPDFButtonDiv.style.display = 'none';
   }
 };
 
@@ -275,8 +283,21 @@ const maxStarsNotEarned = async () => {
 };
 
 const closeMaxStarsPromptModal = () => {
-  const modal = new bootstrap.Modal(maxStarsPromptModal);
-  modal.hide();
+  const mspModal = new bootstrap.Modal(maxStarsPromptModal);
+  mspModal.hide();
+
+  // if that was the last mission, dont show rewards because theyre done
+  if (missionCounter >= 21) {
+    missionCounter++;
+    checkMissionButtons();
+    missionCounterText.innerHTML = `${getMissionText()}`;
+    mspModal.hide();
+    saveProgress();
+    return;
+  }
+
+  const itemsModal = new bootstrap.Modal(itemOptionsModal);
+  itemsModal.show();
   rollRewardOptions();
 };
 

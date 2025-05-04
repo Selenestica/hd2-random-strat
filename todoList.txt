@@ -10,8 +10,9 @@ to do Randomizer:
   - then rearrange indices to accommodate
 
 to do Penitent Crusade:
+- make intro modal have accordions for Lore, Rules, FAQs, etc.
 - Super Penitent Crusade (unlockable after a complete normal mode)
- - start with Liberator, Integrated Explosives armor, Senator(?)
+ - start with Integrated Explosives armor, Senator(?)
  - start on Diff 4, Mission 1
  - reduced high-tier item chance
 - system to track max stars missions, incomplete missions, and failed missions. adding points for each
@@ -20,15 +21,12 @@ to do Penitent Crusade:
 - when mission fail, choose a and s tier items from acquiredItems, if any
 - add nice icon for app icon shortcuts
 - rare reroll token that randomly shows up as a reward
-- in order to stop item farming by repeatedly failing missions, cap the number of rewards to 21
 - add options for warbonds, in case some people dont have all the warbonds
 - add QR codes for data sharing
 - add Discord bot compatibility
 
 feature ideas:
 - add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons
-- save options in local storage
-- add link to buymeacoffee
 - buy nvigneux a coffee
 - enemy randomizer
 - difficulty randomizer

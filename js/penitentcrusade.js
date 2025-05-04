@@ -20,8 +20,10 @@ const missionCounterText = document.getElementById('missionCounterText');
 const oldDataDetectedModal = document.getElementById('oldDataDetectedModal');
 const maxStarsPromptModal = document.getElementById('maxStarsPromptModal');
 const applySpecialistButton = document.getElementById('applySpecialistButton');
+const difficultyOptionButton = document.getElementById('difficultyOptionButton');
 let currentItems = [];
 let missionCounter = 1;
+let difficulty = 'normal';
 
 const startNewRun = (spec = null) => {
   if (spec === null) {
@@ -118,6 +120,9 @@ const checkMissionButtons = () => {
     missionCompleteButton.style.display = 'none';
     missionFailedButton.style.display = 'none';
     downloadPDFButtonDiv.style.display = 'block';
+    // allow the user to start Super Penitent Crusade
+    difficultyOptionButton.classList.remove('disabled');
+    localStorage.setItem('isSuperPenitentCrusadeUnlocked', 'true');
   }
 
   if (missionCounter < 21) {
@@ -533,6 +538,18 @@ const applySpecialist = () => {
   saveProgress();
 };
 
+const changeDifficulty = (uploadedDiff = null) => {
+  if (uploadedDiff) {
+    // set button text and dropdown button text
+  }
+  console.log(difficultyOptionButton.innerHTML);
+  // if SPC clicked and no SPC in save data, start SPC
+  // if ^^^ and SPC in save data, open modal to choose to start new SPC or show Save Data Management modal
+
+  // if PC clicked and no PC in save data, start PC
+  // if ^^^ and PC in save data, open modal to choose to start new PC or show Save Data Management modal
+};
+
 const saveProgress = async (item = null) => {
   let obj = {};
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
@@ -584,6 +601,7 @@ const saveProgress = async (item = null) => {
         currentGame: true,
         missionCounter,
         specialist,
+        difficulty,
       };
     }
     return sg;
@@ -596,6 +614,30 @@ const saveProgress = async (item = null) => {
   localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
 };
 
+const unlockSuperPC = () => {
+  const lsData = localStorage.getItem('isSuperPenitentCrusadeUnlocked');
+  if (!lsData) {
+    const savedGames = JSON.parse(localStorage.getItem('penitentCrusadeSaveData')).savedGames;
+    for (let i = 0; i < savedGames.length; i++) {
+      const game = savedGames[i];
+      if (game.missionCounter >= 21) {
+        difficultyOptionButton.classList.remove('disabled');
+        localStorage.setItem('isSuperPenitentCrusadeUnlocked', 'true');
+        return;
+      }
+    }
+    difficultyOptionButton.classList.add('disabled');
+    localStorage.setItem('isSuperPenitentCrusadeUnlocked', 'false');
+    return;
+  }
+  const isSuperPenitentCrusadeUnlocked = JSON.parse(lsData);
+  if (isSuperPenitentCrusadeUnlocked) {
+    difficultyOptionButton.classList.remove('disabled');
+    return;
+  }
+  difficultyOptionButton.classList.add('disabled');
+};
+
 const uploadSaveData = async () => {
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (penitentCrusadeSaveData) {
@@ -606,7 +648,13 @@ const uploadSaveData = async () => {
       startNewRun();
       return;
     }
+
+    // will need to set the difficulty button according to the difficulty in the save file
+    unlockSuperPC();
+
     const currentGame = await getCurrentGame();
+    difficulty = currentGame.difficulty ?? 'normal';
+    changeDifficulty(currentGame.difficulty);
     newStrats = currentGame.newStrats;
     newPrims = currentGame.newPrims;
     newSeconds = currentGame.newSeconds;
@@ -640,7 +688,7 @@ const uploadSaveData = async () => {
   startNewRun();
 };
 
-const saveDataAndRestart = async () => {
+const saveDataAndRestart = async (difficulty = null) => {
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (!penitentCrusadeSaveData) {
     return;
@@ -699,6 +747,7 @@ const saveDataAndRestart = async () => {
     currentGame: true,
     missionCounter: 1,
     specialist,
+    difficulty: difficulty,
   };
 
   updatedSavedGames.push(newSaveObj);

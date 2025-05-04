@@ -19,9 +19,9 @@
     />
     <meta
       name="description"
-      content="Your Helldivers faction failed to defend Moradesh. High Command has ordered you and your compatriots to undergo a Penitent Crusade in order to atone for your faction's failure..."
+      content="High Command has ordered you and your compatriots to undergo a Penitent Crusade in order to atone for your faction's failure..."
     />
-    <title>Helldivers 2 Randomizer</title>
+    <title>Helldivers 2: Penitent Crusade</title>
   </head>
 
   <body>
@@ -59,7 +59,27 @@
       </div>
       <div class="row d-flex justify-content-center">
         <div class="d-flex col justify-content-center align-items-center">
-          <h4 class="text-light mb-0">Penitent Crusade</h4>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Penitent Crusade
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a
+                  id="difficultyOptionButton"
+                  class="dropdown-item"
+                  href="#"
+                  onclick="changeDifficulty()"
+                  >Super Penitent Crusade</a
+                >
+              </li>
+            </ul>
+          </div>
           <button
             class="btn btn-secondary mx-2"
             data-bs-toggle="modal"
@@ -550,9 +570,6 @@
         </div>
       </div>
     </div>
-
-    <!-- ACQUIRED ITEMS HIDDEN BODY -->
-    <div id="acquiredItemsHiddenBody"></div>
   </body>
 
   <script

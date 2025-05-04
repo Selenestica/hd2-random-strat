@@ -178,6 +178,6 @@ body {
   background-color: rgb(71, 71, 71);
 }
 
-#acquiredItemsHiddenBody {
+#downloadPDFButtonDiv {
   display: none;
 }

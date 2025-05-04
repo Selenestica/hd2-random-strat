@@ -123,6 +123,9 @@ const checkMissionButtons = () => {
   if (missionCounter < 21) {
     missionCompleteButton.disabled = false;
     missionFailedButton.disabled = false;
+    missionCompleteButton.style.display = 'block';
+    missionFailedButton.style.display = 'block';
+    downloadPDFButtonDiv.style.display = 'none';
   }
 };
 

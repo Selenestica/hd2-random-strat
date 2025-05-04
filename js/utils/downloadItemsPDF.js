@@ -8,7 +8,7 @@ const generatePDFText = async () => {
     return;
   }
   const acqItems = currentGame[0].acquiredItems;
-  let itemsContent = '';
+  let text = '';
   const categories = {
     stratagems: [],
     primaries: [],
@@ -36,20 +36,22 @@ const generatePDFText = async () => {
 
   for (const category in categories) {
     if (categories[category].length > 0) {
-      itemsContent += `0 -20 Td (${category.charAt(0).toUpperCase() + category.slice(1)}:) Tj `;
+      text += `0 -20 Td (${category.charAt(0).toUpperCase() + category.slice(1)}:) Tj `;
       for (const item of categories[category]) {
-        itemsContent += `0 -20 Td (    ${item.displayName}) Tj `;
+        text += `0 -20 Td (    ${item.displayName}) Tj `;
       }
     } else if (categories[category].length === 0) {
-      itemsContent += `0 -20 Td (${category.charAt(0).toUpperCase() + category.slice(1)}:) Tj `;
-      itemsContent += `0 -20 Td (    None) Tj `;
+      text += `0 -20 Td (${category.charAt(0).toUpperCase() + category.slice(1)}:) Tj `;
+      text += `0 -20 Td (    None) Tj `;
     }
   }
 
-  return itemsContent;
+  return { text, fileName: currentGame[0].dataName };
 };
 
 const downloadItemsPDF = async () => {
+  const { text, fileName } = await generatePDFText();
+
   // Minimal PDF structure
   const pdfContent = `
   %PDF-1.4
@@ -69,7 +71,7 @@ const downloadItemsPDF = async () => {
   /F1 11 Tf
   100 700
   Td () Tj
-  ${await generatePDFText()}
+  ${text}
   ET
   endstream
   endobj
@@ -93,7 +95,7 @@ const downloadItemsPDF = async () => {
   // Create a link element
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = 'example.pdf'; // Name of the downloaded file
+  link.download = fileName + '.pdf'; // Name of the downloaded file
 
   // Append the link to the body, trigger the download, and remove the link
   document.body.appendChild(link);

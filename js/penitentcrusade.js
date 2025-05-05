@@ -738,7 +738,6 @@ const saveDataAndRestart = async (diff = null) => {
   await getStartingItems(diff);
 
   // some of the same code as restarting a run, but we use this to populate the fresh save
-  // will need to change new items to account for super
   newStrats = OGstratsList.filter((strat) => {
     return !starterStratNames.includes(strat.displayName);
   });
@@ -782,7 +781,12 @@ const saveDataAndRestart = async (diff = null) => {
     savedGames: updatedSavedGames,
   };
   await localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newPenitentCrusadeSaveData));
-  // pruneSavedGames();
+
+  // remove saved games that are at the first mission of their difficulty,
+  // as long as they are not the current game
+  // ...this is to prevent the user from having a million saves
+  pruneSavedGames();
+
   clearItemOptionsModal();
   stratagemAccordionBody.innerHTML = '';
   primaryAccordionBody.innerHTML = '';

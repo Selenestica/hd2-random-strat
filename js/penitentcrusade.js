@@ -26,7 +26,7 @@ let currentItems = [];
 let missionCounter = 1;
 let difficulty = 'normal';
 
-const startNewRun = (spec = null) => {
+const startNewRun = (spec = null, diff = null) => {
   if (spec === null) {
     specialistNameText.innerHTML = '';
   }
@@ -34,7 +34,6 @@ const startNewRun = (spec = null) => {
   newStrats = OGstratsList.filter((strat) => {
     return !starterStratNames.includes(strat.displayName);
   });
-  console.log(newStrats);
   newPrims = OGprimsList.filter((prim) => {
     return !starterPrimNames.includes(prim.displayName);
   });
@@ -52,8 +51,8 @@ const startNewRun = (spec = null) => {
   });
 
   currentItems = [];
-  missionCounter = 1;
-  difficulty = 'normal';
+  missionCounter = diff === 'super' ? 3 : 1;
+  difficulty = diff ? diff : 'normal';
   specialist = spec;
   checkMissionButtons();
   // open the modal to show the rules
@@ -110,12 +109,23 @@ const getCurrentGame = async () => {
 };
 
 const checkMissionButtons = () => {
-  if (missionCounter > 1) {
-    applySpecialistButton.disabled = true;
+  if (difficulty === 'normal') {
+    if (missionCounter > 1) {
+      applySpecialistButton.disabled = true;
+    }
+    if (missionCounter === 1) {
+      applySpecialistButton.disabled = false;
+    }
   }
-  if (missionCounter === 1) {
-    applySpecialistButton.disabled = false;
+  if (difficulty === 'super') {
+    if (missionCounter > 3) {
+      applySpecialistButton.disabled = true;
+    }
+    if (missionCounter === 3) {
+      applySpecialistButton.disabled = false;
+    }
   }
+
   if (missionCounter >= 22) {
     missionFailedButton.disabled = true;
     missionCompleteButton.disabled = true;
@@ -538,7 +548,7 @@ const applySpecialist = async () => {
   }
   specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
   await getStartingItems(difficulty);
-  startNewRun(specialist);
+  startNewRun(specialist, difficulty);
   saveProgress();
 };
 

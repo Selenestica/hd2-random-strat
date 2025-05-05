@@ -91,6 +91,7 @@ const applySavedGameData = async () => {
   };
   localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newSaveObj));
   // clear everything first
+  await getStartingItems();
   startNewRun();
   stratagemAccordionBody.innerHTML = '';
   primaryAccordionBody.innerHTML = '';

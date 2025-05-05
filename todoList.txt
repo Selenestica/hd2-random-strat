@@ -12,7 +12,7 @@ to do Randomizer:
 to do Penitent Crusade:
 - make intro modal have accordions for Lore, Rules, FAQs, etc.
 - Super Penitent Crusade (unlockable after a complete normal mode)
- - start with Integrated Explosives armor, Senator(?)
+ - start with Integrated Explosives armor, Ballistic Shield, only melee secondaries
  - start on Diff 4, Mission 1
  - reduced high-tier item chance
 - system to track max stars missions, incomplete missions, and failed missions. adding points for each

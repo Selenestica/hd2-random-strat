@@ -20,6 +20,7 @@ const missionCounterText = document.getElementById('missionCounterText');
 const oldDataDetectedModal = document.getElementById('oldDataDetectedModal');
 const maxStarsPromptModal = document.getElementById('maxStarsPromptModal');
 const applySpecialistButton = document.getElementById('applySpecialistButton');
+const currentDifficultyButton = document.getElementById('currentDifficultyButton');
 const difficultyOptionButton = document.getElementById('difficultyOptionButton');
 let currentItems = [];
 let missionCounter = 1;
@@ -33,6 +34,7 @@ const startNewRun = (spec = null) => {
   newStrats = OGstratsList.filter((strat) => {
     return !starterStratNames.includes(strat.displayName);
   });
+  console.log(newStrats);
   newPrims = OGprimsList.filter((prim) => {
     return !starterPrimNames.includes(prim.displayName);
   });
@@ -51,6 +53,7 @@ const startNewRun = (spec = null) => {
 
   currentItems = [];
   missionCounter = 1;
+  difficulty = 'normal';
   specialist = spec;
   checkMissionButtons();
   // open the modal to show the rules
@@ -485,6 +488,7 @@ const clearItemOptionsModal = () => {
 
 const addDefaultItemsToAccordions = async (spec = null) => {
   // create default item lists for later use
+  // change default items according to difficulty
   const {
     defaultArmorPassives,
     defaultBoosters,
@@ -528,26 +532,44 @@ const addDefaultItemsToAccordions = async (spec = null) => {
   }
 };
 
-const applySpecialist = () => {
+const applySpecialist = async () => {
   if (specialist === null) {
     return;
   }
   specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
-  getStartingItems();
+  await getStartingItems(difficulty);
   startNewRun(specialist);
   saveProgress();
 };
 
 const changeDifficulty = (uploadedDiff = null) => {
+  // go here when page loads
   if (uploadedDiff) {
-    // set button text and dropdown button text
+    if (uploadedDiff === 'normal') {
+      currentDifficultyButton.innerHTML = 'Penitent Crusade';
+      difficultyOptionButton.innerHTML = 'Super Penitent Crusade';
+    } else if (uploadedDiff === 'super') {
+      currentDifficultyButton.innerHTML = 'Super Penitent Crusade';
+      difficultyOptionButton.innerHTML = 'Penitent Crusade';
+    }
+    return;
   }
-  console.log(difficultyOptionButton.innerHTML);
-  // if SPC clicked and no SPC in save data, start SPC
-  // if ^^^ and SPC in save data, open modal to choose to start new SPC or show Save Data Management modal
 
-  // if PC clicked and no PC in save data, start PC
-  // if ^^^ and PC in save data, open modal to choose to start new PC or show Save Data Management modal
+  // go here when the user clicks the button
+  if (difficulty === 'normal') {
+    currentDifficultyButton.innerHTML = 'Super Penitent Crusade';
+    difficultyOptionButton.innerHTML = 'Penitent Crusade';
+    difficulty = 'super';
+    saveDataAndRestart('super');
+    return;
+  }
+  if (difficulty === 'super') {
+    currentDifficultyButton.innerHTML = 'Penitent Crusade';
+    difficultyOptionButton.innerHTML = 'Super Penitent Crusade';
+    difficulty = 'normal';
+    saveDataAndRestart('normal');
+    return;
+  }
 };
 
 const saveProgress = async (item = null) => {
@@ -571,6 +593,7 @@ const saveProgress = async (item = null) => {
           currentGame: true,
           missionCounter,
           specialist,
+          difficulty,
         },
       ],
     };
@@ -645,6 +668,7 @@ const uploadSaveData = async () => {
       localStorage.removeItem('penitentCrusadeSaveData');
       const modal = new bootstrap.Modal(oldDataDetectedModal);
       modal.show();
+      await getStartingItems();
       startNewRun();
       return;
     }
@@ -654,7 +678,7 @@ const uploadSaveData = async () => {
 
     const currentGame = await getCurrentGame();
     difficulty = currentGame.difficulty ?? 'normal';
-    changeDifficulty(currentGame.difficulty);
+    changeDifficulty(currentGame.difficulty ?? 'normal');
     newStrats = currentGame.newStrats;
     newPrims = currentGame.newPrims;
     newSeconds = currentGame.newSeconds;
@@ -676,7 +700,7 @@ const uploadSaveData = async () => {
     throwableAccordionBody.innerHTML = '';
     armorPassiveAccordionBody.innerHTML = '';
     boosterAccordionBody.innerHTML = '';
-    await getStartingItems();
+    await getStartingItems(currentGame.difficulty);
     await addDefaultItemsToAccordions(specialist);
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
       const item = currentGame.acquiredItems[i];
@@ -685,10 +709,11 @@ const uploadSaveData = async () => {
     }
     return;
   }
+  await getStartingItems();
   startNewRun();
 };
 
-const saveDataAndRestart = async (difficulty = null) => {
+const saveDataAndRestart = async (diff = null) => {
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
   if (!penitentCrusadeSaveData) {
     return;
@@ -709,9 +734,11 @@ const saveDataAndRestart = async (difficulty = null) => {
   });
 
   specialist = null;
-  await getStartingItems();
+  // will need to change starting items to account for super
+  await getStartingItems(diff);
 
   // some of the same code as restarting a run, but we use this to populate the fresh save
+  // will need to change new items to account for super
   newStrats = OGstratsList.filter((strat) => {
     return !starterStratNames.includes(strat.displayName);
   });
@@ -731,7 +758,7 @@ const saveDataAndRestart = async (difficulty = null) => {
     return !starterBoosterNames.includes(booster.displayName);
   });
   currentItems = [];
-  missionCounter = 1;
+  missionCounter = diff === 'super' ? 3 : 1;
   missionCounterText.innerHTML = `${getMissionText()}`;
   checkMissionButtons();
   const newSaveObj = {
@@ -745,16 +772,17 @@ const saveDataAndRestart = async (difficulty = null) => {
     seesRulesOnOpen: false,
     dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
     currentGame: true,
-    missionCounter: 1,
+    missionCounter,
     specialist,
-    difficulty: difficulty,
+    difficulty: diff === 'super' ? 'super' : 'normal',
   };
 
   updatedSavedGames.push(newSaveObj);
   const newPenitentCrusadeSaveData = {
     savedGames: updatedSavedGames,
   };
-  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newPenitentCrusadeSaveData));
+  await localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newPenitentCrusadeSaveData));
+  // pruneSavedGames();
   clearItemOptionsModal();
   stratagemAccordionBody.innerHTML = '';
   primaryAccordionBody.innerHTML = '';
@@ -766,10 +794,11 @@ const saveDataAndRestart = async (difficulty = null) => {
   addDefaultItemsToAccordions();
 };
 
-const clearSaveDataAndRestart = () => {
+const clearSaveDataAndRestart = async () => {
   localStorage.removeItem('penitentCrusadeSaveData');
+  changeDifficulty('normal');
+  await getStartingItems();
   startNewRun();
-  getStartingItems();
   stratagemAccordionBody.innerHTML = '';
   primaryAccordionBody.innerHTML = '';
   secondaryAccordionBody.innerHTML = '';
@@ -779,6 +808,29 @@ const clearSaveDataAndRestart = () => {
   missionCounterText.innerHTML = `${getMissionText()}`;
   specialistNameText.innerHTML = '';
   addDefaultItemsToAccordions();
+};
+
+// get rid of all games that arent the current game and are on the first mission
+const pruneSavedGames = async () => {
+  const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
+  if (!penitentCrusadeSaveData) {
+    return;
+  }
+  const prunedGames = await JSON.parse(penitentCrusadeSaveData).savedGames.filter((sg) => {
+    if (
+      sg.currentGame === true ||
+      (sg.missionCounter !== 1 && sg.difficulty === 'normal') ||
+      (sg.missionCounter !== 3 && sg.difficulty === 'super')
+    ) {
+      return sg;
+    }
+  });
+  const oldData = JSON.parse(penitentCrusadeSaveData);
+  const newData = {
+    ...oldData,
+    savedGames: prunedGames,
+  };
+  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newData));
 };
 
 if (!localStorage.getItem('penitentCrusadeSaveData')) {

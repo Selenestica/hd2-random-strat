@@ -552,7 +552,7 @@ const applySpecialist = async () => {
   saveProgress();
 };
 
-const changeDifficulty = (uploadedDiff = null) => {
+const changeDifficulty = async (uploadedDiff = null) => {
   // go here when page loads
   if (uploadedDiff) {
     if (uploadedDiff === 'normal') {
@@ -570,6 +570,12 @@ const changeDifficulty = (uploadedDiff = null) => {
     currentDifficultyButton.innerHTML = 'Super Penitent Crusade';
     difficultyOptionButton.innerHTML = 'Penitent Crusade';
     difficulty = 'super';
+    const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
+    if (!penitentCrusadeSaveData) {
+      await getStartingItems(difficulty);
+      startNewRun(null, difficulty);
+      saveProgress();
+    }
     saveDataAndRestart('super');
     return;
   }
@@ -597,7 +603,7 @@ const saveProgress = async (item = null) => {
           newArmorPassives,
           newBoosts,
           seesRulesOnOpen: false,
-          dataName: `${getMissionText()} | ${getCurrentDateTime()}${
+          dataName: `${difficulty.toUpperCase()} | ${getMissionText()} | ${getCurrentDateTime()}${
             specialist !== null ? ' | ' + SPECIALISTS[specialist].displayName : ''
           }`,
           currentGame: true,
@@ -628,7 +634,7 @@ const saveProgress = async (item = null) => {
         newArmorPassives,
         newBoosts,
         seesRulesOnOpen: false,
-        dataName: `${getMissionText()} | ${getCurrentDateTime()}${
+        dataName: `${difficulty.toUpperCase()} | ${getMissionText()} | ${getCurrentDateTime()}${
           specialist !== null ? ' | ' + SPECIALISTS[specialist].displayName : ''
         }`,
         currentGame: true,
@@ -725,8 +731,10 @@ const uploadSaveData = async () => {
 
 const saveDataAndRestart = async (diff = null) => {
   const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
-  if (!penitentCrusadeSaveData) {
+  if (!penitentCrusadeSaveData && !diff) {
     return;
+  }
+  if (!penitentCrusadeSaveData && diff) {
   }
   const savedGames = JSON.parse(penitentCrusadeSaveData).savedGames;
   if (savedGames.length > 5) {

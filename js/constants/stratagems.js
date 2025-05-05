@@ -297,7 +297,7 @@ const STRATAGEMS = [
     tier: 'a',
   },
   {
-    displayName: 'Ballistic Shield Backpack',
+    displayName: 'Ballistic Shield',
     type: 'Stratagem',
     category: 'Supply',
     tags: ['Backpacks'],

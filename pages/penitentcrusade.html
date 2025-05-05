@@ -19,9 +19,9 @@
     />
     <meta
       name="description"
-      content="Your Helldivers faction failed to defend Moradesh. High Command has ordered you and your compatriots to undergo a Penitent Crusade in order to atone for your faction's failure..."
+      content="High Command has ordered you and your compatriots to undergo a Penitent Crusade in order to atone for your faction's failure..."
     />
-    <title>Helldivers 2 Randomizer</title>
+    <title>Helldivers 2: Penitent Crusade</title>
   </head>
 
   <body>
@@ -59,7 +59,28 @@
       </div>
       <div class="row d-flex justify-content-center">
         <div class="d-flex col justify-content-center align-items-center">
-          <h4 class="text-light mb-0">Penitent Crusade</h4>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              id="currentDifficultyButton"
+            >
+              Penitent Crusade
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <a
+                  id="difficultyOptionButton"
+                  class="dropdown-item"
+                  href="#"
+                  onclick="changeDifficulty()"
+                  >Super Penitent Crusade</a
+                >
+              </li>
+            </ul>
+          </div>
           <button
             class="btn btn-secondary mx-2"
             data-bs-toggle="modal"
@@ -233,79 +254,247 @@
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="">A Chance for Redemption...</h5>
+            <h5 class="modal-title text-light">The Penitent Crusade Challenge</h5>
           </div>
           <div class="modal-body row d-flex justify-content-center">
-            <h6 class="text-white fw-bold my-2">Background</h6>
-            <p class="text-white">
-              There are Helldivers… and then there are those who must atone. A chosen few among the
-              Helldivers are called into the Watch, to walk the path of the Penitent Crusade. These
-              are no ordinary squads. These are known as Kill Teams, forged in silence, burdened
-              with penance. Upon assignment, each warrior is adorned with the black markings of the
-              Deathwatch, an ancient and somber mantle. They will wear this paint into battle, and
-              bear its weight until their duty is fulfilled. It is a mark not of honor, but of
-              sacrifice. These teams are cast into operations with minimal support, reinforced only
-              by their resolve. No recognition awaits them, only the grim satisfaction of survival
-              and the hope that their debt might be paid. If they endure, they return not to
-              fanfare, but to solemnity. And though the black paint is washed away, one thing
-              remains: the sigil of the Deathwatch, affixed to their armor as a lasting symbol of
-              duty, of repentance, and of the fire they walked through.
-              <br />
-              <br />
-              <em
-                >They dive in silence, and emerge victorious, or not at all. This is their
-                reckoning. This is their Penitent Crusade.
-              </em>
-            </p>
-            <h6 class="text-white fw-bold my-2">The Penitent Crusade</h6>
-            <p class="text-white">
-              Your squad will begin the crusade with a Medium (Level 3) difficulty operation, with
-              Super Earth's outdated and surplus equipment. After completing each mission in an
-              operation, your squad will begin a new operation at the next highest difficulty level.
-              Your squad's goal is to complete an operation at the highest difficulty level, Super
-              Helldive (Level 10). Only then will your squad be redeemed. You may start this crusade
-              on any front.
-            </p>
-            <h6 class="text-white fw-bold my-2">Earning Rewards</h6>
-            <p class="text-white">
-              In order to appease High Command and be rewarded for your efforts, you must complete
-              each mission with the maximum amount of stars. After a mission is completed with
-              maximum stars, press the "Mission Complete" button. You may choose one of the three
-              items presented to you.
-              <br />
-              If you don't complete a mission with the maximum amount of stars, you do not earn a
-              reward for that mission (do not press the "Mission Complete" button). Continue to
-              progress through the crusade as normal.
-              <br />
-              <br />
-              NOTE: High-tier equipment and stratagems are more likely to appear as you progress
-              through your crusade.
-            </p>
-            <h6 class="text-white fw-bold my-2">Using Your Equipment</h6>
-            <p class="text-white">
-              The equipment you see in the background is what you currently have unlocked. Any items
-              you earn through mission rewards will appear there as well. While you're in-mission,
-              you may not use any stratagems that are available for free (e.g. experimental weapons
-              testing, arsenal augmentations, etc). Only the stratagems you have unlocked and
-              objective-specific stratagems (e.g. Hellbomb, SSSD, SEAF Artillery, SOS, etc.) may be
-              used. However, you're free to pick up and use any stratagems found in your environment
-              (such as those that can be looted at Points of Interest).
-            </p>
-            <h6 class="text-white fw-bold my-2">Failure</h6>
-            <p class="text-white">
-              If your squad fails a mission, you must start a new operation on the difficulty that
-              you failed to complete. Furthermore, you must choose an item to be removed from your
-              inventory. Press the "Mission Failed" button, then choose an item to be taken from
-              you.
-            </p>
-
-            <h6 class="text-white fw-bold my-2">Saving Your Progress</h6>
-            <p class="text-white">
-              Your rewards are saved in your browser's local storage. If you clear your browser's
-              local storage, your progress will be lost. If you want to clear your progress, you may
-              do so by pressing the "Restart" button. This will clear your progress and restart the
-              game. You will be prompted to confirm this action.
-            </p>
+            <div class="accordion" id="infoAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    Lore
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      There are Helldivers… and then there are those who must atone. A chosen few
+                      among the Helldivers are called into the Watch, to walk the path of the
+                      Penitent Crusade. These are no ordinary squads. These are known as Kill Teams,
+                      forged in silence, burdened with penance. Upon assignment, each warrior is
+                      adorned with the black markings of the Deathwatch, an ancient and somber
+                      mantle. They will wear this paint into battle, and bear its weight until their
+                      duty is fulfilled. It is a mark not of honor, but of sacrifice. These teams
+                      are cast into operations with minimal support, reinforced only by their
+                      resolve. No recognition awaits them, only the grim satisfaction of survival
+                      and the hope that their debt might be paid. If they endure, they return not to
+                      fanfare, but to solemnity. And though the black paint is washed away, one
+                      thing remains: the sigil of the Deathwatch, affixed to their armor as a
+                      lasting symbol of duty, of repentance, and of the fire they walked through.
+                      <br />
+                      <br />
+                      <em
+                        >They dive in silence, and emerge victorious, or not at all. This is their
+                        reckoning. This is their Penitent Crusade.
+                      </em>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    Overview
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse collapse show"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      Your squad will begin the crusade with a Medium (Level 3) difficulty
+                      operation, with Super Earth's outdated and surplus equipment.
+                      <br />
+                      <br />
+                      After completing each mission in an operation, your squad will begin a new
+                      operation at the next highest difficulty level.
+                      <br />
+                      <br />
+                      Your squad's goal is to complete an operation at the highest difficulty level,
+                      Super Helldive (Level 10). Only then will your squad be redeemed. You may
+                      start this crusade on any front.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    Earning Rewards
+                  </button>
+                </h2>
+                <div
+                  id="collapseThree"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      In order to appease High Command and be rewarded for your efforts, you must
+                      complete each mission with the maximum amount of stars.
+                      <br />
+                      <br />
+                      If you don't complete a mission with the maximum amount of stars, you do not
+                      earn a reward for that mission.
+                      <br />
+                      <br />
+                      In either case, press the "Mission Complete" button, and follow the prompts.
+                      <br />
+                      <br />
+                      NOTE: High-tier equipment and stratagems are more likely to appear as you
+                      progress through your crusade.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour"
+                    aria-expanded="false"
+                    aria-controls="collapseFour"
+                  >
+                    Using Your Equipment
+                  </button>
+                </h2>
+                <div
+                  id="collapseFour"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      The equipment you see in the background is what you currently have unlocked.
+                      Any items you earn through mission rewards will appear there as well.
+                      <br />
+                      <br />
+                      While you're in-mission, you may not use any stratagems that are available for
+                      free (e.g. experimental weapons testing, arsenal augmentations, etc). Only the
+                      stratagems you have unlocked and objective-specific stratagems (e.g. Hellbomb,
+                      SSSD, SEAF Artillery, SOS, etc.) may be used. However, you're free to pick up
+                      and use any stratagems found in your environment (such as those that can be
+                      looted at Points of Interest).
+                      <br />
+                      <br />
+                      Additionally, you may share equipment with your squadmates.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive"
+                    aria-expanded="false"
+                    aria-controls="collapseFive"
+                  >
+                    Failure
+                  </button>
+                </h2>
+                <div
+                  id="collapseFive"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      If your squad fails a mission, you must start a new operation on the
+                      difficulty that you failed to complete. Furthermore, you must choose an item
+                      to be removed from your inventory.
+                      <br />
+                      <br />
+                      Press the "Mission Failed" button, then choose an item to be taken from you.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseSix"
+                    aria-expanded="false"
+                    aria-controls="collapseSix"
+                  >
+                    Saving Your Progress
+                  </button>
+                </h2>
+                <div
+                  id="collapseSix"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      Your rewards are saved in your browser's local storage. If you clear your
+                      browser's local storage, your progress will be lost. If you want to clear your
+                      progress, you may do so by pressing the "Restart" button. This will clear your
+                      progress and restart the game. You will be prompted to confirm this action.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseSeven"
+                    aria-expanded="false"
+                    aria-controls="collapseSeven"
+                  >
+                    Super Penitent Crusade
+                  </button>
+                </h2>
+                <div
+                  id="collapseSeven"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      This mode is unlocked after completing the Penitent Crusade. It is a more
+                      difficult version of the Penitent Crusade. The same rules apply.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -550,9 +739,6 @@
         </div>
       </div>
     </div>
-
-    <!-- ACQUIRED ITEMS HIDDEN BODY -->
-    <div id="acquiredItemsHiddenBody"></div>
   </body>
 
   <script

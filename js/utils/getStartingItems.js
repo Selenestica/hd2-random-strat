@@ -23,7 +23,7 @@ let starterSecNames = ['Peacemaker', 'Stun Lance', 'Stun Baton', 'Combat Hatchet
 let starterThrowNames = ['G-12 High Explosive'];
 let starterArmorPassiveNames = ['Extra Padding'];
 let starterBoosterNames = [];
-let getStartingItems = () => {
+const getStartingItems = (diff = null) => {
   starterStratNames = [
     'Orbital EMS Strike',
     'Orbital Smoke Strike',
@@ -31,10 +31,12 @@ let getStartingItems = () => {
     'EMS Mortar Sentry',
     'Shield Generator Relay',
   ];
+  diff === 'super' ? starterStratNames.push('Ballistic Shield') : null;
   starterPrimNames = ['Constitution'];
-  starterSecNames = ['Peacemaker', 'Stun Lance', 'Stun Baton', 'Combat Hatchet'];
+  starterSecNames = ['Stun Lance', 'Stun Baton', 'Combat Hatchet'];
+  diff !== 'super' ? starterSecNames.push('Peacemaker') : null;
   starterThrowNames = ['G-12 High Explosive'];
-  starterArmorPassiveNames = ['Extra Padding'];
+  starterArmorPassiveNames = diff === 'super' ? ['Integrated Explosives'] : ['Extra Padding'];
   starterBoosterNames = [];
   if (specialist === null) {
     return {

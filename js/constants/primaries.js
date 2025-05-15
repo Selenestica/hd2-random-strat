@@ -384,4 +384,15 @@ const PRIMARIES = [
     imageURL: 'las17doubleedgesickle.png',
     tier: 'a',
   },
+  {
+    displayName: 'R-2 Amendment',
+    type: 'Equipment',
+    category: 'primary',
+    tags: ['MarksmanRifle'],
+    warbond: 'Masters of Ceremony',
+    warbondCode: 'warbond13',
+    internalName: 'r2amendment',
+    imageURL: 'r2amendment.png',
+    tier: 'b',
+  },
 ];

@@ -175,9 +175,20 @@ const ARMOR_PASSIVES = [
     imageURL: 'gunslinger.png',
     tier: 'b',
   },
+  {
+    displayName: 'Reinforced Epaulettes',
+    type: 'Equipment',
+    category: 'armor',
+    tags: ['ArmorPassive'],
+    warbond: '',
+    warbondCode: '',
+    internalName: 'reinforcedepaulettes',
+    imageURL: 'reinforcedepaulettes.png',
+    tier: 'c',
+  },
 ];
 
 // s: 3
 // a: 3
 // b: 6
-// c: 4
+// c: 5

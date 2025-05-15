@@ -121,7 +121,7 @@ const THROWABLES = [
     tier: 'b',
   },
   {
-    displayName: 'TED-63 Throwable Dynamite',
+    displayName: 'Throwable Dynamite',
     type: 'Equipment',
     category: 'throwable',
     tags: [],
@@ -129,6 +129,17 @@ const THROWABLES = [
     warbondCode: 'warbond12',
     internalName: 'ted63throwabledynamite',
     imageURL: 'ted63throwabledynamite.png',
+    tier: 'b',
+  },
+  {
+    displayName: 'G-142 Pyrotech',
+    type: 'Equipment',
+    category: 'throwable',
+    tags: [],
+    warbond: 'Masters of Ceremony',
+    warbondCode: 'warbond13',
+    internalName: 'g142pyrotech',
+    imageURL: 'g142pyrotech.png',
     tier: 'b',
   },
 ];

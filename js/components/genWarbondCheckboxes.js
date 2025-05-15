@@ -13,6 +13,7 @@ const warbondsList = [
   'Urban Legends', // warbond10
   'Servants of Freedom', // warbond11
   'Borderline Justice', // warbond12
+  'Masters of Ceremony', // warbond13
   'Superstore',
   'Pre-Order Bonus',
 ];

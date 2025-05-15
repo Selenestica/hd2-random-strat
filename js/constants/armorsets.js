@@ -824,19 +824,37 @@ const ARMOR_SETS = [
     imageURL: 'gs11democracysdeputy.png',
     tier: 'b',
   },
+  {
+    displayName: `RE-824 Bearer of the Standard`,
+    type: 'Equipment',
+    category: 'armor',
+    tags: ['Heavy'],
+    warbond: 'Superstore',
+    warbondCode: 'superstore',
+    internalName: 're824bearerofthestandard',
+    imageURL: 're824bearerofthestandard.png',
+    tier: 'b',
+  },
+  {
+    displayName: `RE-1861 Parade Commander`,
+    type: 'Equipment',
+    category: 'armor',
+    tags: ['Light'],
+    warbond: 'Masters of Ceremony',
+    warbondCode: 'warbond13',
+    internalName: 're1861paradecommander',
+    imageURL: 're1861paradecommander.png',
+    tier: 'b',
+  },
+  {
+    displayName: `RE-2310 Honorary Guard`,
+    type: 'Equipment',
+    category: 'armor',
+    tags: ['Medium'],
+    warbond: 'Masters of Ceremony',
+    warbondCode: 'warbond13',
+    internalName: 're2310honoraryguard',
+    imageURL: 're2310honoraryguard.png',
+    tier: 'b',
+  },
 ];
-
-/*
-    "Super Citizen Edition", // warbond0
-    "Helldivers Mobilize",// warbond1
-    "Steeled Veterans",// warbond2
-    "Cutting Edge",// warbond3
-    "Democratic Detonation",// warbond4
-    "Polar Patriots",// warbond5
-    "Viper Commandos",// warbond6
-    "Freedom's Flame",// warbond7
-    "Chemical Agents",// warbond8
-    "Truth Enforcers"// warbond9
-    "Urban Legends"// warbond 10
-    "Servants of Freedom"// warbond 11
-*/

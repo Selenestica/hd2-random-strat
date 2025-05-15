@@ -164,9 +164,20 @@ const BOOSTERS = [
     imageURL: 'sampleextricator.png',
     tier: 'c',
   },
+  {
+    displayName: 'Sample Scanner',
+    type: 'Equipment',
+    category: 'booster',
+    tags: [],
+    warbond: 'Masters of Ceremony',
+    warbondCode: 'warbond13',
+    internalName: 'samplescanner',
+    imageURL: 'samplescanner.png',
+    tier: 'c',
+  },
 ];
 
 // s: 4
 // a: 1
 // b: 6
-// c: 4
+// c: 5

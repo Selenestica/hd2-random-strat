@@ -725,4 +725,15 @@ const STRATAGEMS = [
     imageURL: 'portablehellbomb.svg',
     tier: 'a',
   },
+  {
+    displayName: 'One True Flag',
+    type: 'Stratagem',
+    category: 'Supply',
+    tags: ['Weapons'],
+    warbond: 'Masters of Ceremony',
+    warbondCode: 'warbond13',
+    internalName: 'onetrueflag',
+    imageURL: 'onetrueflag.svg',
+    tier: 'c',
+  },
 ];

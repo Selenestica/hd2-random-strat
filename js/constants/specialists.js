@@ -22,6 +22,17 @@ const SPECIALISTS = [
     armorPassives: ['Med-Kit'],
     traits: [],
   },
+  {
+    displayName: 'The Flag Bearer',
+    starterItems: ['One True Flag', 'Reinforced Epaulettes armor', 'Stamina Enhancement booster'],
+    stratagems: ['One True Flag'],
+    primaries: [],
+    boosters: ['Stamina Enhancement'],
+    secondaries: [],
+    throwables: [],
+    armorPassives: ['Reinforced Epaulettes'],
+    traits: [],
+  },
   // {
   //   displayName: 'The Sheriff',
   //   starterItems: ['Senator or Talon', 'Gunslinger armor'],

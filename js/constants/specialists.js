@@ -173,10 +173,10 @@ const SPECIALISTS = [
   },
   {
     displayName: 'The Loot Goblin',
-    starterItems: ['Supply Pack', 'Sample Extricator booster'],
+    starterItems: ['Supply Pack', 'Sample Scanner booster'],
     stratagems: ['Supply Pack'],
     primaries: [],
-    boosters: ['Sample Extricator'],
+    boosters: ['Sample Scanner'],
     secondaries: [],
     throwables: [],
     armorPassives: [],

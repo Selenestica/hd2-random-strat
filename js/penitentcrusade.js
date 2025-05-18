@@ -126,7 +126,7 @@ const checkMissionButtons = () => {
     }
   }
 
-  if (missionCounter >= 22) {
+  if (missionCounter >= 23) {
     missionFailedButton.disabled = true;
     missionCompleteButton.disabled = true;
     // hide the mission buttons, and show download items buttons
@@ -149,7 +149,7 @@ const checkMissionButtons = () => {
 
 const reduceMissionCounter = () => {
   const reduceByOneArray = [2, 4, 6, 9, 12, 15, 18, 21];
-  const reduceByTwoArray = [7, 10, 13, 16, 19];
+  const reduceByTwoArray = [7, 10, 13, 16, 19, 22];
   if (reduceByOneArray.includes(missionCounter)) {
     missionCounter--;
   }
@@ -305,7 +305,7 @@ const closeMaxStarsPromptModal = () => {
   mspModal.hide();
 
   // if that was the last mission, dont show rewards because theyre done
-  if (missionCounter >= 21) {
+  if (missionCounter >= 22) {
     missionCounter++;
     checkMissionButtons();
     missionCounterText.innerHTML = `${getMissionText()}`;

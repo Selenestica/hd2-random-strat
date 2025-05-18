@@ -60,7 +60,7 @@ const startNewRun = (spec = null, diff = null) => {
     const modal = new bootstrap.Modal(flavorAndInstructionsModal);
     modal.show();
   });
-  missionCounterText.innerHTML = `${getMissionText()}`;
+  missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
   clearItemOptionsModal();
   if (spec !== null) {
     addDefaultItemsToAccordions(spec);
@@ -149,12 +149,17 @@ const checkMissionButtons = () => {
 
 const reduceMissionCounter = () => {
   const reduceByOneArray = [2, 4, 6, 9, 12, 15, 18, 21];
-  const reduceByTwoArray = [7, 10, 13, 16, 19, 22];
+//  const reduceByTwoArray = [7, 10, 13, 16, 19, 22];
+  const reduceByTwoArray = [3, 5, 7, 10, 13, 16, 19, 22];
+  const reduceByThreeArray = [8, 11, 14, 17, 20];
   if (reduceByOneArray.includes(missionCounter)) {
     missionCounter--;
   }
   if (reduceByTwoArray.includes(missionCounter)) {
     missionCounter -= 2;
+  }
+  if (reduceByThreeArray.includes(missionCounter)) {
+    missionCounter -= 3;
   }
 };
 
@@ -197,7 +202,7 @@ const claimPunishment = async (currentItemIndex) => {
 
   reduceMissionCounter();
   checkMissionButtons();
-  missionCounterText.innerHTML = `${getMissionText()}`;
+  missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
 
   // create updated game data
   const newCurrentGameData = {
@@ -283,7 +288,7 @@ const getItemMetaData = (item) => {
 const maxStarsNotEarned = async () => {
   missionCounter++;
   checkMissionButtons();
-  missionCounterText.innerHTML = `${getMissionText()}`;
+  missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
   // save progress just for missionCounter
   const penitentCrusadeSaveData = JSON.parse(localStorage.getItem('penitentCrusadeSaveData'));
   const updatedSavedGames = await penitentCrusadeSaveData.savedGames.map((sg) => {
@@ -308,7 +313,7 @@ const closeMaxStarsPromptModal = () => {
   if (missionCounter >= 22) {
     missionCounter++;
     checkMissionButtons();
-    missionCounterText.innerHTML = `${getMissionText()}`;
+    missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
     mspModal.hide();
     saveProgress();
     return;
@@ -614,7 +619,7 @@ const saveProgress = async (item = null) => {
       ],
     };
     localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
-    missionCounterText.innerHTML = `${getMissionText()}`;
+    missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
     return;
   }
   const data = JSON.parse(penitentCrusadeSaveData);
@@ -649,7 +654,7 @@ const saveProgress = async (item = null) => {
     ...obj,
     savedGames: newSavedGames,
   };
-  missionCounterText.innerHTML = `${getMissionText()}`;
+  missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
   localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
 };
 
@@ -705,7 +710,7 @@ const uploadSaveData = async () => {
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;
     specialist = currentGame.specialist ?? null;
-    missionCounterText.innerHTML = `${getMissionText()}`;
+    missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
     checkMissionButtons();
     if (currentGame.specialist !== null) {
       specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
@@ -776,7 +781,7 @@ const saveDataAndRestart = async (diff = null) => {
   });
   currentItems = [];
   missionCounter = diff === 'super' ? 3 : 1;
-  missionCounterText.innerHTML = `${getMissionText()}`;
+  missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
   checkMissionButtons();
   const newSaveObj = {
     acquiredItems: [],
@@ -827,7 +832,7 @@ const clearSaveDataAndRestart = async () => {
   throwableAccordionBody.innerHTML = '';
   armorPassiveAccordionBody.innerHTML = '';
   boosterAccordionBody.innerHTML = '';
-  missionCounterText.innerHTML = `${getMissionText()}`;
+  missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
   specialistNameText.innerHTML = '';
   addDefaultItemsToAccordions();
 };

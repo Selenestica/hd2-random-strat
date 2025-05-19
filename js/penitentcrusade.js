@@ -60,7 +60,7 @@ const startNewRun = (spec = null, diff = null) => {
     const modal = new bootstrap.Modal(flavorAndInstructionsModal);
     modal.show();
   });
-  missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
+  missionCounterText.innerHTML = `${getMissionText()}`;
   clearItemOptionsModal();
   if (spec !== null) {
     addDefaultItemsToAccordions(spec);
@@ -197,7 +197,7 @@ const claimPunishment = async (currentItemIndex) => {
 
   reduceMissionCounter();
   checkMissionButtons();
-  missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
+  missionCounterText.innerHTML = `${getMissionText()}`;
 
   // create updated game data
   const newCurrentGameData = {
@@ -283,7 +283,7 @@ const getItemMetaData = (item) => {
 const maxStarsNotEarned = async () => {
   missionCounter++;
   checkMissionButtons();
-  missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
+  missionCounterText.innerHTML = `${getMissionText()}`;
   // save progress just for missionCounter
   const penitentCrusadeSaveData = JSON.parse(localStorage.getItem('penitentCrusadeSaveData'));
   const updatedSavedGames = await penitentCrusadeSaveData.savedGames.map((sg) => {
@@ -308,7 +308,7 @@ const closeMaxStarsPromptModal = () => {
   if (missionCounter >= 22) {
     missionCounter++;
     checkMissionButtons();
-    missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
+    missionCounterText.innerHTML = `${getMissionText()}`;
     mspModal.hide();
     saveProgress();
     return;
@@ -614,7 +614,7 @@ const saveProgress = async (item = null) => {
       ],
     };
     localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
-    missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
+    missionCounterText.innerHTML = `${getMissionText()}`;
     return;
   }
   const data = JSON.parse(penitentCrusadeSaveData);
@@ -649,7 +649,7 @@ const saveProgress = async (item = null) => {
     ...obj,
     savedGames: newSavedGames,
   };
-  missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
+  missionCounterText.innerHTML = `${getMissionText()}`;
   localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
 };
 
@@ -705,7 +705,7 @@ const uploadSaveData = async () => {
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;
     specialist = currentGame.specialist ?? null;
-    missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
+    missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
     if (currentGame.specialist !== null) {
       specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
@@ -776,7 +776,7 @@ const saveDataAndRestart = async (diff = null) => {
   });
   currentItems = [];
   missionCounter = diff === 'super' ? 3 : 1;
-  missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
+  missionCounterText.innerHTML = `${getMissionText()}`;
   checkMissionButtons();
   const newSaveObj = {
     acquiredItems: [],
@@ -827,7 +827,7 @@ const clearSaveDataAndRestart = async () => {
   throwableAccordionBody.innerHTML = '';
   armorPassiveAccordionBody.innerHTML = '';
   boosterAccordionBody.innerHTML = '';
-  missionCounterText.innerHTML = `${getMissionText()}<br>${getObjectiveCountText()}`;
+  missionCounterText.innerHTML = `${getMissionText()}`;
   specialistNameText.innerHTML = '';
   addDefaultItemsToAccordions();
 };

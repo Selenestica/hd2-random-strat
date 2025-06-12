@@ -38,7 +38,7 @@ const getStartingItems = (diff = null) => {
   starterThrowNames = ['G-12 High Explosive'];
   starterArmorPassiveNames = diff === 'super' ? ['Integrated Explosives'] : ['Extra Padding'];
   starterBoosterNames = [];
-  if (specialist === null) {
+  if (specialist === null || specialist === undefined) {
     return {
       starterStratNames,
       starterPrimNames,

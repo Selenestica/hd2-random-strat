@@ -71,6 +71,7 @@
         </div>
       </div>
       <div class="row mt-2 justify-content-center text-white">
+        <div class="col-4 d-flex justify-content-start">Super Credits: 58</div>
         <div class="col-4 text-white d-flex justify-content-center" id="missionCounterText"></div>
         <div class="col-4 d-flex justify-content-end"></div>
       </div>
@@ -136,9 +137,9 @@
     <!-- ITEM OPTIONS MODAL -->
     <div
       class="modal fade"
-      id="itemOptionsModal"
+      id="itemPurchaseModal"
       tabindex="-1"
-      aria-labelledby="itemOptionsModalLabel"
+      aria-labelledby="itemPurchaseModalLabel"
       aria-hidden="true"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
@@ -146,16 +147,16 @@
       <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="itemOptionsModalHeaderItemName">
-              Choose one...
+            <h5 class="modal-title text-light" id="itemPurchaseModalHeaderItemName">
+              {item name goes here}
             </h5>
           </div>
-          <div class="modal-body d-flex row justify-content-center" id="itemOptionsModalBody"></div>
+          <div class="modal-body d-flex row justify-content-center" id="itemPurchaseModalBody"></div>
           <div class="modal-footer">
             <button
               type="button"
               class="btn btn-secondary"
-              onclick="clearItemOptionsModal()"
+              onclick="clearItemPurchaseModal()"
               data-bs-dismiss="modal"
             >
               Close
@@ -230,7 +231,7 @@
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light">The Penitent Crusade Challenge</h5>
+            <h5 class="modal-title text-light">The Budget Blitz Challenge</h5>
           </div>
           <div class="modal-body row d-flex justify-content-center">
             <div class="accordion" id="infoAccordion">
@@ -604,6 +605,9 @@
   <script src="../js/utils/getMissionText.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
   <script src="../js/components/genShowAllItemsModal.js"></script>
+  <script>
+    const specialist = null;
+  </script>
   <script src="../js/utils/getStartingItems.js"></script>
   <script src="../js/components/genAcquiredItemsAccordions.js"></script>
   <script src="../js/budgetblitz.js"></script>

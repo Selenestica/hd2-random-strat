@@ -1,22 +1,23 @@
 const warbondsChecklistContainer = document.getElementById('warbondsChecklistContainer');
 const warbondsList = [
   'Super Citizen Edition', // warbond0
-  'Helldivers Mobilize', // warbond1
-  'Steeled Veterans', // warbond2
-  'Cutting Edge', // warbond3
-  'Democratic Detonation', // warbond4
-  'Polar Patriots', // warbond5
-  'Viper Commandos', // warbond6
-  "Freedom's Flame", // warbond7
-  'Chemical Agents', // warbond8
-  'Truth Enforcers', // warbond9
-  'Urban Legends', // warbond10
-  'Servants of Freedom', // warbond11
-  'Borderline Justice', // warbond12
-  'Masters of Ceremony', // warbond13
-  'Force of Law', // warbond14
-  'Superstore',
-  'Pre-Order Bonus',
+  'Superstore', // warbond1
+  'Pre-Order Bonus', // warbond2
+  'Helldivers Mobilize', // warbond3
+  'Steeled Veterans', // warbond4
+  'Cutting Edge', // warbond5
+  'Democratic Detonation', // warbond6
+  'Polar Patriots', // warbond7
+  'Viper Commandos', // warbond8
+  "Freedom's Flame", // warbond9
+  'Chemical Agents', // warbond10
+  'Truth Enforcers', // warbond11
+  'Urban Legends', // warbond12
+  'Servants of Freedom', // warbond13
+  'Borderline Justice', // warbond14
+  'Masters of Ceremony', // warbond15
+  'Force of Law', // warbond16
+
 ];
 
 const genWarbondCheckboxes = () => {

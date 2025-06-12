@@ -186,18 +186,7 @@ const ARMOR_PASSIVES = [
     imageURL: 'reinforcedepaulettes.png',
     tier: 'c',
   },
-    {
-    displayName: 'Reinforced Epaulettes',
-    type: 'Equipment',
-    category: 'armor',
-    tags: ['ArmorPassive'],
-    warbond: '',
-    warbondCode: '',
-    internalName: 'reinforcedepaulettes',
-    imageURL: 'reinforcedepaulettes.png',
-    tier: 'c',
-  },
-      {
+  {
     displayName: 'Ballistic Padding',
     type: 'Equipment',
     category: 'armor',

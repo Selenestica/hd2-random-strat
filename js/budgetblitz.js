@@ -21,20 +21,16 @@ let missionCounter = 5;
 for (let z = 0; z < mainViewButtons.length; z++) {
   mainViewButtons[z].addEventListener('change', (e) => {
     if (e.target.checked) {
-        toggleItemsView(e.srcElement.id)
+        // clear the accordions first
+        stratagemAccordionBody.innerHTML = '';
+        primaryAccordionBody.innerHTML = '';
+        secondaryAccordionBody.innerHTML = '';
+        throwableAccordionBody.innerHTML = '';
+        armorPassiveAccordionBody.innerHTML = '';
+        boosterAccordionBody.innerHTML = '';
+        addItemsToAccordions(e.srcElement.id)
     }
   });
-}
-
-const toggleItemsView = (btnId) => {
-    if (btnId === "inventoryButton") {
-        console.log("inv")
-        // showInventory()
-    }
-    if (btnId === "shopButton") {
-        console.log("shop")
-        // showShop()
-    }
 }
 
 const startNewRun = () => {
@@ -69,7 +65,7 @@ const startNewRun = () => {
 
   missionCounterText.innerHTML = `${getMissionText()}`;
   clearItemPurchaseModal();
-  addDefaultItemsToAccordions()
+  addItemsToAccordions("default")
 };
 
 const getDefaultItems = () => {
@@ -101,39 +97,81 @@ const getDefaultItems = () => {
   };
 };
 
-const addDefaultItemsToAccordions = async () => {
-  // create default item lists for later use
-  // change default items according to difficulty
-  const {
-    defaultArmorPassives,
-    defaultBoosters,
-    defaultPrims,
-    defaultSeconds,
-    defaultStrats,
-    defaultThrows,
-  } = await getDefaultItems();
+const addItemsToAccordions = async (view) => {
+  let strats = []
+  let throws = []
+  let prims = []
+  let seconds = []
+  let boosts = []
+  let passives = []
 
-  for (let i = 0; i < defaultStrats.length; i++) {
-    stratagemAccordionBody.innerHTML += generateItemCard(defaultStrats[i], false, 'svgs');
+  // for new games and initial default population of save data
+  if (view === "default") {
+      const {
+        defaultArmorPassives,
+        defaultBoosters,
+        defaultPrims,
+        defaultSeconds,
+        defaultStrats,
+        defaultThrows,
+      } = await getDefaultItems();
+      strats = defaultStrats
+      throws = defaultThrows
+      prims = defaultPrims
+      seconds = defaultSeconds
+      boosts = defaultBoosters
+      passives = defaultArmorPassives
   }
-  for (let i = 0; i < defaultPrims.length; i++) {
-    primaryAccordionBody.innerHTML += generateItemCard(defaultPrims[i], false, 'equipment');
+
+  // for switching to inventory view
+  if (view === "inventoryButton") {
+      const {
+        defaultArmorPassives,
+        defaultBoosters,
+        defaultPrims,
+        defaultSeconds,
+        defaultStrats,
+        defaultThrows,
+      } = await getDefaultItems();
+      strats = defaultStrats
+      throws = defaultThrows
+      prims = defaultPrims
+      seconds = defaultSeconds
+      boosts = defaultBoosters
+      passives = defaultArmorPassives
   }
-  for (let i = 0; i < defaultSeconds.length; i++) {
-    secondaryAccordionBody.innerHTML += generateItemCard(defaultSeconds[i], false, 'equipment');
+
+  // for switching to shop view
+  if (view === "shopButton") {
+      strats = newStrats
+      throws = newThrows
+      prims = newPrims
+      seconds = newSeconds
+      boosts = newBoosts
+      passives = newArmorPassives
   }
-  for (let i = 0; i < defaultThrows.length; i++) {
-    throwableAccordionBody.innerHTML += generateItemCard(defaultThrows[i], false, 'equipment');
+
+  for (let i = 0; i < strats.length; i++) {
+    stratagemAccordionBody.innerHTML += generateItemCard(strats[i], false, 'svgs');
   }
-  for (let i = 0; i < defaultArmorPassives.length; i++) {
+  for (let i = 0; i < prims.length; i++) {
+    primaryAccordionBody.innerHTML += generateItemCard(prims[i], false, 'equipment');
+  }
+  for (let i = 0; i < seconds.length; i++) {
+    secondaryAccordionBody.innerHTML += generateItemCard(seconds[i], false, 'equipment');
+  }
+  for (let i = 0; i < throws.length; i++) {
+    throwableAccordionBody.innerHTML += generateItemCard(throws[i], false, 'equipment');
+  }
+  for (let i = 0; i < passives.length; i++) {
     armorPassiveAccordionBody.innerHTML += generateItemCard(
-      defaultArmorPassives[i],
+      passives[i],
       false,
       'armor',
     );
   }
-  for (let i = 0; i < defaultBoosters.length; i++) {
-    boosterAccordionBody.innerHTML += generateItemCard(defaultBoosters[i], false, 'equipment');
+  for (let i = 0; i < boosts.length; i++) {
+    boosterAccordionBody.innerHTML += generateItemCard(boosts[i], false, 'equipment');
   }
 };
 
@@ -217,7 +255,7 @@ const uploadSaveData = async () => {
     armorPassiveAccordionBody.innerHTML = '';
     boosterAccordionBody.innerHTML = '';
     await getStartingItems();
-    await addDefaultItemsToAccordions();
+    await addItemsToAccordions("default");
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
       const item = currentGame.acquiredItems[i];
       const { imgDir, accBody } = getItemMetaData(item);

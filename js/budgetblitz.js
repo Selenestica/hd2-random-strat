@@ -7,6 +7,7 @@ const throwableAccordionBody = document.getElementById('ThrowablesAccordionBody'
 const armorPassiveAccordionBody = document.getElementById('ArmorsAccordionBody');
 const boosterAccordionBody = document.getElementById('BoostersAccordionBody');
 const mainViewButtons = document.getElementsByClassName('mainViewButtons')
+const itemPurchaseModal = document.getElementById('itemPurchaseModal');
 const itemPurchaseModalHeaderItemName = document.getElementById('itemPurchaseModalHeaderItemName');
 const itemPurchaseModalBody = document.getElementById('itemPurchaseModalBody');
 const missionCompleteButton = document.getElementById('missionCompleteButton');
@@ -152,63 +153,54 @@ const addItemsToAccordions = async (view) => {
   }
 
   for (let i = 0; i < strats.length; i++) {
-    stratagemAccordionBody.innerHTML += generateItemCard(strats[i], false, 'svgs');
+    stratagemAccordionBody.appendChild(generateItemCard(strats[i], 'svgs'));
   }
   for (let i = 0; i < prims.length; i++) {
-    primaryAccordionBody.innerHTML += generateItemCard(prims[i], false, 'equipment');
+    primaryAccordionBody.appendChild(generateItemCard(prims[i], 'equipment'));
   }
   for (let i = 0; i < seconds.length; i++) {
-    secondaryAccordionBody.innerHTML += generateItemCard(seconds[i], false, 'equipment');
+    secondaryAccordionBody.appendChild(generateItemCard(seconds[i], 'equipment'));
   }
   for (let i = 0; i < throws.length; i++) {
-    throwableAccordionBody.innerHTML += generateItemCard(throws[i], false, 'equipment');
+    throwableAccordionBody.appendChild(generateItemCard(throws[i], 'equipment'));
   }
   for (let i = 0; i < passives.length; i++) {
-    armorPassiveAccordionBody.innerHTML += generateItemCard(
+    armorPassiveAccordionBody.appendChild(generateItemCard(
       passives[i],
-      false,
+     
       'armor',
-    );
+    ));
   }
   for (let i = 0; i < boosts.length; i++) {
-    boosterAccordionBody.innerHTML += generateItemCard(boosts[i], false, 'equipment');
+    boosterAccordionBody.appendChild(generateItemCard(boosts[i], 'equipment'));
   }
 };
 
-const generateItemCard = (
-  item,
-  inModal,
-  imgDir,
-  currentItemIndex = null,
-  type = null,
-  missionFailed = false,
-) => {
-  // display the item image in the modal or accordion item
-  let style = 'col-2';
-  let modalTextStyle = 'pcItemCardText';
-  let fcn = '';
-  let typeText = '';
-  if (inModal) {
-    style = 'pcModalItemCards col-6';
-    modalTextStyle = '';
-    fcn = !missionFailed
-      ? `claimItem(${currentItemIndex})`
-      : `claimPunishment(${currentItemIndex})`;
-    typeText = `<p class="card-title fst-italic text-white">${type}</p>`;
-  }
-  return `
-    <div onclick="${fcn}" class="card d-flex ${style} pcItemCards mx-1">
-    ${typeText}
-      <img
-          src="../images/${imgDir}/${item.imageURL}"
-          class="img-card-top"
-          alt="${item.displayName}"
-      />
-      <div class="card-body itemNameContainer align-items-center">
-          <p class="card-title text-white ${modalTextStyle}">${item.displayName}</p>
-      </div>
-    </div>`;
+const generateItemCard = (item, imgDir) => {
+  const card = document.createElement('div');
+  card.className = `card d-flex col-2 pcItemCards mx-1`;
+  card.style.cursor = 'pointer';
+  card.onclick = () => openPurchaseModal(item);
+
+  card.innerHTML = `
+    <img
+      src="../images/${imgDir}/${item.imageURL}"
+      class="img-card-top"
+      alt="${item.displayName}"
+    />
+    <div class="card-body itemNameContainer align-items-center">
+      <p class="card-title text-white pcItemCardText">${item.displayName}</p>
+    </div>
+  `;
+
+  return card; // Not card.outerHTML!
 };
+
+
+const openPurchaseModal = (item) => {
+    const modal = new bootstrap.Modal(itemPurchaseModal);
+    modal.show();
+}
 
 const clearItemPurchaseModal = () => {
   itemPurchaseModalBody.innerHTML = '';
@@ -259,7 +251,7 @@ const uploadSaveData = async () => {
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
       const item = currentGame.acquiredItems[i];
       const { imgDir, accBody } = getItemMetaData(item);
-      accBody.innerHTML += generateItemCard(item, false, imgDir);
+      accBody.innerHTML += generateItemCard(item, imgDir);
     }
     return;
   }

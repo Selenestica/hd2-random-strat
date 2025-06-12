@@ -395,4 +395,15 @@ const PRIMARIES = [
     imageURL: 'r2amendment.png',
     tier: 'b',
   },
+  {
+    displayName: 'AR-32 Pacifier',
+    type: 'Equipment',
+    category: 'primary',
+    tags: ['AssaultRifle'],
+    warbond: 'Force of Law',
+    warbondCode: 'warbond14',
+    internalName: 'ar32pacifier',
+    imageURL: 'ar32pacifier.png',
+    tier: 'a',
+  },
 ];

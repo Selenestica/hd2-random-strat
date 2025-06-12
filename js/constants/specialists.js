@@ -1,6 +1,17 @@
 const ybwamahe = 'You begin with, and must always have equipped, ';
 const SPECIALISTS = [
   {
+    displayName: 'The Arbiter',
+    starterItems: ['P-92 Warrant', 'Ballistic Shield', 'Ballistic Padding armor'],
+    stratagems: ['Ballistic Shield'],
+    primaries: [],
+    boosters: [],
+    secondaries: ['P-92 Warrant'],
+    throwables: [],
+    armorPassives: ['Ballistic Padding'],
+    traits: [],
+  },
+  {
     displayName: 'The Zealous Martyr',
     starterItems: ['Portable Hellbomb', 'Combat Hatchet', 'Integrated Explosives armor'],
     stratagems: ['Portable Hellbomb'],

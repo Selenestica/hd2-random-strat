@@ -175,4 +175,15 @@ const SECONDARIES = [
     imageURL: 'gp31ultimatum.png',
     tier: 's',
   },
+  {
+    displayName: 'P-92 Warrant',
+    type: 'Equipment',
+    category: 'secondary',
+    tags: [],
+    warbond: 'Superstore',
+    warbondCode: 'superstore',
+    internalName: 'p92warrant',
+    imageURL: 'p92warrant.png',
+    tier: 'b',
+  },
 ];

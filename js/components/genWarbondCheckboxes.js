@@ -14,6 +14,7 @@ const warbondsList = [
   'Servants of Freedom', // warbond11
   'Borderline Justice', // warbond12
   'Masters of Ceremony', // warbond13
+  'Force of Law', // warbond14
   'Superstore',
   'Pre-Order Bonus',
 ];

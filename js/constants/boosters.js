@@ -175,6 +175,17 @@ const BOOSTERS = [
     imageURL: 'samplescanner.png',
     tier: 'c',
   },
+    {
+    displayName: 'Stun Pods',
+    type: 'Equipment',
+    category: 'booster',
+    tags: [],
+    warbond: 'Force of Law',
+    warbondCode: 'warbond14',
+    internalName: 'stunpods',
+    imageURL: 'stunpods.png',
+    tier: 'b',
+  },
 ];
 
 // s: 4

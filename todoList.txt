@@ -3,13 +3,15 @@ to do General:
 - give the Randomizer it's own URL: /randomizer
 
 to do Randomizer:
+- BUG: superstore items wont show up. need to edit their warbond code
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 - add tags for THROWABLES
 - Master of Ceremony
   - armor
     - heavy (need img)
-    - armor passive (need img)
+- Force of Law
+  - armor passive (need img)
 - put Pre-Order Bonus and Superstore options after Super Citizen Edition
   - then rearrange indices to accommodate
 

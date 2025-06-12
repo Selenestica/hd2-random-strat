@@ -140,6 +140,17 @@ const THROWABLES = [
     warbondCode: 'warbond13',
     internalName: 'g142pyrotech',
     imageURL: 'g142pyrotech.png',
-    tier: 'b',
+    tier: 's',
+  },
+  {
+    displayName: 'G-109 Urchin',
+    type: 'Equipment',
+    category: 'throwable',
+    tags: [],
+    warbond: 'Force of Law',
+    warbondCode: 'warbond14',
+    internalName: 'g109urchin',
+    imageURL: 'g109urchin.png',
+    tier: 'a',
   },
 ];

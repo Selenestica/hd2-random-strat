@@ -9,6 +9,7 @@ const boosterAccordionBody = document.getElementById('BoostersAccordionBody');
 const mainViewButtons = document.getElementsByClassName('mainViewButtons')
 const loadoutContainer = document.getElementById('loadoutContainer');
 const shopContainer = document.getElementById('shopContainer');
+const defaultInventory = document.getElementById('defaultInventory')
 const itemPurchaseModal = document.getElementById('itemPurchaseModal');
 const itemPurchaseModalHeaderItemName = document.getElementById('itemPurchaseModalHeaderItemName');
 const itemPurchaseModalBody = document.getElementById('itemPurchaseModalBody');
@@ -94,21 +95,13 @@ const startNewRun = () => {
 };
 
 const populateInventory = async () => {
-  let totalInventory = []
 
-  const {defaultStrats, defaultPrims, defaultSeconds, defaultThrowables, defaultBoosts, defaultArmorPassives} = await getDefaultItems()
-
-  stratagems = defaultStrats.concat(purchasedStratagems)
-  primaries = defaultPrims.concat(purchasedPrimaries)
-  secondaries = defaultSeconds.concat(purchasedSecondaries)
-  throwables = defaultThrowables.concat(purchasedThrowables)
-  boosters = defaultBoosts.concat(purchasedBoosters)
-  armorPassives = defaultArmorPassives.concat(purchasedArmorPassives)
 
 
 }
 
-const getDefaultItems = () => {
+const populateDefaultItems = () => {
+  let list = []
   const defaultStrats = OGstratsList.filter((strat) => {
     return starterStratNames.includes(strat.displayName);
   });
@@ -127,44 +120,47 @@ const getDefaultItems = () => {
   const defaultBoosters = OGboostsList.filter((booster) => {
     return starterBoosterNames.includes(booster.displayName);
   });
-  return {
-    defaultStrats,
-    defaultPrims,
-    defaultSeconds,
-    defaultThrows,
-    defaultArmorPassives,
-    defaultBoosters,
-  };
+  list = list.concat(defaultStrats).concat(defaultPrims).concat(defaultSeconds).concat(defaultThrows).concat(defaultBoosters).concat(defaultArmorPassives)
+  console.log(list)
+  for (let i = 0; i < list.length; i++) {
+    const card = generateItemCard(list[i], 1)
+    defaultInventory.appendChild(card)
+  }
 };
 
 const addItemsToAccordions = async () => {
   for (let i = 0; i < newStrats.length; i++) {
-    stratagemAccordionBody.appendChild(generateItemCard(newStrats[i], 'svgs'));
+    stratagemAccordionBody.appendChild(generateItemCard(newStrats[i]));
   }
   for (let i = 0; i < newPrims.length; i++) {
-    primaryAccordionBody.appendChild(generateItemCard(newPrims[i], 'equipment'));
+    primaryAccordionBody.appendChild(generateItemCard(newPrims[i]));
   }
   for (let i = 0; i < newSeconds.length; i++) {
-    secondaryAccordionBody.appendChild(generateItemCard(newSeconds[i], 'equipment'));
+    secondaryAccordionBody.appendChild(generateItemCard(newSeconds[i]));
   }
   for (let i = 0; i < newThrows.length; i++) {
-    throwableAccordionBody.appendChild(generateItemCard(newThrows[i], 'equipment'));
+    throwableAccordionBody.appendChild(generateItemCard(newThrows[i]));
   }
   for (let i = 0; i < newArmorPassives.length; i++) {
     armorPassiveAccordionBody.appendChild(generateItemCard(
-      newArmorPassives[i],
-     
-      'armor',
+      newArmorPassives[i]
     ));
   }
   for (let i = 0; i < newBoosts.length; i++) {
-    boosterAccordionBody.appendChild(generateItemCard(newBoosts[i], 'equipment'));
+    boosterAccordionBody.appendChild(generateItemCard(newBoosts[i]));
   }
 };
 
-const generateItemCard = (item, imgDir) => {
+const generateItemCard = (item, colWidth = 2) => {
+  let imgDir = 'equipment'
+  if (item.type === "Stratagem") {
+    imgDir = 'svgs'
+  }
+  if (item.category === "armor") {
+    imgDir = 'armor'
+  }
   const card = document.createElement('div');
-  card.className = `card d-flex col-2 pcItemCards mx-1`;
+  card.className = `card d-flex col-${colWidth} pcItemCards mx-1 my-1`;
   card.style.cursor = 'pointer';
   card.onclick = () => openPurchaseModal(item);
 
@@ -179,7 +175,7 @@ const generateItemCard = (item, imgDir) => {
     </div>
   `;
 
-  return card; // Not card.outerHTML!
+  return card;
 };
 
 
@@ -212,6 +208,8 @@ const checkMissionButtons = () => {
 };
 
 const uploadSaveData = async () => {
+  await getStartingItems();
+  await populateDefaultItems()
   const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
   if (budgetBlitzSaveData) {
     const currentGame = await getCurrentGame();
@@ -232,16 +230,14 @@ const uploadSaveData = async () => {
     throwableAccordionBody.innerHTML = '';
     armorPassiveAccordionBody.innerHTML = '';
     boosterAccordionBody.innerHTML = '';
-    await getStartingItems();
     await addItemsToAccordions("default");
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
       const item = currentGame.acquiredItems[i];
-      const { imgDir, accBody } = getItemMetaData(item);
-      accBody.innerHTML += generateItemCard(item, imgDir);
+      const { accBody } = getItemMetaData(item);
+      accBody.innerHTML += generateItemCard(item);
     }
     return;
   }
-  await getStartingItems();
   startNewRun();
 };
 

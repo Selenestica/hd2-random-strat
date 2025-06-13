@@ -21,12 +21,8 @@ const downloadPDFButtonDiv = document.getElementById('downloadPDFButtonDiv');
 const missionCounterText = document.getElementById('missionCounterText');
 const maxStarsPromptModal = document.getElementById('maxStarsPromptModal'); // will have to change this modal to input # of stars
 let missionCounter = 5;
-let purchasedPrimaries = []
-let purchasedSecondaries = []
-let purchasedThrowables = []
-let purchasedBoosters = []
-let purchasedStratagems = []
-let purchasedArmorPassives = []
+let purchasedItems = []
+let currentView = "loadoutButton"
 
 // toggles view between LOADOUT and SHOP
 for (let z = 0; z < mainViewButtons.length; z++) {
@@ -34,12 +30,13 @@ for (let z = 0; z < mainViewButtons.length; z++) {
     // Loadout view will be like Randomizer
     // Shop view similar to what it is now
     if (e.target.checked) {
+      currentView = e.srcElement.id
       if (e.srcElement.id === "loadoutButton") {
         shopContainer.classList.remove('d-flex')
         shopContainer.classList.add('d-none')
         loadoutContainer.classList.remove('d-none')
         loadoutContainer.classList.add('d-flex')
-        populateInventory()
+        populatePurchasedItemsInventory()
       }
       if (e.srcElement.id === 'shopButton') {
         // clear the accordions first
@@ -59,25 +56,49 @@ for (let z = 0; z < mainViewButtons.length; z++) {
   });
 }
 
-const startNewRun = () => {
-  newStrats = OGstratsList.filter((strat) => {
-    return !starterStratNames.includes(strat.displayName);
-  });
-  newPrims = OGprimsList.filter((prim) => {
-    return !starterPrimNames.includes(prim.displayName);
-  });
-  newSeconds = OGsecondsList.filter((sec) => {
-    return !starterSecNames.includes(sec.displayName);
-  });
-  newThrows = OGthrowsList.filter((throwable) => {
-    return !starterThrowNames.includes(throwable.displayName);
-  });
-  newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
-    return !starterArmorPassiveNames.includes(armorPassive.displayName);
-  });
-  newBoosts = OGboostsList.filter((booster) => {
-    return !starterBoosterNames.includes(booster.displayName);
-  });
+const startNewRun = async () => {
+  newStrats = await OGstratsList
+  .filter((strat) => (!starterStratNames.includes(strat.displayName)))
+  .map((strat) => {
+    strat.cost = getItemCost(strat)
+    strat.quantity = 1
+    return strat
+  })
+  newPrims = await OGprimsList
+  .filter((prim) => (!starterPrimNames.includes(prim.displayName)))
+  .map((prim) => {
+    prim.cost = getItemCost(prim)
+    prim.quantity = 1
+    return prim
+  })
+  newSeconds = await OGsecondsList
+  .filter((sec) => (!starterSecNames.includes(sec.displayName)))
+  .map((sec) => {
+    sec.cost = getItemCost(sec)
+    sec.quantity = 3
+    return sec
+  })
+  newThrows = await OGthrowsList
+  .filter((throwable) => (!starterThrowNames.includes(throwable.displayName)))
+  .map((throwable) => {
+    throwable.cost = getItemCost(throwable)
+    throwable.quantity = 3
+    return throwable
+  })
+  newArmorPassives = await OGarmorPassivesList
+  .filter((armorPassive) => (!starterArmorPassiveNames.includes(armorPassive.displayName)))
+  .map((armorPassive) => {
+    armorPassive.quantity = 2
+    armorPassive.cost = getItemCost(armorPassive)
+    return armorPassive
+  })
+  newBoosts = await OGboostsList
+  .filter((booster) => (!starterBoosterNames.includes(booster.displayName)))
+  .map((booster) => {
+    booster.quantity = 1
+    booster.cost = getItemCost(booster)
+    return booster
+  })
   currentItems = [];
   missionCounter = 5;
   checkMissionButtons();
@@ -94,10 +115,8 @@ const startNewRun = () => {
   addItemsToAccordions("default")
 };
 
-const populateInventory = async () => {
-
-
-
+const populatePurchasedItemsInventory = async () => {
+  console.log("populating purchased inventory with this function")
 }
 
 const populateDefaultItems = () => {
@@ -121,8 +140,9 @@ const populateDefaultItems = () => {
     return starterBoosterNames.includes(booster.displayName);
   });
   list = list.concat(defaultStrats).concat(defaultPrims).concat(defaultSeconds).concat(defaultThrows).concat(defaultBoosters).concat(defaultArmorPassives)
-  console.log(list)
   for (let i = 0; i < list.length; i++) {
+    const item = list[i]
+    item.cost = null
     const card = generateItemCard(list[i], 1)
     defaultInventory.appendChild(card)
   }

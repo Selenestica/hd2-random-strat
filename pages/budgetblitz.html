@@ -172,28 +172,6 @@
                     class="accordion-button text-white"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne"
-                    aria-expanded="true"
-                    aria-controls="collapseOne"
-                  >
-                    Default Items
-                  </button>
-                </h2>
-                <div
-                  id="collapseOne"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#inventoryAccordion"
-                >
-                  <div id="defaultInventory" class="accordion-body row d-flex justify-content-evenly">
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item bg-none">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button text-white"
-                    type="button"
-                    data-bs-toggle="collapse"
                     data-bs-target="#collapseTwo"
                     aria-expanded="true"
                     aria-controls="collapseTwo"
@@ -207,6 +185,28 @@
                   data-bs-parent="#inventoryAccordion"
                 >
                   <div id="purchasedItemsInventory" class="accordion-body">
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item bg-none">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    Default Items
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#inventoryAccordion"
+                >
+                  <div id="defaultInventory" class="accordion-body row d-flex justify-content-evenly">
                   </div>
                 </div>
               </div>
@@ -719,6 +719,7 @@
   <script src="../js/constants/armorpassives.js"></script>
   <script src="../js/utils/getMissionText.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
+  <script src="../js/utils/getItemCost.js"></script>
   <script src="../js/components/genShowAllItemsModal.js"></script>
   <script>
     const specialist = null;

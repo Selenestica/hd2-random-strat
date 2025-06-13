@@ -12,7 +12,7 @@ const getItemCost = (item) => {
 
     // add cost by item type
     if (item.type === "Stratagem" || item.category === "primary" || item.category === "booster") {
-        cost += 10
+        cost += 12
     } else if (item.category === "secondary" || item.category === "throwable" || item.category === "armor") {
         cost += 5
     }
@@ -25,12 +25,12 @@ const getItemCost = (item) => {
 // starter credits = 100
 
 // TYPES:
-// primary = 10
+// primary = 12
 // secondary = 5
 // throwable = 5
-// stratagem = 10
+// stratagem = 12
 // armor = 5
-// booster = 10
+// booster = 12
 
 // TIERS:
 // s = 15

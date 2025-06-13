@@ -62,6 +62,7 @@ const startNewRun = async () => {
   .map((strat) => {
     strat.cost = getItemCost(strat)
     strat.quantity = 1
+    strat.onSale = getIsItemOnSale()
     return strat
   })
   newPrims = await OGprimsList
@@ -69,26 +70,30 @@ const startNewRun = async () => {
   .map((prim) => {
     prim.cost = getItemCost(prim)
     prim.quantity = 1
+    prim.onSale = getIsItemOnSale()
     return prim
   })
   newSeconds = await OGsecondsList
   .filter((sec) => (!starterSecNames.includes(sec.displayName)))
   .map((sec) => {
     sec.cost = getItemCost(sec)
-    sec.quantity = 3
+    sec.quantity = 1
+    sec.onSale = getIsItemOnSale()
     return sec
   })
   newThrows = await OGthrowsList
   .filter((throwable) => (!starterThrowNames.includes(throwable.displayName)))
   .map((throwable) => {
     throwable.cost = getItemCost(throwable)
-    throwable.quantity = 3
+    throwable.quantity = 1
+    throwable.onSale = getIsItemOnSale()
     return throwable
   })
   newArmorPassives = await OGarmorPassivesList
   .filter((armorPassive) => (!starterArmorPassiveNames.includes(armorPassive.displayName)))
   .map((armorPassive) => {
-    armorPassive.quantity = 2
+    armorPassive.quantity = 1
+    armorPassive.onSale = getIsItemOnSale()
     armorPassive.cost = getItemCost(armorPassive)
     return armorPassive
   })
@@ -96,6 +101,7 @@ const startNewRun = async () => {
   .filter((booster) => (!starterBoosterNames.includes(booster.displayName)))
   .map((booster) => {
     booster.quantity = 1
+    booster.onSale = getIsItemOnSale()
     booster.cost = getItemCost(booster)
     return booster
   })
@@ -143,6 +149,7 @@ const populateDefaultItems = () => {
   for (let i = 0; i < list.length; i++) {
     const item = list[i]
     item.cost = null
+    item.quantity = '&infin;'
     const card = generateItemCard(list[i], 1)
     defaultInventory.appendChild(card)
   }
@@ -172,6 +179,7 @@ const addItemsToAccordions = async () => {
 };
 
 const generateItemCard = (item, colWidth = 2) => {
+  let showCost = false
   let imgDir = 'equipment'
   if (item.type === "Stratagem") {
     imgDir = 'svgs'
@@ -180,9 +188,12 @@ const generateItemCard = (item, colWidth = 2) => {
     imgDir = 'armor'
   }
   const card = document.createElement('div');
-  card.className = `card d-flex col-${colWidth} pcItemCards mx-1 my-1`;
-  card.style.cursor = 'pointer';
-  card.onclick = () => openPurchaseModal(item);
+  if (currentView === "shopButton") {
+    showCost = true
+    card.style.cursor = 'pointer';
+    card.onclick = () => openPurchaseModal(item);
+  }
+  card.className = `card d-flex col-${colWidth} pcItemCards mx-1 my-1 position-relative`;
 
   card.innerHTML = `
     <img
@@ -190,6 +201,9 @@ const generateItemCard = (item, colWidth = 2) => {
       class="img-card-top"
       alt="${item.displayName}"
     />
+    <span class="costBadges translate-middle badge rounded-pill ${showCost ? 'bg-warning text-dark' : 'bg-primary text-light'}">
+      ${showCost ? item.cost : item.quantity}
+    </span>
     <div class="card-body itemNameContainer align-items-center">
       <p class="card-title text-white pcItemCardText">${item.displayName}</p>
     </div>

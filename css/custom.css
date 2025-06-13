@@ -181,3 +181,10 @@ body {
 #downloadPDFButtonDiv {
   display: none;
 }
+
+.costBadges {
+  font-size: .9rem !important;
+  top: 5%;
+  left: 90%;
+  position: absolute;
+}

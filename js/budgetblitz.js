@@ -7,6 +7,8 @@ const throwableAccordionBody = document.getElementById('ThrowablesAccordionBody'
 const armorPassiveAccordionBody = document.getElementById('ArmorsAccordionBody');
 const boosterAccordionBody = document.getElementById('BoostersAccordionBody');
 const mainViewButtons = document.getElementsByClassName('mainViewButtons')
+const loadoutContainer = document.getElementById('loadoutContainer');
+const shopContainer = document.getElementById('shopContainer');
 const itemPurchaseModal = document.getElementById('itemPurchaseModal');
 const itemPurchaseModalHeaderItemName = document.getElementById('itemPurchaseModalHeaderItemName');
 const itemPurchaseModalBody = document.getElementById('itemPurchaseModalBody');
@@ -18,10 +20,27 @@ const downloadPDFButtonDiv = document.getElementById('downloadPDFButtonDiv');
 const missionCounterText = document.getElementById('missionCounterText');
 const maxStarsPromptModal = document.getElementById('maxStarsPromptModal'); // will have to change this modal to input # of stars
 let missionCounter = 5;
+let purchasedPrimaries = []
+let purchasedSecondaries = []
+let purchasedThrowables = []
+let purchasedBoosters = []
+let purchasedStratagems = []
+let purchasedArmorPassives = []
 
+// toggles view between LOADOUT and SHOP
 for (let z = 0; z < mainViewButtons.length; z++) {
   mainViewButtons[z].addEventListener('change', (e) => {
+    // Loadout view will be like Randomizer
+    // Shop view similar to what it is now
     if (e.target.checked) {
+      if (e.srcElement.id === "loadoutButton") {
+        shopContainer.classList.remove('d-flex')
+        shopContainer.classList.add('d-none')
+        loadoutContainer.classList.remove('d-none')
+        loadoutContainer.classList.add('d-flex')
+        populateInventory()
+      }
+      if (e.srcElement.id === 'shopButton') {
         // clear the accordions first
         stratagemAccordionBody.innerHTML = '';
         primaryAccordionBody.innerHTML = '';
@@ -30,6 +49,11 @@ for (let z = 0; z < mainViewButtons.length; z++) {
         armorPassiveAccordionBody.innerHTML = '';
         boosterAccordionBody.innerHTML = '';
         addItemsToAccordions(e.srcElement.id)
+        shopContainer.classList.add('d-flex')
+        shopContainer.classList.remove('d-none')
+        loadoutContainer.classList.add('d-none')
+        loadoutContainer.classList.remove('d-flex')
+      }
     }
   });
 }
@@ -69,6 +93,21 @@ const startNewRun = () => {
   addItemsToAccordions("default")
 };
 
+const populateInventory = async () => {
+  let totalInventory = []
+
+  const {defaultStrats, defaultPrims, defaultSeconds, defaultThrowables, defaultBoosts, defaultArmorPassives} = await getDefaultItems()
+
+  stratagems = defaultStrats.concat(purchasedStratagems)
+  primaries = defaultPrims.concat(purchasedPrimaries)
+  secondaries = defaultSeconds.concat(purchasedSecondaries)
+  throwables = defaultThrowables.concat(purchasedThrowables)
+  boosters = defaultBoosts.concat(purchasedBoosters)
+  armorPassives = defaultArmorPassives.concat(purchasedArmorPassives)
+
+
+}
+
 const getDefaultItems = () => {
   const defaultStrats = OGstratsList.filter((strat) => {
     return starterStratNames.includes(strat.displayName);
@@ -98,81 +137,28 @@ const getDefaultItems = () => {
   };
 };
 
-const addItemsToAccordions = async (view) => {
-  let strats = []
-  let throws = []
-  let prims = []
-  let seconds = []
-  let boosts = []
-  let passives = []
-
-  // for new games and initial default population of save data
-  if (view === "default") {
-      const {
-        defaultArmorPassives,
-        defaultBoosters,
-        defaultPrims,
-        defaultSeconds,
-        defaultStrats,
-        defaultThrows,
-      } = await getDefaultItems();
-      strats = defaultStrats
-      throws = defaultThrows
-      prims = defaultPrims
-      seconds = defaultSeconds
-      boosts = defaultBoosters
-      passives = defaultArmorPassives
+const addItemsToAccordions = async () => {
+  for (let i = 0; i < newStrats.length; i++) {
+    stratagemAccordionBody.appendChild(generateItemCard(newStrats[i], 'svgs'));
   }
-
-  // for switching to inventory view
-  if (view === "inventoryButton") {
-      const {
-        defaultArmorPassives,
-        defaultBoosters,
-        defaultPrims,
-        defaultSeconds,
-        defaultStrats,
-        defaultThrows,
-      } = await getDefaultItems();
-      strats = defaultStrats
-      throws = defaultThrows
-      prims = defaultPrims
-      seconds = defaultSeconds
-      boosts = defaultBoosters
-      passives = defaultArmorPassives
+  for (let i = 0; i < newPrims.length; i++) {
+    primaryAccordionBody.appendChild(generateItemCard(newPrims[i], 'equipment'));
   }
-
-  // for switching to shop view
-  if (view === "shopButton") {
-      strats = newStrats
-      throws = newThrows
-      prims = newPrims
-      seconds = newSeconds
-      boosts = newBoosts
-      passives = newArmorPassives
+  for (let i = 0; i < newSeconds.length; i++) {
+    secondaryAccordionBody.appendChild(generateItemCard(newSeconds[i], 'equipment'));
   }
-
-  for (let i = 0; i < strats.length; i++) {
-    stratagemAccordionBody.appendChild(generateItemCard(strats[i], 'svgs'));
+  for (let i = 0; i < newThrows.length; i++) {
+    throwableAccordionBody.appendChild(generateItemCard(newThrows[i], 'equipment'));
   }
-  for (let i = 0; i < prims.length; i++) {
-    primaryAccordionBody.appendChild(generateItemCard(prims[i], 'equipment'));
-  }
-  for (let i = 0; i < seconds.length; i++) {
-    secondaryAccordionBody.appendChild(generateItemCard(seconds[i], 'equipment'));
-  }
-  for (let i = 0; i < throws.length; i++) {
-    throwableAccordionBody.appendChild(generateItemCard(throws[i], 'equipment'));
-  }
-  for (let i = 0; i < passives.length; i++) {
+  for (let i = 0; i < newArmorPassives.length; i++) {
     armorPassiveAccordionBody.appendChild(generateItemCard(
-      passives[i],
+      newArmorPassives[i],
      
       'armor',
     ));
   }
-  for (let i = 0; i < boosts.length; i++) {
-    boosterAccordionBody.appendChild(generateItemCard(boosts[i], 'equipment'));
+  for (let i = 0; i < newBoosts.length; i++) {
+    boosterAccordionBody.appendChild(generateItemCard(newBoosts[i], 'equipment'));
   }
 };
 

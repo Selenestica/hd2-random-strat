@@ -78,8 +78,8 @@
       <div class="row mt-2 justify-content-center">
         <div class="col-2 d-flex align-items-center justify-content-start">
           <div class="btn-group" role="group">
-            <input type="radio" class="btn-check mainViewButtons" name="btnradio" id="inventoryButton" autocomplete="off" checked>
-            <label class="btn btn-outline-primary text-white" for="inventoryButton">Inventory</label>
+            <input type="radio" class="btn-check mainViewButtons" name="btnradio" id="loadoutButton" autocomplete="off" checked>
+            <label class="btn btn-outline-primary text-white" for="loadoutButton">Loadout</label>
             <input type="radio" class="btn-check mainViewButtons" name="btnradio" id="shopButton" autocomplete="off">
             <label class="btn btn-outline-primary text-warning" for="shopButton">Shop</label>
           </div>
@@ -114,6 +114,14 @@
         </div>
         <div class="col-2 justify-content-end d-flex align-items-center">
           <button
+            class="btn btn-primary mx-2"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#warbondSelectModal"
+          >
+            <i class="fa-solid fa-cog"></i>
+          </button>
+          <button
             class="btn btn-warning"
             type="button"
             data-bs-toggle="modal"
@@ -124,7 +132,19 @@
         </div>
       </div>
 
-      <div class="row d-flex justify-content-center mt-2">
+      <!-- LOADOUT -->
+      <div id="loadoutContainer" class="d-flex">
+        <div id="armorContainer" class="d-flex row justify-content-start"></div>
+        <div id="equipmentContainerBB" class="row pt-3 d-flex justify-content-center"></div>
+        <div id="stratagemsContainerBB" class="row pt-3 pb-3 d-flex justify-content-center"></div>
+        <div id="inventoryContainer">
+          <div id="defaultInventory"></div>
+          <div id="purchasedInventory"></div>
+        </div>
+      </div>
+
+      <!-- SHOP -->
+      <div id="shopContainer" class="row d-none justify-content-center mt-2">
         <div class="col-lg-6 col-sm-12 justify-content-center">
           <div class="accordion" id="acquiredMainItemsAccordion"></div>
         </div>
@@ -214,6 +234,29 @@
                 No
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WARBOND SELECT MODAL -->
+    <div
+      class="modal fade"
+      id="warbondSelectModal"
+      tabindex="-1"
+      aria-labelledby="warbondSelectModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="warbondSelectModalLabel">Warbond Select</h5>
+          </div>
+          <div class="modal-body">
+            <div class="p-3" id="warbondsChecklistContainer"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -608,6 +651,7 @@
   <script>
     const specialist = null;
   </script>
+  <script src="../js/components/genWarbondCheckboxes.js"></script>
   <script src="../js/utils/getStartingItems.js"></script>
   <script src="../js/components/genAcquiredItemsAccordions.js"></script>
   <script src="../js/budgetblitz.js"></script>

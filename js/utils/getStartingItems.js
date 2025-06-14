@@ -19,7 +19,7 @@ let starterStratNames = [
   'Shield Generator Relay',
 ];
 let starterPrimNames = ['Constitution'];
-let starterSecNames = ['Peacemaker', 'Stun Lance', 'Stun Baton', 'Combat Hatchet'];
+let starterSecNames = ['Peacemaker', 'Stun Lance', 'Stun Baton', 'Combat Hatchet', 'Saber'];
 let starterThrowNames = ['G-12 High Explosive'];
 let starterArmorPassiveNames = ['Extra Padding'];
 let starterBoosterNames = [];
@@ -33,7 +33,7 @@ const getStartingItems = (diff = null) => {
   ];
   diff === 'super' ? starterStratNames.push('Ballistic Shield') : null;
   starterPrimNames = ['Constitution'];
-  starterSecNames = ['Stun Lance', 'Stun Baton', 'Combat Hatchet'];
+  starterSecNames = ['Stun Lance', 'Stun Baton', 'Combat Hatchet', 'Saber'];
   diff !== 'super' ? starterSecNames.push('Peacemaker') : null;
   starterThrowNames = ['G-12 High Explosive'];
   starterArmorPassiveNames = diff === 'super' ? ['Integrated Explosives'] : ['Extra Padding'];

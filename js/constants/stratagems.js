@@ -305,7 +305,7 @@ const STRATAGEMS = [
     warbondCode: 'none',
     internalName: 'sh20ballisticshieldbackpack',
     imageURL: 'sh20ballisticshieldbackpack.svg',
-    tier: 'c',
+    tier: 'b',
   },
   {
     displayName: 'Fast Recon Vehicle',

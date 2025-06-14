@@ -30,7 +30,7 @@ const PRIMARIES = [
     warbondCode: 'none',
     internalName: 'plas39acceleratorrifle',
     imageURL: 'plas39acceleratorrifle.png',
-    tier: 'c',
+    tier: 'b',
   },
   {
     displayName: 'StA-52 Assault Rifle',

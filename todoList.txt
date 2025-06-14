@@ -57,6 +57,7 @@ Budget Blitz
 - TBD, which difficulty to start on...
   - maybe start difficulty 5, with a certain amount of credits to make purchases
 - starter items can always be used (probably same items as Penitent Crusade)
-- GOAL: Complete an operation on Super Helldive difficulty? 
+- GOAL: Complete an operation on Super Helldive difficulty
+  - SUB-OBJECTIVE: the more money you have at the end of a run, the higher your score
 
 NEW CHALLENGE IDEAS:

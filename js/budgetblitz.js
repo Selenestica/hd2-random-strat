@@ -1,15 +1,11 @@
 const missionCompleteModalBody = document.getElementById('missionCompleteModalBody');
 const maxStarsModalBody = document.getElementById('maxStarsModalBody');
-const primaryAccordionBody = document.getElementById('PrimariesAccordionBody');
-const secondaryAccordionBody = document.getElementById('SecondariesAccordionBody');
-const stratagemAccordionBody = document.getElementById('StratagemsAccordionBody');
-const throwableAccordionBody = document.getElementById('ThrowablesAccordionBody');
-const armorPassiveAccordionBody = document.getElementById('ArmorsAccordionBody');
-const boosterAccordionBody = document.getElementById('BoostersAccordionBody');
 const mainViewButtons = document.getElementsByClassName('mainViewButtons');
 const scCounter = document.getElementById('scCounter');
 const loadoutContainer = document.getElementById('loadoutContainer');
 const shopContainer = document.getElementById('shopContainer');
+const bbShopItemsContainer = document.getElementById('bbShopItemsContainer');
+const bbShopFilterBar = document.getElementById('bbShopFilterBar');
 const defaultInventory = document.getElementById('defaultInventory');
 const yourCreditsAmount = document.getElementById('yourCreditsAmount');
 const itemCostAmount = document.getElementById('itemCostAmount');
@@ -36,6 +32,8 @@ for (let z = 0; z < mainViewButtons.length; z++) {
     if (e.target.checked) {
       currentView = e.srcElement.id;
       if (e.srcElement.id === 'loadoutButton') {
+        missionCompleteButtonDiv.style.display = 'block';
+        missionFailedButtonDiv.style.display = 'block';
         shopContainer.classList.remove('d-flex');
         shopContainer.classList.add('d-none');
         loadoutContainer.classList.remove('d-none');
@@ -44,14 +42,9 @@ for (let z = 0; z < mainViewButtons.length; z++) {
         populatePurchasedItemsInventory();
       }
       if (e.srcElement.id === 'shopButton') {
-        // clear the accordions first
-        stratagemAccordionBody.innerHTML = '';
-        primaryAccordionBody.innerHTML = '';
-        secondaryAccordionBody.innerHTML = '';
-        throwableAccordionBody.innerHTML = '';
-        armorPassiveAccordionBody.innerHTML = '';
-        boosterAccordionBody.innerHTML = '';
         addItemsToAccordions(e.srcElement.id);
+        missionCompleteButtonDiv.style.display = 'none';
+        missionFailedButtonDiv.style.display = 'none';
         shopContainer.classList.add('d-flex');
         shopContainer.classList.remove('d-none');
         loadoutContainer.classList.add('d-none');
@@ -170,28 +163,18 @@ const populateDefaultItems = () => {
   }
 };
 
-const addItemsToAccordions = async () => {
-  for (let i = 0; i < newStrats.length; i++) {
-    stratagemAccordionBody.appendChild(generateItemCard(newStrats[i]));
-  }
-  for (let i = 0; i < newPrims.length; i++) {
-    primaryAccordionBody.appendChild(generateItemCard(newPrims[i]));
-  }
-  for (let i = 0; i < newSeconds.length; i++) {
-    secondaryAccordionBody.appendChild(generateItemCard(newSeconds[i]));
-  }
-  for (let i = 0; i < newThrows.length; i++) {
-    throwableAccordionBody.appendChild(generateItemCard(newThrows[i]));
-  }
-  for (let i = 0; i < newArmorPassives.length; i++) {
-    armorPassiveAccordionBody.appendChild(generateItemCard(newArmorPassives[i]));
-  }
-  for (let i = 0; i < newBoosts.length; i++) {
-    boosterAccordionBody.appendChild(generateItemCard(newBoosts[i]));
+const addItemsToAccordions = () => {
+  const allItemsList = [newPrims, newStrats, newBoosts, newSeconds, newArmorPassives, newThrows];
+  for (let i = 0; i < allItemsList.length; i++) {
+    const items = allItemsList[i];
+    for (let j = 0; j < items.length; j++) {
+      const item = items[j];
+      bbShopItemsContainer.appendChild(generateItemCard(item));
+    }
   }
 };
 
-const generateItemCard = (item, colWidth = 2) => {
+const generateItemCard = (item, colWidth = 1) => {
   let showCost = false;
   let totalCost = item.cost;
   let imgDir = 'equipment';
@@ -206,11 +189,14 @@ const generateItemCard = (item, colWidth = 2) => {
   if (currentView === 'shopButton') {
     showCost = true;
     card.style.cursor = 'pointer';
-    card.onclick = () => purchaseItem(item);
     if (item.onSale) {
       totalCost = Math.ceil(item.cost * 0.5);
       costBadgeColor = 'bg-success text-light';
     }
+    // lets check if the item can be purchased
+    if (totalCost > credits) {
+    }
+    card.onclick = () => purchaseItem(item);
   }
   card.className = `card d-flex col-${colWidth} pcItemCards mx-1 my-1 position-relative`;
 
@@ -234,6 +220,7 @@ const generateItemCard = (item, colWidth = 2) => {
 };
 
 const purchaseItem = async (item) => {
+  // add the item to the list or add the quantity to it if it exists
   const existsInPurchasedList = await purchasedItems.filter((i) => {
     return i.displayName === item.displayName;
   });
@@ -286,12 +273,6 @@ const uploadSaveData = async () => {
     dataName = currentGame.dataName;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
-    stratagemAccordionBody.innerHTML = '';
-    primaryAccordionBody.innerHTML = '';
-    secondaryAccordionBody.innerHTML = '';
-    throwableAccordionBody.innerHTML = '';
-    armorPassiveAccordionBody.innerHTML = '';
-    boosterAccordionBody.innerHTML = '';
     await addItemsToAccordions('default');
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
       const item = currentGame.acquiredItems[i];

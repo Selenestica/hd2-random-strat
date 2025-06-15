@@ -149,35 +149,34 @@
         <div id="loadoutContainer" class="row d-flex justify-content-center">
           <div id="equippedItemsContainer" class="row d-flex justify-content-center">
             <div class="col">
-              <div id="armorContainer" class="mt-3 d-flex row justify-content-center">
-                <div
-                  id="emptyArmorSquare"
-                  style="width: 100px; height: 100px; background-color: grey"
-                ></div>
-              </div>
-              <div id="equipmentContainerBB" class="row pt-3 d-flex justify-content-center">
-                <div
-                  id="emptyArmorSquare"
-                  class="col-3 mx-2 d-flex justify-content-center"
-                  style="width: 100px; height: 100px; background-color: grey"
-                ></div>
-                <div
-                  id="emptyArmorSquare"
-                  class="col-3 mx-2 d-flex justify-content-center"
-                  style="width: 100px; height: 100px; background-color: grey"
-                ></div>
-                <div
-                  id="emptyArmorSquare"
-                  class="col-3 mx-2 d-flex justify-content-center"
-                  style="width: 100px; height: 100px; background-color: grey"
-                ></div>
-                <div
-                  id="emptyArmorSquare"
-                  class="col-3 mx-2 d-flex justify-content-center"
-                  style="width: 100px; height: 100px; background-color: grey"
-                ></div>
-              </div>
               <div id="stratagemsContainerBB" class="row pt-3 pb-3 d-flex justify-content-center">
+                <div
+                  id="emptyArmorSquare"
+                  class="col-3 mx-2 d-flex justify-content-center"
+                  style="width: 100px; height: 100px; background-color: grey"
+                ></div>
+                <div
+                  id="emptyArmorSquare"
+                  class="col-3 mx-2 d-flex justify-content-center"
+                  style="width: 100px; height: 100px; background-color: grey"
+                ></div>
+                <div
+                  id="emptyArmorSquare"
+                  class="col-3 mx-2 d-flex justify-content-center"
+                  style="width: 100px; height: 100px; background-color: grey"
+                ></div>
+                <div
+                  id="emptyArmorSquare"
+                  class="col-3 mx-2 d-flex justify-content-center"
+                  style="width: 100px; height: 100px; background-color: grey"
+                ></div>
+              </div>
+              <div id="equipmentContainerBB" class="row pb-3 d-flex justify-content-center">
+                <div
+                  class="col-3 mx-2 d-flex justify-content-center"
+                  id="emptyArmorSquare"
+                  style="width: 100px; height: 100px; background-color: grey"
+                ></div>
                 <div
                   id="emptyArmorSquare"
                   class="col-3 mx-2 d-flex justify-content-center"
@@ -257,12 +256,33 @@
         </div>
 
         <!-- SHOP -->
-        <div id="shopContainer" class="col d-none justify-content-center mt-2">
-          <div class="col-lg-6 col-sm-12 justify-content-center">
-            <div class="accordion" id="acquiredMainItemsAccordion"></div>
+        <div id="shopContainer" class="row d-none justify-content-center mt-2">
+          <div class="col-12" id="bbShopFilterBar">
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-primary" type="button">
+                  <span> Type </span>
+                </button>
+              </div>
+              <div class="col">
+                <button class="btn btn-primary" type="button">
+                  <span> Cost </span>
+                </button>
+              </div>
+              <div class="col">
+                <button class="btn btn-primary" type="button">
+                  <span> Reset </span>
+                </button>
+              </div>
+              <div class="col">
+                <button class="btn btn-primary" type="button">
+                  <span> Search </span>
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="col-lg-6 col-sm-12 justify-content-center">
-            <div class="accordion" id="acquiredStarItemsAccordion"></div>
+          <div class="col-12">
+            <div id="bbShopItemsContainer" class="row"></div>
           </div>
         </div>
       </div>
@@ -755,7 +775,6 @@
   </script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
   <script src="../js/utils/getStartingItems.js"></script>
-  <script src="../js/components/genAcquiredItemsAccordions.js"></script>
   <script src="../js/budgetblitz.js"></script>
   <script src="../js/components/genBudgetBlitzSaveDataManagementInfo.js"></script>
 </html>

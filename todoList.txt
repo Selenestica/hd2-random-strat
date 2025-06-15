@@ -36,6 +36,17 @@ Penitent Crusade Specialist ideas:
  The Shotgun Surgeon
  - ybwamahe, Punisher, Bushwacker
 
+to do Budget Blitz
+- add filters to shop menu
+  - search name
+  - by type
+    - stratagem
+    - throwable, etc...
+  - by cost
+    - on sale
+    - purchaseable
+    - non-purchaseable
+  - reset filters button
 
 Budget Blitz
 - earn money (SC, medals, or req. slips) for completing missions. More stars = more money

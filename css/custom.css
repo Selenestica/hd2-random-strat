@@ -72,6 +72,12 @@ body {
   background-color: rgb(71, 71, 71);
 }
 
+.pcItemCards:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
 .specialistCards {
   cursor: pointer;
 }
@@ -183,7 +189,7 @@ body {
 }
 
 .costBadges {
-  font-size: .9rem !important;
+  font-size: 0.9rem !important;
   top: 5%;
   left: 90%;
   position: absolute;

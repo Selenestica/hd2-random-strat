@@ -146,7 +146,7 @@
 
       <div class="container">
         <!-- LOADOUT -->
-        <div id="loadoutContainer">
+        <div id="loadoutContainer" class="row d-flex justify-content-center">
           <div id="equippedItemsContainer" class="row d-flex justify-content-center">
             <div class="col">
               <div id="armorContainer" class="mt-3 d-flex row justify-content-center">
@@ -222,7 +222,10 @@
                   class="accordion-collapse collapse"
                   data-bs-parent="#inventoryAccordion"
                 >
-                  <div id="purchasedItemsInventory" class="accordion-body"></div>
+                  <div
+                    id="purchasedItemsInventory"
+                    class="accordion-body row d-flex justify-content-center"
+                  ></div>
                 </div>
               </div>
               <div class="accordion-item bg-none">
@@ -245,7 +248,7 @@
                 >
                   <div
                     id="defaultInventory"
-                    class="accordion-body row d-flex justify-content-evenly"
+                    class="accordion-body row d-flex justify-content-center"
                   ></div>
                 </div>
               </div>
@@ -260,59 +263,6 @@
           </div>
           <div class="col-lg-6 col-sm-12 justify-content-center">
             <div class="accordion" id="acquiredStarItemsAccordion"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ITEM PURCHASE MODAL -->
-      <div
-        class="modal fade"
-        id="itemPurchaseModal"
-        tabindex="-1"
-        aria-labelledby="itemPurchaseModalLabel"
-        aria-hidden="true"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-      >
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-          <div class="modal-content bg-grey">
-            <div class="modal-header">
-              <h5 class="modal-title text-light" id="itemPurchaseModalHeaderItemName"></h5>
-            </div>
-            <div class="modal-body d-flex row justify-content-center" id="itemPurchaseModalBody">
-              <div
-                id="itemPurchaseModalImageContainer"
-                class="row d-flex justify-content-center"
-              ></div>
-              <div class="row mb-3 text-white d-flex justify-content-center">
-                <div class="text-white">
-                  Your Super Credits: <span id="yourCreditsAmount"></span>
-                </div>
-              </div>
-              <div class="row text-white d-flex justify-content-center">
-                <div class="mb-3 col-6">
-                  <input
-                    id="itemQuantityInput"
-                    min="1"
-                    max="18"
-                    type="number"
-                    value="1"
-                    class="form-control"
-                  />
-                </div>
-                <div class="col-6">Cost: <span id="itemCostAmount"></span></div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                onclick="clearItemPurchaseModal()"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
           </div>
         </div>
       </div>

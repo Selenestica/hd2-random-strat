@@ -11,9 +11,6 @@ const scCounter = document.getElementById('scCounter');
 const loadoutContainer = document.getElementById('loadoutContainer');
 const shopContainer = document.getElementById('shopContainer');
 const defaultInventory = document.getElementById('defaultInventory');
-const itemPurchaseModal = document.getElementById('itemPurchaseModal');
-const itemPurchaseModalHeaderItemName = document.getElementById('itemPurchaseModalHeaderItemName');
-const itemPurchaseModalImageContainer = document.getElementById('itemPurchaseModalImageContainer');
 const yourCreditsAmount = document.getElementById('yourCreditsAmount');
 const itemCostAmount = document.getElementById('itemCostAmount');
 const itemQuantityInput = document.getElementById('itemQuantityInput');
@@ -43,6 +40,7 @@ for (let z = 0; z < mainViewButtons.length; z++) {
         shopContainer.classList.add('d-none');
         loadoutContainer.classList.remove('d-none');
         loadoutContainer.classList.add('d-flex');
+        purchasedItemsInventory.innerHTML = '';
         populatePurchasedItemsInventory();
       }
       if (e.srcElement.id === 'shopButton') {
@@ -62,11 +60,6 @@ for (let z = 0; z < mainViewButtons.length; z++) {
     }
   });
 }
-
-itemQuantityInput.addEventListener('input', (e) => {
-  const calculatedCost = calculateItemCost(parseInt(e.target.value), currentItem);
-  itemCostAmount.innerHTML = calculatedCost;
-});
 
 const startNewRun = async () => {
   newStrats = await OGstratsList.filter(
@@ -131,12 +124,14 @@ const startNewRun = async () => {
   // });
 
   missionCounterText.innerHTML = `${getMissionText()}`;
-  clearItemPurchaseModal();
   addItemsToAccordions('default');
 };
 
 const populatePurchasedItemsInventory = async () => {
-  console.log('populating purchased inventory with this function');
+  for (let i = 0; i < purchasedItems.length; i++) {
+    const card = generateItemCard(purchasedItems[i], 2);
+    purchasedItemsInventory.appendChild(card);
+  }
 };
 
 const populateDefaultItems = () => {
@@ -211,7 +206,7 @@ const generateItemCard = (item, colWidth = 2) => {
   if (currentView === 'shopButton') {
     showCost = true;
     card.style.cursor = 'pointer';
-    card.onclick = () => openPurchaseModal(item);
+    card.onclick = () => purchaseItem(item);
     if (item.onSale) {
       totalCost = Math.ceil(item.cost * 0.5);
       costBadgeColor = 'bg-success text-light';
@@ -238,38 +233,21 @@ const generateItemCard = (item, colWidth = 2) => {
   return card;
 };
 
-const openPurchaseModal = (item) => {
-  currentItem = item;
-  let itemCost = item.cost;
-  if (item.onSale) {
-    itemCost = Math.ceil(item.cost * 0.5);
+const purchaseItem = async (item) => {
+  const existsInPurchasedList = await purchasedItems.filter((i) => {
+    return i.displayName === item.displayName;
+  });
+  if (existsInPurchasedList.length > 0) {
+    purchasedItems = await purchasedItems.map((i) => {
+      if (i.displayName === item.displayName) {
+        i.quantity++;
+      }
+      return i;
+    });
+    return;
   }
 
-  let imgDir = 'equipment';
-  if (item.type === 'Stratagem') {
-    imgDir = 'svgs';
-  }
-  if (item.category === 'armor') {
-    imgDir = 'armor';
-  }
-
-  const modal = new bootstrap.Modal(itemPurchaseModal);
-  modal.show();
-
-  itemPurchaseModalHeaderItemName.innerHTML = item.displayName;
-  itemPurchaseModalImageContainer.innerHTML = `
-    <img
-      src="../images/${imgDir}/${item.imageURL}"
-      class="img-card-top w-50"
-      alt="${item.displayName}"
-    />
-  `;
-  yourCreditsAmount.innerHTML = credits;
-  itemCostAmount.innerHTML = itemCost;
-};
-
-const clearItemPurchaseModal = () => {
-  // itemPurchaseModalBody.innerHTML = '';
+  purchasedItems.push(item);
 };
 
 const checkMissionButtons = () => {

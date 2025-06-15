@@ -186,6 +186,17 @@ const ARMOR_PASSIVES = [
     imageURL: 'reinforcedepaulettes.png',
     tier: 'c',
   },
+  {
+    displayName: 'Ballistic Padding',
+    type: 'Equipment',
+    category: 'armor',
+    tags: ['ArmorPassive'],
+    warbond: '',
+    warbondCode: '',
+    internalName: 'ballisticpadding',
+    imageURL: 'ballisticpadding.png',
+    tier: 'b',
+  },
 ];
 
 // s: 3

@@ -9,9 +9,8 @@ to do Randomizer:
 - Master of Ceremony
   - armor
     - heavy (need img)
-    - armor passive (need img)
-- put Pre-Order Bonus and Superstore options after Super Citizen Edition
-  - then rearrange indices to accommodate
+- Force of Law
+  - armor passive (need img)
 
 to do Penitent Crusade:
 - system to track max stars missions, incomplete missions, and failed missions. adding points for each

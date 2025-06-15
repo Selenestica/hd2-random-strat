@@ -193,4 +193,15 @@ const SPECIALISTS = [
     armorPassives: [],
     traits: [],
   },
+  {
+    displayName: 'The Arbiter',
+    starterItems: ['P-92 Warrant', 'Ballistic Shield', 'Ballistic Padding armor'],
+    stratagems: ['Ballistic Shield'],
+    primaries: [],
+    boosters: [],
+    secondaries: ['P-92 Warrant'],
+    throwables: [],
+    armorPassives: ['Ballistic Padding'],
+    traits: [],
+  },
 ];

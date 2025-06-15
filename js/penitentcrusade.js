@@ -225,7 +225,6 @@ const claimPunishment = async (currentItemIndex) => {
   const modal = bootstrap.Modal.getInstance(itemOptionsModal);
   modal.hide();
   clearItemOptionsModal();
-  currentItems = [];
 };
 
 const getItemMetaData = (item) => {
@@ -345,6 +344,20 @@ const getRewardsItemsLists = () => {
 };
 
 const rollRewardOptions = async () => {
+  if (currentItems.length > 0) {
+    for (let i = 0; i < currentItems.length; i++) {
+      const vals = getItemMetaData(currentItems[i]);
+      itemOptionsModalBody.innerHTML += generateItemCard(
+        currentItems[i],
+        true,
+        vals.imgDir,
+        i,
+        vals.typeText,
+      );
+    }
+    return;
+  }
+
   let itemsLists = await getRewardsItemsLists();
   itemsLists = itemsLists.filter((list) => list.length > 0);
   if (itemsLists.length < 3) {
@@ -374,6 +387,8 @@ const rollRewardOptions = async () => {
       vals.typeText,
     );
   }
+  // save current items in LS
+  saveProgress();
 };
 
 const rollPunishmentOptions = async () => {
@@ -492,7 +507,6 @@ const removeItemFromList = (list, item) => {
 };
 
 const clearItemOptionsModal = () => {
-  currentItems = [];
   itemOptionsModalBody.innerHTML = '';
 };
 
@@ -626,6 +640,7 @@ const saveProgress = async (item = null) => {
       }
       sg = {
         ...sg,
+        currentItems,
         acquiredItems: updatedItems,
         newStrats,
         newPrims,
@@ -704,6 +719,7 @@ const uploadSaveData = async () => {
     seesRulesOnOpen = currentGame.seesRulesOnOpen;
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;
+    currentItems = currentGame.currentItems ?? [];
     specialist = currentGame.specialist ?? null;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();

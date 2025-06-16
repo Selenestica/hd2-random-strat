@@ -1,86 +1,98 @@
-const missionCompleteModalBody = document.getElementById('missionCompleteModalBody');
-const maxStarsModalBody = document.getElementById('maxStarsModalBody');
-const mainViewButtons = document.getElementsByClassName('mainViewButtons');
-const scCounter = document.getElementById('scCounter');
-const loadoutContainer = document.getElementById('loadoutContainer');
-const shopContainer = document.getElementById('shopContainer');
-const bbShopItemsContainer = document.getElementById('bbShopItemsContainer');
-const bbShopFilterBar = document.getElementById('bbShopFilterBar');
-const defaultInventory = document.getElementById('defaultInventory');
-const yourCreditsAmount = document.getElementById('yourCreditsAmount');
-const itemCostAmount = document.getElementById('itemCostAmount');
-const itemQuantityInput = document.getElementById('itemQuantityInput');
-const itemPurchaseModalBody = document.getElementById('itemPurchaseModalBody');
-const missionCompleteButton = document.getElementById('missionCompleteButton');
-const missionFailedButton = document.getElementById('missionFailedButton');
-const missionCompleteButtonDiv = document.getElementById('missionCompleteButtonDiv');
-const missionFailedButtonDiv = document.getElementById('missionFailedButtonDiv');
-const downloadPDFButtonDiv = document.getElementById('downloadPDFButtonDiv');
-const missionCounterText = document.getElementById('missionCounterText');
-const maxStarsPromptModal = document.getElementById('maxStarsPromptModal'); // will have to change this modal to input # of stars
+const missionCompleteModalBody = document.getElementById(
+  "missionCompleteModalBody"
+);
+const maxStarsModalBody = document.getElementById("maxStarsModalBody");
+const mainViewButtons = document.getElementsByClassName("mainViewButtons");
+const scCounter = document.getElementById("scCounter");
+const loadoutContainer = document.getElementById("loadoutContainer");
+const shopContainer = document.getElementById("shopContainer");
+const bbShopItemsContainer = document.getElementById("bbShopItemsContainer");
+const defaultInventory = document.getElementById("defaultInventory");
+const yourCreditsAmount = document.getElementById("yourCreditsAmount");
+const itemCostAmount = document.getElementById("itemCostAmount");
+const itemQuantityInput = document.getElementById("itemQuantityInput");
+const itemPurchaseModalBody = document.getElementById("itemPurchaseModalBody");
+const downloadPDFButtonDiv = document.getElementById("downloadPDFButtonDiv");
+const missionButtonsDiv = document.getElementById("missionButtonsDiv");
+const bbShopFilterDiv = document.getElementById("bbShopFilterDiv");
+const shopSearchInput = document.getElementById("shopSearchInput");
+const missionCounterText = document.getElementById("missionCounterText");
+const maxStarsPromptModal = document.getElementById("maxStarsPromptModal"); // will have to change this modal to input # of stars
 
 let missionCounter = 5;
 let purchasedItems = [];
-let currentView = 'loadoutButton';
+let currentView = "loadoutButton";
 let credits = 100;
+missionButtonsDiv.style.display = "flex";
+bbShopFilterDiv.style.display = "none";
 
 // toggles view between LOADOUT and SHOP
 for (let z = 0; z < mainViewButtons.length; z++) {
-  mainViewButtons[z].addEventListener('change', (e) => {
+  mainViewButtons[z].addEventListener("change", (e) => {
     // Loadout view will be like Randomizer
     // Shop view similar to what it is now
     if (e.target.checked) {
       currentView = e.srcElement.id;
-      if (e.srcElement.id === 'loadoutButton') {
-        missionCompleteButtonDiv.style.display = 'block';
-        missionFailedButtonDiv.style.display = 'block';
-        shopContainer.classList.remove('d-flex');
-        shopContainer.classList.add('d-none');
-        loadoutContainer.classList.remove('d-none');
-        loadoutContainer.classList.add('d-flex');
-        purchasedItemsInventory.innerHTML = '';
+      if (e.srcElement.id === "loadoutButton") {
+        missionButtonsDiv.style.display = "flex";
+        bbShopFilterDiv.style.display = "none";
+        shopContainer.classList.remove("d-flex");
+        shopContainer.classList.add("d-none");
+        loadoutContainer.classList.remove("d-none");
+        loadoutContainer.classList.add("d-flex");
+        purchasedItemsInventory.innerHTML = "";
         populatePurchasedItemsInventory();
       }
-      if (e.srcElement.id === 'shopButton') {
+      if (e.srcElement.id === "shopButton") {
         addItemsToAccordions(e.srcElement.id);
-        missionCompleteButtonDiv.style.display = 'none';
-        missionFailedButtonDiv.style.display = 'none';
-        shopContainer.classList.add('d-flex');
-        shopContainer.classList.remove('d-none');
-        loadoutContainer.classList.add('d-none');
-        loadoutContainer.classList.remove('d-flex');
+        missionButtonsDiv.style.display = "none";
+        bbShopFilterDiv.style.display = "flex";
+        shopContainer.classList.add("d-flex");
+        shopContainer.classList.remove("d-none");
+        loadoutContainer.classList.add("d-none");
+        loadoutContainer.classList.remove("d-flex");
       }
     }
   });
 }
 
+shopSearchInput.addEventListener("input", () => {
+  const itemCards = document.getElementsByClassName("bbShopItemCards");
+  const query = shopSearchInput.value.toLowerCase();
+
+  Array.from(itemCards).forEach((item) => {
+    const match = item.id.toLowerCase().includes(query);
+    item.classList.toggle("d-none", !match);
+  });
+});
+
 const startNewRun = async () => {
   newStrats = await OGstratsList.filter(
-    (strat) => !starterStratNames.includes(strat.displayName),
+    (strat) => !starterStratNames.includes(strat.displayName)
   ).map((strat) => {
     strat.cost = getItemCost(strat);
     strat.quantity = 1;
     strat.onSale = getIsItemOnSale();
     return strat;
   });
-  newPrims = await OGprimsList.filter((prim) => !starterPrimNames.includes(prim.displayName)).map(
-    (prim) => {
-      prim.cost = getItemCost(prim);
-      prim.quantity = 1;
-      prim.onSale = getIsItemOnSale();
-      return prim;
-    },
-  );
-  newSeconds = await OGsecondsList.filter((sec) => !starterSecNames.includes(sec.displayName)).map(
-    (sec) => {
-      sec.cost = getItemCost(sec);
-      sec.quantity = 1;
-      sec.onSale = getIsItemOnSale();
-      return sec;
-    },
-  );
+  newPrims = await OGprimsList.filter(
+    (prim) => !starterPrimNames.includes(prim.displayName)
+  ).map((prim) => {
+    prim.cost = getItemCost(prim);
+    prim.quantity = 1;
+    prim.onSale = getIsItemOnSale();
+    return prim;
+  });
+  newSeconds = await OGsecondsList.filter(
+    (sec) => !starterSecNames.includes(sec.displayName)
+  ).map((sec) => {
+    sec.cost = getItemCost(sec);
+    sec.quantity = 1;
+    sec.onSale = getIsItemOnSale();
+    return sec;
+  });
   newThrows = await OGthrowsList.filter(
-    (throwable) => !starterThrowNames.includes(throwable.displayName),
+    (throwable) => !starterThrowNames.includes(throwable.displayName)
   ).map((throwable) => {
     throwable.cost = getItemCost(throwable);
     throwable.quantity = 1;
@@ -88,7 +100,8 @@ const startNewRun = async () => {
     return throwable;
   });
   newArmorPassives = await OGarmorPassivesList.filter(
-    (armorPassive) => !starterArmorPassiveNames.includes(armorPassive.displayName),
+    (armorPassive) =>
+      !starterArmorPassiveNames.includes(armorPassive.displayName)
   ).map((armorPassive) => {
     armorPassive.quantity = 1;
     armorPassive.onSale = getIsItemOnSale();
@@ -96,7 +109,7 @@ const startNewRun = async () => {
     return armorPassive;
   });
   newBoosts = await OGboostsList.filter(
-    (booster) => !starterBoosterNames.includes(booster.displayName),
+    (booster) => !starterBoosterNames.includes(booster.displayName)
   ).map((booster) => {
     booster.quantity = 1;
     booster.onSale = getIsItemOnSale();
@@ -104,7 +117,7 @@ const startNewRun = async () => {
     return booster;
   });
   credits = 100;
-  scCounter.innerHTML = `${': ' + credits}`;
+  scCounter.innerHTML = `${": " + credits}`;
   currentItems = [];
   missionCounter = 5;
   checkMissionButtons();
@@ -117,7 +130,6 @@ const startNewRun = async () => {
   // });
 
   missionCounterText.innerHTML = `${getMissionText()}`;
-  addItemsToAccordions('default');
 };
 
 const populatePurchasedItemsInventory = async () => {
@@ -157,14 +169,21 @@ const populateDefaultItems = () => {
   for (let i = 0; i < list.length; i++) {
     const item = list[i];
     item.cost = null;
-    item.quantity = '&infin;';
+    item.quantity = "&infin;";
     const card = generateItemCard(list[i], 1);
     defaultInventory.appendChild(card);
   }
 };
 
 const addItemsToAccordions = () => {
-  const allItemsList = [newPrims, newStrats, newBoosts, newSeconds, newArmorPassives, newThrows];
+  const allItemsList = [
+    newPrims,
+    newStrats,
+    newBoosts,
+    newSeconds,
+    newArmorPassives,
+    newThrows,
+  ];
   for (let i = 0; i < allItemsList.length; i++) {
     const items = allItemsList[i];
     for (let j = 0; j < items.length; j++) {
@@ -174,31 +193,46 @@ const addItemsToAccordions = () => {
   }
 };
 
+const filterByType = (type) => {
+  console.log(type);
+};
+
+const filterByPrice = (type) => {
+  console.log(type);
+};
+
+const resetShopFilters = () => {
+  console.log("resetting filters");
+};
+
 const generateItemCard = (item, colWidth = 1) => {
+  let shopClass = "";
   let showCost = false;
   let totalCost = item.cost;
-  let imgDir = 'equipment';
-  let costBadgeColor = 'bg-warning text-dark';
-  if (item.type === 'Stratagem') {
-    imgDir = 'svgs';
+  let imgDir = "equipment";
+  let costBadgeColor = "bg-warning text-dark";
+  if (item.type === "Stratagem") {
+    imgDir = "svgs";
   }
-  if (item.category === 'armor') {
-    imgDir = 'armor';
+  if (item.category === "armor") {
+    imgDir = "armor";
   }
-  const card = document.createElement('div');
-  if (currentView === 'shopButton') {
+  const card = document.createElement("div");
+  card.id = "bbItemCard-" + item.internalName;
+  if (currentView === "shopButton") {
+    shopClass = "bbShopItemCards";
     showCost = true;
-    card.style.cursor = 'pointer';
+    card.style.cursor = "pointer";
     if (item.onSale) {
       totalCost = Math.ceil(item.cost * 0.5);
-      costBadgeColor = 'bg-success text-light';
+      costBadgeColor = "bg-success text-light";
     }
     // lets check if the item can be purchased
     if (totalCost > credits) {
     }
     card.onclick = () => purchaseItem(item);
   }
-  card.className = `card d-flex col-${colWidth} pcItemCards mx-1 my-1 position-relative`;
+  card.className = `card d-flex col-${colWidth} pcItemCards ${shopClass} mx-1 my-1 position-relative`;
 
   card.innerHTML = `
     <img
@@ -207,7 +241,7 @@ const generateItemCard = (item, colWidth = 1) => {
       alt="${item.displayName}"
     />
     <span class="costBadges translate-middle badge rounded-pill ${
-      showCost ? costBadgeColor : 'bg-primary text-light'
+      showCost ? costBadgeColor : "bg-primary text-light"
     }">
       ${showCost ? totalCost : item.quantity}
     </span>
@@ -242,24 +276,24 @@ const checkMissionButtons = () => {
     missionFailedButton.disabled = true;
     missionCompleteButton.disabled = true;
     // hide the mission buttons, and show download items buttons
-    missionCompleteButton.style.display = 'none';
-    missionFailedButton.style.display = 'none';
-    downloadPDFButtonDiv.style.display = 'block';
+    missionCompleteButton.style.display = "none";
+    missionFailedButton.style.display = "none";
+    downloadPDFButtonDiv.style.display = "block";
   }
 
   if (missionCounter < 21) {
     missionCompleteButton.disabled = false;
     missionFailedButton.disabled = false;
-    missionCompleteButton.style.display = 'block';
-    missionFailedButton.style.display = 'block';
-    downloadPDFButtonDiv.style.display = 'none';
+    missionCompleteButton.style.display = "block";
+    missionFailedButton.style.display = "block";
+    downloadPDFButtonDiv.style.display = "none";
   }
 };
 
 const uploadSaveData = async () => {
   await getStartingItems();
   await populateDefaultItems();
-  const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
+  const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
   if (budgetBlitzSaveData) {
     const currentGame = await getCurrentGame();
     newStrats = currentGame.newStrats;
@@ -273,7 +307,7 @@ const uploadSaveData = async () => {
     dataName = currentGame.dataName;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
-    await addItemsToAccordions('default');
+    await addItemsToAccordions("default");
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
       const item = currentGame.acquiredItems[i];
       const { accBody } = getItemMetaData(item);

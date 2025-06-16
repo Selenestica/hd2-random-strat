@@ -5,7 +5,6 @@ const maxStarsModalBody = document.getElementById("maxStarsModalBody");
 const mainViewButtons = document.getElementsByClassName("mainViewButtons");
 const scCounter = document.getElementById("scCounter");
 const loadoutContainer = document.getElementById("loadoutContainer");
-const shopContainer = document.getElementById("shopContainer");
 const bbShopItemsContainer = document.getElementById("bbShopItemsContainer");
 const defaultInventory = document.getElementById("defaultInventory");
 const yourCreditsAmount = document.getElementById("yourCreditsAmount");
@@ -36,8 +35,8 @@ for (let z = 0; z < mainViewButtons.length; z++) {
       if (e.srcElement.id === "loadoutButton") {
         missionButtonsDiv.style.display = "flex";
         bbShopFilterDiv.style.display = "none";
-        shopContainer.classList.remove("d-flex");
-        shopContainer.classList.add("d-none");
+        bbShopItemsContainer.classList.remove("d-flex");
+        bbShopItemsContainer.classList.add("d-none");
         loadoutContainer.classList.remove("d-none");
         loadoutContainer.classList.add("d-flex");
         purchasedItemsInventory.innerHTML = "";
@@ -47,8 +46,8 @@ for (let z = 0; z < mainViewButtons.length; z++) {
         addItemsToAccordions(e.srcElement.id);
         missionButtonsDiv.style.display = "none";
         bbShopFilterDiv.style.display = "flex";
-        shopContainer.classList.add("d-flex");
-        shopContainer.classList.remove("d-none");
+        bbShopItemsContainer.classList.add("d-flex");
+        bbShopItemsContainer.classList.remove("d-none");
         loadoutContainer.classList.add("d-none");
         loadoutContainer.classList.remove("d-flex");
       }
@@ -56,6 +55,7 @@ for (let z = 0; z < mainViewButtons.length; z++) {
   });
 }
 
+// search bar functionality for shop
 shopSearchInput.addEventListener("input", () => {
   const itemCards = document.getElementsByClassName("bbShopItemCards");
   const query = shopSearchInput.value.toLowerCase();
@@ -72,6 +72,7 @@ const startNewRun = async () => {
   ).map((strat) => {
     strat.cost = getItemCost(strat);
     strat.quantity = 1;
+    strat.timesPurchased = 0;
     strat.onSale = getIsItemOnSale();
     return strat;
   });
@@ -80,6 +81,7 @@ const startNewRun = async () => {
   ).map((prim) => {
     prim.cost = getItemCost(prim);
     prim.quantity = 1;
+    prim.timesPurchased = 0;
     prim.onSale = getIsItemOnSale();
     return prim;
   });
@@ -88,6 +90,7 @@ const startNewRun = async () => {
   ).map((sec) => {
     sec.cost = getItemCost(sec);
     sec.quantity = 1;
+    sec.timesPurchased = 0;
     sec.onSale = getIsItemOnSale();
     return sec;
   });
@@ -96,6 +99,7 @@ const startNewRun = async () => {
   ).map((throwable) => {
     throwable.cost = getItemCost(throwable);
     throwable.quantity = 1;
+    throwable.timesPurchased = 0;
     throwable.onSale = getIsItemOnSale();
     return throwable;
   });
@@ -104,6 +108,7 @@ const startNewRun = async () => {
       !starterArmorPassiveNames.includes(armorPassive.displayName)
   ).map((armorPassive) => {
     armorPassive.quantity = 1;
+    armorPassive.timesPurchased = 0;
     armorPassive.onSale = getIsItemOnSale();
     armorPassive.cost = getItemCost(armorPassive);
     return armorPassive;
@@ -112,6 +117,7 @@ const startNewRun = async () => {
     (booster) => !starterBoosterNames.includes(booster.displayName)
   ).map((booster) => {
     booster.quantity = 1;
+    booster.timesPurchased = 0;
     booster.onSale = getIsItemOnSale();
     booster.cost = getItemCost(booster);
     return booster;
@@ -229,8 +235,11 @@ const generateItemCard = (item, colWidth = 1) => {
     }
     // lets check if the item can be purchased
     if (totalCost > credits) {
+      costBadgeColor = "bg-danger text-light";
     }
-    card.onclick = () => purchaseItem(item);
+    if (totalCost <= credits) {
+      card.onclick = () => purchaseItem(item);
+    }
   }
   card.className = `card d-flex col-${colWidth} pcItemCards ${shopClass} mx-1 my-1 position-relative`;
 
@@ -262,13 +271,29 @@ const purchaseItem = async (item) => {
     purchasedItems = await purchasedItems.map((i) => {
       if (i.displayName === item.displayName) {
         i.quantity++;
+        i.timesPurchased++;
+        i.cost += 5;
       }
       return i;
     });
+    updateShopItemCost(item);
     return;
   }
 
+  item.cost += 5;
+  item.timesPurchased++;
   purchasedItems.push(item);
+  updateShopItemCost(item);
+};
+
+const updateShopItemCost = (item) => {
+  let totalCost = item.cost;
+  if (item.onSale) {
+    totalCost = Math.ceil(item.cost * 0.5);
+  }
+  const cardEl = document.getElementById("bbItemCard-" + item.internalName);
+  const badgeEl = cardEl.querySelector(".costBadges");
+  badgeEl.innerHTML = totalCost;
 };
 
 const checkMissionButtons = () => {
@@ -291,7 +316,7 @@ const checkMissionButtons = () => {
 };
 
 const uploadSaveData = async () => {
-  await getStartingItems();
+  await getStartingItems("bb");
   await populateDefaultItems();
   const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
   if (budgetBlitzSaveData) {

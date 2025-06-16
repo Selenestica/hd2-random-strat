@@ -1,26 +1,37 @@
 const getItemCost = (item) => {
-    let cost = 0
+  let cost = 0;
 
-    // add cost by tier
-    if (item.tier === 's') {
-        cost += 15
-    } else if (item.tier === 'a') {
-        cost += 10
-    } else if (item.tier === 'b') {
-        cost += 5
-    }
+  // add cost by tier
+  if (item.tier === "s") {
+    cost += 15;
+  } else if (item.tier === "a") {
+    cost += 10;
+  } else if (item.tier === "b") {
+    cost += 5;
+  }
 
-    // add cost by item type
-    if (item.type === "Stratagem" || item.category === "primary" || item.category === "booster") {
-        cost += 12
-    } else if (item.category === "secondary" || item.category === "throwable" || item.category === "armor") {
-        cost += 5
-    }
+  // add cost by item type
+  if (
+    item.type === "Stratagem" ||
+    item.category === "primary" ||
+    item.category === "booster"
+  ) {
+    cost += 12;
+  } else if (
+    item.category === "secondary" ||
+    item.category === "throwable" ||
+    item.category === "armor"
+  ) {
+    cost += 5;
+  }
 
-    // add randomness from -4 to 4
-    const random = Math.floor(Math.random() * 9) - 4;
-    return cost + random
-}
+  // add randomness from -4 to 4
+  const random = Math.floor(Math.random() * 14) - 6;
+  if (cost + random < 1) {
+    return 1;
+  }
+  return cost + random;
+};
 
 // starter credits = 100
 

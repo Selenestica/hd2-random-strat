@@ -37,22 +37,34 @@ const typeFiltersArray = [
   stratagemsFilterDropdownItem,
 ];
 
-const filterByType = (type) => {
-  console.log(type);
-};
-
-const filterByPrice = (type) => {
+const filterByType = (filter) => {
   const cards = document.querySelectorAll(".bbShopItemCards");
+  // Reset all filters to visible
   cards.forEach((card) => {
-    card.classList.toggle("d-none");
+    card.classList.remove("d-none");
   });
 
-  //   reset all active classes
-  for (let i = 0; i < priceFiltersArray.length; i++) {
-    priceFiltersArray[i].classList.remove("active");
-  }
+  // Reset all filter buttons active class
+  typeFiltersArray.forEach((btn) => btn.classList.remove("active"));
 
-  if (type === "onSale") {
+  cards.forEach((card) => {
+    if (filter !== card.dataset.type) {
+      card.classList.toggle("d-none");
+    }
+  });
+};
+
+const filterByPrice = (filter) => {
+  const cards = document.querySelectorAll(".bbShopItemCards");
+  // Reset all filters to visible
+  cards.forEach((card) => {
+    card.classList.remove("d-none");
+  });
+
+  // Reset all filter button active class
+  priceFiltersArray.forEach((btn) => btn.classList.remove("active"));
+
+  if (filter === "onSale") {
     onSaleDropdownItem.classList.toggle("active");
     cards.forEach((card) => {
       const badge = card.querySelector(".costBadges");
@@ -62,7 +74,7 @@ const filterByPrice = (type) => {
     });
   }
 
-  if (type === "purchaseable") {
+  if (filter === "purchaseable") {
     purchaseableDropdownItem.classList.toggle("active");
     cards.forEach((card) => {
       const badge = card.querySelector(".costBadges");
@@ -72,7 +84,7 @@ const filterByPrice = (type) => {
     });
   }
 
-  if (type === "nonpurchaseable") {
+  if (filter === "nonpurchaseable") {
     nonPurchaseableDropdownItem.classList.toggle("active");
     cards.forEach((card) => {
       const badge = card.querySelector(".costBadges");
@@ -84,5 +96,15 @@ const filterByPrice = (type) => {
 };
 
 const resetShopFilters = () => {
-  console.log("resetting filters");
+  const cards = document.querySelectorAll(".bbShopItemCards");
+  // Reset all filters to visible
+  cards.forEach((card) => {
+    card.classList.remove("d-none");
+  });
+
+  // Reset all filter buttons active class
+  typeFiltersArray.forEach((btn) => btn.classList.remove("active"));
+  priceFiltersArray.forEach((btn) => btn.classList.remove("active"));
+
+  shopSearchInput.value = "";
 };

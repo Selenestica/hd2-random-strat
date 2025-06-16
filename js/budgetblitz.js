@@ -209,7 +209,10 @@ const generateItemCard = (item, view = null) => {
   }
   const card = document.createElement("div");
   card.id = "bbItemCard-" + item.internalName;
+
+  // shop code
   if (view === "shop" || currentView === "shopButton") {
+    card.dataset.type = getItemType(item);
     shopClass = "bbShopItemCards";
     showCost = true;
     card.style.cursor = "pointer";

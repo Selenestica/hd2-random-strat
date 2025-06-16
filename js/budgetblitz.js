@@ -14,12 +14,20 @@ const itemPurchaseModalBody = document.getElementById("itemPurchaseModalBody");
 const downloadPDFButtonDiv = document.getElementById("downloadPDFButtonDiv");
 const missionButtonsDiv = document.getElementById("missionButtonsDiv");
 const bbShopFilterDiv = document.getElementById("bbShopFilterDiv");
+const missionCompleteButton = document.getElementById("missionCompleteButton");
+const missionFailedButton = document.getElementById("missionFailedButton");
 const shopSearchInput = document.getElementById("shopSearchInput");
 const missionCounterText = document.getElementById("missionCounterText");
 const maxStarsPromptModal = document.getElementById("maxStarsPromptModal"); // will have to change this modal to input # of stars
 
 let missionCounter = 5;
 let purchasedItems = [];
+let equippedStratagems = [];
+let equippedArmor = [];
+let equippedPrimary = [];
+let equippedSecondary = [];
+let equippedThrowable = [];
+
 let currentView = "loadoutButton";
 let credits = 100;
 missionButtonsDiv.style.display = "flex";
@@ -39,6 +47,9 @@ for (let z = 0; z < mainViewButtons.length; z++) {
         bbShopItemsContainer.classList.add("d-none");
         loadoutContainer.classList.remove("d-none");
         loadoutContainer.classList.add("d-flex");
+        purchasedItemsInventory.innerHTML = "";
+        populatePurchasedItemsInventory();
+        resetShopFilters();
       }
       if (e.srcElement.id === "shopButton") {
         missionButtonsDiv.style.display = "none";
@@ -47,6 +58,9 @@ for (let z = 0; z < mainViewButtons.length; z++) {
         bbShopItemsContainer.classList.remove("d-none");
         loadoutContainer.classList.add("d-none");
         loadoutContainer.classList.remove("d-flex");
+        bbShopItemsContainer.innerHTML = "";
+        populateShopItems();
+        updateAllRenderedItems();
       }
     }
   });
@@ -131,7 +145,6 @@ const startNewRun = async () => {
   //   const modal = new bootstrap.Modal(flavorAndInstructionsModal);
   //   modal.show();
   // });
-  populateShopItems();
   missionCounterText.innerHTML = `${getMissionText()}`;
 };
 
@@ -208,14 +221,13 @@ const generateItemCard = (item, view = null) => {
     imgDir = "armor";
   }
   const card = document.createElement("div");
-  card.id = "bbItemCard-" + item.internalName;
 
   // shop code
   if (view === "shop" || currentView === "shopButton") {
+    card.id = "bbShopItemCard-" + item.internalName;
     card.dataset.type = getItemType(item);
     shopClass = "bbShopItemCards";
     showCost = true;
-    card.style.cursor = "pointer";
     if (item.onSale) {
       totalCost = Math.ceil(item.cost * 0.5);
       costBadgeColor = "bg-success text-light";
@@ -224,8 +236,14 @@ const generateItemCard = (item, view = null) => {
       card.onclick = () => purchaseItem(item);
     }
   }
-  card.className = `card d-flex col-1 pcItemCards ${shopClass} mx-1 my-1 position-relative`;
 
+  // loadout code
+  // if (currentView === "loadoutButton") {
+  //   console.log(currentView);
+  //   card.id = "bbLoadoutItemCard-" + item.internalName;
+  //   card.onclick = () => toggleLoadoutItem(item);
+  // }
+  card.className = `card d-flex col-1 pcItemCards bbItemCards ${shopClass}`;
   card.innerHTML = `
     <img
       src="../images/${imgDir}/${item.imageURL}"
@@ -243,6 +261,35 @@ const generateItemCard = (item, view = null) => {
   `;
 
   return card;
+};
+
+const toggleLoadoutItem = (item) => {
+  // if its a stratagem and its not in the equipped stratagems array, equip it
+  // same for other item types
+
+  // we can also disable/enable the mission buttons here
+
+  if (item.type === "Stratagem") {
+    // does the stratagem exist in the equipped stratagems array, or the purchased/default array?
+    // if default/purchased array, send to equipped array if length of equipped array < 4
+    equippedStratagems.push(item);
+  }
+  if (item.category === "armor" && equippedArmor.length < 1) {
+    equippedArmor.push(item);
+  }
+  if (item.category === "primary" && equippedPrimary.length < 1) {
+    equippedPrimary.push(item);
+  }
+  if (item.category === "secondary" && equippedSecondary.length < 1) {
+    equippedSecondary.push(item);
+  }
+  if (item.category === "throwable" && equippedThrowable.length < 1) {
+    equippedThrowable.push(item);
+  }
+  if (item.category === "booster" && equippedBooster.length < 1) {
+    equippedBooster.push(item);
+  }
+  console.log(item);
 };
 
 const purchaseItem = async (item) => {
@@ -289,9 +336,9 @@ const updateRenderedItem = (item) => {
   if (item.onSale) {
     totalCost = Math.ceil(item.cost * 0.5);
   }
-  const cardEl = document.getElementById("bbItemCard-" + item.internalName);
+  const cardEl = document.getElementById("bbShopItemCard-" + item.internalName);
   const badgeEl = cardEl.querySelector(".costBadges");
-  badgeEl.innerHTML = totalCost;
+  badgeEl.textContent = totalCost;
 };
 
 const updateAllRenderedItems = () => {
@@ -317,8 +364,8 @@ const checkMissionButtons = () => {
   }
 
   if (missionCounter < 21) {
-    missionCompleteButton.disabled = false;
-    missionFailedButton.disabled = false;
+    missionCompleteButton.disabled = true;
+    missionFailedButton.disabled = true;
     missionCompleteButton.style.display = "block";
     missionFailedButton.style.display = "block";
     downloadPDFButtonDiv.style.display = "none";

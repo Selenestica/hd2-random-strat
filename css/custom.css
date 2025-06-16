@@ -202,3 +202,9 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.bbItemCards {
+  cursor: pointer;
+  position: relative;
+  margin: 0.25rem !important;
+}

@@ -197,7 +197,8 @@ body {
 
 #bbShopItemsContainer {
   overflow-y: auto;
-  height: 70vh;
+  max-height: 70vh;
+  min-height: 20vh;
   display: flex;
   justify-content: center;
 }

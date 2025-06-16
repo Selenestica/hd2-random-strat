@@ -162,6 +162,7 @@
               <li>
                 <a
                   class="dropdown-item"
+                  id="primariesFilterDropdownItem"
                   onclick="filterByType('newPrims')"
                   href="#"
                   >Primaries</a
@@ -170,6 +171,7 @@
               <li>
                 <a
                   class="dropdown-item"
+                  id="secondariesFilterDropdownItem"
                   onclick="filterByType('newSeconds')"
                   href="#"
                   >Secondaries</a
@@ -178,6 +180,7 @@
               <li>
                 <a
                   class="dropdown-item"
+                  id="throwablesFilterDropdownItem"
                   onclick="filterByType('newThrows')"
                   href="#"
                   >Throwables</a
@@ -186,6 +189,7 @@
               <li>
                 <a
                   class="dropdown-item"
+                  id="stratagemsFilterDropdownItem"
                   onclick="filterByType('newStrats')"
                   href="#"
                   >Stratagems</a
@@ -194,6 +198,7 @@
               <li>
                 <a
                   class="dropdown-item"
+                  id="armorPassivesFilterDropdownItem"
                   onclick="filterByType('newArmorPassives')"
                   href="#"
                   >Armor Passives</a
@@ -202,6 +207,7 @@
               <li>
                 <a
                   class="dropdown-item"
+                  id="boostersFilterDropdownItem"
                   onclick="filterByType('newBoosts')"
                   href="#"
                   >Boosters</a
@@ -221,6 +227,7 @@
             <ul class="dropdown-menu">
               <li>
                 <a
+                  id="onSaleDropdownItem"
                   class="dropdown-item"
                   onclick="filterByPrice('onSale')"
                   href="#"
@@ -229,6 +236,7 @@
               </li>
               <li>
                 <a
+                  id="purchaseableDropdownItem"
                   class="dropdown-item"
                   onclick="filterByPrice('purchaseable')"
                   href="#"
@@ -237,6 +245,7 @@
               </li>
               <li>
                 <a
+                  id="nonPurchaseableDropdownItem"
                   class="dropdown-item"
                   onclick="filterByPrice('nonpurchaseable')"
                   href="#"
@@ -297,58 +306,88 @@
           <div class="col">
             <div
               id="stratagemsContainerBB"
-              class="row pt-3 pb-3 d-flex justify-content-center"
+              class="row pb-3 d-flex justify-content-center"
             >
               <div
-                id="emptyArmorSquare"
-                class="col-3 mx-2 d-flex justify-content-center"
+                id="emptyStratagemSquare1"
+                class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 style="width: 100px; height: 100px; background-color: grey"
-              ></div>
+              >
+                <span class="text-white text-center"
+                  >Select Stratagem Below</span
+                >
+              </div>
               <div
-                id="emptyArmorSquare"
-                class="col-3 mx-2 d-flex justify-content-center"
+                id="emptyStratagemSquare2"
+                class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 style="width: 100px; height: 100px; background-color: grey"
-              ></div>
+              >
+                <span class="text-white text-center"
+                  >Select Stratagem Below</span
+                >
+              </div>
               <div
-                id="emptyArmorSquare"
-                class="col-3 mx-2 d-flex justify-content-center"
+                id="emptyStratagemSquare3"
+                class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 style="width: 100px; height: 100px; background-color: grey"
-              ></div>
+              >
+                <span class="text-white text-center"
+                  >Select Stratagem Below</span
+                >
+              </div>
               <div
-                id="emptyArmorSquare"
-                class="col-3 mx-2 d-flex justify-content-center"
+                id="emptyStratagemSquare4"
+                class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 style="width: 100px; height: 100px; background-color: grey"
-              ></div>
+              >
+                <span class="text-white text-center"
+                  >Select Stratagem Below</span
+                >
+              </div>
             </div>
             <div
               id="equipmentContainerBB"
               class="row pb-3 d-flex justify-content-center"
             >
               <div
-                class="col-3 mx-2 d-flex justify-content-center"
+                class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 id="emptyArmorSquare"
                 style="width: 100px; height: 100px; background-color: grey"
-              ></div>
+              >
+                <span class="text-white text-center">Select Armor Below</span>
+              </div>
               <div
-                id="emptyArmorSquare"
-                class="col-3 mx-2 d-flex justify-content-center"
+                id="emptyPrimarySquare"
+                class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 style="width: 100px; height: 100px; background-color: grey"
-              ></div>
+              >
+                <span class="text-white text-center">Select Primary Below</span>
+              </div>
               <div
-                id="emptyArmorSquare"
-                class="col-3 mx-2 d-flex justify-content-center"
+                id="emptySecondarySquare"
+                class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 style="width: 100px; height: 100px; background-color: grey"
-              ></div>
+              >
+                <span class="text-white text-center"
+                  >Select Secondary Below</span
+                >
+              </div>
               <div
-                id="emptyArmorSquare"
-                class="col-3 mx-2 d-flex justify-content-center"
+                id="emptyThrowableSquare"
+                class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 style="width: 100px; height: 100px; background-color: grey"
-              ></div>
+              >
+                <span class="text-white text-center"
+                  >Select Throwable Below</span
+                >
+              </div>
               <div
-                id="emptyArmorSquare"
-                class="col-3 mx-2 d-flex justify-content-center"
+                id="emptyBoosterSquare"
+                class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 style="width: 100px; height: 100px; background-color: grey"
-              ></div>
+              >
+                <span class="text-white text-center">Select Booster Below</span>
+              </div>
             </div>
           </div>
         </div>
@@ -959,5 +998,6 @@
   <script src="../js/components/genWarbondCheckboxes.js"></script>
   <script src="../js/utils/getStartingItems.js"></script>
   <script src="../js/budgetblitz.js"></script>
+  <script src="../js/utils/bbShopFilterFunctions.js"></script>
   <script src="../js/components/genBudgetBlitzSaveDataManagementInfo.js"></script>
 </html>

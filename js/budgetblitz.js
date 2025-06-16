@@ -39,11 +39,8 @@ for (let z = 0; z < mainViewButtons.length; z++) {
         bbShopItemsContainer.classList.add("d-none");
         loadoutContainer.classList.remove("d-none");
         loadoutContainer.classList.add("d-flex");
-        purchasedItemsInventory.innerHTML = "";
-        populatePurchasedItemsInventory();
       }
       if (e.srcElement.id === "shopButton") {
-        addItemsToAccordions(e.srcElement.id);
         missionButtonsDiv.style.display = "none";
         bbShopFilterDiv.style.display = "flex";
         bbShopItemsContainer.classList.add("d-flex");
@@ -134,13 +131,13 @@ const startNewRun = async () => {
   //   const modal = new bootstrap.Modal(flavorAndInstructionsModal);
   //   modal.show();
   // });
-
+  populateShopItems();
   missionCounterText.innerHTML = `${getMissionText()}`;
 };
 
 const populatePurchasedItemsInventory = async () => {
   for (let i = 0; i < purchasedItems.length; i++) {
-    const card = generateItemCard(purchasedItems[i], 2);
+    const card = generateItemCard(purchasedItems[i]);
     purchasedItemsInventory.appendChild(card);
   }
 };
@@ -176,12 +173,11 @@ const populateDefaultItems = () => {
     const item = list[i];
     item.cost = null;
     item.quantity = "&infin;";
-    const card = generateItemCard(list[i], 1);
-    defaultInventory.appendChild(card);
+    defaultInventory.appendChild(generateItemCard(list[i]));
   }
 };
 
-const addItemsToAccordions = () => {
+const populateShopItems = () => {
   const allItemsList = [
     newPrims,
     newStrats,
@@ -194,24 +190,12 @@ const addItemsToAccordions = () => {
     const items = allItemsList[i];
     for (let j = 0; j < items.length; j++) {
       const item = items[j];
-      bbShopItemsContainer.appendChild(generateItemCard(item));
+      bbShopItemsContainer.appendChild(generateItemCard(item, "shop"));
     }
   }
 };
 
-const filterByType = (type) => {
-  console.log(type);
-};
-
-const filterByPrice = (type) => {
-  console.log(type);
-};
-
-const resetShopFilters = () => {
-  console.log("resetting filters");
-};
-
-const generateItemCard = (item, colWidth = 1) => {
+const generateItemCard = (item, view = null) => {
   let shopClass = "";
   let showCost = false;
   let totalCost = item.cost;
@@ -225,7 +209,7 @@ const generateItemCard = (item, colWidth = 1) => {
   }
   const card = document.createElement("div");
   card.id = "bbItemCard-" + item.internalName;
-  if (currentView === "shopButton") {
+  if (view === "shop" || currentView === "shopButton") {
     shopClass = "bbShopItemCards";
     showCost = true;
     card.style.cursor = "pointer";
@@ -233,15 +217,11 @@ const generateItemCard = (item, colWidth = 1) => {
       totalCost = Math.ceil(item.cost * 0.5);
       costBadgeColor = "bg-success text-light";
     }
-    // lets check if the item can be purchased
-    if (totalCost > credits) {
-      costBadgeColor = "bg-danger text-light";
-    }
     if (totalCost <= credits) {
       card.onclick = () => purchaseItem(item);
     }
   }
-  card.className = `card d-flex col-${colWidth} pcItemCards ${shopClass} mx-1 my-1 position-relative`;
+  card.className = `card d-flex col-1 pcItemCards ${shopClass} mx-1 my-1 position-relative`;
 
   card.innerHTML = `
     <img
@@ -263,6 +243,10 @@ const generateItemCard = (item, colWidth = 1) => {
 };
 
 const purchaseItem = async (item) => {
+  let totalCost = item.cost;
+  if (item.onSale) {
+    totalCost = Math.ceil(item.cost * 0.5);
+  }
   // add the item to the list or add the quantity to it if it exists
   const existsInPurchasedList = await purchasedItems.filter((i) => {
     return i.displayName === item.displayName;
@@ -272,21 +256,32 @@ const purchaseItem = async (item) => {
       if (i.displayName === item.displayName) {
         i.quantity++;
         i.timesPurchased++;
+        updateUserCredits(totalCost);
         i.cost += 5;
       }
       return i;
     });
-    updateShopItemCost(item);
+    updateRenderedItem(item);
+    updateAllRenderedItems();
     return;
   }
-
+  updateUserCredits(totalCost);
   item.cost += 5;
   item.timesPurchased++;
   purchasedItems.push(item);
-  updateShopItemCost(item);
+  updateRenderedItem(item);
+  updateAllRenderedItems();
 };
 
-const updateShopItemCost = (item) => {
+const updateUserCredits = (cost) => {
+  credits -= cost;
+  if (credits < 0) {
+    credits = 0;
+  }
+  scCounter.innerHTML = `${": " + credits}`;
+};
+
+const updateRenderedItem = (item) => {
   let totalCost = item.cost;
   if (item.onSale) {
     totalCost = Math.ceil(item.cost * 0.5);
@@ -294,6 +289,18 @@ const updateShopItemCost = (item) => {
   const cardEl = document.getElementById("bbItemCard-" + item.internalName);
   const badgeEl = cardEl.querySelector(".costBadges");
   badgeEl.innerHTML = totalCost;
+};
+
+const updateAllRenderedItems = () => {
+  const cards = document.querySelectorAll(".bbShopItemCards");
+  cards.forEach((card) => {
+    const badge = card.querySelector(".costBadges");
+    if (credits < parseInt(badge.innerHTML)) {
+      card.onclick = "";
+      badge.classList.add("bg-danger", "text-light");
+      badge.classList.remove("bg-warning", "bg-success", "text-dark");
+    }
+  });
 };
 
 const checkMissionButtons = () => {
@@ -327,17 +334,14 @@ const uploadSaveData = async () => {
     newThrows = currentGame.newThrows;
     newArmorPassives = currentGame.newArmorPassives;
     newBoosts = currentGame.newBoosts;
+    purchasedItems = currentGame.purchasedItems;
     seesRulesOnOpen = currentGame.seesRulesOnOpen;
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
-    await addItemsToAccordions("default");
-    for (let i = 0; i < currentGame.acquiredItems.length; i++) {
-      const item = currentGame.acquiredItems[i];
-      const { accBody } = getItemMetaData(item);
-      accBody.innerHTML += generateItemCard(item);
-    }
+    await populateShopItems();
+    await populatePurchasedItemsInventory();
     return;
   }
   startNewRun();

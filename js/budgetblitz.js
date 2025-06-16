@@ -5,6 +5,8 @@ const maxStarsModalBody = document.getElementById("maxStarsModalBody");
 const mainViewButtons = document.getElementsByClassName("mainViewButtons");
 const scCounter = document.getElementById("scCounter");
 const loadoutContainer = document.getElementById("loadoutContainer");
+const stratagemsContainerBB = document.getElementById("stratagemsContainerBB");
+const equipmentContainerBB = document.getElementById("equipmentContainerBB");
 const bbShopItemsContainer = document.getElementById("bbShopItemsContainer");
 const defaultInventory = document.getElementById("defaultInventory");
 const yourCreditsAmount = document.getElementById("yourCreditsAmount");
@@ -238,11 +240,11 @@ const generateItemCard = (item, view = null) => {
   }
 
   // loadout code
-  // if (currentView === "loadoutButton") {
-  //   console.log(currentView);
-  //   card.id = "bbLoadoutItemCard-" + item.internalName;
-  //   card.onclick = () => toggleLoadoutItem(item);
-  // }
+  if (currentView === "loadoutButton") {
+    console.log(currentView);
+    card.id = "bbLoadoutItemCard-" + item.internalName;
+    card.onclick = () => toggleLoadoutItem(item);
+  }
   card.className = `card d-flex col-1 pcItemCards bbItemCards ${shopClass}`;
   card.innerHTML = `
     <img
@@ -263,16 +265,37 @@ const generateItemCard = (item, view = null) => {
   return card;
 };
 
-const toggleLoadoutItem = (item) => {
+const toggleLoadoutItem = async (item) => {
+  const card = document.getElementById(
+    "bbLoadoutItemCard-" + item.internalName
+  );
+  const parentID = card.parentElement.id;
   // if its a stratagem and its not in the equipped stratagems array, equip it
   // same for other item types
 
   // we can also disable/enable the mission buttons here
 
   if (item.type === "Stratagem") {
-    // does the stratagem exist in the equipped stratagems array, or the purchased/default array?
-    // if default/purchased array, send to equipped array if length of equipped array < 4
-    equippedStratagems.push(item);
+    // if not equipped, move to loadout
+    if (
+      (parentID === "defaultInventory" ||
+        parentID === "purchasedItemsInventory") &&
+      equippedStratagems.length < 4
+    ) {
+      stratagemsContainerBB.innerHTML = "";
+      equippedStratagems.push(card);
+      for (let i = 0; i < equippedStratagems.length; i++) {
+        stratagemsContainerBB.appendChild(equippedStratagems[i]);
+      }
+      return;
+    }
+
+    // if equipped, move back to inventory
+    console.log("hi");
+    if (parentID === "stratagemsContainerBB") {
+      // remove card from equippedStratagems array
+      // add back to wherever it was before
+    }
   }
   if (item.category === "armor" && equippedArmor.length < 1) {
     equippedArmor.push(item);

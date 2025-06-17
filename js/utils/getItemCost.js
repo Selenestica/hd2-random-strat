@@ -27,10 +27,14 @@ const getItemCost = (item) => {
 
   // add randomness from -4 to 4
   const random = Math.floor(Math.random() * 14) - 6;
-  if (cost + random < 1) {
+
+  // add cost of times purchased
+  const timesPurchasedModifier = item.timesPurchased * 5;
+  const total = cost + random + timesPurchasedModifier;
+  if (total < 1) {
     return 1;
   }
-  return cost + random;
+  return total;
 };
 
 // starter credits = 100

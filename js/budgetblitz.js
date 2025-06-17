@@ -6,9 +6,21 @@ const mainViewButtons = document.getElementsByClassName("mainViewButtons");
 const scCounter = document.getElementById("scCounter");
 const loadoutContainer = document.getElementById("loadoutContainer");
 const stratagemsContainerBB = document.getElementById("stratagemsContainerBB");
-const equipmentContainerBB = document.getElementById("equipmentContainerBB");
+const armorContainerBB = document.getElementById("armorContainerBB");
+const emptyArmorSquare = document.getElementById("emptyArmorSquare");
+const emptyPrimarySquare = document.getElementById("emptyPrimarySquare");
+const emptyThrowableSquare = document.getElementById("emptyThrowableSquare");
+const emptySecondarySquare = document.getElementById("emptySecondarySquare");
+const emptyBoosterSquare = document.getElementById("emptyBoosterSquare");
+const primaryContainerBB = document.getElementById("primaryContainerBB");
+const secondaryContainerBB = document.getElementById("secondaryContainerBB");
+const throwableContainerBB = document.getElementById("throwableContainerBB");
+const boosterContainerBB = document.getElementById("boosterContainerBB");
 const bbShopItemsContainer = document.getElementById("bbShopItemsContainer");
 const defaultInventory = document.getElementById("defaultInventory");
+const purchasedItemsInventory = document.getElementById(
+  "purchasedItemsInventory"
+);
 const yourCreditsAmount = document.getElementById("yourCreditsAmount");
 const itemCostAmount = document.getElementById("itemCostAmount");
 const itemQuantityInput = document.getElementById("itemQuantityInput");
@@ -20,7 +32,7 @@ const missionCompleteButton = document.getElementById("missionCompleteButton");
 const missionFailedButton = document.getElementById("missionFailedButton");
 const shopSearchInput = document.getElementById("shopSearchInput");
 const missionCounterText = document.getElementById("missionCounterText");
-const maxStarsPromptModal = document.getElementById("maxStarsPromptModal"); // will have to change this modal to input # of stars
+const maxStarsPromptModal = document.getElementById("maxStarsPromptModal"); // will have to change this modal to input # of stars, super samples, high value items
 
 let missionCounter = 5;
 let purchasedItems = [];
@@ -29,6 +41,7 @@ let equippedArmor = [];
 let equippedPrimary = [];
 let equippedSecondary = [];
 let equippedThrowable = [];
+let equippedBooster = [];
 
 let currentView = "loadoutButton";
 let credits = 100;
@@ -83,36 +96,36 @@ const startNewRun = async () => {
   newStrats = await OGstratsList.filter(
     (strat) => !starterStratNames.includes(strat.displayName)
   ).map((strat) => {
+    strat.timesPurchased = 0;
     strat.cost = getItemCost(strat);
     strat.quantity = 1;
-    strat.timesPurchased = 0;
     strat.onSale = getIsItemOnSale();
     return strat;
   });
   newPrims = await OGprimsList.filter(
     (prim) => !starterPrimNames.includes(prim.displayName)
   ).map((prim) => {
+    prim.timesPurchased = 0;
     prim.cost = getItemCost(prim);
     prim.quantity = 1;
-    prim.timesPurchased = 0;
     prim.onSale = getIsItemOnSale();
     return prim;
   });
   newSeconds = await OGsecondsList.filter(
     (sec) => !starterSecNames.includes(sec.displayName)
   ).map((sec) => {
+    sec.timesPurchased = 0;
     sec.cost = getItemCost(sec);
     sec.quantity = 1;
-    sec.timesPurchased = 0;
     sec.onSale = getIsItemOnSale();
     return sec;
   });
   newThrows = await OGthrowsList.filter(
     (throwable) => !starterThrowNames.includes(throwable.displayName)
   ).map((throwable) => {
+    throwable.timesPurchased = 0;
     throwable.cost = getItemCost(throwable);
     throwable.quantity = 1;
-    throwable.timesPurchased = 0;
     throwable.onSale = getIsItemOnSale();
     return throwable;
   });
@@ -241,7 +254,6 @@ const generateItemCard = (item, view = null) => {
 
   // loadout code
   if (currentView === "loadoutButton") {
-    console.log(currentView);
     card.id = "bbLoadoutItemCard-" + item.internalName;
     card.onclick = () => toggleLoadoutItem(item);
   }
@@ -269,13 +281,44 @@ const toggleLoadoutItem = async (item) => {
   const card = document.getElementById(
     "bbLoadoutItemCard-" + item.internalName
   );
+  const badgeText = card.querySelector(".costBadges").innerHTML;
   const parentID = card.parentElement.id;
-  // if its a stratagem and its not in the equipped stratagems array, equip it
-  // same for other item types
-
-  // we can also disable/enable the mission buttons here
 
   if (item.type === "Stratagem") {
+    // if equipped, move back to inventory
+    if (
+      parentID !== "defaultInventory" &&
+      parentID !== "purchasedItemsInventory"
+    ) {
+      equippedStratagems = equippedStratagems.filter((it) => {
+        return it.id !== card.id;
+      });
+      if (equippedStratagems.length === 0) {
+        // put empty squares back up
+        stratagemsContainerBB.innerHTML = "";
+        for (let i = 0; i < 4; i++) {
+          stratagemsContainerBB.innerHTML += `
+            <div
+              class="col-3 mx-2 d-flex justify-content-center align-items-center"
+              style="width: 100px; height: 100px; background-color: grey"
+            >
+              <span class="text-white text-center"
+                >Select Stratagem Below</span
+              >
+            </div>  
+          `;
+        }
+      }
+      if (badgeText.trim() === "∞") {
+        defaultInventory.appendChild(card);
+        checkMissionButtons();
+        return;
+      }
+      purchasedItemsInventory.appendChild(card);
+      checkMissionButtons();
+      return;
+    }
+
     // if not equipped, move to loadout
     if (
       (parentID === "defaultInventory" ||
@@ -287,32 +330,205 @@ const toggleLoadoutItem = async (item) => {
       for (let i = 0; i < equippedStratagems.length; i++) {
         stratagemsContainerBB.appendChild(equippedStratagems[i]);
       }
+      checkMissionButtons();
+      return;
+    }
+  }
+  if (item.category === "armor") {
+    // if equipped, move back to inventory
+    if (
+      parentID !== "defaultInventory" &&
+      parentID !== "purchasedItemsInventory"
+    ) {
+      const newArray = equippedArmor.filter((it) => {
+        it.id !== card.id;
+      });
+      equippedArmor = newArray;
+      armorContainerBB.appendChild(emptyArmorSquare);
+      if (!card.classList.contains("col-1")) {
+        card.classList.add("col-1");
+      }
+      if (badgeText.trim() === "∞") {
+        defaultInventory.appendChild(card);
+        checkMissionButtons();
+        return;
+      }
+      purchasedItemsInventory.appendChild(card);
+      checkMissionButtons();
       return;
     }
 
-    // if equipped, move back to inventory
-    console.log("hi");
-    if (parentID === "stratagemsContainerBB") {
-      // remove card from equippedStratagems array
-      // add back to wherever it was before
+    // if not equipped, move to loadout
+    if (
+      (parentID === "defaultInventory" ||
+        parentID === "purchasedItemsInventory") &&
+      equippedArmor.length < 1
+    ) {
+      equippedArmor.push(card);
+      card.classList.remove("col-1");
+      for (let i = 0; i < equippedArmor.length; i++) {
+        emptyArmorSquare.replaceWith(equippedArmor[i]);
+      }
+      checkMissionButtons();
+      return;
     }
   }
-  if (item.category === "armor" && equippedArmor.length < 1) {
-    equippedArmor.push(item);
+  if (item.category === "primary") {
+    // if equipped, move back to inventory
+    if (
+      parentID !== "defaultInventory" &&
+      parentID !== "purchasedItemsInventory"
+    ) {
+      const newArray = equippedPrimary.filter((it) => {
+        it.id !== card.id;
+      });
+      equippedPrimary = newArray;
+      primaryContainerBB.appendChild(emptyPrimarySquare);
+      if (!card.classList.contains("col-1")) {
+        card.classList.add("col-1");
+      }
+      if (badgeText.trim() === "∞") {
+        defaultInventory.appendChild(card);
+        checkMissionButtons();
+        return;
+      }
+      purchasedItemsInventory.appendChild(card);
+      checkMissionButtons();
+      return;
+    }
+
+    // if not equipped, move to loadout
+    if (
+      (parentID === "defaultInventory" ||
+        parentID === "purchasedItemsInventory") &&
+      equippedPrimary.length < 1
+    ) {
+      equippedPrimary.push(card);
+      card.classList.remove("col-1");
+      for (let i = 0; i < equippedPrimary.length; i++) {
+        emptyPrimarySquare.replaceWith(equippedPrimary[i]);
+      }
+      checkMissionButtons();
+      return;
+    }
   }
-  if (item.category === "primary" && equippedPrimary.length < 1) {
-    equippedPrimary.push(item);
+  if (item.category === "secondary") {
+    // if equipped, move back to inventory
+    if (
+      parentID !== "defaultInventory" &&
+      parentID !== "purchasedItemsInventory"
+    ) {
+      const newArray = equippedSecondary.filter((it) => {
+        it.id !== card.id;
+      });
+      equippedSecondary = newArray;
+      secondaryContainerBB.appendChild(emptySecondarySquare);
+      if (!card.classList.contains("col-1")) {
+        card.classList.add("col-1");
+      }
+      if (badgeText.trim() === "∞") {
+        defaultInventory.appendChild(card);
+        checkMissionButtons();
+        return;
+      }
+      purchasedItemsInventory.appendChild(card);
+      checkMissionButtons();
+      return;
+    }
+
+    // if not equipped, move to loadout
+    if (
+      (parentID === "defaultInventory" ||
+        parentID === "purchasedItemsInventory") &&
+      equippedSecondary.length < 1
+    ) {
+      equippedSecondary.push(card);
+      card.classList.remove("col-1");
+      for (let i = 0; i < equippedSecondary.length; i++) {
+        emptySecondarySquare.replaceWith(equippedSecondary[i]);
+      }
+      checkMissionButtons();
+      return;
+    }
   }
-  if (item.category === "secondary" && equippedSecondary.length < 1) {
-    equippedSecondary.push(item);
+  if (item.category === "throwable") {
+    // if equipped, move back to inventory
+    if (
+      parentID !== "defaultInventory" &&
+      parentID !== "purchasedItemsInventory"
+    ) {
+      const newArray = equippedThrowable.filter((it) => {
+        it.id !== card.id;
+      });
+      equippedThrowable = newArray;
+      throwableContainerBB.appendChild(emptyThrowableSquare);
+      if (!card.classList.contains("col-1")) {
+        card.classList.add("col-1");
+      }
+      if (badgeText.trim() === "∞") {
+        defaultInventory.appendChild(card);
+        checkMissionButtons();
+        return;
+      }
+      purchasedItemsInventory.appendChild(card);
+      checkMissionButtons();
+      return;
+    }
+
+    // if not equipped, move to loadout
+    if (
+      (parentID === "defaultInventory" ||
+        parentID === "purchasedItemsInventory") &&
+      equippedThrowable.length < 1
+    ) {
+      equippedThrowable.push(card);
+      card.classList.remove("col-1");
+      for (let i = 0; i < equippedThrowable.length; i++) {
+        emptyThrowableSquare.replaceWith(equippedThrowable[i]);
+      }
+      checkMissionButtons();
+      return;
+    }
   }
-  if (item.category === "throwable" && equippedThrowable.length < 1) {
-    equippedThrowable.push(item);
+  if (item.category === "booster") {
+    // if equipped, move back to inventory
+    if (
+      parentID !== "defaultInventory" &&
+      parentID !== "purchasedItemsInventory"
+    ) {
+      const newArray = equippedBooster.filter((it) => {
+        it.id !== card.id;
+      });
+      equippedBooster = newArray;
+      boosterContainerBB.appendChild(emptyBoosterSquare);
+      if (!card.classList.contains("col-1")) {
+        card.classList.add("col-1");
+      }
+      if (badgeText.trim() === "∞") {
+        defaultInventory.appendChild(card);
+        checkMissionButtons();
+        return;
+      }
+      purchasedItemsInventory.appendChild(card);
+      checkMissionButtons();
+      return;
+    }
+
+    // if not equipped, move to loadout
+    if (
+      (parentID === "defaultInventory" ||
+        parentID === "purchasedItemsInventory") &&
+      equippedBooster.length < 1
+    ) {
+      equippedBooster.push(card);
+      card.classList.remove("col-1");
+      for (let i = 0; i < equippedBooster.length; i++) {
+        emptyBoosterSquare.replaceWith(equippedBooster[i]);
+      }
+      checkMissionButtons();
+      return;
+    }
   }
-  if (item.category === "booster" && equippedBooster.length < 1) {
-    equippedBooster.push(item);
-  }
-  console.log(item);
 };
 
 const purchaseItem = async (item) => {
@@ -387,11 +603,26 @@ const checkMissionButtons = () => {
   }
 
   if (missionCounter < 21) {
-    missionCompleteButton.disabled = true;
-    missionFailedButton.disabled = true;
+    console.log(equippedArmor);
     missionCompleteButton.style.display = "block";
     missionFailedButton.style.display = "block";
     downloadPDFButtonDiv.style.display = "none";
+
+    // if all equippedItems arrays are full, can start mission
+    if (
+      equippedArmor.length === 1 &&
+      equippedPrimary.length === 1 &&
+      equippedSecondary.length === 1 &&
+      equippedThrowable.length === 1 &&
+      equippedStratagems.length === 4
+    ) {
+      missionCompleteButton.disabled = false;
+      missionFailedButton.disabled = false;
+      return;
+    }
+    // else
+    missionCompleteButton.disabled = true;
+    missionFailedButton.disabled = true;
   }
 };
 

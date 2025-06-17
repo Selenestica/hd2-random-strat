@@ -140,7 +140,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'unflinching',
     imageURL: 'unflinching.png',
-    tier: 'c',
+    tier: 'b',
   },
   {
     displayName: 'Siege Ready',
@@ -162,7 +162,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'integratedexplosives',
     imageURL: 'integratedexplosives.png',
-    tier: 'c',
+    tier: 'b',
   },
   {
     displayName: 'Gunslinger',
@@ -184,7 +184,7 @@ const ARMOR_PASSIVES = [
     warbondCode: '',
     internalName: 'reinforcedepaulettes',
     imageURL: 'reinforcedepaulettes.png',
-    tier: 'c',
+    tier: 'a',
   },
   {
     displayName: 'Ballistic Padding',

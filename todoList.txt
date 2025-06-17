@@ -36,4 +36,39 @@ Penitent Crusade Specialist ideas:
  The Shotgun Surgeon
  - ybwamahe, Punisher, Bushwacker
 
- 
+to do Budget Blitz
+- add filters to shop menu
+  - search name
+  - by type
+    - stratagem
+    - throwable, etc...
+  - by cost
+    - on sale
+    - purchaseable
+    - non-purchaseable
+  - reset filters button
+
+Budget Blitz
+- earn money (SC, medals, or req. slips) for completing missions. More stars = more money
+  - credits earned per star is static, so earlier difficulties with lower max star potential will earn the least
+- earn extra money by collecting SUPER SAMPLES and HIGH-VALUE ITEMS (bug egg or bot head)
+- spend money at the shop to purchase items (strats, armor, throwables, primary, secondary, boosters)
+  - or choose to save your money
+- you buy items for a set amount of missions. So basically, items are consumables
+  - number of uses starts at 1 mission for X credits, 2 missions for X*2+Y credits, 3 missions for X*2+Y*2, X*3+Y*3 and so on
+    - so buying an item for more than one mission becomes increasingly more expensive the amount of missions you add
+  - items types with smaller pools can be used for 3(?) missions by default (secondary, armor passive, throwables)
+  - can purchase from a RANDOM LOOT box for a low price (similar to COD Zombies). Default mission usage for random item is 3 missions.
+  - every operation (mission?) the price of items will change based on a random variance value in addition to their standard price
+    - i.e. a Quasar cannon will cost X+(randomNumber) on Diff 5, and Diff 6 will cost X+(differentRandomNumber).
+      - random number will be -(X) to X. So the randomness can make the item cheaper or more expensive
+  - every operation (mission?) a small amount of items will be on sale (maybe a random number between 2 - 5 items)
+    - items on sale will be 50% off
+- TBD, the amount of credits earned for stars
+- TBD, which difficulty to start on...
+  - maybe start difficulty 5, with a certain amount of credits to make purchases
+- starter items can always be used (probably same items as Penitent Crusade)
+- GOAL: Complete an operation on Super Helldive difficulty
+  - SUB-OBJECTIVE: the more money you have at the end of a run, the higher your score
+
+NEW CHALLENGE IDEAS:

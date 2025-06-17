@@ -324,20 +324,20 @@ const categoryMap = {
   },
 };
 
-function isInInventory(parentID) {
+const isInInventory = (parentID) => {
   return inventoryIDs.includes(parentID);
-}
+};
 
-function moveToInventory(card, badgeText, parentID) {
+const moveToInventory = (card, badgeText) => {
   if (badgeText.trim() === "∞") {
     defaultInventory.appendChild(card);
   } else {
     purchasedItemsInventory.appendChild(card);
   }
   checkMissionButtons();
-}
+};
 
-function unequipItem(itemConfig, card, badgeText) {
+const unequipItem = (itemConfig, card, badgeText) => {
   const newArray = itemConfig.equipped().filter((it) => it.id !== card.id);
   itemConfig.setEquipped(newArray);
 
@@ -359,9 +359,9 @@ function unequipItem(itemConfig, card, badgeText) {
 
   card.classList.add("col-1");
   moveToInventory(card, badgeText);
-}
+};
 
-function equipItem(itemConfig, card) {
+const equipItem = (itemConfig, card) => {
   if (itemConfig.equipped().length >= itemConfig.max) return;
 
   itemConfig.setEquipped([...itemConfig.equipped(), card]);
@@ -382,7 +382,7 @@ function equipItem(itemConfig, card) {
   }
 
   checkMissionButtons();
-}
+};
 
 const toggleLoadoutItem = async (item) => {
   const card = document.getElementById(
@@ -522,12 +522,78 @@ const uploadSaveData = async () => {
   startNewRun();
 };
 
+const decrementItemQuantity = (card, arr) => {
+  const badge = card.querySelector(".costBadges");
+  let badgeValue = badge.innerHTML.trim();
+
+  if (badgeValue === "∞") return;
+
+  const itemName = card.querySelector(".pcItemCardText").innerHTML;
+
+  arr = arr.map((obj) => {
+    if (obj.displayName === itemName) {
+      const newQuantity = obj.quantity - 1;
+
+      // update the badge text in the DOM
+      badge.innerHTML = newQuantity;
+
+      // remove the card if quantity is 0
+      if (newQuantity === 0) {
+        card.remove();
+      }
+
+      return { ...obj, quantity: newQuantity };
+    }
+
+    return obj;
+  });
+
+  return arr;
+};
+
 const submitMissionReport = (isMissionSucceeded) => {
-  // missionEnded function:
-  // unequip all items
-  // go through equipped items and, if the item isnt default, decrease its quantity by 1
-  // if quantity is then 0, remove it from purchasedItems
-  // make sure the item in the object array (newStrats, newPrims, etc) is updated with the decreased quantity
+  const equippedItemsArrays = [
+    [...equippedStratagems],
+    [...equippedArmor],
+    [...equippedPrimary],
+    [...equippedSecondary],
+    [...equippedThrowable],
+    [...equippedBooster],
+  ];
+  for (let i = 0; i < equippedItemsArrays.length; i++) {
+    const itemArray = equippedItemsArrays[i];
+    let key = null;
+    let masterArray = [];
+    if (i === 0) {
+      key = "Stratagem";
+      masterArray = newStrats;
+    } else if (i === 1) {
+      key = "armor";
+      masterArray = newArmorPassives;
+    } else if (i === 2) {
+      key = "primary";
+      masterArray = newPrims;
+    } else if (i === 3) {
+      key = "secondary";
+      masterArray = newSeconds;
+    } else if (i === 4) {
+      key = "throwable";
+      masterArray = newThrows;
+    } else if (i === 5) {
+      key = "booster";
+      masterArray = newBoosts;
+    }
+    for (let j = 0; j < itemArray.length; j++) {
+      const card = document.getElementById(itemArray[j].id);
+      const badgeText = card.querySelector(".costBadges").innerHTML;
+      const itemConfig = categoryMap[key];
+      if (!itemConfig) {
+        return;
+      }
+      unequipItem(itemConfig, card, badgeText);
+      decrementItemQuantity(card, masterArray);
+    }
+  }
 
   // updateCredits function:
   // if isMissionSucceeded:

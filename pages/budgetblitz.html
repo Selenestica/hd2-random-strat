@@ -131,7 +131,7 @@
               class="btn btn-success"
               type="button"
               data-bs-toggle="modal"
-              data-bs-target="#maxStarsPromptModal"
+              data-bs-target="#missionCompleteModal"
               id="missionCompleteButton"
             >
               <span> Mission Complete </span>
@@ -141,7 +141,8 @@
             <button
               class="btn btn-danger"
               type="button"
-              onclick="rollPunishmentOptions()"
+              data-bs-toggle="modal"
+              data-bs-target="#missionFailedModal"
               id="missionFailedButton"
             >
               <span> Mission Failed </span>
@@ -309,7 +310,6 @@
               class="row pb-3 d-flex justify-content-center"
             >
               <div
-                id="emptyStratagemSquare1"
                 class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 style="width: 100px; height: 100px; background-color: grey"
               >
@@ -318,7 +318,6 @@
                 >
               </div>
               <div
-                id="emptyStratagemSquare2"
                 class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 style="width: 100px; height: 100px; background-color: grey"
               >
@@ -327,7 +326,6 @@
                 >
               </div>
               <div
-                id="emptyStratagemSquare3"
                 class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 style="width: 100px; height: 100px; background-color: grey"
               >
@@ -336,7 +334,6 @@
                 >
               </div>
               <div
-                id="emptyStratagemSquare4"
                 class="col-3 mx-2 d-flex justify-content-center align-items-center"
                 style="width: 100px; height: 100px; background-color: grey"
               >
@@ -481,22 +478,24 @@
         class="py-3 row d-none justify-content-center mt-2"
       ></div>
 
-      <!-- MAX STARS PROMPT MODAL -->
+      <!-- MISSION COMPLETE MODAL -->
       <div
         class="modal fade"
-        id="maxStarsPromptModal"
+        id="missionCompleteModal"
         tabindex="-1"
-        aria-labelledby="maxStarsPromptModalLabel"
+        aria-labelledby="missionCompleteModalLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content bg-grey">
             <div class="modal-body d-flex row justify-content-center">
-              <div class="row text-white d-flex justify-content-center">
-                Did you earn the maximum amount of stars for this mission?
+              <div
+                class="row text-white d-flex justify-content-center text-center"
+              >
+                <h4>Mission Report</h4>
               </div>
               <div
-                class="row text-white d-flex justify-content-center align-items-center"
+                class="row text-white mb-4 d-flex justify-content-center align-items-center"
               >
                 <img
                   src="../images/dressing/ministryOfTruthIcon.png"
@@ -504,9 +503,54 @@
                   alt="ministry of truth eye"
                   id="motImage"
                 />
-                <small class="d-flex justify-content-center"
+                <small class="d-flex justify-content-center mt-2"
                   >NOTE: Lying will be considered treason.</small
                 >
+              </div>
+              <div class="row">
+                <div class="col-12 d-flex align-items-center px-0">
+                  <p class="text-white mb-0" for="starsEarnedInput">
+                    Stars Earned:
+                  </p>
+                  <input
+                    class="form-control"
+                    id="starsEarnedInput"
+                    style="width: 12%; margin-left: 0.5rem"
+                    type="number"
+                    placeholder="1"
+                    min="1"
+                    max="5"
+                    aria-describedby="starsEarnedInput"
+                  />
+                </div>
+
+                <div class="form-check my-2">
+                  <label
+                    class="form-check-label text-white"
+                    for="superSamplesCollected"
+                  >
+                    Super Samples Collected </label
+                  ><input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="superSamplesCollected"
+                  />
+                </div>
+
+                <div class="form-check">
+                  <label
+                    class="form-check-label text-white"
+                    for="highValueItemCollectedCheck"
+                  >
+                    High-Value Item Collected </label
+                  ><input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="highValueItemCollectedCheck"
+                  />
+                </div>
               </div>
             </div>
             <div class="modal-footer row justify-content-between">
@@ -516,27 +560,63 @@
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >
-                  Close
+                  Cancel
                 </button>
               </div>
               <div class="col d-flex justify-content-end">
                 <button
                   type="button"
-                  class="btn btn-success"
-                  onclick="closeMaxStarsPromptModal()"
+                  class="btn btn-primary"
+                  onclick="submitMissionReport(true)"
                   data-bs-toggle="modal"
                 >
-                  Yes
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-danger mx-2"
-                  onclick="maxStarsNotEarned()"
-                  data-bs-dismiss="modal"
-                >
-                  No
+                  Submit
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION FAILED MODAL -->
+      <div
+        class="modal fade"
+        id="missionFailedModal"
+        tabindex="-1"
+        open="true"
+        aria-labelledby="missionFailedModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light">Mission Failed</h5>
+            </div>
+            <div class="modal-body row d-flex justify-content-center">
+              <p class="text-white">
+                Your current operation will be reset, and your equipped
+                purchased items will decrease by 1 use.
+              </p>
+              <br />
+              <br />
+              <p class="text-white">Proceed?</p>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onclick="submitMissionReport(false)"
+                class="btn btn-warning"
+                data-bs-dismiss="modal"
+              >
+                Proceed
+              </button>
             </div>
           </div>
         </div>
@@ -923,40 +1003,6 @@
                   Apply
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SHOW ALL ITEMS MODAL -->
-      <div
-        class="modal fade"
-        id="showAllItemsModal"
-        tabindex="-1"
-        open="true"
-        aria-labelledby="showAllItemsModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-xl modal-dialog-scrollable">
-          <div class="modal-content bg-grey">
-            <div class="modal-header">
-              <h5
-                class="modal-title text-light"
-                id="showAllItemsModalTitle"
-              ></h5>
-            </div>
-            <div
-              class="modal-body row d-flex justify-content-center"
-              id="showAllItemsModalBody"
-            ></div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
             </div>
           </div>
         </div>

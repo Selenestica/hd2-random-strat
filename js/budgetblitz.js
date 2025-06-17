@@ -277,6 +277,113 @@ const generateItemCard = (item, view = null) => {
   return card;
 };
 
+const inventoryIDs = ["defaultInventory", "purchasedItemsInventory"];
+
+const categoryMap = {
+  armor: {
+    equipped: () => equippedArmor,
+    setEquipped: (val) => (equippedArmor = val),
+    container: armorContainerBB,
+    emptySlot: emptyArmorSquare,
+    max: 1,
+  },
+  primary: {
+    equipped: () => equippedPrimary,
+    setEquipped: (val) => (equippedPrimary = val),
+    container: primaryContainerBB,
+    emptySlot: emptyPrimarySquare,
+    max: 1,
+  },
+  secondary: {
+    equipped: () => equippedSecondary,
+    setEquipped: (val) => (equippedSecondary = val),
+    container: secondaryContainerBB,
+    emptySlot: emptySecondarySquare,
+    max: 1,
+  },
+  throwable: {
+    equipped: () => equippedThrowable,
+    setEquipped: (val) => (equippedThrowable = val),
+    container: throwableContainerBB,
+    emptySlot: emptyThrowableSquare,
+    max: 1,
+  },
+  booster: {
+    equipped: () => equippedBooster,
+    setEquipped: (val) => (equippedBooster = val),
+    container: boosterContainerBB,
+    emptySlot: emptyBoosterSquare,
+    max: 1,
+  },
+  Stratagem: {
+    equipped: () => equippedStratagems,
+    setEquipped: (val) => (equippedStratagems = val),
+    container: stratagemsContainerBB,
+    emptySlot: null,
+    max: 4,
+  },
+};
+
+function isInInventory(parentID) {
+  return inventoryIDs.includes(parentID);
+}
+
+function moveToInventory(card, badgeText, parentID) {
+  if (badgeText.trim() === "∞") {
+    defaultInventory.appendChild(card);
+  } else {
+    purchasedItemsInventory.appendChild(card);
+  }
+  checkMissionButtons();
+}
+
+function unequipItem(itemConfig, card, badgeText) {
+  const newArray = itemConfig.equipped().filter((it) => it.id !== card.id);
+  itemConfig.setEquipped(newArray);
+
+  if (itemConfig.emptySlot) {
+    itemConfig.container.appendChild(itemConfig.emptySlot);
+  } else {
+    // Stratagem specific: add 4 empty boxes
+    if (equippedStratagems.length === 0) {
+      itemConfig.container.innerHTML = "";
+      for (let i = 0; i < 4; i++) {
+        itemConfig.container.innerHTML += `
+        <div class="col-3 mx-2 d-flex justify-content-center align-items-center"
+             style="width: 100px; height: 100px; background-color: grey">
+          <span class="text-white text-center">Select Stratagem Below</span>
+        </div>`;
+      }
+    }
+  }
+
+  card.classList.add("col-1");
+  moveToInventory(card, badgeText);
+}
+
+function equipItem(itemConfig, card) {
+  if (itemConfig.equipped().length >= itemConfig.max) return;
+
+  itemConfig.setEquipped([...itemConfig.equipped(), card]);
+
+  // only do this if not a stratagem card
+  if (itemConfig.max !== 4) {
+    card.classList.remove("col-1");
+  }
+
+  if (itemConfig.emptySlot) {
+    itemConfig.emptySlot.replaceWith(card);
+  } else {
+    // Stratagems: replace all children
+    itemConfig.container.innerHTML = "";
+    itemConfig.equipped().forEach((el) => {
+      itemConfig.container.appendChild(el);
+    });
+  }
+
+  checkMissionButtons();
+}
+
 const toggleLoadoutItem = async (item) => {
   const card = document.getElementById(
     "bbLoadoutItemCard-" + item.internalName
@@ -284,250 +391,14 @@ const toggleLoadoutItem = async (item) => {
   const badgeText = card.querySelector(".costBadges").innerHTML;
   const parentID = card.parentElement.id;
 
-  if (item.type === "Stratagem") {
-    // if equipped, move back to inventory
-    if (
-      parentID !== "defaultInventory" &&
-      parentID !== "purchasedItemsInventory"
-    ) {
-      equippedStratagems = equippedStratagems.filter((it) => {
-        return it.id !== card.id;
-      });
-      if (equippedStratagems.length === 0) {
-        // put empty squares back up
-        stratagemsContainerBB.innerHTML = "";
-        for (let i = 0; i < 4; i++) {
-          stratagemsContainerBB.innerHTML += `
-            <div
-              class="col-3 mx-2 d-flex justify-content-center align-items-center"
-              style="width: 100px; height: 100px; background-color: grey"
-            >
-              <span class="text-white text-center"
-                >Select Stratagem Below</span
-              >
-            </div>  
-          `;
-        }
-      }
-      if (badgeText.trim() === "∞") {
-        defaultInventory.appendChild(card);
-        checkMissionButtons();
-        return;
-      }
-      purchasedItemsInventory.appendChild(card);
-      checkMissionButtons();
-      return;
-    }
+  const key = item.type === "Stratagem" ? "Stratagem" : item.category;
+  const itemConfig = categoryMap[key];
+  if (!itemConfig) return;
 
-    // if not equipped, move to loadout
-    if (
-      (parentID === "defaultInventory" ||
-        parentID === "purchasedItemsInventory") &&
-      equippedStratagems.length < 4
-    ) {
-      stratagemsContainerBB.innerHTML = "";
-      equippedStratagems.push(card);
-      for (let i = 0; i < equippedStratagems.length; i++) {
-        stratagemsContainerBB.appendChild(equippedStratagems[i]);
-      }
-      checkMissionButtons();
-      return;
-    }
-  }
-  if (item.category === "armor") {
-    // if equipped, move back to inventory
-    if (
-      parentID !== "defaultInventory" &&
-      parentID !== "purchasedItemsInventory"
-    ) {
-      const newArray = equippedArmor.filter((it) => {
-        it.id !== card.id;
-      });
-      equippedArmor = newArray;
-      armorContainerBB.appendChild(emptyArmorSquare);
-      if (!card.classList.contains("col-1")) {
-        card.classList.add("col-1");
-      }
-      if (badgeText.trim() === "∞") {
-        defaultInventory.appendChild(card);
-        checkMissionButtons();
-        return;
-      }
-      purchasedItemsInventory.appendChild(card);
-      checkMissionButtons();
-      return;
-    }
-
-    // if not equipped, move to loadout
-    if (
-      (parentID === "defaultInventory" ||
-        parentID === "purchasedItemsInventory") &&
-      equippedArmor.length < 1
-    ) {
-      equippedArmor.push(card);
-      card.classList.remove("col-1");
-      for (let i = 0; i < equippedArmor.length; i++) {
-        emptyArmorSquare.replaceWith(equippedArmor[i]);
-      }
-      checkMissionButtons();
-      return;
-    }
-  }
-  if (item.category === "primary") {
-    // if equipped, move back to inventory
-    if (
-      parentID !== "defaultInventory" &&
-      parentID !== "purchasedItemsInventory"
-    ) {
-      const newArray = equippedPrimary.filter((it) => {
-        it.id !== card.id;
-      });
-      equippedPrimary = newArray;
-      primaryContainerBB.appendChild(emptyPrimarySquare);
-      if (!card.classList.contains("col-1")) {
-        card.classList.add("col-1");
-      }
-      if (badgeText.trim() === "∞") {
-        defaultInventory.appendChild(card);
-        checkMissionButtons();
-        return;
-      }
-      purchasedItemsInventory.appendChild(card);
-      checkMissionButtons();
-      return;
-    }
-
-    // if not equipped, move to loadout
-    if (
-      (parentID === "defaultInventory" ||
-        parentID === "purchasedItemsInventory") &&
-      equippedPrimary.length < 1
-    ) {
-      equippedPrimary.push(card);
-      card.classList.remove("col-1");
-      for (let i = 0; i < equippedPrimary.length; i++) {
-        emptyPrimarySquare.replaceWith(equippedPrimary[i]);
-      }
-      checkMissionButtons();
-      return;
-    }
-  }
-  if (item.category === "secondary") {
-    // if equipped, move back to inventory
-    if (
-      parentID !== "defaultInventory" &&
-      parentID !== "purchasedItemsInventory"
-    ) {
-      const newArray = equippedSecondary.filter((it) => {
-        it.id !== card.id;
-      });
-      equippedSecondary = newArray;
-      secondaryContainerBB.appendChild(emptySecondarySquare);
-      if (!card.classList.contains("col-1")) {
-        card.classList.add("col-1");
-      }
-      if (badgeText.trim() === "∞") {
-        defaultInventory.appendChild(card);
-        checkMissionButtons();
-        return;
-      }
-      purchasedItemsInventory.appendChild(card);
-      checkMissionButtons();
-      return;
-    }
-
-    // if not equipped, move to loadout
-    if (
-      (parentID === "defaultInventory" ||
-        parentID === "purchasedItemsInventory") &&
-      equippedSecondary.length < 1
-    ) {
-      equippedSecondary.push(card);
-      card.classList.remove("col-1");
-      for (let i = 0; i < equippedSecondary.length; i++) {
-        emptySecondarySquare.replaceWith(equippedSecondary[i]);
-      }
-      checkMissionButtons();
-      return;
-    }
-  }
-  if (item.category === "throwable") {
-    // if equipped, move back to inventory
-    if (
-      parentID !== "defaultInventory" &&
-      parentID !== "purchasedItemsInventory"
-    ) {
-      const newArray = equippedThrowable.filter((it) => {
-        it.id !== card.id;
-      });
-      equippedThrowable = newArray;
-      throwableContainerBB.appendChild(emptyThrowableSquare);
-      if (!card.classList.contains("col-1")) {
-        card.classList.add("col-1");
-      }
-      if (badgeText.trim() === "∞") {
-        defaultInventory.appendChild(card);
-        checkMissionButtons();
-        return;
-      }
-      purchasedItemsInventory.appendChild(card);
-      checkMissionButtons();
-      return;
-    }
-
-    // if not equipped, move to loadout
-    if (
-      (parentID === "defaultInventory" ||
-        parentID === "purchasedItemsInventory") &&
-      equippedThrowable.length < 1
-    ) {
-      equippedThrowable.push(card);
-      card.classList.remove("col-1");
-      for (let i = 0; i < equippedThrowable.length; i++) {
-        emptyThrowableSquare.replaceWith(equippedThrowable[i]);
-      }
-      checkMissionButtons();
-      return;
-    }
-  }
-  if (item.category === "booster") {
-    // if equipped, move back to inventory
-    if (
-      parentID !== "defaultInventory" &&
-      parentID !== "purchasedItemsInventory"
-    ) {
-      const newArray = equippedBooster.filter((it) => {
-        it.id !== card.id;
-      });
-      equippedBooster = newArray;
-      boosterContainerBB.appendChild(emptyBoosterSquare);
-      if (!card.classList.contains("col-1")) {
-        card.classList.add("col-1");
-      }
-      if (badgeText.trim() === "∞") {
-        defaultInventory.appendChild(card);
-        checkMissionButtons();
-        return;
-      }
-      purchasedItemsInventory.appendChild(card);
-      checkMissionButtons();
-      return;
-    }
-
-    // if not equipped, move to loadout
-    if (
-      (parentID === "defaultInventory" ||
-        parentID === "purchasedItemsInventory") &&
-      equippedBooster.length < 1
-    ) {
-      equippedBooster.push(card);
-      card.classList.remove("col-1");
-      for (let i = 0; i < equippedBooster.length; i++) {
-        emptyBoosterSquare.replaceWith(equippedBooster[i]);
-      }
-      checkMissionButtons();
-      return;
-    }
+  if (!isInInventory(parentID)) {
+    unequipItem(itemConfig, card, badgeText);
+  } else {
+    equipItem(itemConfig, card);
   }
 };
 
@@ -603,7 +474,6 @@ const checkMissionButtons = () => {
   }
 
   if (missionCounter < 21) {
-    console.log(equippedArmor);
     missionCompleteButton.style.display = "block";
     missionFailedButton.style.display = "block";
     downloadPDFButtonDiv.style.display = "none";
@@ -620,9 +490,10 @@ const checkMissionButtons = () => {
       missionFailedButton.disabled = false;
       return;
     }
+    // REMEMBER TO CHANGE THIS BACK WHEN DONE TESTING
     // else
-    missionCompleteButton.disabled = true;
-    missionFailedButton.disabled = true;
+    missionCompleteButton.disabled = false;
+    missionFailedButton.disabled = false;
   }
 };
 
@@ -649,6 +520,24 @@ const uploadSaveData = async () => {
     return;
   }
   startNewRun();
+};
+
+const submitMissionReport = (isMissionSucceeded) => {
+  // missionEnded function:
+  // unequip all items
+  // go through equipped items and, if the item isnt default, decrease its quantity by 1
+  // if quantity is then 0, remove it from purchasedItems
+  // make sure the item in the object array (newStrats, newPrims, etc) is updated with the decreased quantity
+
+  // updateCredits function:
+  // if isMissionSucceeded:
+  // get the values from the inputs in the modal
+  // add the appropriate credits to user credits
+  // increment missionCounter by 1
+
+  // if !isMissionSucceeded:
+  // set missionCounter back to start of operation
+  console.log(isMissionSucceeded);
 };
 
 uploadSaveData();

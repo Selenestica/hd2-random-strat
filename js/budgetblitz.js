@@ -21,6 +21,13 @@ const defaultInventory = document.getElementById("defaultInventory");
 const purchasedItemsInventory = document.getElementById(
   "purchasedItemsInventory"
 );
+const starsEarnedInput = document.getElementById("starsEarnedInput");
+const superSamplesCollectedCheck = document.getElementById(
+  "superSamplesCollectedCheck"
+);
+const highValueItemCollectedCheck = document.getElementById(
+  "highValueItemCollectedCheck"
+);
 const yourCreditsAmount = document.getElementById("yourCreditsAmount");
 const itemCostAmount = document.getElementById("itemCostAmount");
 const itemQuantityInput = document.getElementById("itemQuantityInput");
@@ -455,7 +462,7 @@ const updateAllRenderedItems = () => {
   const cards = document.querySelectorAll(".bbShopItemCards");
   cards.forEach((card) => {
     const badge = card.querySelector(".costBadges");
-    if (credits < parseInt(badge.innerHTML)) {
+    if (credits < parseInt(badge.innerHTML, 10)) {
       card.onclick = "";
       badge.classList.add("bg-danger", "text-light");
       badge.classList.remove("bg-warning", "bg-success", "text-dark");
@@ -595,11 +602,24 @@ const submitMissionReport = (isMissionSucceeded) => {
     }
   }
 
-  // updateCredits function:
-  // if isMissionSucceeded:
-  // get the values from the inputs in the modal
-  // add the appropriate credits to user credits
-  // increment missionCounter by 1
+  if (isMissionSucceeded) {
+    const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 25;
+    const superSamplesModifier = superSamplesCollectedCheck.checked ? 25 : 0;
+    const highValueItemModifier = highValueItemCollectedCheck.checked ? 25 : 0;
+    const total =
+      starsEarnedModifier + superSamplesModifier + highValueItemModifier;
+    credits += total;
+    scCounter.innerHTML = `${": " + credits}`;
+    // reset values in modal when done calculating
+    starsEarnedInput.value = 1;
+    superSamplesCollectedCheck.checked = false;
+    highValueItemCollectedCheck.checked = false;
+
+    missionCounter++;
+    missionCounterText.innerHTML = `${getMissionText()}`;
+    checkMissionButtons();
+    return;
+  }
 
   // if !isMissionSucceeded:
   // set missionCounter back to start of operation

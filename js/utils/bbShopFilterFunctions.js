@@ -78,7 +78,7 @@ const filterByPrice = (filter) => {
     purchaseableDropdownItem.classList.toggle("active");
     cards.forEach((card) => {
       const badge = card.querySelector(".costBadges");
-      if (credits < parseInt(badge.innerHTML)) {
+      if (credits < parseInt(badge.innerHTML, 10)) {
         card.classList.toggle("d-none");
       }
     });
@@ -88,7 +88,7 @@ const filterByPrice = (filter) => {
     nonPurchaseableDropdownItem.classList.toggle("active");
     cards.forEach((card) => {
       const badge = card.querySelector(".costBadges");
-      if (credits >= parseInt(badge.innerHTML)) {
+      if (credits >= parseInt(badge.innerHTML, 10)) {
         card.classList.toggle("d-none");
       }
     });

@@ -23,6 +23,7 @@ const applySpecialistButton = document.getElementById('applySpecialistButton');
 const currentDifficultyButton = document.getElementById('currentDifficultyButton');
 const difficultyOptionButton = document.getElementById('difficultyOptionButton');
 let currentItems = [];
+let currentPunishmentItems = [];
 let missionCounter = 1;
 let difficulty = 'normal';
 
@@ -51,6 +52,7 @@ const startNewRun = (spec = null, diff = null) => {
   });
 
   currentItems = [];
+  currentPunishmentItems = [];
   missionCounter = diff === 'super' ? 3 : 1;
   difficulty = diff ? diff : 'normal';
   specialist = spec;
@@ -173,7 +175,7 @@ const claimItem = (currentItemIndex) => {
 };
 
 const claimPunishment = async (currentItemIndex) => {
-  const item = currentItems[currentItemIndex];
+  const item = currentPunishmentItems[currentItemIndex];
 
   // remove item from accordion
   const { listKeyName, list, accBody } = getItemMetaData(item);
@@ -224,6 +226,7 @@ const claimPunishment = async (currentItemIndex) => {
 
   const modal = bootstrap.Modal.getInstance(itemOptionsModal);
   modal.hide();
+  currentPunishmentItems = [];
   clearItemOptionsModal();
 };
 
@@ -392,6 +395,23 @@ const rollRewardOptions = async () => {
 };
 
 const rollPunishmentOptions = async () => {
+  if (currentPunishmentItems.length > 0) {
+    for (let i = 0; i < currentPunishmentItems.length; i++) {
+      const vals = getItemMetaData(currentPunishmentItems[i]);
+      itemOptionsModalBody.innerHTML += generateItemCard(
+        currentPunishmentItems[i],
+        true,
+        vals.imgDir,
+        i,
+        vals.typeText,
+        true,
+      );
+    }
+    const modal = new bootstrap.Modal(itemOptionsModal);
+    modal.show();
+    return;
+  }
+
   let maxPunishmentItems = 3;
   const game = await getCurrentGame();
   const acquiredItems = game.acquiredItems;
@@ -412,7 +432,7 @@ const rollPunishmentOptions = async () => {
   for (let i = 0; i < numsList.length; i++) {
     const vals = getItemMetaData(acquiredItems[numsList[i]]);
     const randomItem = acquiredItems[numsList[i]];
-    currentItems.push(randomItem);
+    currentPunishmentItems.push(randomItem);
     itemOptionsModalBody.innerHTML += generateItemCard(
       randomItem,
       true,
@@ -422,6 +442,7 @@ const rollPunishmentOptions = async () => {
       true,
     );
   }
+  saveProgress();
 };
 
 const getRandomItemList = async (list) => {
@@ -641,6 +662,7 @@ const saveProgress = async (item = null) => {
       sg = {
         ...sg,
         currentItems,
+        currentPunishmentItems,
         acquiredItems: updatedItems,
         newStrats,
         newPrims,
@@ -720,6 +742,7 @@ const uploadSaveData = async () => {
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;
     currentItems = currentGame.currentItems ?? [];
+    currentPunishmentItems = currentGame.currentPunishmentItems ?? [];
     specialist = currentGame.specialist ?? null;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
@@ -791,6 +814,7 @@ const saveDataAndRestart = async (diff = null) => {
     return !starterBoosterNames.includes(booster.displayName);
   });
   currentItems = [];
+  currentPunishmentItems = [];
   missionCounter = diff === 'super' ? 3 : 1;
   missionCounterText.innerHTML = `${getMissionText()}`;
   checkMissionButtons();

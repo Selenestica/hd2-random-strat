@@ -4,6 +4,7 @@ const mainViewButtons = document.getElementsByClassName('mainViewButtons');
 const scCounter = document.getElementById('scCounter');
 const loadoutContainer = document.getElementById('loadoutContainer');
 const stratagemsContainerBB = document.getElementById('stratagemsContainerBB');
+const equipmentContainerBB = document.getElementById('equipmentContainerBB');
 const armorContainerBB = document.getElementById('armorContainerBB');
 const emptyArmorSquare = document.getElementById('emptyArmorSquare');
 const emptyPrimarySquare = document.getElementById('emptyPrimarySquare');
@@ -57,6 +58,72 @@ let credits = 100;
 missionButtonsDiv.style.display = 'flex';
 bbShopFilterDiv.style.display = 'none';
 hellDiversMobilizeCheckbox.disabled = true;
+const inventoryIDs = ['defaultInventory', 'purchasedItemsInventory'];
+
+// if the submit mission report modal ever closes, reset the inputs
+const missionCompleteModal = document.getElementById('missionCompleteModal');
+missionCompleteModal.addEventListener('hidden.bs.modal', function () {
+  starsEarnedInput.value = 1;
+  superSamplesCollectedCheck.checked = false;
+  highValueItemCollectedCheck.checked = false;
+});
+
+const categoryMap = {
+  armor: {
+    equipped: () => equippedArmor,
+    setEquipped: (val) => (equippedArmor = val),
+    container: armorContainerBB,
+    emptySlot: emptyArmorSquare,
+    list: newArmorPassives,
+    masterList: masterArmorPassivesList,
+    max: 1,
+  },
+  primary: {
+    equipped: () => equippedPrimary,
+    setEquipped: (val) => (equippedPrimary = val),
+    container: primaryContainerBB,
+    emptySlot: emptyPrimarySquare,
+    list: newPrims,
+    masterList: masterPrimsList,
+    max: 1,
+  },
+  secondary: {
+    equipped: () => equippedSecondary,
+    setEquipped: (val) => (equippedSecondary = val),
+    container: secondaryContainerBB,
+    emptySlot: emptySecondarySquare,
+    list: newSeconds,
+    masterList: masterSecondsList,
+    max: 1,
+  },
+  throwable: {
+    equipped: () => equippedThrowable,
+    setEquipped: (val) => (equippedThrowable = val),
+    container: throwableContainerBB,
+    emptySlot: emptyThrowableSquare,
+    list: newThrows,
+    masterList: masterThrowsList,
+    max: 1,
+  },
+  booster: {
+    equipped: () => equippedBooster,
+    setEquipped: (val) => (equippedBooster = val),
+    container: boosterContainerBB,
+    emptySlot: emptyBoosterSquare,
+    list: newBoosts,
+    masterList: masterBoostsList,
+    max: 1,
+  },
+  Stratagem: {
+    equipped: () => equippedStratagems,
+    setEquipped: (val) => (equippedStratagems = val),
+    container: stratagemsContainerBB,
+    emptySlot: null,
+    list: newStrats,
+    masterList: masterStratsList,
+    max: 4,
+  },
+};
 
 for (let y = 0; y < warbondCheckboxes.length; y++) {
   warbondCheckboxes[y].addEventListener('change', (e) => {
@@ -146,7 +213,13 @@ shopSearchInput.addEventListener('input', () => {
   });
 });
 
-const startNewRun = async () => {
+const startNewRun = async (isRestart = null) => {
+  // probably want to set all warbond codes to checked just in case
+  warbondCodes = [...masterWarbondCodes];
+  for (let i = 0; i < warbondCheckboxes.length; i++) {
+    warbondCheckboxes[i].checked = true;
+  }
+
   newStrats = await OGstratsList.filter(
     (strat) => !starterStratNames.includes(strat.displayName),
   ).map((strat) => {
@@ -201,6 +274,7 @@ const startNewRun = async () => {
     booster.cost = getItemCost(booster);
     return booster;
   });
+
   // primarily for warbond filtering
   masterPrimsList = cloneList(newPrims);
   masterSecondsList = cloneList(newSeconds);
@@ -213,7 +287,17 @@ const startNewRun = async () => {
   scCounter.innerHTML = `${': ' + credits}`;
   currentItems = [];
   missionCounter = 5;
+  failedMissions = 0;
+  successfulMissions = 0;
+  purchasedItems = [];
+  equippedStratagems = [];
+  equippedArmor = [];
+  equippedPrimary = [];
+  equippedSecondary = [];
+  equippedThrowable = [];
+  equippedBooster = [];
   checkMissionButtons();
+  missionCounterText.innerHTML = `${getMissionText()}`;
 
   // DISABLED MODAL JUST FOR TESTING. ADD THIS BACK IN WHEN CHALLENGE GOES LIVE
   // open the modal to show the rules
@@ -221,7 +305,27 @@ const startNewRun = async () => {
   //   const modal = new bootstrap.Modal(flavorAndInstructionsModal);
   //   modal.show();
   // });
-  missionCounterText.innerHTML = `${getMissionText()}`;
+
+  // only do this next part when restarting a run
+  if (isRestart) {
+    stratagemsContainerBB.innerHTML = '';
+    for (let i = 0; i < 4; i++) {
+      stratagemsContainerBB.innerHTML += emptyStratagemBox;
+    }
+    equipmentContainerBB.innerHTML = '';
+    equipmentContainerBB.innerHTML = equipmentContainerBBDefaultContent;
+    purchasedItemsInventory.innerHTML = '';
+    defaultInventory.innerHTML = '';
+    populateDefaultItems();
+
+    missionButtonsDiv.style.display = 'flex';
+    bbShopFilterDiv.style.display = 'none';
+    bbShopItemsContainer.classList.remove('d-flex');
+    bbShopItemsContainer.classList.add('d-none');
+    loadoutContainer.classList.remove('d-none');
+    loadoutContainer.classList.add('d-flex');
+    resetShopFilters();
+  }
 };
 
 const populatePurchasedItemsInventory = async () => {
@@ -331,65 +435,6 @@ const generateItemCard = (item, view = null) => {
   return card;
 };
 
-const inventoryIDs = ['defaultInventory', 'purchasedItemsInventory'];
-
-const categoryMap = {
-  armor: {
-    equipped: () => equippedArmor,
-    setEquipped: (val) => (equippedArmor = val),
-    container: armorContainerBB,
-    emptySlot: emptyArmorSquare,
-    list: newArmorPassives,
-    masterList: masterArmorPassivesList,
-    max: 1,
-  },
-  primary: {
-    equipped: () => equippedPrimary,
-    setEquipped: (val) => (equippedPrimary = val),
-    container: primaryContainerBB,
-    emptySlot: emptyPrimarySquare,
-    list: newPrims,
-    masterList: masterPrimsList,
-    max: 1,
-  },
-  secondary: {
-    equipped: () => equippedSecondary,
-    setEquipped: (val) => (equippedSecondary = val),
-    container: secondaryContainerBB,
-    emptySlot: emptySecondarySquare,
-    list: newSeconds,
-    masterList: masterSecondsList,
-    max: 1,
-  },
-  throwable: {
-    equipped: () => equippedThrowable,
-    setEquipped: (val) => (equippedThrowable = val),
-    container: throwableContainerBB,
-    emptySlot: emptyThrowableSquare,
-    list: newThrows,
-    masterList: masterThrowsList,
-    max: 1,
-  },
-  booster: {
-    equipped: () => equippedBooster,
-    setEquipped: (val) => (equippedBooster = val),
-    container: boosterContainerBB,
-    emptySlot: emptyBoosterSquare,
-    list: newBoosts,
-    masterList: masterBoostsList,
-    max: 1,
-  },
-  Stratagem: {
-    equipped: () => equippedStratagems,
-    setEquipped: (val) => (equippedStratagems = val),
-    container: stratagemsContainerBB,
-    emptySlot: null,
-    list: newStrats,
-    masterList: masterStratsList,
-    max: 4,
-  },
-};
-
 const isInInventory = (parentID) => {
   return inventoryIDs.includes(parentID);
 };
@@ -414,11 +459,7 @@ const unequipItem = (itemConfig, card, badgeText) => {
     if (equippedStratagems.length === 0) {
       itemConfig.container.innerHTML = '';
       for (let i = 0; i < 4; i++) {
-        itemConfig.container.innerHTML += `
-        <div class="col-3 mx-2 d-flex justify-content-center align-items-center"
-             style="width: 100px; height: 100px; background-color: grey">
-          <span class="text-white text-center">Select Stratagem Below</span>
-        </div>`;
+        itemConfig.container.innerHTML += emptyStratagemBox;
       }
     }
   }
@@ -832,6 +873,79 @@ const saveProgress = async () => {
     savedGames: newSavedGames,
   };
   localStorage.setItem('budgetBlitzSaveData', JSON.stringify(obj));
+};
+
+const saveDataAndRestart = async () => {
+  const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
+  if (!budgetBlitzSaveData) {
+    return;
+  }
+  const savedGames = JSON.parse(budgetBlitzSaveData).savedGames;
+  // make all saved game data currentGame = false
+  let updatedSavedGames = await savedGames.map((sg) => {
+    sg.currentGame = false;
+    return sg;
+  });
+
+  await startNewRun(true);
+
+  const newSaveObj = {
+    purchasedItems,
+
+    newStrats,
+    newPrims,
+    newSeconds,
+    newThrows,
+    newArmorPassives,
+    newBoosts,
+
+    masterStratsList,
+    masterPrimsList,
+    masterSecondsList,
+    masterThrowsList,
+    masterBoostsList,
+    masterArmorPassivesList,
+
+    seesRulesOnOpen: false,
+    dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
+    currentGame: true,
+    missionCounter,
+    failedMissions,
+    successfulMissions,
+    credits,
+
+    warbondCodes,
+  };
+
+  updatedSavedGames.push(newSaveObj);
+  const newBudgetBlitzSaveData = {
+    savedGames: updatedSavedGames,
+  };
+  await localStorage.setItem('budgetBlitzSaveData', JSON.stringify(newBudgetBlitzSaveData));
+
+  // remove saved games that are at the first mission of their difficulty,
+  // as long as they are not the current game
+  // ...this is to prevent the user from having a million saves
+  pruneSavedGames();
+};
+
+// get rid of all games that arent the current game and are on the first mission
+const pruneSavedGames = async () => {
+  const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
+  if (!budgetBlitzSaveData) {
+    return;
+  }
+  const prunedGames = await JSON.parse(budgetBlitzSaveData).savedGames.filter((sg) => {
+    if (sg.currentGame === true || sg.missionCounter > 5 || sg.purchasedItems.length > 0) {
+      return sg;
+    }
+  });
+  const oldData = JSON.parse(budgetBlitzSaveData);
+  const newData = {
+    ...oldData,
+    savedGames: prunedGames,
+  };
+  localStorage.setItem('budgetBlitzSaveData', JSON.stringify(newData));
 };
 
 const getCurrentGame = async () => {

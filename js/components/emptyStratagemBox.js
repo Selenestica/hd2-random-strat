@@ -1,6 +1,9 @@
 const emptyStratagemBox = `
-  <div class="col-3 mx-2 d-flex justify-content-center align-items-center"
-        style="background-color: grey">
-    <span class="text-white text-center">Select Stratagem Below</span>
+  <div
+    class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+  >
+    <p class="mb-0 text-secondary emptyItemText">
+      <small>Select Stratagem Below</small>
+    </p>
   </div>
 `;

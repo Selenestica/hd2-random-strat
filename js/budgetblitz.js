@@ -1,5 +1,5 @@
+const missionCompleteModal = document.getElementById('missionCompleteModal');
 const missionCompleteModalBody = document.getElementById('missionCompleteModalBody');
-const maxStarsModalBody = document.getElementById('maxStarsModalBody');
 const mainViewButtons = document.getElementsByClassName('mainViewButtons');
 const scCounter = document.getElementById('scCounter');
 const loadoutContainer = document.getElementById('loadoutContainer');
@@ -61,11 +61,25 @@ hellDiversMobilizeCheckbox.disabled = true;
 const inventoryIDs = ['defaultInventory', 'purchasedItemsInventory'];
 
 // if the submit mission report modal ever closes, reset the inputs
-const missionCompleteModal = document.getElementById('missionCompleteModal');
-missionCompleteModal.addEventListener('hidden.bs.modal', function () {
+missionCompleteModal.addEventListener('hidden.bs.modal', () => {
   starsEarnedInput.value = 1;
   superSamplesCollectedCheck.checked = false;
   highValueItemCollectedCheck.checked = false;
+});
+
+// when the mission report modal opens, set the max stars able to be earned according to the missionCounter
+missionCompleteModal.addEventListener('shown.bs.modal', () => {
+  const maxStarsPossible = getMaxStarsForMission(missionCounter);
+  starsEarnedInput.max = maxStarsPossible;
+});
+
+// prevent input of anything outside of min and max values
+starsEarnedInput.addEventListener('input', () => {
+  const value = parseInt(starsEarnedInput.value, 10);
+  const max = parseInt(starsEarnedInput.max, 10);
+
+  if (value < 1) starsEarnedInput.value = 1;
+  if (value > max) starsEarnedInput.value = max;
 });
 
 const categoryMap = {
@@ -325,6 +339,24 @@ const startNewRun = async (isRestart = null) => {
     loadoutContainer.classList.remove('d-none');
     loadoutContainer.classList.add('d-flex');
     resetShopFilters();
+  }
+};
+
+const updateShopItemsCostAndSaleStatus = async () => {
+  const newOperationNums = [8, 11, 14, 17, 20];
+  const isStartingNewOperation = newOperationNums.includes(missionCounter);
+  if (!isStartingNewOperation) return;
+
+  const allItemsList = [newStrats, newPrims, newBoosts, newSeconds, newArmorPassives, newThrows];
+  for (let i = 0; i < allItemsList.length; i++) {
+    const list = allItemsList[i];
+    for (let j = 0; j < list.length; j++) {
+      const item = list[j];
+      item.cost = getItemCost(item);
+      item.onSale = getIsItemOnSale();
+      updateMasterListItem(item);
+      updateRenderedItem(item);
+    }
   }
 };
 
@@ -689,7 +721,7 @@ const decrementItemQuantity = (card, arr) => {
   }
 };
 
-const submitMissionReport = (isMissionSucceeded) => {
+const submitMissionReport = async (isMissionSucceeded) => {
   const equippedItemsArrays = [
     [...equippedStratagems],
     [...equippedArmor],
@@ -748,6 +780,11 @@ const submitMissionReport = (isMissionSucceeded) => {
 
     // update missionCounter
     missionCounter++;
+
+    // here we want to go through all the items in the shop and update their cost and onSale property
+    // if they are starting a new operation
+    await updateShopItemsCostAndSaleStatus();
+
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
     successfulMissions++;

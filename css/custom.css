@@ -99,6 +99,62 @@ body {
   border: 1px solid yellow;
 }
 
+@media only screen and (max-width: 767px) {
+  #bbMissionFailedText,
+  #bbMissionCompleteText,
+  #bbLoadoutText,
+  #bbShopText,
+  #bbTypeText,
+  #bbPriceText,
+  #bbResetText,
+  #bbSearchText,
+  #superCreditsText,
+  #warbondSelectButtonDesktop {
+    display: none;
+  }
+
+  #bbMissionFailedIcon,
+  #bbMissionCompleteIcon,
+  #bbLoadoutIcon,
+  #bbShopIcon,
+  #bbTypeIcon,
+  #bbPriceIcon,
+  #bbResetIcon,
+  #bbSearchIcon,
+  #superCreditsIcon,
+  #warbondSelectButtonMobile {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #bbMissionFailedText,
+  #bbMissionCompleteText,
+  #bbLoadoutText,
+  #bbShopText,
+  #bbTypeText,
+  #bbPriceText,
+  #bbResetText,
+  #bbSearchText,
+  #superCreditsText,
+  #warbondSelectButtonDesktop {
+    display: block;
+  }
+
+  #bbMissionFailedIcon,
+  #bbMissionCompleteIcon,
+  #bbLoadoutIcon,
+  #bbShopIcon,
+  #bbTypeIcon,
+  #bbPriceIcon,
+  #bbResetIcon,
+  #bbSearchIcon,
+  #superCreditsIcon,
+  #warbondSelectButtonMobile {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 650px) {
   #stratText {
     display: none;
@@ -207,4 +263,8 @@ body {
   cursor: pointer;
   position: relative;
   margin: 0.25rem !important;
+}
+
+.no-caret::after {
+  display: none !important;
 }

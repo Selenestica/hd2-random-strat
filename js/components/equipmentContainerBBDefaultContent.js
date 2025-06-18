@@ -5,7 +5,7 @@ equipmentContainerBBDefaultContent = `
   >
     <div
       id="emptyArmorSquare"
-      style="width: 100px; height: 100px; background-color: grey"
+      style="background-color: grey"
       class="d-flex justify-content-center align-items-center"
     >
       <span class="text-white text-center">Select Armor Below</span>
@@ -18,7 +18,7 @@ equipmentContainerBBDefaultContent = `
     <div
       id="emptyPrimarySquare"
       class="d-flex justify-content-center align-items-center"
-      style="width: 100px; height: 100px; background-color: grey"
+      style="background-color: grey"
     >
       <span class="text-white text-center">Select Primary Below</span>
     </div>
@@ -30,7 +30,7 @@ equipmentContainerBBDefaultContent = `
     <div
       id="emptySecondarySquare"
       class="d-flex justify-content-center align-items-center"
-      style="width: 100px; height: 100px; background-color: grey"
+      style="background-color: grey"
     >
       <span class="text-white text-center">Select Secondary Below</span>
     </div>
@@ -42,7 +42,7 @@ equipmentContainerBBDefaultContent = `
     <div
       id="emptyThrowableSquare"
       class="d-flex justify-content-center align-items-center"
-      style="width: 100px; height: 100px; background-color: grey"
+      style="background-color: grey"
     >
       <span class="text-white text-center">Select Throwable Below</span>
     </div>
@@ -54,7 +54,7 @@ equipmentContainerBBDefaultContent = `
     <div
       id="emptyBoosterSquare"
       class="d-flex justify-content-center align-items-center"
-      style="width: 100px; height: 100px; background-color: grey"
+      style="background-color: grey"
     >
       <span class="text-white text-center">Select Booster Below (optional)</span>
     </div>

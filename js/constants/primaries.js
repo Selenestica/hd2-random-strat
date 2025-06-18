@@ -338,7 +338,7 @@ const PRIMARIES = [
     warbondCode: 'warbond6',
     internalName: 'r36eruptor',
     imageURL: 'r36eruptor.png',
-    tier: 'a',
+    tier: 's',
   },
   {
     displayName: 'Exploding Crossbow',
@@ -407,3 +407,8 @@ const PRIMARIES = [
     tier: 'a',
   },
 ];
+
+// s: 6
+// a: 13
+// b: 17
+// c: 1

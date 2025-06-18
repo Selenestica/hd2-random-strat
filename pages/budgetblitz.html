@@ -58,18 +58,29 @@
         <div class="d-flex col justify-content-center align-items-center">
           <h4 class="mb-0 text-white">Budget Blitz</h4>
           <button
-            class="btn btn-secondary mx-2"
+            class="btn btn-secondary mx-1"
             data-bs-toggle="modal"
             data-bs-target="#flavorAndInstructionsModal"
             type="button"
           >
             <i class="fa-solid fa-circle-info"></i>
           </button>
+          <button
+            class="btn btn-primary ml-1"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#warbondSelectModal"
+            id="warbondSelectButtonMobile"
+          >
+            <i class="fa-solid fa-cog"></i>
+          </button>
         </div>
       </div>
       <div class="row mt-2 justify-content-center text-white">
-        <div class="col-4 d-flex justify-content-start">
-          Super Credits<span id="scCounter"></span>
+        <div class="col-4 d-flex justify-content-start align-items-center">
+          <span id="superCreditsText">Super Credits</span>
+          <span id="superCreditsIcon"><i class="fa-solid fa-dollar-sign"></i></span>
+          <span id="scCounter"></span>
         </div>
         <div class="col-4 text-white d-flex justify-content-center" id="missionCounterText"></div>
         <div class="col-4 d-flex justify-content-end"></div>
@@ -85,7 +96,10 @@
               autocomplete="off"
               checked
             />
-            <label class="btn btn-outline-primary text-white" for="loadoutButton">Loadout</label>
+            <label class="btn btn-outline-primary text-white" for="loadoutButton">
+              <span id="bbLoadoutText">Loadout</span>
+              <span id="bbLoadoutIcon"><i class="fa-solid fa-box-archive"></i></span>
+            </label>
             <input
               type="radio"
               class="btn-check mainViewButtons"
@@ -93,7 +107,10 @@
               id="shopButton"
               autocomplete="off"
             />
-            <label class="btn btn-outline-primary text-warning" for="shopButton">Shop</label>
+            <label class="btn btn-outline-primary text-warning" for="shopButton">
+              <span id="bbShopText">Shop</span>
+              <span id="bbShopIcon"><i class="fa-solid fa-cart-shopping"></i></span>
+            </label>
           </div>
         </div>
         <div class="col-8 justify-content-center" id="missionButtonsDiv">
@@ -110,7 +127,8 @@
               data-bs-target="#missionCompleteModal"
               id="missionCompleteButton"
             >
-              <span> Mission Complete </span>
+              <span id="bbMissionCompleteText"> Mission Complete </span>
+              <span id="bbMissionCompleteIcon"> <i class="fa-solid fa-check"></i> </span>
             </button>
           </div>
           <div class="btn-group my-2" id="missionFailedButtonDiv">
@@ -121,133 +139,142 @@
               data-bs-target="#missionFailedModal"
               id="missionFailedButton"
             >
-              <span> Mission Failed </span>
+              <span id="bbMissionFailedText"> Mission Failed </span>
+              <span id="bbMissionFailedIcon"> <i class="fa-solid fa-xmark"></i> </span>
             </button>
           </div>
         </div>
         <div class="col-8 justify-content-center" id="bbShopFilterDiv">
-          <div class="mx-1 btn-group">
-            <button
-              type="button"
-              class="btn btn-primary dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Type
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary dropdown-toggle no-caret"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="bbTypeText" class="text-white">Type</span>
+                <span id="bbTypeIcon" class="text-white"><i class="fa-solid fa-list"></i></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="primariesFilterDropdownItem"
+                    onclick="filterByType('primary')"
+                    href="#"
+                    >Primaries</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="secondariesFilterDropdownItem"
+                    onclick="filterByType('secondary')"
+                    href="#"
+                    >Secondaries</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="throwablesFilterDropdownItem"
+                    onclick="filterByType('throwable')"
+                    href="#"
+                    >Throwables</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="stratagemsFilterDropdownItem"
+                    onclick="filterByType('stratagem')"
+                    href="#"
+                    >Stratagems</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="armorPassivesFilterDropdownItem"
+                    onclick="filterByType('armor')"
+                    href="#"
+                    >Armor Passives</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="boostersFilterDropdownItem"
+                    onclick="filterByType('booster')"
+                    href="#"
+                    >Boosters</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary dropdown-toggle no-caret"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="bbPriceText" class="text-white">Price</span>
+                <span id="bbPriceIcon" class="text-white"><i class="fa-solid fa-tag"></i></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    id="onSaleDropdownItem"
+                    class="dropdown-item"
+                    onclick="filterByPrice('onSale')"
+                    href="#"
+                    >On Sale</a
+                  >
+                </li>
+                <li>
+                  <a
+                    id="purchaseableDropdownItem"
+                    class="dropdown-item"
+                    onclick="filterByPrice('purchaseable')"
+                    href="#"
+                    >Purchaseable</a
+                  >
+                </li>
+                <li>
+                  <a
+                    id="nonPurchaseableDropdownItem"
+                    class="dropdown-item"
+                    onclick="filterByPrice('nonpurchaseable')"
+                    href="#"
+                    >Non-Purchaseable</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary dropdown-toggle no-caret"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="bbSearchText" class="text-white">Search</span>
+                <span id="bbSearchIcon" class="text-white"
+                  ><i class="fa-solid fa-magnifying-glass"></i
+                ></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <input type="text" id="shopSearchInput" />
+                </li>
+              </ul>
+            </div>
+            <button onclick="resetShopFilters()" class="btn btn-primary" type="button">
+              <span id="bbResetText"> Reset </span>
+              <span id="bbResetIcon"><i class="fa-solid fa-filter-circle-xmark"></i></span>
             </button>
-            <ul class="dropdown-menu">
-              <li>
-                <a
-                  class="dropdown-item"
-                  id="primariesFilterDropdownItem"
-                  onclick="filterByType('primary')"
-                  href="#"
-                  >Primaries</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  id="secondariesFilterDropdownItem"
-                  onclick="filterByType('secondary')"
-                  href="#"
-                  >Secondaries</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  id="throwablesFilterDropdownItem"
-                  onclick="filterByType('throwable')"
-                  href="#"
-                  >Throwables</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  id="stratagemsFilterDropdownItem"
-                  onclick="filterByType('stratagem')"
-                  href="#"
-                  >Stratagems</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  id="armorPassivesFilterDropdownItem"
-                  onclick="filterByType('armor')"
-                  href="#"
-                  >Armor Passives</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  id="boostersFilterDropdownItem"
-                  onclick="filterByType('booster')"
-                  href="#"
-                  >Boosters</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="btn-group">
-            <button
-              type="button"
-              class="btn btn-primary dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Price
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <a
-                  id="onSaleDropdownItem"
-                  class="dropdown-item"
-                  onclick="filterByPrice('onSale')"
-                  href="#"
-                  >On Sale</a
-                >
-              </li>
-              <li>
-                <a
-                  id="purchaseableDropdownItem"
-                  class="dropdown-item"
-                  onclick="filterByPrice('purchaseable')"
-                  href="#"
-                  >Purchaseable</a
-                >
-              </li>
-              <li>
-                <a
-                  id="nonPurchaseableDropdownItem"
-                  class="dropdown-item"
-                  onclick="filterByPrice('nonpurchaseable')"
-                  href="#"
-                  >Non-Purchaseable</a
-                >
-              </li>
-            </ul>
-          </div>
-          <button onclick="resetShopFilters()" class="btn mx-1 btn-primary" type="button">
-            <span> Reset </span>
-          </button>
-          <div class="btn-group">
-            <button
-              type="button"
-              class="btn btn-primary dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Search
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <input type="text" id="shopSearchInput" />
-              </li>
-            </ul>
           </div>
         </div>
         <div class="col-2 justify-content-end d-flex align-items-center">
@@ -256,6 +283,7 @@
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#warbondSelectModal"
+            id="warbondSelectButtonDesktop"
           >
             <i class="fa-solid fa-cog"></i>
           </button>
@@ -955,6 +983,7 @@
   <script src="../js/utils/getItemType.js"></script>
   <script src="../js/utils/bbShopFilterFunctions.js"></script>
   <script src="../js/utils/calculateItemCost.js"></script>
+  <script src="../js/utils/getMaxStarsForMission.js"></script>
   <script src="../js/components/genShowAllItemsModal.js"></script>
   <script src="../js/components/emptyStratagemBox.js"></script>
   <script src="../js/components/equipmentContainerBBDefaultContent.js"></script>

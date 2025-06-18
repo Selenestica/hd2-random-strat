@@ -43,6 +43,13 @@ let equippedSecondary = [];
 let equippedThrowable = [];
 let equippedBooster = [];
 
+let masterPrimsList = [];
+let masterSecondsList = [];
+let masterThrowsList = [];
+let masterBoostsList = [];
+let masterStratsList = [];
+let masterArmorPassivesList = [];
+
 let currentView = 'loadoutButton';
 let credits = 100;
 missionButtonsDiv.style.display = 'flex';
@@ -86,34 +93,25 @@ for (let y = 0; y < warbondCheckboxes.length; y++) {
   });
 }
 
-const filterItemsByWarbond = async () => {
-  const itemsList = [
-    OGprimsList,
-    OGsecondsList,
-    OGthrowsList,
-    OGboostsList,
-    OGstratsList,
-    OGarmorPassivesList,
+const filterItemsByWarbond = () => {
+  const sourceLists = [
+    masterPrimsList,
+    masterSecondsList,
+    masterThrowsList,
+    masterBoostsList,
+    masterStratsList,
+    masterArmorPassivesList,
   ];
-  for (let i = 0; i < itemsList.length; i++) {
-    let tempList = [...itemsList[i]];
-    itemsList[i] = await tempList.filter(
+
+  const filteredLists = sourceLists.map((list) =>
+    list.filter(
       (item) => checkedWarbonds.includes(item.warbondCode) || item.warbondCode === 'none',
-    );
-    if (i === 0) {
-      newPrims = itemsList[i];
-    } else if (i === 1) {
-      newSeconds = itemsList[i];
-    } else if (i === 2) {
-      newThrows = itemsList[i];
-    } else if (i === 3) {
-      newBoosts = itemsList[i];
-    } else if (i === 4) {
-      newStrats = itemsList[i];
-    } else if (i === 5) {
-      newArmorPassives = itemsList[i];
-    }
-  }
+    ),
+  );
+
+  [newPrims, newSeconds, newThrows, newBoosts, newStrats, newArmorPassives] = filteredLists;
+
+  // Refresh the shop UI
   bbShopItemsContainer.innerHTML = '';
   populateShopItems();
 };
@@ -217,6 +215,14 @@ const startNewRun = async () => {
     booster.cost = getItemCost(booster);
     return booster;
   });
+  // primarily for warbond filtering
+  masterPrimsList = cloneList(newPrims);
+  masterSecondsList = cloneList(newSeconds);
+  masterThrowsList = cloneList(newThrows);
+  masterBoostsList = cloneList(newBoosts);
+  masterStratsList = cloneList(newStrats);
+  masterArmorPassivesList = cloneList(newArmorPassives);
+
   credits = 100;
   scCounter.innerHTML = `${': ' + credits}`;
   currentItems = [];
@@ -319,7 +325,7 @@ const generateItemCard = (item, view = null) => {
     card.id = 'bbLoadoutItemCard-' + item.internalName;
     card.onclick = () => toggleLoadoutItem(item);
   }
-  card.className = `card d-flex col-1 pcItemCards bbItemCards ${shopClass}`;
+  card.className = `card d-flex col-1 pcItemCards bbItemCards ${item.warbondCode} ${shopClass}`;
   card.innerHTML = `
     <img
       src="../images/${imgDir}/${item.imageURL}"
@@ -347,6 +353,8 @@ const categoryMap = {
     setEquipped: (val) => (equippedArmor = val),
     container: armorContainerBB,
     emptySlot: emptyArmorSquare,
+    list: newArmorPassives,
+    masterList: masterArmorPassivesList,
     max: 1,
   },
   primary: {
@@ -354,6 +362,8 @@ const categoryMap = {
     setEquipped: (val) => (equippedPrimary = val),
     container: primaryContainerBB,
     emptySlot: emptyPrimarySquare,
+    list: newPrims,
+    masterList: masterPrimsList,
     max: 1,
   },
   secondary: {
@@ -361,6 +371,8 @@ const categoryMap = {
     setEquipped: (val) => (equippedSecondary = val),
     container: secondaryContainerBB,
     emptySlot: emptySecondarySquare,
+    list: newSeconds,
+    masterList: masterSecondsList,
     max: 1,
   },
   throwable: {
@@ -368,6 +380,8 @@ const categoryMap = {
     setEquipped: (val) => (equippedThrowable = val),
     container: throwableContainerBB,
     emptySlot: emptyThrowableSquare,
+    list: newThrows,
+    masterList: masterThrowsList,
     max: 1,
   },
   booster: {
@@ -375,6 +389,8 @@ const categoryMap = {
     setEquipped: (val) => (equippedBooster = val),
     container: boosterContainerBB,
     emptySlot: emptyBoosterSquare,
+    list: newBoosts,
+    masterList: masterBoostsList,
     max: 1,
   },
   Stratagem: {
@@ -382,6 +398,8 @@ const categoryMap = {
     setEquipped: (val) => (equippedStratagems = val),
     container: stratagemsContainerBB,
     emptySlot: null,
+    list: newStrats,
+    masterList: masterStratsList,
     max: 4,
   },
 };
@@ -478,6 +496,9 @@ const purchaseItem = async (item) => {
         i.timesPurchased++;
         updateUserCredits(totalCost);
         i.cost += 5;
+
+        // Update item in master list here
+        updateMasterListItem(i);
       }
       return i;
     });
@@ -488,6 +509,9 @@ const purchaseItem = async (item) => {
   updateUserCredits(totalCost);
   item.cost += 5;
   item.timesPurchased++;
+
+  // update item in masterlist here
+  updateMasterListItem(item);
   purchasedItems.push(item);
   updateRenderedItem(item);
   updateAllRenderedItems();
@@ -574,12 +598,23 @@ const uploadSaveData = async () => {
   const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
   if (budgetBlitzSaveData) {
     const currentGame = await getCurrentGame();
+
+    // the general working arrays
     newStrats = currentGame.newStrats;
     newPrims = currentGame.newPrims;
     newSeconds = currentGame.newSeconds;
     newThrows = currentGame.newThrows;
     newArmorPassives = currentGame.newArmorPassives;
     newBoosts = currentGame.newBoosts;
+
+    // primarily for warbond filtering
+    masterPrimsList = cloneList(newPrims);
+    masterSecondsList = cloneList(newSeconds);
+    masterThrowsList = cloneList(newThrows);
+    masterBoostsList = cloneList(newBoosts);
+    masterStratsList = cloneList(newStrats);
+    masterArmorPassivesList = cloneList(newArmorPassives);
+
     purchasedItems = currentGame.purchasedItems;
     seesRulesOnOpen = currentGame.seesRulesOnOpen;
     missionCounter = currentGame.missionCounter;
@@ -601,25 +636,19 @@ const decrementItemQuantity = (card, arr) => {
 
   const itemName = card.querySelector('.pcItemCardText').innerHTML;
 
-  arr = arr.map((obj) => {
-    if (obj.displayName === itemName) {
-      const newQuantity = obj.quantity - 1;
-
-      // update the badge text in the DOM
-      badge.innerHTML = newQuantity;
-
-      // remove the card if quantity is 0
-      if (newQuantity === 0) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].displayName === itemName) {
+      arr[i].quantity--;
+      updateMasterListItem(arr[i]);
+      badgeValue = arr[i].quantity;
+      badge.innerHTML = badgeValue;
+      if (arr[i].quantity <= 0) {
+        // remove the card from the DOM
         card.remove();
       }
-
-      return { ...obj, quantity: newQuantity };
+      return;
     }
-
-    return obj;
-  });
-
-  return arr;
+  }
 };
 
 const submitMissionReport = (isMissionSucceeded) => {
@@ -634,25 +663,25 @@ const submitMissionReport = (isMissionSucceeded) => {
   for (let i = 0; i < equippedItemsArrays.length; i++) {
     const itemArray = equippedItemsArrays[i];
     let key = null;
-    let masterArray = [];
+    let arr = [];
     if (i === 0) {
       key = 'Stratagem';
-      masterArray = newStrats;
+      arr = newStrats;
     } else if (i === 1) {
       key = 'armor';
-      masterArray = newArmorPassives;
+      arr = newArmorPassives;
     } else if (i === 2) {
       key = 'primary';
-      masterArray = newPrims;
+      arr = newPrims;
     } else if (i === 3) {
       key = 'secondary';
-      masterArray = newSeconds;
+      arr = newSeconds;
     } else if (i === 4) {
       key = 'throwable';
-      masterArray = newThrows;
+      arr = newThrows;
     } else if (i === 5) {
       key = 'booster';
-      masterArray = newBoosts;
+      arr = newBoosts;
     }
     for (let j = 0; j < itemArray.length; j++) {
       const card = document.getElementById(itemArray[j].id);
@@ -662,7 +691,7 @@ const submitMissionReport = (isMissionSucceeded) => {
         return;
       }
       unequipItem(itemConfig, card, badgeText);
-      decrementItemQuantity(card, masterArray);
+      decrementItemQuantity(card, arr);
     }
   }
 
@@ -687,11 +716,41 @@ const submitMissionReport = (isMissionSucceeded) => {
   }
 
   // set missionCounter back to start of operation
+  // BUG: this doesnt decrease item quantity (or does it? needs testing)
   if (!isMissionSucceeded) {
     reduceMissionCounter();
     missionCounterText.innerHTML = `${getMissionText()}`;
     return;
   }
+};
+
+const updateMasterListItem = (item) => {
+  let masterList = [];
+  const key = item.type === 'Stratagem' ? 'Stratagem' : item.category;
+  if (key === 'Stratagem') {
+    masterList = masterStratsList;
+  } else if (key === 'armor') {
+    masterList = masterArmorPassivesList;
+  } else if (key === 'primary') {
+    masterList = masterPrimsList;
+  } else if (key === 'secondary') {
+    masterList = masterSecondsList;
+  } else if (key === 'throwable') {
+    masterList = masterThrowsList;
+  } else if (key === 'booster') {
+    masterList = masterBoostsList;
+  }
+  const index = masterList.findIndex((i) => i.displayName === item.displayName);
+  if (index !== -1) {
+    masterList[index] = { ...masterList[index], ...item };
+  }
+};
+
+const cloneList = (list) => {
+  return list.map((item) => ({
+    ...item,
+    tags: [...item.tags], // clone the tags array too
+  }));
 };
 
 uploadSaveData();

@@ -374,7 +374,7 @@ const PRIMARIES = [
     tier: 'b',
   },
   {
-    displayName: 'LAS-17 Double Edge Sickle',
+    displayName: 'Double Edge Sickle',
     type: 'Equipment',
     category: 'primary',
     tags: ['EnergyWeapon'],

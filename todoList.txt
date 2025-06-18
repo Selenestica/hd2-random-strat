@@ -38,7 +38,6 @@ Penitent Crusade Specialist ideas:
  - ybwamahe, Punisher, Bushwacker
 
 Budget Blitz
-- implement warbond select
 - implement local storage
   - save data modal
   - restart run modal

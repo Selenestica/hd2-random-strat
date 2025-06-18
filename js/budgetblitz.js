@@ -619,6 +619,8 @@ const uploadSaveData = async () => {
     seesRulesOnOpen = currentGame.seesRulesOnOpen;
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;
+    credits = currentGame.credits;
+    scCounter.innerHTML = `${': ' + credits}`;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
     await populateShopItems();
@@ -716,7 +718,6 @@ const submitMissionReport = (isMissionSucceeded) => {
   }
 
   // set missionCounter back to start of operation
-  // BUG: this doesnt decrease item quantity (or does it? needs testing)
   if (!isMissionSucceeded) {
     reduceMissionCounter();
     missionCounterText.innerHTML = `${getMissionText()}`;
@@ -751,6 +752,90 @@ const cloneList = (list) => {
     ...item,
     tags: [...item.tags], // clone the tags array too
   }));
+};
+
+const saveProgress = async () => {
+  let obj = {};
+  const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
+  if (!budgetBlitzSaveData) {
+    obj = {
+      savedGames: [
+        {
+          purchasedItems,
+
+          newStrats,
+          newPrims,
+          newSeconds,
+          newThrows,
+          newArmorPassives,
+          newBoosts,
+
+          masterStratsList,
+          masterPrimsList,
+          masterSecondsList,
+          masterThrowsList,
+          masterBoostsList,
+          masterArmorPassivesList,
+
+          seesRulesOnOpen: false,
+          dataName: `${difficulty.toUpperCase()} | ${getMissionText()} | ${getCurrentDateTime()}`,
+          currentGame: true,
+          missionCounter,
+          credits,
+        },
+      ],
+    };
+    localStorage.setItem('budgetBlitzSaveData', JSON.stringify(obj));
+    missionCounterText.innerHTML = `${getMissionText()}`;
+    return;
+  }
+  const data = JSON.parse(budgetBlitzSaveData);
+  const newSavedGames = await data.savedGames.map((sg) => {
+    if (sg.currentGame === true) {
+      sg = {
+        ...sg,
+        purchasedItems,
+
+        newStrats,
+        newPrims,
+        newSeconds,
+        newThrows,
+        newArmorPassives,
+        newBoosts,
+
+        masterStratsList,
+        masterPrimsList,
+        masterSecondsList,
+        masterThrowsList,
+        masterBoostsList,
+        masterArmorPassivesList,
+
+        seesRulesOnOpen: false,
+        dataName: `${difficulty.toUpperCase()} | ${getMissionText()} | ${getCurrentDateTime()}`,
+        currentGame: true,
+        missionCounter,
+        credits,
+      };
+    }
+    return sg;
+  });
+  obj = {
+    ...obj,
+    savedGames: newSavedGames,
+  };
+  localStorage.setItem('budgetBlitzSaveData', JSON.stringify(obj));
+};
+
+const getCurrentGame = async () => {
+  const savedGames = JSON.parse(localStorage.getItem('budgetBlitzSaveData')).savedGames;
+  const currentGame = await savedGames.filter((sg) => {
+    return sg.currentGame === true;
+  });
+  if (currentGame.length !== 1) {
+    console.log('SAVED GAME DATA CORRUPTED', savedGames);
+    return;
+  }
+  return currentGame[0];
 };
 
 uploadSaveData();

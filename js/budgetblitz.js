@@ -186,8 +186,6 @@ const filterItemsByWarbond = async (uploadingSaveData = null) => {
 // toggles view between LOADOUT and SHOP
 for (let z = 0; z < mainViewButtons.length; z++) {
   mainViewButtons[z].addEventListener('change', (e) => {
-    // Loadout view will be like Randomizer
-    // Shop view similar to what it is now
     if (e.target.checked) {
       currentView = e.srcElement.id;
       if (e.srcElement.id === 'loadoutButton') {
@@ -313,12 +311,11 @@ const startNewRun = async (isRestart = null) => {
   checkMissionButtons();
   missionCounterText.innerHTML = `${getMissionText()}`;
 
-  // DISABLED MODAL JUST FOR TESTING. ADD THIS BACK IN WHEN CHALLENGE GOES LIVE
   // open the modal to show the rules
-  // document.addEventListener('DOMContentLoaded', () => {
-  //   const modal = new bootstrap.Modal(flavorAndInstructionsModal);
-  //   modal.show();
-  // });
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = new bootstrap.Modal(flavorAndInstructionsModal);
+    modal.show();
+  });
 
   // only do this next part when restarting a run
   if (isRestart) {
@@ -506,7 +503,6 @@ const equipItem = (itemConfig, card) => {
   if (itemConfig.equipped().length >= itemConfig.max) return;
 
   itemConfig.setEquipped([...itemConfig.equipped(), card]);
-
   // only do this if not a stratagem card
   if (itemConfig.max !== 4) {
     card.classList.add('w-100');
@@ -611,7 +607,7 @@ const updateAllRenderedItems = () => {
 };
 
 const checkMissionButtons = () => {
-  if (missionCounter >= 23) {
+  if (missionCounter >= 22) {
     missionFailedButton.disabled = true;
     missionCompleteButton.disabled = true;
     // hide the mission buttons, and show download items buttons
@@ -637,10 +633,9 @@ const checkMissionButtons = () => {
       missionFailedButton.disabled = false;
       return;
     }
-    // REMEMBER TO CHANGE THIS BACK WHEN DONE TESTING
     // else
-    missionCompleteButton.disabled = false;
-    missionFailedButton.disabled = false;
+    missionCompleteButton.disabled = true;
+    missionFailedButton.disabled = true;
   }
 };
 

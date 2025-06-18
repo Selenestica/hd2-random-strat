@@ -40,18 +40,18 @@ Penitent Crusade Specialist ideas:
 
 Budget Blitz
 - BUGS:
+  - weird querySelector bug (not consistent to reproduce)
+  - when saveDataAndRestart, equipment isnt being equipped in the DOM
+
+- modal that shows after challenge ends with your total score
+  - ability to download PDF as well
 
 - add animations for purchasing items
   - toast for purchase notification? "1 Quasar Cannon sent to inventory"
 
-- work on mobile UI
-
 - can purchase a completely random item for 5 credits
   - price goes up by 5 each time you buy
   - will not affect the future price of the rolled item
-
-- modal that shows after challenge ends with your total score
-  - ability to download PDF as well
 
 - GOAL: Complete an operation on Super Helldive difficulty
   - SUB-OBJECTIVE: the more money you have at the end of a run, the higher your score

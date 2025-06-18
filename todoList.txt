@@ -41,8 +41,9 @@ Budget Blitz
 - implement local storage
   - save data modal
   - restart run modal
-  - make sure warbond checkboxes are saved
-    - make sure the checkboxes are honored when save data is loaded
+  - BUGS
+
+  
 - work on mobile UI
 - can purchase a completely random item for 5 credits
   - price goes up by 5 each time you buy

@@ -35,6 +35,8 @@ const hellDiversMobilizeCheckbox = document.getElementById('warbond3');
 const warbondCheckboxes = document.getElementsByClassName('warbondCheckboxes');
 
 let missionCounter = 5;
+let failedMissions = 0;
+let successfulMissions = 0;
 let purchasedItems = [];
 let equippedStratagems = [];
 let equippedArmor = [];
@@ -56,44 +58,20 @@ missionButtonsDiv.style.display = 'flex';
 bbShopFilterDiv.style.display = 'none';
 hellDiversMobilizeCheckbox.disabled = true;
 
-let checkedWarbonds = [
-  'warbond0',
-  'warbond1',
-  'warbond2',
-  'warbond3',
-  'warbond4',
-  'warbond5',
-  'warbond6',
-  'warbond7',
-  'warbond8',
-  'warbond9',
-  'warbond10',
-  'warbond11',
-  'warbond12',
-  'warbond13',
-  'warbond14',
-  'warbond15',
-  'warbond16',
-];
-
 for (let y = 0; y < warbondCheckboxes.length; y++) {
   warbondCheckboxes[y].addEventListener('change', (e) => {
-    // update localStorage obj
-    // updateLocalStorage(warbondCheckboxes[y], 'warbondOptions');
-
-    // now do the front end stuff
-    if (e.target.checked && !checkedWarbonds.includes(e.srcElement.id)) {
-      checkedWarbonds.push(e.srcElement.id);
+    if (e.target.checked && !warbondCodes.includes(e.srcElement.id)) {
+      warbondCodes.push(e.srcElement.id);
     }
-    if (!e.target.checked && checkedWarbonds.includes(e.srcElement.id)) {
-      const indexToRemove = checkedWarbonds.indexOf(e.srcElement.id);
-      checkedWarbonds.splice(indexToRemove, 1);
+    if (!e.target.checked && warbondCodes.includes(e.srcElement.id)) {
+      const indexToRemove = warbondCodes.indexOf(e.srcElement.id);
+      warbondCodes.splice(indexToRemove, 1);
     }
     filterItemsByWarbond();
   });
 }
 
-const filterItemsByWarbond = () => {
+const filterItemsByWarbond = async (uploadingSaveData = null) => {
   const sourceLists = [
     masterPrimsList,
     masterSecondsList,
@@ -103,14 +81,22 @@ const filterItemsByWarbond = () => {
     masterArmorPassivesList,
   ];
 
-  const filteredLists = sourceLists.map((list) =>
-    list.filter(
-      (item) => checkedWarbonds.includes(item.warbondCode) || item.warbondCode === 'none',
-    ),
+  const filteredLists = await sourceLists.map((list) =>
+    list.filter((item) => warbondCodes.includes(item.warbondCode) || item.warbondCode === 'none'),
   );
 
   [newPrims, newSeconds, newThrows, newBoosts, newStrats, newArmorPassives] = filteredLists;
 
+  // only save progress if user is actively filtering by warbonds. otherwise, we are uploading save data
+  !uploadingSaveData ? saveProgress() : null;
+
+  // when uploading save data, we want to uncheck any boxes that shouldnt be checked
+  if (uploadingSaveData) {
+    const missingWarbondCodes = masterWarbondCodes.filter((code) => !warbondCodes.includes(code));
+    for (let i = 0; i < missingWarbondCodes.length; i++) {
+      document.getElementById(missingWarbondCodes[i]).checked = false;
+    }
+  }
   // Refresh the shop UI
   bbShopItemsContainer.innerHTML = '';
   populateShopItems();
@@ -504,6 +490,7 @@ const purchaseItem = async (item) => {
     });
     updateRenderedItem(item);
     updateAllRenderedItems();
+    saveProgress();
     return;
   }
   updateUserCredits(totalCost);
@@ -515,6 +502,7 @@ const purchaseItem = async (item) => {
   purchasedItems.push(item);
   updateRenderedItem(item);
   updateAllRenderedItems();
+  saveProgress();
 };
 
 const updateUserCredits = (cost) => {
@@ -608,22 +596,26 @@ const uploadSaveData = async () => {
     newBoosts = currentGame.newBoosts;
 
     // primarily for warbond filtering
-    masterPrimsList = cloneList(newPrims);
-    masterSecondsList = cloneList(newSeconds);
-    masterThrowsList = cloneList(newThrows);
-    masterBoostsList = cloneList(newBoosts);
-    masterStratsList = cloneList(newStrats);
-    masterArmorPassivesList = cloneList(newArmorPassives);
+    masterPrimsList = currentGame.masterPrimsList;
+    masterSecondsList = currentGame.masterSecondsList;
+    masterThrowsList = currentGame.masterThrowsList;
+    masterBoostsList = currentGame.masterBoostsList;
+    masterStratsList = currentGame.masterStratsList;
+    masterArmorPassivesList = currentGame.masterArmorPassivesList;
 
     purchasedItems = currentGame.purchasedItems;
     seesRulesOnOpen = currentGame.seesRulesOnOpen;
     missionCounter = currentGame.missionCounter;
+    failedMissions = currentGame.failedMissions;
+    successfulMissions = currentGame.successfulMissions;
+    warbondCodes = currentGame.warbondCodes;
     dataName = currentGame.dataName;
     credits = currentGame.credits;
     scCounter.innerHTML = `${': ' + credits}`;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
-    await populateShopItems();
+
+    await filterItemsByWarbond(true);
     await populatePurchasedItemsInventory();
     return;
   }
@@ -647,6 +639,9 @@ const decrementItemQuantity = (card, arr) => {
       if (arr[i].quantity <= 0) {
         // remove the card from the DOM
         card.remove();
+
+        // remove the item from purchasedItems list
+        purchasedItems = purchasedItems.filter((item) => item.displayName !== itemName);
       }
       return;
     }
@@ -714,6 +709,8 @@ const submitMissionReport = (isMissionSucceeded) => {
     missionCounter++;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
+    successfulMissions++;
+    saveProgress();
     return;
   }
 
@@ -721,6 +718,8 @@ const submitMissionReport = (isMissionSucceeded) => {
   if (!isMissionSucceeded) {
     reduceMissionCounter();
     missionCounterText.innerHTML = `${getMissionText()}`;
+    failedMissions++;
+    saveProgress();
     return;
   }
 };
@@ -757,6 +756,7 @@ const cloneList = (list) => {
 const saveProgress = async () => {
   let obj = {};
   const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
+  console.log('saving progress');
   if (!budgetBlitzSaveData) {
     obj = {
       savedGames: [
@@ -778,10 +778,14 @@ const saveProgress = async () => {
           masterArmorPassivesList,
 
           seesRulesOnOpen: false,
-          dataName: `${difficulty.toUpperCase()} | ${getMissionText()} | ${getCurrentDateTime()}`,
+          dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
           currentGame: true,
           missionCounter,
+          failedMissions,
+          successfulMissions,
           credits,
+
+          warbondCodes,
         },
       ],
     };
@@ -811,10 +815,14 @@ const saveProgress = async () => {
         masterArmorPassivesList,
 
         seesRulesOnOpen: false,
-        dataName: `${difficulty.toUpperCase()} | ${getMissionText()} | ${getCurrentDateTime()}`,
+        dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
         currentGame: true,
         missionCounter,
+        failedMissions,
+        successfulMissions,
         credits,
+
+        warbondCodes,
       };
     }
     return sg;

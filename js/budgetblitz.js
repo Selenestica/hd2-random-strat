@@ -483,20 +483,22 @@ const moveToInventory = (card, badgeText) => {
 const unequipItem = (itemConfig, card, badgeText) => {
   const newArray = itemConfig.equipped().filter((it) => it.id !== card.id);
   itemConfig.setEquipped(newArray);
-
   if (itemConfig.emptySlot) {
     itemConfig.container.appendChild(itemConfig.emptySlot);
+    card.classList.remove('w-100');
   } else {
     // Stratagem specific: add 4 empty boxes
-    if (equippedStratagems.length === 0) {
+    if (equippedStratagems.length === 0 && itemConfig.max === 4) {
       itemConfig.container.innerHTML = '';
       for (let i = 0; i < 4; i++) {
         itemConfig.container.innerHTML += emptyStratagemBox;
       }
+    } else if (itemConfig.max !== 4) {
+      itemConfig.container.innerHTML = '';
+      card.classList.remove('w-100');
     }
   }
 
-  card.classList.add('col-1');
   moveToInventory(card, badgeText);
 };
 
@@ -507,7 +509,7 @@ const equipItem = (itemConfig, card) => {
 
   // only do this if not a stratagem card
   if (itemConfig.max !== 4) {
-    card.classList.remove('col-1');
+    card.classList.add('w-100');
   }
 
   if (itemConfig.emptySlot) {
@@ -834,7 +836,6 @@ const cloneList = (list) => {
 const saveProgress = async () => {
   let obj = {};
   const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
-  console.log('saving progress');
   if (!budgetBlitzSaveData) {
     obj = {
       savedGames: [

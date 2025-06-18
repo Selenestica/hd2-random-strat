@@ -1,62 +1,38 @@
-equipmentContainerBBDefaultContent = `
+const equipmentContainerBBDefaultContent = `
   <div
-    class="col-1 d-flex justify-content-center align-items-center"
+    class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
     id="armorContainerBB"
   >
-    <div
-      id="emptyArmorSquare"
-      style="background-color: grey"
-      class="d-flex justify-content-center align-items-center"
-    >
-      <span class="text-white text-center">Select Armor Below</span>
-    </div>
+    <p class="mb-0 text-secondary emptyItemText"><small>Select Armor Below</small></p>
   </div>
   <div
     id="primaryContainerBB"
-    class="col-1 d-flex justify-content-center align-items-center"
+    class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
   >
-    <div
-      id="emptyPrimarySquare"
-      class="d-flex justify-content-center align-items-center"
-      style="background-color: grey"
-    >
-      <span class="text-white text-center">Select Primary Below</span>
-    </div>
+    <p class="mb-0 text-secondary emptyItemText"><small>Select Primary Below</small></p>
   </div>
   <div
     id="secondaryContainerBB"
-    class="col-1 d-flex justify-content-center align-items-center"
+    class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
   >
-    <div
-      id="emptySecondarySquare"
-      class="d-flex justify-content-center align-items-center"
-      style="background-color: grey"
-    >
-      <span class="text-white text-center">Select Secondary Below</span>
-    </div>
+    <p class="mb-0 text-secondary emptyItemText">
+      <small>Select Secondary Below</small>
+    </p>
   </div>
   <div
     id="throwableContainerBB"
-    class="col-1 d-flex justify-content-center align-items-center"
+    class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
   >
-    <div
-      id="emptyThrowableSquare"
-      class="d-flex justify-content-center align-items-center"
-      style="background-color: grey"
-    >
-      <span class="text-white text-center">Select Throwable Below</span>
-    </div>
+    <p class="mb-0 text-secondary emptyItemText">
+      <small>Select Throwable Below</small>
+    </p>
   </div>
   <div
     id="boosterContainerBB"
-    class="col-1 d-flex justify-content-center align-items-center"
+    class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
   >
-    <div
-      id="emptyBoosterSquare"
-      class="d-flex justify-content-center align-items-center"
-      style="background-color: grey"
-    >
-      <span class="text-white text-center">Select Booster Below (optional)</span>
-    </div>
+    <p class="mb-0 text-secondary emptyItemText">
+      <small>Select Booster Below (optional)</small>
+    </p>
   </div>
 `;

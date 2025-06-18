@@ -447,7 +447,7 @@ const generateItemCard = (item, view = null) => {
     card.id = 'bbLoadoutItemCard-' + item.internalName;
     card.onclick = () => toggleLoadoutItem(item);
   }
-  card.className = `card d-flex col-1 pcItemCards bbItemCards ${item.warbondCode} ${shopClass}`;
+  card.className = `card col-2 col-lg-1 pcItemCards bbItemCards ${item.warbondCode} ${shopClass}`;
   card.innerHTML = `
     <img
       src="../images/${imgDir}/${item.imageURL}"

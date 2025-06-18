@@ -316,7 +316,7 @@ const startNewRun = async (isRestart = null) => {
     equipmentContainerBB.innerHTML = equipmentContainerBBDefaultContent;
     purchasedItemsInventory.innerHTML = '';
     defaultInventory.innerHTML = '';
-    populateDefaultItems();
+    isRestart !== 'applyingSave' ? populateDefaultItems() : null;
 
     missionButtonsDiv.style.display = 'flex';
     bbShopFilterDiv.style.display = 'none';

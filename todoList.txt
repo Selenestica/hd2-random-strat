@@ -42,17 +42,19 @@ Budget Blitz
 - BUGS:
 
 - prevent user from restarting website to get favorable prices when they start run
-- implement local storage
-  - save data modal
 
 - prices change and different items go on sale after each operation
   - we still want to modify price based on timesPurchased though
+
 - work on mobile UI
+
 - can purchase a completely random item for 5 credits
   - price goes up by 5 each time you buy
   - will not affect the future price of the rolled item
+
 - modal that shows after challenge ends with your total score
   - ability to download PDF as well
+  
 - GOAL: Complete an operation on Super Helldive difficulty
   - SUB-OBJECTIVE: the more money you have at the end of a run, the higher your score
   - money is subtracted from your total score for the missions that you failed

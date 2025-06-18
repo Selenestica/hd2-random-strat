@@ -42,7 +42,7 @@
         <div class="d-flex col-4 justify-content-end">
           <button
             class="btn btn-primary"
-            onclick="genBudgetBlitzSaveDataManagementModalInfo()"
+            onclick="genBudgetBlitzDataManagementModalInfo()"
             type="button"
           >
             <i class="fa-solid fa-2x text-light fa-floppy-disk"></i>
@@ -832,10 +832,10 @@
       <!-- SAVE DATA MANAGEMENT MODAL -->
       <div
         class="modal fade"
-        id="saveBudgetBlitzDataManagementModal"
+        id="budgetBlitzDataManagementModal"
         tabindex="-1"
         open="true"
-        aria-labelledby="saveBudgetBlitzDataManagementModalLabel"
+        aria-labelledby="budgetBlitzDataManagementModalLabel"
         aria-hidden="true"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
@@ -847,7 +847,7 @@
             </div>
             <div
               class="modal-body row d-flex justify-content-center"
-              id="saveBudgetBlitzDataManagementModalBody"
+              id="budgetBlitzDataManagementModalBody"
             >
               <p class="text-white">
                 Switch your active save file here, delete individual save files, or delete all save
@@ -859,7 +859,7 @@
                 NOTE: You can't delete your current save file.
               </p>
               <div
-                id="saveBudgetBlitzDataManagementModalSavesList"
+                id="budgetBlitzDataManagementModalSavesList"
                 class="btn-group-vertical"
                 role="group"
                 aria-label="Basic radio toggle button group"
@@ -869,7 +869,7 @@
               <div class="d-flex col justify-content-start">
                 <button
                   type="button"
-                  onclick="clearSaveDataManagementModal()"
+                  onclick="clearBudgetBlitzDataManagementModal()"
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >

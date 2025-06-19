@@ -24,9 +24,9 @@ to do Penitent Crusade:
 - add Discord bot compatibility
 - SPECIALIST ideas:
  - The Shotgun Surgeon
-  - ybwamahe, Punisher, Bushwacker
-- BUGS
-  - deleting all save data when there is a specialist applied doesnt remove the specialist equipment
+ - ybwamahe, Punisher, Bushwacker
+- BUGS:
+  - mysterious specialist issues
 
 feature ideas:
 - add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons

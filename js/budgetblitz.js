@@ -237,6 +237,7 @@ for (let z = 0; z < mainViewButtons.length; z++) {
         bbShopItemsContainer.innerHTML = "";
         populateShopItems();
         updateAllRenderedItems();
+        unequipAllItems();
       }
     }
   });
@@ -265,7 +266,7 @@ const startNewRun = async (isRestart = null) => {
   ).map((strat) => {
     strat.timesPurchased = 0;
     strat.cost = getItemCost(strat);
-    strat.quantity = 1;
+    strat.quantity = 0;
     strat.onSale = getIsItemOnSale();
     return strat;
   });
@@ -274,7 +275,7 @@ const startNewRun = async (isRestart = null) => {
   ).map((prim) => {
     prim.timesPurchased = 0;
     prim.cost = getItemCost(prim);
-    prim.quantity = 1;
+    prim.quantity = 0;
     prim.onSale = getIsItemOnSale();
     return prim;
   });
@@ -283,7 +284,7 @@ const startNewRun = async (isRestart = null) => {
   ).map((sec) => {
     sec.timesPurchased = 0;
     sec.cost = getItemCost(sec);
-    sec.quantity = 1;
+    sec.quantity = 0;
     sec.onSale = getIsItemOnSale();
     return sec;
   });
@@ -292,7 +293,7 @@ const startNewRun = async (isRestart = null) => {
   ).map((throwable) => {
     throwable.timesPurchased = 0;
     throwable.cost = getItemCost(throwable);
-    throwable.quantity = 1;
+    throwable.quantity = 0;
     throwable.onSale = getIsItemOnSale();
     return throwable;
   });
@@ -300,7 +301,7 @@ const startNewRun = async (isRestart = null) => {
     (armorPassive) =>
       !starterArmorPassiveNames.includes(armorPassive.displayName)
   ).map((armorPassive) => {
-    armorPassive.quantity = 1;
+    armorPassive.quantity = 0;
     armorPassive.timesPurchased = 0;
     armorPassive.onSale = getIsItemOnSale();
     armorPassive.cost = getItemCost(armorPassive);
@@ -309,7 +310,7 @@ const startNewRun = async (isRestart = null) => {
   newBoosts = await OGboostsList.filter(
     (booster) => !starterBoosterNames.includes(booster.displayName)
   ).map((booster) => {
-    booster.quantity = 1;
+    booster.quantity = 0;
     booster.timesPurchased = 0;
     booster.onSale = getIsItemOnSale();
     booster.cost = getItemCost(booster);
@@ -584,6 +585,9 @@ const purchaseItem = async (item) => {
   if (existsInPurchasedList.length > 0) {
     purchasedItems = await purchasedItems.map((i) => {
       if (i.displayName === item.displayName) {
+        if (i !== item) {
+          i = item;
+        }
         i.quantity++;
         i.timesPurchased++;
         updateUserCredits(totalCost);
@@ -602,6 +606,7 @@ const purchaseItem = async (item) => {
   updateUserCredits(totalCost);
   item.cost += 5;
   item.timesPurchased++;
+  item.quantity++;
 
   // update item in masterlist here
   updateMasterListItem(item);
@@ -625,13 +630,6 @@ const updateRenderedItem = (item) => {
     totalCost = Math.ceil(item.cost * 0.5);
   }
   const cardEl = document.getElementById("bbShopItemCard-" + item.internalName);
-  if (!cardEl) {
-    console.log(
-      "BUG!",
-      item,
-      document.querySelectorAll(`bbShopItemCard-${item.internalName}`)
-    );
-  }
   const badgeEl = cardEl.querySelector(".costBadges");
   badgeEl.textContent = totalCost;
 };
@@ -663,19 +661,18 @@ const checkMissionButtons = () => {
     missionFailedButton.style.display = "block";
     downloadPDFButtonDiv.style.display = "none";
 
-    // FOR TESTING. REVERT WHEN DONE
     // if all equippedItems arrays are full, can start mission
-    // if (
-    //   equippedArmor.length === 1 &&
-    //   equippedPrimary.length === 1 &&
-    //   equippedSecondary.length === 1 &&
-    //   equippedThrowable.length === 1 &&
-    //   equippedStratagems.length === 4
-    // ) {
-    //   missionCompleteButton.disabled = false;
-    //   missionFailedButton.disabled = false;
-    //   return;
-    // }
+    if (
+      equippedArmor.length === 1 &&
+      equippedPrimary.length === 1 &&
+      equippedSecondary.length === 1 &&
+      equippedThrowable.length === 1 &&
+      equippedStratagems.length === 4
+    ) {
+      missionCompleteButton.disabled = false;
+      missionFailedButton.disabled = false;
+      return;
+    }
     // else
     missionCompleteButton.disabled = false;
     missionFailedButton.disabled = false;
@@ -765,7 +762,7 @@ const decrementItemQuantity = (card, arr) => {
   }
 };
 
-const submitMissionReport = async (isMissionSucceeded) => {
+const unequipAllItems = async (missionEnded = false) => {
   const equippedItemsArrays = [
     [...equippedStratagems],
     [...equippedArmor],
@@ -805,9 +802,13 @@ const submitMissionReport = async (isMissionSucceeded) => {
         return;
       }
       unequipItem(itemConfig, card, badgeText);
-      await decrementItemQuantity(card, arr);
+      missionEnded ? await decrementItemQuantity(card, arr) : null;
     }
   }
+};
+
+const submitMissionReport = async (isMissionSucceeded) => {
+  unequipAllItems(true);
 
   if (isMissionSucceeded) {
     const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 1000;

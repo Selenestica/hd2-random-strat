@@ -39,16 +39,7 @@ feature ideas:
 
 Budget Blitz
 - BUGS:
-  - items that have been purchased previously sometimes wont update their new price after another purchase. price is constant
-    - happens after refresh (uploading a save)
-      - info:
-        - works fine before refresh
-        - after refresh
-          - trying to purchase item doesnt update in the DOM
-          - credits still go down as if youre purchasing
-          - quantity doesnt go up in loadout menu DOM
-          - if you refresh again, the correct quantity appears in the loadout DOM
-  - items with a quantity of 0 are in inventory (havent been able to reproduce)
+
 - start challenge on diff 6? 
 
 - make sure high value item checkbox same as above

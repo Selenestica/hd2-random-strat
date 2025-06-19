@@ -1,35 +1,57 @@
-const missionCompleteModalBody = document.getElementById('missionCompleteModalBody');
-const maxStarsModalBody = document.getElementById('maxStarsModalBody');
-const primaryAccordionBody = document.getElementById('PrimariesAccordionBody');
-const secondaryAccordionBody = document.getElementById('SecondariesAccordionBody');
-const stratagemAccordionBody = document.getElementById('StratagemsAccordionBody');
-const throwableAccordionBody = document.getElementById('ThrowablesAccordionBody');
-const armorPassiveAccordionBody = document.getElementById('ArmorsAccordionBody');
-const boosterAccordionBody = document.getElementById('BoostersAccordionBody');
-const flavorAndInstructionsModal = document.getElementById('flavorAndInstructionsModal');
-const itemOptionsModalBody = document.getElementById('itemOptionsModalBody');
-const itemOptionsModalLabel = document.getElementById('itemOptionsModalLabel');
-const itemOptionsModalHeaderItemName = document.getElementById('itemOptionsModalHeaderItemName');
-const itemOptionsModal = document.getElementById('itemOptionsModal');
-const missionCompleteButton = document.getElementById('missionCompleteButton');
-const missionFailedButton = document.getElementById('missionFailedButton');
-const missionCompleteButtonDiv = document.getElementById('missionCompleteButtonDiv');
-const missionFailedButtonDiv = document.getElementById('missionFailedButtonDiv');
-const downloadPDFButtonDiv = document.getElementById('downloadPDFButtonDiv');
-const missionCounterText = document.getElementById('missionCounterText');
-const oldDataDetectedModal = document.getElementById('oldDataDetectedModal');
-const maxStarsPromptModal = document.getElementById('maxStarsPromptModal');
-const applySpecialistButton = document.getElementById('applySpecialistButton');
-const currentDifficultyButton = document.getElementById('currentDifficultyButton');
-const difficultyOptionButton = document.getElementById('difficultyOptionButton');
+const missionCompleteModalBody = document.getElementById(
+  "missionCompleteModalBody"
+);
+const maxStarsModalBody = document.getElementById("maxStarsModalBody");
+const primaryAccordionBody = document.getElementById("PrimariesAccordionBody");
+const secondaryAccordionBody = document.getElementById(
+  "SecondariesAccordionBody"
+);
+const stratagemAccordionBody = document.getElementById(
+  "StratagemsAccordionBody"
+);
+const throwableAccordionBody = document.getElementById(
+  "ThrowablesAccordionBody"
+);
+const armorPassiveAccordionBody = document.getElementById(
+  "ArmorsAccordionBody"
+);
+const boosterAccordionBody = document.getElementById("BoostersAccordionBody");
+const flavorAndInstructionsModal = document.getElementById(
+  "flavorAndInstructionsModal"
+);
+const itemOptionsModalBody = document.getElementById("itemOptionsModalBody");
+const itemOptionsModalLabel = document.getElementById("itemOptionsModalLabel");
+const itemOptionsModalHeaderItemName = document.getElementById(
+  "itemOptionsModalHeaderItemName"
+);
+const itemOptionsModal = document.getElementById("itemOptionsModal");
+const missionCompleteButton = document.getElementById("missionCompleteButton");
+const missionFailedButton = document.getElementById("missionFailedButton");
+const missionCompleteButtonDiv = document.getElementById(
+  "missionCompleteButtonDiv"
+);
+const missionFailedButtonDiv = document.getElementById(
+  "missionFailedButtonDiv"
+);
+const downloadPDFButtonDiv = document.getElementById("downloadPDFButtonDiv");
+const missionCounterText = document.getElementById("missionCounterText");
+const oldDataDetectedModal = document.getElementById("oldDataDetectedModal");
+const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
+const applySpecialistButton = document.getElementById("applySpecialistButton");
+const currentDifficultyButton = document.getElementById(
+  "currentDifficultyButton"
+);
+const difficultyOptionButton = document.getElementById(
+  "difficultyOptionButton"
+);
 let currentItems = [];
 let currentPunishmentItems = [];
 let missionCounter = 1;
-let difficulty = 'normal';
+let difficulty = "normal";
 
 const startNewRun = (spec = null, diff = null) => {
   if (spec === null) {
-    specialistNameText.innerHTML = '';
+    specialistNameText.innerHTML = "";
   }
 
   newStrats = OGstratsList.filter((strat) => {
@@ -53,12 +75,12 @@ const startNewRun = (spec = null, diff = null) => {
 
   currentItems = [];
   currentPunishmentItems = [];
-  missionCounter = diff === 'super' ? 3 : 1;
-  difficulty = diff ? diff : 'normal';
+  missionCounter = diff === "super" ? 3 : 1;
+  difficulty = diff ? diff : "normal";
   specialist = spec;
   checkMissionButtons();
   // open the modal to show the rules
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const modal = new bootstrap.Modal(flavorAndInstructionsModal);
     modal.show();
   });
@@ -99,19 +121,21 @@ const getDefaultItems = () => {
 };
 
 const getCurrentGame = async () => {
-  const savedGames = JSON.parse(localStorage.getItem('penitentCrusadeSaveData')).savedGames;
+  const savedGames = JSON.parse(
+    localStorage.getItem("penitentCrusadeSaveData")
+  ).savedGames;
   const currentGame = await savedGames.filter((sg) => {
     return sg.currentGame === true;
   });
   if (currentGame.length !== 1) {
-    console.log('SAVED GAME DATA CORRUPTED', savedGames);
+    console.log("SAVED GAME DATA CORRUPTED", savedGames);
     return;
   }
   return currentGame[0];
 };
 
 const checkMissionButtons = () => {
-  if (difficulty === 'normal') {
+  if (difficulty === "normal") {
     if (missionCounter > 1) {
       applySpecialistButton.disabled = true;
     }
@@ -119,7 +143,7 @@ const checkMissionButtons = () => {
       applySpecialistButton.disabled = false;
     }
   }
-  if (difficulty === 'super') {
+  if (difficulty === "super") {
     if (missionCounter > 3) {
       applySpecialistButton.disabled = true;
     }
@@ -132,20 +156,20 @@ const checkMissionButtons = () => {
     missionFailedButton.disabled = true;
     missionCompleteButton.disabled = true;
     // hide the mission buttons, and show download items buttons
-    missionCompleteButton.style.display = 'none';
-    missionFailedButton.style.display = 'none';
-    downloadPDFButtonDiv.style.display = 'block';
+    missionCompleteButton.style.display = "none";
+    missionFailedButton.style.display = "none";
+    downloadPDFButtonDiv.style.display = "block";
     // allow the user to start Super Penitent Crusade
-    difficultyOptionButton.classList.remove('disabled');
-    localStorage.setItem('isSuperPenitentCrusadeUnlocked', 'true');
+    difficultyOptionButton.classList.remove("disabled");
+    localStorage.setItem("isSuperPenitentCrusadeUnlocked", "true");
   }
 
   if (missionCounter < 21) {
     missionCompleteButton.disabled = false;
     missionFailedButton.disabled = false;
-    missionCompleteButton.style.display = 'block';
-    missionFailedButton.style.display = 'block';
-    downloadPDFButtonDiv.style.display = 'none';
+    missionCompleteButton.style.display = "block";
+    missionFailedButton.style.display = "block";
+    downloadPDFButtonDiv.style.display = "none";
   }
 };
 
@@ -211,7 +235,7 @@ const claimPunishment = async (currentItemIndex) => {
   };
 
   // set the updated data into local storage
-  let saveData = JSON.parse(localStorage.getItem('penitentCrusadeSaveData'));
+  let saveData = JSON.parse(localStorage.getItem("penitentCrusadeSaveData"));
   const notCurrentGames = await saveData.savedGames.filter((game) => {
     return game.currentGame !== true;
   });
@@ -222,7 +246,7 @@ const claimPunishment = async (currentItemIndex) => {
     savedGames: notCurrentGames,
   };
 
-  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(saveData));
+  localStorage.setItem("penitentCrusadeSaveData", JSON.stringify(saveData));
 
   const modal = bootstrap.Modal.getInstance(itemOptionsModal);
   modal.hide();
@@ -237,47 +261,47 @@ const getItemMetaData = (item) => {
   let accBody;
   let typeText;
   let listKeyName;
-  if (type === 'Stratagem') {
-    imgDir = 'svgs';
+  if (type === "Stratagem") {
+    imgDir = "svgs";
     list = newStrats;
     accBody = stratagemAccordionBody;
-    typeText = 'Stratagem';
-    listKeyName = 'newStrats';
+    typeText = "Stratagem";
+    listKeyName = "newStrats";
   }
-  if (category === 'primary') {
-    imgDir = 'equipment';
+  if (category === "primary") {
+    imgDir = "equipment";
     list = newPrims;
     accBody = primaryAccordionBody;
-    typeText = 'Primary';
-    listKeyName = 'newPrims';
+    typeText = "Primary";
+    listKeyName = "newPrims";
   }
-  if (category === 'booster') {
-    imgDir = 'equipment';
+  if (category === "booster") {
+    imgDir = "equipment";
     list = newBoosts;
     accBody = boosterAccordionBody;
-    typeText = 'Booster';
-    listKeyName = 'newBoosts';
+    typeText = "Booster";
+    listKeyName = "newBoosts";
   }
-  if (category === 'secondary') {
-    imgDir = 'equipment';
+  if (category === "secondary") {
+    imgDir = "equipment";
     list = newSeconds;
     accBody = secondaryAccordionBody;
-    typeText = 'Secondary';
-    listKeyName = 'newSeconds';
+    typeText = "Secondary";
+    listKeyName = "newSeconds";
   }
-  if (category === 'throwable') {
-    imgDir = 'equipment';
+  if (category === "throwable") {
+    imgDir = "equipment";
     list = newThrows;
     accBody = throwableAccordionBody;
-    typeText = 'Throwable';
-    listKeyName = 'newThrows';
+    typeText = "Throwable";
+    listKeyName = "newThrows";
   }
-  if (category === 'armor') {
-    imgDir = 'armor';
+  if (category === "armor") {
+    imgDir = "armor";
     list = newArmorPassives;
     accBody = armorPassiveAccordionBody;
-    typeText = 'Armor Passive';
-    listKeyName = 'newArmorPassives';
+    typeText = "Armor Passive";
+    listKeyName = "newArmorPassives";
   }
   return { imgDir, list, accBody, typeText, listKeyName };
 };
@@ -287,19 +311,23 @@ const maxStarsNotEarned = async () => {
   checkMissionButtons();
   missionCounterText.innerHTML = `${getMissionText()}`;
   // save progress just for missionCounter
-  const penitentCrusadeSaveData = JSON.parse(localStorage.getItem('penitentCrusadeSaveData'));
-  const updatedSavedGames = await penitentCrusadeSaveData.savedGames.map((sg) => {
-    if (sg.currentGame === true) {
-      sg.missionCounter = missionCounter;
+  const penitentCrusadeSaveData = JSON.parse(
+    localStorage.getItem("penitentCrusadeSaveData")
+  );
+  const updatedSavedGames = await penitentCrusadeSaveData.savedGames.map(
+    (sg) => {
+      if (sg.currentGame === true) {
+        sg.missionCounter = missionCounter;
+        return sg;
+      }
       return sg;
     }
-    return sg;
-  });
+  );
   let newObj = {
     ...penitentCrusadeSaveData,
     savedGames: updatedSavedGames,
   };
-  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newObj));
+  localStorage.setItem("penitentCrusadeSaveData", JSON.stringify(newObj));
 };
 
 const closeMaxStarsPromptModal = () => {
@@ -322,7 +350,14 @@ const closeMaxStarsPromptModal = () => {
 };
 
 const getRewardsItemsLists = () => {
-  let lists = [newStrats, newPrims, newSeconds, newThrows, newArmorPassives, newBoosts];
+  let lists = [
+    newStrats,
+    newPrims,
+    newSeconds,
+    newThrows,
+    newArmorPassives,
+    newBoosts,
+  ];
   if (specialist === null) {
     return lists;
   }
@@ -355,7 +390,7 @@ const rollRewardOptions = async () => {
         true,
         vals.imgDir,
         i,
-        vals.typeText,
+        vals.typeText
       );
     }
     return;
@@ -364,7 +399,7 @@ const rollRewardOptions = async () => {
   let itemsLists = await getRewardsItemsLists();
   itemsLists = itemsLists.filter((list) => list.length > 0);
   if (itemsLists.length < 3) {
-    console.log('NOT ENOUGH ITEMS TO SHOW');
+    console.log("NOT ENOUGH ITEMS TO SHOW");
     return;
   }
   const numbers = new Set();
@@ -387,7 +422,7 @@ const rollRewardOptions = async () => {
       true,
       vals.imgDir,
       i,
-      vals.typeText,
+      vals.typeText
     );
   }
   // save current items in LS
@@ -404,7 +439,7 @@ const rollPunishmentOptions = async () => {
         vals.imgDir,
         i,
         vals.typeText,
-        true,
+        true
       );
     }
     const modal = new bootstrap.Modal(itemOptionsModal);
@@ -439,7 +474,7 @@ const rollPunishmentOptions = async () => {
       vals.imgDir,
       i,
       vals.typeText,
-      true,
+      true
     );
   }
   saveProgress();
@@ -448,10 +483,10 @@ const rollPunishmentOptions = async () => {
 const getRandomItemList = async (list) => {
   const num = Math.random();
   const saList = await list.filter((item) => {
-    return item.tier === 's' || item.tier === 'a';
+    return item.tier === "s" || item.tier === "a";
   });
   const bcList = await list.filter((item) => {
-    return item.tier === 'b' || item.tier === 'c';
+    return item.tier === "b" || item.tier === "c";
   });
   if (bcList.length === 0) {
     return saList;
@@ -491,16 +526,16 @@ const generateItemCard = (
   imgDir,
   currentItemIndex = null,
   type = null,
-  missionFailed = false,
+  missionFailed = false
 ) => {
   // display the item image in the modal or accordion item
-  let style = 'col-2';
-  let modalTextStyle = 'pcItemCardText';
-  let fcn = '';
-  let typeText = '';
+  let style = "col-2";
+  let modalTextStyle = "pcItemCardText";
+  let fcn = "";
+  let typeText = "";
   if (inModal) {
-    style = 'pcModalItemCards col-6';
-    modalTextStyle = '';
+    style = "pcModalItemCards col-6";
+    modalTextStyle = "";
     fcn = !missionFailed
       ? `claimItem(${currentItemIndex})`
       : `claimPunishment(${currentItemIndex})`;
@@ -528,7 +563,7 @@ const removeItemFromList = (list, item) => {
 };
 
 const clearItemOptionsModal = () => {
-  itemOptionsModalBody.innerHTML = '';
+  itemOptionsModalBody.innerHTML = "";
 };
 
 const addDefaultItemsToAccordions = async (spec = null) => {
@@ -545,35 +580,55 @@ const addDefaultItemsToAccordions = async (spec = null) => {
 
   // if a specialist was applied, reset the accordions
   if (spec !== null) {
-    stratagemAccordionBody.innerHTML = '';
-    primaryAccordionBody.innerHTML = '';
-    secondaryAccordionBody.innerHTML = '';
-    throwableAccordionBody.innerHTML = '';
-    armorPassiveAccordionBody.innerHTML = '';
-    boosterAccordionBody.innerHTML = '';
+    stratagemAccordionBody.innerHTML = "";
+    primaryAccordionBody.innerHTML = "";
+    secondaryAccordionBody.innerHTML = "";
+    throwableAccordionBody.innerHTML = "";
+    armorPassiveAccordionBody.innerHTML = "";
+    boosterAccordionBody.innerHTML = "";
   }
 
   for (let i = 0; i < defaultStrats.length; i++) {
-    stratagemAccordionBody.innerHTML += generateItemCard(defaultStrats[i], false, 'svgs');
+    stratagemAccordionBody.innerHTML += generateItemCard(
+      defaultStrats[i],
+      false,
+      "svgs"
+    );
   }
   for (let i = 0; i < defaultPrims.length; i++) {
-    primaryAccordionBody.innerHTML += generateItemCard(defaultPrims[i], false, 'equipment');
+    primaryAccordionBody.innerHTML += generateItemCard(
+      defaultPrims[i],
+      false,
+      "equipment"
+    );
   }
   for (let i = 0; i < defaultSeconds.length; i++) {
-    secondaryAccordionBody.innerHTML += generateItemCard(defaultSeconds[i], false, 'equipment');
+    secondaryAccordionBody.innerHTML += generateItemCard(
+      defaultSeconds[i],
+      false,
+      "equipment"
+    );
   }
   for (let i = 0; i < defaultThrows.length; i++) {
-    throwableAccordionBody.innerHTML += generateItemCard(defaultThrows[i], false, 'equipment');
+    throwableAccordionBody.innerHTML += generateItemCard(
+      defaultThrows[i],
+      false,
+      "equipment"
+    );
   }
   for (let i = 0; i < defaultArmorPassives.length; i++) {
     armorPassiveAccordionBody.innerHTML += generateItemCard(
       defaultArmorPassives[i],
       false,
-      'armor',
+      "armor"
     );
   }
   for (let i = 0; i < defaultBoosters.length; i++) {
-    boosterAccordionBody.innerHTML += generateItemCard(defaultBoosters[i], false, 'equipment');
+    boosterAccordionBody.innerHTML += generateItemCard(
+      defaultBoosters[i],
+      false,
+      "equipment"
+    );
   }
 };
 
@@ -590,42 +645,46 @@ const applySpecialist = async () => {
 const changeDifficulty = async (uploadedDiff = null) => {
   // go here when page loads
   if (uploadedDiff) {
-    if (uploadedDiff === 'normal') {
-      currentDifficultyButton.innerHTML = 'Penitent Crusade';
-      difficultyOptionButton.innerHTML = 'Super Penitent Crusade';
-    } else if (uploadedDiff === 'super') {
-      currentDifficultyButton.innerHTML = 'Super Penitent Crusade';
-      difficultyOptionButton.innerHTML = 'Penitent Crusade';
+    if (uploadedDiff === "normal") {
+      currentDifficultyButton.innerHTML = "Penitent Crusade";
+      difficultyOptionButton.innerHTML = "Super Penitent Crusade";
+    } else if (uploadedDiff === "super") {
+      currentDifficultyButton.innerHTML = "Super Penitent Crusade";
+      difficultyOptionButton.innerHTML = "Penitent Crusade";
     }
     return;
   }
 
   // go here when the user clicks the button
-  if (difficulty === 'normal') {
-    currentDifficultyButton.innerHTML = 'Super Penitent Crusade';
-    difficultyOptionButton.innerHTML = 'Penitent Crusade';
-    difficulty = 'super';
-    const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
+  if (difficulty === "normal") {
+    currentDifficultyButton.innerHTML = "Super Penitent Crusade";
+    difficultyOptionButton.innerHTML = "Penitent Crusade";
+    difficulty = "super";
+    const penitentCrusadeSaveData = localStorage.getItem(
+      "penitentCrusadeSaveData"
+    );
     if (!penitentCrusadeSaveData) {
       await getStartingItems(difficulty);
       startNewRun(null, difficulty);
       saveProgress();
     }
-    saveDataAndRestart('super');
+    saveDataAndRestart("super");
     return;
   }
-  if (difficulty === 'super') {
-    currentDifficultyButton.innerHTML = 'Penitent Crusade';
-    difficultyOptionButton.innerHTML = 'Super Penitent Crusade';
-    difficulty = 'normal';
-    saveDataAndRestart('normal');
+  if (difficulty === "super") {
+    currentDifficultyButton.innerHTML = "Penitent Crusade";
+    difficultyOptionButton.innerHTML = "Super Penitent Crusade";
+    difficulty = "normal";
+    saveDataAndRestart("normal");
     return;
   }
 };
 
 const saveProgress = async (item = null) => {
   let obj = {};
-  const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
+  const penitentCrusadeSaveData = localStorage.getItem(
+    "penitentCrusadeSaveData"
+  );
   if (!penitentCrusadeSaveData) {
     obj = {
       savedGames: [
@@ -639,7 +698,9 @@ const saveProgress = async (item = null) => {
           newBoosts,
           seesRulesOnOpen: false,
           dataName: `${difficulty.toUpperCase()} | ${getMissionText()} | ${getCurrentDateTime()}${
-            specialist !== null ? ' | ' + SPECIALISTS[specialist].displayName : ''
+            specialist !== null
+              ? " | " + SPECIALISTS[specialist].displayName
+              : ""
           }`,
           currentGame: true,
           missionCounter,
@@ -648,7 +709,7 @@ const saveProgress = async (item = null) => {
         },
       ],
     };
-    localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
+    localStorage.setItem("penitentCrusadeSaveData", JSON.stringify(obj));
     missionCounterText.innerHTML = `${getMissionText()}`;
     return;
   }
@@ -672,7 +733,7 @@ const saveProgress = async (item = null) => {
         newBoosts,
         seesRulesOnOpen: false,
         dataName: `${difficulty.toUpperCase()} | ${getMissionText()} | ${getCurrentDateTime()}${
-          specialist !== null ? ' | ' + SPECIALISTS[specialist].displayName : ''
+          specialist !== null ? " | " + SPECIALISTS[specialist].displayName : ""
         }`,
         currentGame: true,
         missionCounter,
@@ -687,38 +748,42 @@ const saveProgress = async (item = null) => {
     savedGames: newSavedGames,
   };
   missionCounterText.innerHTML = `${getMissionText()}`;
-  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(obj));
+  localStorage.setItem("penitentCrusadeSaveData", JSON.stringify(obj));
 };
 
 const unlockSuperPC = () => {
-  const lsData = localStorage.getItem('isSuperPenitentCrusadeUnlocked');
+  const lsData = localStorage.getItem("isSuperPenitentCrusadeUnlocked");
   if (!lsData) {
-    const savedGames = JSON.parse(localStorage.getItem('penitentCrusadeSaveData')).savedGames;
+    const savedGames = JSON.parse(
+      localStorage.getItem("penitentCrusadeSaveData")
+    ).savedGames;
     for (let i = 0; i < savedGames.length; i++) {
       const game = savedGames[i];
       if (game.missionCounter >= 21) {
-        difficultyOptionButton.classList.remove('disabled');
-        localStorage.setItem('isSuperPenitentCrusadeUnlocked', 'true');
+        difficultyOptionButton.classList.remove("disabled");
+        localStorage.setItem("isSuperPenitentCrusadeUnlocked", "true");
         return;
       }
     }
-    difficultyOptionButton.classList.add('disabled');
-    localStorage.setItem('isSuperPenitentCrusadeUnlocked', 'false');
+    difficultyOptionButton.classList.add("disabled");
+    localStorage.setItem("isSuperPenitentCrusadeUnlocked", "false");
     return;
   }
   const isSuperPenitentCrusadeUnlocked = JSON.parse(lsData);
   if (isSuperPenitentCrusadeUnlocked) {
-    difficultyOptionButton.classList.remove('disabled');
+    difficultyOptionButton.classList.remove("disabled");
     return;
   }
-  difficultyOptionButton.classList.add('disabled');
+  difficultyOptionButton.classList.add("disabled");
 };
 
 const uploadSaveData = async () => {
-  const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
+  const penitentCrusadeSaveData = localStorage.getItem(
+    "penitentCrusadeSaveData"
+  );
   if (penitentCrusadeSaveData) {
     if (!JSON.parse(penitentCrusadeSaveData).savedGames) {
-      localStorage.removeItem('penitentCrusadeSaveData');
+      localStorage.removeItem("penitentCrusadeSaveData");
       const modal = new bootstrap.Modal(oldDataDetectedModal);
       modal.show();
       await getStartingItems();
@@ -730,8 +795,8 @@ const uploadSaveData = async () => {
     unlockSuperPC();
 
     const currentGame = await getCurrentGame();
-    difficulty = currentGame.difficulty ?? 'normal';
-    changeDifficulty(currentGame.difficulty ?? 'normal');
+    difficulty = currentGame.difficulty ?? "normal";
+    changeDifficulty(currentGame.difficulty ?? "normal");
     newStrats = currentGame.newStrats;
     newPrims = currentGame.newPrims;
     newSeconds = currentGame.newSeconds;
@@ -749,12 +814,12 @@ const uploadSaveData = async () => {
     if (currentGame.specialist !== null) {
       specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
     }
-    stratagemAccordionBody.innerHTML = '';
-    primaryAccordionBody.innerHTML = '';
-    secondaryAccordionBody.innerHTML = '';
-    throwableAccordionBody.innerHTML = '';
-    armorPassiveAccordionBody.innerHTML = '';
-    boosterAccordionBody.innerHTML = '';
+    stratagemAccordionBody.innerHTML = "";
+    primaryAccordionBody.innerHTML = "";
+    secondaryAccordionBody.innerHTML = "";
+    throwableAccordionBody.innerHTML = "";
+    armorPassiveAccordionBody.innerHTML = "";
+    boosterAccordionBody.innerHTML = "";
     await getStartingItems(currentGame.difficulty);
     await addDefaultItemsToAccordions(specialist);
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
@@ -769,21 +834,16 @@ const uploadSaveData = async () => {
 };
 
 const saveDataAndRestart = async (diff = null) => {
-  const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
+  const penitentCrusadeSaveData = localStorage.getItem(
+    "penitentCrusadeSaveData"
+  );
   if (!penitentCrusadeSaveData && !diff) {
     return;
   }
   if (!penitentCrusadeSaveData && diff) {
   }
   const savedGames = JSON.parse(penitentCrusadeSaveData).savedGames;
-  if (savedGames.length > 5) {
-    console.log(
-      'you cant have more than 5 saves. please choose a save to remove before proceeding',
-    );
-    // const modal = new bootstrap.Modal(saveDataManagementModal);
-    // modal.show();
-    // return
-  }
+
   // make all saved game data currentGame = false
   let updatedSavedGames = await savedGames.map((sg) => {
     sg.currentGame = false;
@@ -815,7 +875,7 @@ const saveDataAndRestart = async (diff = null) => {
   });
   currentItems = [];
   currentPunishmentItems = [];
-  missionCounter = diff === 'super' ? 3 : 1;
+  missionCounter = diff === "super" ? 3 : 1;
   missionCounterText.innerHTML = `${getMissionText()}`;
   checkMissionButtons();
   const newSaveObj = {
@@ -831,14 +891,17 @@ const saveDataAndRestart = async (diff = null) => {
     currentGame: true,
     missionCounter,
     specialist,
-    difficulty: diff === 'super' ? 'super' : 'normal',
+    difficulty: diff === "super" ? "super" : "normal",
   };
 
   updatedSavedGames.push(newSaveObj);
   const newPenitentCrusadeSaveData = {
     savedGames: updatedSavedGames,
   };
-  await localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newPenitentCrusadeSaveData));
+  await localStorage.setItem(
+    "penitentCrusadeSaveData",
+    JSON.stringify(newPenitentCrusadeSaveData)
+  );
 
   // remove saved games that are at the first mission of their difficulty,
   // as long as they are not the current game
@@ -846,43 +909,48 @@ const saveDataAndRestart = async (diff = null) => {
   pruneSavedGames();
 
   clearItemOptionsModal();
-  stratagemAccordionBody.innerHTML = '';
-  primaryAccordionBody.innerHTML = '';
-  secondaryAccordionBody.innerHTML = '';
-  throwableAccordionBody.innerHTML = '';
-  armorPassiveAccordionBody.innerHTML = '';
-  boosterAccordionBody.innerHTML = '';
-  specialistNameText.innerHTML = '';
+  stratagemAccordionBody.innerHTML = "";
+  primaryAccordionBody.innerHTML = "";
+  secondaryAccordionBody.innerHTML = "";
+  throwableAccordionBody.innerHTML = "";
+  armorPassiveAccordionBody.innerHTML = "";
+  boosterAccordionBody.innerHTML = "";
+  specialistNameText.innerHTML = "";
   addDefaultItemsToAccordions();
 };
 
 const clearSaveDataAndRestart = async () => {
-  localStorage.removeItem('penitentCrusadeSaveData');
-  changeDifficulty('normal');
+  localStorage.removeItem("penitentCrusadeSaveData");
+  window.location.reload();
+  changeDifficulty("normal");
   await getStartingItems();
   startNewRun();
-  stratagemAccordionBody.innerHTML = '';
-  primaryAccordionBody.innerHTML = '';
-  secondaryAccordionBody.innerHTML = '';
-  throwableAccordionBody.innerHTML = '';
-  armorPassiveAccordionBody.innerHTML = '';
-  boosterAccordionBody.innerHTML = '';
+  stratagemAccordionBody.innerHTML = "";
+  primaryAccordionBody.innerHTML = "";
+  secondaryAccordionBody.innerHTML = "";
+  throwableAccordionBody.innerHTML = "";
+  armorPassiveAccordionBody.innerHTML = "";
+  boosterAccordionBody.innerHTML = "";
   missionCounterText.innerHTML = `${getMissionText()}`;
-  specialistNameText.innerHTML = '';
+  specialistNameText.innerHTML = "";
   addDefaultItemsToAccordions();
 };
 
 // get rid of all games that arent the current game and are on the first mission
 const pruneSavedGames = async () => {
-  const penitentCrusadeSaveData = localStorage.getItem('penitentCrusadeSaveData');
+  const penitentCrusadeSaveData = localStorage.getItem(
+    "penitentCrusadeSaveData"
+  );
   if (!penitentCrusadeSaveData) {
     return;
   }
-  const prunedGames = await JSON.parse(penitentCrusadeSaveData).savedGames.filter((sg) => {
+  const prunedGames = await JSON.parse(
+    penitentCrusadeSaveData
+  ).savedGames.filter((sg) => {
     if (
       sg.currentGame === true ||
-      (sg.missionCounter !== 1 && sg.difficulty === 'normal') ||
-      (sg.missionCounter !== 3 && sg.difficulty === 'super')
+      (sg.missionCounter !== 1 && sg.difficulty === "normal") ||
+      (sg.missionCounter !== 3 && sg.difficulty === "super")
     ) {
       return sg;
     }
@@ -892,10 +960,10 @@ const pruneSavedGames = async () => {
     ...oldData,
     savedGames: prunedGames,
   };
-  localStorage.setItem('penitentCrusadeSaveData', JSON.stringify(newData));
+  localStorage.setItem("penitentCrusadeSaveData", JSON.stringify(newData));
 };
 
-if (!localStorage.getItem('penitentCrusadeSaveData')) {
+if (!localStorage.getItem("penitentCrusadeSaveData")) {
   addDefaultItemsToAccordions();
 }
 

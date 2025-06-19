@@ -22,6 +22,11 @@ to do Penitent Crusade:
 - add options for warbonds, in case some people dont have all the warbonds
 - add QR codes for data sharing
 - add Discord bot compatibility
+- SPECIALIST ideas:
+ - The Shotgun Surgeon
+ - ybwamahe, Punisher, Bushwacker
+- BUGS:
+  - mysterious specialist issues
 
 feature ideas:
 - add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons

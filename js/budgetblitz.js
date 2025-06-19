@@ -21,6 +21,8 @@ const purchasedItemsInventory = document.getElementById('purchasedItemsInventory
 const starsEarnedInput = document.getElementById('starsEarnedInput');
 const superSamplesCollectedCheck = document.getElementById('superSamplesCollectedCheck');
 const highValueItemCollectedCheck = document.getElementById('highValueItemCollectedCheck');
+const superSamplesCollectedForm = document.getElementById('superSamplesCollectedForm');
+const highValueItemCollectedForm = document.getElementById('highValueItemCollectedForm');
 const yourCreditsAmount = document.getElementById('yourCreditsAmount');
 const itemCostAmount = document.getElementById('itemCostAmount');
 const itemQuantityInput = document.getElementById('itemQuantityInput');
@@ -323,8 +325,6 @@ const startNewRun = async (isRestart = null) => {
     for (let i = 0; i < 4; i++) {
       stratagemsContainerBB.innerHTML += emptyStratagemBox;
     }
-    equipmentContainerBB.innerHTML = '';
-    equipmentContainerBB.innerHTML = equipmentContainerBBDefaultContent;
     purchasedItemsInventory.innerHTML = '';
     defaultInventory.innerHTML = '';
     isRestart !== 'applyingSave' ? populateDefaultItems() : null;
@@ -500,7 +500,9 @@ const unequipItem = (itemConfig, card, badgeText) => {
 };
 
 const equipItem = (itemConfig, card) => {
-  if (itemConfig.equipped().length >= itemConfig.max) return;
+  if (itemConfig.equipped().length >= itemConfig.max) {
+    return;
+  }
 
   itemConfig.setEquipped([...itemConfig.equipped(), card]);
   // only do this if not a stratagem card
@@ -763,6 +765,19 @@ const submitMissionReport = async (isMissionSucceeded) => {
   }
 
   if (isMissionSucceeded) {
+    // check if super samples are in the level
+    if (missionCounter < 8) {
+      superSamplesCollectedForm.classList.add = 'd-none';
+    } else {
+      superSamplesCollectedForm.classList.add = 'd-block';
+    }
+
+    if (missionCounter < 17) {
+      highValueItemCollectedForm.classList.add = 'd-none';
+    } else {
+      highValueItemCollectedForm.classList.add = 'd-block';
+    }
+
     const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 25;
     const superSamplesModifier = superSamplesCollectedCheck.checked ? 25 : 0;
     const highValueItemModifier = highValueItemCollectedCheck.checked ? 25 : 0;

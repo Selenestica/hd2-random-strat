@@ -40,8 +40,9 @@ Penitent Crusade Specialist ideas:
 
 Budget Blitz
 - BUGS:
-  - weird querySelector bug (not consistent to reproduce)
-  - when saveDataAndRestart, equipment isnt being equipped in the DOM
+
+- make sure superSamplesCollected checkbox only shows up on super samples difficulties
+- make sure high value item checkbox same as above
 
 - modal that shows after challenge ends with your total score
   - ability to download PDF as well

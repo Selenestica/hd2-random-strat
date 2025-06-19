@@ -68,7 +68,7 @@ let masterStratsList = [];
 let masterArmorPassivesList = [];
 
 let currentView = "loadoutButton";
-let credits = 10000;
+let credits = 100;
 missionButtonsDiv.style.display = "flex";
 bbShopFilterDiv.style.display = "none";
 hellDiversMobilizeCheckbox.disabled = true;
@@ -86,12 +86,12 @@ missionCompleteModal.addEventListener("shown.bs.modal", () => {
   const maxStarsPossible = getMaxStarsForMission(missionCounter);
   starsEarnedInput.max = maxStarsPossible;
   // check if super samples are in the level
-  if (missionCounter > 8) {
+  if (missionCounter >= 8) {
     superSamplesCollectedForm.classList.remove("d-none");
   }
 
   // check if high value item in the level
-  if (missionCounter > 17) {
+  if (missionCounter >= 17) {
     highValueItemCollectedForm.classList.remove("d-none");
   }
 });
@@ -325,7 +325,7 @@ const startNewRun = async (isRestart = null) => {
   masterStratsList = cloneList(newStrats);
   masterArmorPassivesList = cloneList(newArmorPassives);
 
-  credits = 10000;
+  credits = 100;
   scCounter.innerHTML = `${": " + credits}`;
   currentItems = [];
   missionCounter = 5;
@@ -650,10 +650,14 @@ const checkMissionButtons = () => {
   if (missionCounter >= 22) {
     missionFailedButton.disabled = true;
     missionCompleteButton.disabled = true;
+
     // hide the mission buttons, and show download items buttons
     missionCompleteButton.style.display = "none";
     missionFailedButton.style.display = "none";
     downloadPDFButtonDiv.style.display = "block";
+
+    // show score modal
+    genBBGameOverModal();
   }
 
   if (missionCounter < 21) {
@@ -811,7 +815,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
   unequipAllItems(true);
 
   if (isMissionSucceeded) {
-    const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 1000;
+    const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 25;
     const superSamplesModifier = superSamplesCollectedCheck.checked ? 25 : 0;
     const highValueItemModifier = highValueItemCollectedCheck.checked ? 25 : 0;
     const total =
@@ -902,6 +906,7 @@ const saveProgress = async () => {
 
           seesRulesOnOpen: false,
           dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
+          dateStarted: `${getCurrentDateTime()}`,
           currentGame: true,
           missionCounter,
           failedMissions,

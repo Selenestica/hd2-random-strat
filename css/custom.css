@@ -125,6 +125,10 @@ body {
   #warbondSelectButtonMobile {
     display: block;
   }
+
+  #bbShopFilterDiv {
+    justify-content: end;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -152,6 +156,10 @@ body {
   #superCreditsIcon,
   #warbondSelectButtonMobile {
     display: none;
+  }
+
+  #bbShopFilterDiv {
+    justify-content: center;
   }
 }
 

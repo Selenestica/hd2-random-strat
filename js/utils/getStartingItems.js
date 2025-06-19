@@ -41,7 +41,10 @@ const getStartingItems = (diff = null) => {
   starterPrimNames = ["Constitution"];
   starterSecNames = ["Stun Lance", "Stun Baton", "Combat Hatchet", "Saber"];
   diff !== "super" ? starterSecNames.push("Peacemaker") : null;
-  starterThrowNames = diff === "bb" ? ["G-3 Smoke"] : ["G-12 High Explosive"];
+  starterThrowNames =
+    diff === "bb"
+      ? ["G-3 Smoke", "K-2 Throwing Knife"]
+      : ["G-12 High Explosive"];
   starterArmorPassiveNames =
     diff === "super" ? ["Integrated Explosives"] : ["Extra Padding"];
   starterBoosterNames = [];

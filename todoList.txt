@@ -42,10 +42,7 @@ Budget Blitz
 
 - start challenge on diff 6? 
 
-- make sure high value item checkbox same as above
-
-- modal that shows after challenge ends with your total score
-  - ability to download PDF as well
+- ability to download PDF after challenge complete
 
 - add animations for purchasing items
   - toast for purchase notification? "1 Quasar Cannon sent to inventory"

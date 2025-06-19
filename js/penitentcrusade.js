@@ -850,6 +850,11 @@ const saveDataAndRestart = async (diff = null) => {
     return sg;
   });
 
+  if (diff === null) {
+    currentDifficultyButton.innerHTML = "Penitent Crusade";
+    difficultyOptionButton.innerHTML = "Super Penitent Crusade";
+  }
+
   specialist = null;
   // will need to change starting items to account for super
   await getStartingItems(diff);

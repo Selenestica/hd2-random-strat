@@ -1,9 +1,9 @@
 body {
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 .bg-default {
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 #partCategoriesContainer {
@@ -19,19 +19,19 @@ body {
 }
 
 .accordion-button.collapsed {
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 .accordion-button:not(.collapsed) {
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 .bg-grey {
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 .accordion-collapse {
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 .outline-light {
@@ -64,12 +64,12 @@ body {
 }
 
 .itemCards {
-  background-color: rgb(71, 71, 71);
+  background-color: #212529;
   width: 100%;
 }
 
 .pcItemCards {
-  background-color: rgb(71, 71, 71);
+  background-color: #212529;
 }
 
 .pcItemCards:hover {
@@ -244,8 +244,8 @@ body {
   height: 250px;
   overflow-y: overlay;
   overflow-x: hidden;
-  scrollbar-color: #fff rgb(71, 71, 71);
-  background-color: rgb(71, 71, 71);
+  scrollbar-color: #fff #212529;
+  background-color: #212529;
 }
 
 #downloadPDFButtonDiv {

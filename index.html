@@ -12,7 +12,11 @@
     />
 
     <link rel="stylesheet" type="text/css" href="./css/custom.css" />
-    <link rel="shortcut icon" type="image/png" href="./images/svgs/orbitalprecisionstrike.svg" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="./images/svgs/orbitalprecisionstrike.svg"
+    />
     <meta
       name="description"
       content="Prove that you have the Strength and the Courage to dispense freedom with Super Earth's surplus arsenal!"
@@ -30,19 +34,27 @@
           <small class="text-light"> 12 June 2025 | Force of Law </small>
         </div>
         <div class="d-flex col-4 justify-content-center">
-          <a class="mx-1" target="_blank" href="https://github.com/Selenestica/hd2-random-strat">
+          <a
+            class="mx-1"
+            target="_blank"
+            href="https://github.com/Selenestica/hd2-random-strat"
+          >
             <i class="fa-2x fa-brands fa-github"></i>
           </a>
-          <a class="mx-1" target="_blank" href="https://buymeacoffee.com/breakfasttaco">
+          <a
+            class="mx-1"
+            target="_blank"
+            href="https://buymeacoffee.com/breakfasttaco"
+          >
             <i class="fa-2x fa-solid fa-mug-saucer"></i>
           </a>
         </div>
         <div class="d-flex col-4 justify-content-end">
-          <a href="./pages/budgetblitz.html">
+          <!-- <a href="./pages/budgetblitz.html">
             <button class="btn px-0" type="button">
               <i class="text-danger fa-solid fa-2x fa-sack-dollar"></i>
             </button>
-          </a>
+          </a> -->
           <a href="./pages/penitentcrusade.html">
             <button style="padding-right: 0rem" class="btn" type="button">
               <i class="text-danger fa-solid fa-2x fa-skull-crossbones"></i>
@@ -88,7 +100,9 @@
                     id="rollStratsButton"
                   >
                     <span id="stratText"> Stratagems </span>
-                    <span id="stratIcon"> <i class="fa-solid fa-jet-fighter"></i></span>
+                    <span id="stratIcon">
+                      <i class="fa-solid fa-jet-fighter"></i
+                    ></span>
                   </button>
                 </div>
               </div>
@@ -100,7 +114,9 @@
                   onclick="rollEquipment()"
                 >
                   <span id="equipText">Equipment</span>
-                  <span id="equipIcon"> <i class="fa-solid fa-person-rifle"></i></span>
+                  <span id="equipIcon">
+                    <i class="fa-solid fa-person-rifle"></i
+                  ></span>
                 </button>
               </div>
               <div class="btn-group" role="group">
@@ -113,7 +129,9 @@
                     data-bs-auto-close="outside"
                   >
                     <span id="armorButtonText">Armor</span>
-                    <span id="armorButtonIcon"> <i class="fa-solid fa-shield"></i></span>
+                    <span id="armorButtonIcon">
+                      <i class="fa-solid fa-shield"></i
+                    ></span>
                   </button>
                   <button
                     type="button"
@@ -169,9 +187,18 @@
             </div>
           </div>
           <hr />
-          <div id="armorContainer" class="d-flex row justify-content-start"></div>
-          <div id="equipmentContainer" class="row pt-3 d-flex justify-content-center"></div>
-          <div id="stratagemsContainer" class="row pt-3 d-flex justify-content-center"></div>
+          <div
+            id="armorContainer"
+            class="d-flex row justify-content-start"
+          ></div>
+          <div
+            id="equipmentContainer"
+            class="row pt-3 d-flex justify-content-center"
+          ></div>
+          <div
+            id="stratagemsContainer"
+            class="row pt-3 d-flex justify-content-center"
+          ></div>
         </div>
       </div>
     </div>
@@ -187,7 +214,9 @@
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="optionsModalLabel">Options</h5>
+            <h5 class="modal-title text-light" id="optionsModalLabel">
+              Options
+            </h5>
           </div>
           <div class="modal-body">
             <div class="accordion accordion-flush" id="optionsAccordion">
@@ -243,7 +272,10 @@
                             value=""
                             id="oneSupportCheck"
                           />
-                          <label class="form-check-label text-white" for="oneSupportCheck">
+                          <label
+                            class="form-check-label text-white"
+                            for="oneSupportCheck"
+                          >
                             Only roll one support weapon
                           </label>
                         </div>
@@ -254,7 +286,10 @@
                             value=""
                             id="oneBackpackCheck"
                           />
-                          <label class="form-check-label text-white" for="oneBackpackCheck">
+                          <label
+                            class="form-check-label text-white"
+                            for="oneBackpackCheck"
+                          >
                             Only roll one backpack
                           </label>
                         </div>
@@ -272,7 +307,10 @@
                               id="onlyEaglesRadio"
                               value="onlyEagles"
                             />
-                            <label class="text-white form-check-label" for="onlyEaglesRadio">
+                            <label
+                              class="text-white form-check-label"
+                              for="onlyEaglesRadio"
+                            >
                               Only Eagles
                             </label>
                           </div>
@@ -284,7 +322,10 @@
                               id="noEaglesRadio"
                               value="noEagles"
                             />
-                            <label class="text-white form-check-label" for="noEaglesRadio">
+                            <label
+                              class="text-white form-check-label"
+                              for="noEaglesRadio"
+                            >
                               No Eagles
                             </label>
                           </div>
@@ -297,7 +338,10 @@
                               value="defaultEagles"
                               checked
                             />
-                            <label class="text-white form-check-label" for="defaultEaglesRadio">
+                            <label
+                              class="text-white form-check-label"
+                              for="defaultEaglesRadio"
+                            >
                               Default
                             </label>
                           </div>
@@ -314,7 +358,10 @@
                               id="onlyOrbitalsRadio"
                               value="onlyOrbital"
                             />
-                            <label class="text-white form-check-label" for="onlyOrbitalsRadio">
+                            <label
+                              class="text-white form-check-label"
+                              for="onlyOrbitalsRadio"
+                            >
                               Only Orbitals
                             </label>
                           </div>
@@ -326,7 +373,10 @@
                               id="noOrbitalsRadio"
                               value="noOrbitals"
                             />
-                            <label class="text-white form-check-label" for="noOrbitalsRadio">
+                            <label
+                              class="text-white form-check-label"
+                              for="noOrbitalsRadio"
+                            >
                               No Orbitals
                             </label>
                           </div>
@@ -339,7 +389,10 @@
                               value="defaultOrbitals"
                               checked
                             />
-                            <label class="text-white form-check-label" for="defaultOrbitalsRadio">
+                            <label
+                              class="text-white form-check-label"
+                              for="defaultOrbitalsRadio"
+                            >
                               Default
                             </label>
                           </div>
@@ -358,7 +411,10 @@
                               id="onlyDefenseRadio"
                               value="onlyOrbital"
                             />
-                            <label class="text-white form-check-label" for="onlyDefenseRadio">
+                            <label
+                              class="text-white form-check-label"
+                              for="onlyDefenseRadio"
+                            >
                               Only Defense
                             </label>
                           </div>
@@ -370,7 +426,10 @@
                               id="noDefenseRadio"
                               value="noOrbitals"
                             />
-                            <label class="text-white form-check-label" for="noDefenseRadio">
+                            <label
+                              class="text-white form-check-label"
+                              for="noDefenseRadio"
+                            >
                               No Defense
                             </label>
                           </div>
@@ -383,7 +442,10 @@
                               value="defaultOrbitals"
                               checked
                             />
-                            <label class="text-white form-check-label" for="defaultDefenseRadio">
+                            <label
+                              class="text-white form-check-label"
+                              for="defaultDefenseRadio"
+                            >
                               Default
                             </label>
                           </div>
@@ -400,7 +462,10 @@
                               id="onlySupplyRadio"
                               value="onlyOrbital"
                             />
-                            <label class="text-white form-check-label" for="onlySupplyRadio">
+                            <label
+                              class="text-white form-check-label"
+                              for="onlySupplyRadio"
+                            >
                               Only Supply
                             </label>
                           </div>
@@ -412,7 +477,10 @@
                               id="noSupplyRadio"
                               value="noOrbitals"
                             />
-                            <label class="text-white form-check-label" for="noSupplyRadio">
+                            <label
+                              class="text-white form-check-label"
+                              for="noSupplyRadio"
+                            >
                               No Supply
                             </label>
                           </div>
@@ -425,7 +493,10 @@
                               value="defaultOrbitals"
                               checked
                             />
-                            <label class="text-white form-check-label" for="defaultSupplyRadio">
+                            <label
+                              class="text-white form-check-label"
+                              for="defaultSupplyRadio"
+                            >
                               Default
                             </label>
                           </div>
@@ -438,7 +509,13 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -481,35 +558,40 @@
                   <li class="text-white">
                     <b>Q: Who is this app for?</b>
                     <p>
-                      A: This web app was made for Helldivers who have unlocked all stratagems (and
-                      ideally, equipment) and are looking for a fun way to spice up their dives.
+                      A: This web app was made for Helldivers who have unlocked
+                      all stratagems (and ideally, equipment) and are looking
+                      for a fun way to spice up their dives.
                     </p>
                   </li>
                   <li class="text-white">
                     <b
-                      >Q: What if I don't have some of the items in a warbond/the superstore/from
-                      the Pre-Order Bonus?</b
+                      >Q: What if I don't have some of the items in a
+                      warbond/the superstore/from the Pre-Order Bonus?</b
                     >
                     <p>
-                      A: You can toggle these items off in the Options menu. If you don't have the
-                      items, you won't roll them.
+                      A: You can toggle these items off in the Options menu. If
+                      you don't have the items, you won't roll them.
                     </p>
                   </li>
                   <li class="text-white">
                     <b
-                      >Q: What if I don't want to bring multiple support weapon/backpack
-                      stratagems?</b
+                      >Q: What if I don't want to bring multiple support
+                      weapon/backpack stratagems?</b
                     >
                     <p>
-                      A: In the Options menu, in the Randomizer Settings tab, you will be able to
-                      customize the randomizer.
+                      A: In the Options menu, in the Randomizer Settings tab,
+                      you will be able to customize the randomizer.
                     </p>
                   </li>
                   <li class="text-white">
-                    <b>Q: What if I roll a booster, but a teammate has already chosen it?</b>
+                    <b
+                      >Q: What if I roll a booster, but a teammate has already
+                      chosen it?</b
+                    >
                     <p>
-                      A: Feel free to choose a different booster than the one you have rolled. I
-                      don't make the rules, I just make the tools!
+                      A: Feel free to choose a different booster than the one
+                      you have rolled. I don't make the rules, I just make the
+                      tools!
                     </p>
                   </li>
                   <li class="text-white">
@@ -540,31 +622,42 @@
               >
                 <ul class="modalAccordionList">
                   <li class="text-white">
-                    Huge thanks to u/TylerJohnsonDaGOAT for writing up the attributes for stratagems
-                    and equipment, and for letting me bounce ideas off of them. Tons of drudgery was
-                    avoided because of their contributions. Thanks!
+                    Huge thanks to u/TylerJohnsonDaGOAT for writing up the
+                    attributes for stratagems and equipment, and for letting me
+                    bounce ideas off of them. Tons of drudgery was avoided
+                    because of their contributions. Thanks!
                   </li>
                   <li class="text-white">
-                    I came across this idea while browsing Reddit. After a quick Google search, I
-                    found that
+                    I came across this idea while browsing Reddit. After a quick
+                    Google search, I found that
                     <a href="https://hd2random.com/"
                       >someone had already made a web app for this challenge</a
                     >
-                    (very cool). However, I had my own ideas regarding layout, more features, etc,
-                    and so here we are!
+                    (very cool). However, I had my own ideas regarding layout,
+                    more features, etc, and so here we are!
                   </li>
                   <li class="text-white">
-                    Would you like to contribute? If you're code savvy, I could use some help with
-                    colors and fonts, as well as upcoming features. Feel free to email me at
-                    joebenwilson.dev@gmail.com with any feedback/suggestions, or submit a PR on
-                    <a href="https://github.com/Selenestica/hd2-random-strat">GitHub</a>.
+                    Would you like to contribute? If you're code savvy, I could
+                    use some help with colors and fonts, as well as upcoming
+                    features. Feel free to email me at
+                    joebenwilson.dev@gmail.com with any feedback/suggestions, or
+                    submit a PR on
+                    <a href="https://github.com/Selenestica/hd2-random-strat"
+                      >GitHub</a
+                    >.
                   </li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -576,7 +669,10 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"
   ></script>
-  <script src="https://kit.fontawesome.com/a018c01272.js" crossorigin="anonymous"></script>
+  <script
+    src="https://kit.fontawesome.com/a018c01272.js"
+    crossorigin="anonymous"
+  ></script>
   <script src="js/constants/primaries.js"></script>
   <script src="js/constants/secondaries.js"></script>
   <script src="js/constants/boosters.js"></script>

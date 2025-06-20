@@ -34,7 +34,7 @@ const genBBGameOverModal = async () => {
   bbGameOverModalBody.innerHTML += `<p class="text-white"><br /></p>`;
   bbGameOverModalBody.innerHTML += `<p class="text-white">Ending Credits: ${credits}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="text-white">Credits from Refunded Equipment: ${refundedItemsCredits}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="text-white">Missions Failed: ${creditsSubtractedForMissionsFailed}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="text-white">Missions Failed Penalty: -${creditsSubtractedForMissionsFailed}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="text-white"><br /></p>`;
   bbGameOverModalBody.innerHTML += `<p class="text-white">Total Score: ${
     credits + refundedItemsCredits - creditsSubtractedForMissionsFailed

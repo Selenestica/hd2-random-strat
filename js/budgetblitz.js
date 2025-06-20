@@ -4,6 +4,7 @@ const missionCompleteModalBody = document.getElementById(
 );
 const mainViewButtons = document.getElementsByClassName("mainViewButtons");
 const scCounter = document.getElementById("scCounter");
+const loadoutButton = document.getElementById("loadoutButton");
 const loadoutContainer = document.getElementById("loadoutContainer");
 const stratagemsContainerBB = document.getElementById("stratagemsContainerBB");
 const equipmentContainerBB = document.getElementById("equipmentContainerBB");
@@ -49,7 +50,7 @@ const missionCounterText = document.getElementById("missionCounterText");
 const hellDiversMobilizeCheckbox = document.getElementById("warbond3");
 const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 
-let missionCounter = 5;
+let missionCounter = 8;
 let failedMissions = 0;
 let successfulMissions = 0;
 let purchasedItems = [];
@@ -328,7 +329,7 @@ const startNewRun = async (isRestart = null) => {
   credits = 100;
   scCounter.innerHTML = `${": " + credits}`;
   currentItems = [];
-  missionCounter = 5;
+  missionCounter = 8;
   failedMissions = 0;
   successfulMissions = 0;
   purchasedItems = [];
@@ -353,6 +354,7 @@ const startNewRun = async (isRestart = null) => {
     for (let i = 0; i < 4; i++) {
       stratagemsContainerBB.innerHTML += emptyStratagemBox;
     }
+    // also need to apply empty equipment boxes
     purchasedItemsInventory.innerHTML = "";
     defaultInventory.innerHTML = "";
     isRestart !== "applyingSave" ? populateDefaultItems() : null;
@@ -364,6 +366,7 @@ const startNewRun = async (isRestart = null) => {
     loadoutContainer.classList.remove("d-none");
     loadoutContainer.classList.add("d-flex");
     resetShopFilters();
+    window.location.reload();
   }
 };
 
@@ -647,7 +650,13 @@ const updateAllRenderedItems = () => {
 };
 
 const checkMissionButtons = () => {
-  if (missionCounter >= 22) {
+  if (missionCounter > 8) {
+    for (let i = 0; i < warbondCheckboxes.length; i++) {
+      warbondCheckboxes[i].disabled = true;
+    }
+  }
+
+  if (missionCounter >= 23) {
     missionFailedButton.disabled = true;
     missionCompleteButton.disabled = true;
 
@@ -660,26 +669,26 @@ const checkMissionButtons = () => {
     genBBGameOverModal();
   }
 
-  if (missionCounter < 21) {
+  if (missionCounter < 22) {
     missionCompleteButton.style.display = "block";
     missionFailedButton.style.display = "block";
     downloadPDFButtonDiv.style.display = "none";
 
     // if all equippedItems arrays are full, can start mission
-    if (
-      equippedArmor.length === 1 &&
-      equippedPrimary.length === 1 &&
-      equippedSecondary.length === 1 &&
-      equippedThrowable.length === 1 &&
-      equippedStratagems.length === 4
-    ) {
-      missionCompleteButton.disabled = false;
-      missionFailedButton.disabled = false;
-      return;
-    }
+    // if (
+    //   equippedArmor.length === 1 &&
+    //   equippedPrimary.length === 1 &&
+    //   equippedSecondary.length === 1 &&
+    //   equippedThrowable.length === 1 &&
+    //   equippedStratagems.length === 4
+    // ) {
+    //   missionCompleteButton.disabled = false;
+    //   missionFailedButton.disabled = false;
+    //   return;
+    // }
     // else
-    missionCompleteButton.disabled = false;
-    missionFailedButton.disabled = false;
+    missionCompleteButton.disabled = false; // change to TRUE!!!
+    missionFailedButton.disabled = false; // change to TRUE!!!
   }
 };
 
@@ -812,7 +821,7 @@ const unequipAllItems = async (missionEnded = false) => {
 };
 
 const submitMissionReport = async (isMissionSucceeded) => {
-  unequipAllItems(true);
+  await unequipAllItems(true);
 
   if (isMissionSucceeded) {
     const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 25;
@@ -845,6 +854,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
   // set missionCounter back to start of operation
   if (!isMissionSucceeded) {
     reduceMissionCounter();
+    checkMissionButtons();
     missionCounterText.innerHTML = `${getMissionText()}`;
     failedMissions++;
     saveProgress();
@@ -1028,7 +1038,7 @@ const pruneSavedGames = async () => {
     (sg) => {
       if (
         sg.currentGame === true ||
-        sg.missionCounter > 5 ||
+        sg.missionCounter > 8 ||
         sg.purchasedItems.length > 0
       ) {
         return sg;

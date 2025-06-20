@@ -64,22 +64,28 @@ body {
 }
 
 .itemCards {
-  background-color: #212529;
+  background-color: rgb(71, 71, 71);
   width: 100%;
 }
 
 .pcItemCards {
-  background-color: #212529;
+  background-color: rgb(71, 71, 71);
 }
 
 .pcItemCards:hover {
   transform: scale(1.2);
   transition: transform 0.3s ease;
   z-index: 1;
+  border: 1px solid yellow;
 }
 
 .specialistCards {
   cursor: pointer;
+  background-color: rgb(71, 71, 71);
+}
+
+.specialistCards:hover {
+  border: 1px solid yellow;
 }
 
 .pcModalItemCards {
@@ -92,10 +98,6 @@ body {
 }
 
 .itemCards:hover {
-  border: 1px solid yellow;
-}
-
-.pcItemCards:hover {
   border: 1px solid yellow;
 }
 
@@ -244,8 +246,8 @@ body {
   height: 250px;
   overflow-y: overlay;
   overflow-x: hidden;
-  scrollbar-color: #fff #212529;
-  background-color: #212529;
+  scrollbar-color: #fff rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 #downloadPDFButtonDiv {

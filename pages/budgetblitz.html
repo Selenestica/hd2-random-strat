@@ -103,7 +103,7 @@
       </div>
       <div class="row my-2 justify-content-center">
         <div class="col-2 d-flex align-items-center justify-content-start">
-          <div class="btn-group" role="group">
+          <div id="bbMainViewButtonGroup" class="btn-group" role="group">
             <input
               type="radio"
               class="btn-check mainViewButtons"
@@ -674,6 +674,9 @@
               </h5>
             </div>
             <div class="modal-body">
+              <p class="mb-0 text-white">
+                NOTE: You can only toggle warbonds at the beginning of the run.
+              </p>
               <div class="p-3" id="warbondsChecklistContainer"></div>
             </div>
             <div class="modal-footer">
@@ -771,11 +774,12 @@
                     <div class="accordion-body">
                       <p class="text-white">
                         Complete all missions in one operation on each
-                        difficulty, starting on level 5 and moving up one
-                        difficulty as you go. The amount of stars earned after
-                        each mission corresponds to how many credits you will
-                        earn. Your goal is to complete a level 10 difficulty
-                        operation.
+                        difficulty, starting on difficulty 6 (Extreme) and
+                        moving up one difficulty as you go. The amount of stars
+                        earned after each mission corresponds to how many
+                        credits you will earn. Spend credits on equipment in the
+                        shop to help you complete missions. Your goal is to
+                        complete a level 10 difficulty operation.
                       </p>
                     </div>
                   </div>
@@ -790,7 +794,7 @@
                       aria-expanded="false"
                       aria-controls="collapseThree"
                     >
-                      Earning and Spending Credits
+                      Using Equipment and Earning Credits
                     </button>
                   </h2>
                   <div
@@ -800,15 +804,29 @@
                   >
                     <div class="accordion-body">
                       <p class="text-white">
+                        In order to start a mission, you must equip items in
+                        your loadout menu (just like in-game). You must choose 4
+                        stratagems, armor, a primary, a secondary, and a
+                        throwable. Click on an item in your Purchased Items box
+                        or Default Items box to equip the item. To unequip an
+                        item, simply click on it in your loadout.
+                        <br />
+                        <br />
+                        Your Default Items have unlimited uses, but your
+                        Purchased Items have uses corresponding to how many
+                        times you have purchased it (which you can see in the
+                        top right corner of the item).
+                        <br />
+                        <br />
                         After each mission, press the 'Mission Complete' button
                         and input the number of stars you earned. You will earn
                         credits for each star awarded at the end of every
-                        mission.
+                        mission, and more credits for collecting all of the
+                        Super Samples.
                         <br />
                         <br />
-                        In higher difficulties, extra credits can be earned by
-                        extracting with any Super Samples and High-Value Items
-                        found.
+                        In higher difficulties, even more credits can be earned
+                        by extracting with the High-Value Item.
                       </p>
                     </div>
                   </div>
@@ -823,7 +841,7 @@
                       aria-expanded="false"
                       aria-controls="collapseFour"
                     >
-                      Purchasing and Using Equipment
+                      Purchasing Equipment
                     </button>
                   </h2>
                   <div
@@ -833,25 +851,26 @@
                   >
                     <div class="accordion-body">
                       <p class="text-white">
-                        Press the 'Shop' button to view purchaseable items. Any
-                        item purchased will only be usable for the amount of
-                        missions you purchased it for. After you use the item
-                        for the amount of missions that you purchased it for, it
-                        will dissapear from your inventory and the shop, and you
-                        will not be able to use or purchase it again, so
-                        stratagize accordingly.
+                        Press the 'Shop' button to view purchaseable items.
+                        Click on an item to purchase it. Each time you purchase
+                        an item, the price will increase for the next time you
+                        purchase that same item. The amount of price increase
+                        will depend on whether the item is on sale or not.
                         <br />
                         <br />
-                        <b>For example: </b>If I purchased the Quasar Cannon to
-                        be used for three missions, after those two missions I
-                        will not be able to purchase or use it again for the
-                        rest of the challenge.
+                        <b>For example: </b>If I purchased the Quasar Cannon at
+                        25 Credits, the price for the next Quasar Cannon will be
+                        30 Credits.
                         <br />
+                        <br />
+                        Prices for items will change, and different items will
+                        go on sale, after each operation completed.
+                        <!-- <br />
                         <br />
                         Alternatively, you can press the 'Surplus' button to
                         roll a random item at a discount that will be usable for
                         a minimum of two missions. These items will be chosen at
-                        random among the list of available items in the shop.
+                        random among the list of available items in the shop. -->
                       </p>
                     </div>
                   </div>

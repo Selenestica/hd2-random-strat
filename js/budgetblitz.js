@@ -92,7 +92,7 @@ missionCompleteModal.addEventListener("shown.bs.modal", () => {
   }
 
   // check if high value item in the level
-  if (missionCounter >= 17) {
+  if (missionCounter >= 20) {
     highValueItemCollectedForm.classList.remove("d-none");
   }
 });

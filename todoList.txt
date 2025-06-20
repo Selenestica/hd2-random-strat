@@ -4,7 +4,6 @@ to do General:
 - give the Randomizer it's own URL: /randomizer
 
 to do Randomizer:
-- make armor passives reactive to warbond checkboxes
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 - add tags for THROWABLES
@@ -39,9 +38,6 @@ feature ideas:
 
 Budget Blitz
 - BUGS:
-
-- TEST
-  - 3 test runs
 
 - change super samples checkbox to super samples quantity input?
 

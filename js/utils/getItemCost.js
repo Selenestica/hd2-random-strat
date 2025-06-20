@@ -25,7 +25,7 @@ const getItemCost = (item) => {
     cost += 5;
   }
 
-  // add randomness from -4 to 4
+  // add randomness from -6 to 7
   const random = Math.floor(Math.random() * 14) - 6;
 
   // add cost of times purchased

@@ -39,6 +39,10 @@ feature ideas:
 Budget Blitz
 - BUGS:
 
+- filter by price (amount of credits)
+
+- in loadout view, button to sort purchased items and default items
+
 - change super samples checkbox to super samples quantity input?
 
 - ability to download PDF after challenge complete

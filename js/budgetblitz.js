@@ -559,6 +559,7 @@ const equipItem = (itemConfig, card) => {
 };
 
 const toggleLoadoutItem = async (item) => {
+  if (missionCounter >= 23) return;
   const card = document.getElementById(
     "bbLoadoutItemCard-" + item.internalName
   );
@@ -577,6 +578,7 @@ const toggleLoadoutItem = async (item) => {
 };
 
 const purchaseItem = async (item) => {
+  if (missionCounter >= 23) return;
   let totalCost = item.cost;
   if (item.onSale) {
     totalCost = Math.ceil(item.cost * 0.5);
@@ -838,6 +840,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
     highValueItemCollectedCheck.checked = false;
 
     // update missionCounter
+    successfulMissions++;
     missionCounter++;
 
     // here we want to go through all the items in the shop and update their cost and onSale property
@@ -846,7 +849,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
 
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
-    successfulMissions++;
+
     saveProgress();
     return;
   }

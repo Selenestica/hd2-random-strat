@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link
+      rel="shortcut icon"
+      type="image/svg+xml"
+      href="../images/svgs/orbitalprecisionstrike.svg"
+    />
+    <meta
+      name="description"
+      content="For Glory, for Profit, for Super Earth!"
+    />
+    <title>Helldivers 2: Budget Blitz</title>
+  </head>
+
+  <body>
+    <div class="container mb-5">
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="d-flex col-4 justify-content-start">
+          <a href="../index.html">
+            <button class="btn" type="button">
+              <i class="fa-solid fa-2x text-light shuffle-icon fa-shuffle"></i>
+            </button>
+          </a>
+        </div>
+        <div class="d-flex col-4 justify-content-center">
+          <a
+            class="mx-1"
+            target="_blank"
+            href="https://github.com/Selenestica/hd2-random-strat"
+          >
+            <i class="fa-2x fa-brands fa-github"></i>
+          </a>
+          <a
+            class="mx-1"
+            target="_blank"
+            href="https://buymeacoffee.com/breakfasttaco"
+          >
+            <i class="fa-2x fa-solid fa-mug-saucer"></i>
+          </a>
+        </div>
+        <div class="d-flex col-4 justify-content-end">
+          <button
+            class="btn btn-primary"
+            onclick="genBudgetBlitzDataManagementModalInfo()"
+            type="button"
+          >
+            <i class="fa-solid fa-2x text-light fa-floppy-disk"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="d-flex col justify-content-center">
+          <h1 class="text-light">Helldivers 2</h1>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="d-flex col justify-content-center align-items-center">
+          <h4 class="mb-0 text-white">Budget Blitz</h4>
+          <button
+            class="btn btn-secondary mx-1"
+            data-bs-toggle="modal"
+            data-bs-target="#flavorAndInstructionsModal"
+            type="button"
+          >
+            <i class="fa-solid fa-circle-info"></i>
+          </button>
+          <button
+            class="btn btn-primary ml-1"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#warbondSelectModal"
+            id="warbondSelectButtonMobile"
+          >
+            <i class="fa-solid fa-cog"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row mt-2 justify-content-center text-white">
+        <div class="col-4 d-flex justify-content-start align-items-center">
+          <span id="superCreditsText">Super Credits</span>
+          <span id="superCreditsIcon"
+            ><i class="fa-solid fa-dollar-sign"></i
+          ></span>
+          <span id="scCounter"></span>
+        </div>
+        <div
+          class="col-4 text-white d-flex justify-content-center"
+          id="missionCounterText"
+        ></div>
+        <div class="col-4 d-flex justify-content-end"></div>
+      </div>
+      <div class="row my-2 justify-content-center">
+        <div class="col-2 d-flex align-items-center justify-content-start">
+          <div id="bbMainViewButtonGroup" class="btn-group" role="group">
+            <input
+              type="radio"
+              class="btn-check mainViewButtons"
+              name="btnradio"
+              id="loadoutButton"
+              autocomplete="off"
+              checked
+            />
+            <label
+              class="btn btn-outline-primary text-white"
+              for="loadoutButton"
+            >
+              <span id="bbLoadoutText">Loadout</span>
+              <span id="bbLoadoutIcon"
+                ><i class="fa-solid fa-box-archive"></i
+              ></span>
+            </label>
+            <input
+              type="radio"
+              class="btn-check mainViewButtons"
+              name="btnradio"
+              id="shopButton"
+              autocomplete="off"
+            />
+            <label
+              class="btn btn-outline-primary text-warning"
+              for="shopButton"
+            >
+              <span id="bbShopText">Shop</span>
+              <span id="bbShopIcon"
+                ><i class="fa-solid fa-cart-shopping"></i
+              ></span>
+            </label>
+          </div>
+        </div>
+        <div class="col-8 justify-content-center" id="missionButtonsDiv">
+          <div class="btn-group my-2" id="downloadPDFButtonDiv">
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="generatePDFText()"
+            >
+              <span> Download PDF </span>
+            </button>
+          </div>
+          <div class="btn-group my-2 mx-1" id="missionCompleteButtonDiv">
+            <button
+              class="btn btn-success"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#missionCompleteModal"
+              id="missionCompleteButton"
+            >
+              <span id="bbMissionCompleteText"> Mission Complete </span>
+              <span id="bbMissionCompleteIcon">
+                <i class="fa-solid fa-check"></i>
+              </span>
+            </button>
+          </div>
+          <div class="btn-group my-2" id="missionFailedButtonDiv">
+            <button
+              class="btn btn-danger"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#missionFailedModal"
+              id="missionFailedButton"
+            >
+              <span id="bbMissionFailedText"> Mission Failed </span>
+              <span id="bbMissionFailedIcon">
+                <i class="fa-solid fa-xmark"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="col-8" id="bbShopFilterDiv">
+          <div
+            class="btn-group"
+            role="group"
+            aria-label="Basic outlined example"
+          >
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary dropdown-toggle no-caret"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="bbTypeText" class="text-white">Type</span>
+                <span id="bbTypeIcon" class="text-white"
+                  ><i class="fa-solid fa-list"></i
+                ></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="primariesFilterDropdownItem"
+                    onclick="filterByType('primary')"
+                    href="#"
+                    >Primaries</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="secondariesFilterDropdownItem"
+                    onclick="filterByType('secondary')"
+                    href="#"
+                    >Secondaries</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="throwablesFilterDropdownItem"
+                    onclick="filterByType('throwable')"
+                    href="#"
+                    >Throwables</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="stratagemsFilterDropdownItem"
+                    onclick="filterByType('stratagem')"
+                    href="#"
+                    >Stratagems</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="armorPassivesFilterDropdownItem"
+                    onclick="filterByType('armor')"
+                    href="#"
+                    >Armor Passives</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="boostersFilterDropdownItem"
+                    onclick="filterByType('booster')"
+                    href="#"
+                    >Boosters</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary dropdown-toggle no-caret"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="bbPriceText" class="text-white">Price</span>
+                <span id="bbPriceIcon" class="text-white"
+                  ><i class="fa-solid fa-tag"></i
+                ></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    id="onSaleDropdownItem"
+                    class="dropdown-item"
+                    onclick="filterByPrice('onSale')"
+                    href="#"
+                    >On Sale</a
+                  >
+                </li>
+                <li>
+                  <a
+                    id="purchaseableDropdownItem"
+                    class="dropdown-item"
+                    onclick="filterByPrice('purchaseable')"
+                    href="#"
+                    >Purchaseable</a
+                  >
+                </li>
+                <li>
+                  <a
+                    id="nonPurchaseableDropdownItem"
+                    class="dropdown-item"
+                    onclick="filterByPrice('nonpurchaseable')"
+                    href="#"
+                    >Non-Purchaseable</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary dropdown-toggle no-caret"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="bbSearchText" class="text-white">Search</span>
+                <span id="bbSearchIcon" class="text-white"
+                  ><i class="fa-solid fa-magnifying-glass"></i
+                ></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <input type="text" id="shopSearchInput" />
+                </li>
+              </ul>
+            </div>
+            <button
+              onclick="resetShopFilters()"
+              class="btn btn-primary"
+              type="button"
+            >
+              <span id="bbResetText"> Reset </span>
+              <span id="bbResetIcon"
+                ><i class="fa-solid fa-filter-circle-xmark"></i
+              ></span>
+            </button>
+          </div>
+        </div>
+        <div class="col-2 justify-content-end d-flex align-items-center">
+          <button
+            class="btn btn-primary mx-2"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#warbondSelectModal"
+            id="warbondSelectButtonDesktop"
+          >
+            <i class="fa-solid fa-cog"></i>
+          </button>
+          <button
+            class="btn btn-warning"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#restartBudgetBlitzModal"
+          >
+            <i class="fa-solid fa-rotate"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- LOADOUT -->
+      <div id="loadoutContainer" class="row d-flex justify-content-center">
+        <div
+          id="equippedItemsContainer"
+          class="row d-flex justify-content-center"
+        >
+          <div class="col">
+            <div
+              id="stratagemsContainerBB"
+              class="row mb-3 d-flex justify-content-center"
+            >
+              <div
+                class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+              >
+                <p class="mb-0 text-secondary emptyItemText">
+                  <small>Select Stratagem Below</small>
+                </p>
+              </div>
+              <div
+                class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+              >
+                <p class="mb-0 text-secondary emptyItemText">
+                  <small>Select Stratagem Below</small>
+                </p>
+              </div>
+              <div
+                class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+              >
+                <p class="mb-0 text-secondary emptyItemText">
+                  <small>Select Stratagem Below</small>
+                </p>
+              </div>
+              <div
+                class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+              >
+                <p class="mb-0 text-secondary emptyItemText">
+                  <small>Select Stratagem Below</small>
+                </p>
+              </div>
+            </div>
+            <div
+              id="equipmentContainerBB"
+              class="row mb-3 d-flex justify-content-center"
+            >
+              <div
+                class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+                id="armorContainerBB"
+              >
+                <p
+                  class="mb-0 text-secondary emptyItemText"
+                  id="emptyArmorText"
+                >
+                  <small>Select Armor Below</small>
+                </p>
+              </div>
+              <div
+                id="primaryContainerBB"
+                class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+              >
+                <p
+                  class="mb-0 text-secondary emptyItemText"
+                  id="emptyPrimaryText"
+                >
+                  <small>Select Primary Below</small>
+                </p>
+              </div>
+              <div
+                id="secondaryContainerBB"
+                class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+              >
+                <p
+                  class="mb-0 text-secondary emptyItemText"
+                  id="emptySecondaryText"
+                >
+                  <small>Select Secondary Below</small>
+                </p>
+              </div>
+              <div
+                id="throwableContainerBB"
+                class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+              >
+                <p
+                  class="mb-0 text-secondary emptyItemText"
+                  id="emptyThrowableText"
+                >
+                  <small>Select Throwable Below</small>
+                </p>
+              </div>
+              <div
+                id="boosterContainerBB"
+                class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+              >
+                <p
+                  class="mb-0 text-secondary emptyItemText"
+                  id="emptyBoosterText"
+                >
+                  <small>Select Booster Below (optional)</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="inventoryContainer" class="row d-flex">
+          <div class="accordion px-0" id="inventoryAccordion">
+            <div class="accordion-item mb-2 bg-none">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="true"
+                  aria-controls="collapseTwo"
+                >
+                  Purchased Items
+                </button>
+              </h2>
+              <div
+                id="collapseTwo"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#inventoryAccordion"
+              >
+                <div
+                  id="purchasedItemsInventory"
+                  class="accordion-body row d-flex justify-content-center"
+                ></div>
+              </div>
+            </div>
+            <div class="accordion-item bg-none">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  Default Items
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#inventoryAccordion"
+              >
+                <div
+                  id="defaultInventory"
+                  class="accordion-body row justify-content-center"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHOP -->
+      <div
+        id="bbShopItemsContainer"
+        class="py-3 row d-none justify-content-center mt-2"
+      ></div>
+
+      <!-- MISSION COMPLETE MODAL -->
+      <div
+        class="modal fade"
+        id="missionCompleteModal"
+        tabindex="-1"
+        aria-labelledby="missionCompleteModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-body d-flex row justify-content-center">
+              <div
+                class="row text-white d-flex justify-content-center text-center"
+              >
+                <h4>Mission Report</h4>
+              </div>
+              <div
+                class="row text-white mb-4 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src="../images/dressing/ministryOfTruthIcon.png"
+                  class="img-fluid"
+                  alt="ministry of truth eye"
+                  id="motImage"
+                />
+                <small class="d-flex justify-content-center mt-2"
+                  >NOTE: Lying will be considered treason.</small
+                >
+              </div>
+              <div class="row">
+                <div class="col-12 d-flex align-items-center px-0">
+                  <p class="text-white mb-0" for="starsEarnedInput">
+                    Stars Earned:
+                  </p>
+                  <input
+                    class="form-control"
+                    id="starsEarnedInput"
+                    style="width: 12%; margin-left: 0.5rem"
+                    type="number"
+                    min="1"
+                    max="5"
+                    value="1"
+                    aria-describedby="starsEarnedInput"
+                  />
+                </div>
+
+                <div
+                  class="form-check my-2 d-none"
+                  id="superSamplesCollectedForm"
+                >
+                  <label
+                    class="form-check-label text-white"
+                    for="superSamplesCollectedCheck"
+                  >
+                    Super Samples Collected
+                  </label>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="superSamplesCollectedCheck"
+                  />
+                </div>
+
+                <div class="form-check d-none" id="highValueItemCollectedForm">
+                  <label
+                    class="form-check-label text-white"
+                    for="highValueItemCollectedCheck"
+                  >
+                    High-Value Item Collected
+                  </label>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="highValueItemCollectedCheck"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer row justify-content-between">
+              <div class="col d-flex justify-content-start">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div class="col d-flex justify-content-end">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="submitMissionReport(true)"
+                  data-bs-toggle="modal"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MISSION FAILED MODAL -->
+      <div
+        class="modal fade"
+        id="missionFailedModal"
+        tabindex="-1"
+        open="true"
+        aria-labelledby="missionFailedModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light">Mission Failed</h5>
+            </div>
+            <div class="modal-body row d-flex justify-content-center">
+              <p class="text-white">
+                Your current operation will be reset, and your equipped
+                purchased items will decrease by 1 use.
+              </p>
+              <br />
+              <br />
+              <p class="text-white">Proceed?</p>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onclick="submitMissionReport(false)"
+                class="btn btn-warning"
+                data-bs-dismiss="modal"
+              >
+                Proceed
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WARBOND SELECT MODAL -->
+      <div
+        class="modal fade"
+        id="warbondSelectModal"
+        tabindex="-1"
+        aria-labelledby="warbondSelectModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light" id="warbondSelectModalLabel">
+                Warbond Select
+              </h5>
+            </div>
+            <div class="modal-body">
+              <p class="mb-0 text-white">
+                NOTE: You can only toggle warbonds at the beginning of the run.
+              </p>
+              <div class="p-3" id="warbondsChecklistContainer"></div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FLAVOR AND INSTRUCTIONS MODAL -->
+      <div
+        class="modal fade"
+        id="flavorAndInstructionsModal"
+        tabindex="-1"
+        open="true"
+        aria-labelledby="flavorAndInstructionsModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light">The Budget Blitz Challenge</h5>
+            </div>
+            <div class="modal-body row d-flex justify-content-center">
+              <div class="accordion" id="infoAccordion">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button text-white"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      Lore
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#infoAccordion"
+                  >
+                    <div class="accordion-body">
+                      <p class="text-white">
+                        “The price of liberty is vigilance... and a balanced
+                        ledger.” As the galaxy grows ever more perilous, and as
+                        enemies multiply like interest on unpaid debts, the
+                        Super Earth High Command has instituted a Budget Blitz:
+                        a bold new initiative that forges the might of our
+                        military with the unyielding strength of economic
+                        stewardship. In these trying times, resources are
+                        finite, but our resolve is infinite. Each mission’s
+                        outcome is no longer measured solely by enemy casualties
+                        or territories secured — but by the credits accrued.
+                        Victory must pay its own way.
+                        <br />
+                        <br />
+                        <em>
+                          “The strength of our democracy is built on the
+                          sacrifices of our soldiers—and the wisdom of our
+                          accountants. Under a Budget Blitz, every credit spent
+                          is a vote for freedom. Every star earned is a promise
+                          kept. Helldivers, carry the torch of liberty... but
+                          keep an eye on the ledger.”
+                        </em>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button text-white collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
+                      Overview
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse show"
+                    data-bs-parent="#infoAccordion"
+                  >
+                    <div class="accordion-body">
+                      <p class="text-white">
+                        Complete all missions in one operation on each
+                        difficulty, starting on difficulty 6 (Extreme) and
+                        moving up one difficulty as you go. The amount of stars
+                        earned after each mission corresponds to how many
+                        credits you will earn. Spend credits on equipment in the
+                        shop to help you complete missions. Your goal is to
+                        complete a level 10 difficulty operation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button text-white collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
+                      Using Equipment and Earning Credits
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#infoAccordion"
+                  >
+                    <div class="accordion-body">
+                      <p class="text-white">
+                        In order to start a mission, you must equip items in
+                        your loadout menu (just like in-game). You must choose 4
+                        stratagems, armor, a primary, a secondary, and a
+                        throwable. Click on an item in your Purchased Items box
+                        or Default Items box to equip the item. To unequip an
+                        item, simply click on it in your loadout.
+                        <br />
+                        <br />
+                        Your Default Items have unlimited uses, but your
+                        Purchased Items have uses corresponding to how many
+                        times you have purchased it (which you can see in the
+                        top right corner of the item).
+                        <br />
+                        <br />
+                        After each mission, press the 'Mission Complete' button
+                        and input the number of stars you earned. You will earn
+                        credits for each star awarded at the end of every
+                        mission, and more credits for collecting all of the
+                        Super Samples.
+                        <br />
+                        <br />
+                        In higher difficulties, even more credits can be earned
+                        by extracting with the High-Value Item.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button text-white collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour"
+                      aria-expanded="false"
+                      aria-controls="collapseFour"
+                    >
+                      Purchasing Equipment
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFour"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#infoAccordion"
+                  >
+                    <div class="accordion-body">
+                      <p class="text-white">
+                        Press the 'Shop' button to view purchaseable items.
+                        Click on an item to purchase it. Each time you purchase
+                        an item, the price will increase for the next time you
+                        purchase that same item. The amount of price increase
+                        will depend on whether the item is on sale or not.
+                        <br />
+                        <br />
+                        <b>For example: </b>If I purchased the Quasar Cannon at
+                        25 Credits, the price for the next Quasar Cannon will be
+                        30 Credits.
+                        <br />
+                        <br />
+                        Prices for items will change, and different items will
+                        go on sale, after each operation completed.
+                        <!-- <br />
+                        <br />
+                        Alternatively, you can press the 'Surplus' button to
+                        roll a random item at a discount that will be usable for
+                        a minimum of two missions. These items will be chosen at
+                        random among the list of available items in the shop. -->
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button text-white collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFive"
+                      aria-expanded="false"
+                      aria-controls="collapseFive"
+                    >
+                      Failure
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFive"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#infoAccordion"
+                  >
+                    <div class="accordion-body">
+                      <p class="text-white">
+                        If your squad fails a mission, you must start a new
+                        operation on the difficulty that you failed to complete.
+                        You will not lose credits, but item usage will still be
+                        counted. Press the "Mission Failed" button to reset the
+                        operation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button text-white collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSix"
+                      aria-expanded="false"
+                      aria-controls="collapseSix"
+                    >
+                      Saving Your Progress
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseSix"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#infoAccordion"
+                  >
+                    <div class="accordion-body">
+                      <p class="text-white">
+                        Your progress is saved in your browser's local storage.
+                        If you clear your browser's local storage, your progress
+                        will be lost. If you want to start a new run, you may do
+                        so by pressing the yellow "Restart" button. Your run
+                        will be saved and accessible in the save menu.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESTART MODAL -->
+      <div
+        class="modal fade"
+        id="restartBudgetBlitzModal"
+        tabindex="-1"
+        open="true"
+        aria-labelledby="restartBudgetBlitzModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light">Restart Run</h5>
+            </div>
+            <div class="modal-body row d-flex justify-content-center">
+              <p class="text-white">
+                When you restart your run, your current run will be saved.
+                <br />
+                <br />
+                Restart run?
+              </p>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onclick="saveDataAndRestart()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Save and Restart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAME OVER MODAL -->
+      <div
+        class="modal fade"
+        id="bbGameOverModal"
+        tabindex="-1"
+        open="true"
+        aria-labelledby="bbGameOverModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light">
+                Challenge Complete - Budget Blitz
+              </h5>
+            </div>
+            <div
+              id="bbGameOverModalBody"
+              class="modal-body text-white row d-flex justify-content-center"
+            ></div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onclick="generatePDFText()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Download PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAVE DATA MANAGEMENT MODAL -->
+      <div
+        class="modal fade"
+        id="budgetBlitzDataManagementModal"
+        tabindex="-1"
+        open="true"
+        aria-labelledby="budgetBlitzDataManagementModalLabel"
+        aria-hidden="true"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+      >
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light" id="">Save Data Management</h5>
+            </div>
+            <div
+              class="modal-body row d-flex justify-content-center"
+              id="budgetBlitzDataManagementModalBody"
+            >
+              <p class="text-white">
+                Switch your active save file here, delete individual save files,
+                or delete all save files.
+                <br />
+                Select an entry below and press 'Apply' to load a different save
+                file.
+                <br />
+                <br />
+                NOTE: You can't delete your current save file.
+              </p>
+              <div
+                id="budgetBlitzDataManagementModalSavesList"
+                class="btn-group-vertical"
+                role="group"
+                aria-label="Basic radio toggle button group"
+              ></div>
+            </div>
+            <div class="modal-footer row justify-content-between">
+              <div class="d-flex col justify-content-start">
+                <button
+                  type="button"
+                  onclick="clearBudgetBlitzDataManagementModal()"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div class="d-flex col justify-content-end">
+                <button
+                  type="button"
+                  onclick="clearSaveDataAndRestart()"
+                  class="btn btn-danger"
+                  data-bs-dismiss="modal"
+                >
+                  Delete ALL
+                </button>
+                <button
+                  type="button"
+                  onclick="deleteSavedGameData()"
+                  class="btn btn-danger mx-2"
+                  data-bs-dismiss="modal"
+                >
+                  Delete
+                </button>
+                <button
+                  type="button"
+                  onclick="applySavedGameData()"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                >
+                  Apply
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHALLENGE COMPLETED MODAL -->
+      <div
+        class="modal fade"
+        id="challengeCompletedModal"
+        tabindex="-1"
+        open="true"
+        aria-labelledby="challengeCompletedModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5
+                class="modal-title text-light"
+                id="challengeCompletedModalTitle"
+              ></h5>
+            </div>
+            <div
+              class="modal-body row d-flex justify-content-center"
+              id="challengeCompletedModalBody"
+            ></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://kit.fontawesome.com/a018c01272.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="../js/constants/primaries.js"></script>
+  <script src="../js/constants/secondaries.js"></script>
+  <script src="../js/constants/boosters.js"></script>
+  <script src="../js/constants/throwables.js"></script>
+  <script src="../js/constants/stratagems.js"></script>
+  <script src="../js/constants/armorsets.js"></script>
+  <script src="../js/constants/armorsizes.js"></script>
+  <script src="../js/constants/armorpassives.js"></script>
+  <script src="../js/utils/getMissionText.js"></script>
+  <script src="../js/utils/getCurrentDateTime.js"></script>
+  <script src="../js/utils/getItemCost.js"></script>
+  <script src="../js/utils/getIsItemOnSale.js"></script>
+  <script src="../js/utils/getItemType.js"></script>
+  <script src="../js/utils/bbShopFilterFunctions.js"></script>
+  <script src="../js/utils/calculateItemCost.js"></script>
+  <script src="../js/utils/getMaxStarsForMission.js"></script>
+  <script src="../js/utils/downloadBBScorePDF.js"></script>
+  <script src="../js/components/genShowAllItemsModal.js"></script>
+  <script src="../js/components/emptyStratagemBox.js"></script>
+  <script src="../js/components/equipmentContainerBBDefaultContent.js"></script>
+  <script src="../js/components/genBBGameOverModal.js"></script>
+  <script>
+    const specialist = null;
+  </script>
+  <script src="../js/utils/warbondCodes.js"></script>
+  <script src="../js/components/genWarbondCheckboxes.js"></script>
+  <script src="../js/utils/getStartingItems.js"></script>
+  <script src="../js/budgetblitz.js"></script>
+  <script src="../js/components/genBudgetBlitzSaveDataManagementInfo.js"></script>
+</html>

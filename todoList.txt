@@ -1,4 +1,5 @@
 to do General:
+- go through FontAwesome icons and possibly update to better icons
 - make the home page a screen to choose which challenge you want to do
 - give the Randomizer it's own URL: /randomizer
 
@@ -9,8 +10,6 @@ to do Randomizer:
 - Master of Ceremony
   - armor
     - heavy (need img)
-- Force of Law
-  - armor passive (need img)
 
 to do Penitent Crusade:
 - system to track max stars missions, incomplete missions, and failed missions. adding points for each
@@ -37,8 +36,23 @@ feature ideas:
 - add link to low sodium Helldivers discord
 - holding click on stratagem or equipment icon will change it
 
-Penitent Crusade Specialist ideas:
- The Shotgun Surgeon
- - ybwamahe, Punisher, Bushwacker
+Budget Blitz
+- BUGS:
 
- 
+- change super samples checkbox to super samples quantity input?
+
+- ability to download PDF after challenge complete
+
+- add animations for purchasing items
+  - toast for purchase notification? "1 Quasar Cannon sent to inventory"
+
+- can purchase a completely random item for 5 credits
+  - price goes up by 5 each time you buy
+  - will not affect the future price of the rolled item
+
+- GOAL: Complete an operation on Super Helldive difficulty
+  - SUB-OBJECTIVE: the more money you have at the end of a run, the higher your score
+  - money is subtracted from your total score for the missions that you failed
+  - any purchased items left over at the end of the run will increase your score by 5 credits for each item.
+
+NEW CHALLENGE IDEAS:

@@ -1,9 +1,9 @@
 body {
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 .bg-default {
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 #partCategoriesContainer {
@@ -19,19 +19,19 @@ body {
 }
 
 .accordion-button.collapsed {
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 .accordion-button:not(.collapsed) {
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 .bg-grey {
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 .accordion-collapse {
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 .outline-light {
@@ -72,8 +72,20 @@ body {
   background-color: rgb(71, 71, 71);
 }
 
+.pcItemCards:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+  z-index: 1;
+  border: 1px solid yellow;
+}
+
 .specialistCards {
   cursor: pointer;
+  background-color: rgb(71, 71, 71);
+}
+
+.specialistCards:hover {
+  border: 1px solid yellow;
 }
 
 .pcModalItemCards {
@@ -89,8 +101,68 @@ body {
   border: 1px solid yellow;
 }
 
-.pcItemCards:hover {
-  border: 1px solid yellow;
+@media only screen and (max-width: 767px) {
+  #bbMissionFailedText,
+  #bbMissionCompleteText,
+  #bbLoadoutText,
+  #bbShopText,
+  #bbTypeText,
+  #bbPriceText,
+  #bbResetText,
+  #bbSearchText,
+  #superCreditsText,
+  #warbondSelectButtonDesktop {
+    display: none;
+  }
+
+  #bbMissionFailedIcon,
+  #bbMissionCompleteIcon,
+  #bbLoadoutIcon,
+  #bbShopIcon,
+  #bbTypeIcon,
+  #bbPriceIcon,
+  #bbResetIcon,
+  #bbSearchIcon,
+  #superCreditsIcon,
+  #warbondSelectButtonMobile {
+    display: block;
+  }
+
+  #bbShopFilterDiv {
+    justify-content: end;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #bbMissionFailedText,
+  #bbMissionCompleteText,
+  #bbLoadoutText,
+  #bbShopText,
+  #bbTypeText,
+  #bbPriceText,
+  #bbResetText,
+  #bbSearchText,
+  #superCreditsText,
+  #warbondSelectButtonDesktop {
+    display: block;
+  }
+
+  #bbMissionFailedIcon,
+  #bbMissionCompleteIcon,
+  #bbLoadoutIcon,
+  #bbShopIcon,
+  #bbTypeIcon,
+  #bbPriceIcon,
+  #bbResetIcon,
+  #bbSearchIcon,
+  #superCreditsIcon,
+  #warbondSelectButtonMobile {
+    display: none;
+  }
+
+  #bbShopFilterDiv {
+    justify-content: center;
+  }
 }
 
 @media only screen and (max-width: 650px) {
@@ -175,9 +247,46 @@ body {
   overflow-y: overlay;
   overflow-x: hidden;
   scrollbar-color: #fff rgb(71, 71, 71);
-  background-color: rgb(71, 71, 71);
+  background-color: #2d2d2d;
 }
 
 #downloadPDFButtonDiv {
   display: none;
+}
+
+.costBadges {
+  font-size: 0.9rem !important;
+  top: 5%;
+  left: 90%;
+  position: absolute;
+}
+
+#bbShopItemsContainer {
+  overflow-y: auto;
+  max-height: 70vh;
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+}
+
+.bbItemCards {
+  cursor: pointer;
+  position: relative;
+  margin: 0.25rem !important;
+}
+
+.no-caret::after {
+  display: none !important;
+}
+
+#stratagemsContainerBB,
+#equipmentContainerBB {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.emptyItemContainers {
+  text-align: center;
+  margin: 0.5rem;
+  border: 1px solid yellow;
+  padding: 0rem;
 }

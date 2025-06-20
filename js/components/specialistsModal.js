@@ -1,32 +1,36 @@
-const specialistsList = document.getElementById('specialistsList');
-const specialistCheckMarks = document.getElementsByClassName('specialistCheckMarks');
-const specialistNameText = document.getElementById('specialistNameText');
+const specialistsList = document.getElementById("specialistsList");
+const specialistCheckMarks = document.getElementsByClassName(
+  "specialistCheckMarks"
+);
+const specialistNameText = document.getElementById("specialistNameText");
 let specialist = null;
 
 const setSpecialist = (index) => {
   // remove the checkmark from all other specialists
-  const elements = document.querySelectorAll('.specialistCheckMarks');
+  const elements = document.querySelectorAll(".specialistCheckMarks");
   elements.forEach((element) => element.remove());
 
   // remove green text from all other specialists
-  const specialistHeaders = document.querySelectorAll('.specialistHeadersClass');
+  const specialistHeaders = document.querySelectorAll(
+    ".specialistHeadersClass"
+  );
   specialistHeaders.forEach((header) => {
-    header.classList.remove('text-success');
-    header.classList.add('text-white');
+    header.classList.remove("text-success");
+    header.classList.add("text-white");
   });
 
   // add the checkmark to the selected specialist
   const specialistHeader = document.getElementById(`specialistHeader${index}`);
   specialistHeader.innerHTML += `<i class="fa-solid specialistCheckMarks text-success mx-1 fa-check"></i>`;
-  specialistHeader.classList.add('text-success');
-  specialistHeader.classList.remove('text-white');
+  specialistHeader.classList.add("text-success");
+  specialistHeader.classList.remove("text-white");
 
   // set the selected specialist
   specialist = index;
 };
 
 const genStarterItems = (starterItems) => {
-  let items = '';
+  let items = "";
   for (let i = 0; i < starterItems.length; i++) {
     items += `<li class="text-white">${starterItems[i]}</li>`;
   }
@@ -52,7 +56,7 @@ const genSpecialistsCards = () => {
   }
   for (let i = 0; i < SPECIALISTS.length; i++) {
     specialistsList.innerHTML += `
-      <div class="card pcItemCards col-md-5 col-sm-12 specialistCards m-2" onclick="setSpecialist('${i}')">
+      <div class="card col-md-5 col-sm-12 specialistCards m-2" onclick="setSpecialist('${i}')">
         <div class="card-header">
           <h5 class="text-white specialistHeadersClass" id="specialistHeader${i}">${
       SPECIALISTS[i].displayName
@@ -63,7 +67,11 @@ const genSpecialistsCards = () => {
           <ul>
             ${genStarterItems(SPECIALISTS[i].starterItems)}
           </ul>
-          ${SPECIALISTS[i].traits.length > 0 ? genTraits(SPECIALISTS[i].traits) : ''}
+          ${
+            SPECIALISTS[i].traits.length > 0
+              ? genTraits(SPECIALISTS[i].traits)
+              : ""
+          }
         </div>
     `;
   }

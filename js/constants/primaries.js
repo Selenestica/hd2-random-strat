@@ -30,7 +30,7 @@ const PRIMARIES = [
     warbondCode: 'none',
     internalName: 'plas39acceleratorrifle',
     imageURL: 'plas39acceleratorrifle.png',
-    tier: 'c',
+    tier: 'b',
   },
   {
     displayName: 'StA-52 Assault Rifle',
@@ -338,7 +338,7 @@ const PRIMARIES = [
     warbondCode: 'warbond6',
     internalName: 'r36eruptor',
     imageURL: 'r36eruptor.png',
-    tier: 'a',
+    tier: 's',
   },
   {
     displayName: 'Exploding Crossbow',
@@ -374,7 +374,7 @@ const PRIMARIES = [
     tier: 'b',
   },
   {
-    displayName: 'LAS-17 Double Edge Sickle',
+    displayName: 'Double Edge Sickle',
     type: 'Equipment',
     category: 'primary',
     tags: ['EnergyWeapon'],
@@ -407,3 +407,8 @@ const PRIMARIES = [
     tier: 'a',
   },
 ];
+
+// s: 6
+// a: 13
+// b: 17
+// c: 1

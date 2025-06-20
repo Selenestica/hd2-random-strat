@@ -927,18 +927,6 @@ const saveDataAndRestart = async (diff = null) => {
 const clearSaveDataAndRestart = async () => {
   localStorage.removeItem("penitentCrusadeSaveData");
   window.location.reload();
-  changeDifficulty("normal");
-  await getStartingItems();
-  startNewRun();
-  stratagemAccordionBody.innerHTML = "";
-  primaryAccordionBody.innerHTML = "";
-  secondaryAccordionBody.innerHTML = "";
-  throwableAccordionBody.innerHTML = "";
-  armorPassiveAccordionBody.innerHTML = "";
-  boosterAccordionBody.innerHTML = "";
-  missionCounterText.innerHTML = `${getMissionText()}`;
-  specialistNameText.innerHTML = "";
-  addDefaultItemsToAccordions();
 };
 
 // get rid of all games that arent the current game and are on the first mission

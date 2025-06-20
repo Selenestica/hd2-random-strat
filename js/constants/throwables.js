@@ -154,3 +154,8 @@ const THROWABLES = [
     tier: 'a',
   },
 ];
+
+// s: 2
+// a: 4
+// b: 6
+// c: 2

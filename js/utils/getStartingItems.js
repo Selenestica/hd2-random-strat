@@ -12,33 +12,43 @@ let newArmorPassives = [];
 let newBoosts = [];
 
 let starterStratNames = [
-  'Orbital EMS Strike',
-  'Orbital Smoke Strike',
-  'Eagle Smoke Strike',
-  'EMS Mortar Sentry',
-  'Shield Generator Relay',
+  "Orbital EMS Strike",
+  "Orbital Smoke Strike",
+  "Eagle Smoke Strike",
+  "EMS Mortar Sentry",
+  "Shield Generator Relay",
 ];
-let starterPrimNames = ['Constitution'];
-let starterSecNames = ['Peacemaker', 'Stun Lance', 'Stun Baton', 'Combat Hatchet'];
-let starterThrowNames = ['G-12 High Explosive'];
-let starterArmorPassiveNames = ['Extra Padding'];
+let starterPrimNames = ["Constitution"];
+let starterSecNames = [
+  "Peacemaker",
+  "Stun Lance",
+  "Stun Baton",
+  "Combat Hatchet",
+  "Saber",
+];
+let starterThrowNames = ["G-12 High Explosive"];
+let starterArmorPassiveNames = ["Extra Padding"];
 let starterBoosterNames = [];
 const getStartingItems = (diff = null) => {
   starterStratNames = [
-    'Orbital EMS Strike',
-    'Orbital Smoke Strike',
-    'Eagle Smoke Strike',
-    'EMS Mortar Sentry',
-    'Shield Generator Relay',
+    "Orbital EMS Strike",
+    "Orbital Smoke Strike",
+    "Eagle Smoke Strike",
+    "EMS Mortar Sentry",
+    "Shield Generator Relay",
   ];
-  diff === 'super' ? starterStratNames.push('Ballistic Shield') : null;
-  starterPrimNames = ['Constitution'];
-  starterSecNames = ['Stun Lance', 'Stun Baton', 'Combat Hatchet'];
-  diff !== 'super' ? starterSecNames.push('Peacemaker') : null;
-  starterThrowNames = ['G-12 High Explosive'];
-  starterArmorPassiveNames = diff === 'super' ? ['Integrated Explosives'] : ['Extra Padding'];
+  diff === "super" ? starterStratNames.push("Ballistic Shield") : null;
+  starterPrimNames = ["Constitution"];
+  starterSecNames = ["Stun Lance", "Stun Baton", "Combat Hatchet", "Saber"];
+  diff !== "super" ? starterSecNames.push("Peacemaker") : null;
+  starterThrowNames =
+    diff === "bb"
+      ? ["G-3 Smoke", "K-2 Throwing Knife"]
+      : ["G-12 High Explosive"];
+  starterArmorPassiveNames =
+    diff === "super" ? ["Integrated Explosives"] : ["Extra Padding"];
   starterBoosterNames = [];
-  if (specialist === null) {
+  if (specialist === null || specialist === undefined) {
     return {
       starterStratNames,
       starterPrimNames,
@@ -51,8 +61,10 @@ const getStartingItems = (diff = null) => {
   starterPrimNames =
     SPECIALISTS[specialist].primaries.length > 0
       ? SPECIALISTS[specialist].primaries
-      : ['Constitution'];
-  starterStratNames = starterStratNames.concat(SPECIALISTS[specialist].stratagems);
+      : ["Constitution"];
+  starterStratNames = starterStratNames.concat(
+    SPECIALISTS[specialist].stratagems
+  );
   starterSecNames =
     SPECIALISTS[specialist].secondaries.length > 0
       ? SPECIALISTS[specialist].secondaries

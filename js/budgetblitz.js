@@ -675,20 +675,20 @@ const checkMissionButtons = () => {
     downloadPDFButtonDiv.style.display = "none";
 
     // if all equippedItems arrays are full, can start mission
-    // if (
-    //   equippedArmor.length === 1 &&
-    //   equippedPrimary.length === 1 &&
-    //   equippedSecondary.length === 1 &&
-    //   equippedThrowable.length === 1 &&
-    //   equippedStratagems.length === 4
-    // ) {
-    //   missionCompleteButton.disabled = false;
-    //   missionFailedButton.disabled = false;
-    //   return;
-    // }
+    if (
+      equippedArmor.length === 1 &&
+      equippedPrimary.length === 1 &&
+      equippedSecondary.length === 1 &&
+      equippedThrowable.length === 1 &&
+      equippedStratagems.length === 4
+    ) {
+      missionCompleteButton.disabled = false;
+      missionFailedButton.disabled = false;
+      return;
+    }
     // else
-    missionCompleteButton.disabled = false; // change to TRUE!!!
-    missionFailedButton.disabled = false; // change to TRUE!!!
+    missionCompleteButton.disabled = true; // change to false for testing
+    missionFailedButton.disabled = true; // change to false for testing
   }
 };
 

@@ -20,6 +20,7 @@ to do Penitent Crusade:
 - rare reroll token that randomly shows up as a reward
 - add options for warbonds, in case some people dont have all the warbonds
 - add QR codes for data sharing
+  - or data import feature
 - add Discord bot compatibility
 - SPECIALIST ideas:
  - The Shotgun Surgeon
@@ -39,11 +40,18 @@ feature ideas:
 Budget Blitz
 - BUGS:
 
+- SUGGESTIONS:
+
 - filter by price (amount of credits)
 
 - in loadout view, button to sort purchased items and default items
 
-- change super samples checkbox to super samples quantity input?
+- save super samples collected, stars earned, mission time remaining,
+  and high value items collected per mission
+  - maybe an object [
+    {"8": {superSamplesCollected: 2...}}, 
+    {"9": {...}}
+  ]
 
 - ability to download PDF after challenge complete
 

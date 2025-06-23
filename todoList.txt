@@ -39,24 +39,29 @@ feature ideas:
 Budget Blitz
 - BUGS:
 
+- remove credit cap
+- save equipped items when going to shop
+- change credits earned from mission time remaining from % remaining * 0.25 to minutes remaining * 0.60 
+- always show Purchased Items and Default Items (remove ablity to collapse those sections)
+- update wording from "Select Stratagem Below" to "Click on Stratagem Below"
+- ability to rename mission saves
+- score based on total credits earned (credits saved or spent does not matter, only total earned)
 - filter by price (amount of credits)
-
-- in loadout view, button to sort purchased items and default items
-
-- change super samples checkbox to super samples quantity input?
-
-- ability to download PDF after challenge complete
-
-- add animations for purchasing items
-  - toast for purchase notification? "1 Quasar Cannon sent to inventory"
-
+- toast notification when purchasing item "Quasar Cannon sent to inventory"
 - can purchase a completely random item for 5 credits
   - price goes up by 5 each time you buy
   - will not affect the future price of the rolled item
 
-- GOAL: Complete an operation on Super Helldive difficulty
-  - SUB-OBJECTIVE: the more money you have at the end of a run, the higher your score
-  - money is subtracted from your total score for the missions that you failed
-  - any purchased items left over at the end of the run will increase your score by 5 credits for each item.
+- create key in save data that tracks credits earned per mission in an array of objects
+  - score based on total credits earned (credits saved or spent does not matter, only total earned)
+  -  if mission failed, credits earned from repeated missions dont count toward the total 
+    - probably check the length of the array each time. if missionCounter - 7 is greater than length of array, add the data. else dont add data.
+
+
+- filter by price (amount of credits)
+
+- in loadout view, button to sort purchased items and default items
+
+- ability to download PDF after challenge complete
 
 NEW CHALLENGE IDEAS:

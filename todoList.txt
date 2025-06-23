@@ -20,6 +20,7 @@ to do Penitent Crusade:
 - rare reroll token that randomly shows up as a reward
 - add options for warbonds, in case some people dont have all the warbonds
 - add QR codes for data sharing
+  - or data import feature
 - add Discord bot compatibility
 - SPECIALIST ideas:
  - The Shotgun Surgeon
@@ -48,6 +49,7 @@ Budget Blitz
 - score based on total credits earned (credits saved or spent does not matter, only total earned)
 - filter by price (amount of credits)
 - toast notification when purchasing item "Quasar Cannon sent to inventory"
+- in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
 - can purchase a completely random item for 5 credits
   - price goes up by 5 each time you buy
   - will not affect the future price of the rolled item

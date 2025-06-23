@@ -1,43 +1,55 @@
-const missionCompleteModal = document.getElementById('missionCompleteModal');
-const missionCompleteModalBody = document.getElementById('missionCompleteModalBody');
-const mainViewButtons = document.getElementsByClassName('mainViewButtons');
-const scCounter = document.getElementById('scCounter');
-const loadoutButton = document.getElementById('loadoutButton');
-const loadoutContainer = document.getElementById('loadoutContainer');
-const stratagemsContainerBB = document.getElementById('stratagemsContainerBB');
-const equipmentContainerBB = document.getElementById('equipmentContainerBB');
-const emptyArmorText = document.getElementById('emptyArmorText');
-const emptyPrimaryText = document.getElementById('emptyPrimaryText');
-const emptySecondaryText = document.getElementById('emptySecondaryText');
-const emptyThrowableText = document.getElementById('emptyThrowableText');
-const emptyBoosterText = document.getElementById('emptyBoosterText');
-const armorContainerBB = document.getElementById('armorContainerBB');
-const primaryContainerBB = document.getElementById('primaryContainerBB');
-const secondaryContainerBB = document.getElementById('secondaryContainerBB');
-const throwableContainerBB = document.getElementById('throwableContainerBB');
-const boosterContainerBB = document.getElementById('boosterContainerBB');
-const bbShopItemsContainer = document.getElementById('bbShopItemsContainer');
-const defaultInventory = document.getElementById('defaultInventory');
-const purchasedItemsInventory = document.getElementById('purchasedItemsInventory');
-const starsEarnedInput = document.getElementById('starsEarnedInput');
-const superSamplesCollectedInput = document.getElementById('superSamplesCollectedInput');
-const timeRemainingInput = document.getElementById('timeRemainingInput');
-const highValueItemCollectedCheck = document.getElementById('highValueItemCollectedCheck');
-const superSamplesCollectedForm = document.getElementById('superSamplesCollectedForm');
-const highValueItemCollectedForm = document.getElementById('highValueItemCollectedForm');
-const yourCreditsAmount = document.getElementById('yourCreditsAmount');
-const itemCostAmount = document.getElementById('itemCostAmount');
-const itemQuantityInput = document.getElementById('itemQuantityInput');
-const itemPurchaseModalBody = document.getElementById('itemPurchaseModalBody');
-const downloadPDFButtonDiv = document.getElementById('downloadPDFButtonDiv');
-const missionButtonsDiv = document.getElementById('missionButtonsDiv');
-const bbShopFilterDiv = document.getElementById('bbShopFilterDiv');
-const missionCompleteButton = document.getElementById('missionCompleteButton');
-const missionFailedButton = document.getElementById('missionFailedButton');
-const shopSearchInput = document.getElementById('shopSearchInput');
-const missionCounterText = document.getElementById('missionCounterText');
-const hellDiversMobilizeCheckbox = document.getElementById('warbond3');
-const warbondCheckboxes = document.getElementsByClassName('warbondCheckboxes');
+const missionCompleteModal = document.getElementById("missionCompleteModal");
+const missionCompleteModalBody = document.getElementById(
+  "missionCompleteModalBody"
+);
+const mainViewButtons = document.getElementsByClassName("mainViewButtons");
+const scCounter = document.getElementById("scCounter");
+const loadoutButton = document.getElementById("loadoutButton");
+const loadoutContainer = document.getElementById("loadoutContainer");
+const stratagemsContainerBB = document.getElementById("stratagemsContainerBB");
+const equipmentContainerBB = document.getElementById("equipmentContainerBB");
+const emptyArmorText = document.getElementById("emptyArmorText");
+const emptyPrimaryText = document.getElementById("emptyPrimaryText");
+const emptySecondaryText = document.getElementById("emptySecondaryText");
+const emptyThrowableText = document.getElementById("emptyThrowableText");
+const emptyBoosterText = document.getElementById("emptyBoosterText");
+const armorContainerBB = document.getElementById("armorContainerBB");
+const primaryContainerBB = document.getElementById("primaryContainerBB");
+const secondaryContainerBB = document.getElementById("secondaryContainerBB");
+const throwableContainerBB = document.getElementById("throwableContainerBB");
+const boosterContainerBB = document.getElementById("boosterContainerBB");
+const bbShopItemsContainer = document.getElementById("bbShopItemsContainer");
+const defaultInventory = document.getElementById("defaultInventory");
+const purchasedItemsInventory = document.getElementById(
+  "purchasedItemsInventory"
+);
+const starsEarnedInput = document.getElementById("starsEarnedInput");
+const superSamplesCollectedInput = document.getElementById(
+  "superSamplesCollectedInput"
+);
+const timeRemainingInput = document.getElementById("timeRemainingInput");
+const highValueItemCollectedCheck = document.getElementById(
+  "highValueItemCollectedCheck"
+);
+const superSamplesCollectedForm = document.getElementById(
+  "superSamplesCollectedForm"
+);
+const highValueItemCollectedForm = document.getElementById(
+  "highValueItemCollectedForm"
+);
+const yourCreditsAmount = document.getElementById("yourCreditsAmount");
+const itemCostAmount = document.getElementById("itemCostAmount");
+const itemQuantityInput = document.getElementById("itemQuantityInput");
+const itemPurchaseModalBody = document.getElementById("itemPurchaseModalBody");
+const downloadPDFButtonDiv = document.getElementById("downloadPDFButtonDiv");
+const missionButtonsDiv = document.getElementById("missionButtonsDiv");
+const bbShopFilterDiv = document.getElementById("bbShopFilterDiv");
+const missionCompleteButton = document.getElementById("missionCompleteButton");
+const missionFailedButton = document.getElementById("missionFailedButton");
+const shopSearchInput = document.getElementById("shopSearchInput");
+const missionCounterText = document.getElementById("missionCounterText");
+const hellDiversMobilizeCheckbox = document.getElementById("warbond3");
+const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 
 let missionCounter = 8;
 let failedMissions = 0;
@@ -57,15 +69,15 @@ let masterBoostsList = [];
 let masterStratsList = [];
 let masterArmorPassivesList = [];
 
-let currentView = 'loadoutButton';
+let currentView = "loadoutButton";
 let credits = 100;
-missionButtonsDiv.style.display = 'flex';
-bbShopFilterDiv.style.display = 'none';
+missionButtonsDiv.style.display = "flex";
+bbShopFilterDiv.style.display = "none";
 hellDiversMobilizeCheckbox.disabled = true;
-const inventoryIDs = ['defaultInventory', 'purchasedItemsInventory'];
+const inventoryIDs = ["defaultInventory", "purchasedItemsInventory"];
 
 // if the submit mission report modal ever closes, reset the inputs
-missionCompleteModal.addEventListener('hidden.bs.modal', () => {
+missionCompleteModal.addEventListener("hidden.bs.modal", () => {
   starsEarnedInput.value = 1;
   superSamplesCollectedInput.value = 0;
   timeRemainingInput.value = 0;
@@ -73,22 +85,35 @@ missionCompleteModal.addEventListener('hidden.bs.modal', () => {
 });
 
 // when the mission report modal opens, set the max stars able to be earned according to the missionCounter
-missionCompleteModal.addEventListener('shown.bs.modal', () => {
+missionCompleteModal.addEventListener("shown.bs.modal", () => {
   const maxStarsPossible = getMaxStarsForMission(missionCounter);
+  const maxSuperSamplesPossible = getMaxSuperSamplesForMission(missionCounter);
   starsEarnedInput.max = maxStarsPossible;
-  // check if super samples are in the level
-  if (missionCounter >= 8) {
-    superSamplesCollectedForm.classList.remove('d-none');
-  }
+  superSamplesCollectedInput.max = maxSuperSamplesPossible;
 
   // check if high value item in the level
   if (missionCounter >= 20) {
-    highValueItemCollectedForm.classList.remove('d-none');
+    highValueItemCollectedForm.classList.remove("d-none");
   }
 });
 
+timeRemainingInput.addEventListener("input", () => {
+  const value = parseInt(timeRemainingInput.value, 10);
+
+  if (value < 0) timeRemainingInput.value = 0;
+  if (value > 100) timeRemainingInput.value = 100;
+});
+
+superSamplesCollectedInput.addEventListener("input", () => {
+  const value = parseInt(superSamplesCollectedInput.value, 10);
+  const max = parseInt(superSamplesCollectedInput.max, 10);
+
+  if (value < 0) superSamplesCollectedInput.value = 0;
+  if (value > max) superSamplesCollectedInput.value = max;
+});
+
 // prevent input of anything outside of min and max values
-starsEarnedInput.addEventListener('input', () => {
+starsEarnedInput.addEventListener("input", () => {
   const value = parseInt(starsEarnedInput.value, 10);
   const max = parseInt(starsEarnedInput.max, 10);
 
@@ -153,7 +178,7 @@ const categoryMap = {
 };
 
 for (let y = 0; y < warbondCheckboxes.length; y++) {
-  warbondCheckboxes[y].addEventListener('change', (e) => {
+  warbondCheckboxes[y].addEventListener("change", (e) => {
     if (e.target.checked && !warbondCodes.includes(e.srcElement.id)) {
       warbondCodes.push(e.srcElement.id);
     }
@@ -176,50 +201,56 @@ const filterItemsByWarbond = async (uploadingSaveData = null) => {
   ];
 
   const filteredLists = await sourceLists.map((list) =>
-    list.filter((item) => warbondCodes.includes(item.warbondCode) || item.warbondCode === 'none'),
+    list.filter(
+      (item) =>
+        warbondCodes.includes(item.warbondCode) || item.warbondCode === "none"
+    )
   );
 
-  [newPrims, newSeconds, newThrows, newBoosts, newStrats, newArmorPassives] = filteredLists;
+  [newPrims, newSeconds, newThrows, newBoosts, newStrats, newArmorPassives] =
+    filteredLists;
 
   // only save progress if user is actively filtering by warbonds. otherwise, we are uploading save data
   !uploadingSaveData ? saveProgress() : null;
 
   // when uploading save data, we want to uncheck any boxes that shouldnt be checked
   if (uploadingSaveData) {
-    const missingWarbondCodes = masterWarbondCodes.filter((code) => !warbondCodes.includes(code));
+    const missingWarbondCodes = masterWarbondCodes.filter(
+      (code) => !warbondCodes.includes(code)
+    );
     for (let i = 0; i < missingWarbondCodes.length; i++) {
       document.getElementById(missingWarbondCodes[i]).checked = false;
     }
   }
   // Refresh the shop UI
-  bbShopItemsContainer.innerHTML = '';
+  bbShopItemsContainer.innerHTML = "";
   populateShopItems();
 };
 
 // toggles view between LOADOUT and SHOP
 for (let z = 0; z < mainViewButtons.length; z++) {
-  mainViewButtons[z].addEventListener('change', (e) => {
+  mainViewButtons[z].addEventListener("change", (e) => {
     if (e.target.checked) {
       currentView = e.srcElement.id;
-      if (e.srcElement.id === 'loadoutButton') {
-        missionButtonsDiv.style.display = 'flex';
-        bbShopFilterDiv.style.display = 'none';
-        bbShopItemsContainer.classList.remove('d-flex');
-        bbShopItemsContainer.classList.add('d-none');
-        loadoutContainer.classList.remove('d-none');
-        loadoutContainer.classList.add('d-flex');
-        purchasedItemsInventory.innerHTML = '';
+      if (e.srcElement.id === "loadoutButton") {
+        missionButtonsDiv.style.display = "flex";
+        bbShopFilterDiv.style.display = "none";
+        bbShopItemsContainer.classList.remove("d-flex");
+        bbShopItemsContainer.classList.add("d-none");
+        loadoutContainer.classList.remove("d-none");
+        loadoutContainer.classList.add("d-flex");
+        purchasedItemsInventory.innerHTML = "";
         populatePurchasedItemsInventory();
         resetShopFilters();
       }
-      if (e.srcElement.id === 'shopButton') {
-        missionButtonsDiv.style.display = 'none';
-        bbShopFilterDiv.style.display = 'flex';
-        bbShopItemsContainer.classList.add('d-flex');
-        bbShopItemsContainer.classList.remove('d-none');
-        loadoutContainer.classList.add('d-none');
-        loadoutContainer.classList.remove('d-flex');
-        bbShopItemsContainer.innerHTML = '';
+      if (e.srcElement.id === "shopButton") {
+        missionButtonsDiv.style.display = "none";
+        bbShopFilterDiv.style.display = "flex";
+        bbShopItemsContainer.classList.add("d-flex");
+        bbShopItemsContainer.classList.remove("d-none");
+        loadoutContainer.classList.add("d-none");
+        loadoutContainer.classList.remove("d-flex");
+        bbShopItemsContainer.innerHTML = "";
         populateShopItems();
         updateAllRenderedItems();
         unequipAllItems();
@@ -229,13 +260,13 @@ for (let z = 0; z < mainViewButtons.length; z++) {
 }
 
 // search bar functionality for shop
-shopSearchInput.addEventListener('input', () => {
-  const itemCards = document.getElementsByClassName('bbShopItemCards');
+shopSearchInput.addEventListener("input", () => {
+  const itemCards = document.getElementsByClassName("bbShopItemCards");
   const query = shopSearchInput.value.toLowerCase();
 
   Array.from(itemCards).forEach((item) => {
     const match = item.id.toLowerCase().includes(query);
-    item.classList.toggle('d-none', !match);
+    item.classList.toggle("d-none", !match);
   });
 });
 
@@ -247,7 +278,7 @@ const startNewRun = async (isRestart = null) => {
   }
 
   newStrats = await OGstratsList.filter(
-    (strat) => !starterStratNames.includes(strat.displayName),
+    (strat) => !starterStratNames.includes(strat.displayName)
   ).map((strat) => {
     strat.timesPurchased = 0;
     strat.cost = getItemCost(strat);
@@ -255,26 +286,26 @@ const startNewRun = async (isRestart = null) => {
     strat.onSale = getIsItemOnSale();
     return strat;
   });
-  newPrims = await OGprimsList.filter((prim) => !starterPrimNames.includes(prim.displayName)).map(
-    (prim) => {
-      prim.timesPurchased = 0;
-      prim.cost = getItemCost(prim);
-      prim.quantity = 0;
-      prim.onSale = getIsItemOnSale();
-      return prim;
-    },
-  );
-  newSeconds = await OGsecondsList.filter((sec) => !starterSecNames.includes(sec.displayName)).map(
-    (sec) => {
-      sec.timesPurchased = 0;
-      sec.cost = getItemCost(sec);
-      sec.quantity = 0;
-      sec.onSale = getIsItemOnSale();
-      return sec;
-    },
-  );
+  newPrims = await OGprimsList.filter(
+    (prim) => !starterPrimNames.includes(prim.displayName)
+  ).map((prim) => {
+    prim.timesPurchased = 0;
+    prim.cost = getItemCost(prim);
+    prim.quantity = 0;
+    prim.onSale = getIsItemOnSale();
+    return prim;
+  });
+  newSeconds = await OGsecondsList.filter(
+    (sec) => !starterSecNames.includes(sec.displayName)
+  ).map((sec) => {
+    sec.timesPurchased = 0;
+    sec.cost = getItemCost(sec);
+    sec.quantity = 0;
+    sec.onSale = getIsItemOnSale();
+    return sec;
+  });
   newThrows = await OGthrowsList.filter(
-    (throwable) => !starterThrowNames.includes(throwable.displayName),
+    (throwable) => !starterThrowNames.includes(throwable.displayName)
   ).map((throwable) => {
     throwable.timesPurchased = 0;
     throwable.cost = getItemCost(throwable);
@@ -283,7 +314,8 @@ const startNewRun = async (isRestart = null) => {
     return throwable;
   });
   newArmorPassives = await OGarmorPassivesList.filter(
-    (armorPassive) => !starterArmorPassiveNames.includes(armorPassive.displayName),
+    (armorPassive) =>
+      !starterArmorPassiveNames.includes(armorPassive.displayName)
   ).map((armorPassive) => {
     armorPassive.quantity = 0;
     armorPassive.timesPurchased = 0;
@@ -292,7 +324,7 @@ const startNewRun = async (isRestart = null) => {
     return armorPassive;
   });
   newBoosts = await OGboostsList.filter(
-    (booster) => !starterBoosterNames.includes(booster.displayName),
+    (booster) => !starterBoosterNames.includes(booster.displayName)
   ).map((booster) => {
     booster.quantity = 0;
     booster.timesPurchased = 0;
@@ -310,7 +342,7 @@ const startNewRun = async (isRestart = null) => {
   masterArmorPassivesList = cloneList(newArmorPassives);
 
   credits = 100;
-  scCounter.innerHTML = `${': ' + credits}`;
+  scCounter.innerHTML = `${": " + credits}`;
   currentItems = [];
   missionCounter = 8;
   failedMissions = 0;
@@ -326,28 +358,28 @@ const startNewRun = async (isRestart = null) => {
   missionCounterText.innerHTML = `${getMissionText()}`;
 
   // open the modal to show the rules
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const modal = new bootstrap.Modal(flavorAndInstructionsModal);
     modal.show();
   });
 
   // only do this next part when restarting a run
   if (isRestart) {
-    stratagemsContainerBB.innerHTML = '';
+    stratagemsContainerBB.innerHTML = "";
     for (let i = 0; i < 4; i++) {
       stratagemsContainerBB.innerHTML += emptyStratagemBox;
     }
     // also need to apply empty equipment boxes
-    purchasedItemsInventory.innerHTML = '';
-    defaultInventory.innerHTML = '';
-    isRestart !== 'applyingSave' ? populateDefaultItems() : null;
+    purchasedItemsInventory.innerHTML = "";
+    defaultInventory.innerHTML = "";
+    isRestart !== "applyingSave" ? populateDefaultItems() : null;
 
-    missionButtonsDiv.style.display = 'flex';
-    bbShopFilterDiv.style.display = 'none';
-    bbShopItemsContainer.classList.remove('d-flex');
-    bbShopItemsContainer.classList.add('d-none');
-    loadoutContainer.classList.remove('d-none');
-    loadoutContainer.classList.add('d-flex');
+    missionButtonsDiv.style.display = "flex";
+    bbShopFilterDiv.style.display = "none";
+    bbShopItemsContainer.classList.remove("d-flex");
+    bbShopItemsContainer.classList.add("d-none");
+    loadoutContainer.classList.remove("d-none");
+    loadoutContainer.classList.add("d-flex");
     resetShopFilters();
     window.location.reload();
   }
@@ -358,7 +390,14 @@ const updateShopItemsCostAndSaleStatus = async () => {
   const isStartingNewOperation = newOperationNums.includes(missionCounter);
   if (!isStartingNewOperation) return;
 
-  const allItemsList = [newPrims, newStrats, newBoosts, newSeconds, newArmorPassives, newThrows];
+  const allItemsList = [
+    newPrims,
+    newStrats,
+    newBoosts,
+    newSeconds,
+    newArmorPassives,
+    newThrows,
+  ];
   for (let i = 0; i < allItemsList.length; i++) {
     const list = allItemsList[i];
     for (let j = 0; j < list.length; j++) {
@@ -407,45 +446,52 @@ const populateDefaultItems = () => {
   for (let i = 0; i < list.length; i++) {
     const item = list[i];
     item.cost = null;
-    item.quantity = '&infin;';
+    item.quantity = "&infin;";
     defaultInventory.appendChild(generateItemCard(list[i]));
   }
 };
 
 const populateShopItems = () => {
-  const allItemsList = [newPrims, newStrats, newBoosts, newSeconds, newArmorPassives, newThrows];
+  const allItemsList = [
+    newPrims,
+    newStrats,
+    newBoosts,
+    newSeconds,
+    newArmorPassives,
+    newThrows,
+  ];
   for (let i = 0; i < allItemsList.length; i++) {
     const items = allItemsList[i];
     for (let j = 0; j < items.length; j++) {
       const item = items[j];
-      bbShopItemsContainer.appendChild(generateItemCard(item, 'shop'));
+      bbShopItemsContainer.appendChild(generateItemCard(item, "shop"));
     }
   }
 };
 
 const generateItemCard = (item, view = null) => {
-  let shopClass = '';
+  let shopClass = "";
   let showCost = false;
   let totalCost = item.cost;
-  let imgDir = 'equipment';
-  let costBadgeColor = 'bg-warning text-dark';
-  if (item.type === 'Stratagem') {
-    imgDir = 'svgs';
+  let imgDir = "equipment";
+  let costBadgeColor = "bg-warning text-dark";
+  if (item.type === "Stratagem") {
+    imgDir = "svgs";
   }
-  if (item.category === 'armor') {
-    imgDir = 'armor';
+  if (item.category === "armor") {
+    imgDir = "armor";
   }
-  const card = document.createElement('div');
+  const card = document.createElement("div");
 
   // shop code
-  if (view === 'shop' || currentView === 'shopButton') {
-    card.id = 'bbShopItemCard-' + item.internalName;
+  if (view === "shop" || currentView === "shopButton") {
+    card.id = "bbShopItemCard-" + item.internalName;
     card.dataset.type = getItemType(item);
-    shopClass = 'bbShopItemCards';
+    shopClass = "bbShopItemCards";
     showCost = true;
     if (item.onSale) {
       totalCost = Math.ceil(item.cost * 0.5);
-      costBadgeColor = 'bg-success text-light';
+      costBadgeColor = "bg-success text-light";
     }
     if (totalCost <= credits) {
       card.onclick = () => purchaseItem(item);
@@ -453,8 +499,8 @@ const generateItemCard = (item, view = null) => {
   }
 
   // loadout code
-  if (currentView === 'loadoutButton') {
-    card.id = 'bbLoadoutItemCard-' + item.internalName;
+  if (currentView === "loadoutButton") {
+    card.id = "bbLoadoutItemCard-" + item.internalName;
     card.onclick = () => toggleLoadoutItem(item);
   }
   card.className = `card col-2 col-lg-1 pcItemCards bbItemCards ${item.warbondCode} ${shopClass}`;
@@ -465,7 +511,7 @@ const generateItemCard = (item, view = null) => {
       alt="${item.displayName}"
     />
     <span class="costBadges translate-middle badge rounded-pill ${
-      showCost ? costBadgeColor : 'bg-primary text-light'
+      showCost ? costBadgeColor : "bg-primary text-light"
     }">
       ${showCost ? totalCost : item.quantity}
     </span>
@@ -482,7 +528,7 @@ const isInInventory = (parentID) => {
 };
 
 const moveToInventory = (card, badgeText) => {
-  if (badgeText.trim() === '∞') {
+  if (badgeText.trim() === "∞") {
     defaultInventory.appendChild(card);
   } else {
     purchasedItemsInventory.appendChild(card);
@@ -495,13 +541,13 @@ const unequipItem = (itemConfig, card, badgeText) => {
   itemConfig.setEquipped(newArray);
   // Stratagem specific: add 4 empty boxes
   if (equippedStratagems.length === 0 && itemConfig.max === 4) {
-    itemConfig.container.innerHTML = '';
+    itemConfig.container.innerHTML = "";
     for (let i = 0; i < 4; i++) {
       itemConfig.container.innerHTML += emptyStratagemBox;
     }
   } else if (itemConfig.max !== 4) {
     itemConfig.container.appendChild(itemConfig.emptyText);
-    card.classList.remove('w-100');
+    card.classList.remove("w-100");
   }
 
   moveToInventory(card, badgeText);
@@ -515,11 +561,11 @@ const equipItem = (itemConfig, card) => {
   itemConfig.setEquipped([...itemConfig.equipped(), card]);
   // only do this if not a stratagem card
   if (itemConfig.max !== 4) {
-    card.classList.add('w-100');
+    card.classList.add("w-100");
   }
 
   // Stratagems: replace all children
-  itemConfig.container.innerHTML = '';
+  itemConfig.container.innerHTML = "";
   itemConfig.equipped().forEach((el) => {
     itemConfig.container.appendChild(el);
   });
@@ -529,11 +575,13 @@ const equipItem = (itemConfig, card) => {
 
 const toggleLoadoutItem = async (item) => {
   if (missionCounter >= 23) return;
-  const card = document.getElementById('bbLoadoutItemCard-' + item.internalName);
-  const badgeText = card.querySelector('.costBadges').innerHTML;
+  const card = document.getElementById(
+    "bbLoadoutItemCard-" + item.internalName
+  );
+  const badgeText = card.querySelector(".costBadges").innerHTML;
   const parentID = card.parentElement.id;
 
-  const key = item.type === 'Stratagem' ? 'Stratagem' : item.category;
+  const key = item.type === "Stratagem" ? "Stratagem" : item.category;
   const itemConfig = categoryMap[key];
   if (!itemConfig) return;
 
@@ -573,6 +621,7 @@ const purchaseItem = async (item) => {
     updateRenderedItem(item);
     updateAllRenderedItems();
     saveProgress();
+    showBBPurchasedItemToast(item.displayName);
     return;
   }
   updateUserCredits(totalCost);
@@ -586,6 +635,7 @@ const purchaseItem = async (item) => {
   updateRenderedItem(item);
   updateAllRenderedItems();
   saveProgress();
+  showBBPurchasedItemToast(item.displayName);
 };
 
 const updateUserCredits = (cost) => {
@@ -593,7 +643,7 @@ const updateUserCredits = (cost) => {
   if (credits < 0) {
     credits = 0;
   }
-  scCounter.innerHTML = `${': ' + credits}`;
+  scCounter.innerHTML = `${": " + credits}`;
 };
 
 const updateRenderedItem = (item) => {
@@ -601,19 +651,19 @@ const updateRenderedItem = (item) => {
   if (item.onSale) {
     totalCost = Math.ceil(item.cost * 0.5);
   }
-  const cardEl = document.getElementById('bbShopItemCard-' + item.internalName);
-  const badgeEl = cardEl.querySelector('.costBadges');
+  const cardEl = document.getElementById("bbShopItemCard-" + item.internalName);
+  const badgeEl = cardEl.querySelector(".costBadges");
   badgeEl.textContent = totalCost;
 };
 
 const updateAllRenderedItems = () => {
-  const cards = document.querySelectorAll('.bbShopItemCards');
+  const cards = document.querySelectorAll(".bbShopItemCards");
   cards.forEach((card) => {
-    const badge = card.querySelector('.costBadges');
+    const badge = card.querySelector(".costBadges");
     if (credits < parseInt(badge.innerHTML, 10)) {
-      card.onclick = '';
-      badge.classList.add('bg-danger', 'text-light');
-      badge.classList.remove('bg-warning', 'bg-success', 'text-dark');
+      card.onclick = "";
+      badge.classList.add("bg-danger", "text-light");
+      badge.classList.remove("bg-warning", "bg-success", "text-dark");
     }
   });
 };
@@ -630,18 +680,18 @@ const checkMissionButtons = () => {
     missionCompleteButton.disabled = true;
 
     // hide the mission buttons, and show download items buttons
-    missionCompleteButton.style.display = 'none';
-    missionFailedButton.style.display = 'none';
-    downloadPDFButtonDiv.style.display = 'block';
+    missionCompleteButton.style.display = "none";
+    missionFailedButton.style.display = "none";
+    downloadPDFButtonDiv.style.display = "block";
 
     // show score modal
     genBBGameOverModal();
   }
 
   if (missionCounter < 22) {
-    missionCompleteButton.style.display = 'block';
-    missionFailedButton.style.display = 'block';
-    downloadPDFButtonDiv.style.display = 'none';
+    missionCompleteButton.style.display = "block";
+    missionFailedButton.style.display = "block";
+    downloadPDFButtonDiv.style.display = "none";
 
     // if all equippedItems arrays are full, can start mission
     if (
@@ -656,8 +706,8 @@ const checkMissionButtons = () => {
       return;
     }
     // else
-    missionCompleteButton.disabled = true; // change to false for testing
-    missionFailedButton.disabled = true; // change to false for testing
+    missionCompleteButton.disabled = true; // change to phalze for testing
+    missionFailedButton.disabled = true; // change to phalze for testing
   }
 };
 
@@ -673,9 +723,9 @@ const reduceMissionCounter = () => {
 };
 
 const uploadSaveData = async () => {
-  await getStartingItems('bb');
+  await getStartingItems("bb");
   await populateDefaultItems();
-  const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
+  const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
   if (budgetBlitzSaveData) {
     const currentGame = await getCurrentGame();
 
@@ -705,7 +755,7 @@ const uploadSaveData = async () => {
     warbondCodes = currentGame.warbondCodes;
     dataName = currentGame.dataName;
     credits = currentGame.credits;
-    scCounter.innerHTML = `${': ' + credits}`;
+    scCounter.innerHTML = `${": " + credits}`;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
 
@@ -717,12 +767,12 @@ const uploadSaveData = async () => {
 };
 
 const decrementItemQuantity = (card, arr) => {
-  const badge = card.querySelector('.costBadges');
+  const badge = card.querySelector(".costBadges");
   let badgeValue = badge.innerHTML.trim();
 
-  if (badgeValue === '∞') return;
+  if (badgeValue === "∞") return;
 
-  const itemName = card.querySelector('.pcItemCardText').innerHTML;
+  const itemName = card.querySelector(".pcItemCardText").innerHTML;
 
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].displayName === itemName) {
@@ -735,7 +785,9 @@ const decrementItemQuantity = (card, arr) => {
         card.remove();
 
         // remove the item from purchasedItems list
-        purchasedItems = purchasedItems.filter((item) => item.displayName !== itemName);
+        purchasedItems = purchasedItems.filter(
+          (item) => item.displayName !== itemName
+        );
       }
       break;
     }
@@ -756,27 +808,27 @@ const unequipAllItems = async (missionEnded = false) => {
     let key = null;
     let arr = [];
     if (i === 0) {
-      key = 'Stratagem';
+      key = "Stratagem";
       arr = newStrats;
     } else if (i === 1) {
-      key = 'armor';
+      key = "armor";
       arr = newArmorPassives;
     } else if (i === 2) {
-      key = 'primary';
+      key = "primary";
       arr = newPrims;
     } else if (i === 3) {
-      key = 'secondary';
+      key = "secondary";
       arr = newSeconds;
     } else if (i === 4) {
-      key = 'throwable';
+      key = "throwable";
       arr = newThrows;
     } else if (i === 5) {
-      key = 'booster';
+      key = "booster";
       arr = newBoosts;
     }
     for (let j = 0; j < itemArray.length; j++) {
       const card = document.getElementById(itemArray[j].id);
-      const badgeText = card.querySelector('.costBadges').innerHTML;
+      const badgeText = card.querySelector(".costBadges").innerHTML;
       const itemConfig = categoryMap[key];
       if (!itemConfig) {
         return;
@@ -796,12 +848,12 @@ const submitMissionReport = async (isMissionSucceeded) => {
     const timeRemainingModifier = Math.ceil(timeRemainingInput.value * 0.25);
     const highValueItemModifier = highValueItemCollectedCheck.checked ? 25 : 0;
     const total =
-      starsEarnedModifier + superSamplesModifier + highValueItemModifier + timeRemainingModifier;
+      starsEarnedModifier +
+      superSamplesModifier +
+      highValueItemModifier +
+      timeRemainingModifier;
     credits += total;
-    if (credits > 200) {
-      credits = 200;
-    }
-    scCounter.innerHTML = `${': ' + credits}`;
+    scCounter.innerHTML = `${": " + credits}`;
 
     // reset values in modal when done calculating
     starsEarnedInput.value = 1;
@@ -837,18 +889,18 @@ const submitMissionReport = async (isMissionSucceeded) => {
 
 const updateMasterListItem = (item) => {
   let masterList = [];
-  const key = item.type === 'Stratagem' ? 'Stratagem' : item.category;
-  if (key === 'Stratagem') {
+  const key = item.type === "Stratagem" ? "Stratagem" : item.category;
+  if (key === "Stratagem") {
     masterList = masterStratsList;
-  } else if (key === 'armor') {
+  } else if (key === "armor") {
     masterList = masterArmorPassivesList;
-  } else if (key === 'primary') {
+  } else if (key === "primary") {
     masterList = masterPrimsList;
-  } else if (key === 'secondary') {
+  } else if (key === "secondary") {
     masterList = masterSecondsList;
-  } else if (key === 'throwable') {
+  } else if (key === "throwable") {
     masterList = masterThrowsList;
-  } else if (key === 'booster') {
+  } else if (key === "booster") {
     masterList = masterBoostsList;
   }
   const index = masterList.findIndex((i) => i.displayName === item.displayName);
@@ -866,7 +918,7 @@ const cloneList = (list) => {
 
 const saveProgress = async () => {
   let obj = {};
-  const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
+  const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
   if (!budgetBlitzSaveData) {
     obj = {
       savedGames: [
@@ -900,7 +952,7 @@ const saveProgress = async () => {
         },
       ],
     };
-    localStorage.setItem('budgetBlitzSaveData', JSON.stringify(obj));
+    localStorage.setItem("budgetBlitzSaveData", JSON.stringify(obj));
     missionCounterText.innerHTML = `${getMissionText()}`;
     return;
   }
@@ -942,11 +994,11 @@ const saveProgress = async () => {
     ...obj,
     savedGames: newSavedGames,
   };
-  localStorage.setItem('budgetBlitzSaveData', JSON.stringify(obj));
+  localStorage.setItem("budgetBlitzSaveData", JSON.stringify(obj));
 };
 
 const saveDataAndRestart = async () => {
-  const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
+  const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
   if (!budgetBlitzSaveData) {
     return;
   }
@@ -991,7 +1043,10 @@ const saveDataAndRestart = async () => {
   const newBudgetBlitzSaveData = {
     savedGames: updatedSavedGames,
   };
-  await localStorage.setItem('budgetBlitzSaveData', JSON.stringify(newBudgetBlitzSaveData));
+  await localStorage.setItem(
+    "budgetBlitzSaveData",
+    JSON.stringify(newBudgetBlitzSaveData)
+  );
 
   // remove saved games that are at the first mission of their difficulty,
   // as long as they are not the current game ...to prevent the user from having a million saves
@@ -1000,35 +1055,43 @@ const saveDataAndRestart = async () => {
 
 // get rid of all games that arent the current game and are on the first mission
 const pruneSavedGames = async () => {
-  const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
+  const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
   if (!budgetBlitzSaveData) {
     return;
   }
-  const prunedGames = await JSON.parse(budgetBlitzSaveData).savedGames.filter((sg) => {
-    if (sg.currentGame === true || sg.missionCounter > 8 || sg.purchasedItems.length > 0) {
-      return sg;
+  const prunedGames = await JSON.parse(budgetBlitzSaveData).savedGames.filter(
+    (sg) => {
+      if (
+        sg.currentGame === true ||
+        sg.missionCounter > 8 ||
+        sg.purchasedItems.length > 0
+      ) {
+        return sg;
+      }
     }
-  });
+  );
   const oldData = JSON.parse(budgetBlitzSaveData);
   const newData = {
     ...oldData,
     savedGames: prunedGames,
   };
-  localStorage.setItem('budgetBlitzSaveData', JSON.stringify(newData));
+  localStorage.setItem("budgetBlitzSaveData", JSON.stringify(newData));
 };
 
 const clearSaveDataAndRestart = async () => {
-  localStorage.removeItem('budgetBlitzSaveData');
+  localStorage.removeItem("budgetBlitzSaveData");
   window.location.reload();
 };
 
 const getCurrentGame = async () => {
-  const savedGames = JSON.parse(localStorage.getItem('budgetBlitzSaveData')).savedGames;
+  const savedGames = JSON.parse(
+    localStorage.getItem("budgetBlitzSaveData")
+  ).savedGames;
   const currentGame = await savedGames.filter((sg) => {
     return sg.currentGame === true;
   });
   if (currentGame.length !== 1) {
-    console.log('SAVED GAME DATA CORRUPTED', savedGames);
+    console.log("SAVED GAME DATA CORRUPTED", savedGames);
     return;
   }
   return currentGame[0];
@@ -1048,7 +1111,7 @@ const getPurchasedItems = (lsDataPurchasedItems) => {
 
   for (let i = 0; i < lsDataPurchasedItems.length; i++) {
     const item = lsDataPurchasedItems[i];
-    const key = item.type === 'Stratagem' ? 'Stratagem' : item.category;
+    const key = item.type === "Stratagem" ? "Stratagem" : item.category;
     const arr = categoryMap[key] || [];
 
     const match = arr.find((el) => el.displayName === item.displayName);

@@ -41,21 +41,15 @@ Budget Blitz
 - BUGS:
   - mysterious issue equipped purchased items not always decreasing in quantity when mission complete
 
-- remove credit cap (sorry Akima this was pretty unpopular xD but we tried!)
 - save equipped items when going to shop and coming back
-- always show Purchased Items and Default Items (remove ablity to collapse those sections)
 - update wording from "Select Stratagem Below" to "Click on Stratagem Below"
-- change credits earned from mission time remaining from (% remaining * 0.25) to (minutes remaining * 0.60)
-  - the mission timer is more obvious and stays on the screen longer than the % remaining number
 - ability to rename mission saves
 - ending score based on total credits earned (credits saved or spent does not matter, only total earned)
 - filter by price (amount of credits) in Shop
-- toast notification when purchasing item "Quasar Cannon sent to inventory"
 - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
 - can purchase a completely random item for 5 credits (similar to CoD Zombies)
   - price goes up by 5 each time you buy
   - will not affect the future price of the rolled item
-- consider reducing cost of secondaries and armor passives
 - ability to download PDF after challenge complete
 
 - create key in save data that tracks credits earned per mission in an array of objects

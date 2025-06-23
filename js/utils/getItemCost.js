@@ -17,12 +17,10 @@ const getItemCost = (item) => {
     item.category === "booster"
   ) {
     cost += 12;
-  } else if (
-    item.category === "secondary" ||
-    item.category === "throwable" ||
-    item.category === "armor"
-  ) {
+  } else if (item.category === "throwable") {
     cost += 5;
+  } else if (item.category === "secondary" || item.category === "armor") {
+    cost += 3;
   }
 
   // add randomness from -6 to 7

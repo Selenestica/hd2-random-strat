@@ -18,7 +18,6 @@ to do Penitent Crusade:
 - when mission fail, choose a and s tier items from acquiredItems, if any
 - add nice icon for app icon shortcuts
 - rare reroll token that randomly shows up as a reward
-- add options for warbonds, in case some people dont have all the warbonds
 - add QR codes for data sharing
   - or data import feature
 - add Discord bot compatibility
@@ -39,11 +38,9 @@ feature ideas:
 
 Budget Blitz
 - BUGS:
-  - mysterious issue equipped purchased items not always decreasing in quantity when mission complete
+  - mysterious issue: equipped purchased items not always decreasing in quantity when mission complete
 
-- save equipped items when going to shop and coming back
 - update wording from "Select Stratagem Below" to "Click on Stratagem Below"
-- ability to rename mission saves
 - ending score based on total credits earned (credits saved or spent does not matter, only total earned)
 - filter by price (amount of credits) in Shop
 - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 

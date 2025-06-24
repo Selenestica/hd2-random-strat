@@ -732,9 +732,13 @@ const saveProgress = async (item = null) => {
         newArmorPassives,
         newBoosts,
         seesRulesOnOpen: false,
-        dataName: `${difficulty.toUpperCase()} | ${getMissionText()} | ${getCurrentDateTime()}${
-          specialist !== null ? " | " + SPECIALISTS[specialist].displayName : ""
-        }`,
+        dataName: sg.editedName
+          ? sg.dataName
+          : `${difficulty.toUpperCase()} | ${getMissionText()} | ${getCurrentDateTime()}${
+              specialist !== null
+                ? " | " + SPECIALISTS[specialist].displayName
+                : ""
+            }`,
         currentGame: true,
         missionCounter,
         specialist,

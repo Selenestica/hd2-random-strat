@@ -240,7 +240,7 @@ for (let z = 0; z < mainViewButtons.length; z++) {
         loadoutContainer.classList.remove("d-none");
         loadoutContainer.classList.add("d-flex");
         purchasedItemsInventory.innerHTML = "";
-        populatePurchasedItemsInventory();
+        populateInventory();
         resetShopFilters();
       }
       if (e.srcElement.id === "shopButton") {
@@ -253,7 +253,6 @@ for (let z = 0; z < mainViewButtons.length; z++) {
         bbShopItemsContainer.innerHTML = "";
         populateShopItems();
         updateAllRenderedItems();
-        unequipAllItems();
       }
     }
   });
@@ -409,10 +408,58 @@ const updateShopItemsCostAndSaleStatus = async () => {
   }
 };
 
-const populatePurchasedItemsInventory = async () => {
+const populateInventory = async () => {
+  const equipmentCardContainers = [
+    primaryContainerBB,
+    secondaryContainerBB,
+    throwableContainerBB,
+    armorContainerBB,
+    boosterContainerBB,
+  ];
+  let equippedItemCardIDs = [];
+
+  // get any equipped equipment
+  for (let k = 0; k < equipmentCardContainers.length; k++) {
+    const id = equipmentCardContainers[k].children[0].id;
+    if (id && id.includes("bbLoadoutItemCard-")) {
+      equippedItemCardIDs.push(id);
+    }
+  }
+
+  // get any equipped stratagems
+  for (let j = 0; j < stratagemsContainerBB.children.length; j++) {
+    const id = stratagemsContainerBB.children[j].id;
+    if (id && id.includes("bbLoadoutItemCard-")) {
+      equippedItemCardIDs.push(id);
+    }
+  }
+
+  await populatePurchasedItemsInventory(equippedItemCardIDs);
+};
+
+const populatePurchasedItemsInventory = async (equippedItems = null) => {
+  let purchasedItemCards = [];
+  // make a card for every purchased item
   for (let i = 0; i < purchasedItems.length; i++) {
-    const card = generateItemCard(purchasedItems[i]);
-    purchasedItemsInventory.appendChild(card);
+    const card = await generateItemCard(purchasedItems[i]);
+    purchasedItemCards.push(card);
+  }
+
+  // if equipped items, take out those items from the card list
+  if (equippedItems && equippedItems.length > 0) {
+    purchasedItemCards = await purchasedItemCards.filter((cd) => {
+      return !equippedItems.includes(cd.id);
+    });
+    // only put the unequipped purchased items in the purchased items box
+    for (let j = 0; j < purchasedItemCards.length; j++) {
+      purchasedItemsInventory.appendChild(purchasedItemCards[j]);
+    }
+    return;
+  }
+
+  // only put the unequipped purchased items in the purchased items box
+  for (let j = 0; j < purchasedItemCards.length; j++) {
+    purchasedItemsInventory.appendChild(purchasedItemCards[j]);
   }
 };
 
@@ -647,13 +694,25 @@ const updateUserCredits = (cost) => {
 };
 
 const updateRenderedItem = (item) => {
+  // update shop card
   let totalCost = item.cost;
   if (item.onSale) {
     totalCost = Math.ceil(item.cost * 0.5);
   }
-  const cardEl = document.getElementById("bbShopItemCard-" + item.internalName);
-  const badgeEl = cardEl.querySelector(".costBadges");
-  badgeEl.textContent = totalCost;
+  const shopCardEl = document.getElementById(
+    "bbShopItemCard-" + item.internalName
+  );
+  const shopBadgeEl = shopCardEl.querySelector(".costBadges");
+  shopBadgeEl.textContent = totalCost;
+
+  // update loadout card
+  const loadoutCardEl = document.getElementById(
+    "bbLoadoutItemCard-" + item.internalName
+  );
+  if (loadoutCardEl) {
+    const loadoutBadgeEl = loadoutCardEl.querySelector(".costBadges");
+    loadoutBadgeEl.textContent = item.quantity;
+  }
 };
 
 const updateAllRenderedItems = () => {
@@ -978,7 +1037,9 @@ const saveProgress = async () => {
         masterArmorPassivesList,
 
         seesRulesOnOpen: false,
-        dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
+        dataName: sg.editedName
+          ? sg.dataName
+          : `${getMissionText()} | ${getCurrentDateTime()}`,
         currentGame: true,
         missionCounter,
         failedMissions,

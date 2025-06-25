@@ -54,6 +54,7 @@ const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 let missionCounter = 8;
 let failedMissions = 0;
 let successfulMissions = 0;
+let creditsPerMission = [];
 let purchasedItems = [];
 let equippedStratagems = [];
 let equippedArmor = [];
@@ -68,6 +69,16 @@ let masterThrowsList = [];
 let masterBoostsList = [];
 let masterStratsList = [];
 let masterArmorPassivesList = [];
+
+let sesItem = {
+  cost: 7,
+  timesPurchased: 0,
+  warbond: "None",
+  warbondCode: "none",
+  category: "random",
+};
+
+let randomItem = null;
 
 let currentView = "loadoutButton";
 let credits = 100;
@@ -341,7 +352,15 @@ const startNewRun = async (isRestart = null) => {
   masterArmorPassivesList = cloneList(newArmorPassives);
 
   credits = 100;
+  creditsPerMission = [];
   scCounter.innerHTML = `${": " + credits}`;
+  sesItem = {
+    cost: 7,
+    timesPurchased: 0,
+    warbond: "None",
+    warbondCode: "none",
+    category: "random",
+  };
   currentItems = [];
   missionCounter = 8;
   failedMissions = 0;
@@ -507,6 +526,7 @@ const populateShopItems = () => {
     newArmorPassives,
     newThrows,
   ];
+  genRandomItem(allItemsList);
   for (let i = 0; i < allItemsList.length; i++) {
     const items = allItemsList[i];
     for (let j = 0; j < items.length; j++) {
@@ -514,6 +534,41 @@ const populateShopItems = () => {
       bbShopItemsContainer.appendChild(generateItemCard(item, "shop"));
     }
   }
+  bbShopItemsContainer.prepend(generateSESItemCard());
+};
+
+const genRandomItem = (allItemsList) => {
+  const randomListIndex = Math.floor(Math.random() * 6);
+  const randomItemIndex = Math.floor(
+    Math.random() * allItemsList[randomListIndex].length
+  );
+  const item = allItemsList[randomListIndex][randomItemIndex];
+  randomItem = item;
+};
+
+const generateSESItemCard = () => {
+  const timesPurchasedModifier = sesItem.timesPurchased * 3;
+  const totalCost = sesItem.cost + timesPurchasedModifier;
+  const card = document.createElement("div");
+
+  card.id = "bbShopItemCard-RANDOM";
+  card.dataset.type = "RANDOM";
+  if (totalCost <= credits) {
+    card.onclick = () => purchaseItem(null, true);
+  }
+
+  card.className = `card col-2 col-lg-1 text-center bbShopItemCards pcItemCards bbItemCards none`;
+  card.innerHTML = `
+    <i class="fa-2x text-info fa-solid fa-question pt-1 img-card-top"></i>
+    <span class="costBadges translate-middle badge rounded-pill bg-warning text-dark">
+      ${totalCost}
+    </span>
+    <div class="card-body itemNameContainer align-items-center">
+      <p class="card-title text-white pcItemCardText">Super Earth Surplus</p>
+    </div>
+  `;
+
+  return card;
 };
 
 const generateItemCard = (item, view = null) => {
@@ -541,7 +596,7 @@ const generateItemCard = (item, view = null) => {
       costBadgeColor = "bg-success text-light";
     }
     if (totalCost <= credits) {
-      card.onclick = () => purchaseItem(item);
+      card.onclick = () => purchaseItem(item, false);
     }
   }
 
@@ -639,7 +694,10 @@ const toggleLoadoutItem = async (item) => {
   }
 };
 
-const purchaseItem = async (item) => {
+const purchaseItem = async (item, isRandom) => {
+  if (!item) {
+    item = randomItem;
+  }
   if (missionCounter >= 23) return;
   let totalCost = item.cost;
   if (item.onSale) {
@@ -655,34 +713,55 @@ const purchaseItem = async (item) => {
         if (i !== item) {
           i = item;
         }
-        i.quantity++;
-        i.timesPurchased++;
         updateUserCredits(totalCost);
-        i.cost += 5;
+        i.quantity++;
+        isRandom ? sesItem.timesPurchased++ : i.timesPurchased++;
+        isRandom ? (sesItem.cost += 0) : (i.cost += 5);
 
         // Update item in master list here
         updateMasterListItem(i);
       }
+      isRandom
+        ? genRandomItem([
+            newPrims,
+            newStrats,
+            newBoosts,
+            newSeconds,
+            newArmorPassives,
+            newThrows,
+          ])
+        : null;
       return i;
     });
-    updateRenderedItem(item);
+    updateRenderedItem(item, isRandom);
     updateAllRenderedItems();
     saveProgress();
     showBBPurchasedItemToast(item.displayName);
     return;
   }
   updateUserCredits(totalCost);
-  item.cost += 5;
-  item.timesPurchased++;
+
+  isRandom ? (sesItem.cost += 0) : (item.cost += 5);
+  isRandom ? sesItem.timesPurchased++ : item.timesPurchased++;
   item.quantity++;
 
   // update item in masterlist here
   updateMasterListItem(item);
   purchasedItems.push(item);
-  updateRenderedItem(item);
+  updateRenderedItem(item, isRandom);
   updateAllRenderedItems();
   saveProgress();
   showBBPurchasedItemToast(item.displayName);
+  isRandom
+    ? genRandomItem([
+        newPrims,
+        newStrats,
+        newBoosts,
+        newSeconds,
+        newArmorPassives,
+        newThrows,
+      ])
+    : null;
 };
 
 const updateUserCredits = (cost) => {
@@ -693,15 +772,19 @@ const updateUserCredits = (cost) => {
   scCounter.innerHTML = `${": " + credits}`;
 };
 
-const updateRenderedItem = (item) => {
+const updateRenderedItem = (item, isRandom) => {
   // update shop card
-  let totalCost = item.cost;
-  if (item.onSale) {
+  let totalCost = isRandom
+    ? sesItem.cost + sesItem.timesPurchased * 3
+    : item.cost;
+  if (item.onSale && !isRandom) {
     totalCost = Math.ceil(item.cost * 0.5);
   }
-  const shopCardEl = document.getElementById(
-    "bbShopItemCard-" + item.internalName
-  );
+  let shopCardID = "bbShopItemCard-" + item.internalName;
+  if (isRandom) {
+    shopCardID = "bbShopItemCard-RANDOM";
+  }
+  const shopCardEl = document.getElementById(shopCardID);
   const shopBadgeEl = shopCardEl.querySelector(".costBadges");
   shopBadgeEl.textContent = totalCost;
 
@@ -814,6 +897,8 @@ const uploadSaveData = async () => {
     warbondCodes = currentGame.warbondCodes;
     dataName = currentGame.dataName;
     credits = currentGame.credits;
+    creditsPerMission = currentGame.creditsPerMission;
+    sesItem = currentGame.sesItem;
     scCounter.innerHTML = `${": " + credits}`;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
@@ -924,6 +1009,11 @@ const submitMissionReport = async (isMissionSucceeded) => {
     successfulMissions++;
     missionCounter++;
 
+    // if missionCounter - 8 <= creditsPerMission.length, dont push. that means a mission was failed and the mission was a redo
+    if (missionCounter - 8 > creditsPerMission.length) {
+      creditsPerMission.push(total);
+    }
+
     // here we want to go through all the items in the shop and update their cost and onSale property
     // if they are starting a new operation
     await updateShopItemsCostAndSaleStatus();
@@ -1006,6 +1096,8 @@ const saveProgress = async () => {
           failedMissions,
           successfulMissions,
           credits,
+          creditsPerMission,
+          sesItem,
 
           warbondCodes,
         },
@@ -1045,6 +1137,8 @@ const saveProgress = async () => {
         failedMissions,
         successfulMissions,
         credits,
+        creditsPerMission,
+        sesItem,
 
         warbondCodes,
       };
@@ -1096,6 +1190,7 @@ const saveDataAndRestart = async () => {
     failedMissions,
     successfulMissions,
     credits,
+    creditsPerMission,
 
     warbondCodes,
   };

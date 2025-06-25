@@ -19,7 +19,7 @@ const getItemCost = (item) => {
     cost += 12;
   } else if (item.category === "throwable") {
     cost += 5;
-  } else if (item.category === "secondary" || item.category === "armor") {
+  } else if (item.category === "secondary") {
     cost += 3;
   }
 

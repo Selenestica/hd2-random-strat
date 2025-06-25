@@ -23,8 +23,10 @@ const purchaseableDropdownItem = document.getElementById(
 const nonPurchaseableDropdownItem = document.getElementById(
   "nonPurchaseableDropdownItem"
 );
+const cheapestDropdownItem = document.getElementById("cheapestDropdownItem");
 const priceFiltersArray = [
   onSaleDropdownItem,
+  cheapestDropdownItem,
   purchaseableDropdownItem,
   nonPurchaseableDropdownItem,
 ];
@@ -93,6 +95,22 @@ const filterByPrice = (filter) => {
       }
     });
   }
+
+  if (filter === "cheapest") {
+    cheapestDropdownItem.classList.toggle("active");
+    const cardsArray = Array.from(cards);
+
+    cardsArray.sort((a, b) => {
+      const priceA = parseInt(a.querySelector(".costBadges").innerText, 10);
+      const priceB = parseInt(b.querySelector(".costBadges").innerText, 10);
+      return priceA - priceB; // Sort from cheapest to most expensive
+    });
+
+    // Re-append sorted cardsArray to the container
+    cardsArray.forEach((card) => {
+      bbShopItemsContainer.appendChild(card);
+    });
+  }
 };
 
 const resetShopFilters = () => {
@@ -107,4 +125,6 @@ const resetShopFilters = () => {
   priceFiltersArray.forEach((btn) => btn.classList.remove("active"));
 
   shopSearchInput.value = "";
+  bbShopItemsContainer.innerHTML = "";
+  populateShopItems();
 };

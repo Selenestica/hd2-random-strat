@@ -41,17 +41,8 @@ Budget Blitz
   - mysterious issue: equipped purchased items not always decreasing in quantity when mission complete
 
 - update wording from "Select Stratagem Below" to "Click on Stratagem Below"
-- ending score based on total credits earned (credits saved or spent does not matter, only total earned)
-- filter by price (amount of credits) in Shop
 - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
-- can purchase a completely random item for 5 credits (similar to CoD Zombies)
-  - price goes up by 5 each time you buy
-  - will not affect the future price of the rolled item
+- track amount of samples earned and mission time remaining in creditsEarnedPerMission array so we can display that at the end
 - ability to download PDF after challenge complete
-
-- create key in save data that tracks credits earned per mission in an array of objects
-  - score based on total credits earned (credits saved or spent does not matter, only total earned)
-  -  if mission failed, credits earned from repeated missions dont count toward the total 
-    - probably check the length of the array each time. if missionCounter - 7 is greater than length of array, add the data. else dont add data.
 
 NEW CHALLENGE IDEAS:

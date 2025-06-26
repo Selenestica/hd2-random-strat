@@ -38,6 +38,7 @@ feature ideas:
 
 Budget Blitz
 - BUGS:
+ - buying random item decreases credit by item cost
   - mysterious issue: equipped purchased items not always decreasing in quantity when mission complete
 - ADD ONE TRUE FLAG TO DEFAULT LIST. IF IT'S EQUIPPED DURING A MISSION, ADD 5 CREDITS???
 - update wording from "Select Stratagem Below" to "Click on Stratagem Below"

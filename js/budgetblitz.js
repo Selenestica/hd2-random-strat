@@ -827,9 +827,6 @@ const checkMissionButtons = () => {
     missionCompleteButton.style.display = "none";
     missionFailedButton.style.display = "none";
     downloadPDFButtonDiv.style.display = "block";
-
-    // show score modal
-    genBBGameOverModal();
   }
 
   if (missionCounter < 22) {
@@ -1001,20 +998,26 @@ const submitMissionReport = async (isMissionSucceeded) => {
     credits += total;
     scCounter.innerHTML = `${": " + credits}`;
 
-    // reset values in modal when done calculating
-    starsEarnedInput.value = 1;
-    superSamplesCollectedInput.value = 0;
-    timeRemainingInput.value = 0;
-    highValueItemCollectedCheck.checked = false;
-
     // update missionCounter
     successfulMissions++;
     missionCounter++;
 
     // if missionCounter - 8 <= creditsPerMission.length, dont push. that means a mission was failed and the mission was a redo
     if (missionCounter - 8 > creditsPerMission.length) {
-      creditsPerMission.push(total);
+      creditsPerMission.push({
+        totalCredits: total,
+        timeRemaining: parseInt(timeRemainingInput.value, 10),
+        starsEarned: parseInt(starsEarnedInput.value, 10),
+        superSamplesCollected: parseInt(superSamplesCollectedInput.value, 10),
+        highValueItemsCollected: highValueItemCollectedCheck.checked,
+      });
     }
+
+    // reset values in modal when done calculating
+    starsEarnedInput.value = 1;
+    superSamplesCollectedInput.value = 0;
+    timeRemainingInput.value = 0;
+    highValueItemCollectedCheck.checked = false;
 
     // here we want to go through all the items in the shop and update their cost and onSale property
     // if they are starting a new operation
@@ -1134,6 +1137,10 @@ const saveProgress = async () => {
         dataName: sg.editedName
           ? sg.dataName
           : `${getMissionText()} | ${getCurrentDateTime()}`,
+        dateStarted: sg.dateStarted
+          ? sg.dateStarted
+          : `${getCurrentDateTime()}`,
+        dateEnded: missionCounter >= 23 ? `${getCurrentDateTime()}` : null,
         currentGame: true,
         missionCounter,
         failedMissions,
@@ -1152,6 +1159,11 @@ const saveProgress = async () => {
     savedGames: newSavedGames,
   };
   localStorage.setItem("budgetBlitzSaveData", JSON.stringify(obj));
+
+  // show score modal after local storage has been updated when challenge complete
+  if (missionCounter >= 23) {
+    genBBGameOverModal();
+  }
 };
 
 const saveDataAndRestart = async () => {

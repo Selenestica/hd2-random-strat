@@ -38,10 +38,12 @@ feature ideas:
 
 Budget Blitz
 - BUGS:
+  - when Reset button is clicked, unpurchaseable items badges are no longer red
+    - just a visual issue. still cant buy the item
+    - going to the Loadout screen and back fixes the issue
+    - likely due to the re-populating of the shop items after reset (populateShopItems)
   - mysterious issue: equipped purchased items not always decreasing in quantity when mission complete
 - update wording from "Select Stratagem Below" to "Click on Stratagem Below"
 - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
-- track amount of samples earned and mission time remaining in creditsEarnedPerMission array so we can display that at the end
-- ability to download PDF after challenge complete
 
 NEW CHALLENGE IDEAS:

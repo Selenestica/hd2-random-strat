@@ -20,7 +20,7 @@ const getItemCost = (item) => {
   } else if (item.category === "throwable") {
     cost += 5;
   } else if (item.category === "secondary") {
-    cost += 3;
+    cost += 2;
   }
 
   // add randomness from -6 to 7

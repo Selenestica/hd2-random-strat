@@ -713,11 +713,13 @@ const purchaseItem = async (item, isRandom) => {
         if (i !== item) {
           i = item;
         }
-        updateUserCredits(totalCost);
+        updateUserCredits(isRandom ? sesItem.cost : totalCost);
         i.quantity++;
         isRandom ? sesItem.timesPurchased++ : i.timesPurchased++;
-        isRandom ? (sesItem.cost += 0) : (i.cost += 5);
-
+        !isRandom ? (item.cost += 5) : null;
+        if (isRandom) {
+          sesItem.cost += 3;
+        }
         // Update item in master list here
         updateMasterListItem(i);
       }
@@ -739,12 +741,14 @@ const purchaseItem = async (item, isRandom) => {
     showBBPurchasedItemToast(item.displayName);
     return;
   }
-  updateUserCredits(totalCost);
+  updateUserCredits(isRandom ? sesItem.cost : totalCost);
 
-  isRandom ? (sesItem.cost += 0) : (item.cost += 5);
+  !isRandom ? (item.cost += 5) : null;
   isRandom ? sesItem.timesPurchased++ : item.timesPurchased++;
   item.quantity++;
-
+  if (isRandom) {
+    sesItem.cost += 3;
+  }
   // update item in masterlist here
   updateMasterListItem(item);
   purchasedItems.push(item);
@@ -774,9 +778,7 @@ const updateUserCredits = (cost) => {
 
 const updateRenderedItem = (item, isRandom) => {
   // update shop card
-  let totalCost = isRandom
-    ? sesItem.cost + sesItem.timesPurchased * 3
-    : item.cost;
+  let totalCost = isRandom ? sesItem.cost : item.cost;
   if (item.onSale && !isRandom) {
     totalCost = Math.ceil(item.cost * 0.5);
   }

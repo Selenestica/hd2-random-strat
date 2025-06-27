@@ -632,8 +632,8 @@
             id="saveDataManagementModalBody"
           >
             <p class="text-white">
-              Switch your active save file here, delete individual save files,
-              or delete all save files.
+              Switch your active save file here, delete save files, or upload
+              save files.
               <br />
               Select an entry below and press 'Apply' to load a different save
               file.
@@ -641,6 +641,26 @@
               <br />
               NOTE: You can't delete your current save file.
             </p>
+            <div class="mb-3 d-flex row">
+              <div class="col-9">
+                <input
+                  class="form-control"
+                  type="file"
+                  id="saveDataUploadInput"
+                />
+              </div>
+              <div class="col-3">
+                <button
+                  type="button"
+                  onclick="uploadSaveFile()"
+                  class="btn btn-success"
+                  id="uploadSaveFileButton"
+                  disabled
+                >
+                  Upload
+                </button>
+              </div>
+            </div>
             <div
               id="saveDataManagementModalSavesList"
               class="btn-group-vertical"
@@ -872,6 +892,7 @@
   <script src="../js/utils/getMissionText.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
   <script src="../js/utils/downloadItemsPDF.js"></script>
+  <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/components/specialistsModal.js"></script>
   <script src="../js/components/genShowAllItemsModal.js"></script>
   <script src="../js/utils/getStartingItems.js"></script>

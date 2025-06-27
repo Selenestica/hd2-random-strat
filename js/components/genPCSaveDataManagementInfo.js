@@ -7,6 +7,13 @@ const saveDataManagementModalSavesList = document.getElementById(
 const saveDataModalFunctionsDiv = document.getElementById(
   "saveDataModalFunctionsDiv"
 );
+const saveDataUploadInput = document.getElementById("saveDataUploadInput");
+const uploadSaveFileButton = document.getElementById("uploadSaveFileButton");
+const saveDataManagementModalInstance = new bootstrap.Modal(
+  saveDataManagementModal
+);
+
+let uploadedSaveFile = null;
 
 const saveNewSaveFileName = async (index) => {
   const newSaveFileNameInput = document.getElementById("newSaveFileNameInput");
@@ -15,7 +22,9 @@ const saveNewSaveFileName = async (index) => {
   let savedGames = [...saveData.savedGames];
   const updatedSaveFile = {
     ...savedGames[index],
-    dataName: newSaveFileNameInput.value ?? savedGames[index].dataName,
+    dataName: newSaveFileNameInput.value
+      ? newSaveFileNameInput.value
+      : "Unnamed Save File",
     editedName: true,
   };
   savedGames.splice(index, 1, updatedSaveFile);
@@ -34,7 +43,7 @@ const editSaveName = (index, oldName) => {
   saveDataManagementModalSavesList.innerHTML = `
     <p class="text-white mb-0">Rename save file:</p>
     <div id="saveDataNameEditDiv" class="my-1 d-flex" style="width: 90%">
-      <input type="text" id="newSaveFileNameInput" class="form-control" value="${oldName}">
+      <input type="text" maxlength="50" id="newSaveFileNameInput" class="form-control" value="${oldName}">
       <button type="button" onclick="saveNewSaveFileName(${index})" class="mx-1 btn btn-success btn-sm"><i class="fa-solid fa-check"></i></button>
     </div>
   `;
@@ -42,10 +51,15 @@ const editSaveName = (index, oldName) => {
 
 const genPCSaveDataManagementModalInfo = (savedNewName = null) => {
   const saveData = JSON.parse(localStorage.getItem("penitentCrusadeSaveData"));
-  if (!saveData) return;
+  if (!saveData) {
+    saveDataManagementModalSavesList.innerHTML =
+      "<p class='text-white'>No save data detected. Begin the challenge or upload save data to get started.</p>";
+    saveDataManagementModalInstance.show();
+    saveDataModalFunctionsDiv.classList.toggle("d-none", true);
+    return;
+  }
   const savedGames = saveData.savedGames;
   saveDataModalFunctionsDiv.classList.toggle("d-none", false);
-
   for (let i = 0; i < savedGames.length; i++) {
     const save = savedGames[i];
     const isDisabled = save.currentGame ? "disabled" : "";
@@ -55,18 +69,20 @@ const genPCSaveDataManagementModalInfo = (savedNewName = null) => {
         <input type="radio" class="btn-check" name="btnradio" id="savedGameOption${i}" autocomplete="off" ${isDisabled}>
         <label id="savedGameOptionLabel${i}" class="btn btn-outline-primary text-white" for="savedGameOption${i}">${save.dataName} ${displayCurrentText}</label>
         <button type="button" onclick="editSaveName(${i},'${save.dataName}')" class="ml-1 btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></button>
+        <button type="button" onclick="downloadSaveFile(${i}, 'pc')" class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i></button>
       </div>
     `;
   }
 
   if (!savedNewName) {
-    const modal = new bootstrap.Modal(saveDataManagementModal);
-    modal.show();
+    saveDataManagementModalInstance.show();
   }
 };
 
 const clearSaveDataManagementModal = () => {
   saveDataManagementModalSavesList.innerHTML = "";
+  saveDataUploadInput.value = "";
+  uploadedSaveFile = null;
 };
 
 const getSavedGameIndex = () => {
@@ -108,9 +124,9 @@ const deleteSavedGameData = async () => {
 };
 
 // let user choose a save file to populate the website with
-const applySavedGameData = async () => {
-  const saveIndex = getSavedGameIndex();
-  if (saveIndex === undefined) {
+const applySavedGameData = async (isUploadedSave = null) => {
+  const saveIndex = isUploadedSave ? 0 : getSavedGameIndex();
+  if (!isUploadedSave && (saveIndex === undefined || saveIndex === null)) {
     clearSaveDataManagementModal();
     return;
   }
@@ -149,4 +165,56 @@ const applySavedGameData = async () => {
   // then upload the current save
   uploadSaveData();
   clearSaveDataManagementModal();
+  if (isUploadedSave) {
+    saveDataManagementModalInstance.hide();
+  }
+};
+
+saveDataUploadInput.addEventListener("change", (e) => {
+  const uploadedFile = e.target.files[0];
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const fileJSON = JSON.parse(event.target.result);
+    // console.log(fileJSON);
+    // validate json and structure here
+    // if ok, enable upload button
+    uploadSaveFileButton.disabled = false;
+    uploadedSaveFile = fileJSON;
+  };
+  reader.onerror = (error) => {
+    console.log(error);
+  };
+  reader.readAsText(uploadedFile);
+});
+
+const uploadSaveFile = async () => {
+  if (uploadedSaveFile.currentGame === true) {
+    uploadedSaveFile.currentGame = false;
+  }
+  let obj = {};
+  const penitentCrusadeSaveData = localStorage.getItem(
+    "penitentCrusadeSaveData"
+  );
+  // will lead to a situation where there is one saved game that's not set to true. may cause problems we'll see
+  if (!penitentCrusadeSaveData) {
+    uploadedSaveFile.currentGame = true;
+    obj = {
+      savedGames: [uploadedSaveFile],
+    };
+    await localStorage.setItem("penitentCrusadeSaveData", JSON.stringify(obj));
+    applySavedGameData(true);
+    uploadedSaveFile = null;
+    saveDataUploadInput.value = "";
+    return;
+  }
+  let newData = JSON.parse(penitentCrusadeSaveData);
+  newData.savedGames.push(uploadedSaveFile);
+  await localStorage.setItem(
+    "penitentCrusadeSaveData",
+    JSON.stringify(newData)
+  );
+  saveDataManagementModalSavesList.innerHTML = "";
+  genPCSaveDataManagementModalInfo(true);
+  uploadedSaveFile = null;
+  saveDataUploadInput.value = "";
 };

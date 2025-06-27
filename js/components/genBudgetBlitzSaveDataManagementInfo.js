@@ -33,7 +33,7 @@ const editSaveName = (index, oldName) => {
   budgetBlitzDataManagementModalSavesList.innerHTML = `
     <p class="text-white mb-0">Rename save file:</p>
     <div id="saveDataNameEditDiv" class="my-1 d-flex" style="width: 90%">
-      <input type="text" id="newSaveFileNameInput" class="form-control" value="${oldName}">
+      <input type="text" maxlength="50" id="newSaveFileNameInput" class="form-control" value="${oldName}">
       <button type="button" onclick="saveNewSaveFileName(${index})" class="mx-1 btn btn-success btn-sm"><i class="fa-solid fa-check"></i></button>
     </div>
   `;
@@ -41,7 +41,15 @@ const editSaveName = (index, oldName) => {
 
 const genBudgetBlitzDataManagementModalInfo = (savedNewName = null) => {
   const saveData = JSON.parse(localStorage.getItem("budgetBlitzSaveData"));
-  if (!saveData) return;
+  if (!saveData) {
+    budgetBlitzDataManagementModalSavesList.innerHTML =
+      "<p class='text-white'>No save data detected. Begin the challenge or upload save data to get started.</p>";
+    const modal = new bootstrap.Modal(budgetBlitzDataManagementModal);
+    modal.show();
+    saveDataModalFunctionsDiv.classList.toggle("d-none", true);
+    return;
+  }
+  budgetBlitzDataManagementModalSavesList.innerHTML = "";
   saveDataModalFunctionsDiv.classList.toggle("d-none", false);
   const savedGames = saveData.savedGames;
 
@@ -53,7 +61,8 @@ const genBudgetBlitzDataManagementModalInfo = (savedNewName = null) => {
       <div class="my-1" id="savedGameOptionDiv${i}">
         <input type="radio" class="btn-check" name="btnradio" id="savedGameOption${i}" autocomplete="off" ${isDisabled}>
         <label id="savedGameOptionLabel${i}" class="btn btn-outline-primary text-white" for="savedGameOption${i}">${save.dataName} ${displayCurrentText}</label>
-        <button type="button" onclick="editSaveName(${i},'${save.dataName}')" class="ml-1 btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></button>
+        <button type="button" onclick="editSaveName(${i},'${save.dataName}')" class="mx-1 btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></button>
+        <button type="button" onclick="downloadSaveFile(${i}, 'bb')" class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i></button>
       </div>
     `;
   }

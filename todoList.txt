@@ -2,6 +2,8 @@ to do General:
 - go through FontAwesome icons and possibly update to better icons
 - make the home page a screen to choose which challenge you want to do
 - give the Randomizer it's own URL: /randomizer
+- file upload and sharing similar to Armored Core challenge site
+- save data edit name inputs maxlength of 50
 
 to do Randomizer:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads

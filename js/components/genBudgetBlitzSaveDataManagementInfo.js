@@ -15,7 +15,9 @@ const saveNewSaveFileName = async (index) => {
   let savedGames = [...saveData.savedGames];
   const updatedSaveFile = {
     ...savedGames[index],
-    dataName: newSaveFileNameInput.value ?? savedGames[index].dataName,
+    dataName: newSaveFileNameInput.value
+      ? newSaveFileNameInput.value
+      : "Unnamed Save File",
     editedName: true,
   };
   savedGames.splice(index, 1, updatedSaveFile);

@@ -553,8 +553,12 @@ const generateSESItemCard = () => {
 
   card.id = "bbShopItemCard-RANDOM";
   card.dataset.type = "RANDOM";
+  let costBadgeColor = "bg-warning text-dark";
   if (totalCost <= credits) {
     card.onclick = () => purchaseItem(null, true);
+  }
+  if (totalCost > credits) {
+    costBadgeColor = "bg-danger text-light";
   }
 
   card.className = `card col-2 col-lg-1 text-center bbShopItemCards pcItemCards bbItemCards none`;
@@ -597,6 +601,9 @@ const generateItemCard = (item, view = null) => {
     }
     if (totalCost <= credits) {
       card.onclick = () => purchaseItem(item, false);
+    }
+    if (totalCost > credits) {
+      costBadgeColor = "bg-danger text-light";
     }
   }
 
@@ -1205,6 +1212,7 @@ const saveDataAndRestart = async () => {
     successfulMissions,
     credits,
     creditsPerMission,
+    sesItem,
 
     warbondCodes,
   };

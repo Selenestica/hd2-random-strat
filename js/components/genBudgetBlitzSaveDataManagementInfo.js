@@ -7,6 +7,13 @@ const budgetBlitzDataManagementModalSavesList = document.getElementById(
 const saveDataModalFunctionsDiv = document.getElementById(
   "saveDataModalFunctionsDiv"
 );
+const saveDataUploadInput = document.getElementById("saveDataUploadInput");
+const uploadSaveFileButton = document.getElementById("uploadSaveFileButton");
+const saveDataManagementModalInstance = new bootstrap.Modal(
+  budgetBlitzDataManagementModal
+);
+
+let uploadedSaveFile = null;
 
 const saveNewSaveFileName = async (index) => {
   const newSaveFileNameInput = document.getElementById("newSaveFileNameInput");
@@ -44,8 +51,7 @@ const genBudgetBlitzDataManagementModalInfo = (savedNewName = null) => {
   if (!saveData) {
     budgetBlitzDataManagementModalSavesList.innerHTML =
       "<p class='text-white'>No save data detected. Begin the challenge or upload save data to get started.</p>";
-    const modal = new bootstrap.Modal(budgetBlitzDataManagementModal);
-    modal.show();
+    saveDataManagementModalInstance.show();
     saveDataModalFunctionsDiv.classList.toggle("d-none", true);
     return;
   }
@@ -67,13 +73,14 @@ const genBudgetBlitzDataManagementModalInfo = (savedNewName = null) => {
     `;
   }
   if (!savedNewName) {
-    const modal = new bootstrap.Modal(budgetBlitzDataManagementModal);
-    modal.show();
+    saveDataManagementModalInstance.show();
   }
 };
 
 const clearBudgetBlitzDataManagementModal = () => {
   budgetBlitzDataManagementModalSavesList.innerHTML = "";
+  saveDataUploadInput.value = "";
+  uploadedSaveFile = null;
 };
 
 const getSavedGameIndex = () => {
@@ -115,10 +122,10 @@ const deleteSavedGameData = async () => {
 };
 
 // let user choose a save file to populate the website with
-const applySavedGameData = async () => {
-  const saveIndex = getSavedGameIndex();
-  if (saveIndex === undefined) {
-    clearBudgetBlitzDataManagementModal();
+const applySavedGameData = async (isUploadedSave = null) => {
+  const saveIndex = isUploadedSave ? 0 : getSavedGameIndex();
+  if (!isUploadedSave && (saveIndex === undefined || saveIndex === null)) {
+    clearSaveDataManagementModal();
     return;
   }
   // we just want to change the currentGame
@@ -149,4 +156,51 @@ const applySavedGameData = async () => {
   // then upload the current save
   uploadSaveData();
   clearBudgetBlitzDataManagementModal();
+  if (isUploadedSave) {
+    saveDataManagementModalInstance.hide();
+  }
+};
+
+saveDataUploadInput.addEventListener("change", (e) => {
+  const uploadedFile = e.target.files[0];
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const fileJSON = JSON.parse(event.target.result);
+    // console.log(fileJSON);
+    // validate json and structure here
+    // if ok, enable upload button
+    uploadSaveFileButton.disabled = false;
+    uploadedSaveFile = fileJSON;
+  };
+  reader.onerror = (error) => {
+    console.log(error);
+  };
+  reader.readAsText(uploadedFile);
+});
+
+const uploadSaveFile = async () => {
+  if (uploadedSaveFile.currentGame === true) {
+    uploadedSaveFile.currentGame = false;
+  }
+  let obj = {};
+  const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
+  // will lead to a situation where there is one saved game that's not set to true. may cause problems we'll see
+  if (!budgetBlitzSaveData) {
+    uploadedSaveFile.currentGame = true;
+    obj = {
+      savedGames: [uploadedSaveFile],
+    };
+    await localStorage.setItem("budgetBlitzSaveData", JSON.stringify(obj));
+    applySavedGameData(true);
+    uploadedSaveFile = null;
+    saveDataUploadInput.value = "";
+    return;
+  }
+  let newData = JSON.parse(budgetBlitzSaveData);
+  newData.savedGames.push(uploadedSaveFile);
+  await localStorage.setItem("budgetBlitzSaveData", JSON.stringify(newData));
+  budgetBlitzDataManagementModalSavesList.innerHTML = "";
+  genBudgetBlitzDataManagementModalInfo(true);
+  uploadedSaveFile = null;
+  saveDataUploadInput.value = "";
 };

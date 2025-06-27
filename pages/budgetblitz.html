@@ -1078,11 +1078,25 @@
                 <br />
                 NOTE: You can't delete your current save file.
               </p>
-              <div class="mb-3">
-                <label for="formFile" class="form-label"
-                  >Default file input example</label
-                >
-                <input class="form-control" type="file" id="formFile" />
+              <div class="mb-3 d-flex row">
+                <div class="col-9">
+                  <input
+                    class="form-control"
+                    type="file"
+                    id="saveDataUploadInput"
+                  />
+                </div>
+                <div class="col-3">
+                  <button
+                    type="button"
+                    onclick="uploadSaveFile()"
+                    class="btn btn-success"
+                    id="uploadSaveFileButton"
+                    disabled
+                  >
+                    Upload
+                  </button>
+                </div>
               </div>
               <div
                 id="budgetBlitzDataManagementModalSavesList"

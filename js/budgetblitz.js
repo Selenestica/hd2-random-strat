@@ -22,6 +22,7 @@ const purchasedItemsInventory = document.getElementById('purchasedItemsInventory
 const starsEarnedInput = document.getElementById('starsEarnedInput');
 const superSamplesCollectedInput = document.getElementById('superSamplesCollectedInput');
 const timeRemainingInput = document.getElementById('timeRemainingInput');
+const reinforcementsRemainingInput = document.getElementById('reinforcementsRemainingInput');
 const highValueItemCollectedCheck = document.getElementById('highValueItemCollectedCheck');
 const superSamplesCollectedForm = document.getElementById('superSamplesCollectedForm');
 const highValueItemCollectedForm = document.getElementById('highValueItemCollectedForm');
@@ -101,6 +102,13 @@ timeRemainingInput.addEventListener('input', () => {
 
   if (value < 0) timeRemainingInput.value = 0;
   if (value > 100) timeRemainingInput.value = 100;
+});
+
+reinforcementsRemainingInput.addEventListener('input', () => {
+  const value = parseInt(reinforcementsRemainingInput.value, 10);
+
+  if (value < 0) reinforcementsRemainingInput.value = 0;
+  if (value > 24) reinforcementsRemainingInput.value = 24;
 });
 
 superSamplesCollectedInput.addEventListener('input', () => {
@@ -512,18 +520,15 @@ const genRandomItem = (allItemsList) => {
 };
 
 const generateSESItemCard = () => {
-  const timesPurchasedModifier = sesItem.timesPurchased * 3;
-  console.log(timesPurchasedModifier, sesItem);
-  const totalCost = sesItem.cost + timesPurchasedModifier;
   const card = document.createElement('div');
 
   card.id = 'bbShopItemCard-RANDOM';
   card.dataset.type = 'RANDOM';
   let costBadgeColor = 'bg-warning text-dark';
-  if (totalCost <= credits) {
+  if (sesItem.cost <= credits) {
     card.onclick = () => purchaseItem(null, true);
   }
-  if (totalCost > credits) {
+  if (sesItem.cost > credits) {
     costBadgeColor = 'bg-danger text-light';
   }
 
@@ -531,7 +536,7 @@ const generateSESItemCard = () => {
   card.innerHTML = `
     <i class="fa-2x text-info fa-solid fa-question pt-1 img-card-top"></i>
     <span class="costBadges translate-middle badge rounded-pill bg-warning text-dark">
-      ${totalCost}
+      ${sesItem.cost}
     </span>
     <div class="card-body itemNameContainer align-items-center">
       <p class="card-title text-white pcItemCardText">Super Earth Surplus</p>
@@ -790,20 +795,20 @@ const checkMissionButtons = () => {
     downloadPDFButtonDiv.style.display = 'none';
 
     // if all equippedItems arrays are full, can start mission
-    if (
-      equippedArmor.length === 1 &&
-      equippedPrimary.length === 1 &&
-      equippedSecondary.length === 1 &&
-      equippedThrowable.length === 1 &&
-      equippedStratagems.length === 4
-    ) {
-      missionCompleteButton.disabled = false;
-      missionFailedButton.disabled = false;
-      return;
-    }
+    // if (
+    //   equippedArmor.length === 1 &&
+    //   equippedPrimary.length === 1 &&
+    //   equippedSecondary.length === 1 &&
+    //   equippedThrowable.length === 1 &&
+    //   equippedStratagems.length === 4
+    // ) {
+    //   missionCompleteButton.disabled = false;
+    //   missionFailedButton.disabled = false;
+    //   return;
+    // }
     // else
-    missionCompleteButton.disabled = true; // change to phalze for testing
-    missionFailedButton.disabled = true; // change to phalze for testing
+    missionCompleteButton.disabled = false; // change to phalze for testing
+    missionFailedButton.disabled = false; // change to phalze for testing
   }
 };
 
@@ -939,12 +944,17 @@ const submitMissionReport = async (isMissionSucceeded) => {
   await unequipAllItems(true);
 
   if (isMissionSucceeded) {
-    const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 15;
+    const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 10;
     const superSamplesModifier = superSamplesCollectedInput.value * 3;
+    const reinforcementsRemainingModifier = parseInt(reinforcementsRemainingInput.value, 10);
     const timeRemainingModifier = Math.ceil(timeRemainingInput.value * 0.2);
     const highValueItemModifier = highValueItemCollectedCheck.checked ? 25 : 0;
     const total =
-      starsEarnedModifier + superSamplesModifier + highValueItemModifier + timeRemainingModifier;
+      starsEarnedModifier +
+      superSamplesModifier +
+      highValueItemModifier +
+      timeRemainingModifier +
+      reinforcementsRemainingModifier;
     credits += total;
     scCounter.innerHTML = `${': ' + credits}`;
 
@@ -960,6 +970,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
         starsEarned: parseInt(starsEarnedInput.value, 10),
         superSamplesCollected: parseInt(superSamplesCollectedInput.value, 10),
         highValueItemsCollected: highValueItemCollectedCheck.checked,
+        reinforcementsRemaining: parseInt(reinforcementsRemainingInput.value, 10),
       });
     }
 
@@ -967,6 +978,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
     starsEarnedInput.value = 1;
     superSamplesCollectedInput.value = 0;
     timeRemainingInput.value = 0;
+    reinforcementsRemainingInput.value = 0;
     highValueItemCollectedCheck.checked = false;
 
     // here we want to go through all the items in the shop and update their cost and onSale property

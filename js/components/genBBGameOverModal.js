@@ -1,8 +1,8 @@
-const bbGameOverModal = document.getElementById("bbGameOverModal");
-const bbGameOverModalBody = document.getElementById("bbGameOverModalBody");
+const bbGameOverModal = document.getElementById('bbGameOverModal');
+const bbGameOverModalBody = document.getElementById('bbGameOverModalBody');
 
 const genBBGameOverModal = async () => {
-  const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
+  const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
   if (!budgetBlitzSaveData) return;
 
   const savedGames = JSON.parse(budgetBlitzSaveData).savedGames;
@@ -24,6 +24,7 @@ const genBBGameOverModal = async () => {
   let highValueItemsCollected = 0;
   let starsEarned = 0;
   let totalCreditsEarned = 0;
+  let surplusReinforcements = 0;
 
   for (let j = 0; j < creditsPerMission.length; j++) {
     const missionInfo = creditsPerMission[j];
@@ -32,6 +33,7 @@ const genBBGameOverModal = async () => {
     highValueItemsCollected += missionInfo.highValueItemsCollected;
     starsEarned += missionInfo.starsEarned;
     totalCreditsEarned += missionInfo.totalCredits;
+    surplusReinforcements += missionInfo.reinforcementsRemaining;
   }
 
   superSamplesCollected += highValueItemsCollected * 2;
@@ -58,9 +60,10 @@ const genBBGameOverModal = async () => {
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">End Time: ${dateEnded}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Stars Earned: ${starsEarned}/72</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Super Samples Collected: ${superSamplesCollected}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Surplus Reinforcements: ${surplusReinforcements}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">High Value Items Collected: ${highValueItemsCollected}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Average Time Remaining: ${averageMissionTime.toFixed(
-    0
+    0,
   )}%</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Ending Credits: ${credits}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Missions Failed: ${failedMissions}</p>`;
@@ -79,6 +82,6 @@ const genBBGameOverModal = async () => {
 };
 
 // if the game over modal ever closes, reset the content
-bbGameOverModal.addEventListener("hidden.bs.modal", () => {
-  bbGameOverModalBody.innerHTML = "";
+bbGameOverModal.addEventListener('hidden.bs.modal', () => {
+  bbGameOverModalBody.innerHTML = '';
 });

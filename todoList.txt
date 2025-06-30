@@ -40,6 +40,7 @@ Budget Blitz
 - BUGS:
   - mysterious issue: equipped purchased items not always decreasing in quantity when mission complete
 
+- easy, medium, hard mode
 - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
 
 NEW CHALLENGE IDEAS:

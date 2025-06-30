@@ -939,8 +939,8 @@ const submitMissionReport = async (isMissionSucceeded) => {
 
   if (isMissionSucceeded) {
     const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 15;
-    const superSamplesModifier = superSamplesCollectedInput.value * 5;
-    const timeRemainingModifier = Math.ceil(timeRemainingInput.value * 0.25);
+    const superSamplesModifier = superSamplesCollectedInput.value * 4;
+    const timeRemainingModifier = Math.ceil(timeRemainingInput.value * 0.2);
     const highValueItemModifier = highValueItemCollectedCheck.checked ? 25 : 0;
     const total =
       starsEarnedModifier + superSamplesModifier + highValueItemModifier + timeRemainingModifier;

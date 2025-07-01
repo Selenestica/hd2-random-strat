@@ -24,12 +24,12 @@ const getItemCost = (difficulty, item) => {
   }
 
   // add randomness from -5 to 5
-  let highNumber = 11;
+  let highNumber = 16;
   if (difficulty === "Easy") {
     highNumber = 6;
   }
   if (difficulty === "Hard") {
-    highNumber = 21;
+    highNumber = 26;
   }
   const random = Math.floor(Math.random() * highNumber) - 5;
 

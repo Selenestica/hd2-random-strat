@@ -70,6 +70,11 @@ body {
 
 .pcItemCards {
   background-color: rgb(71, 71, 71);
+  padding: 0rem;
+}
+
+.pcItemCards > div {
+  text-align: center;
 }
 
 .pcItemCards:hover {

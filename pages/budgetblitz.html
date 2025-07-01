@@ -17,7 +17,10 @@
       type="image/svg+xml"
       href="../images/svgs/orbitalprecisionstrike.svg"
     />
-    <meta name="description" content="For Glory, for Profit, for Super Earth!" />
+    <meta
+      name="description"
+      content="For Glory, for Profit, for Super Earth!"
+    />
     <title>Helldivers 2: Budget Blitz</title>
   </head>
 
@@ -32,10 +35,18 @@
           </a>
         </div>
         <div class="d-flex col-4 justify-content-center">
-          <a class="mx-1" target="_blank" href="https://github.com/Selenestica/hd2-random-strat">
+          <a
+            class="mx-1"
+            target="_blank"
+            href="https://github.com/Selenestica/hd2-random-strat"
+          >
             <i class="fa-2x fa-brands fa-github"></i>
           </a>
-          <a class="mx-1" target="_blank" href="https://buymeacoffee.com/breakfasttaco">
+          <a
+            class="mx-1"
+            target="_blank"
+            href="https://buymeacoffee.com/breakfasttaco"
+          >
             <i class="fa-2x fa-solid fa-mug-saucer"></i>
           </a>
         </div>
@@ -79,10 +90,15 @@
       <div class="row mt-2 justify-content-center text-white">
         <div class="col-4 d-flex justify-content-start align-items-center">
           <span id="superCreditsText">Super Credits</span>
-          <span id="superCreditsIcon"><i class="fa-solid fa-dollar-sign"></i></span>
+          <span id="superCreditsIcon"
+            ><i class="fa-solid fa-dollar-sign"></i
+          ></span>
           <span id="scCounter"></span>
         </div>
-        <div class="col-4 text-white d-flex justify-content-center" id="missionCounterText"></div>
+        <div
+          class="col-4 text-white d-flex justify-content-center"
+          id="missionCounterText"
+        ></div>
         <div class="col-4 d-flex justify-content-end"></div>
       </div>
       <div class="row my-2 justify-content-center">
@@ -96,9 +112,14 @@
               autocomplete="off"
               checked
             />
-            <label class="btn btn-outline-primary text-white" for="loadoutButton">
+            <label
+              class="btn btn-outline-primary text-white"
+              for="loadoutButton"
+            >
               <span id="bbLoadoutText">Loadout</span>
-              <span id="bbLoadoutIcon"><i class="fa-solid fa-box-archive"></i></span>
+              <span id="bbLoadoutIcon"
+                ><i class="fa-solid fa-box-archive"></i
+              ></span>
             </label>
             <input
               type="radio"
@@ -107,15 +128,24 @@
               id="shopButton"
               autocomplete="off"
             />
-            <label class="btn btn-outline-primary text-warning" for="shopButton">
+            <label
+              class="btn btn-outline-primary text-warning"
+              for="shopButton"
+            >
               <span id="bbShopText">Shop</span>
-              <span id="bbShopIcon"><i class="fa-solid fa-cart-shopping"></i></span>
+              <span id="bbShopIcon"
+                ><i class="fa-solid fa-cart-shopping"></i
+              ></span>
             </label>
           </div>
         </div>
         <div class="col-8 justify-content-center" id="missionButtonsDiv">
           <div class="btn-group my-2" id="downloadPDFButtonDiv">
-            <button class="btn btn-primary" type="button" onclick="genBBGameOverModal()">
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="genBBGameOverModal()"
+            >
               <span> View Score </span>
             </button>
           </div>
@@ -149,7 +179,11 @@
           </div>
         </div>
         <div class="col-8" id="bbShopFilterDiv">
-          <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <div
+            class="btn-group"
+            role="group"
+            aria-label="Basic outlined example"
+          >
             <div class="btn-group">
               <button
                 type="button"
@@ -158,7 +192,9 @@
                 aria-expanded="false"
               >
                 <span id="bbTypeText" class="text-white">Type</span>
-                <span id="bbTypeIcon" class="text-white"><i class="fa-solid fa-list"></i></span>
+                <span id="bbTypeIcon" class="text-white"
+                  ><i class="fa-solid fa-list"></i
+                ></span>
               </button>
               <ul class="dropdown-menu">
                 <li>
@@ -225,7 +261,9 @@
                 aria-expanded="false"
               >
                 <span id="bbPriceText" class="text-white">Price</span>
-                <span id="bbPriceIcon" class="text-white"><i class="fa-solid fa-tag"></i></span>
+                <span id="bbPriceIcon" class="text-white"
+                  ><i class="fa-solid fa-tag"></i
+                ></span>
               </button>
               <ul class="dropdown-menu">
                 <li>
@@ -284,9 +322,15 @@
                 </li>
               </ul>
             </div>
-            <button onclick="resetShopFilters()" class="btn btn-primary" type="button">
+            <button
+              onclick="resetShopFilters()"
+              class="btn btn-primary"
+              type="button"
+            >
               <span id="bbResetText"> Reset </span>
-              <span id="bbResetIcon"><i class="fa-solid fa-filter-circle-xmark"></i></span>
+              <span id="bbResetIcon"
+                ><i class="fa-solid fa-filter-circle-xmark"></i
+              ></span>
             </button>
           </div>
         </div>
@@ -313,9 +357,15 @@
 
       <!-- LOADOUT -->
       <div id="loadoutContainer" class="row d-flex justify-content-center">
-        <div id="equippedItemsContainer" class="row d-flex justify-content-center">
+        <div
+          id="equippedItemsContainer"
+          class="row d-flex justify-content-center"
+        >
           <div class="col">
-            <div id="stratagemsContainerBB" class="row mb-3 d-flex justify-content-center">
+            <div
+              id="stratagemsContainerBB"
+              class="row mb-3 d-flex justify-content-center"
+            >
               <div
                 class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
               >
@@ -345,12 +395,18 @@
                 </p>
               </div>
             </div>
-            <div id="equipmentContainerBB" class="row mb-3 d-flex justify-content-center">
+            <div
+              id="equipmentContainerBB"
+              class="row mb-3 d-flex justify-content-center"
+            >
               <div
                 class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
                 id="armorContainerBB"
               >
-                <p class="mb-0 text-secondary emptyItemText" id="emptyArmorText">
+                <p
+                  class="mb-0 text-secondary emptyItemText"
+                  id="emptyArmorText"
+                >
                   <small>Click an Armor to Equip</small>
                 </p>
               </div>
@@ -358,7 +414,10 @@
                 id="primaryContainerBB"
                 class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
               >
-                <p class="mb-0 text-secondary emptyItemText" id="emptyPrimaryText">
+                <p
+                  class="mb-0 text-secondary emptyItemText"
+                  id="emptyPrimaryText"
+                >
                   <small>Click a Primary to Equip</small>
                 </p>
               </div>
@@ -366,7 +425,10 @@
                 id="secondaryContainerBB"
                 class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
               >
-                <p class="mb-0 text-secondary emptyItemText" id="emptySecondaryText">
+                <p
+                  class="mb-0 text-secondary emptyItemText"
+                  id="emptySecondaryText"
+                >
                   <small>Click a Secondary to Equip</small>
                 </p>
               </div>
@@ -374,7 +436,10 @@
                 id="throwableContainerBB"
                 class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
               >
-                <p class="mb-0 text-secondary emptyItemText" id="emptyThrowableText">
+                <p
+                  class="mb-0 text-secondary emptyItemText"
+                  id="emptyThrowableText"
+                >
                   <small>Click a Throwable to Equip</small>
                 </p>
               </div>
@@ -382,7 +447,10 @@
                 id="boosterContainerBB"
                 class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
               >
-                <p class="mb-0 text-secondary emptyItemText" id="emptyBoosterText">
+                <p
+                  class="mb-0 text-secondary emptyItemText"
+                  id="emptyBoosterText"
+                >
                   <small>Click a Booster to Equip (optional)</small>
                 </p>
               </div>
@@ -394,7 +462,11 @@
           <div class="accordion px-0" id="inventoryAccordion">
             <div class="accordion-item bg-none">
               <h2 class="accordion-header">
-                <button class="accordion-button text-white" type="button" style="cursor: default">
+                <button
+                  class="accordion-button text-white"
+                  type="button"
+                  style="cursor: default"
+                >
                   Purchased Items
                 </button>
               </h2>
@@ -411,7 +483,11 @@
             </div>
             <div class="accordion-item bg-none">
               <h2 class="accordion-header">
-                <button class="accordion-button text-white" type="button" style="cursor: default">
+                <button
+                  class="accordion-button text-white"
+                  type="button"
+                  style="cursor: default"
+                >
                   Default Items
                 </button>
               </h2>
@@ -420,7 +496,10 @@
                 class="accordion-collapse collapse show"
                 data-bs-parent="#inventoryAccordion"
               >
-                <div id="defaultInventory" class="accordion-body row justify-content-center"></div>
+                <div
+                  id="defaultInventory"
+                  class="accordion-body row justify-content-center"
+                ></div>
               </div>
             </div>
           </div>
@@ -428,7 +507,10 @@
       </div>
 
       <!-- SHOP -->
-      <div id="bbShopItemsContainer" class="py-3 row d-none justify-content-center mt-2"></div>
+      <div
+        id="bbShopItemsContainer"
+        class="py-3 row d-none justify-content-center mt-2"
+      ></div>
 
       <!-- MISSION COMPLETE MODAL -->
       <div
@@ -441,10 +523,14 @@
         <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content bg-grey">
             <div class="modal-body d-flex row justify-content-center">
-              <div class="row text-white d-flex justify-content-center text-center">
+              <div
+                class="row text-white d-flex justify-content-center text-center"
+              >
                 <h4>Mission Report</h4>
               </div>
-              <div class="row text-white mb-4 d-flex justify-content-center align-items-center">
+              <div
+                class="row text-white mb-4 d-flex justify-content-center align-items-center"
+              >
                 <img
                   src="../images/dressing/ministryOfTruthIcon.png"
                   class="img-fluid"
@@ -457,7 +543,10 @@
               </div>
               <div class="row">
                 <div class="form-check d-none" id="highValueItemCollectedForm">
-                  <label class="form-check-label text-white" for="highValueItemCollectedCheck">
+                  <label
+                    class="form-check-label text-white"
+                    for="highValueItemCollectedCheck"
+                  >
                     High-Value Item Collected
                   </label>
                   <input
@@ -469,7 +558,9 @@
                 </div>
 
                 <div class="row d-flex pb-1 align-items-center px-0">
-                  <p class="text-white mb-0 col-6" for="starsEarnedInput">Stars Earned:</p>
+                  <p class="text-white mb-0 col-6" for="starsEarnedInput">
+                    Stars Earned:
+                  </p>
                   <input
                     class="form-control col-6"
                     id="starsEarnedInput"
@@ -483,7 +574,10 @@
                 </div>
 
                 <div class="row d-flex pb-1 align-items-center px-0">
-                  <p class="text-white mb-0 col-6" for="reinforcementsRemainingInput">
+                  <p
+                    class="text-white mb-0 col-6"
+                    for="reinforcementsRemainingInput"
+                  >
                     Reinforcements Remaining:
                   </p>
                   <input
@@ -499,7 +593,9 @@
                 </div>
 
                 <div class="row d-flex pb-1 align-items-center px-0">
-                  <p class="text-white mb-0 col-6" for="timeRemainingInput">Time Remaining (%):</p>
+                  <p class="text-white mb-0 col-6" for="timeRemainingInput">
+                    Time Remaining (%):
+                  </p>
                   <input
                     class="form-control col-6"
                     id="timeRemainingInput"
@@ -513,7 +609,10 @@
                 </div>
 
                 <div class="row d-flex pb-1 align-items-center px-0">
-                  <p class="text-white mb-0 col-6" for="superSamplesCollectedInput">
+                  <p
+                    class="text-white mb-0 col-6"
+                    for="superSamplesCollectedInput"
+                  >
                     Super Samples Collected:
                   </p>
                   <input
@@ -531,7 +630,11 @@
             </div>
             <div class="modal-footer row justify-content-between">
               <div class="col d-flex justify-content-start">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
                   Cancel
                 </button>
               </div>
@@ -566,15 +669,19 @@
             </div>
             <div class="modal-body row d-flex justify-content-center">
               <p class="text-white">
-                Your current operation will be reset, and your equipped purchased items will
-                decrease by 1 use.
+                Your current operation will be reset, and your equipped
+                purchased items will decrease by 1 use.
               </p>
               <br />
               <br />
               <p class="text-white">Proceed?</p>
             </div>
             <div class="modal-footer d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
                 Cancel
               </button>
               <button
@@ -590,7 +697,7 @@
         </div>
       </div>
 
-      <!-- WARBOND SELECT MODAL -->
+      <!-- CHALLENGE SETTINGS MODAL -->
       <div
         class="modal fade"
         id="warbondSelectModal"
@@ -601,16 +708,74 @@
         <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content bg-grey">
             <div class="modal-header">
-              <h5 class="modal-title text-light" id="warbondSelectModalLabel">Warbond Select</h5>
+              <h5 class="modal-title text-light" id="warbondSelectModalLabel">
+                Challenge Settings
+              </h5>
             </div>
             <div class="modal-body">
               <p class="mb-0 text-white">
-                NOTE: You can only toggle warbonds at the beginning of the run.
+                NOTE: You can only toggle warbonds at the beginning of the run,
+                before any items are purchased.
               </p>
-              <div class="p-3" id="warbondsChecklistContainer"></div>
+              <div class="p-3" id="bbDifficultyRadioContainer">
+                <h5 class="text-white">Difficulty</h5>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="bbDiffRadioEasy"
+                  />
+                  <label
+                    class="form-check-label text-white"
+                    for="bbDiffRadioEasy"
+                  >
+                    Easy
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="bbDiffRadioMedium"
+                    checked
+                  />
+                  <label
+                    class="form-check-label text-white"
+                    for="bbDiffRadioMedium"
+                  >
+                    Medium
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="bbDiffRadioHard"
+                  />
+                  <label
+                    class="form-check-label text-white"
+                    for="bbDiffRadioHard"
+                  >
+                    Hard
+                  </label>
+                </div>
+              </div>
+
+              <div class="p-3" id="warbondsChecklistContainer">
+                <h5 class="text-white">Warbond Select</h5>
+              </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
@@ -652,21 +817,26 @@
                   >
                     <div class="accordion-body">
                       <p class="text-white">
-                        “The price of liberty is vigilance... and a balanced ledger.” As the galaxy
-                        grows ever more perilous, and as enemies multiply like interest on unpaid
-                        debts, the Super Earth High Command has instituted a Budget Blitz: a bold
-                        new initiative that forges the might of our military with the unyielding
-                        strength of economic stewardship. In these trying times, resources are
-                        finite, but our resolve is infinite. Each mission’s outcome is no longer
-                        measured solely by enemy casualties or territories secured — but by the
-                        credits accrued. Victory must pay its own way.
+                        “The price of liberty is vigilance... and a balanced
+                        ledger.” As the galaxy grows ever more perilous, and as
+                        enemies multiply like interest on unpaid debts, the
+                        Super Earth High Command has instituted a Budget Blitz:
+                        a bold new initiative that forges the might of our
+                        military with the unyielding strength of economic
+                        stewardship. In these trying times, resources are
+                        finite, but our resolve is infinite. Each mission’s
+                        outcome is no longer measured solely by enemy casualties
+                        or territories secured — but by the credits accrued.
+                        Victory must pay its own way.
                         <br />
                         <br />
                         <em>
-                          “The strength of our democracy is built on the sacrifices of our
-                          soldiers—and the wisdom of our accountants. Under a Budget Blitz, every
-                          credit spent is a vote for freedom. Every star earned is a promise kept.
-                          Helldivers, carry the torch of liberty... but keep an eye on the ledger.”
+                          “The strength of our democracy is built on the
+                          sacrifices of our soldiers—and the wisdom of our
+                          accountants. Under a Budget Blitz, every credit spent
+                          is a vote for freedom. Every star earned is a promise
+                          kept. Helldivers, carry the torch of liberty... but
+                          keep an eye on the ledger.”
                         </em>
                       </p>
                     </div>
@@ -692,11 +862,13 @@
                   >
                     <div class="accordion-body">
                       <p class="text-white">
-                        Complete all missions in one operation on each difficulty, starting on
-                        difficulty 6 (Extreme) and moving up one difficulty as you go. The amount of
-                        stars earned after each mission corresponds to how many credits you will
-                        earn. Spend credits on equipment in the shop to help you complete missions.
-                        Your goal is to complete a level 10 difficulty operation.
+                        Complete all missions in one operation on each
+                        difficulty, starting on difficulty 6 (Extreme) and
+                        moving up one difficulty as you go. The amount of stars
+                        earned after each mission corresponds to how many
+                        credits you will earn. Spend credits on equipment in the
+                        shop to help you complete missions. Your goal is to
+                        complete a level 10 difficulty operation.
                       </p>
                     </div>
                   </div>
@@ -721,27 +893,31 @@
                   >
                     <div class="accordion-body">
                       <p class="text-white">
-                        In order to start a mission, you must equip items in your loadout menu (just
-                        like in-game). You must choose 4 stratagems, armor, a primary, a secondary,
-                        and a throwable. Click on an item in your Purchased Items box or Default
-                        Items box to equip the item. To unequip an item, simply click on it in your
-                        loadout.
+                        In order to start a mission, you must equip items in
+                        your loadout menu (just like in-game). You must choose 4
+                        stratagems, armor, a primary, a secondary, and a
+                        throwable. Click on an item in your Purchased Items box
+                        or Default Items box to equip the item. To unequip an
+                        item, simply click on it in your loadout.
                         <br />
                         <br />
-                        Your Default Items have unlimited uses, but your Purchased Items have uses
-                        corresponding to how many times you have purchased it (which you can see in
-                        the top right corner of the item).
+                        Your Default Items have unlimited uses, but your
+                        Purchased Items have uses corresponding to how many
+                        times you have purchased it (which you can see in the
+                        top right corner of the item).
                         <br />
                         <br />
-                        After each mission, press the 'Mission Complete' button and input the number
-                        of stars you earned, the amount of Super Samples extracted, and the
-                        percentage (%) of time remaining in the mission (shown in-game at the bottom
-                        of the mission summary screen). You will earn credits for each star awarded
-                        at the end of every mission, collecting Super Samples, and time remaining.
+                        After each mission, press the 'Mission Complete' button
+                        and input the number of stars you earned, the amount of
+                        Super Samples extracted, and the percentage (%) of time
+                        remaining in the mission (shown in-game at the bottom of
+                        the mission summary screen). You will earn credits for
+                        each star awarded at the end of every mission,
+                        collecting Super Samples, and time remaining.
                         <br />
                         <br />
-                        In higher difficulties, even more credits can be earned by extracting with
-                        the High-Value Item.
+                        In higher difficulties, even more credits can be earned
+                        by extracting with the High-Value Item.
                       </p>
                     </div>
                   </div>
@@ -766,18 +942,21 @@
                   >
                     <div class="accordion-body">
                       <p class="text-white">
-                        Press the 'Shop' button to view purchaseable items. Click on an item to
-                        purchase it. Each time you purchase an item, the price will increase for the
-                        next time you purchase that same item. The amount of price increase will
-                        depend on whether the item is on sale or not.
+                        Press the 'Shop' button to view purchaseable items.
+                        Click on an item to purchase it. Each time you purchase
+                        an item the price will increase for the next time you
+                        purchase that same item, with the exception of Super
+                        Earth Surplus (a random item) which will always be 15
+                        credits.
                         <br />
                         <br />
-                        <b>For example: </b>If I purchased the Quasar Cannon at 25 Credits, the
-                        price for the next Quasar Cannon may be 30 Credits.
+                        <b>For example: </b>If I purchased the Quasar Cannon at
+                        25 Credits, the price for the next Quasar Cannon may be
+                        30 Credits.
                         <br />
                         <br />
-                        Prices for items will change, and different items will go on sale, after
-                        each operation completed.
+                        Prices for items will change, and different items will
+                        go on sale, after each operation completed.
                       </p>
                     </div>
                   </div>
@@ -802,9 +981,10 @@
                   >
                     <div class="accordion-body">
                       <p class="text-white">
-                        If your squad fails a mission, you must start a new operation on the
-                        difficulty that you failed to complete. You will not lose credits, but item
-                        usage will still be counted. Press the "Mission Failed" button to reset the
+                        If your squad fails a mission, you must start a new
+                        operation on the difficulty that you failed to complete.
+                        You will not lose credits, but item usage will still be
+                        counted. Press the "Mission Failed" button to reset the
                         operation.
                       </p>
                     </div>
@@ -830,9 +1010,10 @@
                   >
                     <div class="accordion-body">
                       <p class="text-white">
-                        Your progress is saved in your browser's local storage. If you clear your
-                        browser's local storage, your progress will be lost. If you want to start a
-                        new run, you may do so by pressing the yellow "Restart" button. Your run
+                        Your progress is saved in your browser's local storage.
+                        If you clear your browser's local storage, your progress
+                        will be lost. If you want to start a new run, you may do
+                        so by pressing the yellow "Restart" button. Your run
                         will be saved and accessible in the save menu.
                       </p>
                     </div>
@@ -841,7 +1022,13 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
@@ -870,7 +1057,11 @@
               </p>
             </div>
             <div class="modal-footer d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
                 Cancel
               </button>
               <button
@@ -898,14 +1089,22 @@
         <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content bg-grey">
             <div class="modal-header">
-              <h5 class="modal-title text-light">Challenge Complete - Budget Blitz</h5>
+              <h5 class="modal-title text-light">
+                Challenge Complete - Budget Blitz
+              </h5>
             </div>
             <div
               id="bbGameOverModalBody"
               class="modal-body text-white row d-flex justify-content-center"
             ></div>
             <div class="modal-footer d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
               <button
                 type="button"
                 onclick="downloadBBScoreTXT()"
@@ -940,16 +1139,22 @@
               id="budgetBlitzDataManagementModalBody"
             >
               <p class="text-white">
-                Switch your active save file here, delete save files, or upload save files.
+                Switch your active save file here, delete save files, or upload
+                save files.
                 <br />
-                Select an entry below and press 'Apply' to load a different save file.
+                Select an entry below and press 'Apply' to load a different save
+                file.
                 <br />
                 <br />
                 NOTE: You can't delete your current save file.
               </p>
               <div class="mb-3 d-flex row">
                 <div class="col-9">
-                  <input class="form-control" type="file" id="saveDataUploadInput" />
+                  <input
+                    class="form-control"
+                    type="file"
+                    id="saveDataUploadInput"
+                  />
                 </div>
                 <div class="col-3">
                   <button
@@ -981,7 +1186,10 @@
                   Cancel
                 </button>
               </div>
-              <div id="saveDataModalFunctionsDiv" class="d-flex col justify-content-end">
+              <div
+                id="saveDataModalFunctionsDiv"
+                class="d-flex col justify-content-end"
+              >
                 <button
                   type="button"
                   onclick="clearSaveDataAndRestart()"
@@ -1024,21 +1232,33 @@
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
           <div class="modal-content bg-grey">
             <div class="modal-header">
-              <h5 class="modal-title text-light" id="challengeCompletedModalTitle"></h5>
+              <h5
+                class="modal-title text-light"
+                id="challengeCompletedModalTitle"
+              ></h5>
             </div>
             <div
               class="modal-body row d-flex justify-content-center"
               id="challengeCompletedModalBody"
             ></div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
       </div>
 
       <!-- PURCHASED ITEM TOAST -->
-      <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1080">
+      <div
+        class="position-fixed top-0 start-50 translate-middle-x p-3"
+        style="z-index: 1080"
+      >
         <div
           class="toast align-items-center text-white bg-success border-0 bbPurchaseToast"
           role="alert"
@@ -1066,7 +1286,10 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"
   ></script>
-  <script src="https://kit.fontawesome.com/a018c01272.js" crossorigin="anonymous"></script>
+  <script
+    src="https://kit.fontawesome.com/a018c01272.js"
+    crossorigin="anonymous"
+  ></script>
   <script src="../js/constants/primaries.js"></script>
   <script src="../js/constants/secondaries.js"></script>
   <script src="../js/constants/boosters.js"></script>

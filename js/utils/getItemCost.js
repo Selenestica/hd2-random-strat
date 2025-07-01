@@ -1,4 +1,4 @@
-const getItemCost = (item) => {
+const getItemCost = (difficulty, item) => {
   let cost = 0;
 
   // add cost by tier
@@ -23,8 +23,15 @@ const getItemCost = (item) => {
     cost += 2;
   }
 
-  // add randomness from -6 to 7
-  const random = Math.floor(Math.random() * 14) - 6;
+  // add randomness from -5 to 5
+  let highNumber = 11;
+  if (difficulty === "Easy") {
+    highNumber = 6;
+  }
+  if (difficulty === "Hard") {
+    highNumber = 21;
+  }
+  const random = Math.floor(Math.random() * highNumber) - 5;
 
   // add cost of times purchased
   const timesPurchasedModifier = item.timesPurchased * 5;
@@ -34,19 +41,3 @@ const getItemCost = (item) => {
   }
   return total;
 };
-
-// starter credits = 100
-
-// TYPES:
-// primary = 12
-// secondary = 5
-// throwable = 5
-// stratagem = 12
-// armor = 5
-// booster = 12
-
-// TIERS:
-// s = 15
-// a = 10
-// b = 5
-// c = 0

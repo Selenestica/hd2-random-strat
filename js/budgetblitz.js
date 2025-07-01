@@ -205,7 +205,6 @@ const categoryMap = {
 const diffRadios = [bbDiffRadioEasy, bbDiffRadioMedium, bbDiffRadioHard];
 for (let w = 0; w < diffRadios.length; w++) {
   diffRadios[w].addEventListener("change", async (e) => {
-    console.log(e.target.checked, e.srcElement.id);
     if (e.srcElement.id.includes("Easy")) {
       credits = 150;
       difficulty = "Easy";

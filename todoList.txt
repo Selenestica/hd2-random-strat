@@ -39,10 +39,10 @@ feature ideas:
 
 Budget Blitz
 - BUGS:
-  - mysterious issue: equipped purchased items not always decreasing in quantity when mission complete
-    - we could do a reload after submit mission report as a stopgap solution
+  - visual bug where difficulty radio will have Medium selected after run starts and a refresh happens, even if true diff isn't medium
 
 - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
 
 NEW CHALLENGE IDEAS:
   - use helldivers 2 API to do a planet/mission bounty mode
+  - classes mode similar to Caffeinated Chaos' idea

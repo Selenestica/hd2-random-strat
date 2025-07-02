@@ -951,11 +951,26 @@ const uploadSaveData = async () => {
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
 
+    if (difficulty === "Easy") {
+      bbDiffRadioEasy.checked = true;
+    }
+    if (difficulty === "Hard") {
+      bbDiffRadioHard.checked = true;
+    }
+
     await filterItemsByWarbond(true);
     await populatePurchasedItemsInventory();
     return;
   }
   startNewRun();
+};
+
+const decreasePurchasedItemQuantity = (item) => {
+  for (let i = 0; i < purchasedItems.length; i++) {
+    if (item.displayName === purchasedItems[i].displayName) {
+      purchasedItems[i] = item;
+    }
+  }
 };
 
 const decrementItemQuantity = (card, arr) => {
@@ -969,7 +984,12 @@ const decrementItemQuantity = (card, arr) => {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].displayName === itemName) {
       arr[i].quantity--;
+      console.log(purchasedItems);
+      console.log(arr[i]);
       updateMasterListItem(arr[i]);
+      if (arr[i].quantity > 0) {
+        decreasePurchasedItemQuantity(arr[i]);
+      }
       badgeValue = arr[i].quantity;
       badge.innerHTML = badgeValue;
       if (arr[i].quantity <= 0) {

@@ -11,13 +11,9 @@ const getItemCost = (difficulty, item) => {
   }
 
   // add cost by item type
-  if (
-    item.type === "Stratagem" ||
-    item.category === "primary" ||
-    item.category === "booster"
-  ) {
+  if (item.type === "Stratagem" || item.category === "primary") {
     cost += 12;
-  } else if (item.category === "throwable") {
+  } else if (item.category === "throwable" || item.category === "booster") {
     cost += 5;
   } else if (item.category === "secondary") {
     cost += 2;

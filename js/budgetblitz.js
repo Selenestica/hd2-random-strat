@@ -877,7 +877,7 @@ const checkMissionButtons = () => {
     downloadPDFButtonDiv.style.display = "block";
   }
 
-  if (missionCounter < 22) {
+  if (missionCounter < 23) {
     missionCompleteButton.style.display = "block";
     missionFailedButton.style.display = "block";
     downloadPDFButtonDiv.style.display = "none";
@@ -984,8 +984,6 @@ const decrementItemQuantity = (card, arr) => {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].displayName === itemName) {
       arr[i].quantity--;
-      console.log(purchasedItems);
-      console.log(arr[i]);
       updateMasterListItem(arr[i]);
       if (arr[i].quantity > 0) {
         decreasePurchasedItemQuantity(arr[i]);

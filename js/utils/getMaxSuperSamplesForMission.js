@@ -1,3 +1,4 @@
+// double the actual maximum to account for Sample Scanner booster
 const getMaxSuperSamplesForMission = () => {
   if (missionCounter < 11) {
     return 6;
@@ -10,5 +11,3 @@ const getMaxSuperSamplesForMission = () => {
   }
   return 14;
 };
-
-// 3, 4, 5, 6, 7

@@ -39,8 +39,8 @@ feature ideas:
 
 Budget Blitz
 - BUGS:
-  - visual bug where difficulty radio will have Medium selected after run starts and a refresh happens, even if true diff isn't medium
 
+- instead of number of reinforcements remaining, ask for number of individual deaths
 - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
 
 NEW CHALLENGE IDEAS:

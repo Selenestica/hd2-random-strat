@@ -1011,7 +1011,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
       numOfDeathsModifier = 10;
     }
 
-    const timeRemainingModifier = Math.ceil(timeRemainingInput.value * 0.2);
+    const timeRemainingModifier = Math.ceil(timeRemainingInput.value * 0.3);
     const highValueItemModifier = highValueItemCollectedCheck.checked ? 25 : 0;
     const total =
       starsEarnedModifier +

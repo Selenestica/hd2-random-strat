@@ -24,7 +24,7 @@ const generateTXTContent = async () => {
   let highValueItemsCollected = 0;
   let starsEarned = 0;
   let totalCreditsEarned = 0;
-  let surplusReinforcements = 0;
+  let numOfDeaths = 0;
   let difficultyModifier = 0;
   if (difficulty === 'Medium') {
     difficultyModifier = 250;
@@ -40,7 +40,7 @@ const generateTXTContent = async () => {
     highValueItemsCollected += mission.highValueItemsCollected;
     starsEarned += mission.starsEarned;
     totalCreditsEarned += mission.totalCredits;
-    surplusReinforcements += mission.reinforcementsRemaining;
+    numOfDeaths += mission.numOfDeaths;
   }
 
   superSamplesCollected += highValueItemsCollected * 2;
@@ -52,12 +52,12 @@ const generateTXTContent = async () => {
   content += `Date Started: ${dateStarted}\n`;
   content += `Date Ended: ${dateEnded}\n`;
   content += `Super Samples Collected: ${superSamplesCollected}\n`;
-  content += `Surplus Reinforcements: ${surplusReinforcements}\n`;
   content += `High Value Items Collected: ${highValueItemsCollected}\n`;
   content += `Stars Earned: ${starsEarned}\n`;
   content += `Total Credits Earned: ${totalCreditsEarned}\n`;
   content += `Average Mission Time Remaining: ${averageMissionTime.toFixed(0)}%\n`;
   content += `Difficulty (${difficulty}): ${difficultyModifier}\n`;
+  content += `Number of Deaths: ${numOfDeaths}\n`;
   content += `Credits Subtracted (Missions Failed): ${creditsSubtractedForMissionsFailed}\n`;
   content += `Total Score: ${totalScore}\n\n`;
 

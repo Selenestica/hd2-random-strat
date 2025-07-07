@@ -40,7 +40,9 @@ feature ideas:
 Budget Blitz
 - BUGS:
 
-- instead of number of reinforcements remaining, ask for number of individual deaths
+- more detailed breakdown of points in game over modal
+  - additions shown in green
+  - deductions in red
 - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
 
 NEW CHALLENGE IDEAS:

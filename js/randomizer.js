@@ -1,22 +1,22 @@
-const stratagemsContainer = document.getElementById('stratagemsContainer');
-const equipmentContainer = document.getElementById('equipmentContainer');
-const rollStratsButton = document.getElementById('rollStratsButton');
-const warbondCheckboxes = document.getElementsByClassName('warbondCheckboxes');
-const superCitizenCheckBox = document.getElementById('warbond0');
-const oneSupportCheck = document.getElementById('oneSupportCheck');
-const oneBackpackCheck = document.getElementById('oneBackpackCheck');
-const onlyEaglesRadio = document.getElementById('onlyEaglesRadio');
-const noEaglesRadio = document.getElementById('noEaglesRadio');
-const defaultEaglesRadio = document.getElementById('defaultEaglesRadio');
-const onlyOrbitalsRadio = document.getElementById('onlyOrbitalsRadio');
-const noOrbitalsRadio = document.getElementById('noOrbitalsRadio');
-const defaultOrbitalsRadio = document.getElementById('defaultOrbitalsRadio');
-const onlyDefenseRadio = document.getElementById('onlyDefenseRadio');
-const noDefenseRadio = document.getElementById('noDefenseRadio');
-const defaultDefenseRadio = document.getElementById('defaultDefenseRadio');
-const onlySupplyRadio = document.getElementById('onlySupplyRadio');
-const noSupplyRadio = document.getElementById('noSupplyRadio');
-const defaultSupplyRadio = document.getElementById('defaultSupplyRadio');
+const stratagemsContainer = document.getElementById("stratagemsContainer");
+const equipmentContainer = document.getElementById("equipmentContainer");
+const rollStratsButton = document.getElementById("rollStratsButton");
+const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
+const superCitizenCheckBox = document.getElementById("warbond0");
+const oneSupportCheck = document.getElementById("oneSupportCheck");
+const oneBackpackCheck = document.getElementById("oneBackpackCheck");
+const onlyEaglesRadio = document.getElementById("onlyEaglesRadio");
+const noEaglesRadio = document.getElementById("noEaglesRadio");
+const defaultEaglesRadio = document.getElementById("defaultEaglesRadio");
+const onlyOrbitalsRadio = document.getElementById("onlyOrbitalsRadio");
+const noOrbitalsRadio = document.getElementById("noOrbitalsRadio");
+const defaultOrbitalsRadio = document.getElementById("defaultOrbitalsRadio");
+const onlyDefenseRadio = document.getElementById("onlyDefenseRadio");
+const noDefenseRadio = document.getElementById("noDefenseRadio");
+const defaultDefenseRadio = document.getElementById("defaultDefenseRadio");
+const onlySupplyRadio = document.getElementById("onlySupplyRadio");
+const noSupplyRadio = document.getElementById("noSupplyRadio");
+const defaultSupplyRadio = document.getElementById("defaultSupplyRadio");
 
 const stratOptionRadios = [
   onlyEaglesRadio,
@@ -51,45 +51,45 @@ let oneBackpack = false;
 let oneSupportWeapon = false;
 
 let checkedWarbonds = [
-  'warbond0',
-  'warbond1',
-  'warbond2',
-  'warbond3',
-  'warbond4',
-  'warbond5',
-  'warbond6',
-  'warbond7',
-  'warbond8',
-  'warbond9',
-  'warbond10',
-  'warbond11',
-  'warbond12',
-  'warbond13',
-  'warbond14',
-  'warbond15',
-  'warbond16'
+  "warbond0",
+  "warbond1",
+  "warbond2",
+  "warbond3",
+  "warbond4",
+  "warbond5",
+  "warbond6",
+  "warbond7",
+  "warbond8",
+  "warbond9",
+  "warbond10",
+  "warbond11",
+  "warbond12",
+  "warbond13",
+  "warbond14",
+  "warbond15",
+  "warbond16",
 ];
 
 for (let y = 0; y < supplyAmountOptions.length; y++) {
-  supplyAmountOptions[y].addEventListener('change', (e) => {
-    updateLocalStorage(supplyAmountOptions[y], 'supplyAmountOptions');
+  supplyAmountOptions[y].addEventListener("change", (e) => {
+    updateLocalStorage(supplyAmountOptions[y], "supplyAmountOptions");
   });
 }
 
 for (let x = 0; x < stratOptionRadios.length; x++) {
-  stratOptionRadios[x].addEventListener('change', (e) => {
+  stratOptionRadios[x].addEventListener("change", (e) => {
     // update localStorage obj
-    updateLocalStorage(stratOptionRadios[x], 'stratagemOptions');
+    updateLocalStorage(stratOptionRadios[x], "stratagemOptions");
 
     // now do the front end stuff
     if (onlyEaglesRadio.checked) {
-      disableOtherRadios('Eagle');
+      disableOtherRadios("Eagle");
     } else if (onlyOrbitalsRadio.checked) {
-      disableOtherRadios('Orbital');
+      disableOtherRadios("Orbital");
     } else if (onlyDefenseRadio.checked) {
-      disableOtherRadios('Defense');
+      disableOtherRadios("Defense");
     } else if (onlySupplyRadio.checked) {
-      disableOtherRadios('Supply');
+      disableOtherRadios("Supply");
     } else {
       enableRadios();
     }
@@ -115,9 +115,9 @@ const enableRadios = () => {
 };
 
 for (let z = 0; z < warbondCheckboxes.length; z++) {
-  warbondCheckboxes[z].addEventListener('change', (e) => {
+  warbondCheckboxes[z].addEventListener("change", (e) => {
     // update localStorage obj
-    updateLocalStorage(warbondCheckboxes[z], 'warbondOptions');
+    updateLocalStorage(warbondCheckboxes[z], "warbondOptions");
 
     // now do the front end stuff
     if (e.target.checked && !checkedWarbonds.includes(e.srcElement.id)) {
@@ -132,11 +132,19 @@ for (let z = 0; z < warbondCheckboxes.length; z++) {
 }
 
 const filterItemsByWarbond = async () => {
-  const itemsList = [primsList, secondsList, throwsList, boostsList, stratsList];
+  const itemsList = [
+    primsList,
+    secondsList,
+    throwsList,
+    boostsList,
+    stratsList,
+  ];
   for (let i = 0; i < itemsList.length; i++) {
     let tempList = [...itemsList[i]];
     itemsList[i] = await tempList.filter(
-      (item) => checkedWarbonds.includes(item.warbondCode) || item.warbondCode === 'none',
+      (item) =>
+        checkedWarbonds.includes(item.warbondCode) ||
+        item.warbondCode === "none"
     );
     if (i === 0) {
       workingPrimsList = itemsList[i];
@@ -154,7 +162,7 @@ const filterItemsByWarbond = async () => {
 
 const rollStratagems = async () => {
   // get random numbers that arent the same and get the strats at those indices
-  stratagemsContainer.innerHTML = '';
+  stratagemsContainer.innerHTML = "";
 
   // if oneSupportWeapon or oneBackpack is checked and enabled, then account for those
   const oneSupportWeapon = oneSupportCheck.checked && !oneSupportCheck.disabled;
@@ -166,7 +174,7 @@ const rollStratagems = async () => {
   const randomUniqueNumbers = getRandomUniqueNumbers(
     filteredStratList,
     oneSupportWeapon,
-    oneBackpack,
+    oneBackpack
   );
 
   for (let i = 0; i < randomUniqueNumbers.length; i++) {
@@ -177,7 +185,7 @@ const rollStratagems = async () => {
               onclick="holdToChangeItem('${stratagem.internalName}', 'stratagem')"
             >
               <img
-                  src="./images/svgs/${stratagem.imageURL}"
+                  src="../images/svgs/${stratagem.imageURL}"
                   class="img-card-top"
                   alt="${stratagem.displayName}"
               />
@@ -191,7 +199,7 @@ const rollStratagems = async () => {
 };
 
 const rollEquipment = () => {
-  equipmentContainer.innerHTML = '';
+  equipmentContainer.innerHTML = "";
   const equipmentLists = [
     workingPrimsList ?? primsList,
     workingSecondsList ?? secondsList,
@@ -216,7 +224,7 @@ const rollEquipment = () => {
                   onclick="holdToChangeItem('${equipment.internalName}', '${equipment.category}')"
                 >
                   <img
-                      src="./images/equipment/${equipment.imageURL}"
+                      src="../images/equipment/${equipment.imageURL}"
                       class="img-card-top"
                       alt="${equipment.displayName}"
                   />
@@ -234,13 +242,23 @@ const filterStratList = async () => {
   let warbondFilteredStratList = workingStratsList ?? stratsList;
   let newList;
   let categoriesToFilter = [];
-  const onlyRadios = [onlyDefenseRadio, onlyEaglesRadio, onlyOrbitalsRadio, onlySupplyRadio];
-  const noRadios = [noDefenseRadio, noOrbitalsRadio, noEaglesRadio, noSupplyRadio];
+  const onlyRadios = [
+    onlyDefenseRadio,
+    onlyEaglesRadio,
+    onlyOrbitalsRadio,
+    onlySupplyRadio,
+  ];
+  const noRadios = [
+    noDefenseRadio,
+    noOrbitalsRadio,
+    noEaglesRadio,
+    noSupplyRadio,
+  ];
   // check if a "only" radio is checked
   for (let i = 0; i < onlyRadios.length; i++) {
     if (onlyRadios[i].checked) {
       newList = await warbondFilteredStratList.filter(
-        (strat) => strat.category === onlyRadios[i].name,
+        (strat) => strat.category === onlyRadios[i].name
       );
       return newList;
     }
@@ -253,7 +271,7 @@ const filterStratList = async () => {
     }
   }
   newList = await warbondFilteredStratList.filter(
-    (strat) => !categoriesToFilter.includes(strat.category),
+    (strat) => !categoriesToFilter.includes(strat.category)
   );
 
   return newList;
@@ -270,29 +288,29 @@ const getRandomUniqueNumbers = (list, oneSupportWeapon, oneBackpack) => {
     randomNumber = Math.floor(Math.random() * list.length);
     const tags = list[randomNumber].tags;
     if (
-      (tags.includes('Weapons') && hasSupportWeapon) ||
-      (tags.includes('Backpacks') && hasBackpack) ||
-      (tags.includes('Vehicles') && hasVehicle) ||
+      (tags.includes("Weapons") && hasSupportWeapon) ||
+      (tags.includes("Backpacks") && hasBackpack) ||
+      (tags.includes("Vehicles") && hasVehicle) ||
       numbers.includes(randomNumber)
     ) {
       continue;
     } else {
-      if (tags.includes('Vehicles')) {
+      if (tags.includes("Vehicles")) {
         hasVehicle = true;
         numbers.push(randomNumber);
         continue;
       }
-      if (oneSupportWeapon && tags.includes('Weapons')) {
+      if (oneSupportWeapon && tags.includes("Weapons")) {
         numbers.push(randomNumber);
         hasSupportWeapon = true;
-        if (tags.includes('Backpacks')) {
+        if (tags.includes("Backpacks")) {
           hasBackpack = true;
         }
         continue;
-      } else if (oneBackpack && tags.includes('Backpacks')) {
+      } else if (oneBackpack && tags.includes("Backpacks")) {
         numbers.push(randomNumber);
         hasBackpack = true;
-        if (tags.includes('Weapons')) {
+        if (tags.includes("Weapons")) {
           hasSupportWeapon = true;
         }
         continue;
@@ -306,7 +324,9 @@ const getRandomUniqueNumbers = (list, oneSupportWeapon, oneBackpack) => {
 const updateLocalStorage = (element, type) => {
   const elID = element.id;
   const checked = element.checked;
-  const randomizerOptions = JSON.parse(localStorage.getItem('randomizerOptions'));
+  const randomizerOptions = JSON.parse(
+    localStorage.getItem("randomizerOptions")
+  );
   let tempInnerObj;
   let newObj;
   // if (type !== 'stratagemOptions') {
@@ -319,7 +339,7 @@ const updateLocalStorage = (element, type) => {
     [type]: tempInnerObj,
   };
   // ok so if the user updates stratagems, then the other values need to be set to false
-  localStorage.setItem('randomizerOptions', JSON.stringify(newObj));
+  localStorage.setItem("randomizerOptions", JSON.stringify(newObj));
   //   return;
   // }
   // tempInnerObj = {
@@ -334,7 +354,7 @@ const updateLocalStorage = (element, type) => {
 };
 
 const checkLocalStorageForOptionsPreferences = () => {
-  const randomizerOptions = localStorage.getItem('randomizerOptions');
+  const randomizerOptions = localStorage.getItem("randomizerOptions");
   if (!randomizerOptions) {
     // create randomizerOptions object and put in local storage
     const obj = {
@@ -355,7 +375,7 @@ const checkLocalStorageForOptionsPreferences = () => {
         warbond13: true,
         warbond14: true,
         warbond15: true,
-        warbond16: true
+        warbond16: true,
       },
       stratagemOptions: {
         onlyEaglesRadio: false,
@@ -376,7 +396,7 @@ const checkLocalStorageForOptionsPreferences = () => {
         oneSupportCheck: false,
       },
     };
-    localStorage.setItem('randomizerOptions', JSON.stringify(obj));
+    localStorage.setItem("randomizerOptions", JSON.stringify(obj));
     return;
   }
   if (randomizerOptions) {

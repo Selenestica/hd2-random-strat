@@ -1,17 +1,5 @@
 to do General:
 - go through FontAwesome icons and possibly update to better icons
-- change font to something less bootstrap
-
-  {
-    "source": "/pages/budgetblitz.html",
-    "status": "301",
-    "target": "/budgetblitz"
-  },
-  {
-    "source": "/pages/penitentcrusade.html",
-    "status": "301",
-    "target": "/penitentcrusade"
-  },
 
 to do Randomizer:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads

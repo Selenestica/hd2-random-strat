@@ -1,6 +1,10 @@
 const missionCompleteModalBody = document.getElementById(
   "missionCompleteModalBody"
 );
+const planetContainer = document.getElementById("planetContainer");
+const objectivesContainer = document.getElementById("objectivesContainer");
+const loadoutContainer = document.getElementById("loadoutContainer");
+const planetDropdownList = document.getElementById("planetDropdownList");
 const maxStarsModalBody = document.getElementById("maxStarsModalBody");
 const flavorAndInstructionsModal = document.getElementById(
   "flavorAndInstructionsModal"
@@ -17,6 +21,8 @@ const missionCounterText = document.getElementById("missionCounterText");
 const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
 const applySpecialistButton = document.getElementById("applySpecialistButton");
 let missionCounter = 1;
+let currentPlanet = null;
+let campaignsData = null;
 
 const getItemMetaData = (item) => {
   const { category, type } = item;
@@ -225,26 +231,42 @@ const saveProgress = async (item = null) => {
   localStorage.setItem("specialOpsSaveData", JSON.stringify(obj));
 };
 
-const getPlanets = () => {
-  fetch("https://api.helldivers2.dev/api/v1/planets", {
-    method: "GET",
-    headers: {
-      "X-Super-Client": "helldivers2challenges.com",
-      "X-Super-Contact": "joebenwilson.dev@gmail.com",
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+const fetchCampaignsData = async () => {
+  try {
+    const response = await fetch(
+      "https://api.helldivers2.dev/api/v1/campaigns",
+      {
+        method: "GET",
+        headers: {
+          "X-Super-Client": "helldivers2challenges.com",
+          "X-Super-Contact": "joebenwilson.dev@gmail.com",
+        },
       }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("API response:", data);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    campaignsData = data;
+    genPlanetsList(data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+const genPlanetsList = async (campaigns) => {
+  for (let i = 0; i < campaigns.length; i++) {
+    const planetName = campaigns[i].planet.name;
+    planetDropdownList.innerHTML += `
+        <li><a class="dropdown-item planetOption" href="#">${planetName}</a></li>
+    `;
+  }
+};
+
+const genNewOperation = async () => {
+  const objectives = getRandomSpecialOpsObjectives(currentEnemy);
 };
 
 const submitMissionReport = async (isMissionSucceeded) => {
@@ -258,19 +280,41 @@ const submitMissionReport = async (isMissionSucceeded) => {
   }
 };
 
+const startNewRun = async () => {
+  // random planet
+  const randPlanetNumber = Math.floor(Math.random() * campaignsData.length - 1);
+  currentPlanet = campaignsData[randPlanetNumber];
+  console.log(currentPlanet);
+
+  // random specialist
+  const randSpecialistNumber = Math.floor(
+    Math.random() * SPECOPSSPECS.length - 1
+  );
+  specialist = SPECOPSSPECS[randSpecialistNumber];
+  console.log(specialist);
+
+  // random mission objectives
+};
+
 const uploadSaveData = async () => {
   const specialOpsSaveData = localStorage.getItem("specialOpsSaveData");
   if (specialOpsSaveData) {
-    seesRulesOnOpen = currentGame.seesRulesOnOpen;
-    missionCounter = currentGame.missionCounter;
-    dataName = currentGame.dataName;
-    specialist = currentGame.specialist ?? null;
+    // do a check here to make sure the planet they were on is still available
+    // if not, put a warning up that teammates may not be able to select that planet
+    currentPlanet = specialOpsSaveData.currentPlanet;
+    seesRulesOnOpen = specialOpsSaveData.seesRulesOnOpen;
+    missionCounter = specialOpsSaveData.missionCounter;
+    dataName = specialOpsSaveData.dataName;
+    specialist = specialOpsSaveData.specialist;
     missionCounterText.innerHTML = `${getMissionText()}`;
-    if (currentGame.specialist !== null) {
-      specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
-    }
     return;
   }
+  // start a new run
+  // get a random planet
+  // get a random specialist
+  // get random mission objectives
+  await fetchCampaignsData();
+  startNewRun();
 };
 
 const clearSaveDataAndRestart = async () => {
@@ -278,10 +322,11 @@ const clearSaveDataAndRestart = async () => {
   window.location.reload();
 };
 
+// probably want to run this on a timer. every five minutes or so, and whenever the page loads
 uploadSaveData();
 
-//   curl --retry 3 --retry-all-errors --retry-max-time 120 -A "${{github.repository}}" -H "${{env.ACCEPT_LANG}}" -H "${{env.CLIENT}}" -H "${{env.CONTACT}}" https://api.helldivers2.dev/api/v1/war         -o 801_war_v1.json
-// curl --retry 3 --retry-all-errors --retry-max-time 120 -A "${{github.repository}}" -H "${{env.ACCEPT_LANG}}" -H "${{env.CLIENT}}" -H "${{env.CONTACT}}" https://api.helldivers2.dev/api/v1/planets     -o 801_planets_v1.json
-// curl --retry 3 --retry-all-errors --retry-max-time 120 -A "${{github.repository}}" -H "${{env.ACCEPT_LANG}}" -H "${{env.CLIENT}}" -H "${{env.CONTACT}}" https://api.helldivers2.dev/api/v1/assignments -o 801_assignments_v1.json
-// curl --retry 3 --retry-all-errors --retry-max-time 120 -A "${{github.repository}}" -H "${{env.ACCEPT_LANG}}" -H "${{env.CLIENT}}" -H "${{env.CONTACT}}" https://api.helldivers2.dev/api/v1/campaigns   -o 801_campaigns_v1.json
-// curl --retry 3 --retry-all-errors --retry-max-time 120 -A "${{github.repository}}" -H "${{env.ACCEPT_LANG}}" -H "${{env.CLIENT}}" -H "${{env.CONTACT}}" https://api.helldivers2.dev/api/v1/dispatches
+// https://api.helldivers2.dev/api/v1/war         -o 801_war_v1.json
+// https://api.helldivers2.dev/api/v1/planets     -o 801_planets_v1.json
+// https://api.helldivers2.dev/api/v1/assignments -o 801_assignments_v1.json
+// https://api.helldivers2.dev/api/v1/campaigns   -o 801_campaigns_v1.json
+// https://api.helldivers2.dev/api/v1/dispatches

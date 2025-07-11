@@ -149,7 +149,34 @@
         <div class="col-2"></div>
       </div>
 
-      <div class="row d-flex justify-content-center mt-2"></div>
+      <div id="lowerContentContainer">
+        <div
+          class="row d-flex justify-content-center mt-2"
+          id="operationInfoContainer"
+        >
+          <div id="planetContainer">
+            <div class="btn-group" id="planetDropdown">
+              <button
+                type="button"
+                class="btn btn-primary dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Planets
+              </button>
+              <ul
+                id="planetDropdownList"
+                class="dropdown-menu scrollablePlanetList"
+              ></ul>
+            </div>
+          </div>
+          <div id="objectivesContainer"></div>
+        </div>
+        <div
+          class="row d-flex justify-content-center mt-2"
+          id="loadoutContainer"
+        ></div>
+      </div>
     </div>
 
     <!-- MISSION COMPLETE MODAL -->
@@ -866,7 +893,7 @@
   <script src="../js/constants/armorsets.js"></script>
   <script src="../js/constants/armorsizes.js"></script>
   <script src="../js/constants/armorpassives.js"></script>
-  <script src="../js/constants/specialists.js"></script>
+  <script src="../js/constants/specialOpsSpecialists.js"></script>
   <script src="../js/utils/getMissionText.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
   <script src="../js/utils/downloadSaveFile.js"></script>

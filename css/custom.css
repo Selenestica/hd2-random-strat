@@ -321,3 +321,8 @@ body {
 .color-changer {
   animation: colorCycle 5s infinite;
 }
+
+.scrollablePlanetList {
+  max-height: 200px; /* adjust as needed */
+  overflow-y: auto;
+}

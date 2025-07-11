@@ -1,4 +1,4 @@
-const SPECIALISTS = [
+const SPECOPSSPECS = [
   {
     displayName: "The Lightbringer",
     stratagems: [

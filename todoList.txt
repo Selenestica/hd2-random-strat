@@ -44,15 +44,6 @@ SPECIAL OPERATIONS
     - SPECIALIST ideas:
       - killzone?
       - all shotguns?
-  - for the operation, the player must complete a set of 2 (3?) random requirements, such as:
-    - kill X (225 - 500) enemies (less for bot planets)
-    - die less than X times
-    - collect X amount of common/rare/super/total samples
-    - have less than X accidentals
-    - earn X amount of stars
-    - have an average of less than X amount of time remaining
-    - collect 1 high tier item?
-    - have X amount of melee kills
 
 NEW CHALLENGE IDEAS:
 

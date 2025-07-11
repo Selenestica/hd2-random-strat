@@ -1,8 +1,8 @@
-const bbGameOverModal = document.getElementById("bbGameOverModal");
-const bbGameOverModalBody = document.getElementById("bbGameOverModalBody");
+const bbGameOverModal = document.getElementById('bbGameOverModal');
+const bbGameOverModalBody = document.getElementById('bbGameOverModalBody');
 
 const genBBGameOverModal = async () => {
-  const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
+  const budgetBlitzSaveData = localStorage.getItem('budgetBlitzSaveData');
   if (!budgetBlitzSaveData) return;
 
   const savedGames = JSON.parse(budgetBlitzSaveData).savedGames;
@@ -25,12 +25,12 @@ const genBBGameOverModal = async () => {
   let highValueItemsCollected = 0;
   let starsEarned = 0;
   let totalCreditsEarned = 0;
-  let surplusReinforcements = 0;
+  let numOfDeaths = 0;
   let difficultyModifier = 0;
-  if (difficulty === "Medium") {
+  if (difficulty === 'Medium') {
     difficultyModifier = 250;
   }
-  if (difficulty === "Hard") {
+  if (difficulty === 'Hard') {
     difficultyModifier = 500;
   }
 
@@ -41,21 +41,11 @@ const genBBGameOverModal = async () => {
     highValueItemsCollected += missionInfo.highValueItemsCollected;
     starsEarned += missionInfo.starsEarned;
     totalCreditsEarned += missionInfo.totalCredits;
-    surplusReinforcements += missionInfo.reinforcementsRemaining;
+    numOfDeaths += missionInfo.numOfDeaths;
   }
 
   superSamplesCollected += highValueItemsCollected * 2;
   averageMissionTime = averageMissionTime / 15;
-
-  // let refundedItemsCredits = 0;
-  // for (let i = 0; i < purchasedItems.length; i++) {
-  //   const quantity = purchasedItems[i].quantity;
-  //   let cost = purchasedItems[i].cost;
-  //   if (cost > 5) {
-  //     cost = 5;
-  //   }
-  //   refundedItemsCredits += cost * quantity;
-  // }
 
   let creditsSubtractedForMissionsFailed = 200 * failedMissions;
 
@@ -72,16 +62,15 @@ const genBBGameOverModal = async () => {
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">End Time: ${dateEnded}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Stars Earned: ${starsEarned}/72</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Super Samples Collected: ${superSamplesCollected}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Surplus Reinforcements: ${surplusReinforcements}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Number of Deaths: ${numOfDeaths}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">High Value Items Collected: ${highValueItemsCollected}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Average Time Remaining: ${averageMissionTime.toFixed(
-    0
+    0,
   )}%</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Ending Credits: ${credits}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Missions Failed: ${failedMissions}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white"><br /></p>`;
   bbGameOverModalBody.innerHTML += `<h5 class="text-white">Score:</h5>`;
-  // bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Credits from Refunded Equipment: ${refundedItemsCredits}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Total Credits Earned: ${totalCreditsEarned}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Difficulty (${difficulty}): ${difficultyModifier}</p>`;
   bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Missions Failed Penalty: (${creditsSubtractedForMissionsFailed})</p>`;
@@ -95,6 +84,6 @@ const genBBGameOverModal = async () => {
 };
 
 // if the game over modal ever closes, reset the content
-bbGameOverModal.addEventListener("hidden.bs.modal", () => {
-  bbGameOverModalBody.innerHTML = "";
+bbGameOverModal.addEventListener('hidden.bs.modal', () => {
+  bbGameOverModalBody.innerHTML = '';
 });

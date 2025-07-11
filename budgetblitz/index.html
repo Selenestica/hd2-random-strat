@@ -17,20 +17,41 @@
       type="image/svg+xml"
       href="../images/svgs/orbitalprecisionstrike.svg"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
     <meta
       name="description"
       content="For Glory, for Profit, for Super Earth!"
     />
     <title>Helldivers 2: Budget Blitz</title>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-BFREXT7F48");
+    </script>
   </head>
 
   <body>
     <div class="container mb-5">
       <div class="row d-flex justify-content-center mt-2">
-        <div class="d-flex col-4 justify-content-start">
+        <div class="d-flex col-4 justify-content-start px-0">
           <a href="../index.html">
-            <button class="btn" type="button">
-              <i class="fa-solid fa-2x text-light shuffle-icon fa-shuffle"></i>
+            <button class="btn text-light text-start" type="button">
+              <i class="fa-solid fa-arrow-left"></i>
+              Back to Challenges
             </button>
           </a>
         </div>
@@ -69,10 +90,11 @@
         <div class="d-flex col justify-content-center align-items-center">
           <h4 class="mb-0 text-white">Budget Blitz</h4>
           <button
-            class="btn btn-secondary mx-1"
+            class="btn btn-secondary bg-none"
+            style="border: none"
+            type="button"
             data-bs-toggle="modal"
             data-bs-target="#flavorAndInstructionsModal"
-            type="button"
           >
             <i class="fa-solid fa-circle-info"></i>
           </button>
@@ -468,10 +490,14 @@
                   style="cursor: default"
                 >
                   Purchased Items
+                  <small
+                    style="font-size: small; padding-top: 0.2rem"
+                    class="mx-3 text-secondary"
+                    >Unused items will remain in your inventory</small
+                  >
                 </button>
               </h2>
               <div
-                id="collapseTwo"
                 class="accordion-collapse collapse show"
                 data-bs-parent="#inventoryAccordion"
               >
@@ -492,7 +518,6 @@
                 </button>
               </h2>
               <div
-                id="collapseOne"
                 class="accordion-collapse collapse show"
                 data-bs-parent="#inventoryAccordion"
               >
@@ -574,21 +599,18 @@
                 </div>
 
                 <div class="row d-flex pb-1 align-items-center px-0">
-                  <p
-                    class="text-white mb-0 col-6"
-                    for="reinforcementsRemainingInput"
-                  >
-                    Reinforcements Remaining:
+                  <p class="text-white mb-0 col-6" for="numOfDeathsInput">
+                    Deaths (Yours Only):
                   </p>
                   <input
                     class="form-control col-6"
-                    id="reinforcementsRemainingInput"
+                    id="numOfDeathsInput"
                     style="width: 15%; margin-left: 0.5rem"
                     type="number"
                     min="0"
                     max="24"
                     value="0"
-                    aria-describedby="reinforcementsRemainingInput"
+                    aria-describedby="numOfDeathsInput"
                   />
                 </div>
 
@@ -913,8 +935,8 @@
                         <br />
                         <br />
                         After each mission, press the 'Mission Complete' button
-                        and input the number of stars you earned, the amount of
-                        reinforcements remaining, the amount of Super Samples
+                        and input the number of stars you earned, the number of
+                        your individual deaths, the amount of Super Samples
                         extracted, and the percentage (%) of time remaining in
                         the mission (shown in-game at the bottom of the mission
                         summary screen). You will earn credits based on these
@@ -1367,6 +1389,31 @@
           </div>
         </div>
       </div>
+
+      <!-- CREDITS EARNED TOAST -->
+      <div
+        class="position-fixed top-0 start-50 translate-middle-x p-3"
+        style="z-index: 1080"
+      >
+        <div
+          class="toast align-items-center text-white bg-success border-0 bbCreditsEarnedToast"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+          data-bs-autohide="true"
+          data-bs-delay="3000"
+        >
+          <div class="d-flex">
+            <div class="toast-body" id="creditsEarnedToastBody"></div>
+            <button
+              type="button"
+              class="btn-close btn-close-white me-2 m-auto"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 
@@ -1397,6 +1444,7 @@
   <script src="../js/utils/getMaxStarsForMission.js"></script>
   <script src="../js/utils/getMaxSuperSamplesForMission.js"></script>
   <script src="../js/utils/showBBPurchasedItemToast.js"></script>
+  <script src="../js/utils/showBBCreditsEarnedToast.js"></script>
   <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/utils/downloadBBScoreSummary.js"></script>
   <script src="../js/components/genShowAllItemsModal.js"></script>

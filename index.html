@@ -17,11 +17,31 @@
       type="image/png"
       href="./images/svgs/orbitalprecisionstrike.svg"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
     <meta
       name="description"
       content="Prove that you have the Strength and the Courage to dispense freedom with Super Earth's surplus arsenal!"
     />
-    <title>Helldivers 2 Randomizer</title>
+    <title>Helldivers 2 Challenges</title>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-BFREXT7F48");
+    </script>
   </head>
   <body>
     <div class="container mb-5">
@@ -30,10 +50,10 @@
       </div>
       <!-- HEADER -->
       <div class="row d-flex justify-content-center mt-2">
-        <div class="d-flex col-4 justify-content-start">
+        <div class="d-flex col-6 justify-content-start">
           <small class="text-light"> 12 June 2025 | Force of Law </small>
         </div>
-        <div class="d-flex col-4 justify-content-center">
+        <div class="d-flex col-6 justify-content-end">
           <a
             class="mx-1"
             target="_blank"
@@ -49,23 +69,6 @@
             <i class="fa-2x fa-solid fa-mug-saucer"></i>
           </a>
         </div>
-        <div class="d-flex col-4 justify-content-end">
-          <a href="./pages/budgetblitz.html">
-            <button class="btn px-0" type="button">
-              <i class="text-danger fa-solid fa-2x fa-sack-dollar"></i>
-            </button>
-          </a>
-          <a href="./pages/penitentcrusade.html">
-            <button style="padding-right: 0rem" class="btn" type="button">
-              <i class="text-danger fa-solid fa-2x fa-skull-crossbones"></i>
-            </button>
-          </a>
-          <!-- <a href="./pages/plugs.html">
-            <button class="btn" type="button">
-              <i class="text-light fa-solid fa-2x fa-film"></i>
-            </button>
-          </a> -->
-        </div>
       </div>
       <div class="row d-flex justify-content-center mt-2">
         <div class="d-flex col justify-content-center">
@@ -74,9 +77,10 @@
       </div>
       <div class="row d-flex justify-content-center">
         <div class="d-flex col justify-content-center align-items-center">
-          <h4 class="text-light mb-0">Randomizer</h4>
+          <h4 class="text-light mb-0">Challenges</h4>
           <button
-            class="btn btn-secondary mx-2"
+            class="btn btn-secondary bg-none"
+            style="border: none"
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#infoModal"
@@ -87,437 +91,11 @@
       </div>
 
       <!-- MAIN BODY -->
-      <div class="row d-flex justify-content-center pt-3">
-        <div class="col-sm-12 col-md-10 col-lg-8">
-          <div class="row d-flex justify-content-between">
-            <div class="col d-flex justify-content-start my-1">
-              <div>
-                <div class="btn-group">
-                  <button
-                    class="btn btn-success"
-                    onclick="rollStratagems()"
-                    type="button"
-                    id="rollStratsButton"
-                  >
-                    <span id="stratText"> Stratagems </span>
-                    <span id="stratIcon">
-                      <i class="fa-solid fa-jet-fighter"></i
-                    ></span>
-                  </button>
-                </div>
-              </div>
-              <div class="mx-2">
-                <button
-                  id="rollEquipmentButton"
-                  type="button"
-                  class="btn btn-success"
-                  onclick="rollEquipment()"
-                >
-                  <span id="equipText">Equipment</span>
-                  <span id="equipIcon">
-                    <i class="fa-solid fa-person-rifle"></i
-                  ></span>
-                </button>
-              </div>
-              <div class="btn-group" role="group">
-                <div class="btn-group">
-                  <button
-                    id="rollArmorButton"
-                    type="button"
-                    class="btn btn-success"
-                    onclick="rollArmor()"
-                    data-bs-auto-close="outside"
-                  >
-                    <span id="armorButtonText">Armor</span>
-                    <span id="armorButtonIcon">
-                      <i class="fa-solid fa-shield"></i
-                    ></span>
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-success dropdown-toggle dropdown-toggle-split"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    data-bs-auto-close="outside"
-                  >
-                    <span class="visually-hidden">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-dark">
-                    <li>
-                      <a
-                        class="dropdown-item active"
-                        href="#"
-                        onclick="setArmorRollType('passive')"
-                        id="armorPassiveCheck"
-                        >Armor Passive</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onclick="setArmorRollType('set')"
-                        id="armorSetCheck"
-                        >Armor Set</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        onclick="setArmorRollType('size')"
-                        id="armorSizeCheck"
-                        >Armor Size</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col d-flex my-1 justify-content-end">
-              <button
-                class="btn btn-primary"
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#optionsModal"
-              >
-                <i id="optionsIcon" class="fa-solid fa-gear"></i>
-                <span id="optionsText"> Options </span>
-              </button>
-            </div>
-          </div>
-          <hr />
-          <div
-            id="armorContainer"
-            class="d-flex row justify-content-start"
-          ></div>
-          <div
-            id="equipmentContainer"
-            class="row pt-3 d-flex justify-content-center"
-          ></div>
-          <div
-            id="stratagemsContainer"
-            class="row pt-3 d-flex justify-content-center"
-          ></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OPTIONS MODAL -->
-    <div
-      class="modal fade"
-      id="optionsModal"
-      tabindex="-1"
-      aria-labelledby="optionsModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content bg-grey">
-          <div class="modal-header">
-            <h5 class="modal-title text-light" id="optionsModalLabel">
-              Options
-            </h5>
-          </div>
-          <div class="modal-body">
-            <div class="accordion accordion-flush" id="optionsAccordion">
-              <div class="accordion-item bg-none">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed text-light"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#warbondsAccordion"
-                    aria-expanded="false"
-                    aria-controls="warbondsAccordion"
-                  >
-                    Warbonds and Editions
-                  </button>
-                </h2>
-                <div
-                  id="warbondsAccordion"
-                  class="accordion-collapse collapse p-3"
-                  aria-labelledby="Rules"
-                  data-bs-parent="#optionsAccordion"
-                >
-                  <div id="warbondsChecklistContainer"></div>
-                </div>
-              </div>
-              <div class="accordion-item bg-none">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed text-light"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#randomizerSettingsAccordion"
-                    aria-expanded="false"
-                    aria-controls="randomizerSettingsAccordion"
-                  >
-                    Randomizer Settings
-                  </button>
-                </h2>
-                <div
-                  id="randomizerSettingsAccordion"
-                  class="accordion-collapse collapse p-3"
-                  aria-labelledby="Rules"
-                  data-bs-parent="#optionsAccordion"
-                >
-                  <div id="randomizerOptionsChecksContainer">
-                    <div class="d-flex row my-2">
-                      <h5 class="text-white">General</h5>
-                      <div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input optionalCheckbox"
-                            type="checkbox"
-                            value=""
-                            id="oneSupportCheck"
-                          />
-                          <label
-                            class="form-check-label text-white"
-                            for="oneSupportCheck"
-                          >
-                            Only roll one support weapon
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input optionalCheckbox"
-                            type="checkbox"
-                            value=""
-                            id="oneBackpackCheck"
-                          />
-                          <label
-                            class="form-check-label text-white"
-                            for="oneBackpackCheck"
-                          >
-                            Only roll one backpack
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex row" id="eaglesAndOrbitalsOptions">
-                      <div class="col">
-                        <h5 class="text-white my-2">Eagles</h5>
-                        <div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Eagle"
-                              id="onlyEaglesRadio"
-                              value="onlyEagles"
-                            />
-                            <label
-                              class="text-white form-check-label"
-                              for="onlyEaglesRadio"
-                            >
-                              Only Eagles
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Eagle"
-                              id="noEaglesRadio"
-                              value="noEagles"
-                            />
-                            <label
-                              class="text-white form-check-label"
-                              for="noEaglesRadio"
-                            >
-                              No Eagles
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Eagle"
-                              id="defaultEaglesRadio"
-                              value="defaultEagles"
-                              checked
-                            />
-                            <label
-                              class="text-white form-check-label"
-                              for="defaultEaglesRadio"
-                            >
-                              Default
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <h5 class="text-white my-2">Orbitals</h5>
-                        <div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Orbital"
-                              id="onlyOrbitalsRadio"
-                              value="onlyOrbital"
-                            />
-                            <label
-                              class="text-white form-check-label"
-                              for="onlyOrbitalsRadio"
-                            >
-                              Only Orbitals
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Orbital"
-                              id="noOrbitalsRadio"
-                              value="noOrbitals"
-                            />
-                            <label
-                              class="text-white form-check-label"
-                              for="noOrbitalsRadio"
-                            >
-                              No Orbitals
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Orbital"
-                              id="defaultOrbitalsRadio"
-                              value="defaultOrbitals"
-                              checked
-                            />
-                            <label
-                              class="text-white form-check-label"
-                              for="defaultOrbitalsRadio"
-                            >
-                              Default
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex row" id="defenseAndSupplyOptions">
-                      <div class="col">
-                        <h5 class="text-white my-2">Defense</h5>
-                        <div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Defense"
-                              id="onlyDefenseRadio"
-                              value="onlyOrbital"
-                            />
-                            <label
-                              class="text-white form-check-label"
-                              for="onlyDefenseRadio"
-                            >
-                              Only Defense
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Defense"
-                              id="noDefenseRadio"
-                              value="noOrbitals"
-                            />
-                            <label
-                              class="text-white form-check-label"
-                              for="noDefenseRadio"
-                            >
-                              No Defense
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Defense"
-                              id="defaultDefenseRadio"
-                              value="defaultOrbitals"
-                              checked
-                            />
-                            <label
-                              class="text-white form-check-label"
-                              for="defaultDefenseRadio"
-                            >
-                              Default
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <h5 class="text-white my-2">Supply</h5>
-                        <div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Supply"
-                              id="onlySupplyRadio"
-                              value="onlyOrbital"
-                            />
-                            <label
-                              class="text-white form-check-label"
-                              for="onlySupplyRadio"
-                            >
-                              Only Supply
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Supply"
-                              id="noSupplyRadio"
-                              value="noOrbitals"
-                            />
-                            <label
-                              class="text-white form-check-label"
-                              for="noSupplyRadio"
-                            >
-                              No Supply
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Supply"
-                              id="defaultSupplyRadio"
-                              value="defaultOrbitals"
-                              checked
-                            />
-                            <label
-                              class="text-white form-check-label"
-                              for="defaultSupplyRadio"
-                            >
-                              Default
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
+      <div class="d-flex justify-content-center mt-5">
+        <div
+          id="challengeCardsContainer"
+          class="row d-flex justify-content-center pt-3"
+        ></div>
       </div>
     </div>
 
@@ -558,40 +136,19 @@
                   <li class="text-white">
                     <b>Q: Who is this app for?</b>
                     <p>
-                      A: This web app was made for Helldivers who have unlocked
-                      all stratagems (and ideally, equipment) and are looking
-                      for a fun way to spice up their dives.
+                      A: This web app was made for Helldivers who are seeking a
+                      challenge, either solo or with a squad.
                     </p>
                   </li>
                   <li class="text-white">
                     <b
-                      >Q: What if I don't have some of the items in a
-                      warbond/the superstore/from the Pre-Order Bonus?</b
+                      >Q: What if I want to have multiple challenge runs at the
+                      same time?</b
                     >
                     <p>
-                      A: You can toggle these items off in the Options menu. If
-                      you don't have the items, you won't roll them.
-                    </p>
-                  </li>
-                  <li class="text-white">
-                    <b
-                      >Q: What if I don't want to bring multiple support
-                      weapon/backpack stratagems?</b
-                    >
-                    <p>
-                      A: In the Options menu, in the Randomizer Settings tab,
-                      you will be able to customize the randomizer.
-                    </p>
-                  </li>
-                  <li class="text-white">
-                    <b
-                      >Q: What if I roll a booster, but a teammate has already
-                      chosen it?</b
-                    >
-                    <p>
-                      A: Feel free to choose a different booster than the one
-                      you have rolled. I don't make the rules, I just make the
-                      tools!
+                      A: You can start a new challenge at any time, and this
+                      website will save your progress from your previous runs
+                      automatically.
                     </p>
                   </li>
                   <li class="text-white">
@@ -641,7 +198,7 @@
                     use some help with colors and fonts, as well as upcoming
                     features. Feel free to email me at
                     joebenwilson.dev@gmail.com with any feedback/suggestions, or
-                    submit a PR on
+                    submit an issue on
                     <a href="https://github.com/Selenestica/hd2-random-strat"
                       >GitHub</a
                     >.
@@ -673,15 +230,5 @@
     src="https://kit.fontawesome.com/a018c01272.js"
     crossorigin="anonymous"
   ></script>
-  <script src="js/constants/primaries.js"></script>
-  <script src="js/constants/secondaries.js"></script>
-  <script src="js/constants/boosters.js"></script>
-  <script src="js/constants/throwables.js"></script>
-  <script src="js/constants/stratagems.js"></script>
-  <script src="js/constants/armorsets.js"></script>
-  <script src="js/constants/armorsizes.js"></script>
-  <script src="js/constants/armorpassives.js"></script>
-  <script src="js/components/genWarbondCheckboxes.js"></script>
-  <script src="js/components/armorSettings.js"></script>
-  <script src="js/main.js"></script>
+  <script src="./js/components/genChallengeCards.js"></script>
 </html>

@@ -1,5 +1,6 @@
 body {
   background-color: #2d2d2d;
+  font-family: "Titillium Web", sans-serif;
 }
 
 .bg-default {
@@ -294,4 +295,29 @@ body {
   margin: 0.5rem;
   border: 1px solid yellow;
   padding: 0rem;
+}
+
+.challengeCards {
+  text-decoration: none;
+  color: inherit;
+  border: none;
+}
+
+@keyframes colorCycle {
+  0% {
+    color: red;
+  }
+  33% {
+    color: cyan;
+  }
+  66% {
+    color: green;
+  }
+  100% {
+    color: red;
+  }
+}
+
+.color-changer {
+  animation: colorCycle 5s infinite;
 }

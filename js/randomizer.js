@@ -185,7 +185,7 @@ const rollStratagems = async () => {
               onclick="holdToChangeItem('${stratagem.internalName}', 'stratagem')"
             >
               <img
-                  src="./images/svgs/${stratagem.imageURL}"
+                  src="../images/svgs/${stratagem.imageURL}"
                   class="img-card-top"
                   alt="${stratagem.displayName}"
               />
@@ -224,7 +224,7 @@ const rollEquipment = () => {
                   onclick="holdToChangeItem('${equipment.internalName}', '${equipment.category}')"
                 >
                   <img
-                      src="./images/equipment/${equipment.imageURL}"
+                      src="../images/equipment/${equipment.imageURL}"
                       class="img-card-top"
                       alt="${equipment.displayName}"
                   />

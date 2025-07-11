@@ -18,7 +18,6 @@ to do Penitent Crusade:
 - add nice icon for app icon shortcuts
 - rare reroll token that randomly shows up as a reward
 - add QR codes for data sharing
-  - or data import feature
 - add Discord bot compatibility
 - SPECIALIST ideas:
  - The Shotgun Surgeon
@@ -45,4 +44,6 @@ Budget Blitz
 
 NEW CHALLENGE IDEAS:
   - use helldivers 2 API to do a planet/mission bounty mode
-  - classes mode similar to Caffeinated Chaos' idea
+    - one operation finished on a random planet will unlock a new specialist
+    - specialists are almost completely geared
+

@@ -1,15 +1,22 @@
-to do General:
+GENERAL:
 - go through FontAwesome icons and possibly update to better icons
 
-to do Randomizer:
+RANDOMIZER:
 - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
 - when no booster is able to be given (no warbonds selected), booster column looks bad
 - add tags for THROWABLES
 - Master of Ceremony
   - armor
     - heavy (need img)
+- add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons
+- buy nvigneux a coffee
+- enemy randomizer
+- difficulty randomizer
+- button to randomize everything at once
+- add link to low sodium Helldivers discord
+- holding click on stratagem or equipment icon will change it
 
-to do Penitent Crusade:
+PENITENT CRUSADE:
 - system to track max stars missions, incomplete missions, and failed missions. adding points for each
  - end game modal for showing max star missions, completed missions, and failed missions. number of items earned in each category. and total points calculated.
  - when challenge complete, remove Mission Complete/Failed buttons and add "View Results" button so they can see their score again
@@ -25,25 +32,30 @@ to do Penitent Crusade:
 - BUGS:
   - mysterious specialist issues
 
-feature ideas:
-- add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons
-- buy nvigneux a coffee
-- enemy randomizer
-- difficulty randomizer
-- button to randomize everything at once
-- add link to low sodium Helldivers discord
-- holding click on stratagem or equipment icon will change it
-
-Budget Blitz
-- BUGS:
-
+BUDGET BLITZ
 - more detailed breakdown of points in game over modal
   - additions shown in green
   - deductions in red
 - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
 
+SPECIAL OPERATIONS
+  - one operation finished on a random planet will unlock a new specialist, as long as the player hasnt completed an operation with that specialist already
+  - specialists are almost completely geared
+    - SPECIALIST ideas:
+      - killzone?
+      - all shotguns?
+  - for the operation, the player must complete a set of 2 (3?) random requirements, such as:
+    - kill X (225 - 500) enemies (less for bot planets)
+    - die less than X times
+    - collect X amount of common/rare/super/total samples
+    - have less than X accidentals
+    - earn X amount of stars
+    - have an average of less than X amount of time remaining
+    - collect 1 high tier item?
+    - have X amount of melee kills
+
 NEW CHALLENGE IDEAS:
-  - use helldivers 2 API to do a planet/mission bounty mode
-    - one operation finished on a random planet will unlock a new specialist
-    - specialists are almost completely geared
+
+
+
 

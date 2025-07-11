@@ -430,29 +430,3 @@ const applyStoredOptionsToLists = () => {
 };
 
 checkLocalStorageForOptionsPreferences();
-
-fetch("https://api.helldivers2.dev/api/v1/planets", {
-  method: "GET",
-  headers: {
-    "X-Super-Client": "helldivers2challenges.com",
-    "X-Super-Contact": "joebenwilson.dev@gmail.com",
-  },
-})
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    console.log("API response:", data); // ✅ Now you'll get valid JSON
-  })
-  .catch((error) => {
-    console.error("Error fetching data:", error);
-  });
-
-//   curl --retry 3 --retry-all-errors --retry-max-time 120 -A "${{github.repository}}" -H "${{env.ACCEPT_LANG}}" -H "${{env.CLIENT}}" -H "${{env.CONTACT}}" https://api.helldivers2.dev/api/v1/war         -o 801_war_v1.json
-// curl --retry 3 --retry-all-errors --retry-max-time 120 -A "${{github.repository}}" -H "${{env.ACCEPT_LANG}}" -H "${{env.CLIENT}}" -H "${{env.CONTACT}}" https://api.helldivers2.dev/api/v1/planets     -o 801_planets_v1.json
-// curl --retry 3 --retry-all-errors --retry-max-time 120 -A "${{github.repository}}" -H "${{env.ACCEPT_LANG}}" -H "${{env.CLIENT}}" -H "${{env.CONTACT}}" https://api.helldivers2.dev/api/v1/assignments -o 801_assignments_v1.json
-// curl --retry 3 --retry-all-errors --retry-max-time 120 -A "${{github.repository}}" -H "${{env.ACCEPT_LANG}}" -H "${{env.CLIENT}}" -H "${{env.CONTACT}}" https://api.helldivers2.dev/api/v1/campaigns   -o 801_campaigns_v1.json
-// curl --retry 3 --retry-all-errors --retry-max-time 120 -A "${{github.repository}}" -H "${{env.ACCEPT_LANG}}" -H "${{env.CLIENT}}" -H "${{env.CONTACT}}" https://api.helldivers2.dev/api/v1/dispatches

@@ -16,6 +16,8 @@ const throwableContainer = document.getElementById("throwableContainer");
 const planetDropdownList = document.getElementById("planetDropdownList");
 const planetNameText = document.getElementById("planetNameText");
 const enemyNameText = document.getElementById("enemyNameText");
+const objectiveNameText = document.getElementById("objectiveNameText");
+const objectiveProgressText = document.getElementById("objectiveProgressText");
 const specialistNameText = document.getElementById("specialistNameText");
 const maxStarsModalBody = document.getElementById("maxStarsModalBody");
 const flavorAndInstructionsModal = document.getElementById(
@@ -212,8 +214,8 @@ const genNewOperation = async () => {
   for (let i = 0; i < objectives.length; i++) {
     const objName = objectives[i].name.replace("X", objectives[i].goal);
     objectivesContainer.innerHTML += `
-      <div class="text-white">${objName}</div>
-      <small class="text-white">Progress: <span id="objectiveProgressText">${objectives[i].progress}%</span></small>
+      <div id="objectiveNameText${i}" class="text-white">${objName}</div>
+      <small class="text-white">Progress: <span id="objectiveProgressText${i}">${objectives[i].progress}%</span></small>
     `;
   }
 
@@ -223,7 +225,24 @@ const genNewOperation = async () => {
 
 const submitMissionReport = async (isMissionSucceeded) => {
   if (isMissionSucceeded) {
-    console.log("success!");
+    for (let i = 0; i < currentObjectives.length; i++) {
+      let val;
+      // if (currentObjectives[i].inputType === "check") {
+      //   val = document.getElementById("objId-" + currentObjectives[i].id).value;
+      // }
+      val = parseInt(
+        document.getElementById("objId-" + currentObjectives[i].id).value,
+        10
+      );
+      currentObjectives[i].progress += val;
+      const progressText = document.getElementById("objectiveProgressText" + i);
+      progressText.innerHTML = currentObjectives[i].progress;
+    }
+
+    // increment mission counter
+
+    // if objectives met and mission counter > 3
+    // genNewOperation
   }
 
   // set missionCounter back to start of operation
@@ -286,18 +305,42 @@ const startNewRun = async () => {
   saveProgress();
 };
 
+const populateWebPage = () => {
+  planetNameText.innerHTML = currentPlanet.planet.name;
+  enemyNameText.innerHTML = currentEnemy;
+
+  displaySpecialistLoadout();
+
+  for (let i = 0; i < currentObjectives.length; i++) {
+    const objName = currentObjectives[i].name.replace(
+      "X",
+      currentObjectives[i].goal
+    );
+    objectivesContainer.innerHTML += `
+      <div class="text-white">${objName}</div>
+      <small class="text-white">Progress: <span id="objectiveProgressText">${currentObjectives[i].progress}%</span></small>
+    `;
+  }
+
+  missionCounterText.innerHTML = "Mission: 1";
+  genSOMissionCompleteModalContent(currentObjectives);
+};
+
 const uploadSaveData = async () => {
   await fetchCampaignsData();
   const specialOpsSaveData = localStorage.getItem("specialOpsSaveData");
   if (specialOpsSaveData) {
     // do a check here to make sure the planet they were on is still available
     // if not, put a warning up that teammates may not be able to select that planet
-    currentPlanet = specialOpsSaveData.currentPlanet;
-    seesRulesOnOpen = specialOpsSaveData.seesRulesOnOpen;
-    missionCounter = specialOpsSaveData.missionCounter;
-    dataName = specialOpsSaveData.dataName;
-    specialist = specialOpsSaveData.specialist;
-    missionCounterText.innerHTML = `${getMissionText()}`;
+    const data = JSON.parse(specialOpsSaveData);
+    currentPlanet = data.currentPlanet;
+    currentObjectives = data.currentObjectives;
+    currentEnemy = data.currentEnemy;
+    currentSpecialist = data.currentSpecialist;
+    seesRulesOnOpen = data.seesRulesOnOpen;
+    missionCounter = data.missionCounter;
+    dataName = data.dataName;
+    populateWebPage();
     return;
   }
   startNewRun();

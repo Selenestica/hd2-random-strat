@@ -181,4 +181,44 @@ const SPECOPSSPECS = [
     throwable: ["G-12 High Explosive"],
     armorPassive: ["Democracy Protects"],
   },
+
+  {
+    displayName: "The Wallbouncer",
+    stratagems: [
+      "Expendable Anti-Tank",
+      "Commando",
+      "Eagle Strafing Run",
+      "Jump Pack",
+    ],
+    primary: ["Slugger"],
+    secondary: ["Senator"],
+    throwable: ["G-12 High Explosive"],
+    armorPassive: ["Extra Padding"],
+  },
+  {
+    displayName: "Dark Render",
+    stratagems: [
+      "Autocannon Sentry",
+      "Recoilless Rifle",
+      "Orbital Walking Barrage",
+      "Eagle Strafing Run",
+    ],
+    primary: ["Deadeye"],
+    secondary: ["Senator"],
+    throwable: ["G-4 Gas"],
+    armorPassive: ["Servo-Assisted"],
+  },
+  {
+    displayName: "Tyler Johnson the GOAT",
+    stratagems: [
+      "Eagle Airstrike",
+      "Orbital 120mm HE Barrage",
+      "Autocannon Sentry",
+      "Machine Gun",
+    ],
+    primary: ["Liberator Penetrator"],
+    secondary: ["Grenade Pistol"],
+    throwable: ["G-123 Thermite"],
+    armorPassive: ["Extra Padding"],
+  },
 ];

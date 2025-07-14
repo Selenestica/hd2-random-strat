@@ -1,6 +1,9 @@
 const missionCompleteModalBody = document.getElementById(
   "missionCompleteModalBody"
 );
+const objectiveInputsContainer = document.getElementById(
+  "objectiveInputsContainer"
+);
 const planetContainer = document.getElementById("planetContainer");
 const objectivesContainer = document.getElementById("objectivesContainer");
 const loadoutContainer = document.getElementById("loadoutContainer");
@@ -33,6 +36,7 @@ let missionCounter = 1;
 let currentPlanet = null;
 let currentEnemy = null;
 let currentSpecialist = null;
+let currentObjectives = null;
 let campaignsData = null;
 
 let primaries = [...PRIMARIES];
@@ -295,7 +299,6 @@ const displaySpecialistLoadout = () => {
     stratagemsContainer.innerHTML += card;
   }
 
-  console.log(currentSpecialist, armorObj);
   const equipmentObjs = [primaryObj, secondaryObj, throwObj, armorObj];
   for (let j = 0; j < equipmentObjs.length; j++) {
     const obj = equipmentObjs[j];
@@ -309,7 +312,6 @@ const startNewRun = async () => {
   const randPlanetNumber = Math.floor(Math.random() * campaignsData.length);
   currentPlanet = campaignsData[randPlanetNumber];
   currentEnemy = getCurrentEnemy(currentPlanet);
-  console.log(currentPlanet);
   planetNameText.innerHTML = currentPlanet.planet.name;
   enemyNameText.innerHTML = currentEnemy;
 
@@ -321,14 +323,18 @@ const startNewRun = async () => {
 
   // random mission objectives
   const objectives = getRandomSpecialOpsObjectives(currentEnemy);
+  currentObjectives = objectives;
   // add progress bars too that would be cool
   for (let i = 0; i < objectives.length; i++) {
     const objName = objectives[i].name.replace("X", objectives[i].goal);
     objectivesContainer.innerHTML += `
       <div class="text-white">${objName}</div>
-      <small class="text-white">Progress: ${objectives[i].progress}%</small>
+      <small class="text-white">Progress: <span id="objectiveProgressText">${objectives[i].progress}%</span></small>
     `;
   }
+
+  missionCounterText.innerHTML = "Mission: 1";
+  genSOMissionCompleteModalContent(objectives);
 };
 
 const uploadSaveData = async () => {

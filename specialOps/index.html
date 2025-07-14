@@ -239,89 +239,7 @@
                 >NOTE: Lying will be considered treason.</small
               >
             </div>
-            <div class="row">
-              <div class="form-check d-none" id="highValueItemCollectedForm">
-                <label
-                  class="form-check-label text-white"
-                  for="highValueItemCollectedCheck"
-                >
-                  High-Value Item Collected
-                </label>
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="highValueItemCollectedCheck"
-                />
-              </div>
-
-              <div class="row d-flex pb-1 align-items-center px-0">
-                <p class="text-white mb-0 col-6" for="starsEarnedInput">
-                  Stars Earned:
-                </p>
-                <input
-                  class="form-control col-6"
-                  id="starsEarnedInput"
-                  style="width: 15%; margin-left: 0.5rem"
-                  type="number"
-                  min="1"
-                  max="5"
-                  value="1"
-                  aria-describedby="starsEarnedInput"
-                />
-              </div>
-
-              <div class="row d-flex pb-1 align-items-center px-0">
-                <p class="text-white mb-0 col-6" for="numOfDeathsInput">
-                  Deaths (Yours Only):
-                </p>
-                <input
-                  class="form-control col-6"
-                  id="numOfDeathsInput"
-                  style="width: 15%; margin-left: 0.5rem"
-                  type="number"
-                  min="0"
-                  max="24"
-                  value="0"
-                  aria-describedby="numOfDeathsInput"
-                />
-              </div>
-
-              <div class="row d-flex pb-1 align-items-center px-0">
-                <p class="text-white mb-0 col-6" for="timeRemainingInput">
-                  Time Remaining (%):
-                </p>
-                <input
-                  class="form-control col-6"
-                  id="timeRemainingInput"
-                  style="width: 15%; margin-left: 0.5rem"
-                  type="number"
-                  min="0"
-                  max="100"
-                  value="0"
-                  aria-describedby="timeRemainingInput"
-                />
-              </div>
-
-              <div class="row d-flex pb-1 align-items-center px-0">
-                <p
-                  class="text-white mb-0 col-6"
-                  for="superSamplesCollectedInput"
-                >
-                  Super Samples Collected:
-                </p>
-                <input
-                  class="form-control col-6"
-                  id="superSamplesCollectedInput"
-                  style="width: 15%; margin-left: 0.5rem"
-                  type="number"
-                  min="0"
-                  max="9"
-                  value="0"
-                  aria-describedby="superSamplesCollectedInput"
-                />
-              </div>
-            </div>
+            <div class="row" id="objectiveInputsContainer"></div>
           </div>
           <div class="modal-footer row justify-content-between">
             <div class="col d-flex justify-content-start">
@@ -804,107 +722,6 @@
         </div>
       </div>
     </div>
-
-    <!-- SHOW ALL ITEMS MODAL -->
-    <div
-      class="modal fade"
-      id="showAllItemsModal"
-      tabindex="-1"
-      open="true"
-      aria-labelledby="showAllItemsModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-xl modal-dialog-scrollable">
-        <div class="modal-content bg-grey">
-          <div class="modal-header">
-            <h5 class="modal-title text-light" id="showAllItemsModalTitle"></h5>
-          </div>
-          <div
-            class="modal-body row d-flex justify-content-center"
-            id="showAllItemsModalBody"
-          ></div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CHALLENGE COMPLETED MODAL -->
-    <div
-      class="modal fade"
-      id="challengeCompletedModal"
-      tabindex="-1"
-      open="true"
-      aria-labelledby="challengeCompletedModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-xl modal-dialog-scrollable">
-        <div class="modal-content bg-grey">
-          <div class="modal-header">
-            <h5
-              class="modal-title text-light"
-              id="challengeCompletedModalTitle"
-            ></h5>
-          </div>
-          <div
-            class="modal-body row d-flex justify-content-center"
-            id="challengeCompletedModalBody"
-          ></div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OLD DATA DETECTED MODAL -->
-    <div
-      class="modal fade"
-      id="oldDataDetectedModal"
-      tabindex="-1"
-      open="true"
-      aria-labelledby="oldDataDetectedModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-xl modal-dialog-scrollable">
-        <div class="modal-content bg-grey">
-          <div class="modal-header">
-            <h5 class="modal-title text-light">Old Save Data Detected</h5>
-          </div>
-          <div class="modal-body row d-flex justify-content-center">
-            <p class="text-white">
-              A newer version of the app has been deployed. Super Earth has
-              reclaimed your old save data in order to make room for new,
-              better, super save data objects.
-              <br />
-              Your old save has been deleted.
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
   </body>
 
   <script
@@ -925,11 +742,14 @@
   <script src="../js/constants/armorsizes.js"></script>
   <script src="../js/constants/armorpassives.js"></script>
   <script src="../js/constants/specialOpsSpecialists.js"></script>
+  <script src="../js/constants/specialOpsObjectives.js"></script>
   <script src="../js/utils/getMissionText.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
   <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/utils/getRandomSpecialOpsObjectives.js"></script>
   <!-- <script src="../js/components/specialistsModal.js"></script> -->
   <script src="../js/specialOps.js"></script>
+  <script src="../js/components/genSOMissionCompleteModalContent.js"></script>
+
   <script src="../js/components/genSpecialOpsSaveDataManagementInfo.js"></script>
 </html>

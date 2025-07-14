@@ -46,6 +46,7 @@ SPECIAL OPERATIONS
       - all shotguns?
 			- dark render specialist
 			- paramedic. supply pack. car. lib concussive. stim pistol. medic armor. shield Relay. eagle smoke. 
+  - add warbond select, and attach warbonds to specialists to filter them out
 
 NEW CHALLENGE IDEAS:
 

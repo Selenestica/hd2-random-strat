@@ -1,30 +1,30 @@
 const SPECOPSSPECS = [
-  {
-    displayName: "The Lightshow",
-    stratagems: [
-      "Laser Cannon",
-      "Orbital Laser",
-      "Guard Dog Laser",
-      "Laser Sentry",
-    ],
-    primary: ["Scythe"],
-    secondary: ["Dagger"],
-    throwable: ["G-6 Frag"],
-    armorPassive: ["Unflinching"],
-  },
-  {
-    displayName: "The Stormcaller",
-    stratagems: [
-      "Arc Thrower",
-      "Guard Dog Arc",
-      "Tesla Tower",
-      "Orbital EMS Strike",
-    ],
-    primary: ["Blitzer"],
-    secondary: ["Peacemaker"],
-    throwable: ["G-31 Arc"],
-    armorPassive: ["Electrical Conduit"],
-  },
+  // {
+  //   displayName: "The Lightshow",
+  //   stratagems: [
+  //     "Laser Cannon",
+  //     "Orbital Laser",
+  //     "Guard Dog Laser",
+  //     "Laser Sentry",
+  //   ],
+  //   primary: ["Scythe"],
+  //   secondary: ["Dagger"],
+  //   throwable: ["G-6 Frag"],
+  //   armorPassive: ["Unflinching"],
+  // },
+  // {
+  //   displayName: "The Stormcaller",
+  //   stratagems: [
+  //     "Arc Thrower",
+  //     "Guard Dog Arc",
+  //     "Tesla Tower",
+  //     "Orbital EMS Strike",
+  //   ],
+  //   primary: ["Blitzer"],
+  //   secondary: ["Peacemaker"],
+  //   throwable: ["G-31 Arc"],
+  //   armorPassive: ["Electrical Conduit"],
+  // },
   {
     displayName: "The Arsonist",
     stratagems: [
@@ -38,19 +38,19 @@ const SPECOPSSPECS = [
     throwable: ["G-10 Incendiary"],
     armorPassive: ["Inflammable"],
   },
-  {
-    displayName: "The Bullet Whisperer",
-    stratagems: [
-      "Stalwart",
-      "Orbital Gatling Barrage",
-      "Gatling Sentry",
-      "Eagle Strafing Run",
-    ],
-    primary: ["Variable"],
-    secondary: ["Redeemer"],
-    throwable: ["G-6 Frag"],
-    armorPassive: ["Siege Ready"],
-  },
+  // {
+  //   displayName: "The Bullet Whisperer",
+  //   stratagems: [
+  //     "Stalwart",
+  //     "Orbital Gatling Barrage",
+  //     "Gatling Sentry",
+  //     "Eagle Strafing Run",
+  //   ],
+  //   primary: ["Variable"],
+  //   secondary: ["Redeemer"],
+  //   throwable: ["G-6 Frag"],
+  //   armorPassive: ["Siege Ready"],
+  // },
   {
     displayName: "The Asphyxiator",
     stratagems: [

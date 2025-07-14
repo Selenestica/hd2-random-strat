@@ -97,27 +97,6 @@ const getItemMetaData = (item) => {
   return { imgDir, list, accBody, typeText, listKeyName };
 };
 
-const maxStarsNotEarned = async () => {
-  missionCounter++;
-  missionCounterText.innerHTML = `${getMissionText()}`;
-  // save progress just for missionCounter
-  const specialOpsSaveData = JSON.parse(
-    localStorage.getItem("specialOpsSaveData")
-  );
-  const updatedSavedGames = await specialOpsSaveData.savedGames.map((sg) => {
-    if (sg.currentGame === true) {
-      sg.missionCounter = missionCounter;
-      return sg;
-    }
-    return sg;
-  });
-  let newObj = {
-    ...specialOpsSaveData,
-    savedGames: updatedSavedGames,
-  };
-  localStorage.setItem("specialOpsSaveData", JSON.stringify(newObj));
-};
-
 const closeMaxStarsPromptModal = () => {
   const mspModal = new bootstrap.Modal(maxStarsPromptModal);
   mspModal.hide();
@@ -157,77 +136,35 @@ const generateItemCard = (item) => {
     </div>`;
 };
 
-const saveProgress = async (item = null) => {
+const saveProgress = async () => {
   let obj = {};
   const specialOpsSaveData = localStorage.getItem("specialOpsSaveData");
   if (!specialOpsSaveData) {
     obj = {
-      savedGames: [
-        {
-          acquiredItems: item ? [item] : [],
-          newStrats,
-          newPrims,
-          newSeconds,
-          newThrows,
-          newArmorPassives,
-          newBoosts,
-          seesRulesOnOpen: false,
-          dataName: `${difficulty.toUpperCase()} | ${getMissionText()} | ${getCurrentDateTime()}${
-            specialist !== null
-              ? " | " + SPECIALISTS[specialist].displayName
-              : ""
-          }`,
-          currentGame: true,
-          missionCounter,
-          specialist,
-          difficulty,
-        },
-      ],
+      seesRulesOnOpen: false,
+      dataName: `Special Ops Save Data`,
+      missionCounter,
+      currentSpecialist,
+      currentPlanet,
+      currentEnemy,
+      currentObjectives,
     };
     localStorage.setItem("specialOpsSaveData", JSON.stringify(obj));
     missionCounterText.innerHTML = `${getMissionText()}`;
     return;
   }
-  const data = JSON.parse(specialOpsSaveData);
-  const newSavedGames = await data.savedGames.map((sg) => {
-    if (sg.currentGame === true) {
-      let updatedItems = sg.acquiredItems;
-      if (item) {
-        updatedItems.push(item);
-      }
-      sg = {
-        ...sg,
-        currentItems,
-        currentPunishmentItems,
-        acquiredItems: updatedItems,
-        newStrats,
-        newPrims,
-        newSeconds,
-        newThrows,
-        newArmorPassives,
-        newBoosts,
-        seesRulesOnOpen: false,
-        dataName: sg.editedName
-          ? sg.dataName
-          : `${difficulty.toUpperCase()} | ${getMissionText()} | ${getCurrentDateTime()}${
-              specialist !== null
-                ? " | " + SPECIALISTS[specialist].displayName
-                : ""
-            }`,
-        currentGame: true,
-        missionCounter,
-        specialist,
-        difficulty,
-      };
-    }
-    return sg;
-  });
-  obj = {
-    ...obj,
-    savedGames: newSavedGames,
+  let data = JSON.parse(specialOpsSaveData);
+  data = {
+    ...data,
+    seesRulesOnOpen: false,
+    missionCounter,
+    currentSpecialist,
+    currentPlanet,
+    currentEnemy,
+    currentObjectives,
   };
-  missionCounterText.innerHTML = `${getMissionText()}`;
-  localStorage.setItem("specialOpsSaveData", JSON.stringify(obj));
+
+  localStorage.setItem("specialOpsSaveData", JSON.stringify(data));
 };
 
 const fetchCampaignsData = async () => {
@@ -255,7 +192,33 @@ const genPlanetsList = async (campaigns) => {
 };
 
 const genNewOperation = async () => {
+  // random planet
+  const randPlanetNumber = Math.floor(Math.random() * campaignsData.length);
+  currentPlanet = campaignsData[randPlanetNumber];
+  currentEnemy = getCurrentEnemy(currentPlanet);
+  planetNameText.innerHTML = currentPlanet.planet.name;
+  enemyNameText.innerHTML = currentEnemy;
+
+  // random specialist
+  const randSpecialistNumber = Math.floor(Math.random() * SPECOPSSPECS.length);
+  specialist = SPECOPSSPECS[randSpecialistNumber];
+  currentSpecialist = specialist;
+  displaySpecialistLoadout();
+
+  // random mission objectives
   const objectives = getRandomSpecialOpsObjectives(currentEnemy);
+  currentObjectives = objectives;
+  // add progress bars too that would be cool
+  for (let i = 0; i < objectives.length; i++) {
+    const objName = objectives[i].name.replace("X", objectives[i].goal);
+    objectivesContainer.innerHTML += `
+      <div class="text-white">${objName}</div>
+      <small class="text-white">Progress: <span id="objectiveProgressText">${objectives[i].progress}%</span></small>
+    `;
+  }
+
+  missionCounterText.innerHTML = "Mission: 1";
+  genSOMissionCompleteModalContent(objectives);
 };
 
 const submitMissionReport = async (isMissionSucceeded) => {
@@ -308,36 +271,23 @@ const displaySpecialistLoadout = () => {
 };
 
 const startNewRun = async () => {
-  // random planet
-  const randPlanetNumber = Math.floor(Math.random() * campaignsData.length);
-  currentPlanet = campaignsData[randPlanetNumber];
-  currentEnemy = getCurrentEnemy(currentPlanet);
-  planetNameText.innerHTML = currentPlanet.planet.name;
-  enemyNameText.innerHTML = currentEnemy;
+  // clear the slate
+  missionCounter = 1;
+  currentPlanet = null;
+  currentEnemy = null;
+  currentSpecialist = null;
+  currentObjectives = null;
 
-  // random specialist
-  const randSpecialistNumber = Math.floor(Math.random() * SPECOPSSPECS.length);
-  specialist = SPECOPSSPECS[randSpecialistNumber];
-  currentSpecialist = specialist;
-  displaySpecialistLoadout();
+  // get a specialist, objective list, and planet
+  genNewOperation();
 
-  // random mission objectives
-  const objectives = getRandomSpecialOpsObjectives(currentEnemy);
-  currentObjectives = objectives;
-  // add progress bars too that would be cool
-  for (let i = 0; i < objectives.length; i++) {
-    const objName = objectives[i].name.replace("X", objectives[i].goal);
-    objectivesContainer.innerHTML += `
-      <div class="text-white">${objName}</div>
-      <small class="text-white">Progress: <span id="objectiveProgressText">${objectives[i].progress}%</span></small>
-    `;
-  }
-
-  missionCounterText.innerHTML = "Mission: 1";
-  genSOMissionCompleteModalContent(objectives);
+  // save the randomly selected objectives, planet, and specialist to ls
+  // so user doesnt cycle through specialists
+  saveProgress();
 };
 
 const uploadSaveData = async () => {
+  await fetchCampaignsData();
   const specialOpsSaveData = localStorage.getItem("specialOpsSaveData");
   if (specialOpsSaveData) {
     // do a check here to make sure the planet they were on is still available
@@ -350,11 +300,6 @@ const uploadSaveData = async () => {
     missionCounterText.innerHTML = `${getMissionText()}`;
     return;
   }
-  // start a new run
-  // get a random planet
-  // get a random specialist
-  // get random mission objectives
-  await fetchCampaignsData();
   startNewRun();
 };
 

@@ -4,9 +4,16 @@ const missionCompleteModalBody = document.getElementById(
 const planetContainer = document.getElementById("planetContainer");
 const objectivesContainer = document.getElementById("objectivesContainer");
 const loadoutContainer = document.getElementById("loadoutContainer");
+const stratagemsContainer = document.getElementById("stratagemsContainer");
+const equipmentContainer = document.getElementById("equipmentContainer");
+const armorContainer = document.getElementById("armorContainer");
+const primaryContainer = document.getElementById("primaryContainer");
+const secondaryContainer = document.getElementById("secondaryContainer");
+const throwableContainer = document.getElementById("throwableContainer");
 const planetDropdownList = document.getElementById("planetDropdownList");
 const planetNameText = document.getElementById("planetNameText");
 const enemyNameText = document.getElementById("enemyNameText");
+const specialistNameText = document.getElementById("specialistNameText");
 const maxStarsModalBody = document.getElementById("maxStarsModalBody");
 const flavorAndInstructionsModal = document.getElementById(
   "flavorAndInstructionsModal"
@@ -25,7 +32,14 @@ const applySpecialistButton = document.getElementById("applySpecialistButton");
 let missionCounter = 1;
 let currentPlanet = null;
 let currentEnemy = null;
+let currentSpecialist = null;
 let campaignsData = null;
+
+let primaries = [...PRIMARIES];
+let secondaries = [...SECONDARIES];
+let throwables = [...THROWABLES];
+let armorPassives = [...ARMOR_PASSIVES];
+let stratagems = [...STRATAGEMS];
 
 const getItemMetaData = (item) => {
   const { category, type } = item;
@@ -118,47 +132,25 @@ const closeMaxStarsPromptModal = () => {
   rollRewardOptions();
 };
 
-const generateItemCard = (
-  item,
-  inModal,
-  imgDir,
-  currentItemIndex = null,
-  type = null,
-  missionFailed = false
-) => {
-  // display the item image in the modal or accordion item
-  let style = "col-2";
-  let modalTextStyle = "pcItemCardText";
-  let fcn = "";
-  let typeText = "";
-  if (inModal) {
-    style = "pcModalItemCards col-6";
-    modalTextStyle = "";
-    fcn = !missionFailed
-      ? `claimItem(${currentItemIndex})`
-      : `claimPunishment(${currentItemIndex})`;
-    typeText = `<p class="card-title fst-italic text-white">${type}</p>`;
+const generateItemCard = (item) => {
+  let imgDir = "equipment";
+  if (item.category === "armor") {
+    imgDir = "armor";
+  }
+  if (item.type === "Stratagem") {
+    imgDir = "svgs";
   }
   return `
-    <div onclick="${fcn}" class="card d-flex ${style} pcItemCards mx-1">
-    ${typeText}
+    <div class="card d-flex col-2 pcItemCards mx-1">
       <img
           src="../images/${imgDir}/${item.imageURL}"
           class="img-card-top"
           alt="${item.displayName}"
       />
       <div class="card-body itemNameContainer align-items-center">
-          <p class="card-title text-white ${modalTextStyle}">${item.displayName}</p>
+          <p class="card-title text-white">${item.displayName}</p>
       </div>
     </div>`;
-};
-
-const applySpecialist = async () => {
-  if (specialist === null) {
-    return;
-  }
-  specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
-  saveProgress();
 };
 
 const saveProgress = async (item = null) => {
@@ -280,6 +272,38 @@ const getCurrentEnemy = (planet) => {
   return planet.faction;
 };
 
+const displaySpecialistLoadout = () => {
+  specialistNameText.innerText = currentSpecialist.displayName;
+  const primaryObj = primaries.find(
+    (obj) => obj.displayName === currentSpecialist.primary[0]
+  );
+  const secondaryObj = secondaries.find(
+    (obj) => obj.displayName === currentSpecialist.secondary[0]
+  );
+  const throwObj = throwables.find(
+    (obj) => obj.displayName === currentSpecialist.throwable[0]
+  );
+  const armorObj = armorPassives.find(
+    (obj) => obj.displayName === currentSpecialist.armorPassive[0]
+  );
+
+  for (let i = 0; i < currentSpecialist.stratagems.length; i++) {
+    let stratagem = stratagems.find(
+      (obj) => obj.displayName === currentSpecialist.stratagems[i]
+    );
+    const card = generateItemCard(stratagem);
+    stratagemsContainer.innerHTML += card;
+  }
+
+  console.log(currentSpecialist, armorObj);
+  const equipmentObjs = [primaryObj, secondaryObj, throwObj, armorObj];
+  for (let j = 0; j < equipmentObjs.length; j++) {
+    const obj = equipmentObjs[j];
+    const card = generateItemCard(obj);
+    equipmentContainer.innerHTML += card;
+  }
+};
+
 const startNewRun = async () => {
   // random planet
   const randPlanetNumber = Math.floor(Math.random() * campaignsData.length);
@@ -292,15 +316,16 @@ const startNewRun = async () => {
   // random specialist
   const randSpecialistNumber = Math.floor(Math.random() * SPECOPSSPECS.length);
   specialist = SPECOPSSPECS[randSpecialistNumber];
+  currentSpecialist = specialist;
+  displaySpecialistLoadout();
 
   // random mission objectives
   const objectives = getRandomSpecialOpsObjectives(currentEnemy);
-  console.log(objectives);
   // add progress bars too that would be cool
   for (let i = 0; i < objectives.length; i++) {
     const objName = objectives[i].name.replace("X", objectives[i].goal);
     objectivesContainer.innerHTML += `
-      <div class="text-white mt-3">${objName}</div>
+      <div class="text-white">${objName}</div>
       <small class="text-white">Progress: ${objectives[i].progress}%</small>
     `;
   }

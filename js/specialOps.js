@@ -5,6 +5,8 @@ const planetContainer = document.getElementById("planetContainer");
 const objectivesContainer = document.getElementById("objectivesContainer");
 const loadoutContainer = document.getElementById("loadoutContainer");
 const planetDropdownList = document.getElementById("planetDropdownList");
+const planetNameText = document.getElementById("planetNameText");
+const enemyNameText = document.getElementById("enemyNameText");
 const maxStarsModalBody = document.getElementById("maxStarsModalBody");
 const flavorAndInstructionsModal = document.getElementById(
   "flavorAndInstructionsModal"
@@ -22,6 +24,7 @@ const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
 const applySpecialistButton = document.getElementById("applySpecialistButton");
 let missionCounter = 1;
 let currentPlanet = null;
+let currentEnemy = null;
 let campaignsData = null;
 
 const getItemMetaData = (item) => {
@@ -232,22 +235,12 @@ const saveProgress = async (item = null) => {
 };
 
 const fetchCampaignsData = async () => {
+  const url =
+    "https://helldivers2challengesapi.s3.us-east-2.amazonaws.com/helldivers-data.json";
+
   try {
-    const response = await fetch(
-      "https://api.helldivers2.dev/api/v1/campaigns",
-      {
-        method: "GET",
-        headers: {
-          "X-Super-Client": "helldivers2challenges.com",
-          "X-Super-Contact": "joebenwilson.dev@gmail.com",
-        },
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const data = await response.json();
     campaignsData = data;
     genPlanetsList(data);
@@ -280,20 +273,37 @@ const submitMissionReport = async (isMissionSucceeded) => {
   }
 };
 
+const getCurrentEnemy = (planet) => {
+  if (planet.faction === "Humans") {
+    return planet.planet.currentOwner;
+  }
+  return planet.faction;
+};
+
 const startNewRun = async () => {
   // random planet
-  const randPlanetNumber = Math.floor(Math.random() * campaignsData.length - 1);
+  const randPlanetNumber = Math.floor(Math.random() * campaignsData.length);
   currentPlanet = campaignsData[randPlanetNumber];
+  currentEnemy = getCurrentEnemy(currentPlanet);
   console.log(currentPlanet);
+  planetNameText.innerHTML = currentPlanet.planet.name;
+  enemyNameText.innerHTML = currentEnemy;
 
   // random specialist
-  const randSpecialistNumber = Math.floor(
-    Math.random() * SPECOPSSPECS.length - 1
-  );
+  const randSpecialistNumber = Math.floor(Math.random() * SPECOPSSPECS.length);
   specialist = SPECOPSSPECS[randSpecialistNumber];
-  console.log(specialist);
 
   // random mission objectives
+  const objectives = getRandomSpecialOpsObjectives(currentEnemy);
+  console.log(objectives);
+  // add progress bars too that would be cool
+  for (let i = 0; i < objectives.length; i++) {
+    const objName = objectives[i].name.replace("X", objectives[i].goal);
+    objectivesContainer.innerHTML += `
+      <div class="text-white mt-3">${objName}</div>
+      <small class="text-white">Progress: ${objectives[i].progress}%</small>
+    `;
+  }
 };
 
 const uploadSaveData = async () => {

@@ -29,7 +29,7 @@
     />
     <title>Helldivers 2: Special Ops</title>
     <!-- Google tag (gtag.js) -->
-    <script
+    <!-- <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
     ></script>
@@ -41,7 +41,7 @@
       gtag("js", new Date());
 
       gtag("config", "G-BFREXT7F48");
-    </script>
+    </script> -->
   </head>
 
   <body>
@@ -150,32 +150,145 @@
       </div>
 
       <div id="lowerContentContainer">
+        <!-- OPERATION INFO -->
         <div
-          class="row d-flex justify-content-center mt-2"
+          class="row d-flex align-items-center justify-content-center mt-2"
           id="operationInfoContainer"
         >
-          <div id="planetContainer">
-            <div class="btn-group" id="planetDropdown">
-              <button
-                type="button"
-                class="btn btn-primary dropdown-toggle"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Planets
-              </button>
-              <ul
-                id="planetDropdownList"
-                class="dropdown-menu scrollablePlanetList"
-              ></ul>
+          <div class="col text-end">
+            <div class="text-white">
+              Enemy: <span class="mx-1" id="enemyNameText"></span>
+            </div>
+            <div
+              id="planetNameDiv"
+              class="text-white justify-content-end d-flex align-items-center"
+            >
+              Planet: <span class="mx-1" id="planetNameText"></span>
+              <div class="btn-group" id="planetDropdown">
+                <button
+                  style="border: none; padding: 0rem !important"
+                  type="button"
+                  class="btn bg-none btn-primary dropdown-toggle py-0"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fa-solid text-warning fa-earth-americas"></i>
+                </button>
+                <ul
+                  id="planetDropdownList"
+                  class="dropdown-menu scrollablePlanetList"
+                ></ul>
+              </div>
             </div>
           </div>
-          <div id="objectivesContainer"></div>
+          <div class="col text-white" id="objectivesContainer">
+            <div id="objectivesList"></div>
+          </div>
         </div>
-        <div
-          class="row d-flex justify-content-center mt-2"
-          id="loadoutContainer"
-        ></div>
+
+        <!-- LOADOUT -->
+        <div id="loadoutContainer" class="row d-flex justify-content-center">
+          <div
+            id="equippedItemsContainer"
+            class="row d-flex justify-content-center"
+          >
+            <div class="col">
+              <div
+                id="stratagemsContainerBB"
+                class="row mb-3 d-flex justify-content-center"
+              >
+                <div
+                  class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+                >
+                  <p class="mb-0 text-secondary emptyItemText">
+                    <small>Click a Stratagem to Equip</small>
+                  </p>
+                </div>
+                <div
+                  class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+                >
+                  <p class="mb-0 text-secondary emptyItemText">
+                    <small>Click a Stratagem to Equip</small>
+                  </p>
+                </div>
+                <div
+                  class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+                >
+                  <p class="mb-0 text-secondary emptyItemText">
+                    <small>Click a Stratagem to Equip</small>
+                  </p>
+                </div>
+                <div
+                  class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+                >
+                  <p class="mb-0 text-secondary emptyItemText">
+                    <small>Click a Stratagem to Equip</small>
+                  </p>
+                </div>
+              </div>
+              <div
+                id="equipmentContainerBB"
+                class="row mb-3 d-flex justify-content-center"
+              >
+                <div
+                  class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+                  id="armorContainerBB"
+                >
+                  <p
+                    class="mb-0 text-secondary emptyItemText"
+                    id="emptyArmorText"
+                  >
+                    <small>Click an Armor to Equip</small>
+                  </p>
+                </div>
+                <div
+                  id="primaryContainerBB"
+                  class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+                >
+                  <p
+                    class="mb-0 text-secondary emptyItemText"
+                    id="emptyPrimaryText"
+                  >
+                    <small>Click a Primary to Equip</small>
+                  </p>
+                </div>
+                <div
+                  id="secondaryContainerBB"
+                  class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+                >
+                  <p
+                    class="mb-0 text-secondary emptyItemText"
+                    id="emptySecondaryText"
+                  >
+                    <small>Click a Secondary to Equip</small>
+                  </p>
+                </div>
+                <div
+                  id="throwableContainerBB"
+                  class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+                >
+                  <p
+                    class="mb-0 text-secondary emptyItemText"
+                    id="emptyThrowableText"
+                  >
+                    <small>Click a Throwable to Equip</small>
+                  </p>
+                </div>
+                <div
+                  id="boosterContainerBB"
+                  class="emptyItemContainers col-2 col-lg-1 mx-1 d-flex justify-content-center align-items-center"
+                >
+                  <p
+                    class="mb-0 text-secondary emptyItemText"
+                    id="emptyBoosterText"
+                  >
+                    <small>Click a Booster to Equip (optional)</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -897,6 +1010,7 @@
   <script src="../js/utils/getMissionText.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
   <script src="../js/utils/downloadSaveFile.js"></script>
+  <script src="../js/utils/getRandomSpecialOpsObjectives.js"></script>
   <script src="../js/components/specialistsModal.js"></script>
   <script src="../js/specialOps.js"></script>
   <script src="../js/components/genSpecialOpsSaveDataManagementInfo.js"></script>

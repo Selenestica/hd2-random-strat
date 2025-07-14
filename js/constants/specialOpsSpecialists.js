@@ -1,6 +1,6 @@
 const SPECOPSSPECS = [
   {
-    displayName: "The Lightbringer",
+    displayName: "The Lightshow",
     stratagems: [
       "Laser Cannon",
       "Orbital Laser",
@@ -174,11 +174,11 @@ const SPECOPSSPECS = [
       "Portable Hellbomb",
       "One True Flag",
       "Orbital 380mm HE Barrage",
-      "Orbital Napalm Barrage",
+      "Eagle 500kg Bomb",
     ],
     primary: ["Constitution"],
     secondary: ["GP-31 Ultimatum"],
     throwable: ["G-12 High Explosive"],
-    armorPassive: ["Integrated Explosives"],
+    armorPassive: ["Democracy Protects"],
   },
 ];

@@ -57,6 +57,7 @@ SPECIAL OPERATIONS
     - 
 
   BUGS:
+    - still able to "unlock" a previously unlocked specialist
 
 NEW CHALLENGE IDEAS:
 

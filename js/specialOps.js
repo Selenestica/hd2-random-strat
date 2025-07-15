@@ -2,6 +2,7 @@ const missionCompleteModalBody = document.getElementById(
   "missionCompleteModalBody"
 );
 const missionCompleteModal = document.getElementById("missionCompleteModal");
+const specialistsModal = document.getElementById("specialistsModal");
 const objectiveInputsContainer = document.getElementById(
   "objectiveInputsContainer"
 );
@@ -43,6 +44,7 @@ let currentSpecialist = null;
 let latestUnlockedSpecialist = null;
 let currentObjectives = null;
 let campaignsData = null;
+let selectedSpecialist = null;
 
 let primaries = [...PRIMARIES];
 let secondaries = [...SECONDARIES];
@@ -58,6 +60,21 @@ missionCompleteModal.addEventListener("hidden.bs.modal", () => {
     );
     objInputEl.value = 0;
   }
+});
+
+specialistsModal.addEventListener("hidden.bs.modal", () => {
+  // remove the checkmark from all specialists
+  const elements = document.querySelectorAll(".specialistCheckMarks");
+  elements.forEach((element) => element.remove());
+
+  // remove green text from all specialists
+  const specialistHeaders = document.querySelectorAll(
+    ".specialistHeadersClass"
+  );
+  specialistHeaders.forEach((header) => {
+    header.classList.remove("text-success");
+    header.classList.add("text-white");
+  });
 });
 
 const generateItemCard = (item) => {
@@ -302,6 +319,46 @@ const displaySpecialistLoadout = () => {
     const card = generateItemCard(obj);
     equipmentContainer.innerHTML += card;
   }
+};
+
+const setSpecialist = (index) => {
+  selectedSpecialist = specialists[index];
+  if (selectedSpecialist.displayName === currentSpecialist.displayName) {
+    return;
+  }
+
+  // remove the checkmark from all other specialists
+  const elements = document.querySelectorAll(".specialistCheckMarks");
+  elements.forEach((element) => element.remove());
+
+  // remove green text from all other specialists
+  const specialistHeaders = document.querySelectorAll(
+    ".specialistHeadersClass"
+  );
+  specialistHeaders.forEach((header) => {
+    header.classList.remove("text-success");
+    header.classList.add("text-white");
+  });
+
+  // add the checkmark to the selected specialist
+  const specCardHeader = document.getElementById("specialistHeader" + index);
+  specCardHeader.innerHTML += `<i class="fa-solid specialistCheckMarks text-success mx-1 fa-check"></i>`;
+  specCardHeader.classList.add("text-success");
+  specCardHeader.classList.remove("text-white");
+};
+
+const applySpecialist = async () => {
+  console.log(selectedSpecialist);
+  if (selectedSpecialist.displayName === currentSpecialist.displayName) {
+    selectedSpecialist = null;
+    return;
+  }
+
+  currentSpecialist = selectedSpecialist;
+  displaySpecialistLoadout();
+  await genNewOperation(false);
+  saveProgress();
+  selectedSpecialist = null;
 };
 
 const startNewRun = async () => {

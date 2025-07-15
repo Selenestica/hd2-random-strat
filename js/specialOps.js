@@ -1,39 +1,30 @@
-const missionCompleteModalBody = document.getElementById(
-  "missionCompleteModalBody"
-);
-const objectiveInputsContainer = document.getElementById(
-  "objectiveInputsContainer"
-);
-const planetContainer = document.getElementById("planetContainer");
-const objectivesContainer = document.getElementById("objectivesContainer");
-const loadoutContainer = document.getElementById("loadoutContainer");
-const stratagemsContainer = document.getElementById("stratagemsContainer");
-const equipmentContainer = document.getElementById("equipmentContainer");
-const armorContainer = document.getElementById("armorContainer");
-const primaryContainer = document.getElementById("primaryContainer");
-const secondaryContainer = document.getElementById("secondaryContainer");
-const throwableContainer = document.getElementById("throwableContainer");
-const planetDropdownList = document.getElementById("planetDropdownList");
-const planetNameText = document.getElementById("planetNameText");
-const enemyNameText = document.getElementById("enemyNameText");
-const objectiveNameText = document.getElementById("objectiveNameText");
-const objectiveProgressText = document.getElementById("objectiveProgressText");
-const specialistNameText = document.getElementById("specialistNameText");
-const maxStarsModalBody = document.getElementById("maxStarsModalBody");
-const flavorAndInstructionsModal = document.getElementById(
-  "flavorAndInstructionsModal"
-);
-const missionCompleteButton = document.getElementById("missionCompleteButton");
-const missionFailedButton = document.getElementById("missionFailedButton");
-const missionCompleteButtonDiv = document.getElementById(
-  "missionCompleteButtonDiv"
-);
-const missionFailedButtonDiv = document.getElementById(
-  "missionFailedButtonDiv"
-);
-const missionCounterText = document.getElementById("missionCounterText");
-const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
-const applySpecialistButton = document.getElementById("applySpecialistButton");
+const missionCompleteModalBody = document.getElementById('missionCompleteModalBody');
+const objectiveInputsContainer = document.getElementById('objectiveInputsContainer');
+const planetContainer = document.getElementById('planetContainer');
+const objectivesContainer = document.getElementById('objectivesContainer');
+const loadoutContainer = document.getElementById('loadoutContainer');
+const stratagemsContainer = document.getElementById('stratagemsContainer');
+const equipmentContainer = document.getElementById('equipmentContainer');
+const armorContainer = document.getElementById('armorContainer');
+const primaryContainer = document.getElementById('primaryContainer');
+const secondaryContainer = document.getElementById('secondaryContainer');
+const throwableContainer = document.getElementById('throwableContainer');
+const planetDropdownList = document.getElementById('planetDropdownList');
+const planetNameText = document.getElementById('planetNameText');
+const enemyNameText = document.getElementById('enemyNameText');
+const hazardsText = document.getElementById('hazardsText');
+const objectiveNameText = document.getElementById('objectiveNameText');
+const objectiveProgressText = document.getElementById('objectiveProgressText');
+const specialistNameText = document.getElementById('specialistNameText');
+const maxStarsModalBody = document.getElementById('maxStarsModalBody');
+const flavorAndInstructionsModal = document.getElementById('flavorAndInstructionsModal');
+const missionCompleteButton = document.getElementById('missionCompleteButton');
+const missionFailedButton = document.getElementById('missionFailedButton');
+const missionCompleteButtonDiv = document.getElementById('missionCompleteButtonDiv');
+const missionFailedButtonDiv = document.getElementById('missionFailedButtonDiv');
+const missionCounterText = document.getElementById('missionCounterText');
+const maxStarsPromptModal = document.getElementById('maxStarsPromptModal');
+const applySpecialistButton = document.getElementById('applySpecialistButton');
 let missionCounter = 1;
 let currentPlanet = null;
 let currentEnemy = null;
@@ -54,47 +45,47 @@ const getItemMetaData = (item) => {
   let accBody;
   let typeText;
   let listKeyName;
-  if (type === "Stratagem") {
-    imgDir = "svgs";
+  if (type === 'Stratagem') {
+    imgDir = 'svgs';
     list = newStrats;
     accBody = stratagemAccordionBody;
-    typeText = "Stratagem";
-    listKeyName = "newStrats";
+    typeText = 'Stratagem';
+    listKeyName = 'newStrats';
   }
-  if (category === "primary") {
-    imgDir = "equipment";
+  if (category === 'primary') {
+    imgDir = 'equipment';
     list = newPrims;
     accBody = primaryAccordionBody;
-    typeText = "Primary";
-    listKeyName = "newPrims";
+    typeText = 'Primary';
+    listKeyName = 'newPrims';
   }
-  if (category === "booster") {
-    imgDir = "equipment";
+  if (category === 'booster') {
+    imgDir = 'equipment';
     list = newBoosts;
     accBody = boosterAccordionBody;
-    typeText = "Booster";
-    listKeyName = "newBoosts";
+    typeText = 'Booster';
+    listKeyName = 'newBoosts';
   }
-  if (category === "secondary") {
-    imgDir = "equipment";
+  if (category === 'secondary') {
+    imgDir = 'equipment';
     list = newSeconds;
     accBody = secondaryAccordionBody;
-    typeText = "Secondary";
-    listKeyName = "newSeconds";
+    typeText = 'Secondary';
+    listKeyName = 'newSeconds';
   }
-  if (category === "throwable") {
-    imgDir = "equipment";
+  if (category === 'throwable') {
+    imgDir = 'equipment';
     list = newThrows;
     accBody = throwableAccordionBody;
-    typeText = "Throwable";
-    listKeyName = "newThrows";
+    typeText = 'Throwable';
+    listKeyName = 'newThrows';
   }
-  if (category === "armor") {
-    imgDir = "armor";
+  if (category === 'armor') {
+    imgDir = 'armor';
     list = newArmorPassives;
     accBody = armorPassiveAccordionBody;
-    typeText = "Armor Passive";
-    listKeyName = "newArmorPassives";
+    typeText = 'Armor Passive';
+    listKeyName = 'newArmorPassives';
   }
   return { imgDir, list, accBody, typeText, listKeyName };
 };
@@ -118,15 +109,15 @@ const closeMaxStarsPromptModal = () => {
 };
 
 const generateItemCard = (item) => {
-  let imgDir = "equipment";
-  if (item.category === "armor") {
-    imgDir = "armor";
+  let imgDir = 'equipment';
+  if (item.category === 'armor') {
+    imgDir = 'armor';
   }
-  if (item.type === "Stratagem") {
-    imgDir = "svgs";
+  if (item.type === 'Stratagem') {
+    imgDir = 'svgs';
   }
   return `
-    <div class="card d-flex col-2 pcItemCards mx-1">
+    <div class="card d-flex col-2 col-lg-1 soItemCards mx-1">
       <img
           src="../images/${imgDir}/${item.imageURL}"
           class="img-card-top"
@@ -140,7 +131,7 @@ const generateItemCard = (item) => {
 
 const saveProgress = async () => {
   let obj = {};
-  const specialOpsSaveData = localStorage.getItem("specialOpsSaveData");
+  const specialOpsSaveData = localStorage.getItem('specialOpsSaveData');
   if (!specialOpsSaveData) {
     obj = {
       seesRulesOnOpen: false,
@@ -151,7 +142,7 @@ const saveProgress = async () => {
       currentEnemy,
       currentObjectives,
     };
-    localStorage.setItem("specialOpsSaveData", JSON.stringify(obj));
+    localStorage.setItem('specialOpsSaveData', JSON.stringify(obj));
     missionCounterText.innerHTML = `${getMissionText()}`;
     return;
   }
@@ -166,12 +157,11 @@ const saveProgress = async () => {
     currentObjectives,
   };
 
-  localStorage.setItem("specialOpsSaveData", JSON.stringify(data));
+  localStorage.setItem('specialOpsSaveData', JSON.stringify(data));
 };
 
 const fetchCampaignsData = async () => {
-  const url =
-    "https://helldivers2challengesapi.s3.us-east-2.amazonaws.com/helldivers-data.json";
+  const url = 'https://helldivers2challengesapi.s3.us-east-2.amazonaws.com/helldivers-data.json';
 
   try {
     const response = await fetch(url);
@@ -180,7 +170,7 @@ const fetchCampaignsData = async () => {
     campaignsData = data;
     genPlanetsList(data);
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error('Error fetching data:', error);
   }
 };
 
@@ -200,6 +190,7 @@ const genNewOperation = async () => {
   currentEnemy = getCurrentEnemy(currentPlanet);
   planetNameText.innerHTML = currentPlanet.planet.name;
   enemyNameText.innerHTML = currentEnemy;
+  hazardsText.innerHTML = currentPlanet.planet.hazards[0].name;
 
   // random specialist
   const randSpecialistNumber = Math.floor(Math.random() * SPECOPSSPECS.length);
@@ -212,14 +203,14 @@ const genNewOperation = async () => {
   currentObjectives = objectives;
   // add progress bars too that would be cool
   for (let i = 0; i < objectives.length; i++) {
-    const objName = objectives[i].name.replace("X", objectives[i].goal);
+    const objName = objectives[i].name.replace('X', objectives[i].goal);
     objectivesContainer.innerHTML += `
       <div id="objectiveNameText${i}" class="text-white">${objName}</div>
       <small class="text-white">Progress: <span id="objectiveProgressText${i}">${objectives[i].progress}%</span></small>
     `;
   }
 
-  missionCounterText.innerHTML = "Mission: 1";
+  missionCounterText.innerHTML = 'Mission: 1';
   genSOMissionCompleteModalContent(objectives);
 };
 
@@ -230,29 +221,37 @@ const submitMissionReport = async (isMissionSucceeded) => {
       // if (currentObjectives[i].inputType === "check") {
       //   val = document.getElementById("objId-" + currentObjectives[i].id).value;
       // }
-      val = parseInt(
-        document.getElementById("objId-" + currentObjectives[i].id).value,
-        10
-      );
+      val = parseInt(document.getElementById('objId-' + currentObjectives[i].id).value, 10);
       currentObjectives[i].progress += val;
-      const progressText = document.getElementById("objectiveProgressText" + i);
-      progressText.innerHTML = currentObjectives[i].progress;
+      const progressText = document.getElementById('objectiveProgressText' + i);
+      // calculate percentage!
+      const percentageToGoal =
+        ((currentObjectives[i].progress / currentObjectives[i].goal) * 100).toFixed(2) + '%';
+      progressText.innerHTML = percentageToGoal;
     }
 
-    // increment mission counter
+    missionCounter++;
+    if (missionCounter > 3) {
+      // are objectives met? calculate that here.
+      // if met, unlock new specialist
 
-    // if objectives met and mission counter > 3
-    // genNewOperation
+      // either way reset and get a new operation
+      missionCounter = 1;
+      genNewOperation();
+      return;
+    }
+    missionCounterText.innerHTML = `Mission: ${missionCounter}`;
+    return;
   }
 
   // set missionCounter back to start of operation
   if (!isMissionSucceeded) {
-    console.log("failure");
+    console.log('failure');
   }
 };
 
 const getCurrentEnemy = (planet) => {
-  if (planet.faction === "Humans") {
+  if (planet.faction === 'Humans') {
     return planet.planet.currentOwner;
   }
   return planet.faction;
@@ -260,23 +259,17 @@ const getCurrentEnemy = (planet) => {
 
 const displaySpecialistLoadout = () => {
   specialistNameText.innerText = currentSpecialist.displayName;
-  const primaryObj = primaries.find(
-    (obj) => obj.displayName === currentSpecialist.primary[0]
-  );
+  const primaryObj = primaries.find((obj) => obj.displayName === currentSpecialist.primary[0]);
   const secondaryObj = secondaries.find(
-    (obj) => obj.displayName === currentSpecialist.secondary[0]
+    (obj) => obj.displayName === currentSpecialist.secondary[0],
   );
-  const throwObj = throwables.find(
-    (obj) => obj.displayName === currentSpecialist.throwable[0]
-  );
+  const throwObj = throwables.find((obj) => obj.displayName === currentSpecialist.throwable[0]);
   const armorObj = armorPassives.find(
-    (obj) => obj.displayName === currentSpecialist.armorPassive[0]
+    (obj) => obj.displayName === currentSpecialist.armorPassive[0],
   );
 
   for (let i = 0; i < currentSpecialist.stratagems.length; i++) {
-    let stratagem = stratagems.find(
-      (obj) => obj.displayName === currentSpecialist.stratagems[i]
-    );
+    let stratagem = stratagems.find((obj) => obj.displayName === currentSpecialist.stratagems[i]);
     const card = generateItemCard(stratagem);
     stratagemsContainer.innerHTML += card;
   }
@@ -308,27 +301,25 @@ const startNewRun = async () => {
 const populateWebPage = () => {
   planetNameText.innerHTML = currentPlanet.planet.name;
   enemyNameText.innerHTML = currentEnemy;
+  hazardsText.innerHTML = currentPlanet.planet.hazards[0].name;
 
   displaySpecialistLoadout();
 
   for (let i = 0; i < currentObjectives.length; i++) {
-    const objName = currentObjectives[i].name.replace(
-      "X",
-      currentObjectives[i].goal
-    );
+    const objName = currentObjectives[i].name.replace('X', currentObjectives[i].goal);
     objectivesContainer.innerHTML += `
       <div class="text-white">${objName}</div>
       <small class="text-white">Progress: <span id="objectiveProgressText">${currentObjectives[i].progress}%</span></small>
     `;
   }
 
-  missionCounterText.innerHTML = "Mission: 1";
+  missionCounterText.innerHTML = 'Mission: 1';
   genSOMissionCompleteModalContent(currentObjectives);
 };
 
 const uploadSaveData = async () => {
   await fetchCampaignsData();
-  const specialOpsSaveData = localStorage.getItem("specialOpsSaveData");
+  const specialOpsSaveData = localStorage.getItem('specialOpsSaveData');
   if (specialOpsSaveData) {
     // do a check here to make sure the planet they were on is still available
     // if not, put a warning up that teammates may not be able to select that planet
@@ -347,11 +338,10 @@ const uploadSaveData = async () => {
 };
 
 const clearSaveDataAndRestart = async () => {
-  localStorage.removeItem("specialOpsSaveData");
+  localStorage.removeItem('specialOpsSaveData');
   window.location.reload();
 };
 
-// probably want to run this on a timer. every five minutes or so, and whenever the page loads
 uploadSaveData();
 
 // https://api.helldivers2.dev/api/v1/war         -o 801_war_v1.json

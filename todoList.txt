@@ -42,11 +42,21 @@ SPECIAL OPERATIONS
   - one operation finished on a random planet will unlock a new specialist, as long as the player hasnt completed an operation with that specialist already
   - specialists are almost completely geared
     - SPECIALIST ideas:
-      - killzone?
       - all shotguns?
-			- dark render specialist
-			- paramedic. supply pack. car. lib concussive. stim pistol. medic armor. shield Relay. eagle smoke. 
+      - gunslinger? deadeye, senator, gunslinger passive...
   - add warbond select, and attach warbonds to specialists to filter them out
+
+  - specialist modal
+    - show current specialist
+    - show latest unlocked specialist
+    - get applyspecialist function to work
+      - will set that spec to current spec
+      - change specialist loadout screen
+      - get a new operation
+      - save progress
+  - on operation completion, unlock a new specialist
+    - show that new specialist in the specialist modal
+    - set the new specialist to the current specialist
 
 NEW CHALLENGE IDEAS:
 

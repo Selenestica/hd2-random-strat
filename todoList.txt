@@ -39,7 +39,6 @@ BUDGET BLITZ
 - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
 
 SPECIAL OPERATIONS
-  - one operation finished on a random planet will unlock a new specialist, as long as the player hasnt completed an operation with that specialist already
   - specialists are almost completely geared
     - SPECIALIST ideas:
       - all shotguns?
@@ -53,11 +52,11 @@ SPECIAL OPERATIONS
       - get a new operation
       - save progress
     - show amount of locked specialists at the top of the modal (3/21 Unlocked)
-
-  - on operation completion, when objectives unmet, dont unlock a new specialist
+  
+  - save data management modal
+    - 
 
   BUGS:
-
 
 NEW CHALLENGE IDEAS:
 

@@ -195,7 +195,6 @@ const SPECOPSSPECS = [
     throwable: "G-12 High Explosive",
     armorPassive: "Democracy Protects",
   },
-
   {
     locked: true,
     displayName: "The Wallbouncer",
@@ -294,4 +293,55 @@ const SPECOPSSPECS = [
     throwable: "G-12 High Explosive",
     armorPassive: "Acclimated",
   },
+  {
+    locked: true,
+    displayName: "Overwatch",
+    stratagems: [
+      "Supply Pack",
+      "Heavy Machine Gun",
+      "Anti-Tank Emplacement",
+      "Eagle 500kg Bomb",
+    ],
+    primary: "Liberator Penetrator",
+    secondary: "Grenade Pistol",
+    throwable: "G-123 Thermite",
+    armorPassive: "Engineering Kit",
+  },
+  {
+    locked: true,
+    displayName: "The Heavy Gunner",
+    stratagems: [
+      "Heavy Machine Gun",
+      "HMG Emplacement",
+      "Orbital Gatling Barrage",
+      "Guard Dog Bullets",
+    ],
+    primary: "Adjudicator",
+    secondary: "Verdict",
+    throwable: "G-16 Impact",
+    armorPassive: "Siege Ready",
+  },
+  {
+    locked: true,
+    displayName: "The Autocannoneer",
+    stratagems: [
+      "Autocannon",
+      "Autocannon Sentry",
+      "Emancipator Exosuit",
+      "Eagle Strafing Run",
+    ],
+    primary: "Tenderizer",
+    secondary: "Talon",
+    throwable: "G-13 Incendiary Impact",
+    armorPassive: "Fortified",
+  },
+  // {
+  //   locked: true,
+  //   displayName: "The Mad Scientist",
+  //   stratagems: ["Epoch", "Warp Pack", "Orbital Laser", "Tesla Tower"],
+  //   primary: "Scorcher",
+  //   secondary: "Loyalist",
+  //   throwable: "G-142 Pyrotech",
+  //   armorPassive: "Adreno-Defibrillator",
+  // },
 ];

@@ -164,6 +164,7 @@ const genNewOperation = async (unlockSpecialist) => {
     latestUnlockedSpecialist = specialist;
     genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
     displaySpecialistLoadout();
+    showSOSpecialistUnlockedToast(currentSpecialist.displayName);
   }
 
   // random mission objectives
@@ -188,6 +189,28 @@ const genNewOperation = async (unlockSpecialist) => {
   genSOMissionCompleteModalContent(objectives);
 };
 
+const renderObjectiveProgressText = () => {
+  for (let i = 0; i < currentObjectives.length; i++) {
+    const progressText = document.getElementById("objectiveProgressText" + i);
+    progressText.innerHTML =
+      currentObjectives[i].progress + "/" + currentObjectives[i].goal;
+    if (
+      currentObjectives[i].progress >= currentObjectives[i].goal &&
+      currentObjectives[i].progressType === "positive"
+    ) {
+      progressText.classList.remove("text-danger");
+      progressText.classList.add("text-success");
+    }
+    if (
+      currentObjectives[i].progress >= currentObjectives[i].goal &&
+      currentObjectives[i].progressType === "negative"
+    ) {
+      progressText.classList.remove("text-success");
+      progressText.classList.add("text-danger");
+    }
+  }
+};
+
 const submitMissionReport = async (isMissionSucceeded) => {
   if (isMissionSucceeded) {
     for (let i = 0; i < currentObjectives.length; i++) {
@@ -197,24 +220,8 @@ const submitMissionReport = async (isMissionSucceeded) => {
         10
       );
       currentObjectives[i].progress += val;
-      const progressText = document.getElementById("objectiveProgressText" + i);
-      progressText.innerHTML =
-        currentObjectives[i].progress + "/" + currentObjectives[i].goal;
-      if (
-        currentObjectives[i].progress >= currentObjectives[i].goal &&
-        currentObjectives[i].progressType === "positive"
-      ) {
-        progressText.classList.remove("text-danger");
-        progressText.classList.add("text-success");
-      }
-      if (
-        currentObjectives[i].progress >= currentObjectives[i].goal &&
-        currentObjectives[i].progressType === "negative"
-      ) {
-        progressText.classList.remove("text-success");
-        progressText.classList.add("text-danger");
-      }
     }
+    renderObjectiveProgressText();
 
     missionCounter++;
     if (missionCounter > 3) {
@@ -231,21 +238,28 @@ const submitMissionReport = async (isMissionSucceeded) => {
         }
       }
 
-      // either way reset and get a new operation
-      // but we dont want to change specialist if objectives werent completed
+      // only by using latest unlock can you unlock the next specialist
+      if (
+        latestUnlockedSpecialist.displayName !== currentSpecialist.displayName
+      ) {
+        objectivesMet = false;
+      }
 
       missionCounter = 1;
       await genNewOperation(objectivesMet);
       saveProgress();
       return;
     }
+
+    saveProgress();
     missionCounterText.innerHTML = `Mission: ${missionCounter}`;
     return;
   }
 
   // set missionCounter back to start of operation
   if (!isMissionSucceeded) {
-    console.log("failure");
+    missionCounter = 1;
+    await genNewOperation(false);
   }
 };
 
@@ -315,6 +329,7 @@ const populateWebPage = () => {
   displaySpecialistLoadout();
   genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
 
+  // this part handles rendering the progress text. surprisingly complex
   for (let i = 0; i < currentObjectives.length; i++) {
     const objName = currentObjectives[i].name.replace(
       "X",
@@ -325,13 +340,14 @@ const populateWebPage = () => {
       <div class="text-white">${objName}</div>
       <small class="text-white">Progress: <span class="${
         progType === "positive" ? "text-danger" : "text-success"
-      }" id="objectiveProgressText">${currentObjectives[i].progress}/${
+      }" id="objectiveProgressText${i}">${currentObjectives[i].progress}/${
       currentObjectives[i].goal
     }</span></small>
     `;
   }
+  renderObjectiveProgressText();
 
-  missionCounterText.innerHTML = "Mission: 1";
+  missionCounterText.innerHTML = "Mission: " + missionCounter;
   genSOMissionCompleteModalContent(currentObjectives);
 };
 

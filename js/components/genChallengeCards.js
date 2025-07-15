@@ -24,7 +24,7 @@ const genChallengeCards = () => {
     },
     {
       displayName: "Special Ops",
-      internalName: "specialOps",
+      internalName: "specialops",
       icon: "fa-person-rifle",
       iconClasses: "text-primary",
     },

@@ -9,6 +9,7 @@ const getRandomSpecialOpsObjectives = (enemy) => {
   let first = objsCopy[0];
   let second = objsCopy[1];
 
+  // reset progress
   first.progress = 0;
   second.progress = 0;
 

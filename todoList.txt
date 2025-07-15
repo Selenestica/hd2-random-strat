@@ -47,16 +47,17 @@ SPECIAL OPERATIONS
   - add warbond select, and attach warbonds to specialists to filter them out
 
   - specialist modal
-    - show current specialist
-    - show latest unlocked specialist
     - get applyspecialist function to work
       - will set that spec to current spec
       - change specialist loadout screen
       - get a new operation
       - save progress
-  - on operation completion, unlock a new specialist
-    - show that new specialist in the specialist modal
-    - set the new specialist to the current specialist
+    - show amount of locked specialists at the top of the modal (3/21 Unlocked)
+
+  - on operation completion, when objectives unmet, dont unlock a new specialist
+
+  BUGS:
+
 
 NEW CHALLENGE IDEAS:
 

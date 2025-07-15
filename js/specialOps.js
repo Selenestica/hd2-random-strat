@@ -1,6 +1,7 @@
 const missionCompleteModalBody = document.getElementById(
   "missionCompleteModalBody"
 );
+const missionCompleteModal = document.getElementById("missionCompleteModal");
 const objectiveInputsContainer = document.getElementById(
   "objectiveInputsContainer"
 );
@@ -39,6 +40,7 @@ let missionCounter = 1;
 let currentPlanet = null;
 let currentEnemy = null;
 let currentSpecialist = null;
+let latestUnlockedSpecialist = null;
 let currentObjectives = null;
 let campaignsData = null;
 
@@ -48,23 +50,15 @@ let throwables = [...THROWABLES];
 let armorPassives = [...ARMOR_PASSIVES];
 let stratagems = [...STRATAGEMS];
 
-const closeMaxStarsPromptModal = () => {
-  const mspModal = new bootstrap.Modal(maxStarsPromptModal);
-  mspModal.hide();
-
-  // if that was the last mission, dont show rewards because theyre done
-  if (missionCounter >= 22) {
-    missionCounter++;
-    missionCounterText.innerHTML = `Mission ${missionCounter}`;
-    mspModal.hide();
-    saveProgress();
-    return;
+// if the submit mission report modal ever closes, reset the inputs
+missionCompleteModal.addEventListener("hidden.bs.modal", () => {
+  for (let z = 0; z < currentObjectives.length; z++) {
+    const objInputEl = document.getElementById(
+      `objId-${currentObjectives[z].id}`
+    );
+    objInputEl.value = 0;
   }
-
-  const itemsModal = new bootstrap.Modal(itemOptionsModal);
-  itemsModal.show();
-  rollRewardOptions();
-};
+});
 
 const generateItemCard = (item) => {
   let imgDir = "equipment";
@@ -96,6 +90,7 @@ const saveProgress = async () => {
       dataName: `Special Ops Save Data`,
       missionCounter,
       currentSpecialist,
+      latestUnlockedSpecialist,
       currentPlanet,
       currentEnemy,
       currentObjectives,
@@ -111,6 +106,7 @@ const saveProgress = async () => {
     seesRulesOnOpen: false,
     missionCounter,
     currentSpecialist,
+    latestUnlockedSpecialist,
     currentPlanet,
     currentEnemy,
     currentObjectives,
@@ -144,7 +140,7 @@ const genPlanetsList = async (campaigns) => {
   }
 };
 
-const genNewOperation = async () => {
+const genNewOperation = async (unlockSpecialist) => {
   // random planet
   const randPlanetNumber = Math.floor(Math.random() * campaignsData.length);
   currentPlanet = campaignsData[randPlanetNumber];
@@ -153,26 +149,38 @@ const genNewOperation = async () => {
   enemyNameText.innerHTML = currentEnemy;
   hazardsText.innerHTML = currentPlanet.planet.hazards[0].name;
 
-  // random specialist
-  const randSpecialistNumber = Math.floor(Math.random() * specialists.length);
-  specialist = specialists[randSpecialistNumber];
-  specialist.locked = false;
+  // random specialist, only if new game or objectives were met
+  if (unlockSpecialist) {
+    // get a random locked specialist if there are any
+    let specList = specialists.filter((s) => s.locked === true);
+    if (specList.length < 1) {
+      specList = specialists;
+    }
+    const randSpecialistNumber = Math.floor(Math.random() * specList.length);
 
-  // create specialist modal content after specialist is unlocked
-  genSOSpecialistsModalContent();
-
-  currentSpecialist = specialist;
-  displaySpecialistLoadout();
+    let specialist = specialists[randSpecialistNumber];
+    specialist.locked = false;
+    currentSpecialist = specialist;
+    latestUnlockedSpecialist = specialist;
+    genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
+    displaySpecialistLoadout();
+  }
 
   // random mission objectives
+  objectivesContainer.innerHTML = "";
   const objectives = getRandomSpecialOpsObjectives(currentEnemy);
   currentObjectives = objectives;
   // add progress bars too that would be cool
   for (let i = 0; i < objectives.length; i++) {
     const objName = objectives[i].name.replace("X", objectives[i].goal);
+    const progType = objectives[i].progressType;
     objectivesContainer.innerHTML += `
       <div id="objectiveNameText${i}" class="text-white">${objName}</div>
-      <small class="text-white">Progress: <span class="text-danger" id="objectiveProgressText${i}">${objectives[i].progress}/${objectives[i].goal}</span></small>
+      <small class="text-white">Progress: <span class="${
+        progType === "positive" ? "text-danger" : "text-success"
+      }" id="objectiveProgressText${i}">${objectives[i].progress}/${
+      objectives[i].goal
+    }</span></small>
     `;
   }
 
@@ -184,9 +192,6 @@ const submitMissionReport = async (isMissionSucceeded) => {
   if (isMissionSucceeded) {
     for (let i = 0; i < currentObjectives.length; i++) {
       let val;
-      // if (currentObjectives[i].inputType === "check") {
-      //   val = document.getElementById("objId-" + currentObjectives[i].id).value;
-      // }
       val = parseInt(
         document.getElementById("objId-" + currentObjectives[i].id).value,
         10
@@ -195,22 +200,43 @@ const submitMissionReport = async (isMissionSucceeded) => {
       const progressText = document.getElementById("objectiveProgressText" + i);
       progressText.innerHTML =
         currentObjectives[i].progress + "/" + currentObjectives[i].goal;
-      if (currentObjectives[i].progress >= currentObjectives[i].goal) {
+      if (
+        currentObjectives[i].progress >= currentObjectives[i].goal &&
+        currentObjectives[i].progressType === "positive"
+      ) {
         progressText.classList.remove("text-danger");
         progressText.classList.add("text-success");
+      }
+      if (
+        currentObjectives[i].progress >= currentObjectives[i].goal &&
+        currentObjectives[i].progressType === "negative"
+      ) {
+        progressText.classList.remove("text-success");
+        progressText.classList.add("text-danger");
       }
     }
 
     missionCounter++;
     if (missionCounter > 3) {
-      // are objectives met? calculate that here.
-      // if met, unlock new specialist
+      let objectivesMet = true;
+      for (let j = 0; j < currentObjectives.length; j++) {
+        const obj = currentObjectives[j];
+        if (obj.progressType === "positive" && obj.progress < obj.goal) {
+          objectivesMet = false;
+          break;
+        }
+        if (obj.progressType === "negative" && obj.progress >= obj.goal) {
+          objectivesMet = false;
+          break;
+        }
+      }
 
       // either way reset and get a new operation
       // but we dont want to change specialist if objectives werent completed
 
       missionCounter = 1;
-      genNewOperation();
+      await genNewOperation(objectivesMet);
+      saveProgress();
       return;
     }
     missionCounterText.innerHTML = `Mission: ${missionCounter}`;
@@ -231,6 +257,9 @@ const getCurrentEnemy = (planet) => {
 };
 
 const displaySpecialistLoadout = () => {
+  stratagemsContainer.innerHTML = "";
+  equipmentContainer.innerHTML = "";
+
   specialistNameText.innerText = currentSpecialist.displayName;
   const primaryObj = primaries.find(
     (obj) => obj.displayName === currentSpecialist.primary
@@ -267,10 +296,11 @@ const startNewRun = async () => {
   currentPlanet = null;
   currentEnemy = null;
   currentSpecialist = null;
+  latestUnlockedSpecialist = null;
   currentObjectives = null;
 
   // get a specialist, objective list, and planet
-  genNewOperation();
+  await genNewOperation(true);
 
   // save the randomly selected objectives, planet, and specialist to ls
   // so user doesnt cycle through specialists
@@ -283,16 +313,21 @@ const populateWebPage = () => {
   hazardsText.innerHTML = currentPlanet.planet.hazards[0].name;
 
   displaySpecialistLoadout();
-  genSOSpecialistsModalContent();
+  genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
 
   for (let i = 0; i < currentObjectives.length; i++) {
     const objName = currentObjectives[i].name.replace(
       "X",
       currentObjectives[i].goal
     );
+    const progType = currentObjectives[i].progressType;
     objectivesContainer.innerHTML += `
       <div class="text-white">${objName}</div>
-      <small class="text-white">Progress: <span id="objectiveProgressText">${currentObjectives[i].progress}%</span></small>
+      <small class="text-white">Progress: <span class="${
+        progType === "positive" ? "text-danger" : "text-success"
+      }" id="objectiveProgressText">${currentObjectives[i].progress}/${
+      currentObjectives[i].goal
+    }</span></small>
     `;
   }
 
@@ -311,6 +346,7 @@ const uploadSaveData = async () => {
     currentObjectives = data.currentObjectives;
     currentEnemy = data.currentEnemy;
     currentSpecialist = data.currentSpecialist;
+    latestUnlockedSpecialist = data.latestUnlockedSpecialist;
     specialists = data.specialists;
     seesRulesOnOpen = data.seesRulesOnOpen;
     missionCounter = data.missionCounter;

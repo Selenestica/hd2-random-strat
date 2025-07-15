@@ -14,15 +14,23 @@ const genSpecialistItemNames = (spec, type) => {
   return elementsList;
 };
 
-const genSpecialistCard = (spec, i) => {
+const genSpecialistCard = (spec, i, currentSpec, latestSpec) => {
+  let displayName = spec.displayName;
+  if (spec.locked) {
+    displayName = "Locked";
+  }
+  if (currentSpec.displayName === spec.displayName) {
+    displayName += " (Current)";
+  }
+  if (latestSpec.displayName === spec.displayName) {
+    displayName += `<i class="fa-solid mx-2 text-warning fa-key"></i>`;
+  }
   return `
       <div class="card col-lg-3 col-sm-12 specialistCards m-2" id="soSpecialistCard${i}" onclick="${
     spec.locked ? "" : `setSpecialist('${i}')`
   }">
         <div class="card-header">
-          <h5 class="text-white specialistHeadersClass" id="specialistHeader${i}">${
-    spec.locked ? "Locked" : spec.displayName
-  }</h5>
+          <h5 class="text-white specialistHeadersClass" id="specialistHeader${i}">${displayName}</h5>
         </div>
         <div class="card-body ${spec.locked ? "text-center" : ""}">
           ${
@@ -42,10 +50,16 @@ const genSpecialistCard = (spec, i) => {
     `;
 };
 
-const genSOSpecialistsModalContent = () => {
+const genSOSpecialistsModalContent = (currentSpecialist, latestSpecialist) => {
+  specialistsList.innerHTML = "";
   // create specialist cards and add them to an array
   for (let i = 0; i < specialists.length; i++) {
-    const card = genSpecialistCard(specialists[i], i);
+    const card = genSpecialistCard(
+      specialists[i],
+      i,
+      currentSpecialist,
+      latestSpecialist
+    );
     specialistsList.innerHTML += card;
   }
 };

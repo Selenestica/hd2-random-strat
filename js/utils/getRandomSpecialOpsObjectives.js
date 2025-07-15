@@ -6,8 +6,12 @@ const getRandomSpecialOpsObjectives = (enemy) => {
     objsCopy.shift();
   }
   objsCopy.sort(() => Math.random() - 0.5);
-  const first = objsCopy[0];
-  const second = objsCopy[1];
+  let first = objsCopy[0];
+  let second = objsCopy[1];
+
+  first.progress = 0;
+  second.progress = 0;
+
   const objsList = [first, second];
 
   // modifier for certain objectives against certain enemies

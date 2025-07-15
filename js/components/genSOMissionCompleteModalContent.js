@@ -1,4 +1,6 @@
 const genSOMissionCompleteModalContent = (objectives) => {
+  objectiveInputsContainer.innerHTML = "";
+
   for (let i = 0; i < objectives.length; i++) {
     const obj = objectives[i];
     if (obj.inputType === "check") {

@@ -202,7 +202,7 @@ const genNewOperation = async (unlockSpecialist, planetName = null) => {
 
   // random mission objectives
   objectivesContainer.innerHTML = "";
-  const objectives = getRandomSpecialOpsObjectives(currentEnemy);
+  const objectives = await getRandomSpecialOpsObjectives(currentEnemy);
   currentObjectives = objectives;
   // add progress bars too that would be cool
   for (let i = 0; i < objectives.length; i++) {

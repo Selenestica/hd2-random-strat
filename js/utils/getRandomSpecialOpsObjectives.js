@@ -1,6 +1,5 @@
-const getRandomSpecialOpsObjectives = (enemy) => {
-  const objsCopy = [...SPECIALOPSOBJECTIVES];
-
+const getRandomSpecialOpsObjectives = async (enemy) => {
+  let objsCopy = await SPECIALOPSOBJECTIVES.map((obj) => ({ ...obj }));
   // illuminate dont have a HVI yet
   if (enemy === "Illuminate") {
     objsCopy.shift();

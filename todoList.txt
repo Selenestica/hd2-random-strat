@@ -45,13 +45,10 @@ SPECIAL OPERATIONS
   - add warbond select, and attach warbonds to specialists to filter them out
   
   - save data management modal
-    - 
+    - set file input to null when it closes
   
-  - add text in info and rules modal about planets being updated every 10 minutes or so
-  - every 5 minutes, update the planet list with the fetch request
-  - get info and rules modal to show up on first operation
-
   BUGS:
+
 
 NEW CHALLENGE IDEAS:
 

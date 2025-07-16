@@ -54,7 +54,7 @@ const genSOSaveDataManagementModalContent = () => {
       <div class="my-1" id="soSavedGameOptionDiv">
         <div id="savedGameOptionLabel" class="text-white">${saveData.dataName}</div>
         <button type="button" onclick="editSaveName('${saveData.dataName}')" class="mx-1 btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></button>
-        <button type="button" onclick="downloadSOSaveFile()" class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i></button>
+        <button type="button" onclick="downloadSOSaveFile('${saveData.dataName}')" class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i></button>
       </div>
     `;
 };

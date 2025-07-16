@@ -104,7 +104,7 @@ const saveProgress = async () => {
   const specialOpsSaveData = localStorage.getItem("specialOpsSaveData");
   if (!specialOpsSaveData) {
     obj = {
-      seesRulesOnOpen: false,
+      seesRulesOnOpen: true,
       dataName: `Special Ops Save Data`,
       missionCounter,
       currentSpecialist,
@@ -150,18 +150,35 @@ const fetchCampaignsData = async () => {
 };
 
 const genPlanetsList = async (campaigns) => {
+  planetDropdownList.innerHTML = "";
   for (let i = 0; i < campaigns.length; i++) {
     const planetName = campaigns[i].planet.name;
     planetDropdownList.innerHTML += `
-        <li><a class="dropdown-item planetOption" href="#">${planetName}</a></li>
+        <li><a class="dropdown-item planetOption" onclick="switchPlanet('${campaigns[i].planet.name}')" href="#">${planetName}</a></li>
     `;
   }
 };
 
-const genNewOperation = async (unlockSpecialist) => {
+const switchPlanet = async (planetName) => {
+  await genNewOperation(false, planetName);
+  saveProgress();
+};
+
+const getCampaignFromPlanetName = async (planetName) => {
+  const newPlanet = await campaignsData.filter(
+    (cd) => cd.planet.name === planetName
+  );
+  return newPlanet[0];
+};
+
+const genNewOperation = async (unlockSpecialist, planetName = null) => {
   // random planet
   const randPlanetNumber = Math.floor(Math.random() * campaignsData.length);
-  currentPlanet = campaignsData[randPlanetNumber];
+  let planetToUse = campaignsData[randPlanetNumber];
+  if (planetName) {
+    planetToUse = await getCampaignFromPlanetName(planetName);
+  }
+  currentPlanet = planetToUse;
   currentEnemy = getCurrentEnemy(currentPlanet);
   planetNameText.innerHTML = currentPlanet.planet.name;
   enemyNameText.innerHTML = currentEnemy;
@@ -203,6 +220,7 @@ const genNewOperation = async (unlockSpecialist) => {
     `;
   }
 
+  missionCounter = 1;
   missionCounterText.innerHTML = "Mission: 1";
   genSOMissionCompleteModalContent(objectives);
 };
@@ -264,7 +282,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
       }
 
       missionCounter = 1;
-      await genNewOperation(objectivesMet);
+      await genNewOperation(objectivesMet, null);
       saveProgress();
       return;
     }
@@ -277,7 +295,8 @@ const submitMissionReport = async (isMissionSucceeded) => {
   // set missionCounter back to start of operation
   if (!isMissionSucceeded) {
     missionCounter = 1;
-    await genNewOperation(false);
+    await genNewOperation(false, null);
+    saveProgress();
   }
 };
 
@@ -349,7 +368,6 @@ const setSpecialist = (index) => {
 };
 
 const applySpecialist = async () => {
-  console.log(selectedSpecialist);
   if (selectedSpecialist.displayName === currentSpecialist.displayName) {
     selectedSpecialist = null;
     return;
@@ -357,12 +375,15 @@ const applySpecialist = async () => {
 
   currentSpecialist = selectedSpecialist;
   displaySpecialistLoadout();
-  await genNewOperation(false);
+  await genNewOperation(false, null);
   saveProgress();
   selectedSpecialist = null;
 };
 
 const startNewRun = async () => {
+  const modal = new bootstrap.Modal(flavorAndInstructionsModal);
+  modal.show();
+
   // clear the slate
   missionCounter = 1;
   currentPlanet = null;
@@ -373,7 +394,7 @@ const startNewRun = async () => {
   specialists = [...SPECOPSSPECS];
 
   // get a specialist, objective list, and planet
-  await genNewOperation(true);
+  await genNewOperation(true, null);
 
   // save the randomly selected objectives, planet, and specialist to ls
   // so user doesnt cycle through specialists
@@ -439,6 +460,8 @@ const clearSaveDataAndRestart = async () => {
 };
 
 uploadSaveData();
+
+setInterval(fetchCampaignsData, 5 * 60 * 1000);
 
 // https://api.helldivers2.dev/api/v1/war         -o 801_war_v1.json
 // https://api.helldivers2.dev/api/v1/planets     -o 801_planets_v1.json

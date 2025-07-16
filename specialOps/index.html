@@ -567,11 +567,13 @@
                       <br />
                       <br />
                       If you're part of a squad and you need to go to a
-                      different planet, open the planet list and choose the
-                      planet you want. Only planets that are able to be
-                      liberated or defended will show up on the list. A set of
-                      operational objectives will be given to you, and you will
-                      lose any operational progress on any other planet, if any.
+                      different planet, open the planet list (
+                      <i class="fa-solid text-warning fa-earth-americas"></i> )
+                      and choose the planet you want. Only planets that are able
+                      to be liberated or defended will show up on the list. A
+                      set of operational objectives will be given to you, and
+                      you will lose any operational progress on any other
+                      planet, if any.
                       <br />
                       <br />
                       NOTE: Operational objectives on a planet may vary from
@@ -613,6 +615,101 @@
                   </div>
                 </div>
               </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseSeven"
+                    aria-expanded="false"
+                    aria-controls="collapseSeven"
+                  >
+                    FAQs
+                  </button>
+                </h2>
+                <div
+                  id="collapseSeven"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <ul class="modalAccordionList">
+                      <li class="text-white">
+                        <b>Q: Who was this challenge made for?</b>
+                        <p>
+                          A: This challenge was made for veteran players who
+                          have unlocked most, or all, items in the game, and are
+                          looking to spice up a Super Helldive operation with
+                          some rogue-like elements.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b
+                          >Q: How many squadmates do I need to run this
+                          challenge?</b
+                        >
+                        <p>
+                          A: This challenge is equally viable for solo players,
+                          a squad of friends, or a squad of randoms as you can
+                          progress at your own pace.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: What if I don't have all the warbonds?</b>
+                        <p>
+                          A: This challenge was made for those who have most, or
+                          all, items in the game. If you're missing something
+                          that your specialist requires, do your best to come up
+                          with a reasonable substitute.
+                          <br />
+                          <br />
+                          i.e. If you don't own the Stun Baton, you can
+                          substitute that for the Stun Lance, the Saber, or the
+                          Combat Hatchet.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b
+                          >Q: What if the planet I had an operation on is no
+                          longer available?</b
+                        >
+                        <p>
+                          A: If you or your squadmates can no longer access that
+                          planet in-game, choose a different planet from the
+                          planet list (
+                          <i
+                            class="fa-solid text-warning fa-earth-americas"
+                          ></i>
+                          ). This list updates every ten minutes or so.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b
+                          >Q: Why didn't I unlock a new specialist after I
+                          completed an operation?</b
+                        >
+                        <p>
+                          A: You may not have met the operational objectives, or
+                          you may not have the correct specialist loadout
+                          equipped.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b
+                          >Q: How do I know which specialist I will unlock
+                          next?</b
+                        >
+                        <p>
+                          A: Your next unlocked specialist will be chosen at
+                          random amongst the list of specialists you have yet to
+                          unlock.
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
@@ -650,10 +747,12 @@
           >
             <p class="text-white">
               Download or upload your save files here to make progress on other
-              devices.
+              devices. You can only have one save file for this challenge.
+              <br />
+              Deleting your save file will remove <b>all</b> of your progress!
               <br />
               <br />
-              WARNING: Uploading and applying a save file will
+              WARNING: Uploading a save file will
               <b>overwrite your current save file</b>.
             </p>
             <div class="mb-3 d-flex row">
@@ -668,7 +767,7 @@
                 <button
                   type="button"
                   onclick="uploadSaveFile()"
-                  class="btn btn-success"
+                  class="btn btn-warning"
                   id="uploadSaveFileButton"
                   disabled
                 >
@@ -774,7 +873,7 @@
     <!-- SPECIALIST UNLOCKED TOAST -->
     <div
       class="position-fixed top-0 start-50 translate-middle-x p-3"
-      style="z-index: 1080"
+      style="z-index: 1050"
     >
       <div
         class="toast align-items-center text-white bg-success border-0 specialistUnlockedToast"

@@ -682,14 +682,14 @@ const STRATAGEMS = [
     tier: "s",
   },
   {
-    displayName: "Grenadier Embattlement",
+    displayName: "Grenadier Battlement",
     type: "Stratagem",
     category: "Defense",
     tags: ["Emplacement"],
     warbond: "None",
     warbondCode: "none",
-    internalName: "grenadierembattlement",
-    imageURL: "grenadierembattlement.svg",
+    internalName: "grenadierbattlement",
+    imageURL: "grenadierbattlement.svg",
     tier: "b",
   },
   {

@@ -1,6 +1,6 @@
 body {
   background-color: #2d2d2d;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: "Titillium Web", sans-serif;
 }
 
 .bg-default {
@@ -330,4 +330,10 @@ body {
 .scrollablePlanetList {
   max-height: 200px; /* adjust as needed */
   overflow-y: auto;
+}
+
+#soSavedGameOptionDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

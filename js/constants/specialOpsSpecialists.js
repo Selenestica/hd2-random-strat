@@ -271,7 +271,7 @@ const SPECOPSSPECS = [
     stratagems: [
       "Ballistic Shield",
       "GL-52 De-Escalator",
-      "Grenadier Embattlement",
+      "Grenadier Battlement",
       "Fast Recon Vehicle",
     ],
     primary: "AR-32 Pacifier",
@@ -335,6 +335,7 @@ const SPECOPSSPECS = [
     throwable: "G-13 Incendiary Impact",
     armorPassive: "Fortified",
   },
+
   // {
   //   locked: true,
   //   displayName: "The Mad Scientist",

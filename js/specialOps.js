@@ -45,6 +45,7 @@ let latestUnlockedSpecialist = null;
 let currentObjectives = null;
 let campaignsData = null;
 let selectedSpecialist = null;
+let specialists = null;
 
 let primaries = [...PRIMARIES];
 let secondaries = [...SECONDARIES];
@@ -175,7 +176,7 @@ const genNewOperation = async (unlockSpecialist) => {
     }
     const randSpecialistNumber = Math.floor(Math.random() * specList.length);
 
-    let specialist = specialists[randSpecialistNumber];
+    let specialist = specList[randSpecialistNumber];
     specialist.locked = false;
     currentSpecialist = specialist;
     latestUnlockedSpecialist = specialist;
@@ -369,13 +370,15 @@ const startNewRun = async () => {
   currentSpecialist = null;
   latestUnlockedSpecialist = null;
   currentObjectives = null;
+  specialists = [...SPECOPSSPECS];
 
   // get a specialist, objective list, and planet
   await genNewOperation(true);
 
   // save the randomly selected objectives, planet, and specialist to ls
   // so user doesnt cycle through specialists
-  saveProgress();
+  await saveProgress();
+  genSOSaveDataManagementModalContent();
 };
 
 const populateWebPage = () => {

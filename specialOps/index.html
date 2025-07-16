@@ -72,13 +72,17 @@
           </a>
         </div>
         <div class="d-flex col-4 justify-content-end">
-          <button
-            class="btn btn-primary"
-            onclick="genPCSaveDataManagementModalInfo()"
-            type="button"
-          >
-            <i class="fa-solid fa-2x text-light fa-floppy-disk"></i>
-          </button>
+          <div>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#saveDataManagementModal"
+              onclick="genSOSaveDataManagementModalContent()"
+            >
+              <i class="fa-solid text-light fa-floppy-disk"></i>
+            </button>
+          </div>
         </div>
       </div>
       <div class="row d-flex justify-content-center mt-2">
@@ -645,17 +649,15 @@
             id="saveDataManagementModalBody"
           >
             <p class="text-white">
-              Switch your active save file here, delete save files, or upload
-              save files.
-              <br />
-              Select an entry below and press 'Apply' to load a different save
-              file.
+              Download or upload your save files here to make progress on other
+              devices.
               <br />
               <br />
-              NOTE: You can't delete your current save file.
+              WARNING: Uploading and applying a save file will
+              <b>overwrite your current save file</b>.
             </p>
             <div class="mb-3 d-flex row">
-              <div class="col-9">
+              <div class="col-9 px-0">
                 <input
                   class="form-control"
                   type="file"
@@ -674,18 +676,12 @@
                 </button>
               </div>
             </div>
-            <div
-              id="saveDataManagementModalSavesList"
-              class="btn-group-vertical"
-              role="group"
-              aria-label="Basic radio toggle button group"
-            ></div>
+            <div id="saveDataManagementModalSavesList"></div>
           </div>
           <div class="modal-footer row justify-content-between">
             <div class="d-flex col justify-content-start">
               <button
                 type="button"
-                onclick="clearSaveDataManagementModal()"
                 class="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
@@ -698,27 +694,11 @@
             >
               <button
                 type="button"
-                onclick="clearSaveDataAndRestart()"
-                class="btn btn-danger"
-                data-bs-dismiss="modal"
-              >
-                Delete ALL
-              </button>
-              <button
-                type="button"
                 onclick="deleteSavedGameData()"
                 class="btn btn-danger mx-2"
                 data-bs-dismiss="modal"
               >
                 Delete
-              </button>
-              <button
-                type="button"
-                onclick="applySavedGameData()"
-                class="btn btn-primary"
-                data-bs-dismiss="modal"
-              >
-                Apply
               </button>
             </div>
           </div>
@@ -738,7 +718,10 @@
       <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="">Specialist Select</h5>
+            <h5 class="modal-title text-light" id="">
+              Specialist Select
+              <small class="mx-2" id="amountOfSpecsUnlockedText"></small>
+            </h5>
           </div>
           <div
             class="modal-body row d-flex justify-content-center"
@@ -749,7 +732,7 @@
               However, you
               <b
                 >must complete an operation with your most recently unlocked
-                specialist (<i class="fa-solid mx-2 text-warning fa-key"></i
+                specialist (<i class="fa-solid mx-1 text-warning fa-key"></i
                 >)</b
               >
               in order to unlock more specialists.
@@ -836,10 +819,10 @@
   <script src="../js/utils/getMissionText.js"></script>
   <script src="../js/utils/showSOSpecialistUnlockedToast.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
-  <script src="../js/utils/downloadSaveFile.js"></script>
+  <script src="../js/utils/downloadSOSaveFile.js"></script>
   <script src="../js/utils/getRandomSpecialOpsObjectives.js"></script>
   <script src="../js/components/genSOSpecialistsModalContent.js"></script>
   <script src="../js/specialOps.js"></script>
   <script src="../js/components/genSOMissionCompleteModalContent.js"></script>
-  <script src="../js/components/genSpecialOpsSaveDataManagementInfo.js"></script>
+  <script src="../js/components/genSOSaveDataManagementModalContent.js"></script>
 </html>

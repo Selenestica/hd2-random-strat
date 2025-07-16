@@ -39,25 +39,19 @@ BUDGET BLITZ
 - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
 
 SPECIAL OPERATIONS
-  - specialists are almost completely geared
-    - SPECIALIST ideas:
-      - all shotguns?
-      - gunslinger? deadeye, senator, gunslinger passive...
+  - SPECIALIST ideas:
+    - all shotguns?
+    - gunslinger? deadeye, senator, gunslinger passive...
   - add warbond select, and attach warbonds to specialists to filter them out
-
-  - specialist modal
-    - get applyspecialist function to work
-      - will set that spec to current spec
-      - change specialist loadout screen
-      - get a new operation
-      - save progress
-    - show amount of locked specialists at the top of the modal (3/21 Unlocked)
   
   - save data management modal
     - 
+  
+  - add text in info and rules modal about planets being updated every 10 minutes or so
+  - every 5 minutes, update the planet list with the fetch request
+  - get info and rules modal to show up on first operation
 
   BUGS:
-    - still able to "unlock" a previously unlocked specialist
 
 NEW CHALLENGE IDEAS:
 

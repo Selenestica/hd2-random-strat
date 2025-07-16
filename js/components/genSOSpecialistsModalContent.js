@@ -1,6 +1,7 @@
 const specialistsList = document.getElementById("specialistsList");
-
-let specialists = [...SPECOPSSPECS];
+const amountOfSpecsUnlockedText = document.getElementById(
+  "amountOfSpecsUnlockedText"
+);
 
 const genSpecialistItemNames = (spec, type) => {
   let elementsList = "";
@@ -62,4 +63,13 @@ const genSOSpecialistsModalContent = (currentSpecialist, latestSpecialist) => {
     );
     specialistsList.innerHTML += card;
   }
+
+  // calculate number of unlocked specialists and update specialist modal header text
+  let unlockedSpecialistsAmount = 0;
+  for (let j = 0; j < specialists.length; j++) {
+    if (!specialists[j].locked) {
+      unlockedSpecialistsAmount++;
+    }
+  }
+  amountOfSpecsUnlockedText.innerHTML = `(${unlockedSpecialistsAmount}/${specialists.length} unlocked)`;
 };

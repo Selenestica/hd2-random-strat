@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link
+      rel="shortcut icon"
+      type="image/svg+xml"
+      href="../images/svgs/orbitalprecisionstrike.svg"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <meta
+      name="description"
+      content="Deploy as a unique specialist in Helldivers 2. Complete operations to unlock powerful new roles and prove your mastery."
+    />
+    <title>Helldivers 2: Special Ops</title>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-BFREXT7F48");
+    </script>
+  </head>
+
+  <body>
+    <div class="container mb-5">
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="d-flex col-4 justify-content-start px-0">
+          <a href="../index.html">
+            <button class="btn text-light text-start" type="button">
+              <i class="fa-solid fa-arrow-left"></i>
+              Back to Challenges
+            </button>
+          </a>
+        </div>
+        <div class="d-flex col-4 justify-content-center">
+          <a
+            class="mx-1"
+            target="_blank"
+            href="https://github.com/Selenestica/hd2-random-strat"
+          >
+            <i class="fa-2x fa-brands fa-github"></i>
+          </a>
+          <a
+            class="mx-1"
+            target="_blank"
+            href="https://buymeacoffee.com/breakfasttaco"
+          >
+            <i class="fa-2x fa-solid fa-mug-saucer"></i>
+          </a>
+        </div>
+        <div class="d-flex col-4 justify-content-end">
+          <div>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#saveDataManagementModal"
+              onclick="genSOSaveDataManagementModalContent()"
+            >
+              <i class="fa-solid text-light fa-floppy-disk"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="d-flex col justify-content-center">
+          <h1 class="text-light">Helldivers 2</h1>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="d-flex col justify-content-center align-items-center">
+          <h4 class="mb-0 text-white">Special Operations</h4>
+          <button
+            class="btn btn-secondary bg-none"
+            style="border: none"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#flavorAndInstructionsModal"
+          >
+            <i class="fa-solid fa-circle-info"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row mt-2 justify-content-center text-white">
+        <div class="col-4"></div>
+        <div
+          class="col-4 text-white d-flex justify-content-center"
+          id="missionCounterText"
+        ></div>
+        <div class="col-4 d-flex justify-content-end"></div>
+      </div>
+      <div class="row mt-2 justify-content-center">
+        <div class="col-0 col-lg-2"></div>
+        <div class="col-8 col-lg-6 d-flex justify-content-center">
+          <div class="d-flex align-items-center">
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#specialistsModal"
+            >
+              <i class="fa-solid fa-person-rifle"></i>
+            </button>
+          </div>
+          <div class="btn-group my-2 mx-2" id="missionCompleteButtonDiv">
+            <button
+              class="btn btn-success"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#missionCompleteModal"
+              id="missionCompleteButton"
+            >
+              <span> Mission Complete </span>
+            </button>
+          </div>
+          <div class="btn-group my-2" id="missionFailedButtonDiv">
+            <button
+              class="btn btn-danger"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#missionFailedModal"
+              id="missionFailedButton"
+            >
+              <span> Mission Failed </span>
+            </button>
+          </div>
+          <div class="d-flex align-items-center mx-2">
+            <button
+              class="btn btn-warning"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#restartOperationModal"
+            >
+              <i class="fa-solid fa-rotate"></i>
+            </button>
+          </div>
+        </div>
+        <div class="col-0 col-lg-2"></div>
+      </div>
+
+      <div id="lowerContentContainer">
+        <!-- OPERATION INFO -->
+        <div
+          class="row d-flex justify-content-center mt-2"
+          id="operationInfoContainer"
+        >
+          <div class="col text-end" style="border-right: 1px solid grey">
+            <div
+              id="planetNameDiv"
+              class="text-white justify-content-end d-flex align-items-center"
+            >
+              <b>Planet</b>:<span class="mx-1" id="planetNameText"></span>
+              <div class="btn-group" id="planetDropdown">
+                <button
+                  style="border: none; padding: 0rem !important"
+                  type="button"
+                  class="btn bg-none btn-primary dropdown-toggle py-0"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fa-solid text-warning fa-earth-americas"></i>
+                </button>
+                <ul
+                  id="planetDropdownList"
+                  class="dropdown-menu scrollablePlanetList"
+                ></ul>
+              </div>
+            </div>
+            <div class="text-white">
+              <b>Enemy</b>:<span class="mx-1" id="enemyNameText"></span>
+            </div>
+            <div class="text-white">
+              <b>Hazards</b>:<span class="mx-1" id="hazardsText"></span>
+            </div>
+          </div>
+          <div class="col text-white" id="objectivesContainer"></div>
+        </div>
+
+        <!-- LOADOUT -->
+        <hr class="text-white" />
+        <div id="loadoutContainer" class="row d-flex justify-content-center">
+          <div class="text-white d-flex justify-content-center">
+            <b>Specialist</b>:<span
+              class="mx-1 mb-1"
+              id="specialistNameText"
+            ></span>
+          </div>
+          <div
+            id="equippedItemsContainer"
+            class="row px-0 d-flex justify-content-center"
+          >
+            <div class="col px-0">
+              <div
+                id="stratagemsContainer"
+                class="row mb-2 d-flex justify-content-center"
+              ></div>
+              <div
+                id="equipmentContainer"
+                class="row d-flex justify-content-center"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MISSION COMPLETE MODAL -->
+    <div
+      class="modal fade"
+      id="missionCompleteModal"
+      tabindex="-1"
+      aria-labelledby="missionCompleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-body d-flex row justify-content-center">
+            <div
+              class="row text-white d-flex justify-content-center text-center"
+            >
+              <h4>Mission Report</h4>
+            </div>
+            <div
+              class="row text-white mb-4 d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="../images/dressing/ministryOfTruthIcon.png"
+                class="img-fluid"
+                alt="ministry of truth eye"
+                id="motImage"
+              />
+              <small class="d-flex justify-content-center mt-2"
+                >NOTE: Lying will be considered treason.</small
+              >
+            </div>
+            <div class="row" id="objectiveInputsContainer"></div>
+          </div>
+          <div class="modal-footer row justify-content-between">
+            <div class="col d-flex justify-content-start">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+            <div class="col d-flex justify-content-end">
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="submitMissionReport(true)"
+                data-bs-toggle="modal"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MISSION FAILED MODAL -->
+    <div
+      class="modal fade"
+      id="missionFailedModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="missionFailedModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light">Mission Failed</h5>
+          </div>
+          <div class="modal-body row d-flex justify-content-center">
+            <p class="text-white">
+              Your current operation will be reset, as well as your operational
+              objectives.
+            </p>
+            <br />
+            <br />
+            <p class="text-white">Proceed?</p>
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onclick="submitMissionReport(false)"
+              class="btn btn-warning"
+              data-bs-dismiss="modal"
+            >
+              Proceed
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESTART OPERATION MODAL -->
+    <div
+      class="modal fade"
+      id="restartOperationModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="restartOperationModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light">Restart Operation</h5>
+          </div>
+          <div class="modal-body row d-flex justify-content-center">
+            <p class="text-white">
+              Your current operation will be reset, as well as your operational
+              objectives.
+            </p>
+            <br />
+            <br />
+            <p class="text-white">Proceed?</p>
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onclick="submitMissionReport(false)"
+              class="btn btn-warning"
+              data-bs-dismiss="modal"
+            >
+              Proceed
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLAVOR AND INSTRUCTIONS MODAL -->
+    <div
+      class="modal fade"
+      id="flavorAndInstructionsModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="flavorAndInstructionsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light">
+              The Special Operations Challenge
+            </h5>
+          </div>
+          <div class="modal-body row d-flex justify-content-center">
+            <div class="accordion" id="infoAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    Lore
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      In the wake of growing threats across the galactic
+                      frontier, Super Earth’s High Command has authorized the
+                      deployment of elite operatives under the Specialist
+                      Challenge Initiative. Each Helldiver is assigned a combat
+                      role and dispatched to hostile planets under strict
+                      operational parameters. These missions are more than just
+                      war—they're a proving ground. Those who survive not only
+                      bring liberty to alien worlds but also gain clearance to
+                      deploy with newly de-classified specialist loadouts. One
+                      role at a time, Helldivers climb the ranks, mastering
+                      tools of democracy previously locked behind bureaucratic
+                      red tape and explosive field tests. Glory awaits. Failure
+                      is treason.
+                      <br />
+                      <br />
+                      <em
+                        >Specialists aren’t born. They’re forged—in fire, gas,
+                        plasma, and paperwork
+                      </em>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    Overview
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse collapse show"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      Complete an operation on the given planet using the
+                      assigned specialist loadout, and fulfilling all special
+                      operation objectives, in order to unlock new specialists.
+                      There are over a dozen specialists to unlock, with more
+                      specialists to be added in the future as more content is
+                      added to the game.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    Completing Operations
+                  </button>
+                </h2>
+                <div
+                  id="collapseThree"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      Operations must be on difficulty 10 (Super Helldive). Each
+                      operation will have a list of 3 additional objectives that
+                      must be completed in order to unlock a new specialist
+                      afterward.
+                      <br />
+                      <br />
+                      Upon mission success, click the 'Mission Complete' button,
+                      and input the progress you made toward fulfilling your
+                      operation's objectives in the after-mission report.
+                      <br />
+                      <br />
+                      If you fail a mission, click the 'Mission Failed' button.
+                      You will start a new operation with new objectives, on a
+                      different planet.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour"
+                    aria-expanded="false"
+                    aria-controls="collapseFour"
+                  >
+                    Unlocking Specialists
+                  </button>
+                </h2>
+                <div
+                  id="collapseFour"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      After each successfully completed special operation, you
+                      will be automatically assigned a new and unlocked
+                      specialist. You may choose a previously unlocked
+                      specialist to play, but progress will not be made toward
+                      unlocking a new specialist.
+                      <br />
+                      <br />
+                      In other words, you must complete an operation with your
+                      newest unlocked specialist (<i
+                        class="fa-solid mx-2 text-warning fa-key"
+                      ></i
+                      >) in order to unlock the next specialist.
+                      <br />
+                      <br />
+                      While you're planetside, you may share equipment with your
+                      squadmates, and you are allowed to pick up new equipment
+                      from your environment.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive"
+                    aria-expanded="false"
+                    aria-controls="collapseFive"
+                  >
+                    Choosing a Planet
+                  </button>
+                </h2>
+                <div
+                  id="collapseFive"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      A planet will be assigned to you along with a set of
+                      operational objectives, as long as you weren't previously
+                      in the middle of an operation.
+                      <br />
+                      <br />
+                      If you're part of a squad and you need to go to a
+                      different planet, open the planet list (
+                      <i class="fa-solid text-warning fa-earth-americas"></i> )
+                      and choose the planet you want. Only planets that are able
+                      to be liberated or defended will show up on the list. A
+                      set of operational objectives will be given to you, and
+                      you will lose any operational progress on any other
+                      planet, if any.
+                      <br />
+                      <br />
+                      NOTE: Operational objectives on a planet may vary from
+                      player to player. Work together to ensure everyone in your
+                      squad meets their objective requirements.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseSix"
+                    aria-expanded="false"
+                    aria-controls="collapseSix"
+                  >
+                    Saving Your Progress
+                  </button>
+                </h2>
+                <div
+                  id="collapseSix"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      Your progress is saved in your browser's local storage. If
+                      you clear your browser's local storage, your progress will
+                      be lost.
+                      <br />
+                      You can download your save file and upload it to a
+                      different device with the Save Data Management menu.
+                      Uploading a save file will overwrite any previous saved
+                      data for this challenge.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseSeven"
+                    aria-expanded="false"
+                    aria-controls="collapseSeven"
+                  >
+                    FAQs
+                  </button>
+                </h2>
+                <div
+                  id="collapseSeven"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <ul class="modalAccordionList">
+                      <li class="text-white">
+                        <b>Q: Who was this challenge made for?</b>
+                        <p>
+                          A: This challenge was made for veteran players who
+                          have unlocked most, or all, items in the game, and are
+                          looking to spice up a Super Helldive operation with
+                          some rogue-like elements.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b
+                          >Q: How many squadmates do I need to run this
+                          challenge?</b
+                        >
+                        <p>
+                          A: This challenge is equally viable for solo players,
+                          a squad of friends, or a squad of randoms as you can
+                          progress at your own pace.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: What if I don't have all the warbonds?</b>
+                        <p>
+                          A: This challenge was made for those who have most, or
+                          all, items in the game. If you're missing something
+                          that your specialist requires, do your best to come up
+                          with a reasonable substitute.
+                          <br />
+                          <br />
+                          i.e. If you don't own the Stun Baton, you can
+                          substitute that for the Stun Lance, the Saber, or the
+                          Combat Hatchet.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b
+                          >Q: What if the planet I had an operation on is no
+                          longer available?</b
+                        >
+                        <p>
+                          A: If you or your squadmates can no longer access that
+                          planet in-game, choose a different planet from the
+                          planet list (
+                          <i
+                            class="fa-solid text-warning fa-earth-americas"
+                          ></i>
+                          ). This list updates every ten minutes or so.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b
+                          >Q: Why didn't I unlock a new specialist after I
+                          completed an operation?</b
+                        >
+                        <p>
+                          A: You may not have met the operational objectives, or
+                          you may not have the correct specialist loadout
+                          equipped.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b
+                          >Q: How do I know which specialist I will unlock
+                          next?</b
+                        >
+                        <p>
+                          A: Your next unlocked specialist will be chosen at
+                          random amongst the list of specialists you have yet to
+                          unlock.
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAVE DATA MANAGEMENT MODAL -->
+    <div
+      class="modal fade"
+      id="saveDataManagementModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="saveDataManagementModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="">Save Data Management</h5>
+          </div>
+          <div
+            class="modal-body row d-flex justify-content-center"
+            id="saveDataManagementModalBody"
+          >
+            <p class="text-white">
+              Download or upload your save files here to make progress on other
+              devices. You can only have one save file for this challenge.
+              <br />
+              Deleting your save file will remove <b>all</b> of your progress!
+              <br />
+              <br />
+              WARNING: Uploading a save file will
+              <b>overwrite your current save file</b>.
+            </p>
+            <div class="mb-3 d-flex row">
+              <div class="col-9 px-0">
+                <input
+                  class="form-control"
+                  type="file"
+                  id="saveDataUploadInput"
+                />
+              </div>
+              <div class="col-3">
+                <button
+                  type="button"
+                  onclick="uploadSaveFile()"
+                  class="btn btn-warning"
+                  id="uploadSaveFileButton"
+                  disabled
+                >
+                  Upload
+                </button>
+              </div>
+            </div>
+            <div id="saveDataManagementModalSavesList"></div>
+          </div>
+          <div class="modal-footer row justify-content-between">
+            <div class="d-flex col justify-content-start">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+            <div
+              id="saveDataModalFunctionsDiv"
+              class="d-flex col justify-content-end"
+            >
+              <button
+                type="button"
+                onclick="deleteSavedGameData()"
+                class="btn btn-danger mx-2"
+                data-bs-dismiss="modal"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPECIALISTS MODAL -->
+    <div
+      class="modal fade"
+      id="specialistsModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="specialistsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="">
+              Specialist Select
+              <small class="mx-2" id="amountOfSpecsUnlockedText"></small>
+            </h5>
+          </div>
+          <div
+            class="modal-body row d-flex justify-content-center"
+            id="specialistsModalBody"
+          >
+            <p class="text-white">
+              You can choose any of your previously unlocked specialists here.
+              However, you
+              <b
+                >must complete an operation with your most recently unlocked
+                specialist (<i class="fa-solid mx-1 text-warning fa-key"></i
+                >)</b
+              >
+              in order to unlock more specialists.
+              <br />
+              <br />
+              NOTE: A new operation will start if you change specialists.
+            </p>
+            <div
+              class="row d-flex justify-content-center"
+              id="specialistsList"
+            ></div>
+          </div>
+          <div class="modal-footer row justify-content-between">
+            <div class="d-flex col justify-content-start">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+            <div class="d-flex col justify-content-end">
+              <button
+                type="button"
+                onclick="applySpecialist()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                id="applySpecialistButton"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPECIALIST UNLOCKED TOAST -->
+    <div
+      class="position-fixed top-0 start-50 translate-middle-x p-3"
+      style="z-index: 1050"
+    >
+      <div
+        class="toast align-items-center text-white bg-success border-0 specialistUnlockedToast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        data-bs-autohide="true"
+        data-bs-delay="3000"
+      >
+        <div class="d-flex">
+          <div class="toast-body" id="specialistUnlockedToastBody"></div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://kit.fontawesome.com/a018c01272.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="../js/constants/primaries.js"></script>
+  <script src="../js/constants/secondaries.js"></script>
+  <script src="../js/constants/boosters.js"></script>
+  <script src="../js/constants/throwables.js"></script>
+  <script src="../js/constants/stratagems.js"></script>
+  <script src="../js/constants/armorsets.js"></script>
+  <script src="../js/constants/armorsizes.js"></script>
+  <script src="../js/constants/armorpassives.js"></script>
+  <script src="../js/constants/specialOpsSpecialists.js"></script>
+  <script src="../js/constants/specialOpsObjectives.js"></script>
+  <script src="../js/utils/getMissionText.js"></script>
+  <script src="../js/utils/showSOSpecialistUnlockedToast.js"></script>
+  <script src="../js/utils/getCurrentDateTime.js"></script>
+  <script src="../js/utils/downloadSOSaveFile.js"></script>
+  <script src="../js/utils/getRandomSpecialOpsObjectives.js"></script>
+  <script src="../js/components/genSOSpecialistsModalContent.js"></script>
+  <script src="../js/specialOps.js"></script>
+  <script src="../js/components/genSOMissionCompleteModalContent.js"></script>
+  <script src="../js/components/genSOSaveDataManagementModalContent.js"></script>
+</html>

@@ -69,6 +69,11 @@ body {
   width: 100%;
 }
 
+.soItemCards {
+  background-color: rgb(71, 71, 71);
+  padding: 0rem;
+}
+
 .pcItemCards {
   background-color: rgb(71, 71, 71);
   padding: 0rem;
@@ -320,4 +325,15 @@ body {
 
 .color-changer {
   animation: colorCycle 5s infinite;
+}
+
+.scrollablePlanetList {
+  max-height: 200px; /* adjust as needed */
+  overflow-y: auto;
+}
+
+#soSavedGameOptionDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

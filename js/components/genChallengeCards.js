@@ -22,6 +22,12 @@ const genChallengeCards = () => {
       icon: "fa-sack-dollar",
       iconClasses: "text-success",
     },
+    // {
+    //   displayName: "Special Ops",
+    //   internalName: "specialops",
+    //   icon: "fa-person-rifle",
+    //   iconClasses: "text-primary",
+    // },
   ];
 
   for (let i = 0; i < challenges.length; i++) {

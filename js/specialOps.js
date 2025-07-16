@@ -104,7 +104,6 @@ const saveProgress = async () => {
   const specialOpsSaveData = localStorage.getItem("specialOpsSaveData");
   if (!specialOpsSaveData) {
     obj = {
-      seesRulesOnOpen: true,
       dataName: `Special Ops Save Data`,
       missionCounter,
       currentSpecialist,
@@ -121,7 +120,6 @@ const saveProgress = async () => {
   let data = JSON.parse(specialOpsSaveData);
   data = {
     ...data,
-    seesRulesOnOpen: false,
     missionCounter,
     currentSpecialist,
     latestUnlockedSpecialist,
@@ -445,7 +443,6 @@ const uploadSaveData = async () => {
     currentSpecialist = data.currentSpecialist;
     latestUnlockedSpecialist = data.latestUnlockedSpecialist;
     specialists = data.specialists;
-    seesRulesOnOpen = data.seesRulesOnOpen;
     missionCounter = data.missionCounter;
     dataName = data.dataName;
     populateWebPage();

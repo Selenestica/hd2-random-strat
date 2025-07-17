@@ -433,6 +433,8 @@ const startNewRun = async () => {
   points = 0;
   operationPoints = 0;
 
+  pointsCounterText.innerHTML = 0;
+
   specialists = [...SPECOPSSPECS];
 
   // get a specialist, objective list, and planet

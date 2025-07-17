@@ -5,7 +5,7 @@ const showSOPointsEarnedToast = (pointsEarned) => {
   // Set the toast body content
   document.getElementById(
     "pointsEarnedToastBody"
-  ).textContent = `${pointsEarned} earned!`;
+  ).textContent = `${pointsEarned} points earned!`;
 
   // Show the toast
   toast.show();

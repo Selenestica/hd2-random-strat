@@ -40,7 +40,6 @@ BUDGET BLITZ
     - additions shown in green
     - deductions in red
   - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
-  - toggling a warbond causes the warbond select to be disabled
 
 SPECIAL OPERATIONS
   - SPECIALIST ideas:
@@ -51,9 +50,6 @@ SPECIAL OPERATIONS
   
   - save data management modal
     - set file input to null when it closes
-
-  - points system
-    - toast for showing points earned after each mission
   
   BUGS:
 

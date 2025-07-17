@@ -197,9 +197,20 @@ const ARMOR_PASSIVES = [
     imageURL: "ballisticpadding.png",
     tier: "b",
   },
+  {
+    displayName: "Adreno-Defibrillator",
+    type: "Equipment",
+    category: "armor",
+    tags: ["ArmorPassive"],
+    warbond: "Control Group",
+    warbondCode: "warbond17",
+    internalName: "adrenodefibrillator",
+    imageURL: "adrenodefibrillator.png",
+    tier: "b",
+  },
 ];
 
 // s: 1
 // a: 5
-// b: 6
+// b: 7
 // c: 5

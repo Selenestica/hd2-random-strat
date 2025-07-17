@@ -153,9 +153,20 @@ const THROWABLES = [
     imageURL: "g109urchin.png",
     tier: "b",
   },
+  {
+    displayName: "G-31 Arc",
+    type: "Equipment",
+    category: "throwable",
+    tags: [],
+    warbond: "Control Group",
+    warbondCode: "warbond17",
+    internalName: "g31arc",
+    imageURL: "g31arc.png",
+    tier: "a",
+  },
 ];
 
 // s: 2
-// a: 5
+// a: 6
 // b: 5
 // c: 2

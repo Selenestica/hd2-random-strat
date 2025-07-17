@@ -1,42 +1,44 @@
 GENERAL:
-- go through FontAwesome icons and possibly update to better icons
+  - go through FontAwesome icons and possibly update to better icons
+  - add Control Group warbond in constants
+    - add update text to top of screen
 
 RANDOMIZER:
-- add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
-- when no booster is able to be given (no warbonds selected), booster column looks bad
-- add tags for THROWABLES
-- Master of Ceremony
-  - armor
-    - heavy (need img)
-- add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons
-- buy nvigneux a coffee
-- enemy randomizer
-- difficulty randomizer
-- button to randomize everything at once
-- add link to low sodium Helldivers discord
-- holding click on stratagem or equipment icon will change it
+  - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
+  - when no booster is able to be given (no warbonds selected), booster column looks bad
+  - add tags for THROWABLES
+  - Master of Ceremony
+    - armor
+      - heavy (need img)
+  - add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons
+  - buy nvigneux a coffee
+  - enemy randomizer
+  - difficulty randomizer
+  - button to randomize everything at once
+  - add link to low sodium Helldivers discord
+  - holding click on stratagem or equipment icon will change it
 
 PENITENT CRUSADE:
-- system to track max stars missions, incomplete missions, and failed missions. adding points for each
- - end game modal for showing max star missions, completed missions, and failed missions. number of items earned in each category. and total points calculated.
- - when challenge complete, remove Mission Complete/Failed buttons and add "View Results" button so they can see their score again
-- outline required items for specialists
-- when mission fail, choose a and s tier items from acquiredItems, if any
-- add nice icon for app icon shortcuts
-- rare reroll token that randomly shows up as a reward
-- add QR codes for data sharing
-- add Discord bot compatibility
-- SPECIALIST ideas:
- - The Shotgun Surgeon
- - ybwamahe, Punisher, Bushwacker
-- BUGS:
-  - mysterious specialist issues
+  - system to track max stars missions, incomplete missions, and failed missions. adding points for each
+  - end game modal for showing max star missions, completed missions, and failed missions. number of items earned in each category. and total points calculated.
+  - when challenge complete, remove Mission Complete/Failed buttons and add "View Results" button so they can see their score again
+  - outline required items for specialists
+  - when mission fail, choose a and s tier items from acquiredItems, if any
+  - add nice icon for app icon shortcuts
+  - rare reroll token that randomly shows up as a reward
+  - add QR codes for data sharing
+  - add Discord bot compatibility
+  - SPECIALIST ideas:
+    - The Shotgun Surgeon
+    - ybwamahe, Punisher, Bushwacker
+  - BUGS:
+    - mysterious specialist issues
 
 BUDGET BLITZ
-- more detailed breakdown of points in game over modal
-  - additions shown in green
-  - deductions in red
-- in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
+  - more detailed breakdown of points in game over modal
+    - additions shown in green
+    - deductions in red
+  - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
 
 SPECIAL OPERATIONS
   - SPECIALIST ideas:

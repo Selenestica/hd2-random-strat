@@ -393,7 +393,7 @@ const PRIMARIES = [
     warbondCode: "warbond15",
     internalName: "r2amendment",
     imageURL: "r2amendment.png",
-    tier: "b",
+    tier: "a",
   },
   {
     displayName: "AR-32 Pacifier",
@@ -404,11 +404,22 @@ const PRIMARIES = [
     warbondCode: "warbond16",
     internalName: "ar32pacifier",
     imageURL: "ar32pacifier.png",
+    tier: "b",
+  },
+  {
+    displayName: "Variable",
+    type: "Equipment",
+    category: "primary",
+    tags: ["AssaultRifle"],
+    warbond: "Control Group",
+    warbondCode: "warbond17",
+    internalName: "variable",
+    imageURL: "variable.png",
     tier: "a",
   },
 ];
 
 // s: 6
-// a: 13
+// a: 14
 // b: 17
 // c: 1

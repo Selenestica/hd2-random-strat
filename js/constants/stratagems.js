@@ -121,6 +121,17 @@ const STRATAGEMS = [
     tier: "s",
   },
   {
+    displayName: "Epoch",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Weapons"],
+    warbond: "Control Group",
+    warbondCode: "warbond17",
+    internalName: "epoch",
+    imageURL: "epoch.svg",
+    tier: "a",
+  },
+  {
     displayName: "Commando",
     type: "Stratagem",
     category: "Supply",
@@ -284,6 +295,17 @@ const STRATAGEMS = [
     internalName: "lift860hoverpack",
     imageURL: "lift860hoverpack.svg",
     tier: "b",
+  },
+  {
+    displayName: "Warp Pack",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Backpacks"],
+    warbond: "Control Group",
+    warbondCode: "warbond17",
+    internalName: "warppack",
+    imageURL: "warppack.svg",
+    tier: "a",
   },
   {
     displayName: "Supply Pack",
@@ -646,7 +668,40 @@ const STRATAGEMS = [
     warbondCode: "warbond12",
     internalName: "aflam40flamesentry",
     imageURL: "aflam40flamesentry.svg",
-    tier: "c",
+    tier: "b",
+  },
+  {
+    displayName: "Laser Sentry",
+    type: "Stratagem",
+    category: "Defense",
+    tags: ["Sentry"],
+    warbond: "Control Group",
+    warbondCode: "warbond17",
+    internalName: "lasersentry",
+    imageURL: "lasersentry.svg",
+    tier: "a",
+  },
+  {
+    displayName: "Autocannon Sentry",
+    type: "Stratagem",
+    category: "Defense",
+    tags: ["Sentry"],
+    warbond: "None",
+    warbondCode: "none",
+    internalName: "autocannonsentry",
+    imageURL: "autocannonsentry.svg",
+    tier: "b",
+  },
+  {
+    displayName: "Rocket Sentry",
+    type: "Stratagem",
+    category: "Defense",
+    tags: ["Sentry"],
+    warbond: "None",
+    warbondCode: "none",
+    internalName: "rocketsentry",
+    imageURL: "rocketsentry.svg",
+    tier: "a",
   },
   {
     displayName: "Shield Generator Relay",
@@ -691,28 +746,6 @@ const STRATAGEMS = [
     internalName: "grenadierbattlement",
     imageURL: "grenadierbattlement.svg",
     tier: "b",
-  },
-  {
-    displayName: "Autocannon Sentry",
-    type: "Stratagem",
-    category: "Defense",
-    tags: ["Sentry"],
-    warbond: "None",
-    warbondCode: "none",
-    internalName: "autocannonsentry",
-    imageURL: "autocannonsentry.svg",
-    tier: "b",
-  },
-  {
-    displayName: "Rocket Sentry",
-    type: "Stratagem",
-    category: "Defense",
-    tags: ["Sentry"],
-    warbond: "None",
-    warbondCode: "none",
-    internalName: "rocketsentry",
-    imageURL: "rocketsentry.svg",
-    tier: "a",
   },
   {
     displayName: "Anti-Tank Mines",
@@ -761,6 +794,6 @@ const STRATAGEMS = [
 ];
 
 // s: 11
-// a: 23
+// a: 26
 // b: 25
 // c: 9

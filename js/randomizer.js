@@ -68,6 +68,7 @@ let checkedWarbonds = [
   "warbond14",
   "warbond15",
   "warbond16",
+  "warbond17",
 ];
 
 for (let y = 0; y < supplyAmountOptions.length; y++) {
@@ -376,6 +377,7 @@ const checkLocalStorageForOptionsPreferences = () => {
         warbond14: true,
         warbond15: true,
         warbond16: true,
+        warbond17: true,
       },
       stratagemOptions: {
         onlyEaglesRadio: false,

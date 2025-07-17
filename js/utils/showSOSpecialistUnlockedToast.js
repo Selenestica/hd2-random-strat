@@ -7,7 +7,7 @@ const showSOSpecialistUnlockedToast = (specName) => {
   // Set the toast body content
   document.getElementById(
     "specialistUnlockedToastBody"
-  ).textContent = `${specName} specialist unlocked!`;
+  ).textContent = `${specName} unlocked!`;
 
   // Show the toast
   toast.show();

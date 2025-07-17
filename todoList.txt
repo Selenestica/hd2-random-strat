@@ -1,7 +1,8 @@
 GENERAL:
   - go through FontAwesome icons and possibly update to better icons
-  - add Control Group warbond in constants
-    - add update text to top of screen
+  - make sure BB and PC challenges get updated with the new items
+    - current runs wont be updated, but new runs will be as long as the page refreshes sometime
+  - post challenges site to Helldivers 2 discord server
 
 RANDOMIZER:
   - add empty stratagem and equipment borders so the page doesnt look so empty when the page loads
@@ -39,15 +40,20 @@ BUDGET BLITZ
     - additions shown in green
     - deductions in red
   - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
+  - toggling a warbond causes the warbond select to be disabled
 
 SPECIAL OPERATIONS
   - SPECIALIST ideas:
+    - breakfast taco's specialist
     - all shotguns?
     - gunslinger? deadeye, senator, gunslinger passive...
   - add warbond select, and attach warbonds to specialists to filter them out
   
   - save data management modal
     - set file input to null when it closes
+
+  - points system
+    - toast for showing points earned after each mission
   
   BUGS:
 

@@ -49,7 +49,7 @@
       <div class="row d-flex justify-content-center mt-2">
         <div class="d-flex col-4 justify-content-start px-0">
           <a href="../index.html">
-            <button class="btn text-light text-start" type="button">
+            <button class="btn text-light text-start py-0" type="button">
               <i class="fa-solid fa-arrow-left"></i>
               Back to Challenges
             </button>
@@ -87,7 +87,7 @@
       </div>
       <div class="row d-flex justify-content-center mt-2">
         <div class="d-flex col justify-content-center">
-          <h1 class="text-light">Helldivers 2</h1>
+          <h1 class="text-light my-0">Helldivers 2</h1>
         </div>
       </div>
       <div class="row d-flex justify-content-center">
@@ -106,13 +106,13 @@
       </div>
       <div class="row mt-2 justify-content-center text-white">
         <div class="col-4"></div>
-        <div
-          class="col-4 text-white d-flex justify-content-center"
-          id="missionCounterText"
-        ></div>
+        <div class="col-4 text-white d-flex justify-content-center">
+          <b>Points:</b
+          ><span class="mx-1 text-warning" id="pointsCounterText">0</span>
+        </div>
         <div class="col-4 d-flex justify-content-end"></div>
       </div>
-      <div class="row mt-2 justify-content-center">
+      <div class="row justify-content-center">
         <div class="col-0 col-lg-2"></div>
         <div class="col-8 col-lg-6 d-flex justify-content-center">
           <div class="d-flex align-items-center">
@@ -163,6 +163,10 @@
 
       <div id="lowerContentContainer">
         <!-- OPERATION INFO -->
+        <div
+          class="col-12 text-white d-flex justify-content-center"
+          id="missionCounterText"
+        ></div>
         <div
           class="row d-flex justify-content-center mt-2"
           id="operationInfoContainer"
@@ -881,10 +885,35 @@
         aria-live="assertive"
         aria-atomic="true"
         data-bs-autohide="true"
-        data-bs-delay="3000"
+        data-bs-delay="1000"
       >
         <div class="d-flex">
           <div class="toast-body" id="specialistUnlockedToastBody"></div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- POINTS EARNED TOAST -->
+    <div
+      class="position-fixed top-0 start-50 translate-middle-x p-3"
+      style="z-index: 1045"
+    >
+      <div
+        class="toast align-items-center text-white bg-success border-0 pointsEarnedToast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        data-bs-autohide="true"
+        data-bs-delay="3000"
+      >
+        <div class="d-flex">
+          <div class="toast-body" id="pointsEarnedToastBody"></div>
           <button
             type="button"
             class="btn-close btn-close-white me-2 m-auto"
@@ -917,11 +946,12 @@
   <script src="../js/constants/specialOpsObjectives.js"></script>
   <script src="../js/utils/getMissionText.js"></script>
   <script src="../js/utils/showSOSpecialistUnlockedToast.js"></script>
+  <script src="../js/utils/showSOPointsEarnedToast.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
   <script src="../js/utils/downloadSOSaveFile.js"></script>
   <script src="../js/utils/getRandomSpecialOpsObjectives.js"></script>
   <script src="../js/components/genSOSpecialistsModalContent.js"></script>
-  <script src="../js/specialOps.js"></script>
+  <script src="../js/specialops.js"></script>
   <script src="../js/components/genSOMissionCompleteModalContent.js"></script>
   <script src="../js/components/genSOSaveDataManagementModalContent.js"></script>
 </html>

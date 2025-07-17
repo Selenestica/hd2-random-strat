@@ -23,6 +23,7 @@ const objectiveNameText = document.getElementById("objectiveNameText");
 const objectiveProgressText = document.getElementById("objectiveProgressText");
 const specialistNameText = document.getElementById("specialistNameText");
 const maxStarsModalBody = document.getElementById("maxStarsModalBody");
+const pointsCounterText = document.getElementById("pointsCounterText");
 const flavorAndInstructionsModal = document.getElementById(
   "flavorAndInstructionsModal"
 );
@@ -47,6 +48,8 @@ let campaignsData = null;
 let selectedSpecialist = null;
 let specialists = null;
 let restarts = 0;
+let operationPoints = 0;
+let points = 0;
 
 let primaries = [...PRIMARIES];
 let secondaries = [...SECONDARIES];
@@ -114,6 +117,8 @@ const saveProgress = async () => {
       currentObjectives,
       specialists,
       restarts,
+      points,
+      operationPoints,
     };
     localStorage.setItem("specialOpsSaveData", JSON.stringify(obj));
     missionCounterText.innerHTML = `Mission ${missionCounter}`;
@@ -130,6 +135,8 @@ const saveProgress = async () => {
     currentObjectives,
     specialists,
     restarts,
+    points,
+    operationPoints,
   };
 
   localStorage.setItem("specialOpsSaveData", JSON.stringify(data));
@@ -257,6 +264,33 @@ const submitMissionReport = async (isMissionSucceeded) => {
         10
       );
       currentObjectives[i].progress += val;
+      const { progress, goal, progressType, pointsAdded } =
+        currentObjectives[i];
+      if (progressType === "positive" && progress >= goal && !pointsAdded) {
+        if (missionCounter === 1) {
+          operationPoints += 5;
+          currentObjectives[i].pointsAdded = true;
+        }
+        if (missionCounter === 2) {
+          operationPoints += 3;
+          currentObjectives[i].pointsAdded = true;
+        }
+        if (missionCounter === 3) {
+          operationPoints += 1;
+          currentObjectives[i].pointsAdded = true;
+          if (currentObjectives[i].id === 7) {
+            operationPoints += 4;
+          }
+        }
+      }
+      if (
+        progressType === "negative" &&
+        progress < goal &&
+        missionCounter === 3
+      ) {
+        operationPoints += 5;
+        currentObjectives[i].pointsAdded = true;
+      }
     }
     renderObjectiveProgressText();
 
@@ -264,12 +298,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
     if (missionCounter > 3) {
       let objectivesMet = true;
       for (let j = 0; j < currentObjectives.length; j++) {
-        const obj = currentObjectives[j];
-        if (obj.progressType === "positive" && obj.progress < obj.goal) {
-          objectivesMet = false;
-          break;
-        }
-        if (obj.progressType === "negative" && obj.progress >= obj.goal) {
+        if (!currentObjectives[j].pointsAdded) {
           objectivesMet = false;
           break;
         }
@@ -280,7 +309,13 @@ const submitMissionReport = async (isMissionSucceeded) => {
         latestUnlockedSpecialist.displayName !== currentSpecialist.displayName
       ) {
         objectivesMet = false;
+        operationPoints = 0;
       }
+
+      showSOPointsEarnedToast(operationPoints);
+      points += operationPoints;
+      operationPoints = 0;
+      pointsCounterText.innerHTML = points;
 
       missionCounter = 1;
       await genNewOperation(objectivesMet, null);
@@ -295,6 +330,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
 
   // set missionCounter back to start of operation
   if (!isMissionSucceeded) {
+    operationPoints = 0;
     missionCounter = 1;
     restarts += 1;
     await genNewOperation(false, null);
@@ -394,6 +430,8 @@ const startNewRun = async () => {
   latestUnlockedSpecialist = null;
   currentObjectives = null;
   restarts = 0;
+  points = 0;
+  operationPoints = 0;
 
   specialists = [...SPECOPSSPECS];
 
@@ -410,6 +448,7 @@ const populateWebPage = () => {
   planetNameText.innerHTML = currentPlanet.planet.name;
   enemyNameText.innerHTML = currentEnemy;
   hazardsText.innerHTML = currentPlanet.planet.hazards[0].name;
+  pointsCounterText.innerHTML = points;
 
   displaySpecialistLoadout();
   genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
@@ -460,6 +499,8 @@ const uploadSaveData = async () => {
     missionCounter = data.missionCounter;
     restarts = data.restarts;
     dataName = data.dataName;
+    points = data.points ?? 0;
+    operationPoints = data.operationPoints ?? 0;
     populateWebPage();
     return;
   }

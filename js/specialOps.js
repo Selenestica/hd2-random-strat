@@ -46,6 +46,7 @@ let currentObjectives = null;
 let campaignsData = null;
 let selectedSpecialist = null;
 let specialists = null;
+let restarts = 0;
 
 let primaries = [...PRIMARIES];
 let secondaries = [...SECONDARIES];
@@ -112,6 +113,7 @@ const saveProgress = async () => {
       currentEnemy,
       currentObjectives,
       specialists,
+      restarts,
     };
     localStorage.setItem("specialOpsSaveData", JSON.stringify(obj));
     missionCounterText.innerHTML = `Mission ${missionCounter}`;
@@ -127,6 +129,7 @@ const saveProgress = async () => {
     currentEnemy,
     currentObjectives,
     specialists,
+    restarts,
   };
 
   localStorage.setItem("specialOpsSaveData", JSON.stringify(data));
@@ -293,6 +296,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
   // set missionCounter back to start of operation
   if (!isMissionSucceeded) {
     missionCounter = 1;
+    restarts += 1;
     await genNewOperation(false, null);
     saveProgress();
   }
@@ -389,6 +393,8 @@ const startNewRun = async () => {
   currentSpecialist = null;
   latestUnlockedSpecialist = null;
   currentObjectives = null;
+  restarts = 0;
+
   specialists = [...SPECOPSSPECS];
 
   // get a specialist, objective list, and planet
@@ -432,7 +438,7 @@ const populateWebPage = () => {
 
 const uploadSaveData = async () => {
   await fetchCampaignsData();
-  const specialOpsSaveData = localStorage.getItem("specialOpsSaveData");
+  const specialOpsSaveData = await localStorage.getItem("specialOpsSaveData");
   if (specialOpsSaveData) {
     // do a check here to make sure the planet they were on is still available
     // if not, put a warning up that teammates may not be able to select that planet
@@ -444,6 +450,7 @@ const uploadSaveData = async () => {
     latestUnlockedSpecialist = data.latestUnlockedSpecialist;
     specialists = data.specialists;
     missionCounter = data.missionCounter;
+    restarts = data.restarts;
     dataName = data.dataName;
     populateWebPage();
     return;

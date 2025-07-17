@@ -136,6 +136,7 @@ const saveProgress = async () => {
 };
 
 const fetchCampaignsData = async () => {
+  console.log("Fetching campaign data...");
   const url =
     "https://helldivers2challengesapi.s3.us-east-2.amazonaws.com/helldivers-data.json";
 
@@ -193,7 +194,6 @@ const genNewOperation = async (unlockSpecialist, planetName = null) => {
       specList = specialists;
     }
     const randSpecialistNumber = Math.floor(Math.random() * specList.length);
-
     let specialist = specList[randSpecialistNumber];
     specialist.locked = false;
     currentSpecialist = specialist;
@@ -442,13 +442,21 @@ const uploadSaveData = async () => {
   if (specialOpsSaveData) {
     // do a check here to make sure the planet they were on is still available
     // if not, put a warning up that teammates may not be able to select that planet
+
     const data = JSON.parse(specialOpsSaveData);
     currentPlanet = data.currentPlanet;
     currentObjectives = data.currentObjectives;
     currentEnemy = data.currentEnemy;
     currentSpecialist = data.currentSpecialist;
     latestUnlockedSpecialist = data.latestUnlockedSpecialist;
+
     specialists = data.specialists;
+    // check master specialist list to see if length is same as list in localstorage. if not, add the new specialists
+    if (data.specialists.length < SPECOPSSPECS.length) {
+      let newSpecs = SPECOPSSPECS.slice(data.specialists.length);
+      specialists.push(...newSpecs);
+    }
+
     missionCounter = data.missionCounter;
     restarts = data.restarts;
     dataName = data.dataName;

@@ -480,7 +480,9 @@ const rollPunishmentOptions = async () => {
   saveProgress();
 };
 
-const getRandomItemList = async (list) => {
+const getRandomItemListByTier = async (list) => {
+  // apply OG specialist trait here probably
+
   const num = Math.random();
   const saList = await list.filter((item) => {
     return item.tier === "s" || item.tier === "a";
@@ -515,7 +517,7 @@ const getRandomItemList = async (list) => {
 };
 
 const getRandomItem = async (list) => {
-  const listToUse = await getRandomItemList(list);
+  const listToUse = await getRandomItemListByTier(list);
   const item = listToUse[Math.floor(Math.random() * listToUse.length)];
   return item;
 };
@@ -632,6 +634,22 @@ const addDefaultItemsToAccordions = async (spec = null) => {
   }
 };
 
+const applySpecialistRules = async () => {
+  // remove support weapons for The Preacher
+  if (specialist === "16") {
+    newStrats = await newStrats.filter((ns) => !ns.tags.includes("Weapons"));
+    return;
+  }
+
+  // remove eagles and orbitals for The Hellpod Enthusiast
+  if (specialist === "17") {
+    newStrats = await newStrats.filter(
+      (ns) => ns.category !== "Eagle" && ns.category !== "Orbital"
+    );
+    return;
+  }
+};
+
 const applySpecialist = async () => {
   if (specialist === null) {
     return;
@@ -639,6 +657,10 @@ const applySpecialist = async () => {
   specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
   await getStartingItems(difficulty);
   startNewRun(specialist, difficulty);
+  const traitSpecialists = ["16", "17", "18"];
+  if (traitSpecialists.includes(specialist)) {
+    await applySpecialistRules();
+  }
   saveProgress();
 };
 

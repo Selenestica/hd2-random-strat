@@ -165,7 +165,7 @@ const STRATAGEMS = [
     tier: "c",
   },
   {
-    displayName: "GL-52 De-Escalator",
+    displayName: "De-Escalator",
     type: "Stratagem",
     category: "Supply",
     tags: ["Weapons"],

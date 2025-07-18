@@ -101,7 +101,7 @@ const SPECOPSSPECS = [
     locked: true,
     displayName: "The Stunner",
     stratagems: [
-      "GL-52 De-Escalator",
+      "De-Escalator",
       "Orbital EMS Strike",
       "EMS Mortar Sentry",
       "Guard Dog Arc",
@@ -228,7 +228,7 @@ const SPECOPSSPECS = [
     displayName: "The Peace Officer",
     stratagems: [
       "Ballistic Shield",
-      "GL-52 De-Escalator",
+      "De-Escalator",
       "Grenadier Battlement",
       "Fast Recon Vehicle",
     ],

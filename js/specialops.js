@@ -196,7 +196,7 @@ const genNewOperation = async (unlockSpecialist, planetName = null) => {
   // random specialist, only if new game or objectives were met
   if (unlockSpecialist) {
     // get a random locked specialist if there are any
-    let specList = specialists.filter((s) => s.locked === true);
+    let specList = await specialists.filter((s) => s.locked === true);
     if (specList.length < 1) {
       specList = specialists;
     }
@@ -435,7 +435,7 @@ const startNewRun = async () => {
 
   pointsCounterText.innerHTML = 0;
 
-  specialists = [...SPECOPSSPECS];
+  specialists = structuredClone(SPECOPSSPECS);
 
   // get a specialist, objective list, and planet
   await genNewOperation(true, null);
@@ -490,13 +490,15 @@ const uploadSaveData = async () => {
     currentEnemy = data.currentEnemy;
     currentSpecialist = data.currentSpecialist;
     latestUnlockedSpecialist = data.latestUnlockedSpecialist;
+    const newSpecialistInfo = await checkForSOSpecialistDiffs(
+      data.specialists,
+      data.currentSpecialist,
+      data.latestUnlockedSpecialist
+    );
 
-    specialists = data.specialists;
-    // check master specialist list to see if length is same as list in localstorage. if not, add the new specialists
-    if (data.specialists.length < SPECOPSSPECS.length) {
-      let newSpecs = SPECOPSSPECS.slice(data.specialists.length);
-      specialists.push(...newSpecs);
-    }
+    specialists = newSpecialistInfo.newSpecList;
+    currentSpecialist = newSpecialistInfo.newCurrentSpec;
+    latestSpecialist = newSpecialistInfo.newLatestSpec;
 
     missionCounter = data.missionCounter;
     restarts = data.restarts;

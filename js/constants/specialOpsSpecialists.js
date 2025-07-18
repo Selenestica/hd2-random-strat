@@ -360,7 +360,7 @@ const SPECOPSSPECS = [
   },
   {
     locked: true,
-    displayName: "The Penitent",
+    displayName: "The Lone Penant",
     stratagems: [
       "One True Flag",
       "Orbital EMS Strike",

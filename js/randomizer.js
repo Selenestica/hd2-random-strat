@@ -354,7 +354,7 @@ const updateLocalStorage = (element, type) => {
   // };
 };
 
-const checkLocalStorageForOptionsPreferences = () => {
+const checkLocalStorageForOptionsPreferences = async () => {
   const randomizerOptions = localStorage.getItem("randomizerOptions");
   if (!randomizerOptions) {
     // create randomizerOptions object and put in local storage
@@ -398,7 +398,7 @@ const checkLocalStorageForOptionsPreferences = () => {
         oneSupportCheck: false,
       },
     };
-    localStorage.setItem("randomizerOptions", JSON.stringify(obj));
+    await localStorage.setItem("randomizerOptions", JSON.stringify(obj));
     return;
   }
   if (randomizerOptions) {
@@ -410,7 +410,7 @@ const checkLocalStorageForOptionsPreferences = () => {
         document.getElementById(innerKey).checked = data[outerKey][innerKey];
       }
     }
-    applyStoredOptionsToLists();
+    await applyStoredOptionsToLists();
   }
 };
 
@@ -431,4 +431,11 @@ const applyStoredOptionsToLists = () => {
   // will want to add the stratagems options here one day
 };
 
-checkLocalStorageForOptionsPreferences();
+const randomizeAll = async () => {
+  await checkLocalStorageForOptionsPreferences();
+  rollEquipment();
+  rollStratagems();
+  rollArmor();
+};
+
+randomizeAll();

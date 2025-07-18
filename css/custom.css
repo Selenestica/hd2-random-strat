@@ -337,3 +337,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.pcMandatoryStratagemClass {
+  border: 2px solid cyan;
+}

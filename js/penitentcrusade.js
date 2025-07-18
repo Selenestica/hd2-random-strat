@@ -522,6 +522,23 @@ const getRandomItem = async (list) => {
   return item;
 };
 
+const getMandatoryStratStyle = (stratName) => {
+  const trueDefaultStrats = [
+    "Orbital EMS Strike",
+    "Orbital Smoke Strike",
+    "Eagle Smoke Strike",
+    "EMS Mortar Sentry",
+    "Shield Generator Relay",
+  ];
+  if (
+    !trueDefaultStrats.includes(stratName) &&
+    starterStratNames.includes(stratName)
+  ) {
+    return "pcMandatoryStratagemClass";
+  }
+  return "";
+};
+
 const generateItemCard = (
   item,
   inModal,
@@ -531,6 +548,7 @@ const generateItemCard = (
   missionFailed = false
 ) => {
   // display the item image in the modal or accordion item
+  let mandatoryStratStyle = getMandatoryStratStyle(item.displayName);
   let style = "col-2";
   let modalTextStyle = "pcItemCardText";
   let fcn = "";
@@ -544,7 +562,7 @@ const generateItemCard = (
     typeText = `<p class="card-title fst-italic text-white">${type}</p>`;
   }
   return `
-    <div onclick="${fcn}" class="card d-flex ${style} pcItemCards mx-1">
+    <div onclick="${fcn}" class="card ${mandatoryStratStyle} d-flex ${style} pcItemCards mx-1">
     ${typeText}
       <img
           src="../images/${imgDir}/${item.imageURL}"

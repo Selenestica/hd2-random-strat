@@ -50,7 +50,10 @@ SPECIAL OPERATIONS
   
   - save data management modal
     - set file input to null when it closes
-  
+
+  - specialist modal
+    - on large screens, set a fixed height
+      
   BUGS:
 
 

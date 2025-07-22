@@ -71,10 +71,19 @@
             <i class="fa-2x fa-solid fa-mug-saucer"></i>
           </a>
         </div>
-        <div class="d-flex col-4 justify-content-end">
-          <div>
+        <div class="col-4">
+          <div class="d-flex justify-content-end">
             <button
               class="btn btn-primary"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#warbondSelectModal"
+              id="warbondSelectButtonMobile"
+            >
+              <i class="fa-solid fa-cog"></i>
+            </button>
+            <button
+              class="btn btn-primary mx-1"
               onclick="genBudgetBlitzDataManagementModalInfo()"
               type="button"
             >
@@ -99,15 +108,6 @@
             data-bs-target="#flavorAndInstructionsModal"
           >
             <i class="fa-solid fa-circle-info"></i>
-          </button>
-          <button
-            class="btn btn-primary ml-1"
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#warbondSelectModal"
-            id="warbondSelectButtonMobile"
-          >
-            <i class="fa-solid fa-cog"></i>
           </button>
         </div>
       </div>
@@ -366,7 +366,7 @@
             data-bs-target="#warbondSelectModal"
             id="warbondSelectButtonDesktop"
           >
-            <i class="fa-solid fa-cog"></i>
+            Settings
           </button>
           <button
             class="btn btn-warning"

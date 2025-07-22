@@ -41,6 +41,7 @@ const getStartingArmor = (diff) => {
 
 const getStartingItems = (diff = null) => {
   starterStratNames = [
+    "One True Flag",
     "Orbital EMS Strike",
     "Orbital Smoke Strike",
     "Eagle Smoke Strike",
@@ -48,7 +49,6 @@ const getStartingItems = (diff = null) => {
     "Shield Generator Relay",
   ];
   diff === "super" ? starterStratNames.push("Ballistic Shield") : null;
-  diff === "bb" ? starterStratNames.push("One True Flag") : null;
   starterPrimNames = ["Constitution"];
   starterSecNames = ["Stun Lance", "Stun Baton", "Combat Hatchet", "Saber"];
   diff !== "super" ? starterSecNames.push("Peacemaker") : null;

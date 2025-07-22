@@ -14,6 +14,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Integrated Explosives"],
     traits: [],
+    warbonds: ["warbond1", "warbond13"],
   },
   {
     displayName: "The Permacura Rep",
@@ -25,6 +26,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Med-Kit"],
     traits: [],
+    warbonds: ["warbond10"],
   },
   {
     displayName: "The Flag Bearer",
@@ -40,6 +42,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Reinforced Epaulettes"],
     traits: [],
+    warbonds: ["warbond15"],
   },
   {
     displayName: "The Speedrunner",
@@ -54,6 +57,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: [],
     traits: [],
+    warbonds: ["warbond6", "warbond11"],
   },
   {
     displayName: "The Viper Commando",
@@ -69,6 +73,7 @@ const SPECIALISTS = [
     throwables: ["K-2 Throwing Knife"],
     armorPassives: ["Peak Physique"],
     traits: [],
+    warbonds: ["warbond8"],
   },
   {
     displayName: "The Pyromaniac",
@@ -80,6 +85,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Inflammable"],
     traits: [],
+    warbonds: ["warbond9"],
   },
   {
     displayName: "The Lightning Bug",
@@ -91,6 +97,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Electrical Conduit"],
     traits: [],
+    warbonds: ["warbond5"],
   },
   {
     displayName: "The Scout Sniper",
@@ -102,6 +109,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Scout"],
     traits: [],
+    warbonds: [],
   },
   {
     displayName: "The Truth Enforcer",
@@ -113,6 +121,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Unflinching"],
     traits: [],
+    warbonds: ["warbond11"],
   },
   {
     displayName: "The Exterminator",
@@ -124,6 +133,7 @@ const SPECIALISTS = [
     throwables: ["G-4 Gas"],
     armorPassives: ["Advanced Filtration"],
     traits: [],
+    warbonds: ["warbond10"],
   },
   {
     displayName: "The Assault Trooper",
@@ -142,6 +152,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Acclimated"],
     traits: [],
+    warbonds: [],
   },
   {
     displayName: "The Loot Goblin",
@@ -153,6 +164,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: [],
     traits: [],
+    warbonds: ["warbond15"],
   },
   {
     displayName: "The Escape Artist",
@@ -164,6 +176,7 @@ const SPECIALISTS = [
     throwables: ["G-3 Smoke"],
     armorPassives: [],
     traits: [],
+    warbonds: [],
   },
   {
     displayName: "The Arbiter",
@@ -179,6 +192,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Ballistic Padding"],
     traits: [],
+    warbonds: ["warbond1", "warbond16"],
   },
   {
     displayName: "Test Subject #4311",
@@ -190,6 +204,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Adreno-Defibrillator"],
     traits: [],
+    warbonds: ["warbond17"],
   },
   {
     displayName: "The Urban Soldier",
@@ -201,6 +216,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Siege Ready"],
     traits: [],
+    warbonds: ["warbond12"],
   },
   {
     displayName: "The Preacher",
@@ -212,6 +228,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Gunslinger"],
     traits: ["You cannot roll support weapons"],
+    warbonds: ["warbond14"],
   },
   {
     displayName: "The Hellpod Enthusiast",
@@ -222,7 +239,8 @@ const SPECIALISTS = [
     secondaries: [],
     throwables: [],
     armorPassives: [],
-    traits: ["You cannot roll Eagle or Orbital strategems"],
+    traits: ["You cannot roll Eagle or Orbital stratagems"],
+    warbonds: ["warbond9"],
   },
   // {
   //   displayName: 'The O.G.',

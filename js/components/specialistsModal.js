@@ -50,30 +50,44 @@ const genTraits = (traits) => {
   `;
 };
 
+const makeCard = (spc, index) => {
+  return `
+          <div id="pcSpecialistCard('${index}')" class="card col-md-5 col-sm-12 specialistCards m-2" onclick="setSpecialist('${index}')">
+            <div class="card-header">
+              <h5 class="text-white specialistHeadersClass" id="specialistHeader${index}">${
+    spc.displayName
+  }</h5>
+            </div>
+            <div class="card-body">
+              <p class="text-white">You begin with, and must always have equipped:</p>
+              <ul>
+                ${genStarterItems(spc.starterItems)}
+              </ul>
+              ${spc.traits.length > 0 ? genTraits(spc.traits) : ""}
+          </div>
+    `;
+};
+
 const genSpecialistsCards = () => {
+  specialistsList.innerHTML = "";
   if (specialistsList.children.length > 0) {
     return;
   }
   for (let i = 0; i < SPECIALISTS.length; i++) {
-    specialistsList.innerHTML += `
-      <div class="card col-md-5 col-sm-12 specialistCards m-2" onclick="setSpecialist('${i}')">
-        <div class="card-header">
-          <h5 class="text-white specialistHeadersClass" id="specialistHeader${i}">${
-      SPECIALISTS[i].displayName
-    }</h5>
-        </div>
-        <div class="card-body">
-          <p class="text-white">You begin with, and must always have equipped:</p>
-          <ul>
-            ${genStarterItems(SPECIALISTS[i].starterItems)}
-          </ul>
-          ${
-            SPECIALISTS[i].traits.length > 0
-              ? genTraits(SPECIALISTS[i].traits)
-              : ""
-          }
-        </div>
-    `;
+    const specWarbonds = SPECIALISTS[i].warbonds;
+    if (specWarbonds.length < 1) {
+      specialistsList.innerHTML += makeCard(SPECIALISTS[i], i);
+      continue;
+    }
+    let make = true;
+    for (let j = 0; j < specWarbonds.length; j++) {
+      if (!warbondCodes.includes(specWarbonds[j])) {
+        make = false;
+      }
+    }
+    if (make) {
+      specialistsList.innerHTML += makeCard(SPECIALISTS[i], i);
+    }
   }
 };
 

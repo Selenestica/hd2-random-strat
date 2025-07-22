@@ -44,16 +44,59 @@ const currentDifficultyButton = document.getElementById(
 const difficultyOptionButton = document.getElementById(
   "difficultyOptionButton"
 );
+const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
+const hellDiversMobilizeCheckbox = document.getElementById("warbond3");
+
 let currentItems = [];
 let currentPunishmentItems = [];
 let missionCounter = 1;
 let difficulty = "normal";
+hellDiversMobilizeCheckbox.disabled = true;
+let masterPrimsList = [];
+let masterSecondsList = [];
+let masterThrowsList = [];
+let masterBoostsList = [];
+let masterStratsList = [];
+let masterArmorPassivesList = [];
 
-const startNewRun = (spec = null, diff = null) => {
-  if (spec === null) {
-    specialistNameText.innerHTML = "";
-  }
+// will need to keep track of master list
+for (let y = 0; y < warbondCheckboxes.length; y++) {
+  warbondCheckboxes[y].addEventListener("change", (e) => {
+    if (e.target.checked && !warbondCodes.includes(e.srcElement.id)) {
+      warbondCodes.push(e.srcElement.id);
+    }
+    if (!e.target.checked && warbondCodes.includes(e.srcElement.id)) {
+      const indexToRemove = warbondCodes.indexOf(e.srcElement.id);
+      warbondCodes.splice(indexToRemove, 1);
+    }
+    filterItemsByWarbond();
+    currentItems = [];
+    applySpecialist("default");
+    genSpecialistsCards();
+  });
+}
 
+const filterItemsByWarbond = async () => {
+  const sourceLists = [
+    masterPrimsList,
+    masterSecondsList,
+    masterThrowsList,
+    masterBoostsList,
+    masterStratsList,
+    masterArmorPassivesList,
+  ];
+  const filteredLists = await sourceLists.map((list) =>
+    list.filter(
+      (item) =>
+        warbondCodes.includes(item.warbondCode) || item.warbondCode === "none"
+    )
+  );
+
+  [newPrims, newSeconds, newThrows, newBoosts, newStrats, newArmorPassives] =
+    filteredLists;
+};
+
+const writeItems = () => {
   newStrats = OGstratsList.filter((strat) => {
     return !starterStratNames.includes(strat.displayName);
   });
@@ -73,6 +116,32 @@ const startNewRun = (spec = null, diff = null) => {
     return !starterBoosterNames.includes(booster.displayName);
   });
 
+  // primarily for warbond filtering
+  masterPrimsList = cloneList(newPrims);
+  masterSecondsList = cloneList(newSeconds);
+  masterThrowsList = cloneList(newThrows);
+  masterBoostsList = cloneList(newBoosts);
+  masterStratsList = cloneList(newStrats);
+  masterArmorPassivesList = cloneList(newArmorPassives);
+};
+
+const startNewRun = async (spec = null, diff = null, removingSpec = null) => {
+  // probably want to set all warbond codes to checked just in case
+  if (!removingSpec) {
+    warbondCodes = [...masterWarbondCodes];
+    for (let i = 0; i < warbondCheckboxes.length; i++) {
+      warbondCheckboxes[i].checked = true;
+    }
+  }
+
+  if (spec === null) {
+    specialistNameText.innerHTML = "";
+  }
+
+  if (!removingSpec) {
+    await writeItems();
+  }
+
   currentItems = [];
   currentPunishmentItems = [];
   missionCounter = diff === "super" ? 3 : 1;
@@ -80,13 +149,15 @@ const startNewRun = (spec = null, diff = null) => {
   specialist = spec;
   checkMissionButtons();
   // open the modal to show the rules
-  document.addEventListener("DOMContentLoaded", () => {
-    const modal = new bootstrap.Modal(flavorAndInstructionsModal);
-    modal.show();
-  });
-  missionCounterText.innerHTML = `${getMissionText()}`;
+  if (!removingSpec) {
+    document.addEventListener("DOMContentLoaded", () => {
+      const modal = new bootstrap.Modal(flavorAndInstructionsModal);
+      modal.show();
+    });
+    missionCounterText.innerHTML = `${getMissionText()}`;
+  }
   clearItemOptionsModal();
-  if (spec !== null) {
+  if (spec !== null || removingSpec) {
     addDefaultItemsToAccordions(spec);
   }
 };
@@ -135,6 +206,21 @@ const getCurrentGame = async () => {
 };
 
 const checkMissionButtons = () => {
+  if (missionCounter !== 1) {
+    for (let i = 0; i < warbondCheckboxes.length; i++) {
+      warbondCheckboxes[i].disabled = true;
+    }
+    // for (let j = 0; j < diffRadios.length; j++) {
+    //   diffRadios[j].disabled = true;
+    // }
+  }
+  if (missionCounter === 1) {
+    for (let j = 0; j < warbondCheckboxes.length; j++) {
+      warbondCheckboxes[j].disabled = false;
+      hellDiversMobilizeCheckbox.disabled = true;
+    }
+  }
+
   if (difficulty === "normal") {
     if (missionCounter > 1) {
       applySpecialistButton.disabled = true;
@@ -381,6 +467,7 @@ const getRewardsItemsLists = () => {
   return lists;
 };
 
+//
 const rollRewardOptions = async () => {
   if (currentItems.length > 0) {
     for (let i = 0; i < currentItems.length; i++) {
@@ -398,7 +485,7 @@ const rollRewardOptions = async () => {
 
   let itemsLists = await getRewardsItemsLists();
   itemsLists = itemsLists.filter((list) => list.length > 0);
-  if (itemsLists.length < 3) {
+  if (itemsLists.length < 1) {
     console.log("NOT ENOUGH ITEMS TO SHOW");
     return;
   }
@@ -425,8 +512,11 @@ const rollRewardOptions = async () => {
       vals.typeText
     );
   }
+
   // save current items in LS
-  saveProgress();
+  if (missionCounter !== 1) {
+    saveProgress();
+  }
 };
 
 const rollPunishmentOptions = async () => {
@@ -522,17 +612,24 @@ const getRandomItem = async (list) => {
   return item;
 };
 
+// adds cyan outline around stratagems that must be taken because of specialist
 const getMandatoryStratStyle = (stratName) => {
-  const trueDefaultStrats = [
+  let trueDefaultStrats = [
+    "One True Flag",
     "Orbital EMS Strike",
     "Orbital Smoke Strike",
     "Eagle Smoke Strike",
     "EMS Mortar Sentry",
     "Shield Generator Relay",
   ];
+  if (difficulty === "super") {
+    trueDefaultStrats.push("Ballistic Shield");
+  }
   if (
-    !trueDefaultStrats.includes(stratName) &&
-    starterStratNames.includes(stratName)
+    (!trueDefaultStrats.includes(stratName) &&
+      starterStratNames.includes(stratName)) ||
+    (specialist === "2" && stratName === "One True Flag") ||
+    (specialist === "13" && stratName === "Ballistic Shield")
   ) {
     return "pcMandatoryStratagemClass";
   }
@@ -562,7 +659,7 @@ const generateItemCard = (
     typeText = `<p class="card-title fst-italic text-white">${type}</p>`;
   }
   return `
-    <div onclick="${fcn}" class="card ${mandatoryStratStyle} d-flex ${style} pcItemCards mx-1">
+    <div onclick="${fcn}" class="card ${mandatoryStratStyle} d-flex ${style} pcNoHoverItemCards mx-1">
     ${typeText}
       <img
           src="../images/${imgDir}/${item.imageURL}"
@@ -668,13 +765,28 @@ const applySpecialistRules = async () => {
   }
 };
 
-const applySpecialist = async () => {
+const applySpecialist = async (specToApply = null) => {
   if (specialist === null) {
     return;
   }
-  specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
+
+  if (specToApply === "default") {
+    specialist = null;
+  }
+
+  specToApply === "default"
+    ? (specialistNameText.innerHTML = "")
+    : (specialistNameText.innerHTML = SPECIALISTS[specialist].displayName);
+  if (specToApply) {
+    stratagemAccordionBody.innerHTML = "";
+    primaryAccordionBody.innerHTML = "";
+    secondaryAccordionBody.innerHTML = "";
+    throwableAccordionBody.innerHTML = "";
+    armorPassiveAccordionBody.innerHTML = "";
+    boosterAccordionBody.innerHTML = "";
+  }
   await getStartingItems(difficulty);
-  startNewRun(specialist, difficulty);
+  startNewRun(specialist, difficulty, true);
   const traitSpecialists = ["16", "17", "18"];
   if (traitSpecialists.includes(specialist)) {
     await applySpecialistRules();
@@ -746,6 +858,7 @@ const saveProgress = async (item = null) => {
           missionCounter,
           specialist,
           difficulty,
+          warbondCodes,
         },
       ],
     };
@@ -783,6 +896,7 @@ const saveProgress = async (item = null) => {
         missionCounter,
         specialist,
         difficulty,
+        warbondCodes,
       };
     }
     return sg;
@@ -840,6 +954,7 @@ const uploadSaveData = async () => {
 
     const currentGame = await getCurrentGame();
     difficulty = currentGame.difficulty ?? "normal";
+    warbondCodes = currentGame.warbondCodes ?? warbondCodes;
     changeDifficulty(currentGame.difficulty ?? "normal");
     newStrats = currentGame.newStrats;
     newPrims = currentGame.newPrims;
@@ -864,12 +979,30 @@ const uploadSaveData = async () => {
     throwableAccordionBody.innerHTML = "";
     armorPassiveAccordionBody.innerHTML = "";
     boosterAccordionBody.innerHTML = "";
+
+    // primarily for warbond filtering
+    if (missionCounter === 1) {
+      masterPrimsList = cloneList(newPrims);
+      masterSecondsList = cloneList(newSeconds);
+      masterThrowsList = cloneList(newThrows);
+      masterBoostsList = cloneList(newBoosts);
+      masterStratsList = cloneList(newStrats);
+      masterArmorPassivesList = cloneList(newArmorPassives);
+    }
+
     await getStartingItems(currentGame.difficulty);
     await addDefaultItemsToAccordions(specialist);
+    genSpecialistsCards();
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
       const item = currentGame.acquiredItems[i];
       const { imgDir, accBody } = getItemMetaData(item);
       accBody.innerHTML += generateItemCard(item, false, imgDir);
+    }
+    const missingWarbondCodes = masterWarbondCodes.filter(
+      (code) => !warbondCodes.includes(code)
+    );
+    for (let i = 0; i < missingWarbondCodes.length; i++) {
+      document.getElementById(missingWarbondCodes[i]).checked = false;
     }
     return;
   }
@@ -878,6 +1011,15 @@ const uploadSaveData = async () => {
 };
 
 const saveDataAndRestart = async (diff = null) => {
+  // probably want to set all warbond codes to checked just in case
+  warbondCodes = [...masterWarbondCodes];
+  for (let i = 0; i < warbondCheckboxes.length; i++) {
+    warbondCheckboxes[i].checked = true;
+    if (warbondCheckboxes[i] !== "warbond3") {
+      warbondCheckboxes[i].disabled = false;
+    }
+    hellDiversMobilizeCheckbox.disabled = true;
+  }
   const penitentCrusadeSaveData = localStorage.getItem(
     "penitentCrusadeSaveData"
   );
@@ -904,24 +1046,7 @@ const saveDataAndRestart = async (diff = null) => {
   await getStartingItems(diff);
 
   // some of the same code as restarting a run, but we use this to populate the fresh save
-  newStrats = OGstratsList.filter((strat) => {
-    return !starterStratNames.includes(strat.displayName);
-  });
-  newPrims = OGprimsList.filter((prim) => {
-    return !starterPrimNames.includes(prim.displayName);
-  });
-  newSeconds = OGsecondsList.filter((sec) => {
-    return !starterSecNames.includes(sec.displayName);
-  });
-  newThrows = OGthrowsList.filter((throwable) => {
-    return !starterThrowNames.includes(throwable.displayName);
-  });
-  newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
-    return !starterArmorPassiveNames.includes(armorPassive.displayName);
-  });
-  newBoosts = OGboostsList.filter((booster) => {
-    return !starterBoosterNames.includes(booster.displayName);
-  });
+  await writeItems();
   currentItems = [];
   currentPunishmentItems = [];
   missionCounter = diff === "super" ? 3 : 1;
@@ -941,6 +1066,7 @@ const saveDataAndRestart = async (diff = null) => {
     missionCounter,
     specialist,
     difficulty: diff === "super" ? "super" : "normal",
+    warbondCodes,
   };
 
   updatedSavedGames.push(newSaveObj);
@@ -998,6 +1124,13 @@ const pruneSavedGames = async () => {
     savedGames: prunedGames,
   };
   localStorage.setItem("penitentCrusadeSaveData", JSON.stringify(newData));
+};
+
+const cloneList = (list) => {
+  return list.map((item) => ({
+    ...item,
+    tags: [...item.tags], // clone the tags array too
+  }));
 };
 
 if (!localStorage.getItem("penitentCrusadeSaveData")) {

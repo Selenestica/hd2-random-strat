@@ -26,8 +26,6 @@ PENITENT CRUSADE:
 
   - challenge settings modal
     - antitank guarantee switch for squads of 2 or less
-    - warbond select
-      - reset specialist when warbond toggled
     - difficulty select
   - show toast when super penitent crusade unlocked
 

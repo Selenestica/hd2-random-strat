@@ -164,9 +164,21 @@
       <div id="lowerContentContainer">
         <!-- OPERATION INFO -->
         <div
+          style="border-bottom: 1px solid grey"
           class="col-12 text-white d-flex justify-content-center"
-          id="missionCounterText"
-        ></div>
+        >
+          <div class="col-5 text-white mx-0 mx-lg-4 d-flex justify-content-end">
+            <b>Operation Details:</b>
+          </div>
+          <div
+            class="col-2 d-lg-none d-flex justify-content-center text-secondary"
+          >
+            |
+          </div>
+          <div class="col-5 text-white mx-0 mx-lg-4 d-flex">
+            <b>Operation Goals:</b>
+          </div>
+        </div>
         <div
           class="row d-flex justify-content-center mt-2"
           id="operationInfoContainer"
@@ -199,6 +211,9 @@
             <div class="text-white">
               <b>Hazards</b>:<span class="mx-1" id="hazardsText"></span>
             </div>
+            <div class="text-white">
+              <b>Mission</b>:<span class="mx-1" id="missionCounterText"></span>
+            </div>
           </div>
           <div class="col text-white" id="objectivesContainer"></div>
         </div>
@@ -207,7 +222,7 @@
         <hr class="text-white" />
         <div id="loadoutContainer" class="row d-flex justify-content-center">
           <div class="text-white d-flex justify-content-center">
-            <b>Specialist</b>:<span
+            <b>LOADOUT</b>:<span
               class="mx-1 mb-1"
               id="specialistNameText"
             ></span>

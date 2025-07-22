@@ -229,7 +229,7 @@ const genNewOperation = async (unlockSpecialist, planetName = null) => {
   }
 
   missionCounter = 1;
-  missionCounterText.innerHTML = "Mission: 1";
+  missionCounterText.innerHTML = "1";
   genSOMissionCompleteModalContent(objectives);
 };
 
@@ -324,7 +324,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
     }
 
     saveProgress();
-    missionCounterText.innerHTML = `Mission: ${missionCounter}`;
+    missionCounterText.innerHTML = `${missionCounter}`;
     return;
   }
 
@@ -473,7 +473,7 @@ const populateWebPage = () => {
   }
   renderObjectiveProgressText();
 
-  missionCounterText.innerHTML = "Mission: " + missionCounter;
+  missionCounterText.innerHTML = "" + missionCounter;
   genSOMissionCompleteModalContent(currentObjectives);
 };
 

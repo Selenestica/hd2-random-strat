@@ -463,9 +463,9 @@ const SPECOPSSPECS = [
     locked: true,
     displayName: "The Helghast Sniper",
     stratagems: [
-      "Orbital Railcannon Strike",
-      "Anti-Tank Mines",
+      "Orbital EMS Strike",
       "Orbital Smoke Strike",
+      "Anti-Tank Mines",
       "EMS Mortar Sentry",
     ],
     primary: "PLAS-39 Accelerator Rifle",

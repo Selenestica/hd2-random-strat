@@ -51,14 +51,14 @@ const genSpecialistCard = (spec, i, currentSpec, latestSpec) => {
     `;
 };
 
-const genSOSpecialistsModalContent = (currentSpecialist, latestSpecialist) => {
+const genSOSpecialistsModalContent = (currSpecialist, latestSpecialist) => {
   specialistsList.innerHTML = "";
   // create specialist cards and add them to an array
   for (let i = 0; i < specialists.length; i++) {
     const card = genSpecialistCard(
       specialists[i],
       i,
-      currentSpecialist,
+      currSpecialist,
       latestSpecialist
     );
     specialistsList.innerHTML += card;

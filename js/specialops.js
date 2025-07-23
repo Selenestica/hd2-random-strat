@@ -27,6 +27,7 @@ const pointsCounterText = document.getElementById("pointsCounterText");
 const flavorAndInstructionsModal = document.getElementById(
   "flavorAndInstructionsModal"
 );
+const warbondSelectModal = document.getElementById("warbondSelectModal");
 const missionCompleteButton = document.getElementById("missionCompleteButton");
 const missionFailedButton = document.getElementById("missionFailedButton");
 const missionCompleteButtonDiv = document.getElementById(
@@ -38,6 +39,10 @@ const missionFailedButtonDiv = document.getElementById(
 const missionCounterText = document.getElementById("missionCounterText");
 const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
 const applySpecialistButton = document.getElementById("applySpecialistButton");
+const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
+const hellDiversMobilizeCheckbox = document.getElementById("warbond3");
+
+hellDiversMobilizeCheckbox.disabled = true;
 let missionCounter = 1;
 let currentPlanet = null;
 let currentEnemy = null;
@@ -67,6 +72,28 @@ missionCompleteModal.addEventListener("hidden.bs.modal", () => {
   }
 });
 
+// if the submit mission report modal ever closes, reset the inputs
+warbondSelectModal.addEventListener("hidden.bs.modal", async () => {
+  const saveData = await localStorage.getItem("specialOpsSaveData");
+  if (saveData) {
+    return;
+  }
+  startNewRun();
+});
+
+// will need to keep track of master list
+for (let y = 0; y < warbondCheckboxes.length; y++) {
+  warbondCheckboxes[y].addEventListener("change", (e) => {
+    if (e.target.checked && !warbondCodes.includes(e.srcElement.id)) {
+      warbondCodes.push(e.srcElement.id);
+    }
+    if (!e.target.checked && warbondCodes.includes(e.srcElement.id)) {
+      const indexToRemove = warbondCodes.indexOf(e.srcElement.id);
+      warbondCodes.splice(indexToRemove, 1);
+    }
+  });
+}
+
 specialistsModal.addEventListener("hidden.bs.modal", () => {
   // remove the checkmark from all specialists
   const elements = document.querySelectorAll(".specialistCheckMarks");
@@ -81,6 +108,30 @@ specialistsModal.addEventListener("hidden.bs.modal", () => {
     header.classList.add("text-white");
   });
 });
+
+const filterSpecialistsByWarbond = async (save = null) => {
+  const newSpecialistInfo = await checkForSOSpecialistDiffs(
+    specialists,
+    currentSpecialist,
+    latestUnlockedSpecialist,
+    warbondCodes
+  );
+  specialists = newSpecialistInfo.newSpecialistsList;
+  currentSpecialist = newSpecialistInfo.newCurrentSpec;
+  latestUnlockedSpecialist = newSpecialistInfo.newLatestSpec;
+
+  // this probably means that the current specialist has items that were just toggled off
+  // so we need to give the player a new specialist
+  if (!currentSpecialist || !latestUnlockedSpecialist) {
+    await genNewOperation(true, null, null);
+    save = false;
+  }
+  specialistsList.innerHTML = "";
+  genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
+  if (save) {
+    saveProgress();
+  }
+};
 
 const generateItemCard = (item) => {
   let imgDir = "equipment";
@@ -119,9 +170,10 @@ const saveProgress = async () => {
       restarts,
       points,
       operationPoints,
+      warbondCodes,
     };
     localStorage.setItem("specialOpsSaveData", JSON.stringify(obj));
-    missionCounterText.innerHTML = `Mission ${missionCounter}`;
+    missionCounterText.innerHTML = missionCounter;
     return;
   }
   let data = JSON.parse(specialOpsSaveData);
@@ -137,6 +189,7 @@ const saveProgress = async () => {
     restarts,
     points,
     operationPoints,
+    warbondCodes,
   };
 
   localStorage.setItem("specialOpsSaveData", JSON.stringify(data));
@@ -169,7 +222,7 @@ const genPlanetsList = async (campaigns) => {
 };
 
 const switchPlanet = async (planetName) => {
-  await genNewOperation(false, planetName);
+  await genNewOperation(false, planetName, null);
   saveProgress();
 };
 
@@ -180,7 +233,11 @@ const getCampaignFromPlanetName = async (planetName) => {
   return newPlanet[0];
 };
 
-const genNewOperation = async (unlockSpecialist, planetName = null) => {
+const genNewOperation = async (
+  unlockSpecialist,
+  planetName = null,
+  newGame = null
+) => {
   // random planet
   const randPlanetNumber = Math.floor(Math.random() * campaignsData.length);
   let planetToUse = campaignsData[randPlanetNumber];
@@ -200,14 +257,20 @@ const genNewOperation = async (unlockSpecialist, planetName = null) => {
     if (specList.length < 1) {
       specList = specialists;
     }
-    const randSpecialistNumber = Math.floor(Math.random() * specList.length);
+    let randSpecialistNumber = Math.floor(Math.random() * specList.length);
+    // if a brand new game, always start with The O.G.
+    if (newGame) {
+      randSpecialistNumber = 2;
+    }
     let specialist = specList[randSpecialistNumber];
+    if (specialist.locked) {
+      showSOSpecialistUnlockedToast(specialist.displayName);
+    }
     specialist.locked = false;
     currentSpecialist = specialist;
     latestUnlockedSpecialist = specialist;
     genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
     displaySpecialistLoadout();
-    showSOSpecialistUnlockedToast(currentSpecialist.displayName);
   }
 
   // random mission objectives
@@ -318,13 +381,13 @@ const submitMissionReport = async (isMissionSucceeded) => {
       pointsCounterText.innerHTML = points;
 
       missionCounter = 1;
-      await genNewOperation(objectivesMet, null);
+      await genNewOperation(objectivesMet, null, null);
       saveProgress();
       return;
     }
 
     saveProgress();
-    missionCounterText.innerHTML = `${missionCounter}`;
+    missionCounterText.innerHTML = missionCounter;
     return;
   }
 
@@ -333,7 +396,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
     operationPoints = 0;
     missionCounter = 1;
     restarts += 1;
-    await genNewOperation(false, null);
+    await genNewOperation(false, null, null);
     saveProgress();
   }
 };
@@ -413,14 +476,18 @@ const applySpecialist = async () => {
 
   currentSpecialist = selectedSpecialist;
   displaySpecialistLoadout();
-  await genNewOperation(false, null);
+  await genNewOperation(false, null, null);
   saveProgress();
   selectedSpecialist = null;
 };
 
 const startNewRun = async () => {
-  const modal = new bootstrap.Modal(flavorAndInstructionsModal);
-  modal.show();
+  const saveData = await localStorage.getItem("specialOpsSaveData");
+  if (saveData) {
+    return;
+  }
+  const infoModal = new bootstrap.Modal(flavorAndInstructionsModal);
+  infoModal.show();
 
   // clear the slate
   missionCounter = 1;
@@ -432,13 +499,13 @@ const startNewRun = async () => {
   restarts = 0;
   points = 0;
   operationPoints = 0;
+  warbondCodes = [...masterWarbondCodes];
+  specialists = structuredClone(SPECOPSSPECS);
 
   pointsCounterText.innerHTML = 0;
 
-  specialists = structuredClone(SPECOPSSPECS);
-
   // get a specialist, objective list, and planet
-  await genNewOperation(true, null);
+  await genNewOperation(true, null, true);
 
   // save the randomly selected objectives, planet, and specialist to ls
   // so user doesnt cycle through specialists
@@ -446,14 +513,23 @@ const startNewRun = async () => {
   genSOSaveDataManagementModalContent();
 };
 
-const populateWebPage = () => {
+const populateWebPage = async () => {
   planetNameText.innerHTML = currentPlanet.planet.name;
   enemyNameText.innerHTML = currentEnemy;
   hazardsText.innerHTML = currentPlanet.planet.hazards[0].name;
   pointsCounterText.innerHTML = points;
 
-  displaySpecialistLoadout();
+  const missingWarbondCodes = masterWarbondCodes.filter(
+    (code) => !warbondCodes.includes(code)
+  );
+  for (let i = 0; i < missingWarbondCodes.length; i++) {
+    document.getElementById(missingWarbondCodes[i]).checked = false;
+  }
+
+  // specialistsList.innerHTML = "";
+  // await filterSpecialistsByWarbond(false);
   genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
+  displaySpecialistLoadout();
 
   // this part handles rendering the progress text. surprisingly complex
   for (let i = 0; i < currentObjectives.length; i++) {
@@ -473,7 +549,7 @@ const populateWebPage = () => {
   }
   renderObjectiveProgressText();
 
-  missionCounterText.innerHTML = "" + missionCounter;
+  missionCounterText.innerHTML = missionCounter;
   genSOMissionCompleteModalContent(currentObjectives);
 };
 
@@ -490,13 +566,15 @@ const uploadSaveData = async () => {
     currentEnemy = data.currentEnemy;
     currentSpecialist = data.currentSpecialist;
     latestUnlockedSpecialist = data.latestUnlockedSpecialist;
+    warbondCodes = data.warbondCodes ?? [...masterWarbondCodes];
     const newSpecialistInfo = await checkForSOSpecialistDiffs(
       data.specialists,
       data.currentSpecialist,
-      data.latestUnlockedSpecialist
+      data.latestUnlockedSpecialist,
+      warbondCodes
     );
 
-    specialists = newSpecialistInfo.newSpecList;
+    specialists = newSpecialistInfo.newSpecialistsList;
     currentSpecialist = newSpecialistInfo.newCurrentSpec;
     latestSpecialist = newSpecialistInfo.newLatestSpec;
 

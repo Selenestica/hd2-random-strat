@@ -66,7 +66,7 @@ const PRIMARIES = [
     tier: "b",
   },
   {
-    displayName: "AR-32 Pacifier",
+    displayName: "Pacifier",
     type: "Equipment",
     category: "primary",
     tags: ["AssaultRifle"],

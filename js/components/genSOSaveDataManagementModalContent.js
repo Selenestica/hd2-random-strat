@@ -61,9 +61,8 @@ const genSOSaveDataManagementModalContent = () => {
 
 // delete saved game data
 const deleteSavedGameData = async () => {
-  // probably show a modal confirming thats what they want
-
   await localStorage.removeItem("specialOpsSaveData");
+  window.location.reload();
   startNewRun();
 };
 

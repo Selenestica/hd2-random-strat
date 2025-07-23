@@ -43,8 +43,9 @@ BUDGET BLITZ
 
 SPECIAL OPERATIONS
   - SPECIALIST ideas:
-    - breakfast taco's specialist
+
   - add warbond select, and attach warbonds to specialists to filter them out
+    - when adding warbonds back in, it doesnt work
   
   - save data management modal
     - set file input to null when it closes

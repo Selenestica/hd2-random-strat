@@ -506,7 +506,7 @@ const STRATAGEMS = [
     tier: "b",
   },
   {
-    displayName: "Orbital 120mm HE Barrage",
+    displayName: "Orbital 120mm Barrage",
     type: "Stratagem",
     category: "Orbital",
     tags: ["Orbital"],
@@ -517,7 +517,7 @@ const STRATAGEMS = [
     tier: "a",
   },
   {
-    displayName: "Orbital 380mm HE Barrage",
+    displayName: "Orbital 380mm Barrage",
     type: "Stratagem",
     category: "Orbital",
     tags: ["Orbital"],

@@ -29,18 +29,15 @@
     />
     <title>Helldivers 2: Special Ops</title>
     <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
-    ></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag("js", new Date());
+      gtag('js', new Date());
 
-      gtag("config", "G-BFREXT7F48");
+      gtag('config', 'G-BFREXT7F48');
     </script>
   </head>
 
@@ -56,18 +53,10 @@
           </a>
         </div>
         <div class="d-flex col-4 justify-content-center">
-          <a
-            class="mx-1"
-            target="_blank"
-            href="https://github.com/Selenestica/hd2-random-strat"
-          >
+          <a class="mx-1" target="_blank" href="https://github.com/Selenestica/hd2-random-strat">
             <i class="fa-2x fa-brands fa-github"></i>
           </a>
-          <a
-            class="mx-1"
-            target="_blank"
-            href="https://buymeacoffee.com/breakfasttaco"
-          >
+          <a class="mx-1" target="_blank" href="https://buymeacoffee.com/breakfasttaco">
             <i class="fa-2x fa-solid fa-mug-saucer"></i>
           </a>
         </div>
@@ -107,8 +96,7 @@
       <div class="row mt-2 justify-content-center text-white">
         <div class="col-4"></div>
         <div class="col-4 text-white d-flex justify-content-center">
-          <b>Points:</b
-          ><span class="mx-1 text-warning" id="pointsCounterText">0</span>
+          <b>Points:</b><span class="mx-1 text-warning" id="pointsCounterText">0</span>
         </div>
         <div class="col-4 d-flex justify-content-end"></div>
       </div>
@@ -170,19 +158,12 @@
           <div class="col-5 text-white mx-0 mx-lg-4 d-flex justify-content-end">
             <b>Operation Details:</b>
           </div>
-          <div
-            class="col-2 d-lg-none d-flex justify-content-center text-secondary"
-          >
-            |
-          </div>
+          <div class="col-2 d-lg-none d-flex justify-content-center text-secondary">|</div>
           <div class="col-5 text-white mx-0 mx-lg-4 d-flex">
             <b>Operation Goals:</b>
           </div>
         </div>
-        <div
-          class="row d-flex justify-content-center mt-2"
-          id="operationInfoContainer"
-        >
+        <div class="row d-flex justify-content-center mt-2" id="operationInfoContainer">
           <div class="col text-end" style="border-right: 1px solid grey">
             <div
               id="planetNameDiv"
@@ -199,20 +180,13 @@
                 >
                   <i class="fa-solid text-warning fa-earth-americas"></i>
                 </button>
-                <ul
-                  id="planetDropdownList"
-                  class="dropdown-menu scrollablePlanetList"
-                ></ul>
+                <ul id="planetDropdownList" class="dropdown-menu scrollablePlanetList"></ul>
               </div>
             </div>
+            <div class="text-white"><b>Enemy</b>:<span class="mx-1" id="enemyNameText"></span></div>
+            <div class="text-white"><b>Hazards</b>:<span class="mx-1" id="hazardsText"></span></div>
             <div class="text-white">
-              <b>Enemy</b>:<span class="mx-1" id="enemyNameText"></span>
-            </div>
-            <div class="text-white">
-              <b>Hazards</b>:<span class="mx-1" id="hazardsText"></span>
-            </div>
-            <div class="text-white">
-              <b>Mission</b>:<span class="mx-1" id="missionCounterText"></span>
+              <b>Mission</b>:<b class="mx-1 text-warning" id="missionCounterText"></b>
             </div>
           </div>
           <div class="col text-white" id="objectivesContainer"></div>
@@ -222,24 +196,12 @@
         <hr class="text-white" />
         <div id="loadoutContainer" class="row d-flex justify-content-center">
           <div class="text-white d-flex justify-content-center">
-            <b>LOADOUT</b>:<span
-              class="mx-1 mb-1"
-              id="specialistNameText"
-            ></span>
+            <b>LOADOUT</b>:<span class="mx-1 mb-1" id="specialistNameText"></span>
           </div>
-          <div
-            id="equippedItemsContainer"
-            class="row px-0 d-flex justify-content-center"
-          >
+          <div id="equippedItemsContainer" class="row px-0 d-flex justify-content-center">
             <div class="col px-0">
-              <div
-                id="stratagemsContainer"
-                class="row mb-2 d-flex justify-content-center"
-              ></div>
-              <div
-                id="equipmentContainer"
-                class="row d-flex justify-content-center"
-              ></div>
+              <div id="stratagemsContainer" class="row mb-2 d-flex justify-content-center"></div>
+              <div id="equipmentContainer" class="row d-flex justify-content-center"></div>
             </div>
           </div>
         </div>
@@ -257,14 +219,10 @@
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-body d-flex row justify-content-center">
-            <div
-              class="row text-white d-flex justify-content-center text-center"
-            >
+            <div class="row text-white d-flex justify-content-center text-center">
               <h4>Mission Report</h4>
             </div>
-            <div
-              class="row text-white mb-4 d-flex justify-content-center align-items-center"
-            >
+            <div class="row text-white mb-4 d-flex justify-content-center align-items-center">
               <img
                 src="../images/dressing/ministryOfTruthIcon.png"
                 class="img-fluid"
@@ -279,11 +237,7 @@
           </div>
           <div class="modal-footer row justify-content-between">
             <div class="col d-flex justify-content-start">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Cancel
               </button>
             </div>
@@ -318,21 +272,14 @@
           </div>
           <div class="modal-body row d-flex justify-content-center">
             <p class="text-white">
-              Your current operation will be reset, as well as your operational
-              objectives.
+              Your current operation will be reset, as well as your operational objectives.
             </p>
             <br />
             <br />
             <p class="text-white">Proceed?</p>
           </div>
           <div class="modal-footer d-flex justify-content-between">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button
               type="button"
               onclick="submitMissionReport(false)"
@@ -362,21 +309,14 @@
           </div>
           <div class="modal-body row d-flex justify-content-center">
             <p class="text-white">
-              Your current operation will be reset, as well as your operational
-              objectives.
+              Your current operation will be reset, as well as your operational objectives.
             </p>
             <br />
             <br />
             <p class="text-white">Proceed?</p>
           </div>
           <div class="modal-footer d-flex justify-content-between">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button
               type="button"
               onclick="submitMissionReport(false)"
@@ -402,9 +342,7 @@
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light">
-              The Special Operations Challenge
-            </h5>
+            <h5 class="modal-title text-light">The Special Operations Challenge</h5>
           </div>
           <div class="modal-body row d-flex justify-content-center">
             <div class="accordion" id="infoAccordion">
@@ -428,23 +366,19 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      In the wake of growing threats across the galactic
-                      frontier, Super Earth High Command has authorized the
-                      deployment of elite operatives. Each Helldiver is assigned
-                      a combat role and dispatched to hostile planets under
-                      strict operational parameters. These missions are more
-                      than just war—they're a proving ground. Those who survive
-                      not only bring liberty to alien worlds but also gain
-                      clearance to deploy with newly de-classified specialist
-                      loadouts. One role at a time, Helldivers climb the ranks,
-                      mastering tools of democracy previously locked behind
-                      bureaucratic red tape and explosive field tests. Glory
-                      awaits. Failure is treason.
+                      In the wake of growing threats across the galactic frontier, Super Earth High
+                      Command has authorized the deployment of elite operatives. Each Helldiver is
+                      assigned a combat role and dispatched to hostile planets under strict
+                      operational parameters. These missions are more than just war—they're a
+                      proving ground. Those who survive not only bring liberty to alien worlds but
+                      also gain clearance to deploy with newly de-classified specialist loadouts.
+                      One role at a time, Helldivers climb the ranks, mastering tools of democracy
+                      previously locked behind bureaucratic red tape and explosive field tests.
+                      Glory awaits. Failure is treason.
                       <br />
                       <br />
                       <em
-                        >Specialists aren’t born. They’re forged—in fire, gas,
-                        plasma, and paperwork
+                        >Specialists aren’t born. They’re forged—in fire, gas, plasma, and paperwork
                       </em>
                     </p>
                   </div>
@@ -470,12 +404,10 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      Complete an operation on the given planet using the
-                      assigned specialist loadout, and fulfilling all special
-                      operation objectives, in order to unlock new specialists.
-                      There are many specialists to unlock, with more
-                      specialists to be added in the future as more content is
-                      added to the game.
+                      Complete an operation on the given planet using the assigned specialist
+                      loadout, and fulfilling all special operation objectives, in order to unlock
+                      new specialists. There are many specialists to unlock, with more specialists
+                      to be added in the future as more content is added to the game.
                     </p>
                   </div>
                 </div>
@@ -500,19 +432,18 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      Operations must be on difficulty 10 (Super Helldive). Each
-                      operation will have 2 additional objectives that must be
-                      completed in order to unlock a new specialist afterward.
+                      Operations must be on difficulty 10 (Super Helldive). Each operation will have
+                      2 additional objectives that must be completed in order to unlock a new
+                      specialist afterward.
                       <br />
                       <br />
-                      Upon mission success, click the 'Mission Complete' button,
-                      and input the progress you made toward fulfilling your
-                      operation's objectives in the after-mission report.
+                      Upon mission success, click the 'Mission Complete' button, and input the
+                      progress you made toward fulfilling your operation's objectives in the
+                      after-mission report.
                       <br />
                       <br />
-                      If you fail a mission, click the 'Mission Failed' button.
-                      You will start a new operation with new objectives, on a
-                      different planet.
+                      If you fail a mission, click the 'Mission Failed' button. You will start a new
+                      operation with new objectives, on a different planet.
                     </p>
                   </div>
                 </div>
@@ -537,23 +468,19 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      After each successfully completed special operation, you
-                      will be automatically assigned a new and unlocked
-                      specialist. You may choose a previously unlocked
-                      specialist to play, but progress will not be made toward
-                      unlocking a new specialist.
+                      After each successfully completed special operation, you will be automatically
+                      assigned a new and unlocked specialist. You may choose a previously unlocked
+                      specialist to play, but progress will not be made toward unlocking a new
+                      specialist.
                       <br />
                       <br />
-                      In other words, you must complete an operation with your
-                      newest unlocked specialist (<i
-                        class="fa-solid mx-2 text-warning fa-key"
-                      ></i
-                      >) in order to unlock the next specialist.
+                      In other words, you must complete an operation with your newest unlocked
+                      specialist (<i class="fa-solid mx-2 text-warning fa-key"></i>) in order to
+                      unlock the next specialist.
                       <br />
                       <br />
-                      While you're planetside, you may share equipment with your
-                      squadmates, and you are allowed to pick up new equipment
-                      from your environment.
+                      While you're planetside, you may share equipment with your squadmates, and you
+                      are allowed to pick up new equipment from your environment.
                     </p>
                   </div>
                 </div>
@@ -578,24 +505,20 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      A planet will be assigned to you along with a set of
-                      operational objectives, as long as you weren't previously
-                      in the middle of an operation.
+                      A planet will be assigned to you along with a set of operational objectives,
+                      as long as you weren't previously in the middle of an operation.
                       <br />
                       <br />
-                      If you're part of a squad and you need to go to a
-                      different planet, open the planet list (
-                      <i class="fa-solid text-warning fa-earth-americas"></i> )
-                      and choose the planet you want. Only planets that are able
-                      to be liberated or defended will show up on the list. A
-                      set of operational objectives will be given to you, and
-                      you will lose any operational progress on any other
-                      planet, if any.
+                      If you're part of a squad and you need to go to a different planet, open the
+                      planet list (
+                      <i class="fa-solid text-warning fa-earth-americas"></i> ) and choose the
+                      planet you want. Only planets that are able to be liberated or defended will
+                      show up on the list. A set of operational objectives will be given to you, and
+                      you will lose any operational progress on any other planet, if any.
                       <br />
                       <br />
-                      NOTE: Operational objectives on a planet may vary from
-                      player to player. Work together to ensure everyone in your
-                      squad meets their objective requirements.
+                      NOTE: Operational objectives on a planet may vary from player to player. Work
+                      together to ensure everyone in your squad meets their objective requirements.
                     </p>
                   </div>
                 </div>
@@ -620,14 +543,12 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      Your progress is saved in your browser's local storage. If
-                      you clear your browser's local storage, your progress will
-                      be lost.
+                      Your progress is saved in your browser's local storage. If you clear your
+                      browser's local storage, your progress will be lost.
                       <br />
-                      You can download your save file and upload it to a
-                      different device with the Save Data Management menu.
-                      Uploading a save file will overwrite any previous saved
-                      data for this challenge.
+                      You can download your save file and upload it to a different device with the
+                      Save Data Management menu. Uploading a save file will overwrite any previous
+                      saved data for this challenge.
                     </p>
                   </div>
                 </div>
@@ -655,93 +576,73 @@
                       <li class="text-white">
                         <b>Q: Who was this challenge made for?</b>
                         <p>
-                          A: This challenge was made for veteran players who
-                          have unlocked most, or all, items in the game, and are
-                          looking to spice up a Super Helldive operation with
-                          some rogue-like elements.
+                          A: This challenge was made for veteran players who have unlocked most, or
+                          all, items in the game, and are looking to spice up a Super Helldive
+                          operation with some rogue-like elements.
                         </p>
                       </li>
                       <li class="text-white">
-                        <b
-                          >Q: How many squadmates do I need to run this
-                          challenge?</b
-                        >
+                        <b>Q: How many squadmates do I need to run this challenge?</b>
                         <p>
-                          A: This challenge is equally viable for solo players,
-                          a squad of friends, or a squad of randoms as you can
-                          progress at your own pace.
+                          A: This challenge is equally viable for solo players, a squad of friends,
+                          or a squad of randoms as you can progress at your own pace.
                         </p>
                       </li>
                       <li class="text-white">
                         <b>Q: What are points for and how are they earned?</b>
                         <p>
-                          A: Points are there for bragging rights, and do not
-                          affect rewards or RNG in any way.
+                          A: Points are there for bragging rights, and do not affect rewards or RNG
+                          in any way.
                           <br />
                           <br />
-                          For most objectives, 5 points are earned if the
-                          objective is accomplished in the first mission of an
-                          operation, 3 points are earned for accomplishing an
-                          objective in the second mission of an operation, and 1
-                          point is earned for accomplishing an objective int he
-                          last mission of an operation.
-                          <br />
-                          <br />
-                          For objectives that are impossible to accomplish in
-                          the first mission of an operation, 5 points are given
-                          for accomplishing the objective at the end of the
+                          For most objectives, 5 points are earned if the objective is accomplished
+                          in the first mission of an operation, 3 points are earned for
+                          accomplishing an objective in the second mission of an operation, and 1
+                          point is earned for accomplishing an objective int he last mission of an
                           operation.
+                          <br />
+                          <br />
+                          For objectives that are impossible to accomplish in the first mission of
+                          an operation, 5 points are given for accomplishing the objective at the
+                          end of the operation.
                         </p>
                       </li>
                       <li class="text-white">
                         <b>Q: What if I don't have all the warbonds?</b>
                         <p>
-                          A: This challenge was made for those who have most, or
-                          all, items in the game. If you're missing something
-                          that your specialist requires, do your best to come up
-                          with a reasonable substitute.
+                          A: This challenge was made for those who have most, or all, items in the
+                          game. If you're missing something that your specialist requires, do your
+                          best to come up with a reasonable substitute.
                           <br />
                           <br />
-                          i.e. If you don't own the Stun Baton, you can
-                          substitute that for the Stun Lance, the Saber, or the
-                          Combat Hatchet.
+                          i.e. If you don't own the Stun Baton, you can substitute that for the Stun
+                          Lance, the Saber, or the Combat Hatchet.
                         </p>
                       </li>
                       <li class="text-white">
-                        <b
-                          >Q: What if the planet I had an operation on is no
-                          longer available?</b
-                        >
+                        <b>Q: What if the planet I had an operation on is no longer available?</b>
                         <p>
-                          A: If you or your squadmates can no longer access that
-                          planet in-game, choose a different planet from the
-                          planet list (
-                          <i
-                            class="fa-solid text-warning fa-earth-americas"
-                          ></i>
+                          A: If you or your squadmates can no longer access that planet in-game,
+                          choose a different planet from the planet list (
+                          <i class="fa-solid text-warning fa-earth-americas"></i>
                           ). This list updates every ten minutes or so.
                         </p>
                       </li>
                       <li class="text-white">
                         <b
-                          >Q: Why didn't I unlock a new specialist after I
-                          completed an operation?</b
+                          >Q: Why didn't I unlock a new specialist after I completed an
+                          operation?</b
                         >
                         <p>
-                          A: You may not have met the operational objectives, or
-                          you may not have the correct specialist loadout
-                          equipped.
+                          A: You may not have met the operational objectives, or you may not have
+                          the correct specialist loadout equipped.
                         </p>
                       </li>
                       <li class="text-white">
-                        <b
-                          >Q: How do I know which specialist I will unlock
-                          next?</b
-                        >
+                        <b>Q: How do I know which specialist I will unlock next?</b>
                         <p>
-                          A: Your next unlocked specialist will be chosen at
-                          random amongst the list of specialists you have yet to
-                          unlock.
+                          A: Your next unlocked specialist will be chosen at random amongst the list
+                          of specialists you have yet to unlock.
                         </p>
                       </li>
                     </ul>
@@ -751,13 +652,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -784,12 +679,11 @@
             id="saveDataManagementModalBody"
           >
             <p class="text-white">
-              Download or upload your save files here to make progress on other
-              devices. You can only have one save file for this challenge.
+              Download or upload your save files here to make progress on other devices. You can
+              only have one save file for this challenge.
               <br />
               <br />
-              WARNING: Deleting your save file will remove <b>all</b> of your
-              progress!
+              WARNING: Deleting your save file will remove <b>all</b> of your progress!
               <br />
               <br />
               WARNING: Uploading a save file will
@@ -797,11 +691,7 @@
             </p>
             <div class="mb-3 d-flex row">
               <div class="col-9 px-0">
-                <input
-                  class="form-control"
-                  type="file"
-                  id="saveDataUploadInput"
-                />
+                <input class="form-control" type="file" id="saveDataUploadInput" />
               </div>
               <div class="col-3">
                 <button
@@ -819,18 +709,11 @@
           </div>
           <div class="modal-footer row justify-content-between">
             <div class="d-flex col justify-content-start">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Cancel
               </button>
             </div>
-            <div
-              id="saveDataModalFunctionsDiv"
-              class="d-flex col justify-content-end"
-            >
+            <div id="saveDataModalFunctionsDiv" class="d-flex col justify-content-end">
               <button
                 type="button"
                 onclick="deleteSavedGameData()"
@@ -862,16 +745,13 @@
               <small class="mx-2" id="amountOfSpecsUnlockedText"></small>
             </h5>
           </div>
-          <div
-            class="modal-body row d-flex justify-content-center"
-            id="specialistsModalBody"
-          >
+          <div class="modal-body row d-flex justify-content-center" id="specialistsModalBody">
             <p class="text-white">
-              You can choose any of your previously unlocked specialists here.
-              However, you
+              You can choose any of your previously unlocked specialists here. However, you
               <b
-                >must complete an operation with your most recently unlocked
-                specialist (<i class="fa-solid mx-1 text-warning fa-key"></i
+                >must complete an operation with your most recently unlocked specialist (<i
+                  class="fa-solid mx-1 text-warning fa-key"
+                ></i
                 >)</b
               >
               in order to unlock more specialists.
@@ -879,18 +759,11 @@
               <br />
               NOTE: A new operation will start if you change specialists.
             </p>
-            <div
-              class="row d-flex justify-content-center"
-              id="specialistsList"
-            ></div>
+            <div class="row d-flex justify-content-center" id="specialistsList"></div>
           </div>
           <div class="modal-footer row justify-content-between">
             <div class="d-flex col justify-content-start">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Cancel
               </button>
             </div>
@@ -911,10 +784,7 @@
     </div>
 
     <!-- SPECIALIST UNLOCKED TOAST -->
-    <div
-      class="position-fixed top-0 start-50 translate-middle-x p-3"
-      style="z-index: 1050"
-    >
+    <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1050">
       <div
         class="toast align-items-center text-white bg-success border-0 specialistUnlockedToast"
         role="alert"
@@ -936,10 +806,7 @@
     </div>
 
     <!-- POINTS EARNED TOAST -->
-    <div
-      class="position-fixed top-0 start-50 translate-middle-x p-3"
-      style="z-index: 1045"
-    >
+    <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1045">
       <div
         class="toast align-items-center text-white bg-success border-0 pointsEarnedToast"
         role="alert"
@@ -966,10 +833,7 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"
   ></script>
-  <script
-    src="https://kit.fontawesome.com/a018c01272.js"
-    crossorigin="anonymous"
-  ></script>
+  <script src="https://kit.fontawesome.com/a018c01272.js" crossorigin="anonymous"></script>
   <script src="../js/constants/primaries.js"></script>
   <script src="../js/constants/secondaries.js"></script>
   <script src="../js/constants/boosters.js"></script>

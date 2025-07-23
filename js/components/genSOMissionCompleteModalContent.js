@@ -1,9 +1,9 @@
 const genSOMissionCompleteModalContent = (objectives) => {
-  objectiveInputsContainer.innerHTML = "";
+  objectiveInputsContainer.innerHTML = '';
 
   for (let i = 0; i < objectives.length; i++) {
     const obj = objectives[i];
-    if (obj.inputType === "check") {
+    if (obj.inputType === 'check') {
       objectiveInputsContainer.innerHTML += `
         <div class="form-check py-1">
             <label

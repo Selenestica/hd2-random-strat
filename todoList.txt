@@ -44,8 +44,6 @@ BUDGET BLITZ
 SPECIAL OPERATIONS
   - SPECIALIST ideas:
     - breakfast taco's specialist
-    - all shotguns?
-    - gunslinger? deadeye, senator, gunslinger passive...
   - add warbond select, and attach warbonds to specialists to filter them out
   
   - save data management modal
@@ -55,6 +53,8 @@ SPECIAL OPERATIONS
     - on large screens, set a fixed height
 
   BUGS:
+    - field validation. change text 
+    - make green/red progress text a different color
 
 
 NEW CHALLENGE IDEAS:

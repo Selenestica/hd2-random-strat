@@ -475,8 +475,8 @@ const getRewardsItemsLists = () => {
 const rollRewardOptions = async () => {
   if (currentItems.length > 0) {
     for (let i = 0; i < currentItems.length; i++) {
-      const vals = getItemMetaData(currentItems[i]);
-      itemOptionsModalBody.innerHTML += generateItemCard(
+      const vals = await getItemMetaData(currentItems[i]);
+      itemOptionsModalBody.innerHTML += await generateItemCard(
         currentItems[i],
         true,
         vals.imgDir,
@@ -487,39 +487,41 @@ const rollRewardOptions = async () => {
     return;
   }
 
-  let itemsLists = await getRewardsItemsLists();
-  itemsLists = itemsLists.filter((list) => list.length > 0);
-  if (itemsLists.length < 1) {
-    console.log("NOT ENOUGH ITEMS TO SHOW");
-    return;
-  }
-  const numbers = new Set();
-  // your first reward pool will always have a stratagem or primary
-  if (missionCounter === 1) {
-    numbers.add(0);
-  }
-  while (numbers.size < 3) {
-    const randomNumber = Math.floor(Math.random() * itemsLists.length);
-    numbers.add(randomNumber);
-  }
-  const numsList = Array.from(numbers);
-  for (let i = 0; i < numsList.length; i++) {
-    const list = itemsLists[numsList[i]];
-    const randomItem = await getRandomItem(list);
-    currentItems.push(randomItem);
-    const vals = getItemMetaData(randomItem);
-    itemOptionsModalBody.innerHTML += generateItemCard(
-      randomItem,
-      true,
-      vals.imgDir,
-      i,
-      vals.typeText
-    );
-  }
+  if (currentItems.length === 0) {
+    let itemsLists = await getRewardsItemsLists();
+    itemsLists = itemsLists.filter((list) => list.length > 0);
+    if (itemsLists.length < 1) {
+      console.log("NOT ENOUGH ITEMS TO SHOW");
+      return;
+    }
+    const numbers = new Set();
+    // your first reward pool will always have a stratagem or primary
+    if (missionCounter === 1) {
+      numbers.add(0);
+    }
+    while (numbers.size < 3) {
+      const randomNumber = Math.floor(Math.random() * itemsLists.length);
+      numbers.add(randomNumber);
+    }
+    const numsList = Array.from(numbers);
+    for (let i = 0; i < numsList.length; i++) {
+      const list = itemsLists[numsList[i]];
+      const randomItem = await getRandomItem(list);
+      currentItems.push(randomItem);
+      const vals = getItemMetaData(randomItem);
+      itemOptionsModalBody.innerHTML += generateItemCard(
+        randomItem,
+        true,
+        vals.imgDir,
+        i,
+        vals.typeText
+      );
+    }
 
-  // save current items in LS
-  if (missionCounter !== 1) {
-    saveProgress();
+    // save current items in LS
+    if (missionCounter !== 1) {
+      saveProgress();
+    }
   }
 };
 

@@ -417,6 +417,7 @@ const maxStarsNotEarned = async () => {
 };
 
 const closeMaxStarsPromptModal = () => {
+  const mspModalElement = document.getElementById("maxStarsPromptModal");
   const mspModal = new bootstrap.Modal(maxStarsPromptModal);
   mspModal.hide();
 
@@ -430,9 +431,13 @@ const closeMaxStarsPromptModal = () => {
     return;
   }
 
-  const itemsModal = new bootstrap.Modal(itemOptionsModal);
-  itemsModal.show();
-  rollRewardOptions();
+  // Wait until modal is fully hidden before showing next
+  mspModalElement.addEventListener("hidden.bs.modal", function handleHidden() {
+    mspModalElement.removeEventListener("hidden.bs.modal", handleHidden); // Clean up
+    const itemsModal = new bootstrap.Modal(itemOptionsModal);
+    itemsModal.show();
+    rollRewardOptions();
+  });
 };
 
 const getRewardsItemsLists = () => {
@@ -467,7 +472,6 @@ const getRewardsItemsLists = () => {
   return lists;
 };
 
-//
 const rollRewardOptions = async () => {
   if (currentItems.length > 0) {
     for (let i = 0; i < currentItems.length; i++) {

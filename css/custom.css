@@ -321,6 +321,10 @@ body {
   border: none;
 }
 
+.challengeCards:hover {
+  border: 1px solid yellow;
+}
+
 @keyframes colorCycle {
   0% {
     color: red;

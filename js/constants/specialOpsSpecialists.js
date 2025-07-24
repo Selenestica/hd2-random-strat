@@ -433,7 +433,7 @@ const SPECOPSSPECS = [
     locked: true,
     displayName: "The Preacher",
     stratagems: [
-      "Eagle Smoke",
+      "Eagle Smoke Strike",
       "Eagle Airstrike",
       "Hover Pack",
       "Flamethrower",

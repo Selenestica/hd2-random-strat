@@ -49,8 +49,6 @@ SPECIAL OPERATIONS
   - specialist modal
     - on large screens, set a fixed height
 
-  - download formatted text file that includes everything from save data  
-
   BUGS:
     - make green/red progress text a different color
 

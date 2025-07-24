@@ -1,9 +1,9 @@
 const genSOMissionCompleteModalContent = (objectives) => {
-  objectiveInputsContainer.innerHTML = '';
+  objectiveInputsContainer.innerHTML = "";
 
   for (let i = 0; i < objectives.length; i++) {
     const obj = objectives[i];
-    if (obj.inputType === 'check') {
+    if (obj.inputType === "check") {
       objectiveInputsContainer.innerHTML += `
         <div class="form-check py-1">
             <label
@@ -29,8 +29,11 @@ const genSOMissionCompleteModalContent = (objectives) => {
             <input
                 class="form-control col-6 objClass-${obj.id}"
                 style="width: 15%; margin-left: 0.5rem"
-                type="number"
+                type="text"
                 value="0"
+                pattern="\d*"
+                maxlength="4"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                 id="objId-${obj.id}"
             />
         </div>`;

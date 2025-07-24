@@ -15,7 +15,7 @@
     <link
       rel="shortcut icon"
       type="image/svg+xml"
-      href="../images/svgs/orbitalprecisionstrike.svg"
+      href="../images/dressing/ministryOfTruthIcon.png"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -774,6 +774,13 @@
         <div class="modal-content bg-grey">
           <div class="modal-header">
             <h5 class="modal-title text-light" id="">Save Data Management</h5>
+            <button
+              type="button"
+              onclick="downloadSOScoreSummary()"
+              class="btn btn-success"
+            >
+              <i class="fa-regular fa-file-lines"></i>
+            </button>
           </div>
           <div
             class="modal-body row d-flex justify-content-center"
@@ -829,13 +836,54 @@
             >
               <button
                 type="button"
-                onclick="deleteSavedGameData()"
-                class="btn btn-danger mx-2"
-                data-bs-dismiss="modal"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteSaveDataModal"
+                class="btn btn-danger"
               >
-                Delete
+                <i class="fa-solid fa-trash-can"></i>
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DELETE DATA MODAL -->
+    <div
+      class="modal fade"
+      id="deleteSaveDataModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="deleteSaveDataModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light">Delete Save Data</h5>
+          </div>
+          <div class="modal-body row d-flex justify-content-center">
+            <p class="text-white">
+              Are you sure you want to delete your save data? This action is
+              irreversible, and you will lose all progress.
+            </p>
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onclick="deleteSavedGameData()"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              DELETE
+            </button>
           </div>
         </div>
       </div>
@@ -1034,6 +1082,7 @@
   <script src="../js/utils/warbondCodes.js"></script>
   <script src="../js/components/genSOSpecialistsModalContent.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
+  <script src="../js/utils/downloadSOScoreSummary.js"></script>
   <script src="../js/specialops.js"></script>
   <script src="../js/components/genSOMissionCompleteModalContent.js"></script>
   <script src="../js/components/genSOSaveDataManagementModalContent.js"></script>

@@ -222,6 +222,7 @@ const genPlanetsList = async (campaigns) => {
 };
 
 const switchPlanet = async (planetName) => {
+  restarts += 1;
   await genNewOperation(false, planetName, null);
   saveProgress();
 };

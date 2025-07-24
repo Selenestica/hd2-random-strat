@@ -1,4 +1,4 @@
-const page = document.getElementById('html');
+const page = document.getElementById("html");
 page.innerHTML += `
         <head>
             <meta charset="UTF-8" />
@@ -15,7 +15,7 @@ page.innerHTML += `
             <link
                 rel="shortcut icon"
                 type="image/svg+xml"
-                href="./images/svgs/orbitalprecisionstrike.svg"
+                href="./images/dressing/ministryOfTruthIcon.png"
             />
             <meta
                 name="description"

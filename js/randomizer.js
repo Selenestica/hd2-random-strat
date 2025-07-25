@@ -181,9 +181,9 @@ const rollStratagems = async () => {
   for (let i = 0; i < randomUniqueNumbers.length; i++) {
     const stratagem = filteredStratList[randomUniqueNumbers[i]];
     stratagemsContainer.innerHTML += `
-          <div class="col-3 d-flex justify-content-center">
+          <div class="col-3 px-1 d-flex justify-content-center">
             <div class="card itemCards" 
-              onclick="holdToChangeItem('${stratagem.internalName}', 'stratagem')"
+              onclick="rerollItem('${stratagem.internalName}', 'stratagem')"
             >
               <img
                   src="../images/svgs/${stratagem.imageURL}"
@@ -220,9 +220,9 @@ const rollEquipment = () => {
       const randomNumber = Math.floor(Math.random() * equipmentLists[i].length);
       const equipment = equipmentLists[i][randomNumber];
       equipmentContainer.innerHTML += `
-              <div class="col-3 d-flex justify-content-center">
+              <div class="col-3 px-1 d-flex justify-content-center">
                 <div class="card itemCards" 
-                  onclick="holdToChangeItem('${equipment.internalName}', '${equipment.category}')"
+                  onclick="rerollItem('${equipment.internalName}', '${equipment.category}')"
                 >
                   <img
                       src="../images/equipment/${equipment.imageURL}"
@@ -237,6 +237,10 @@ const rollEquipment = () => {
             `;
     }
   }
+};
+
+const rerollItem = (intName, cat) => {
+  console.log(intName, cat);
 };
 
 const filterStratList = async () => {

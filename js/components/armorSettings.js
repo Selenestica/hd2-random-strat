@@ -35,14 +35,14 @@ const rollArmor = async () => {
     armorImage = await getArmorSizeIcon(rolledArmor.internalName);
   }
   armorContainer.innerHTML = `
-          <div class="col-2 d-flex justify-content-center">
+          <div class="col-2 px-1 d-flex justify-content-center">
             <div class="card itemCards armorLogo" 
               onclick="holdToChangeItem('${rolledArmor.internalName}', 'stratagem')"
             >
                 ${armorImage}
             </div>
           </div>
-          <div class="col-10 d-flex justify-content-start">
+          <div class="col-10 px-0 d-flex justify-content-start">
               <div class="card-body d-flex align-items-center">
                   <p class="card-title text-white">${rolledArmor.displayName}</p>
               </div>

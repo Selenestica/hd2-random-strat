@@ -404,4 +404,14 @@ const SPECOPSSPECS = [
     armorPassive: 'Peak Physique',
     warbonds: ['warbond6', 'warbond7', 'warbond8', 'warbond5'],
   },
+  {
+    locked: true,
+    displayName: 'Septimus',
+    stratagems: ['Jump Pack', 'Quasar Cannon', 'Orbital 120mm Barrage', 'Gatling Sentry'],
+    primary: 'Scythe',
+    secondary: 'GP-31 Ultimatum',
+    throwable: 'G-16 Impact',
+    armorPassive: 'Democracy Protects',
+    warbonds: ['warbond13'],
+  },
 ];

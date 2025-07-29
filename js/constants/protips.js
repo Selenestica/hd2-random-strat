@@ -46,4 +46,5 @@ const PRO_TIPS = [
   "Reloading the Senator and Stim Pistol is faster when the cylinder is completely empty.",
   "Reloading the Autocannon is significantly faster when there is at least one round in the magazine. This applies to many other weapons as well.",
   "Your Helldiver will start spinning the Senator, Talon, and Stim Pistol if you hold the reload button.",
+  "When a headless bug is charging you, hit them with a melee attack when they get close enough. It will interrupt their charge, and they will typically die shortly after.",
 ];

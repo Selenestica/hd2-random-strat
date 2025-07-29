@@ -142,6 +142,8 @@ const filterItemsByWarbond = async () => {
     throwsList,
     boostsList,
     stratsList,
+    armorPassivesList,
+    armorSetsList,
   ];
   for (let i = 0; i < itemsList.length; i++) {
     let tempList = [...itemsList[i]];
@@ -160,6 +162,10 @@ const filterItemsByWarbond = async () => {
       workingBoostsList = itemsList[i];
     } else if (i === 4) {
       workingStratsList = itemsList[i];
+    } else if (i === 5) {
+      workingArmorPassivesList = itemsList[i];
+    } else if (i === 6) {
+      workingArmorSetsList = itemsList[i];
     }
   }
 };
@@ -468,7 +474,7 @@ const checkLocalStorageForOptionsPreferences = async () => {
   }
 };
 
-const applyStoredOptionsToLists = () => {
+const applyStoredOptionsToLists = async () => {
   for (let i = 0; i < warbondCheckboxes.length; i++) {
     // now do the front end stuff
     const cb = warbondCheckboxes[i];
@@ -480,7 +486,7 @@ const applyStoredOptionsToLists = () => {
       checkedWarbonds.splice(indexToRemove, 1);
     }
   }
-  filterItemsByWarbond();
+  await filterItemsByWarbond();
 
   // will want to add the stratagems options here one day
 };

@@ -814,7 +814,7 @@ const ARMOR_SETS = [
     type: "Equipment",
     category: "armor",
     tags: ["Light"],
-    warbondCode: "warbond1",
+    warbondCode: "warbond17",
     internalName: "ad11livewire",
     imageURL: "ad11livewire.png",
     tier: "b",

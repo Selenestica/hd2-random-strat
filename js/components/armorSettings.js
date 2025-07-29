@@ -1,19 +1,21 @@
-const armorPassiveCheck = document.getElementById('armorPassiveCheck');
-const armorSetCheck = document.getElementById('armorSetCheck');
-const armorSizeCheck = document.getElementById('armorSizeCheck');
-const armorContainer = document.getElementById('armorContainer');
+const armorPassiveCheck = document.getElementById("armorPassiveCheck");
+const armorSetCheck = document.getElementById("armorSetCheck");
+const armorSizeCheck = document.getElementById("armorSizeCheck");
+const armorContainer = document.getElementById("armorContainer");
 let armorPassivesList = [...ARMOR_PASSIVES];
 let armorSetsList = [...ARMOR_SETS];
 let armorSizesList = [...ARMOR_SIZES];
+let workingArmorPassivesList = [];
+let workingArmorSetsList = [];
 
 const getSelectedArmorRollType = () => {
   const armorChecks = [
-    { el: armorSetCheck, list: armorSetsList },
+    { el: armorSetCheck, list: workingArmorSetsList },
     { el: armorSizeCheck, list: armorSizesList },
-    { el: armorPassiveCheck, list: armorPassivesList },
+    { el: armorPassiveCheck, list: workingArmorPassivesList },
   ];
   for (let i = 0; i < armorChecks.length; i++) {
-    if (armorChecks[i].el.classList.contains('active')) {
+    if (armorChecks[i].el.classList.contains("active")) {
       return armorChecks[i];
     }
   }
@@ -21,15 +23,18 @@ const getSelectedArmorRollType = () => {
 
 const rollArmor = async () => {
   const activeArmorList = await getSelectedArmorRollType();
-  const randArmorIndex = Math.floor(Math.random() * activeArmorList.list.length);
+  const randArmorIndex = Math.floor(
+    Math.random() * activeArmorList.list.length
+  );
   const rolledArmor = activeArmorList.list[randArmorIndex];
+  console.log(activeArmorList.list);
   let armorImage = `                    
                     <img
                         src="../images/armor/${rolledArmor.imageURL}"
                         class="img-card-top"
                         alt="${rolledArmor.displayName}"
                     />`;
-  if (rolledArmor.tags.includes('ArmorSize')) {
+  if (rolledArmor.tags.includes("ArmorSize")) {
     armorImage = await getArmorSizeIcon(rolledArmor.internalName);
   }
   armorContainer.innerHTML = `
@@ -58,34 +63,34 @@ const rerollArmor = async (intName, cat) => {
   //   itemImage.src = `../images/equipment/${newItem.imageURL}`;
   //   itemName.innerText = newItem.displayName;
   // }
-  console.log('Reroll armor here eventually, maybe?');
+  console.log("Reroll armor here eventually, maybe?");
 };
 
 const setArmorRollType = (type) => {
   clearActiveArmorRollType();
-  if (type === 'passive') {
-    armorPassiveCheck.classList.add('active');
-  } else if (type === 'size') {
-    armorSizeCheck.classList.add('active');
-  } else if (type === 'set') {
-    armorSetCheck.classList.add('active');
+  if (type === "passive") {
+    armorPassiveCheck.classList.add("active");
+  } else if (type === "size") {
+    armorSizeCheck.classList.add("active");
+  } else if (type === "set") {
+    armorSetCheck.classList.add("active");
   }
 };
 
 const clearActiveArmorRollType = () => {
   const armorChecks = [armorSetCheck, armorSizeCheck, armorPassiveCheck];
   for (let i = 0; i < armorChecks.length; i++) {
-    if (armorChecks[i].classList.contains('active')) {
-      armorChecks[i].classList.remove('active');
+    if (armorChecks[i].classList.contains("active")) {
+      armorChecks[i].classList.remove("active");
       return;
     }
   }
 };
 
 const getArmorSizeIcon = async (size) => {
-  if (size === 'light') {
+  if (size === "light") {
     return `<i class="fa-solid armorSizeLogo p-1 d-flex justify-content-center fa-user-ninja"></i>`;
-  } else if (size === 'medium') {
+  } else if (size === "medium") {
     return `<i class="fa-solid armorSizeLogo p-1 d-flex justify-content-center fa-user"></i>`;
   }
   return `<i class="fa-solid armorSizeLogo p-1 d-flex justify-content-center fa-user-shield"></i>`;

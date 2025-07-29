@@ -35,8 +35,6 @@ BUDGET BLITZ
   - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
 
 SPECIAL OPERATIONS
-  - adjust melee kills
-
   - SPECIALIST ideas:
   
   - save data management modal

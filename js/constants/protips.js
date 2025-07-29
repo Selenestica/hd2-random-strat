@@ -43,4 +43,7 @@ const PRO_TIPS = [
   "The SEAF Artillery objective is the easiest objective to spot on your minimap, generally showing up as a circle or two circles next to each other.",
   "You can stim a teammate wearing the Shield Generator Pack with the stim pistol by standing directly next to them, inside of the shield.",
   "To save ammo while using an Exosuit, use melee attacks against small enemies in close quarters.",
+  "Reloading the Senator and Stim Pistol is faster when the cylinder is completely empty.",
+  "Reloading the Autocannon is significantly faster when there is at least one round in the magazine. This applies to many other weapons as well.",
+  "Your Helldiver will start spinning the Senator, Talon, and Stim Pistol if you hold the reload button.",
 ];

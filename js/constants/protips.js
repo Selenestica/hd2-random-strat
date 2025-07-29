@@ -49,4 +49,5 @@ const PRO_TIPS = [
   "When a headless bug is charging you, hit them with a melee attack when they get close enough. It will interrupt their charge, and they will typically die shortly after.",
   "The Autocannon has two firing modes: Flak mode is most effective against chaff, and APHET mode is best for heavy units.",
   "Two headshots with the Senator will leave the Hive Guard to bleed out, and die shortly after.",
+  "If you find yourself running out of ammo often, try tap firing your weapon, switching to burst mode, or lowering the fire rate.",
 ];

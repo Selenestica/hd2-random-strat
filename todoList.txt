@@ -1,13 +1,11 @@
 GENERAL:
   - go through FontAwesome icons and possibly update to better icons
-  - killzone collab checkbox
 
 RANDOMIZER:
   - add tags for THROWABLES
   - add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons
   - buy nvigneux a coffee
   - add link to low sodium Helldivers discord
-  - armor sets need to be adjustable by warbond
   - add pro-tips at the bottom
 
 PENITENT CRUSADE:

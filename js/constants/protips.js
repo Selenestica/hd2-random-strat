@@ -47,4 +47,6 @@ const PRO_TIPS = [
   "Reloading the Autocannon is significantly faster when there is at least one round in the magazine. This applies to many other weapons as well.",
   "Your Helldiver will start spinning the Senator, Talon, and Stim Pistol if you hold the reload button.",
   "When a headless bug is charging you, hit them with a melee attack when they get close enough. It will interrupt their charge, and they will typically die shortly after.",
+  "The Autocannon has two firing modes: Flak mode is most effective against chaff, and APHET mode is best for heavy units.",
+  "Two headshots with the Senator will leave the Hive Guard to bleed out, and die shortly after.",
 ];

@@ -18,6 +18,7 @@ const onlySupplyRadio = document.getElementById("onlySupplyRadio");
 const noSupplyRadio = document.getElementById("noSupplyRadio");
 const defaultSupplyRadio = document.getElementById("defaultSupplyRadio");
 const proTipsText = document.getElementById("proTipsText");
+const braschTacticsText = document.getElementById("braschTacticsText");
 
 const stratOptionRadios = [
   onlyEaglesRadio,
@@ -507,6 +508,10 @@ const rollProTip = () => {
   const randTip = PRO_TIPS[randTipIndex];
   proTipsText.innerHTML = randTip;
   proTipCounter = 0;
+};
+
+const changeBraschTacticsText = () => {
+  braschTacticsText.innerHTML = "Brass Tactics:";
 };
 
 const randomizeAll = async () => {

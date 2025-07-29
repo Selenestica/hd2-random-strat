@@ -20,6 +20,7 @@ const warbondsList = [
   "Masters of Ceremony", // warbond15
   "Force of Law", // warbond16
   "Control Group", // warbond17
+  "KILLZONE", // warbond18
 ];
 
 const genWarbondCheckboxes = () => {

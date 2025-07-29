@@ -47,7 +47,6 @@ body {
   cursor: pointer;
 }
 .itemNameContainer {
-  padding: 0.5rem !important;
   display: flex;
   justify-content: center;
 }

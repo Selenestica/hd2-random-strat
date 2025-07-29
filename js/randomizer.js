@@ -1,22 +1,22 @@
-const stratagemsContainer = document.getElementById('stratagemsContainer');
-const equipmentContainer = document.getElementById('equipmentContainer');
-const rollStratsButton = document.getElementById('rollStratsButton');
-const warbondCheckboxes = document.getElementsByClassName('warbondCheckboxes');
-const superCitizenCheckBox = document.getElementById('warbond0');
-const oneSupportCheck = document.getElementById('oneSupportCheck');
-const oneBackpackCheck = document.getElementById('oneBackpackCheck');
-const onlyEaglesRadio = document.getElementById('onlyEaglesRadio');
-const noEaglesRadio = document.getElementById('noEaglesRadio');
-const defaultEaglesRadio = document.getElementById('defaultEaglesRadio');
-const onlyOrbitalsRadio = document.getElementById('onlyOrbitalsRadio');
-const noOrbitalsRadio = document.getElementById('noOrbitalsRadio');
-const defaultOrbitalsRadio = document.getElementById('defaultOrbitalsRadio');
-const onlyDefenseRadio = document.getElementById('onlyDefenseRadio');
-const noDefenseRadio = document.getElementById('noDefenseRadio');
-const defaultDefenseRadio = document.getElementById('defaultDefenseRadio');
-const onlySupplyRadio = document.getElementById('onlySupplyRadio');
-const noSupplyRadio = document.getElementById('noSupplyRadio');
-const defaultSupplyRadio = document.getElementById('defaultSupplyRadio');
+const stratagemsContainer = document.getElementById("stratagemsContainer");
+const equipmentContainer = document.getElementById("equipmentContainer");
+const rollStratsButton = document.getElementById("rollStratsButton");
+const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
+const superCitizenCheckBox = document.getElementById("warbond0");
+const oneSupportCheck = document.getElementById("oneSupportCheck");
+const oneBackpackCheck = document.getElementById("oneBackpackCheck");
+const onlyEaglesRadio = document.getElementById("onlyEaglesRadio");
+const noEaglesRadio = document.getElementById("noEaglesRadio");
+const defaultEaglesRadio = document.getElementById("defaultEaglesRadio");
+const onlyOrbitalsRadio = document.getElementById("onlyOrbitalsRadio");
+const noOrbitalsRadio = document.getElementById("noOrbitalsRadio");
+const defaultOrbitalsRadio = document.getElementById("defaultOrbitalsRadio");
+const onlyDefenseRadio = document.getElementById("onlyDefenseRadio");
+const noDefenseRadio = document.getElementById("noDefenseRadio");
+const defaultDefenseRadio = document.getElementById("defaultDefenseRadio");
+const onlySupplyRadio = document.getElementById("onlySupplyRadio");
+const noSupplyRadio = document.getElementById("noSupplyRadio");
+const defaultSupplyRadio = document.getElementById("defaultSupplyRadio");
 
 const stratOptionRadios = [
   onlyEaglesRadio,
@@ -53,46 +53,47 @@ let oneBackpack = false;
 let oneSupportWeapon = false;
 
 let checkedWarbonds = [
-  'warbond0',
-  'warbond1',
-  'warbond2',
-  'warbond3',
-  'warbond4',
-  'warbond5',
-  'warbond6',
-  'warbond7',
-  'warbond8',
-  'warbond9',
-  'warbond10',
-  'warbond11',
-  'warbond12',
-  'warbond13',
-  'warbond14',
-  'warbond15',
-  'warbond16',
-  'warbond17',
+  "warbond0",
+  "warbond1",
+  "warbond2",
+  "warbond3",
+  "warbond4",
+  "warbond5",
+  "warbond6",
+  "warbond7",
+  "warbond8",
+  "warbond9",
+  "warbond10",
+  "warbond11",
+  "warbond12",
+  "warbond13",
+  "warbond14",
+  "warbond15",
+  "warbond16",
+  "warbond17",
+  "warbond18",
 ];
 
 for (let y = 0; y < supplyAmountOptions.length; y++) {
-  supplyAmountOptions[y].addEventListener('change', (e) => {
-    updateLocalStorage(supplyAmountOptions[y], 'supplyAmountOptions');
+  supplyAmountOptions[y].addEventListener("change", (e) => {
+    updateLocalStorage(supplyAmountOptions[y], "supplyAmountOptions");
   });
 }
 
 for (let x = 0; x < stratOptionRadios.length; x++) {
-  stratOptionRadios[x].addEventListener('change', (e) => {
+  stratOptionRadios[x].addEventListener("change", (e) => {
     // update localStorage obj
-    updateLocalStorage(stratOptionRadios[x], 'stratagemOptions');
+    updateLocalStorage(stratOptionRadios[x], "stratagemOptions");
 
     // now do the front end stuff
     if (onlyEaglesRadio.checked) {
-      disableOtherRadios('Eagle');
+      disableOtherRadios("Eagle");
     } else if (onlyOrbitalsRadio.checked) {
-      disableOtherRadios('Orbital');
+      disableOtherRadios("Orbital");
     } else if (onlyDefenseRadio.checked) {
-      disableOtherRadios('Defense');
+      disableOtherRadios("Defense");
     } else if (onlySupplyRadio.checked) {
-      disableOtherRadios('Supply');
+      disableOtherRadios("Supply");
     } else {
       enableRadios();
     }
@@ -118,9 +119,9 @@ const enableRadios = () => {
 };
 
 for (let z = 0; z < warbondCheckboxes.length; z++) {
-  warbondCheckboxes[z].addEventListener('change', (e) => {
+  warbondCheckboxes[z].addEventListener("change", (e) => {
     // update localStorage obj
-    updateLocalStorage(warbondCheckboxes[z], 'warbondOptions');
+    updateLocalStorage(warbondCheckboxes[z], "warbondOptions");
 
     // now do the front end stuff
     if (e.target.checked && !checkedWarbonds.includes(e.srcElement.id)) {
@@ -135,11 +136,19 @@ for (let z = 0; z < warbondCheckboxes.length; z++) {
 }
 
 const filterItemsByWarbond = async () => {
-  const itemsList = [primsList, secondsList, throwsList, boostsList, stratsList];
+  const itemsList = [
+    primsList,
+    secondsList,
+    throwsList,
+    boostsList,
+    stratsList,
+  ];
   for (let i = 0; i < itemsList.length; i++) {
     let tempList = [...itemsList[i]];
     itemsList[i] = await tempList.filter(
-      (item) => checkedWarbonds.includes(item.warbondCode) || item.warbondCode === 'none',
+      (item) =>
+        checkedWarbonds.includes(item.warbondCode) ||
+        item.warbondCode === "none"
     );
     if (i === 0) {
       workingPrimsList = itemsList[i];
@@ -157,7 +166,7 @@ const filterItemsByWarbond = async () => {
 
 const rollStratagems = async () => {
   // get random numbers that arent the same and get the strats at those indices
-  stratagemsContainer.innerHTML = '';
+  stratagemsContainer.innerHTML = "";
 
   // if oneSupportWeapon or oneBackpack is checked and enabled, then account for those
   const oneSupportWeapon = oneSupportCheck.checked && !oneSupportCheck.disabled;
@@ -170,7 +179,7 @@ const rollStratagems = async () => {
     filteredStratList,
     oneSupportWeapon,
     oneBackpack,
-    4,
+    4
   );
 
   for (let i = 0; i < randomUniqueNumbers.length; i++) {
@@ -187,7 +196,7 @@ const rollStratagems = async () => {
                   alt="${stratagem.displayName}"
                   id="${stratagem.internalName}-randImage"
               />
-              <div class="card-body itemNameContainer align-items-center">
+              <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
                   <p id="${stratagem.internalName}-randName" class="card-title text-white">${stratagem.displayName}</p>
               </div>
             </div>
@@ -197,7 +206,7 @@ const rollStratagems = async () => {
 };
 
 const rollEquipment = () => {
-  equipmentContainer.innerHTML = '';
+  equipmentContainer.innerHTML = "";
   const equipmentLists = [
     workingPrimsList ?? primsList,
     workingSecondsList ?? secondsList,
@@ -227,7 +236,7 @@ const rollEquipment = () => {
                       alt="${equipment.displayName}"
                       id="${equipment.internalName}-randImage"
                   />
-                  <div class="card-body itemNameContainer align-items-center">
+                  <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
                       <p id="${equipment.internalName}-randName" class="card-title text-white">${equipment.displayName}</p>
                   </div>
                 </div>
@@ -241,41 +250,42 @@ const rerollItem = async (intName, cat) => {
   const itemImage = document.getElementById(`${intName}-randImage`);
   const itemName = document.getElementById(`${intName}-randName`);
   let newItem = null;
-  if (cat === 'strat') {
+  if (cat === "strat") {
     const filteredStratList = await filterStratList();
-    const oneSupportWeapon = oneSupportCheck.checked && !oneSupportCheck.disabled;
+    const oneSupportWeapon =
+      oneSupportCheck.checked && !oneSupportCheck.disabled;
     const oneBackpack = oneBackpackCheck.checked && !oneBackpackCheck.disabled;
     while (newItem === null || rolledStrats.includes(newItem.internalName)) {
       const randomUniqueNumber = getRandomUniqueNumbers(
         filteredStratList,
         oneSupportWeapon,
         oneBackpack,
-        1,
+        1
       );
       newItem = filteredStratList[randomUniqueNumber];
     }
     itemImage.src = `../images/svgs/${newItem.imageURL}`;
     itemName.innerText = newItem.displayName;
   }
-  if (cat === 'primary') {
+  if (cat === "primary") {
     const randomNumber = Math.floor(Math.random() * workingPrimsList.length);
     newItem = workingPrimsList[randomNumber];
     itemImage.src = `../images/equipment/${newItem.imageURL}`;
     itemName.innerText = newItem.displayName;
   }
-  if (cat === 'secondary') {
+  if (cat === "secondary") {
     const randomNumber = Math.floor(Math.random() * workingSecondsList.length);
     newItem = workingSecondsList[randomNumber];
     itemImage.src = `../images/equipment/${newItem.imageURL}`;
     itemName.innerText = newItem.displayName;
   }
-  if (cat === 'throwable') {
+  if (cat === "throwable") {
     const randomNumber = Math.floor(Math.random() * workingThrowsList.length);
     newItem = workingThrowsList[randomNumber];
     itemImage.src = `../images/equipment/${newItem.imageURL}`;
     itemName.innerText = newItem.displayName;
   }
-  if (cat === 'booster') {
+  if (cat === "booster") {
     const randomNumber = Math.floor(Math.random() * workingBoostsList.length);
     newItem = workingBoostsList[randomNumber];
     itemImage.src = `../images/equipment/${newItem.imageURL}`;
@@ -287,13 +297,23 @@ const filterStratList = async () => {
   let warbondFilteredStratList = workingStratsList ?? stratsList;
   let newList;
   let categoriesToFilter = [];
-  const onlyRadios = [onlyDefenseRadio, onlyEaglesRadio, onlyOrbitalsRadio, onlySupplyRadio];
-  const noRadios = [noDefenseRadio, noOrbitalsRadio, noEaglesRadio, noSupplyRadio];
+  const onlyRadios = [
+    onlyDefenseRadio,
+    onlyEaglesRadio,
+    onlyOrbitalsRadio,
+    onlySupplyRadio,
+  ];
+  const noRadios = [
+    noDefenseRadio,
+    noOrbitalsRadio,
+    noEaglesRadio,
+    noSupplyRadio,
+  ];
   // check if a "only" radio is checked
   for (let i = 0; i < onlyRadios.length; i++) {
     if (onlyRadios[i].checked) {
       newList = await warbondFilteredStratList.filter(
-        (strat) => strat.category === onlyRadios[i].name,
+        (strat) => strat.category === onlyRadios[i].name
       );
       return newList;
     }
@@ -306,7 +326,7 @@ const filterStratList = async () => {
     }
   }
   newList = await warbondFilteredStratList.filter(
-    (strat) => !categoriesToFilter.includes(strat.category),
+    (strat) => !categoriesToFilter.includes(strat.category)
   );
 
   return newList;
@@ -322,29 +342,29 @@ const getRandomUniqueNumbers = (list, oneSupportWeapon, oneBackpack, amt) => {
     randomNumber = Math.floor(Math.random() * list.length);
     const tags = list[randomNumber].tags;
     if (
-      (tags.includes('Weapons') && hasSupportWeapon) ||
-      (tags.includes('Backpacks') && hasBackpack) ||
-      (tags.includes('Vehicles') && hasVehicle) ||
+      (tags.includes("Weapons") && hasSupportWeapon) ||
+      (tags.includes("Backpacks") && hasBackpack) ||
+      (tags.includes("Vehicles") && hasVehicle) ||
       numbers.includes(randomNumber)
     ) {
       continue;
     } else {
-      if (tags.includes('Vehicles')) {
+      if (tags.includes("Vehicles")) {
         hasVehicle = true;
         numbers.push(randomNumber);
         continue;
       }
-      if (oneSupportWeapon && tags.includes('Weapons')) {
+      if (oneSupportWeapon && tags.includes("Weapons")) {
         numbers.push(randomNumber);
         hasSupportWeapon = true;
-        if (tags.includes('Backpacks')) {
+        if (tags.includes("Backpacks")) {
           hasBackpack = true;
         }
         continue;
-      } else if (oneBackpack && tags.includes('Backpacks')) {
+      } else if (oneBackpack && tags.includes("Backpacks")) {
         numbers.push(randomNumber);
         hasBackpack = true;
-        if (tags.includes('Weapons')) {
+        if (tags.includes("Weapons")) {
           hasSupportWeapon = true;
         }
         continue;
@@ -358,7 +378,9 @@ const getRandomUniqueNumbers = (list, oneSupportWeapon, oneBackpack, amt) => {
 const updateLocalStorage = (element, type) => {
   const elID = element.id;
   const checked = element.checked;
-  const randomizerOptions = JSON.parse(localStorage.getItem('randomizerOptions'));
+  const randomizerOptions = JSON.parse(
+    localStorage.getItem("randomizerOptions")
+  );
   let tempInnerObj;
   let newObj;
   // if (type !== 'stratagemOptions') {
@@ -371,7 +393,7 @@ const updateLocalStorage = (element, type) => {
     [type]: tempInnerObj,
   };
   // ok so if the user updates stratagems, then the other values need to be set to false
-  localStorage.setItem('randomizerOptions', JSON.stringify(newObj));
+  localStorage.setItem("randomizerOptions", JSON.stringify(newObj));
   //   return;
   // }
   // tempInnerObj = {
@@ -386,7 +408,7 @@ const updateLocalStorage = (element, type) => {
 };
 
 const checkLocalStorageForOptionsPreferences = async () => {
-  const randomizerOptions = localStorage.getItem('randomizerOptions');
+  const randomizerOptions = localStorage.getItem("randomizerOptions");
   if (!randomizerOptions) {
     // create randomizerOptions object and put in local storage
     const obj = {
@@ -409,6 +431,7 @@ const checkLocalStorageForOptionsPreferences = async () => {
         warbond15: true,
         warbond16: true,
         warbond17: true,
+        warbond18: true,
       },
       stratagemOptions: {
         onlyEaglesRadio: false,
@@ -429,7 +452,7 @@ const checkLocalStorageForOptionsPreferences = async () => {
         oneSupportCheck: false,
       },
     };
-    await localStorage.setItem('randomizerOptions', JSON.stringify(obj));
+    await localStorage.setItem("randomizerOptions", JSON.stringify(obj));
     return;
   }
   if (randomizerOptions) {

@@ -672,7 +672,7 @@ const generateItemCard = (
           class="img-card-top"
           alt="${item.displayName}"
       />
-      <div class="card-body itemNameContainer align-items-center">
+      <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
           <p class="card-title text-white ${modalTextStyle}">${item.displayName}</p>
       </div>
     </div>`;

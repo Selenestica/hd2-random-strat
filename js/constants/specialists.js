@@ -152,7 +152,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Acclimated"],
     traits: [],
-    warbonds: [],
+    warbonds: ["warbond18"],
   },
   {
     displayName: "The Loot Goblin",

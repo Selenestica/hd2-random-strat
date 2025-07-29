@@ -77,7 +77,6 @@ let masterArmorPassivesList = [];
 let sesItem = {
   cost: 15,
   timesPurchased: 0,
-  warbond: "None",
   warbondCode: "none",
   category: "random",
 };
@@ -396,7 +395,6 @@ const startNewRun = async (isRestart = null) => {
   sesItem = {
     cost: 15,
     timesPurchased: 0,
-    warbond: "None",
     warbondCode: "none",
     category: "random",
   };
@@ -606,7 +604,7 @@ const generateSESItemCard = () => {
     <span class="costBadges translate-middle badge rounded-pill bg-warning text-dark">
       ${sesItem.cost}
     </span>
-    <div class="card-body itemNameContainer align-items-center">
+    <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
       <p class="card-title text-white pcItemCardText">Super Earth Surplus (random)</p>
     </div>
   `;
@@ -663,7 +661,7 @@ const generateItemCard = (item, view = null) => {
     }">
       ${showCost ? totalCost : item.quantity}
     </span>
-    <div class="card-body itemNameContainer align-items-center">
+    <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
       <p class="card-title text-white pcItemCardText">${item.displayName}</p>
     </div>
   `;

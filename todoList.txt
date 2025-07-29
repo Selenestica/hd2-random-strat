@@ -1,17 +1,14 @@
 GENERAL:
   - go through FontAwesome icons and possibly update to better icons
-  - make sure BB and PC challenges get updated with the new items
-    - current runs wont be updated, but new runs will be as long as the page refreshes sometime
+  - killzone collab checkbox
 
 RANDOMIZER:
-  - when no booster is able to be given (no warbonds selected), booster column looks bad
   - add tags for THROWABLES
   - add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons
   - buy nvigneux a coffee
-  - enemy randomizer
-  - difficulty randomizer
   - add link to low sodium Helldivers discord
-  - holding click on stratagem or equipment icon will change it
+  - armor sets need to be adjustable by warbond
+  - add pro-tips at the bottom
 
 PENITENT CRUSADE:
   - system to track max stars missions, incomplete missions, and failed missions. adding points for each

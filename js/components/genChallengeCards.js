@@ -39,7 +39,7 @@ const genChallengeCards = () => {
     <i class="${
       challenge.iconClasses ? challenge.iconClasses : "text-danger"
     } fa-solid fa-7x ${challenge.icon}"></i>
-    <div class="card-body itemNameContainer align-items-center">
+    <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
       <p class="card-title text-white pcItemCardText">${
         challenge.displayName
       }</p>

@@ -14,7 +14,7 @@ const PRO_TIPS = [
   "The Crisper and other flame weapons can quickly destroy a Factory Strider by shooting it in the belly.",
   "The minimum safe distance from the Orbital 380mm Barrage, Orbital Napalm Barrage, and Orbital Walking Barrage is 50 meters.",
   "If all enemy outposts are destroyed during the extraction countdown, enemies will spawn from the closest edge of the map.",
-  "The least risky way to kill a Hulk with the Railgun is to destroy it's legs.",
+  "The least risky way to kill a Hulk with the Railgun is to destroy its legs.",
   "The PLAS-39 Accelerator Rifle can destroy tanks and cannon turrets with 2 bursts into the heat sink.",
   "Chargers, Hulks, and Fleshmobs are some of the easiest enemies to stick a stratagem ball.",
   "Eagle Smoke Strike and Orbital Smoke Strike are generally more effective when used on your current position, rather than throwing it at the enemy.",

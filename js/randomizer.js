@@ -17,6 +17,7 @@ const defaultDefenseRadio = document.getElementById("defaultDefenseRadio");
 const onlySupplyRadio = document.getElementById("onlySupplyRadio");
 const noSupplyRadio = document.getElementById("noSupplyRadio");
 const defaultSupplyRadio = document.getElementById("defaultSupplyRadio");
+const proTipsText = document.getElementById("proTipsText");
 
 const stratOptionRadios = [
   onlyEaglesRadio,
@@ -73,6 +74,8 @@ let checkedWarbonds = [
   "warbond17",
   "warbond18",
 ];
+
+let proTipCounter = 0;
 
 for (let y = 0; y < supplyAmountOptions.length; y++) {
   supplyAmountOptions[y].addEventListener("change", (e) => {
@@ -171,6 +174,10 @@ const filterItemsByWarbond = async () => {
 };
 
 const rollStratagems = async () => {
+  proTipCounter += 1;
+  if (proTipCounter === 3) {
+    rollProTip();
+  }
   // get random numbers that arent the same and get the strats at those indices
   stratagemsContainer.innerHTML = "";
 
@@ -212,6 +219,10 @@ const rollStratagems = async () => {
 };
 
 const rollEquipment = () => {
+  proTipCounter += 1;
+  if (proTipCounter === 3) {
+    rollProTip();
+  }
   equipmentContainer.innerHTML = "";
   const equipmentLists = [
     workingPrimsList ?? primsList,
@@ -491,11 +502,19 @@ const applyStoredOptionsToLists = async () => {
   // will want to add the stratagems options here one day
 };
 
+const rollProTip = () => {
+  const randTipIndex = Math.floor(Math.random() * PRO_TIPS.length);
+  const randTip = PRO_TIPS[randTipIndex];
+  proTipsText.innerHTML = randTip;
+  proTipCounter = 0;
+};
+
 const randomizeAll = async () => {
   await checkLocalStorageForOptionsPreferences();
   rollEquipment();
   rollStratagems();
   rollArmor();
+  rollProTip();
 };
 
 randomizeAll();

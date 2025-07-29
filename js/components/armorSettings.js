@@ -22,12 +22,15 @@ const getSelectedArmorRollType = () => {
 };
 
 const rollArmor = async () => {
+  proTipCounter += 1;
+  if (proTipCounter === 3) {
+    rollProTip();
+  }
   const activeArmorList = await getSelectedArmorRollType();
   const randArmorIndex = Math.floor(
     Math.random() * activeArmorList.list.length
   );
   const rolledArmor = activeArmorList.list[randArmorIndex];
-  console.log(activeArmorList.list);
   let armorImage = `                    
                     <img
                         src="../images/armor/${rolledArmor.imageURL}"

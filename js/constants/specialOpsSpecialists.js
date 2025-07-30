@@ -8,7 +8,7 @@ const SPECOPSSPECS = [
       "Orbital Napalm Barrage",
       "Flame Sentry",
     ],
-    primary: "Torcher",
+    primary: "Cookout",
     secondary: "Crisper",
     throwable: "G-10 Incendiary",
     armorPassive: "Inflammable",

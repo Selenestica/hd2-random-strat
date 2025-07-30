@@ -241,7 +241,7 @@ const PRIMARIES = [
     tier: "a",
   },
   {
-    displayName: "R-2 Amendment",
+    displayName: "Amendment",
     type: "Equipment",
     category: "primary",
     tags: ["MarksmanRifle"],

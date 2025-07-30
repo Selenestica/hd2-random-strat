@@ -463,7 +463,7 @@ const SPECOPSSPECS = [
     locked: true,
     displayName: "The Helghast Sniper",
     stratagems: [
-      "Orbital EMS Strike",
+      "Orbital Gas Strike",
       "Orbital Smoke Strike",
       "Anti-Tank Mines",
       "EMS Mortar Sentry",

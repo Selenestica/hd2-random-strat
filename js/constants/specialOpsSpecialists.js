@@ -93,7 +93,7 @@ const SPECOPSSPECS = [
     locked: true,
     displayName: "The Tankbuster",
     stratagems: [
-      "Recoilless Rifle",
+      "Spear",
       "Eagle 110mm Rocket Pods",
       "Orbital Railcannon Strike",
       "Anti-Tank Mines",
@@ -130,7 +130,7 @@ const SPECOPSSPECS = [
     ],
     primary: "Exploding Crossbow",
     secondary: "Grenade Pistol",
-    throwable: "Throwable Dynamite",
+    throwable: "Dynamite",
     armorPassive: "Integrated Explosives",
     warbonds: ["warbond13", "warbond6", "warbond14", "warbond13"],
   },
@@ -548,5 +548,20 @@ const SPECOPSSPECS = [
     throwable: "G-4 Gas",
     armorPassive: "Peak Physique",
     warbonds: ["warbond10", "warbond12", "warbond8"],
+  },
+  {
+    locked: true,
+    displayName: "The Courier",
+    stratagems: [
+      "Eagle Napalm Strike",
+      "Eagle Strafing Run",
+      "Jump Pack",
+      "Fast Recon Vehicle",
+    ],
+    primary: "Knight",
+    secondary: "Senator",
+    throwable: "Dynamite",
+    armorPassive: "Gunslinger",
+    warbonds: ["warbond0", "warbond4", "warbond14"],
   },
 ];

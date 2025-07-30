@@ -110,7 +110,7 @@ const THROWABLES = [
     tier: "a",
   },
   {
-    displayName: "Throwable Dynamite",
+    displayName: "Dynamite",
     type: "Equipment",
     category: "throwable",
     tags: [],

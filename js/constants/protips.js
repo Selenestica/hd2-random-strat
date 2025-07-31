@@ -50,4 +50,6 @@ const PRO_TIPS = [
   "The Autocannon has two firing modes: Flak mode is most effective against chaff, and APHET mode is best for heavy units.",
   "Two headshots with the Senator will leave the Hive Guard to bleed out, and die shortly after.",
   "If you find yourself running out of ammo often, try tap firing your weapon, switching to burst mode, or lowering the fire rate.",
+  "You can teleport in and out of buddy bunkers, and destroy storage container doors, with the warp pack.",
+  "While using the Total firing mode with the Variable, you can prevent yourself from getting knocked over by firing while prone.",
 ];

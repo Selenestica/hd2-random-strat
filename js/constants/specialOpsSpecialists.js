@@ -357,7 +357,7 @@ const SPECOPSSPECS = [
     secondary: "Verdict",
     throwable: "G-6 Frag",
     armorPassive: "Siege Ready",
-    warbonds: ["warbond17", "warbond12"],
+    warbonds: ["warbond17", "warbond12", "warbond7"],
   },
   {
     locked: true,

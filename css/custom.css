@@ -358,3 +358,23 @@ body {
 .pcMandatoryStratagemClass {
   border: 2px solid cyan;
 }
+
+@media only screen and (max-width: 767px) {
+  .socialIcons {
+    font-size: large;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .socialIcons {
+    font-size: x-large;
+  }
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.pointer-events-auto {
+  pointer-events: auto;
+}

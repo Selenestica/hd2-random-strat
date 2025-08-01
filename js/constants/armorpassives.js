@@ -54,7 +54,7 @@ const ARMOR_PASSIVES = [
     type: "Equipment",
     category: "armor",
     tags: ["ArmorPassive"],
-    warbondCode: "",
+    warbondCode: "none",
     internalName: "extrapadding",
     imageURL: "extrapadding.png",
     tier: "b",

@@ -1,5 +1,6 @@
 GENERAL:
   - go through FontAwesome icons and possibly update to better icons
+  - leaderboard itegrated with GitHub Issues?
 
 RANDOMIZER:
   - add tags for THROWABLES

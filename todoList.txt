@@ -37,6 +37,7 @@ BUDGET BLITZ
   - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
   - credits reduced for accidentals
   - new game plus where you roll over credits into next difficulty
+	- getting HVI grants you a random item instead of credits
 
 SPECIAL OPERATIONS
   - SPECIALIST ideas:

@@ -52,4 +52,6 @@ const PRO_TIPS = [
   "If you find yourself running out of ammo often, try tap firing your weapon, switching to burst mode, or lowering the fire rate.",
   "You can teleport in and out of buddy bunkers, and destroy storage container doors, with the warp pack.",
   "While using the Total firing mode with the Variable, you can prevent yourself from getting knocked over by firing while prone.",
+  "To get the maximum distance with the Ultimatum, dive while firing at a 45 degree angle. You can launch the projectile at a maximum range of about 55 meters.",
+  "The Ballistic Shield will block attacks from the Tesla Tower.",
 ];

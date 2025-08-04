@@ -38,6 +38,7 @@ BUDGET BLITZ
   - credits reduced for accidentals
   - new game plus where you roll over credits into next difficulty
 	- getting HVI grants you a random item instead of credits
+  - accidentals subtracts credits
 
 SPECIAL OPERATIONS
   - SPECIALIST ideas:

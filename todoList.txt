@@ -2,6 +2,8 @@ GENERAL:
   - go through FontAwesome icons and possibly update to better icons
   - leaderboard integrated with GitHub Issues?
     - users submit verification files in discord server
+		- TIER MAKER
+		- Links to other cool fan sites
 
 RANDOMIZER:
   - add tags for THROWABLES

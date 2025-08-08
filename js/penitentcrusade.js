@@ -50,6 +50,8 @@ const hellDiversMobilizeCheckbox = document.getElementById("warbond3");
 let currentItems = [];
 let currentPunishmentItems = [];
 let missionCounter = 1;
+let timeElapsed = 0;
+let timerInterval = null;
 let difficulty = "normal";
 hellDiversMobilizeCheckbox.disabled = true;
 let masterPrimsList = [];
@@ -838,12 +840,33 @@ const changeDifficulty = async (uploadedDiff = null) => {
   }
 };
 
+const startTimer = () => {
+  timerInterval = setInterval(() => {
+    secondsElapsed++;
+    updateTimerDisplay();
+  }, 1000);
+};
+
+const stopTimer = () => {
+  clearInterval(timerInterval);
+};
+
+window.addEventListener("beforeunload", () => {
+  // just so we can save the time elapsed
+  // will also have to do this if they switch saves
+  saveProgress();
+});
+
 const saveProgress = async (item = null) => {
   let obj = {};
   const penitentCrusadeSaveData = localStorage.getItem(
     "penitentCrusadeSaveData"
   );
   if (!penitentCrusadeSaveData) {
+    if (item) {
+      // add time here if user got an item, which means they're actively playing ZZZ
+      startTimer();
+    }
     obj = {
       savedGames: [
         {
@@ -865,6 +888,8 @@ const saveProgress = async (item = null) => {
           specialist,
           difficulty,
           warbondCodes,
+          timeElasped,
+          // no need to add time counter. will let them sit on page as long as they want at first ZZZ
         },
       ],
     };
@@ -878,6 +903,10 @@ const saveProgress = async (item = null) => {
       let updatedItems = sg.acquiredItems;
       if (item) {
         updatedItems.push(item);
+      }
+      if (updatedItems.length === 1) {
+        // add time here if user got an item, which means they're actively playing ZZZ
+        startTimer();
       }
       sg = {
         ...sg,
@@ -903,6 +932,7 @@ const saveProgress = async (item = null) => {
         specialist,
         difficulty,
         warbondCodes,
+        timeElasped,
       };
     }
     return sg;
@@ -942,6 +972,7 @@ const unlockSuperPC = () => {
 };
 
 const uploadSaveData = async () => {
+  stopTimer();
   const penitentCrusadeSaveData = localStorage.getItem(
     "penitentCrusadeSaveData"
   );
@@ -974,6 +1005,7 @@ const uploadSaveData = async () => {
     currentItems = currentGame.currentItems ?? [];
     currentPunishmentItems = currentGame.currentPunishmentItems ?? [];
     specialist = currentGame.specialist ?? null;
+    timeElapsed = currentGame.timeElapsed ?? 0;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
     if (currentGame.specialist !== null) {
@@ -999,6 +1031,9 @@ const uploadSaveData = async () => {
     await getStartingItems(currentGame.difficulty);
     await addDefaultItemsToAccordions(specialist);
     genSpecialistsCards();
+    if (currentGame.acquiredItems > 0) {
+      startTimer();
+    }
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
       const item = currentGame.acquiredItems[i];
       const { imgDir, accBody } = getItemMetaData(item);
@@ -1017,6 +1052,7 @@ const uploadSaveData = async () => {
 };
 
 const saveDataAndRestart = async (diff = null) => {
+  stopTimer();
   // probably want to set all warbond codes to checked just in case
   warbondCodes = [...masterWarbondCodes];
   for (let i = 0; i < warbondCheckboxes.length; i++) {
@@ -1073,6 +1109,7 @@ const saveDataAndRestart = async (diff = null) => {
     specialist,
     difficulty: diff === "super" ? "super" : "normal",
     warbondCodes,
+    timeElapsed,
   };
 
   updatedSavedGames.push(newSaveObj);

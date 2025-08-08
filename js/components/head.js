@@ -21,6 +21,6 @@ page.innerHTML += `
                 name="description"
                 content="Prove that you have the Strength and the Courage to dispense freedom with Super Earth's surplus arsenal!"
             />
-            <title>Helldivers 2 Randomizer</title>
+            <title>Helldivers 2: Randomizer</title>
         </head>
     `;

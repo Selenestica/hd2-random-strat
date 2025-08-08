@@ -16,7 +16,7 @@ const armorPassivesFilterDropdownItem = document.getElementById(
 const boostersFilterDropdownItem = document.getElementById(
   "boostersFilterDropdownItem"
 );
-const warbondsFilterList = document.getElementById("warbondsFilterList");
+// const warbondsFilterList = document.getElementById("warbondsFilterList");
 
 const typeFiltersArray = [
   primariesFilterDropdownItem,
@@ -27,24 +27,24 @@ const typeFiltersArray = [
   stratagemsFilterDropdownItem,
 ];
 
-const genTMWarbondFilterCheckboxes = () => {
-  for (let i = 0; i < warbondsList.length; i++) {
-    const option = `
-            <li>
-                <a
-                    class="dropdown-item"
-                    onclick="filterByWarbond('${i}')"
-                    href="#"
-                >
-                    ${warbondsList[i]}
-                </a>
-            </li>
-        `;
-    warbondsFilterList.innerHTML += option;
-  }
-};
+// const genTMWarbondFilterCheckboxes = () => {
+//   for (let i = 0; i < warbondsList.length; i++) {
+//     const option = `
+//             <li>
+//                 <a
+//                     class="dropdown-item"
+//                     onclick="filterByWarbond('${i}')"
+//                     href="#"
+//                 >
+//                     ${warbondsList[i]}
+//                 </a>
+//             </li>
+//         `;
+//     warbondsFilterList.innerHTML += option;
+//   }
+// };
 
-genTMWarbondFilterCheckboxes();
+// genTMWarbondFilterCheckboxes();
 
 const filterByType = (filter) => {
   const cards = document.querySelectorAll(".tierItem");
@@ -63,22 +63,22 @@ const filterByType = (filter) => {
   });
 };
 
-const filterByWarbond = (wbCode) => {
-  const cards = document.querySelectorAll(".tierItem");
-  // Reset all filters to visible
-  cards.forEach((card) => {
-    card.classList.remove("d-none");
-  });
+// const filterByWarbond = (wbCode) => {
+//   const cards = document.querySelectorAll(".tierItem");
+//   // Reset all filters to visible
+//   cards.forEach((card) => {
+//     card.classList.remove("d-none");
+//   });
 
-  // Reset all filter buttons active class
-  typeFiltersArray.forEach((btn) => btn.classList.remove("active"));
+//   // Reset all filter buttons active class
+//   typeFiltersArray.forEach((btn) => btn.classList.remove("active"));
 
-  cards.forEach((card) => {
-    if (filter !== card.dataset.type) {
-      card.classList.toggle("d-none");
-    }
-  });
-};
+//   cards.forEach((card) => {
+//     if (filter !== card.dataset.type) {
+//       card.classList.toggle("d-none");
+//     }
+//   });
+// };
 
 const resetItemFilters = () => {
   const cards = document.querySelectorAll(".tierItem");

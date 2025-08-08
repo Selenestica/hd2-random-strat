@@ -56,6 +56,10 @@ SPECIAL OPERATIONS
 
 TIER MAKER
   - ability to filter out by warbond
+  - ability to save tier lists
+  - ability to reset tier list
+  - ability to rename tiers
+  - ability to toggle names of items on/off
 
 NEW CHALLENGE IDEAS:
 

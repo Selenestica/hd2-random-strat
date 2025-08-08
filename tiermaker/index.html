@@ -71,7 +71,7 @@
           </a>
         </div>
         <div class="col-4">
-          <div class="d-flex justify-content-end">
+          <!-- <div class="d-flex justify-content-end">
             <button
               class="btn btn-primary"
               type="button"
@@ -88,7 +88,7 @@
             >
               <i class="fa-solid text-light fa-floppy-disk"></i>
             </button>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="row d-flex justify-content-center mt-2">
@@ -99,7 +99,7 @@
       <div class="row d-flex justify-content-center">
         <div class="d-flex col justify-content-center align-items-center">
           <h4 class="mb-0 text-white">Tier List Maker</h4>
-          <button
+          <!-- <button
             class="btn btn-secondary bg-none"
             style="border: none"
             type="button"
@@ -107,7 +107,7 @@
             data-bs-target="#flavorAndInstructionsModal"
           >
             <i class="fa-solid fa-circle-info"></i>
-          </button>
+          </button> -->
         </div>
       </div>
       <div class="row my-2 justify-content-center">
@@ -189,7 +189,7 @@
                 </li>
               </ul>
             </div>
-            <div class="btn-group">
+            <!-- <div class="btn-group">
               <button
                 type="button"
                 class="btn btn-outline-primary dropdown-toggle no-caret"
@@ -202,7 +202,7 @@
                 ></span>
               </button>
               <ul class="dropdown-menu" id="warbondsFilterList"></ul>
-            </div>
+            </div> -->
             <button
               onclick="resetItemFilters()"
               class="btn btn-primary"
@@ -216,7 +216,7 @@
           </div>
         </div>
         <div class="col-2 justify-content-end d-flex align-items-center">
-          <button
+          <!-- <button
             class="btn btn-primary mx-2"
             type="button"
             data-bs-toggle="modal"
@@ -224,12 +224,11 @@
             id="warbondSelectButtonDesktop"
           >
             Settings
-          </button>
+          </button> -->
           <button
             class="btn btn-warning"
             type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#restartBudgetBlitzModal"
+            onclick="clearSaveDataAndRestart()"
           >
             <i class="fa-solid fa-rotate"></i>
           </button>
@@ -288,250 +287,10 @@
         <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content bg-grey">
             <div class="modal-header">
-              <h5 class="modal-title text-light">The Budget Blitz Challenge</h5>
+              <h5 class="modal-title text-light">Tier List Maker</h5>
             </div>
             <div class="modal-body row d-flex justify-content-center">
               <div class="accordion" id="infoAccordion">
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button
-                      class="accordion-button text-white"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseOne"
-                      aria-expanded="true"
-                      aria-controls="collapseOne"
-                    >
-                      Lore
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseOne"
-                    class="accordion-collapse collapse"
-                    data-bs-parent="#infoAccordion"
-                  >
-                    <div class="accordion-body">
-                      <p class="text-white">
-                        “The price of liberty is vigilance... and a balanced
-                        ledger.” As the galaxy grows ever more perilous, and as
-                        enemies multiply like interest on unpaid debts, the
-                        Super Earth High Command has instituted a Budget Blitz:
-                        a bold new initiative that forges the might of our
-                        military with the unyielding strength of economic
-                        stewardship. In these trying times, resources are
-                        finite, but our resolve is infinite. Each mission’s
-                        outcome is no longer measured solely by enemy casualties
-                        or territories secured — but by the credits accrued.
-                        Victory must pay its own way.
-                        <br />
-                        <br />
-                        <em>
-                          “The strength of our democracy is built on the
-                          sacrifices of our soldiers—and the wisdom of our
-                          accountants. Under a Budget Blitz, every credit spent
-                          is a vote for freedom. Every star earned is a promise
-                          kept. Helldivers, carry the torch of liberty... but
-                          keep an eye on the ledger.”
-                        </em>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button
-                      class="accordion-button text-white collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseTwo"
-                      aria-expanded="false"
-                      aria-controls="collapseTwo"
-                    >
-                      Overview
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseTwo"
-                    class="accordion-collapse collapse show"
-                    data-bs-parent="#infoAccordion"
-                  >
-                    <div class="accordion-body">
-                      <p class="text-white">
-                        Complete all missions in one operation on each
-                        difficulty, starting on difficulty 6 (Extreme) and
-                        moving up one difficulty as you go.
-                        <br />
-                        <br />
-                        Earn credits by submitting your after-mission report,
-                        and spend credits on equipment in the shop.
-                        <br />
-                        <br />
-                        Your goal is to complete a difficulty 10 (Super
-                        Helldive) operation having earned as many credits as
-                        possible along the way.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button
-                      class="accordion-button text-white collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseThree"
-                      aria-expanded="false"
-                      aria-controls="collapseThree"
-                    >
-                      Using Equipment and Earning Credits
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseThree"
-                    class="accordion-collapse collapse"
-                    data-bs-parent="#infoAccordion"
-                  >
-                    <div class="accordion-body">
-                      <p class="text-white">
-                        In order to start a mission, you must equip items in
-                        your loadout menu (just like in-game). You must choose 4
-                        stratagems, armor, a primary, a secondary, and a
-                        throwable. Click on an item in your Purchased Items box
-                        or Default Items box to equip the item. To unequip an
-                        item, simply click on it again.
-                        <br />
-                        <br />
-                        Your Default Items have unlimited uses, but your
-                        Purchased Items have uses corresponding to how many
-                        times you have purchased it (which you can see in the
-                        top right corner of the item).
-                        <br />
-                        <br />
-                        After each mission, press the 'Mission Complete' button
-                        and input the number of stars you earned, the number of
-                        your individual deaths, the amount of Super Samples
-                        extracted, and the percentage (%) of time remaining in
-                        the mission (shown in-game at the bottom of the mission
-                        summary screen). You will earn credits based on these
-                        performance metrics.
-                        <br />
-                        <br />
-                        In higher difficulties, even more credits can be earned
-                        by extracting with the High-Value Item.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button
-                      class="accordion-button text-white collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseFour"
-                      aria-expanded="false"
-                      aria-controls="collapseFour"
-                    >
-                      Purchasing Equipment
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseFour"
-                    class="accordion-collapse collapse"
-                    data-bs-parent="#infoAccordion"
-                  >
-                    <div class="accordion-body">
-                      <p class="text-white">
-                        Press the 'Shop' button to view purchaseable items.
-                        Click on an item to purchase it. Each time you purchase
-                        an item the price will increase for the next time you
-                        purchase that same item, with the exception of Super
-                        Earth Surplus (a random item).
-                        <br />
-                        Prices that are on sale will have a green price tag, and
-                        will not increase in price as much as items at full
-                        price.
-                        <br />
-                        <br />
-                        <b>For example: </b>If I purchased the Quasar Cannon at
-                        full price for 25 Credits, the price for the next Quasar
-                        Cannon will be 30 Credits.
-                        <br />
-                        <br />
-                        Prices for items will change, and different items will
-                        go on sale, after each operation completed.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button
-                      class="accordion-button text-white collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseFive"
-                      aria-expanded="false"
-                      aria-controls="collapseFive"
-                    >
-                      Failure
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseFive"
-                    class="accordion-collapse collapse"
-                    data-bs-parent="#infoAccordion"
-                  >
-                    <div class="accordion-body">
-                      <p class="text-white">
-                        If your squad fails a mission, you must start a new
-                        operation on the difficulty that you failed to complete.
-                        You will not lose credits, but item usage will still be
-                        counted. Additionally, your ending score will be
-                        negatively affected.
-                        <br />
-                        Press the "Mission Failed" button to reset the
-                        operation.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button
-                      class="accordion-button text-white collapsed"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseSix"
-                      aria-expanded="false"
-                      aria-controls="collapseSix"
-                    >
-                      Saving Your Progress
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseSix"
-                    class="accordion-collapse collapse"
-                    data-bs-parent="#infoAccordion"
-                  >
-                    <div class="accordion-body">
-                      <p class="text-white">
-                        Your progress is saved in your browser's local storage.
-                        If you clear your browser's local storage, your progress
-                        will be lost. If you want to start a new run, you may do
-                        so by pressing the yellow "Restart" button on the right
-                        side of the page. Your run will be saved and accessible
-                        in the save menu.
-                        <br />
-                        <br />
-                        Saved games can be loaded, downloaded, and uploaded in
-                        the Save Data Management menu, accessible by clicking
-                        the floppy disk button in the upper right corner. You
-                        can also rename your save files to keep them in order.
-                      </p>
-                    </div>
-                  </div>
-                </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button
@@ -547,7 +306,7 @@
                   </h2>
                   <div
                     id="collapseSeven"
-                    class="accordion-collapse collapse"
+                    class="accordion-collapse collapse show"
                     data-bs-parent="#infoAccordion"
                   >
                     <div class="accordion-body">
@@ -600,6 +359,42 @@
                           </p>
                         </li>
                       </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button text-white collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
+                      Overview
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#infoAccordion"
+                  >
+                    <div class="accordion-body">
+                      <p class="text-white">
+                        Complete all missions in one operation on each
+                        difficulty, starting on difficulty 6 (Extreme) and
+                        moving up one difficulty as you go.
+                        <br />
+                        <br />
+                        Earn credits by submitting your after-mission report,
+                        and spend credits on equipment in the shop.
+                        <br />
+                        <br />
+                        Your goal is to complete a difficulty 10 (Super
+                        Helldive) operation having earned as many credits as
+                        possible along the way.
+                      </p>
                     </div>
                   </div>
                 </div>

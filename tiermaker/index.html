@@ -114,7 +114,7 @@
         <div
           class="col-2 d-flex align-items-center justify-content-start"
         ></div>
-        <div class="col-8" id="bbShopFilterDiv">
+        <div class="col-8 d-flex justify-content-center" id="bbShopFilterDiv">
           <div
             class="btn-group"
             role="group"
@@ -196,47 +196,14 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <span id="bbPriceText" class="text-white">Price</span>
+                <span id="bbPriceText" class="text-white">Warbond</span>
                 <span id="bbPriceIcon" class="text-white"
                   ><i class="fa-solid fa-tag"></i
                 ></span>
               </button>
               <ul class="dropdown-menu">
                 <li>
-                  <a
-                    id="onSaleDropdownItem"
-                    class="dropdown-item"
-                    onclick="filterByPrice('onSale')"
-                    href="#"
-                    >On Sale</a
-                  >
-                </li>
-                <li>
-                  <a
-                    id="cheapestDropdownItem"
-                    class="dropdown-item"
-                    onclick="filterByPrice('cheapest')"
-                    href="#"
-                    >Cheapest</a
-                  >
-                </li>
-                <li>
-                  <a
-                    id="purchaseableDropdownItem"
-                    class="dropdown-item"
-                    onclick="filterByPrice('purchaseable')"
-                    href="#"
-                    >Purchaseable</a
-                  >
-                </li>
-                <li>
-                  <a
-                    id="nonPurchaseableDropdownItem"
-                    class="dropdown-item"
-                    onclick="filterByPrice('nonpurchaseable')"
-                    href="#"
-                    >Non-Purchaseable</a
-                  >
+                  <a class="dropdown-item" href="#">warbonds to go here</a>
                 </li>
               </ul>
             </div>
@@ -280,6 +247,14 @@
           >
             Settings
           </button>
+          <button
+            class="btn btn-warning"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#restartBudgetBlitzModal"
+          >
+            <i class="fa-solid fa-rotate"></i>
+          </button>
         </div>
       </div>
 
@@ -287,7 +262,11 @@
       <div id="tierListContainer"></div>
 
       <!-- LOOSE ITEMS CONTAINER -->
-      <div class="row d-flex" id="looseItemsContainer"></div>
+      <div
+        class="row d-flex"
+        id="looseItemsContainer"
+        style="justify-content: space-evenly"
+      ></div>
 
       <!-- WARBOND SELECT MODAL -->
       <div

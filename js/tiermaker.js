@@ -27,7 +27,7 @@ window.onload = () => {
   });
 
   // Add drag events to items
-  makeItemsDraggable();
+  //   makeItemsDraggable();
 
   // Optionally load from localStorage
   loadTierList();
@@ -38,25 +38,25 @@ const allowDrop = (e) => {
 };
 
 const drag = (e) => {
-  console.log(e.target.id);
-  e.dataTransfer.setData("text/plain", e.target.id);
+  e.dataTransfer.setData("text/plain", e.currentTarget.id);
 };
 
 const drop = (e) => {
   e.preventDefault();
+
+  // Make sure we drop into the tier-items container itself
+  let dropTarget = e.target;
+  if (!dropTarget.classList.contains("tierCategories")) {
+    dropTarget = dropTarget.closest(".tierCategories");
+    if (!dropTarget) return; // just in case
+  }
+
   const itemId = e.dataTransfer.getData("text");
   const draggedItem = document.getElementById(itemId);
-  e.target.appendChild(draggedItem);
-};
-
-// Assign unique IDs and make items draggable
-const makeItemsDraggable = () => {
-  const items = document.querySelectorAll(".tierItem");
-  items.forEach((item, index) => {
-    item.setAttribute("id", `item-${index}`);
-    item.setAttribute("draggable", "true");
-    item.ondragstart = drag;
-  });
+  // Make sure draggedItem exists and is the card itself
+  if (draggedItem && !draggedItem.contains(dropTarget)) {
+    dropTarget.appendChild(draggedItem);
+  }
 };
 
 // Save current tier list to localStorage
@@ -92,14 +92,14 @@ const loadTierList = () => {
     const items = data[tier];
     items.forEach((text) => {
       const item = document.createElement("div");
-      item.className = "item";
+      item.className = "tierItem";
       item.textContent = text;
       item.setAttribute("draggable", "true");
       item.id = `item-${Math.random().toString(36).substring(2, 9)}`;
       item.ondragstart = drag;
 
       if (tier === "pool") {
-        document.getElementById("looseItems").appendChild(item);
+        document.getElementById("looseItemsContainer").appendChild(item);
       } else {
         const tierEl = document.querySelector(
           `.tierCategories[data-tier="${tier}"]`
@@ -206,7 +206,7 @@ const populateLooseItems = () => {
   }
 };
 
-const generateItemCard = (item, view = null) => {
+const generateItemCard = (item) => {
   let imgDir = "equipment";
   if (item.type === "Stratagem") {
     imgDir = "svgs";
@@ -215,7 +215,9 @@ const generateItemCard = (item, view = null) => {
     imgDir = "armor";
   }
   const card = document.createElement("div");
-
+  card.setAttribute("draggable", "true");
+  card.ondragstart = drag;
+  card.id = item.internalName;
   card.className = `card tierItem col-2 col-lg-1 pcItemCards ${item.warbondCode}`;
   card.innerHTML = `
     <img

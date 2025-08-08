@@ -405,6 +405,7 @@ body {
   flex: 1;
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
   min-height: 40px;
   border-left: 2px dashed #555;
   padding-left: 10px;

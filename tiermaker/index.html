@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link
+      rel="shortcut icon"
+      type="image/svg+xml"
+      href="../images/dressing/ministryOfTruthIcon.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <meta
+      name="description"
+      content="Create your own Helldivers 2 tier list! Rank stratagems, weapons, and more with our interactive tier maker. Share your list with other players!"
+    />
+    <title>Helldivers 2: Tier List Maker</title>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-BFREXT7F48");
+    </script>
+  </head>
+
+  <body>
+    <div class="container mb-5">
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="d-flex col-4 justify-content-start px-0">
+          <a href="../index.html">
+            <button class="btn text-light text-start py-0" type="button">
+              <i class="fa-solid fa-arrow-left"></i>
+              Back to Challenges
+            </button>
+          </a>
+        </div>
+        <div class="d-flex col-4 justify-content-center">
+          <a target="_blank" href="https://discord.gg/nphn3YpqvY">
+            <i class="socialIcons fa-brands fa-discord"></i>
+          </a>
+          <a
+            class="mx-2"
+            target="_blank"
+            href="https://github.com/Selenestica/hd2-random-strat"
+          >
+            <i class="socialIcons fa-brands fa-github"></i>
+          </a>
+          <a target="_blank" href="https://buymeacoffee.com/breakfasttaco">
+            <i class="socialIcons fa-solid fa-mug-saucer"></i>
+          </a>
+        </div>
+        <div class="col-4">
+          <!-- <div class="d-flex justify-content-end">
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#warbondSelectModal"
+              id="warbondSelectButtonMobile"
+            >
+              <i class="fa-solid fa-cog"></i>
+            </button>
+            <button
+              class="btn btn-primary mx-1"
+              onclick="genTierMakerDataManagementModalInfo()"
+              type="button"
+            >
+              <i class="fa-solid text-light fa-floppy-disk"></i>
+            </button>
+          </div> -->
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="d-flex col justify-content-center">
+          <h1 class="text-light my-0">Helldivers 2</h1>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="d-flex col justify-content-center align-items-center">
+          <h4 class="mb-0 text-white">Tier List Maker</h4>
+          <!-- <button
+            class="btn btn-secondary bg-none"
+            style="border: none"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#flavorAndInstructionsModal"
+          >
+            <i class="fa-solid fa-circle-info"></i>
+          </button> -->
+        </div>
+      </div>
+      <div class="row my-2 justify-content-center">
+        <div
+          class="col-2 d-flex align-items-center justify-content-start"
+        ></div>
+        <div class="col-8 d-flex justify-content-center" id="bbShopFilterDiv">
+          <div
+            class="btn-group"
+            role="group"
+            aria-label="Basic outlined example"
+          >
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary dropdown-toggle no-caret"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="bbTypeText" class="text-white">Type</span>
+                <span id="bbTypeIcon" class="text-white"
+                  ><i class="fa-solid fa-list"></i
+                ></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="primariesFilterDropdownItem"
+                    onclick="filterByType('primary')"
+                    href="#"
+                    >Primaries</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="secondariesFilterDropdownItem"
+                    onclick="filterByType('secondary')"
+                    href="#"
+                    >Secondaries</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="throwablesFilterDropdownItem"
+                    onclick="filterByType('throwable')"
+                    href="#"
+                    >Throwables</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="stratagemsFilterDropdownItem"
+                    onclick="filterByType('stratagem')"
+                    href="#"
+                    >Stratagems</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="armorPassivesFilterDropdownItem"
+                    onclick="filterByType('armor')"
+                    href="#"
+                    >Armor Passives</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="boostersFilterDropdownItem"
+                    onclick="filterByType('booster')"
+                    href="#"
+                    >Boosters</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary dropdown-toggle no-caret"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span id="bbPriceText" class="text-white">Warbond</span>
+                <span id="bbPriceIcon" class="text-white"
+                  ><i class="fa-solid fa-tag"></i
+                ></span>
+              </button>
+              <ul class="dropdown-menu" id="warbondsFilterList"></ul>
+            </div> -->
+            <button
+              onclick="resetItemFilters()"
+              class="btn btn-primary"
+              type="button"
+            >
+              <span id="bbResetText"> Reset </span>
+              <span id="bbResetIcon"
+                ><i class="fa-solid fa-filter-circle-xmark"></i
+              ></span>
+            </button>
+          </div>
+        </div>
+        <div class="col-2 justify-content-end d-flex align-items-center">
+          <!-- <button
+            class="btn btn-primary mx-2"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#warbondSelectModal"
+            id="warbondSelectButtonDesktop"
+          >
+            Settings
+          </button> -->
+          <button
+            class="btn btn-warning"
+            type="button"
+            onclick="clearSaveDataAndRestart()"
+          >
+            <i class="fa-solid fa-rotate"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- TIER LIST CONTAINER -->
+      <div id="tierListContainer"></div>
+
+      <!-- LOOSE ITEMS CONTAINER -->
+      <div
+        class="row d-flex justify-content-center"
+        id="looseItemsContainer"
+      ></div>
+
+      <!-- WARBOND SELECT MODAL -->
+      <div
+        class="modal fade"
+        id="warbondSelectModal"
+        tabindex="-1"
+        aria-labelledby="warbondSelectModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light" id="warbondSelectModalLabel">
+                WARBOND SELECT
+              </h5>
+            </div>
+            <div class="modal-body">
+              <div class="p-3" id="warbondsChecklistContainer"></div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FLAVOR AND INSTRUCTIONS MODAL -->
+      <div
+        class="modal fade"
+        id="flavorAndInstructionsModal"
+        tabindex="-1"
+        open="true"
+        aria-labelledby="flavorAndInstructionsModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light">Tier List Maker</h5>
+            </div>
+            <div class="modal-body row d-flex justify-content-center">
+              <div class="accordion" id="infoAccordion">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button text-white collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSeven"
+                      aria-expanded="false"
+                      aria-controls="collapseSeven"
+                    >
+                      FAQs
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseSeven"
+                    class="accordion-collapse collapse show"
+                    data-bs-parent="#infoAccordion"
+                  >
+                    <div class="accordion-body">
+                      <ul class="modalAccordionList">
+                        <li class="text-white">
+                          <b>Q: Who was this challenge made for?</b>
+                          <p>
+                            A: This challenge was made for those who enjoy
+                            challenge runs and rogue-like elements, and is
+                            friendly to newer players and veterans alike due to
+                            the multiple difficulty modes and ability to filter
+                            out items from warbonds you might not have
+                            purchased.
+                          </p>
+                        </li>
+                        <li class="text-white">
+                          <b
+                            >Q: How many squadmates do I need to run this
+                            challenge?</b
+                          >
+                          <p>
+                            A: Ideally you would run this challenge with a full
+                            squad of participating players.
+                          </p>
+                        </li>
+                        <li class="text-white">
+                          <b>Q: What if I don't have all the warbonds?</b>
+                          <p>
+                            A: Check out the Settings menu by pressing the blue
+                            gear button. From there you can change your
+                            difficulty and toggle on/off the warbonds.
+                          </p>
+                        </li>
+                        <li class="text-white">
+                          <b>Q: What is Super Earth Surplus again?</b>
+                          <p>
+                            A: A random item. Specifically, it is a 1 in 6
+                            chance of receiving a random primary, secondary,
+                            throwable, stratagem, booster, or armor passive.
+                          </p>
+                        </li>
+                        <li class="text-white">
+                          <b>Q: Why is X item so cheap/expensive?</b>
+                          <p>
+                            A: Every item has a base cost, plus a random number
+                            cost added to it (the range of the random number
+                            depends on difficulty). The random number usually
+                            makes the item more expensive, but there is a chance
+                            the cost can be cheaper than the base cost.
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button text-white collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
+                      Overview
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#infoAccordion"
+                  >
+                    <div class="accordion-body">
+                      <p class="text-white">
+                        Complete all missions in one operation on each
+                        difficulty, starting on difficulty 6 (Extreme) and
+                        moving up one difficulty as you go.
+                        <br />
+                        <br />
+                        Earn credits by submitting your after-mission report,
+                        and spend credits on equipment in the shop.
+                        <br />
+                        <br />
+                        Your goal is to complete a difficulty 10 (Super
+                        Helldive) operation having earned as many credits as
+                        possible along the way.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAVE DATA MANAGEMENT MODAL -->
+      <div
+        class="modal fade"
+        id="budgetBlitzDataManagementModal"
+        tabindex="-1"
+        open="true"
+        aria-labelledby="budgetBlitzDataManagementModalLabel"
+        aria-hidden="true"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+      >
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light" id="">Save Data Management</h5>
+            </div>
+            <div
+              class="modal-body row d-flex justify-content-center"
+              id="budgetBlitzDataManagementModalBody"
+            >
+              <p class="text-white">
+                Switch your active save file here, delete save files, or upload
+                save files.
+                <br />
+                Select an entry below and press 'Apply' to load a different save
+                file.
+                <br />
+                <br />
+                NOTE: You can't delete your current save file.
+              </p>
+              <div class="mb-3 d-flex row">
+                <div class="col-9">
+                  <input
+                    class="form-control"
+                    type="file"
+                    id="saveDataUploadInput"
+                  />
+                </div>
+                <div class="col-3">
+                  <button
+                    type="button"
+                    onclick="uploadSaveFile()"
+                    class="btn btn-success"
+                    id="uploadSaveFileButton"
+                    disabled
+                  >
+                    Upload
+                  </button>
+                </div>
+              </div>
+              <div
+                id="budgetBlitzDataManagementModalSavesList"
+                class="btn-group-vertical"
+                role="group"
+                aria-label="Basic radio toggle button group"
+              ></div>
+            </div>
+            <div class="modal-footer row justify-content-between">
+              <div class="d-flex col justify-content-start">
+                <button
+                  type="button"
+                  onclick="clearBudgetBlitzDataManagementModal()"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div
+                id="saveDataModalFunctionsDiv"
+                class="d-flex col justify-content-end"
+              >
+                <button
+                  type="button"
+                  onclick="clearSaveDataAndRestart()"
+                  class="btn btn-danger"
+                  data-bs-dismiss="modal"
+                >
+                  Delete ALL
+                </button>
+                <button
+                  type="button"
+                  onclick="deleteSavedGameData()"
+                  class="btn btn-danger mx-2"
+                  data-bs-dismiss="modal"
+                >
+                  Delete
+                </button>
+                <button
+                  type="button"
+                  onclick="applySavedGameData()"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                >
+                  Apply
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://kit.fontawesome.com/a018c01272.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="../js/constants/primaries.js"></script>
+  <script src="../js/constants/secondaries.js"></script>
+  <script src="../js/constants/boosters.js"></script>
+  <script src="../js/constants/throwables.js"></script>
+  <script src="../js/constants/stratagems.js"></script>
+  <script src="../js/constants/armorsets.js"></script>
+  <script src="../js/constants/armorsizes.js"></script>
+  <script src="../js/constants/armorpassives.js"></script>
+  <script src="../js/utils/getCurrentDateTime.js"></script>
+  <script src="../js/utils/getItemType.js"></script>
+  <script src="../js/utils/warbondCodes.js"></script>
+  <script src="../js/utils/downloadSaveFile.js"></script>
+  <script src="../js/components/genWarbondCheckboxes.js"></script>
+  <script src="../js/utils/tmItemFilterFunctions.js"></script>
+  <script src="../js/tiermaker.js"></script>
+  <script src="../js/components/genBudgetBlitzSaveDataManagementInfo.js"></script>
+</html>

@@ -378,3 +378,61 @@ body {
 .pointer-events-auto {
   pointer-events: auto;
 }
+
+#tierListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tier {
+  display: flex;
+  align-items: center;
+  background: #222;
+  padding: 10px;
+  border: 2px solid #444;
+  min-height: 60px;
+}
+
+.tierLabel {
+  width: 50px;
+  font-weight: bold;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.tierCategories {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-height: 40px;
+  border-left: 2px dashed #555;
+  padding-left: 10px;
+}
+
+.tierItem {
+  cursor: grab;
+  user-select: none;
+  margin: 0.05rem;
+  width: 100px;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .tierItem {
+    width: 80px;
+  }
+}
+
+#looseItemsContainer {
+  margin-top: 10px;
+  background: #1e1e1e;
+  padding: 10px;
+  border: 2px solid #555;
+}
+
+#looseItemsContainer .item {
+  background: #2ecc71;
+}

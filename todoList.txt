@@ -60,6 +60,7 @@ TIER MAKER
   - ability to reset tier list
   - ability to rename tiers
   - ability to toggle names of items on/off
+  - add info modal when more features are added
 
 NEW CHALLENGE IDEAS:
 

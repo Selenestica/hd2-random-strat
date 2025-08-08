@@ -9,8 +9,6 @@ let OGboostsList = [...BOOSTERS];
 let OGsecondsList = [...SECONDARIES];
 let OGthrowsList = [...THROWABLES];
 
-//START PRE_CODE
-
 const tiers = ["S", "A", "B", "C", "D"];
 
 // Initialize tiers on page load
@@ -25,13 +23,62 @@ window.onload = () => {
     `;
     container.appendChild(tier);
   });
-
-  // Add drag events to items
-  //   makeItemsDraggable();
-
-  // Optionally load from localStorage
-  loadTierList();
 };
+
+// MOBILE DRAG FUNCTIONS
+let draggedItem = null;
+
+const handleTouchStart = (e) => {
+  e.preventDefault();
+  draggedItem = e.currentTarget.cloneNode(true);
+  draggedItem.classList.add("dragging");
+  draggedItem.style.position = "absolute";
+  draggedItem.style.pointerEvents = "none";
+  draggedItem.style.zIndex = "9999";
+  document.body.appendChild(draggedItem);
+  moveDraggedItem(e.touches[0]);
+};
+
+const handleTouchMove = (e) => {
+  e.preventDefault();
+  if (!draggedItem) return;
+  moveDraggedItem(e.touches[0]);
+};
+
+const handleTouchEnd = (e) => {
+  e.preventDefault();
+  if (!draggedItem) return;
+
+  // Get touch position and element under it
+  const touch = e.changedTouches[0];
+  const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+
+  const tierContainer = dropTarget.closest?.(".tierCategories");
+  if (tierContainer) {
+    // Remove original from DOM and insert clone
+    const original = document.getElementById(e.currentTarget.id);
+    if (original && original.parentElement) {
+      original.parentElement.removeChild(original);
+    }
+    tierContainer.appendChild(draggedItem);
+    draggedItem.classList.remove("dragging");
+    draggedItem.style = "";
+
+    // Re-bind drag/touch events
+    setupCardEvents(draggedItem);
+  } else {
+    // Not dropped in valid place
+    draggedItem.remove();
+  }
+
+  draggedItem = null;
+};
+
+const moveDraggedItem = (touch) => {
+  draggedItem.style.left = `${touch.clientX - draggedItem.offsetWidth / 2}px`;
+  draggedItem.style.top = `${touch.clientY - draggedItem.offsetHeight / 2}px`;
+};
+// END MOBILE DRAG FUNCTIONS
 
 const allowDrop = (e) => {
   e.preventDefault();
@@ -44,79 +91,24 @@ const drag = (e) => {
 const drop = (e) => {
   e.preventDefault();
 
-  // Make sure we drop into the tier-items container itself
-  let dropTarget = e.target;
-  if (!dropTarget.classList.contains("tierCategories")) {
-    dropTarget = dropTarget.closest(".tierCategories");
-    if (!dropTarget) return; // just in case
-  }
-
-  const itemId = e.dataTransfer.getData("text");
+  const itemId = e.dataTransfer.getData("text/plain");
   const draggedItem = document.getElementById(itemId);
-  // Make sure draggedItem exists and is the card itself
-  if (draggedItem && !draggedItem.contains(dropTarget)) {
-    dropTarget.appendChild(draggedItem);
+  if (!draggedItem) return;
+
+  let dropTarget = e.target.closest(".tierItem");
+  const parentTier = e.target.closest(".tierCategories");
+
+  if (!parentTier) return;
+
+  // If dropped on another item → insert before it
+  if (dropTarget && dropTarget !== draggedItem) {
+    parentTier.insertBefore(draggedItem, dropTarget);
+  }
+  // If dropped on empty tier or gap → append to end
+  else {
+    parentTier.appendChild(draggedItem);
   }
 };
-
-// Save current tier list to localStorage
-const saveTierList = () => {
-  const data = {};
-  document.querySelectorAll(".tierCategories").forEach((tier) => {
-    const tierName = tier.getAttribute("data-tier");
-    const items = [...tier.children].map((el) => el.textContent);
-    data[tierName] = items;
-  });
-
-  // Also save unassigned items
-  const unassigned = [
-    ...document.querySelectorAll("#looseItemsContainer .tierItem"),
-  ].map((el) => el.textContent);
-  data["pool"] = unassigned;
-
-  localStorage.setItem("tierListData", JSON.stringify(data));
-  alert("Tier list saved!");
-};
-
-// Load from localStorage
-const loadTierList = () => {
-  const data = JSON.parse(localStorage.getItem("tierListData"));
-  if (!data) return;
-
-  // Clear all items
-  document
-    .querySelectorAll(".tierCategories, #looseItems")
-    .forEach((container) => (container.innerHTML = ""));
-
-  for (const tier in data) {
-    const items = data[tier];
-    items.forEach((text) => {
-      const item = document.createElement("div");
-      item.className = "tierItem";
-      item.textContent = text;
-      item.setAttribute("draggable", "true");
-      item.id = `item-${Math.random().toString(36).substring(2, 9)}`;
-      item.ondragstart = drag;
-
-      if (tier === "pool") {
-        document.getElementById("looseItemsContainer").appendChild(item);
-      } else {
-        const tierEl = document.querySelector(
-          `.tierCategories[data-tier="${tier}"]`
-        );
-        if (tierEl) tierEl.appendChild(item);
-      }
-    });
-  }
-};
-
-// Reset tier list
-const resetTierList = () => {
-  localStorage.removeItem("tierListData");
-  location.reload();
-};
-
-//END PRE_CODE
 
 for (let y = 0; y < warbondCheckboxes.length; y++) {
   warbondCheckboxes[y].addEventListener("change", (e) => {
@@ -165,26 +157,14 @@ const filterItemsByWarbond = async (uploadingSaveData = null) => {
   populateLooseItems();
 };
 
-// search bar functionality for loose items
-// itemsSearchInput.addEventListener("input", () => {
-//   const itemCards = document.getElementsByClassName("looseItemCards");
-//   const query = itemsSearchInput.value.toLowerCase();
-
-//   Array.from(itemCards).forEach((item) => {
-//     const match = item.id.toLowerCase().includes(query);
-//     item.classList.toggle("d-none", !match);
-//   });
-// });
-
-const startNewTierList = async (isRestart = null) => {
+const startNewTierList = async () => {
   // probably want to set all warbond codes to checked just in case
   warbondCodes = [...masterWarbondCodes];
   for (let i = 0; i < warbondCheckboxes.length; i++) {
     warbondCheckboxes[i].checked = true;
   }
 
-  // probably want to reset the filters too
-
+  // maybe just do a reload here
   await filterItemsByWarbond();
 };
 
@@ -206,6 +186,15 @@ const populateLooseItems = () => {
   }
 };
 
+const setupCardEvents = (card) => {
+  card.setAttribute("draggable", "true");
+  card.ondragstart = drag;
+
+  card.addEventListener("touchstart", handleTouchStart, { passive: false });
+  card.addEventListener("touchmove", handleTouchMove, { passive: false });
+  card.addEventListener("touchend", handleTouchEnd, { passive: false });
+};
+
 const generateItemCard = (item) => {
   let imgDir = "equipment";
   if (item.type === "Stratagem") {
@@ -215,10 +204,9 @@ const generateItemCard = (item) => {
     imgDir = "armor";
   }
   const card = document.createElement("div");
-  card.setAttribute("draggable", "true");
-  card.ondragstart = drag;
+  card.dataset.type = getItemType(item);
   card.id = item.internalName;
-  card.className = `card tierItem col-2 col-lg-1 pcItemCards ${item.warbondCode}`;
+  card.className = `card tierItem pcItemCards ${item.warbondCode}`;
   card.innerHTML = `
     <img
       src="../images/${imgDir}/${item.imageURL}"
@@ -229,7 +217,7 @@ const generateItemCard = (item) => {
       <p class="card-title text-white pcItemCardText">${item.displayName}</p>
     </div>
   `;
-
+  setupCardEvents(card);
   return card;
 };
 

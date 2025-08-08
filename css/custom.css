@@ -415,6 +415,15 @@ body {
   cursor: grab;
   user-select: none;
   margin: 0.05rem;
+  width: 100px;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .tierItem {
+    width: 80px;
+  }
 }
 
 #looseItemsContainer {

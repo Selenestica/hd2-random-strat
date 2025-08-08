@@ -54,6 +54,8 @@ SPECIAL OPERATIONS
   BUGS:
     - make green/red progress text a different color
 
+TIER MAKER
+  - ability to filter out by warbond
 
 NEW CHALLENGE IDEAS:
 

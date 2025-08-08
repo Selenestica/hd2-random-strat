@@ -201,32 +201,10 @@
                   ><i class="fa-solid fa-tag"></i
                 ></span>
               </button>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#">warbonds to go here</a>
-                </li>
-              </ul>
-            </div>
-            <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-outline-primary dropdown-toggle no-caret"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span id="bbSearchText" class="text-white">Search</span>
-                <span id="bbSearchIcon" class="text-white"
-                  ><i class="fa-solid fa-magnifying-glass"></i
-                ></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li>
-                  <input type="text" id="shopSearchInput" />
-                </li>
-              </ul>
+              <ul class="dropdown-menu" id="warbondsFilterList"></ul>
             </div>
             <button
-              onclick="resetShopFilters()"
+              onclick="resetItemFilters()"
               class="btn btn-primary"
               type="button"
             >
@@ -263,9 +241,8 @@
 
       <!-- LOOSE ITEMS CONTAINER -->
       <div
-        class="row d-flex"
+        class="row d-flex justify-content-center"
         id="looseItemsContainer"
-        style="justify-content: space-evenly"
       ></div>
 
       <!-- WARBOND SELECT MODAL -->
@@ -764,10 +741,10 @@
   <script src="../js/constants/armorpassives.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
   <script src="../js/utils/getItemType.js"></script>
-  <script src="../js/utils/bbShopFilterFunctions.js"></script>
-  <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/utils/warbondCodes.js"></script>
+  <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
+  <script src="../js/utils/tmItemFilterFunctions.js"></script>
   <script src="../js/tiermaker.js"></script>
   <script src="../js/components/genBudgetBlitzSaveDataManagementInfo.js"></script>
 </html>

@@ -44,9 +44,12 @@ const currentDifficultyButton = document.getElementById(
 const difficultyOptionButton = document.getElementById(
   "difficultyOptionButton"
 );
+const timeRemainingInput = document.getElementById("timeRemainingInput");
 const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 const hellDiversMobilizeCheckbox = document.getElementById("warbond3");
 
+let missionsFailed = 0;
+let missionTimes = [];
 let currentItems = [];
 let currentPunishmentItems = [];
 let missionCounter = 1;
@@ -58,6 +61,19 @@ let masterThrowsList = [];
 let masterBoostsList = [];
 let masterStratsList = [];
 let masterArmorPassivesList = [];
+
+timeRemainingInput.addEventListener("input", () => {
+  let value = parseInt(timeRemainingInput.value, 10);
+
+  if (isNaN(value)) {
+    value = 0;
+  }
+
+  if (value < 0) value = 0;
+  if (value > 100) value = 100;
+
+  timeRemainingInput.value = value;
+});
 
 // will need to keep track of master list
 for (let y = 0; y < warbondCheckboxes.length; y++) {
@@ -142,6 +158,8 @@ const startNewRun = async (spec = null, diff = null, removingSpec = null) => {
     await writeItems();
   }
 
+  missionTimes = [];
+  missionsFailed = 0;
   currentItems = [];
   currentPunishmentItems = [];
   missionCounter = diff === "super" ? 3 : 1;
@@ -281,6 +299,10 @@ const claimItem = (currentItemIndex) => {
   currentItems = [];
   missionCounter++;
   checkMissionButtons();
+  if (missionCounter - 1 > missionTimes.length) {
+    missionTimes.push(parseInt(timeRemainingInput.value, 10));
+  }
+  timeRemainingInput.value = 0;
   saveProgress(item);
 };
 
@@ -312,12 +334,14 @@ const claimPunishment = async (currentItemIndex) => {
   missionCounterText.innerHTML = `${getMissionText()}`;
 
   // create updated game data
+  missionsFailed++;
   const newCurrentGameData = {
     ...currentGame,
     [listKeyName]: list,
     acquiredItems: newAcquiredItems,
     missionCounter,
     dataName: `${getMissionText()} | ${getCurrentDateTime()}`,
+    missionsFailed,
   };
 
   // set the updated data into local storage
@@ -425,6 +449,7 @@ const closeMaxStarsPromptModal = () => {
   if (missionCounter >= 22) {
     missionCounter++;
     checkMissionButtons();
+    missionTimes.push(parseInt(timeRemainingInput.value, 10));
     missionCounterText.innerHTML = `${getMissionText()}`;
     mspModal.hide();
     saveProgress();
@@ -865,6 +890,8 @@ const saveProgress = async (item = null) => {
           specialist,
           difficulty,
           warbondCodes,
+          missionsFailed: missionsFailed ?? 0,
+          missionTimes: missionTimes ?? [],
         },
       ],
     };
@@ -903,6 +930,8 @@ const saveProgress = async (item = null) => {
         specialist,
         difficulty,
         warbondCodes,
+        missionsFailed: missionsFailed ?? 0,
+        missionTimes: missionTimes ?? [],
       };
     }
     return sg;
@@ -974,6 +1003,8 @@ const uploadSaveData = async () => {
     currentItems = currentGame.currentItems ?? [];
     currentPunishmentItems = currentGame.currentPunishmentItems ?? [];
     specialist = currentGame.specialist ?? null;
+    missionsFailed = currentGame.missionsFailed ?? 0;
+    missionTimes = currentGame.missionTimes ?? [];
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
     if (currentGame.specialist !== null) {
@@ -1073,6 +1104,8 @@ const saveDataAndRestart = async (diff = null) => {
     specialist,
     difficulty: diff === "super" ? "super" : "normal",
     warbondCodes,
+    missionsFailed: 0,
+    missionTimes: [],
   };
 
   updatedSavedGames.push(newSaveObj);
@@ -1101,7 +1134,7 @@ const saveDataAndRestart = async (diff = null) => {
 };
 
 const clearSaveDataAndRestart = async () => {
-  localStorage.removeItem("penitentCrusadeSaveData");
+  await localStorage.removeItem("penitentCrusadeSaveData");
   window.location.reload();
 };
 

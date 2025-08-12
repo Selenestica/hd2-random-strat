@@ -10,6 +10,7 @@ let OGsecondsList = [...SECONDARIES];
 let OGthrowsList = [...THROWABLES];
 
 const tiers = ["S", "A", "B", "C", "D"];
+document.addEventListener("contextmenu", (e) => e.preventDefault());
 
 // Initialize tiers on page load
 window.onload = () => {
@@ -194,8 +195,16 @@ const populateLooseItems = () => {
 };
 
 const setupCardEvents = (card) => {
-  card.setAttribute("draggable", "true");
-  card.ondragstart = drag;
+  // Enable native dragging for desktop
+  const isTouchDevice =
+    "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+  if (!isTouchDevice) {
+    card.setAttribute("draggable", "true");
+    card.ondragstart = drag;
+  } else {
+    card.setAttribute("draggable", "false");
+  }
 
   card.addEventListener("touchstart", handleTouchStart, { passive: false });
   card.addEventListener("touchmove", handleTouchMove, { passive: false });

@@ -29,7 +29,7 @@
     />
     <title>Helldivers 2: Penitent Crusade</title>
     <!-- Google tag (gtag.js) -->
-    <script
+    <!-- <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
     ></script>
@@ -41,7 +41,7 @@
       gtag("js", new Date());
 
       gtag("config", "G-BFREXT7F48");
-    </script>
+    </script> -->
   </head>
 
   <body>
@@ -137,9 +137,18 @@
           id="specialistNameText"
         ></div>
         <div
-          class="col-4 text-white d-flex justify-content-center"
-          id="missionCounterText"
-        ></div>
+          class="col-4 text-white d-flex align-items-center justify-content-center"
+        >
+          <i
+            class="fa-solid text-white fa-stopwatch"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="00:00:00"
+            id="timerTooltip"
+          ></i
+          ><span class="text-white mx-1">|</span
+          ><span id="missionCounterText" class="text-white"></span>
+        </div>
         <div class="col-4 d-flex justify-content-end"></div>
       </div>
       <div class="row mt-2 justify-content-center">
@@ -1014,7 +1023,7 @@
   <script src="../js/constants/specialists.js"></script>
   <script src="../js/utils/getMissionText.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
-  <script src="../js/utils/downloadItemsPDF.js"></script>
+  <script src="../js/utils/downloadPCScoreSummary.js"></script>
   <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/utils/warbondCodes.js"></script>
   <script src="../js/components/specialistsModal.js"></script>
@@ -1024,4 +1033,14 @@
   <script src="../js/components/genAcquiredItemsAccordions.js"></script>
   <script src="../js/penitentcrusade.js"></script>
   <script src="../js/components/genPCSaveDataManagementInfo.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    });
+  </script>
 </html>

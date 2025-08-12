@@ -30,11 +30,17 @@ let draggedItem = null;
 
 const handleTouchStart = (e) => {
   e.preventDefault();
-  draggedItem = e.currentTarget.cloneNode(true);
+
+  const original = e.currentTarget;
+  draggedItem = original.cloneNode(true);
   draggedItem.classList.add("dragging");
   draggedItem.style.position = "absolute";
   draggedItem.style.pointerEvents = "none";
   draggedItem.style.zIndex = "9999";
+
+  // Store reference to original so we can remove it later
+  draggedItem._original = original;
+
   document.body.appendChild(draggedItem);
   moveDraggedItem(e.touches[0]);
 };
@@ -49,25 +55,26 @@ const handleTouchEnd = (e) => {
   e.preventDefault();
   if (!draggedItem) return;
 
-  // Get touch position and element under it
   const touch = e.changedTouches[0];
   const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+  const tierContainer = dropTarget?.closest?.(".tierCategories");
 
-  const tierContainer = dropTarget.closest?.(".tierCategories");
   if (tierContainer) {
-    // Remove original from DOM and insert clone
-    const original = document.getElementById(e.currentTarget.id);
+    // Remove original from wherever it was
+    const original = draggedItem._original;
     if (original && original.parentElement) {
       original.parentElement.removeChild(original);
     }
-    tierContainer.appendChild(draggedItem);
+
+    // Drop the clone
     draggedItem.classList.remove("dragging");
     draggedItem.style = "";
+    tierContainer.appendChild(draggedItem);
 
-    // Re-bind drag/touch events
+    // Re-bind touch/drag handlers
     setupCardEvents(draggedItem);
   } else {
-    // Not dropped in valid place
+    // Not dropped in a valid spot: remove the clone
     draggedItem.remove();
   }
 

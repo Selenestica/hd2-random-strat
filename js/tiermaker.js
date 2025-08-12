@@ -10,7 +10,6 @@ let OGsecondsList = [...SECONDARIES];
 let OGthrowsList = [...THROWABLES];
 
 const tiers = ["S", "A", "B", "C", "D"];
-document.addEventListener("contextmenu", (e) => e.preventDefault());
 
 // Initialize tiers on page load
 window.onload = () => {
@@ -39,11 +38,15 @@ const handleTouchStart = (e) => {
   draggedItem.style.pointerEvents = "none";
   draggedItem.style.zIndex = "9999";
 
-  // Store reference to original so we can remove it later
+  // Store reference to original for cleanup
   draggedItem._original = original;
 
   document.body.appendChild(draggedItem);
-  moveDraggedItem(e.touches[0]);
+
+  // Wait for layout before positioning the item
+  requestAnimationFrame(() => {
+    moveDraggedItem(e.touches[0]);
+  });
 };
 
 const handleTouchMove = (e) => {

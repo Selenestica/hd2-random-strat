@@ -32,10 +32,10 @@ const generateTextFileContent = async () => {
   }
   if (difficulty === "super") {
     diffText = "Super ";
-    difficultyModifier = 100;
+    difficultyModifier = 250;
   }
 
-  score = difficultyModifier + totalTimeRemaining + missionsFailed * -5;
+  score = difficultyModifier + totalTimeRemaining + missionsFailed * -50;
 
   let text = "";
   text += `${diffText}Penitent Crusade Score Summary\n=======================================\n\n`;

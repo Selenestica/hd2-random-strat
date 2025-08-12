@@ -29,55 +29,53 @@ window.onload = () => {
 let draggedItem = null;
 let dragStartPosition = null;
 let hasStartedDragging = false;
+let cloneElement = null;
 const DRAG_THRESHOLD = 10; // Minimum pixels to move before it counts as a drag
 
 const handleTouchStart = (e) => {
   e.preventDefault();
   const touch = e.touches[0];
 
-  dragStartPosition = { x: touch.clientX, y: touch.clientY };
-  hasStartedDragging = false;
-
-  // Save original element reference in case we start dragging later
-  draggedItem = {
-    original: e.currentTarget,
-    clone: null,
+  dragStartPosition = {
+    x: touch.clientX,
+    y: touch.clientY,
   };
+
+  hasStartedDragging = false;
+  draggedItem = e.currentTarget;
+  cloneElement = null;
 };
 
 const handleTouchMove = (e) => {
   e.preventDefault();
   const touch = e.touches[0];
 
-  // If we haven't started dragging yet, check if movement exceeds threshold
   if (!hasStartedDragging) {
     const dx = touch.clientX - dragStartPosition.x;
     const dy = touch.clientY - dragStartPosition.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
 
     if (distance < DRAG_THRESHOLD) {
-      return; // Not enough movement yet
+      return; // Still not enough movement
     }
 
-    // Start dragging now
     hasStartedDragging = true;
 
-    const original = draggedItem.original;
-    const clone = original.cloneNode(true);
-    clone.classList.add("dragging");
-    clone.style.position = "absolute";
-    clone.style.pointerEvents = "none";
-    clone.style.zIndex = "9999";
-    clone._original = original;
+    // Clone only once
+    cloneElement = draggedItem.cloneNode(true);
+    cloneElement.classList.add("dragging");
+    cloneElement.style.position = "absolute";
+    cloneElement.style.pointerEvents = "none";
+    cloneElement.style.zIndex = "9999";
+    cloneElement._original = draggedItem;
 
-    document.body.appendChild(clone);
-    draggedItem.clone = clone;
+    document.body.appendChild(cloneElement);
 
-    // Ensure proper layout before positioning
+    // Wait for DOM to render before positioning
     requestAnimationFrame(() => {
       moveDraggedItem(touch);
     });
-  } else if (draggedItem.clone) {
+  } else if (cloneElement) {
     moveDraggedItem(touch);
   }
 };
@@ -85,9 +83,9 @@ const handleTouchMove = (e) => {
 const handleTouchEnd = (e) => {
   e.preventDefault();
 
-  if (!hasStartedDragging || !draggedItem.clone) {
-    draggedItem = null;
-    return; // No drag occurred, so nothing to clean up
+  if (!hasStartedDragging || !cloneElement) {
+    resetTouchState();
+    return; // Not a real drag
   }
 
   const touch = e.changedTouches[0];
@@ -95,34 +93,36 @@ const handleTouchEnd = (e) => {
   const tierContainer = dropTarget?.closest?.(".tierCategories");
 
   if (tierContainer) {
-    const original = draggedItem.clone._original;
+    const original = cloneElement._original;
     if (original?.parentElement) {
       original.parentElement.removeChild(original);
     }
 
-    const clone = draggedItem.clone;
-    clone.classList.remove("dragging");
-    clone.style = "";
+    cloneElement.classList.remove("dragging");
+    cloneElement.style = "";
 
-    tierContainer.appendChild(clone);
-    setupCardEvents(clone);
+    tierContainer.appendChild(cloneElement);
+    setupCardEvents(cloneElement);
   } else {
-    // Drop failed — remove clone
-    draggedItem.clone.remove();
+    cloneElement.remove(); // Not dropped in a valid area
   }
 
-  draggedItem = null;
-  dragStartPosition = null;
-  hasStartedDragging = false;
+  resetTouchState();
 };
 
 const moveDraggedItem = (touch) => {
   const x = touch.clientX + window.scrollX;
   const y = touch.clientY + window.scrollY;
-  const clone = draggedItem.clone;
 
-  clone.style.left = `${x - clone.offsetWidth / 2}px`;
-  clone.style.top = `${y - clone.offsetHeight / 2}px`;
+  cloneElement.style.left = `${x - cloneElement.offsetWidth / 2}px`;
+  cloneElement.style.top = `${y - cloneElement.offsetHeight / 2}px`;
+};
+
+const resetTouchState = () => {
+  draggedItem = null;
+  cloneElement = null;
+  dragStartPosition = null;
+  hasStartedDragging = false;
 };
 
 // END MOBILE DRAG FUNCTIONS

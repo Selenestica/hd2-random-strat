@@ -9,20 +9,43 @@ let OGboostsList = [...BOOSTERS];
 let OGsecondsList = [...SECONDARIES];
 let OGthrowsList = [...THROWABLES];
 
-const tiers = ["S", "A", "B", "C", "D"];
+const TIERS = ["S", "A", "B", "C", "D"];
+let sList = [];
+let aList = [];
+let bList = [];
+let cList = [];
+let dList = [];
 
-// Initialize tiers on page load
-window.onload = () => {
+// Initialize tier list rows on page load
+window.onload = async () => {
   const container = document.getElementById("tierListContainer");
-  tiers.forEach((label) => {
+  await TIERS.forEach((label) => {
     const tier = document.createElement("div");
     tier.className = "tier text-white";
+    tier.id = label.toLocaleLowerCase() + "List";
     tier.innerHTML = `
       <div class="tierLabel">${label}</div>
       <div class="tierCategories" data-tier="${label}" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
     `;
     container.appendChild(tier);
   });
+  populateTierListItems();
+};
+
+const populateTierListItems = async () => {
+  const tierMakerSaveData = localStorage.getItem("tierMakerSaveData");
+  if (!tierMakerSaveData) return;
+
+  const currentLists = JSON.parse(tierMakerSaveData).lists.filter(
+    (li) => li.currentList === true
+  );
+  const currentList = currentLists[0];
+
+  console.log(currentList);
+  // const tierListIDs = ["sList", "aList", "bList", "cList", "dList"]
+  // for (let i = 0; i < tierListIDs.length; i++) {
+
+  // }
 };
 
 // MOBILE DRAG FUNCTIONS
@@ -85,7 +108,7 @@ const handleTouchEnd = (e) => {
 
   if (!hasStartedDragging || !cloneElement) {
     resetTouchState();
-    return; // Not a real drag
+    return;
   }
 
   const touch = e.changedTouches[0];
@@ -103,6 +126,12 @@ const handleTouchEnd = (e) => {
 
     tierContainer.appendChild(cloneElement);
     setupCardEvents(cloneElement);
+    addItemToTierArray(
+      cloneElement.id,
+      cloneElement.dataset.type,
+      cloneElement.classList[3],
+      tierContainer.dataset.tier
+    );
   } else {
     cloneElement.remove(); // Not dropped in a valid area
   }
@@ -150,11 +179,49 @@ const drop = (e) => {
   // If dropped on another item → insert before it
   if (dropTarget && dropTarget !== draggedItem) {
     parentTier.insertBefore(draggedItem, dropTarget);
+    addItemToTierArray(
+      draggedItem.id,
+      draggedItem.dataset.type,
+      draggedItem.classList[3],
+      parentTier.dataset.tier
+    );
   }
   // If dropped on empty tier or gap → append to end
   else {
     parentTier.appendChild(draggedItem);
+    addItemToTierArray(
+      draggedItem.id,
+      draggedItem.dataset.type,
+      draggedItem.classList[3],
+      parentTier.dataset.tier
+    );
   }
+};
+
+const addItemToTierArray = async (itemId, type, warbondCode, tier) => {
+  // will add item to list and saveProgress here
+
+  const tierArrays = [sList, aList, bList, cList, dList];
+  await tierArrays.map((ta) => ta.filter((id) => id !== itemId));
+
+  console.log(itemId, type, warbondCode, tier);
+  if (tier === "S") {
+    sList.push(itemId);
+  }
+  if (tier === "A") {
+    aList.push(itemId);
+  }
+  if (tier === "B") {
+    bList.push(itemId);
+  }
+  if (tier === "c") {
+    cList.push(itemId);
+  }
+  if (tier === "d") {
+    dList.push(itemId);
+  }
+
+  saveProgress();
 };
 
 for (let y = 0; y < warbondCheckboxes.length; y++) {
@@ -228,7 +295,7 @@ const populateLooseItems = () => {
     const items = allItemsList[i];
     for (let j = 0; j < items.length; j++) {
       const item = items[j];
-      looseItemsContainer.appendChild(generateItemCard(item, "shop"));
+      looseItemsContainer.appendChild(generateItemCard(item));
     }
   }
 };
@@ -279,17 +346,16 @@ const generateItemCard = (item) => {
 const uploadSaveData = async () => {
   const tierMakerSaveData = localStorage.getItem("tierMakerSaveData");
   if (tierMakerSaveData) {
-    const currentGame = await getCurrentTierList();
+    const currentList = await getCurrentTierList();
 
     // the general working arrays
-    newStrats = currentGame.newStrats;
-    newPrims = currentGame.newPrims;
-    newSeconds = currentGame.newSeconds;
-    newThrows = currentGame.newThrows;
-    newArmorPassives = currentGame.newArmorPassives;
-    newBoosts = currentGame.newBoosts;
+    sList = currentList.sList;
+    aList = currentList.aList;
+    bList = currentList.bList;
+    cList = currentList.cList;
+    dList = currentList.dList;
 
-    dataName = currentGame.dataName;
+    dataName = currentList.dataName;
 
     await filterItemsByWarbond(true);
     return;
@@ -302,19 +368,16 @@ const saveProgress = async () => {
   const tierMakerSaveData = localStorage.getItem("tierMakerSaveData");
   if (!tierMakerSaveData) {
     obj = {
-      savedTierLists: [
+      lists: [
         {
-          newStrats,
-          newPrims,
-          newSeconds,
-          newThrows,
-          newArmorPassives,
-          newBoosts,
+          sList,
+          aList,
+          bList,
+          cList,
+          dList,
 
           dataName: `${getCurrentDateTime()}`,
-          currentGame: true,
-
-          warbondCodes,
+          currentList: true,
         },
       ],
     };
@@ -322,30 +385,27 @@ const saveProgress = async () => {
     return;
   }
   const data = JSON.parse(tierMakerSaveData);
-  const newSavedTierLists = await data.savedTierLists.map((sg) => {
-    if (sg.currentGame === true) {
+  const newSavedTierLists = await data.lists.map((sg) => {
+    if (sg.currentList === true) {
       sg = {
         ...sg,
         purchasedItems,
 
-        newStrats,
-        newPrims,
-        newSeconds,
-        newThrows,
-        newArmorPassives,
-        newBoosts,
+        sList,
+        aList,
+        bList,
+        cList,
+        dList,
 
         dataName: sg.editedName ? sg.dataName : `${getCurrentDateTime()}`,
-        currentGame: true,
-
-        warbondCodes,
+        currentList: true,
       };
     }
     return sg;
   });
   obj = {
     ...obj,
-    savedTierLists: newSavedTierLists,
+    lists: newSavedTierLists,
   };
   localStorage.setItem("tierMakerSaveData", JSON.stringify(obj));
 };
@@ -355,10 +415,10 @@ const saveDataAndRestart = async () => {
   if (!tierMakerSaveData) {
     return;
   }
-  const savedTierLists = JSON.parse(tierMakerSaveData).savedTierLists;
-  // make all saved game data currentGame = false
+  const savedTierLists = JSON.parse(tierMakerSaveData).lists;
+  // make all saved game data currentList = false
   let updatedSavedTierLists = await savedTierLists.map((sg) => {
-    sg.currentGame = false;
+    sg.currentList = false;
     return sg;
   });
 
@@ -367,22 +427,19 @@ const saveDataAndRestart = async () => {
   const newSaveObj = {
     purchasedItems,
 
-    newStrats,
-    newPrims,
-    newSeconds,
-    newThrows,
-    newArmorPassives,
-    newBoosts,
+    sList,
+    aList,
+    bList,
+    cList,
+    dList,
 
     dataName: `${getCurrentDateTime()}`,
-    currentGame: true,
-
-    warbondCodes,
+    currentList: true,
   };
 
   updatedSavedTierLists.push(newSaveObj);
   const newtierMakerSaveData = {
-    savedTierLists: updatedSavedTierLists,
+    lists: updatedSavedTierLists,
   };
   await localStorage.setItem(
     "tierMakerSaveData",
@@ -393,28 +450,29 @@ const saveDataAndRestart = async () => {
   pruneSavedTierLists();
 };
 
-// get rid of all lists that have the max amount of loose items?
+// get rid of all lists that have no items in tier lists
 const pruneSavedTierLists = async () => {
   const tierMakerSaveData = localStorage.getItem("tierMakerSaveData");
   if (!tierMakerSaveData) {
     return;
   }
-  console.log("pruning!");
-  //   const prunedGames = await JSON.parse(tierMakerSaveData).savedTierLists.filter(
-  //     (sg) => {
-  //       if (
-
-  //       ) {
-  //         return sg;
-  //       }
-  //     }
-  //   );
-  //   const oldData = JSON.parse(tierMakerSaveData);
-  //   const newData = {
-  //     ...oldData,
-  //     savedTierLists: prunedGames,
-  //   };
-  //   localStorage.setItem("tierMakerSaveData", JSON.stringify(newData));
+  const prunedGames = await JSON.parse(tierMakerSaveData).lists.filter((sg) => {
+    if (
+      sg.sList.length > 0 ||
+      sg.aList.length > 0 ||
+      sg.bList.length > 0 ||
+      sg.cList.length > 0 ||
+      sg.dList.length > 0
+    ) {
+      return sg;
+    }
+  });
+  const oldData = JSON.parse(tierMakerSaveData);
+  const newData = {
+    ...oldData,
+    lists: prunedGames,
+  };
+  localStorage.setItem("tierMakerSaveData", JSON.stringify(newData));
 };
 
 const clearSaveDataAndRestart = async () => {
@@ -425,15 +483,15 @@ const clearSaveDataAndRestart = async () => {
 const getCurrentTierList = async () => {
   const savedTierLists = JSON.parse(
     localStorage.getItem("tierMakerSaveData")
-  ).savedTierLists;
-  const currentGame = await savedTierLists.filter((sg) => {
-    return sg.currentGame === true;
+  ).lists;
+  const currentList = await savedTierLists.filter((sg) => {
+    return sg.currentList === true;
   });
-  if (currentGame.length !== 1) {
+  if (currentList.length !== 1) {
     console.log("SAVED GAME DATA CORRUPTED", savedTierLists);
     return;
   }
-  return currentGame[0];
+  return currentList[0];
 };
 
 uploadSaveData();

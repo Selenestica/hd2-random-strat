@@ -64,7 +64,6 @@ TIER MAKER
   - ability to toggle names of items on/off
   - add info modal when more features are added
   - add warbond images and constant to make warbond tierlists too
-  - tier list on mobile not working well
 
 NEW CHALLENGE IDEAS:
 

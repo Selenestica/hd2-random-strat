@@ -27,74 +27,102 @@ window.onload = () => {
 
 // MOBILE DRAG FUNCTIONS
 let draggedItem = null;
+let dragStartPosition = null;
+let hasStartedDragging = false;
+const DRAG_THRESHOLD = 10; // Minimum pixels to move before it counts as a drag
 
 const handleTouchStart = (e) => {
   e.preventDefault();
+  const touch = e.touches[0];
 
-  const original = e.currentTarget;
-  draggedItem = original.cloneNode(true);
-  draggedItem.classList.add("dragging");
-  draggedItem.style.position = "absolute";
-  draggedItem.style.pointerEvents = "none";
-  draggedItem.style.zIndex = "9999";
+  dragStartPosition = { x: touch.clientX, y: touch.clientY };
+  hasStartedDragging = false;
 
-  // Store reference to original for cleanup
-  draggedItem._original = original;
-
-  document.body.appendChild(draggedItem);
-
-  // Wait for layout before positioning the item
-  requestAnimationFrame(() => {
-    moveDraggedItem(e.touches[0]);
-  });
+  // Save original element reference in case we start dragging later
+  draggedItem = {
+    original: e.currentTarget,
+    clone: null,
+  };
 };
 
 const handleTouchMove = (e) => {
   e.preventDefault();
-  if (!draggedItem) return;
-  moveDraggedItem(e.touches[0]);
+  const touch = e.touches[0];
+
+  // If we haven't started dragging yet, check if movement exceeds threshold
+  if (!hasStartedDragging) {
+    const dx = touch.clientX - dragStartPosition.x;
+    const dy = touch.clientY - dragStartPosition.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < DRAG_THRESHOLD) {
+      return; // Not enough movement yet
+    }
+
+    // Start dragging now
+    hasStartedDragging = true;
+
+    const original = draggedItem.original;
+    const clone = original.cloneNode(true);
+    clone.classList.add("dragging");
+    clone.style.position = "absolute";
+    clone.style.pointerEvents = "none";
+    clone.style.zIndex = "9999";
+    clone._original = original;
+
+    document.body.appendChild(clone);
+    draggedItem.clone = clone;
+
+    // Ensure proper layout before positioning
+    requestAnimationFrame(() => {
+      moveDraggedItem(touch);
+    });
+  } else if (draggedItem.clone) {
+    moveDraggedItem(touch);
+  }
 };
 
 const handleTouchEnd = (e) => {
   e.preventDefault();
-  if (!draggedItem) return;
+
+  if (!hasStartedDragging || !draggedItem.clone) {
+    draggedItem = null;
+    return; // No drag occurred, so nothing to clean up
+  }
 
   const touch = e.changedTouches[0];
   const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
   const tierContainer = dropTarget?.closest?.(".tierCategories");
 
   if (tierContainer) {
-    // Remove original from wherever it was
-    const original = draggedItem._original;
-    if (original && original.parentElement) {
+    const original = draggedItem.clone._original;
+    if (original?.parentElement) {
       original.parentElement.removeChild(original);
     }
 
-    // Drop the clone
-    draggedItem.classList.remove("dragging");
-    draggedItem.style = "";
-    tierContainer.appendChild(draggedItem);
+    const clone = draggedItem.clone;
+    clone.classList.remove("dragging");
+    clone.style = "";
 
-    // Re-bind touch/drag handlers
-    setupCardEvents(draggedItem);
+    tierContainer.appendChild(clone);
+    setupCardEvents(clone);
   } else {
-    // Not dropped in a valid spot: remove the clone
-    draggedItem.remove();
+    // Drop failed — remove clone
+    draggedItem.clone.remove();
   }
 
   draggedItem = null;
+  dragStartPosition = null;
+  hasStartedDragging = false;
 };
 
 const moveDraggedItem = (touch) => {
-  const scrollX = window.scrollX || window.pageXOffset;
-  const scrollY = window.scrollY || window.pageYOffset;
+  const x = touch.clientX + window.scrollX;
+  const y = touch.clientY + window.scrollY;
+  const clone = draggedItem.clone;
 
-  draggedItem.style.left = `${
-    touch.clientX + scrollX - draggedItem.offsetWidth / 2
-  }px`;
-  draggedItem.style.top = `${
-    touch.clientY + scrollY - draggedItem.offsetHeight / 2
-  }px`;
+  clone.style.left = `${x - clone.offsetWidth / 2}px`;
+  clone.style.top = `${y - clone.offsetHeight / 2}px`;
 };
 
 // END MOBILE DRAG FUNCTIONS

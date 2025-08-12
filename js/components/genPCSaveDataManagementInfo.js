@@ -135,12 +135,6 @@ const applySavedGameData = async (isUploadedSave = null) => {
     localStorage.getItem("penitentCrusadeSaveData")
   );
   let tempArray = [...penitentCrusadeSaveData.savedGames];
-  // maybe get old saved game index and update timeElapsed
-  for (let j = 0; j < tempArray.length; j++) {
-    if (tempArray[j].currentGame === true) {
-      tempArray[j].timeElapsed = timeElapsed ?? 0;
-    }
-  }
   const updatedSavedGames = await tempArray.map((sg, i) => {
     if (saveIndex === i) {
       sg.currentGame = true;

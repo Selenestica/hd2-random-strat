@@ -44,17 +44,15 @@ const currentDifficultyButton = document.getElementById(
 const difficultyOptionButton = document.getElementById(
   "difficultyOptionButton"
 );
-const timerTooltip = document.getElementById("timerTooltip");
-let ttt = new bootstrap.Tooltip(timerTooltip);
+const timeRemainingInput = document.getElementById("timeRemainingInput");
 const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 const hellDiversMobilizeCheckbox = document.getElementById("warbond3");
 
 let missionsFailed = 0;
+let missionTimes = [];
 let currentItems = [];
 let currentPunishmentItems = [];
 let missionCounter = 1;
-let timeElapsed = 0;
-let timerInterval = null;
 let difficulty = "normal";
 let saveOnUnload = false;
 hellDiversMobilizeCheckbox.disabled = true;
@@ -64,6 +62,19 @@ let masterThrowsList = [];
 let masterBoostsList = [];
 let masterStratsList = [];
 let masterArmorPassivesList = [];
+
+timeRemainingInput.addEventListener("input", () => {
+  let value = parseInt(timeRemainingInput.value, 10);
+
+  if (isNaN(value)) {
+    value = 0;
+  }
+
+  if (value < 0) value = 0;
+  if (value > 100) value = 100;
+
+  timeRemainingInput.value = value;
+});
 
 // will need to keep track of master list
 for (let y = 0; y < warbondCheckboxes.length; y++) {
@@ -148,17 +159,15 @@ const startNewRun = async (spec = null, diff = null, removingSpec = null) => {
     await writeItems();
   }
 
+  missionTimes = [];
   missionsFailed = 0;
   saveOnUnload = true;
-  timeElapsed = 0;
-  timerInterval = null;
   currentItems = [];
   currentPunishmentItems = [];
   missionCounter = diff === "super" ? 3 : 1;
   difficulty = diff ? diff : "normal";
   specialist = spec;
   checkMissionButtons();
-  updateTimerDisplay();
   // open the modal to show the rules
   if (!removingSpec) {
     document.addEventListener("DOMContentLoaded", () => {
@@ -292,6 +301,10 @@ const claimItem = (currentItemIndex) => {
   currentItems = [];
   missionCounter++;
   checkMissionButtons();
+  if (missionCounter - 1 > missionTimes.length) {
+    missionTimes.push(parseInt(timeRemainingInput.value, 10));
+  }
+  timeRemainingInput.value = 0;
   saveProgress(item);
 };
 
@@ -438,6 +451,7 @@ const closeMaxStarsPromptModal = () => {
   if (missionCounter >= 22) {
     missionCounter++;
     checkMissionButtons();
+    missionTimes.push(parseInt(timeRemainingInput.value, 10));
     missionCounterText.innerHTML = `${getMissionText()}`;
     mspModal.hide();
     saveProgress();
@@ -851,53 +865,12 @@ const changeDifficulty = async (uploadedDiff = null) => {
   }
 };
 
-const updateTimerDisplay = () => {
-  const hrs = Math.floor(timeElapsed / 3600);
-  const mins = Math.floor((timeElapsed % 3600) / 60);
-  const secs = timeElapsed % 60;
-
-  const timeString = `${String(hrs).padStart(2, "0")}:${String(mins).padStart(
-    2,
-    "0"
-  )}:${String(secs).padStart(2, "0")}`;
-  timerTooltip.setAttribute("data-bs-original-title", timeString);
-
-  // If the tooltip is visible, manually update its content
-  const tooltipEl = document.querySelector(".tooltip .tooltip-inner");
-  if (tooltipEl) {
-    tooltipEl.textContent = timeString;
-  }
-};
-
-const startTimer = () => {
-  timerInterval = setInterval(() => {
-    timeElapsed++;
-    updateTimerDisplay();
-  }, 1000);
-};
-
-const stopTimer = () => {
-  clearInterval(timerInterval);
-};
-
-window.addEventListener("beforeunload", () => {
-  // just so we can save the time elapsed
-  // will also have to do this if they switch saves
-  if (saveOnUnload) {
-    saveProgress();
-  }
-});
-
 const saveProgress = async (item = null) => {
   let obj = {};
   const penitentCrusadeSaveData = localStorage.getItem(
     "penitentCrusadeSaveData"
   );
   if (!penitentCrusadeSaveData) {
-    if (item) {
-      // add time here if user got an item, which means they're actively playing ZZZ
-      startTimer();
-    }
     obj = {
       savedGames: [
         {
@@ -919,9 +892,8 @@ const saveProgress = async (item = null) => {
           specialist,
           difficulty,
           warbondCodes,
-          timeElapsed: timeElapsed ?? 0,
           missionsFailed: missionsFailed ?? 0,
-          // no need to add time counter. will let them sit on page as long as they want at first ZZZ
+          missionTimes: missionTimes ?? [],
         },
       ],
     };
@@ -935,10 +907,6 @@ const saveProgress = async (item = null) => {
       let updatedItems = sg.acquiredItems;
       if (item) {
         updatedItems.push(item);
-      }
-      if (updatedItems.length === 1) {
-        // add time here if user got an item, which means they're actively playing ZZZ
-        startTimer();
       }
       sg = {
         ...sg,
@@ -964,8 +932,8 @@ const saveProgress = async (item = null) => {
         specialist,
         difficulty,
         warbondCodes,
-        timeElapsed: timeElapsed ?? 0,
         missionsFailed: missionsFailed ?? 0,
+        missionTimes: missionTimes ?? [],
       };
     }
     return sg;
@@ -1006,7 +974,6 @@ const unlockSuperPC = () => {
 
 const uploadSaveData = async () => {
   saveOnUnload = true;
-  stopTimer();
   const penitentCrusadeSaveData = localStorage.getItem(
     "penitentCrusadeSaveData"
   );
@@ -1039,11 +1006,10 @@ const uploadSaveData = async () => {
     currentItems = currentGame.currentItems ?? [];
     currentPunishmentItems = currentGame.currentPunishmentItems ?? [];
     specialist = currentGame.specialist ?? null;
-    timeElapsed = currentGame.timeElapsed ?? 0;
     missionsFailed = currentGame.missionsFailed ?? 0;
+    missionTimes = currentGame.missionTimes ?? [];
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
-    updateTimerDisplay();
     if (currentGame.specialist !== null) {
       specialistNameText.innerHTML = SPECIALISTS[specialist].displayName;
     }
@@ -1067,9 +1033,6 @@ const uploadSaveData = async () => {
     await getStartingItems(currentGame.difficulty);
     await addDefaultItemsToAccordions(specialist);
     genSpecialistsCards();
-    if (currentGame.acquiredItems.length > 0) {
-      startTimer();
-    }
     for (let i = 0; i < currentGame.acquiredItems.length; i++) {
       const item = currentGame.acquiredItems[i];
       const { imgDir, accBody } = getItemMetaData(item);
@@ -1088,7 +1051,6 @@ const uploadSaveData = async () => {
 };
 
 const saveDataAndRestart = async (diff = null) => {
-  stopTimer();
   // probably want to set all warbond codes to checked just in case
   warbondCodes = [...masterWarbondCodes];
   for (let i = 0; i < warbondCheckboxes.length; i++) {
@@ -1110,9 +1072,6 @@ const saveDataAndRestart = async (diff = null) => {
 
   // make all saved game data currentGame = false
   let updatedSavedGames = await savedGames.map((sg) => {
-    if (sg.currentGame === true) {
-      sg.timeElapsed = timeElapsed;
-    }
     sg.currentGame = false;
     return sg;
   });
@@ -1128,9 +1087,6 @@ const saveDataAndRestart = async (diff = null) => {
 
   // some of the same code as restarting a run, but we use this to populate the fresh save
   await writeItems();
-  timeElapsed = 0;
-  updateTimerDisplay();
-  timerInterval = null;
   currentItems = [];
   currentPunishmentItems = [];
   missionCounter = diff === "super" ? 3 : 1;
@@ -1151,8 +1107,8 @@ const saveDataAndRestart = async (diff = null) => {
     specialist,
     difficulty: diff === "super" ? "super" : "normal",
     warbondCodes,
-    timeElapsed: 0,
     missionsFailed: 0,
+    missionTimes: [],
   };
 
   updatedSavedGames.push(newSaveObj);
@@ -1178,7 +1134,6 @@ const saveDataAndRestart = async (diff = null) => {
   boosterAccordionBody.innerHTML = "";
   specialistNameText.innerHTML = "";
   addDefaultItemsToAccordions();
-  updateTimerDisplay();
 };
 
 const clearSaveDataAndRestart = async () => {

@@ -11,20 +11,39 @@ const generateTextFileContent = async () => {
 
   const {
     acquiredItems,
-    timeElapsed,
     difficulty,
     specialist,
-    missionCounter,
     missionsFailed,
+    missionTimes,
   } = currentGame[0];
-  let diffText = "";
-  let score = 0;
 
+  let specName = "Default";
+  if (specialist !== null) {
+    specName = SPECIALISTS[specialist].displayName;
+  }
+  let diffText = "";
+  let difficultyModifier = 0;
+  let score = 0;
+  let totalTimeRemaining = 0;
+  if (missionTimes && missionTimes.length) {
+    for (let i = 0; i < missionTimes.length; i++) {
+      totalTimeRemaining += missionTimes[i];
+    }
+  }
   if (difficulty === "super") {
     diffText = "Super ";
+    difficultyModifier = 100;
   }
+
+  score = difficultyModifier + totalTimeRemaining + missionsFailed * -5;
+
   let text = "";
-  text += `${diffText}Penitent Crusade Score Summary - \n==========================\n\n`;
+  text += `${diffText}Penitent Crusade Score Summary\n=======================================\n\n`;
+  text += `Total Mission Time Remaining: ${totalTimeRemaining}\n`;
+  text += `Difficulty Modifier: ${difficultyModifier}\n`;
+  text += `Missions Failed: ${missionsFailed}\n`;
+  text += `Final Score: ${score}\n\n`;
+  text += `Specialist: ${specName}\n\n`;
   const categories = {
     stratagems: [],
     primaries: [],

@@ -54,7 +54,6 @@ let currentItems = [];
 let currentPunishmentItems = [];
 let missionCounter = 1;
 let difficulty = "normal";
-let saveOnUnload = false;
 hellDiversMobilizeCheckbox.disabled = true;
 let masterPrimsList = [];
 let masterSecondsList = [];
@@ -161,7 +160,6 @@ const startNewRun = async (spec = null, diff = null, removingSpec = null) => {
 
   missionTimes = [];
   missionsFailed = 0;
-  saveOnUnload = true;
   currentItems = [];
   currentPunishmentItems = [];
   missionCounter = diff === "super" ? 3 : 1;
@@ -973,7 +971,6 @@ const unlockSuperPC = () => {
 };
 
 const uploadSaveData = async () => {
-  saveOnUnload = true;
   const penitentCrusadeSaveData = localStorage.getItem(
     "penitentCrusadeSaveData"
   );
@@ -1137,7 +1134,6 @@ const saveDataAndRestart = async (diff = null) => {
 };
 
 const clearSaveDataAndRestart = async () => {
-  saveOnUnload = false;
   await localStorage.removeItem("penitentCrusadeSaveData");
   window.location.reload();
 };

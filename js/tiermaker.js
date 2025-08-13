@@ -24,6 +24,7 @@ const populateTierListItems = async () => {
     newBoosts,
     newSeconds,
     newArmorPassives,
+    newThrows,
     newWarbonds,
   ].flat();
 
@@ -531,6 +532,13 @@ const getCurrentTierList = async () => {
     return;
   }
   return currentList[0];
+};
+
+const toggleItemNameText = () => {
+  const itemNameContainers = document.querySelectorAll(".itemNameContainer");
+  itemNameContainers.forEach((container) => {
+    container.classList.toggle("d-none");
+  });
 };
 
 uploadSaveData();

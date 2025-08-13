@@ -60,8 +60,7 @@ SPECIAL OPERATIONS
 TIER MAKER
   - ability to filter out by warbond
   - ability to rename tiers
-  - ability to toggle names of items on/off
-  - add warbond images and constant to make warbond tierlists too
+  - make filter options checkbox toggles
 
 NEW CHALLENGE IDEAS:
 

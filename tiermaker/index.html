@@ -33,7 +33,7 @@
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
     ></script>
-    <script>
+    <!-- <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -41,7 +41,7 @@
       gtag("js", new Date());
 
       gtag("config", "G-BFREXT7F48");
-    </script>
+    </script> -->
   </head>
 
   <body>
@@ -123,6 +123,18 @@
             <div class="btn-group">
               <button
                 type="button"
+                class="btn btn-outline-primary"
+                onclick="toggleItemNameText()"
+              >
+                <span id="bbPriceText" class="text-white">Text</span>
+                <span id="bbPriceIcon" class="text-white"
+                  ><i class="fa-solid fa-font"></i
+                ></span>
+              </button>
+            </div>
+            <div class="btn-group">
+              <button
+                type="button"
                 class="btn btn-outline-primary dropdown-toggle no-caret"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -187,9 +199,18 @@
                     >Boosters</a
                   >
                 </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    id="boostersFilterDropdownItem"
+                    onclick="filterByType('warbond')"
+                    href="#"
+                    >Warbonds</a
+                  >
+                </li>
               </ul>
             </div>
-            <!-- <div class="btn-group">
+            <div class="btn-group">
               <button
                 type="button"
                 class="btn btn-outline-primary dropdown-toggle no-caret"
@@ -201,8 +222,11 @@
                   ><i class="fa-solid fa-tag"></i
                 ></span>
               </button>
-              <ul class="dropdown-menu" id="warbondsFilterList"></ul>
-            </div> -->
+              <ul
+                class="dropdown-menu scrollableWarbondsList"
+                id="warbondsFilterList"
+              ></ul>
+            </div>
             <button
               onclick="resetItemFilters()"
               class="btn btn-primary"

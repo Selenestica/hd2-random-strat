@@ -345,7 +345,12 @@ body {
 }
 
 .scrollablePlanetList {
-  max-height: 200px; /* adjust as needed */
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.scrollableWarbondsList {
+  max-height: 200px;
   overflow-y: auto;
 }
 

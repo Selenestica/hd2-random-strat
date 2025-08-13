@@ -8,6 +8,7 @@ let OGprimsList = [...PRIMARIES];
 let OGboostsList = [...BOOSTERS];
 let OGsecondsList = [...SECONDARIES];
 let OGthrowsList = [...THROWABLES];
+let OGwarbondsList = [...WARBONDS];
 
 const TIERS = ["S", "A", "B", "C", "D"];
 let sList = [];
@@ -23,6 +24,7 @@ const populateTierListItems = async () => {
     newBoosts,
     newSeconds,
     newArmorPassives,
+    newWarbonds,
   ].flat();
 
   const tierListObjs = [
@@ -241,6 +243,7 @@ const filterItemsByWarbond = async (uploadingSaveData = null) => {
     OGboostsList,
     OGstratsList,
     OGarmorPassivesList,
+    OGwarbondsList,
   ];
 
   const filteredLists = await sourceLists.map((list) =>
@@ -250,8 +253,15 @@ const filterItemsByWarbond = async (uploadingSaveData = null) => {
     )
   );
 
-  [newPrims, newSeconds, newThrows, newBoosts, newStrats, newArmorPassives] =
-    filteredLists;
+  [
+    newPrims,
+    newSeconds,
+    newThrows,
+    newBoosts,
+    newStrats,
+    newArmorPassives,
+    newWarbonds,
+  ] = filteredLists;
 
   // when uploading save data, we want to uncheck any boxes that shouldnt be checked
   if (uploadingSaveData) {
@@ -293,6 +303,7 @@ const populateLooseItems = () => {
     newSeconds,
     newArmorPassives,
     newThrows,
+    newWarbonds,
   ];
   const flatTieredItems = [sList, aList, bList, cList, dList].flat();
   for (let i = 0; i < allItemsList.length; i++) {
@@ -327,6 +338,9 @@ const generateItemCard = (item) => {
   let imgDir = "equipment";
   if (item.type === "Stratagem") {
     imgDir = "svgs";
+  }
+  if (item.type === "Warbond") {
+    imgDir = "warbonds";
   }
   if (item.category === "armor") {
     imgDir = "armor";

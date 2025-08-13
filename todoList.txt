@@ -2,10 +2,7 @@ GENERAL:
   - go through FontAwesome icons and possibly update to better icons
   - leaderboard integrated with GitHub Issues?
   - users submit verification files in discord server
-  - Links to other cool fan sites
-    - add link to democracy-hub.next
-    - add link to hd2random.com
-    - add link to helldive.live
+  - add checklist for when new content comes out
 
 RANDOMIZER:
   - add tags for THROWABLES

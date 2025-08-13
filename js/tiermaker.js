@@ -16,36 +16,35 @@ let bList = [];
 let cList = [];
 let dList = [];
 
-// Initialize tier list rows on page load
-window.onload = async () => {
-  const container = document.getElementById("tierListContainer");
-  await TIERS.forEach((label) => {
-    const tier = document.createElement("div");
-    tier.className = "tier text-white";
-    tier.id = label.toLocaleLowerCase() + "List";
-    tier.innerHTML = `
-      <div class="tierLabel">${label}</div>
-      <div class="tierCategories" data-tier="${label}" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-    `;
-    container.appendChild(tier);
-  });
-  populateTierListItems();
-};
-
 const populateTierListItems = async () => {
-  const tierMakerSaveData = localStorage.getItem("tierMakerSaveData");
-  if (!tierMakerSaveData) return;
+  const flatItemsList = [
+    newPrims,
+    newStrats,
+    newBoosts,
+    newSeconds,
+    newArmorPassives,
+  ].flat();
 
-  const currentLists = JSON.parse(tierMakerSaveData).lists.filter(
-    (li) => li.currentList === true
-  );
-  const currentList = currentLists[0];
-
-  console.log(currentList);
-  // const tierListIDs = ["sList", "aList", "bList", "cList", "dList"]
-  // for (let i = 0; i < tierListIDs.length; i++) {
-
-  // }
+  const tierListObjs = [
+    { li: sList, str: "sList" },
+    { li: aList, str: "aList" },
+    { li: bList, str: "bList" },
+    { li: cList, str: "cList" },
+    { li: dList, str: "dList" },
+  ];
+  for (let i = 0; i < tierListObjs.length; i++) {
+    const { li, str } = tierListObjs[i];
+    const tierEl = document.getElementById(str);
+    const foundItems = await flatItemsList.filter((item) =>
+      li.includes(item.internalName)
+    );
+    if (foundItems.length > 0) {
+      for (let j = 0; j < li.length; j++) {
+        const item = await foundItems.filter((it) => it.internalName === li[j]);
+        await tierEl.appendChild(generateItemCard(item[0]));
+      }
+    }
+  }
 };
 
 // MOBILE DRAG FUNCTIONS
@@ -126,12 +125,7 @@ const handleTouchEnd = (e) => {
 
     tierContainer.appendChild(cloneElement);
     setupCardEvents(cloneElement);
-    addItemToTierArray(
-      cloneElement.id,
-      cloneElement.dataset.type,
-      cloneElement.classList[3],
-      tierContainer.dataset.tier
-    );
+    addItemToTierArray();
   } else {
     cloneElement.remove(); // Not dropped in a valid area
   }
@@ -179,46 +173,48 @@ const drop = (e) => {
   // If dropped on another item → insert before it
   if (dropTarget && dropTarget !== draggedItem) {
     parentTier.insertBefore(draggedItem, dropTarget);
-    addItemToTierArray(
-      draggedItem.id,
-      draggedItem.dataset.type,
-      draggedItem.classList[3],
-      parentTier.dataset.tier
-    );
+    addItemToTierArray();
   }
   // If dropped on empty tier or gap → append to end
   else {
     parentTier.appendChild(draggedItem);
-    addItemToTierArray(
-      draggedItem.id,
-      draggedItem.dataset.type,
-      draggedItem.classList[3],
-      parentTier.dataset.tier
-    );
+    addItemToTierArray();
   }
 };
 
-const addItemToTierArray = async (itemId, type, warbondCode, tier) => {
-  // will add item to list and saveProgress here
+const addItemToTierArray = async () => {
+  // empty all the arrays because we're going to repopulate them all with the correct order
+  sList = [];
+  aList = [];
+  bList = [];
+  cList = [];
+  dList = [];
 
-  const tierArrays = [sList, aList, bList, cList, dList];
-  await tierArrays.map((ta) => ta.filter((id) => id !== itemId));
-
-  console.log(itemId, type, warbondCode, tier);
-  if (tier === "S") {
-    sList.push(itemId);
-  }
-  if (tier === "A") {
-    aList.push(itemId);
-  }
-  if (tier === "B") {
-    bList.push(itemId);
-  }
-  if (tier === "c") {
-    cList.push(itemId);
-  }
-  if (tier === "d") {
-    dList.push(itemId);
+  // maybe just go through every tier element and loop through its children, and save based on that
+  const tierCategories = document.querySelectorAll(".tierCategories");
+  for (let i = 0; i < tierCategories.length; i++) {
+    const tc = tierCategories[i];
+    const tier = tc.dataset.tier;
+    if (tc.children.length > 0) {
+      for (let j = 0; j < tc.children.length; j++) {
+        const child = tc.children[j];
+        if (tier === "S") {
+          sList.push(child.id);
+        }
+        if (tier === "A") {
+          aList.push(child.id);
+        }
+        if (tier === "B") {
+          bList.push(child.id);
+        }
+        if (tier === "C") {
+          cList.push(child.id);
+        }
+        if (tier === "D") {
+          dList.push(child.id);
+        }
+      }
+    }
   }
 
   saveProgress();
@@ -278,7 +274,7 @@ const startNewTierList = async () => {
     warbondCheckboxes[i].checked = true;
   }
 
-  // maybe just do a reload here
+  createTiers();
   await filterItemsByWarbond();
 };
 
@@ -291,11 +287,14 @@ const populateLooseItems = () => {
     newArmorPassives,
     newThrows,
   ];
+  const flatTieredItems = [sList, aList, bList, cList, dList].flat();
   for (let i = 0; i < allItemsList.length; i++) {
     const items = allItemsList[i];
     for (let j = 0; j < items.length; j++) {
-      const item = items[j];
-      looseItemsContainer.appendChild(generateItemCard(item));
+      if (!flatTieredItems.includes(items[j].internalName)) {
+        const item = items[j];
+        looseItemsContainer.appendChild(generateItemCard(item));
+      }
     }
   }
 };
@@ -343,6 +342,21 @@ const generateItemCard = (item) => {
   return card;
 };
 
+const createTiers = async () => {
+  const container = document.getElementById("tierListContainer");
+  await TIERS.forEach((label) => {
+    const tier = document.createElement("div");
+    tier.className = "tier text-white";
+    tier.innerHTML = `
+      <div class="tierLabel">${label}</div>
+      <div class="tierCategories" data-tier="${label}" id="${
+      label.toLocaleLowerCase() + "List"
+    }" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+    `;
+    container.appendChild(tier);
+  });
+};
+
 const uploadSaveData = async () => {
   const tierMakerSaveData = localStorage.getItem("tierMakerSaveData");
   if (tierMakerSaveData) {
@@ -358,6 +372,8 @@ const uploadSaveData = async () => {
     dataName = currentList.dataName;
 
     await filterItemsByWarbond(true);
+    await createTiers();
+    await populateTierListItems();
     return;
   }
   startNewTierList();
@@ -389,8 +405,6 @@ const saveProgress = async () => {
     if (sg.currentList === true) {
       sg = {
         ...sg,
-        purchasedItems,
-
         sList,
         aList,
         bList,
@@ -425,8 +439,6 @@ const saveDataAndRestart = async () => {
   await startNewTierList(true);
 
   const newSaveObj = {
-    purchasedItems,
-
     sList,
     aList,
     bList,

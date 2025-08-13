@@ -9,6 +9,13 @@ let OGboostsList = [...BOOSTERS];
 let OGsecondsList = [...SECONDARIES];
 let OGthrowsList = [...THROWABLES];
 let OGwarbondsList = [...WARBONDS];
+let newPrims = [...OGprimsList];
+let newBoosts = [...OGboostsList];
+let newArmorPassives = [...OGarmorPassivesList];
+let newSeconds = [...OGsecondsList];
+let newThrows = [...OGthrowsList];
+let newStrats = [...OGstratsList];
+let newWarbonds = [...OGwarbondsList];
 
 const TIERS = ["S", "A", "B", "C", "D"];
 let sList = [];
@@ -223,61 +230,6 @@ const addItemToTierArray = async () => {
   saveProgress();
 };
 
-for (let y = 0; y < warbondCheckboxes.length; y++) {
-  warbondCheckboxes[y].addEventListener("change", (e) => {
-    if (e.target.checked && !warbondCodes.includes(e.srcElement.id)) {
-      warbondCodes.push(e.srcElement.id);
-    }
-    if (!e.target.checked && warbondCodes.includes(e.srcElement.id)) {
-      const indexToRemove = warbondCodes.indexOf(e.srcElement.id);
-      warbondCodes.splice(indexToRemove, 1);
-    }
-    filterItemsByWarbond();
-  });
-}
-
-const filterItemsByWarbond = async (uploadingSaveData = null) => {
-  const sourceLists = [
-    OGprimsList,
-    OGsecondsList,
-    OGthrowsList,
-    OGboostsList,
-    OGstratsList,
-    OGarmorPassivesList,
-    OGwarbondsList,
-  ];
-
-  const filteredLists = await sourceLists.map((list) =>
-    list.filter(
-      (item) =>
-        warbondCodes.includes(item.warbondCode) || item.warbondCode === "none"
-    )
-  );
-
-  [
-    newPrims,
-    newSeconds,
-    newThrows,
-    newBoosts,
-    newStrats,
-    newArmorPassives,
-    newWarbonds,
-  ] = filteredLists;
-
-  // when uploading save data, we want to uncheck any boxes that shouldnt be checked
-  if (uploadingSaveData) {
-    const missingWarbondCodes = masterWarbondCodes.filter(
-      (code) => !warbondCodes.includes(code)
-    );
-    for (let i = 0; i < missingWarbondCodes.length; i++) {
-      document.getElementById(missingWarbondCodes[i]).checked = false;
-    }
-  }
-  // Refresh the shop UI
-  looseItemsContainer.innerHTML = "";
-  populateLooseItems();
-};
-
 const startNewTierList = async () => {
   // probably want to set all warbond codes to checked just in case
   warbondCodes = [...masterWarbondCodes];
@@ -293,10 +245,17 @@ const startNewTierList = async () => {
   const container = document.getElementById("tierListContainer");
   container.innerHTML = "";
   createTiers();
-  await filterItemsByWarbond();
+  await populateLooseItems();
 };
 
 const populateLooseItems = () => {
+  newPrims = [...OGprimsList];
+  newBoosts = [...OGboostsList];
+  newArmorPassives = [...OGarmorPassivesList];
+  newSeconds = [...OGsecondsList];
+  newThrows = [...OGthrowsList];
+  newStrats = [...OGstratsList];
+  newWarbonds = [...OGwarbondsList];
   const allItemsList = [
     newPrims,
     newStrats,
@@ -396,7 +355,7 @@ const uploadSaveData = async () => {
 
     dataName = currentList.dataName;
 
-    await filterItemsByWarbond(true);
+    await populateLooseItems();
     await createTiers();
     await populateTierListItems();
     return;

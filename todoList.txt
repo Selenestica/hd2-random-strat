@@ -58,7 +58,6 @@ SPECIAL OPERATIONS
     - make green/red progress text a different color
 
 TIER MAKER
-  - ability to filter out by warbond
   - ability to rename tiers
   - make filter options checkbox toggles
 

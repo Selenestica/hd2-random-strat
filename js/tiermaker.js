@@ -273,7 +273,14 @@ const startNewTierList = async () => {
   for (let i = 0; i < warbondCheckboxes.length; i++) {
     warbondCheckboxes[i].checked = true;
   }
+  sList = [];
+  aList = [];
+  bList = [];
+  cList = [];
+  dList = [];
 
+  const container = document.getElementById("tierListContainer");
+  container.innerHTML = "";
   createTiers();
   await filterItemsByWarbond();
 };
@@ -344,6 +351,9 @@ const generateItemCard = (item) => {
 
 const createTiers = async () => {
   const container = document.getElementById("tierListContainer");
+  if (container.children.length === 5) {
+    return;
+  }
   await TIERS.forEach((label) => {
     const tier = document.createElement("div");
     tier.className = "tier text-white";
@@ -392,7 +402,7 @@ const saveProgress = async () => {
           cList,
           dList,
 
-          dataName: `${getCurrentDateTime()}`,
+          dataName: `List #${generateSemiUniqueCode()}`,
           currentList: true,
         },
       ],
@@ -411,7 +421,9 @@ const saveProgress = async () => {
         cList,
         dList,
 
-        dataName: sg.editedName ? sg.dataName : `${getCurrentDateTime()}`,
+        dataName: sg.editedName
+          ? sg.dataName
+          : `List #${generateSemiUniqueCode()}`,
         currentList: true,
       };
     }
@@ -436,7 +448,7 @@ const saveDataAndRestart = async () => {
     return sg;
   });
 
-  await startNewTierList(true);
+  await startNewTierList();
 
   const newSaveObj = {
     sList,
@@ -445,17 +457,17 @@ const saveDataAndRestart = async () => {
     cList,
     dList,
 
-    dataName: `${getCurrentDateTime()}`,
+    dataName: `List #${generateSemiUniqueCode()}`,
     currentList: true,
   };
 
   updatedSavedTierLists.push(newSaveObj);
-  const newtierMakerSaveData = {
+  const newTierMakerSaveData = {
     lists: updatedSavedTierLists,
   };
   await localStorage.setItem(
     "tierMakerSaveData",
-    JSON.stringify(newtierMakerSaveData)
+    JSON.stringify(newTierMakerSaveData)
   );
 
   // remove saved lists that weren't changed in any way
@@ -474,7 +486,8 @@ const pruneSavedTierLists = async () => {
       sg.aList.length > 0 ||
       sg.bList.length > 0 ||
       sg.cList.length > 0 ||
-      sg.dList.length > 0
+      sg.dList.length > 0 ||
+      sg.currentList
     ) {
       return sg;
     }

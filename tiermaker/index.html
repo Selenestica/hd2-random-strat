@@ -70,9 +70,9 @@
             <i class="socialIcons fa-solid fa-mug-saucer"></i>
           </a>
         </div>
-        <div class="col-4">
-          <!-- <div class="d-flex justify-content-end">
-            <button
+        <div class="col-4 px-2">
+          <div class="d-flex justify-content-end">
+            <!-- <button
               class="btn btn-primary"
               type="button"
               data-bs-toggle="modal"
@@ -80,15 +80,15 @@
               id="warbondSelectButtonMobile"
             >
               <i class="fa-solid fa-cog"></i>
-            </button>
+            </button> -->
             <button
               class="btn btn-primary mx-1"
-              onclick="genTierMakerDataManagementModalInfo()"
+              onclick="genTierMakerSaveDataManagementInfo()"
               type="button"
             >
               <i class="fa-solid text-light fa-floppy-disk"></i>
             </button>
-          </div> -->
+          </div>
         </div>
       </div>
       <div class="row d-flex justify-content-center mt-2">
@@ -228,7 +228,8 @@
           <button
             class="btn btn-warning"
             type="button"
-            onclick="clearSaveDataAndRestart()"
+            data-bs-toggle="modal"
+            data-bs-target="#restartModal"
           >
             <i class="fa-solid fa-rotate"></i>
           </button>
@@ -243,6 +244,49 @@
         class="row d-flex justify-content-center"
         id="looseItemsContainer"
       ></div>
+
+      <!-- RESTART MODAL -->
+      <div
+        class="modal fade"
+        id="restartModal"
+        tabindex="-1"
+        open="true"
+        aria-labelledby="restartModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light" id="">Restart Tier List</h5>
+            </div>
+            <div class="modal-body row d-flex justify-content-center">
+              <p class="text-white">
+                When you restart your list, your current list will be saved.
+                <br />
+                <br />
+                Restart?
+              </p>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onclick="saveDataAndRestart()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Save and Restart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- WARBOND SELECT MODAL -->
       <div
@@ -416,10 +460,10 @@
       <!-- SAVE DATA MANAGEMENT MODAL -->
       <div
         class="modal fade"
-        id="budgetBlitzDataManagementModal"
+        id="tierMakerSaveDataManagementModal"
         tabindex="-1"
         open="true"
-        aria-labelledby="budgetBlitzDataManagementModalLabel"
+        aria-labelledby="tierMakerSaveDataManagementModalLabel"
         aria-hidden="true"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
@@ -431,7 +475,7 @@
             </div>
             <div
               class="modal-body row d-flex justify-content-center"
-              id="budgetBlitzDataManagementModalBody"
+              id="tierMakerSaveDataManagementModalBody"
             >
               <p class="text-white">
                 Switch your active save file here, delete save files, or upload
@@ -464,7 +508,7 @@
                 </div>
               </div>
               <div
-                id="budgetBlitzDataManagementModalSavesList"
+                id="tierMakerSaveDataManagementModalSavesList"
                 class="btn-group-vertical"
                 role="group"
                 aria-label="Basic radio toggle button group"
@@ -474,7 +518,7 @@
               <div class="d-flex col justify-content-start">
                 <button
                   type="button"
-                  onclick="clearBudgetBlitzDataManagementModal()"
+                  onclick="clearTierMakerSaveDataManagementModal()"
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >
@@ -540,6 +584,7 @@
   <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
   <script src="../js/utils/tmItemFilterFunctions.js"></script>
+  <script src="../js/utils/generateSemiUniqueCode.js"></script>
   <script src="../js/tiermaker.js"></script>
-  <script src="../js/components/genBudgetBlitzSaveDataManagementInfo.js"></script>
+  <script src="../js/components/genTierMakerSaveDataManagementInfo.js"></script>
 </html>

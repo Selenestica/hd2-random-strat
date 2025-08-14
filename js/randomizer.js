@@ -5,6 +5,8 @@ const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 const superCitizenCheckBox = document.getElementById("warbond0");
 const oneSupportCheck = document.getElementById("oneSupportCheck");
 const oneBackpackCheck = document.getElementById("oneBackpackCheck");
+const alwaysSupportCheck = document.getElementById("alwaysSupportCheck");
+const alwaysBackpackCheck = document.getElementById("alwaysBackpackCheck");
 const onlyEaglesRadio = document.getElementById("onlyEaglesRadio");
 const noEaglesRadio = document.getElementById("noEaglesRadio");
 const defaultEaglesRadio = document.getElementById("defaultEaglesRadio");
@@ -35,7 +37,12 @@ const stratOptionRadios = [
   defaultSupplyRadio,
 ];
 
-const supplyAmountOptions = [oneSupportCheck, oneBackpackCheck];
+const supplyAmountOptions = [
+  oneSupportCheck,
+  oneBackpackCheck,
+  alwaysBackpackCheck,
+  alwaysSupportCheck,
+];
 
 let stratsList = [...STRATAGEMS];
 let primsList = [...PRIMARIES];
@@ -53,6 +60,8 @@ let workingStratsList;
 
 let oneBackpack = false;
 let oneSupportWeapon = false;
+let alwaysBackpack = false;
+let alwaysSupport = false;
 
 let checkedWarbonds = [
   "warbond0",
@@ -107,6 +116,8 @@ for (let x = 0; x < stratOptionRadios.length; x++) {
 const disableOtherRadios = (radio) => {
   oneSupportCheck.disabled = true;
   oneBackpackCheck.disabled = true;
+  alwaysBackpackCheck.disabled = true;
+  alwaysSupportCheck.disabled = true;
   for (let i = 0; i < stratOptionRadios.length; i++) {
     if (stratOptionRadios[i].name !== radio) {
       stratOptionRadios[i].disabled = true;
@@ -117,6 +128,8 @@ const disableOtherRadios = (radio) => {
 const enableRadios = () => {
   oneSupportCheck.disabled = false;
   oneBackpackCheck.disabled = false;
+  alwaysBackpackCheck.disabled = false;
+  alwaysSupportCheck.disabled = false;
   for (let i = 0; i < stratOptionRadios.length; i++) {
     stratOptionRadios[i].disabled = false;
   }
@@ -182,9 +195,13 @@ const rollStratagems = async () => {
   // get random numbers that arent the same and get the strats at those indices
   stratagemsContainer.innerHTML = "";
 
-  // if oneSupportWeapon or oneBackpack is checked and enabled, then account for those
+  // if support/backpack checkbox is checked and enabled, then account for those
   const oneSupportWeapon = oneSupportCheck.checked && !oneSupportCheck.disabled;
   const oneBackpack = oneBackpackCheck.checked && !oneBackpackCheck.disabled;
+  const alwaysBackpack =
+    alwaysBackpackCheck.checked && !alwaysBackpackCheck.disabled;
+  const alwaysSupport =
+    alwaysSupportCheck.checked && !alwaysSupportCheck.disabled;
 
   // if "only" or "no" strat type options checked, modify the strat list here
   const filteredStratList = await filterStratList();
@@ -193,6 +210,8 @@ const rollStratagems = async () => {
     filteredStratList,
     oneSupportWeapon,
     oneBackpack,
+    alwaysBackpack,
+    alwaysSupport,
     4
   );
 
@@ -273,11 +292,17 @@ const rerollItem = async (intName, cat) => {
     const oneSupportWeapon =
       oneSupportCheck.checked && !oneSupportCheck.disabled;
     const oneBackpack = oneBackpackCheck.checked && !oneBackpackCheck.disabled;
+    const alwaysBackpack =
+      alwaysBackpackCheck.checked && !alwaysBackpackCheck.disabled;
+    const alwaysSupport =
+      alwaysSupportCheck.checked && !alwaysSupportCheck.disabled;
     while (newItem === null || rolledStrats.includes(newItem.internalName)) {
       const randomUniqueNumber = getRandomUniqueNumbers(
         filteredStratList,
         oneSupportWeapon,
         oneBackpack,
+        alwaysBackpack,
+        alwaysSupport,
         1
       );
       newItem = filteredStratList[randomUniqueNumber];
@@ -350,7 +375,14 @@ const filterStratList = async () => {
   return newList;
 };
 
-const getRandomUniqueNumbers = (list, oneSupportWeapon, oneBackpack, amt) => {
+const getRandomUniqueNumbers = (
+  list,
+  oneSupportWeapon,
+  oneBackpack,
+  alwaysBackpack,
+  alwaysSupport,
+  amt
+) => {
   let hasVehicle = false;
   let hasBackpack = false;
   let hasSupportWeapon = false;
@@ -360,10 +392,11 @@ const getRandomUniqueNumbers = (list, oneSupportWeapon, oneBackpack, amt) => {
     randomNumber = Math.floor(Math.random() * list.length);
     const tags = list[randomNumber].tags;
     if (
-      (tags.includes("Weapons") && hasSupportWeapon) ||
-      (tags.includes("Backpacks") && hasBackpack) ||
+      (tags.includes("Weapons") && hasSupportWeapon && oneSupportWeapon) ||
+      (tags.includes("Backpacks") && hasBackpack && oneBackpack) ||
       (tags.includes("Vehicles") && hasVehicle) ||
-      numbers.includes(randomNumber)
+      numbers.includes(randomNumber) ||
+      (!hasBackpack && alwaysBackpack && !tags.includes("Backpacks"))
     ) {
       continue;
     } else {
@@ -372,19 +405,36 @@ const getRandomUniqueNumbers = (list, oneSupportWeapon, oneBackpack, amt) => {
         numbers.push(randomNumber);
         continue;
       }
-      if (oneSupportWeapon && tags.includes("Weapons")) {
+      if (!hasSupportWeapon && oneSupportWeapon && tags.includes("Weapons")) {
         numbers.push(randomNumber);
         hasSupportWeapon = true;
         if (tags.includes("Backpacks")) {
           hasBackpack = true;
         }
         continue;
-      } else if (oneBackpack && tags.includes("Backpacks")) {
+      } else if (!hasBackpack && oneBackpack && tags.includes("Backpacks")) {
         numbers.push(randomNumber);
         hasBackpack = true;
         if (tags.includes("Weapons")) {
           hasSupportWeapon = true;
         }
+        continue;
+      } else if (alwaysBackpack && tags.includes("Backpacks")) {
+        numbers.push(randomNumber);
+        hasBackpack = true;
+        if (tags.includes("Weapons")) {
+          hasSupportWeapon = true;
+        }
+        continue;
+      } else if (alwaysSupport && tags.includes("Weapons")) {
+        numbers.push(randomNumber);
+        hasSupportWeapon = true;
+        if (tags.includes("Backpacks")) {
+          hasBackpack = true;
+        }
+        continue;
+      }
+      if (!hasSupportWeapon && alwaysSupport && !tags.includes("Weapons")) {
         continue;
       }
       numbers.push(randomNumber);
@@ -468,6 +518,8 @@ const checkLocalStorageForOptionsPreferences = async () => {
       supplyAmountOptions: {
         oneBackpackCheck: false,
         oneSupportCheck: false,
+        alwaysBackpackCheck: false,
+        alwaysSupportCheck: false,
       },
     };
     await localStorage.setItem("randomizerOptions", JSON.stringify(obj));

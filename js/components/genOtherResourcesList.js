@@ -13,6 +13,11 @@ const genOtherResourcesList = () => {
       description: "A resource for loadouts, stats, and theorycrafting",
     },
     {
+      displayName: "Helldivers Hub",
+      url: "https://helldivers-hub.com",
+      description: "A community hub for managing and sharing loadouts",
+    },
+    {
       displayName: "Helldivers Wiki",
       url: "https://helldivers.wiki.gg",
       description:

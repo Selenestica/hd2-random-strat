@@ -8,8 +8,6 @@ RANDOMIZER:
   - add tags for THROWABLES
   - add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons
   - buy nvigneux a coffee
-  - add link to low sodium Helldivers discord
-  - add radio buttons for always rolling a support weapon
 
 PENITENT CRUSADE:
   - system to track max stars missions, incomplete missions, and failed missions. adding points for each
@@ -37,7 +35,6 @@ BUDGET BLITZ
     - additions shown in green
     - deductions in red
   - in loadout view, button to re-arrange purchased items and default items so theyre not a mess 
-  - credits reduced for accidentals
   - new game plus where you roll over credits into next difficulty
 	- getting HVI grants you a random item instead of credits
   - accidentals subtracts credits

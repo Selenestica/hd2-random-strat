@@ -8,6 +8,11 @@ const genOtherResourcesList = () => {
       description: "A project that shows live, detailed player loadout data",
     },
     {
+      displayName: "Divers-Lab.io",
+      url: "https://divers-lab.io",
+      description: "Loadout saver, randomizer, and analyzer",
+    },
+    {
       displayName: "Democracy Hub",
       url: "https://democracy-hub.net",
       description: "A resource for loadouts, stats, and theorycrafting",

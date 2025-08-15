@@ -1,32 +1,36 @@
-const otherResourcesList = document.getElementById("otherResourcesList");
+const otherResourcesList = document.getElementById('otherResourcesList');
 
 const genOtherResourcesList = () => {
   const resources = [
     {
-      displayName: "Helldive.Live",
-      url: "https://helldive.live",
-      description: "A project that shows live, detailed player loadout data",
+      displayName: 'Helldive.Live',
+      url: 'https://helldive.live',
+      description: 'A project that shows live, detailed player loadout data',
     },
     {
-      displayName: "Divers-Lab.io",
-      url: "https://divers-lab.io",
-      description: "Loadout saver, randomizer, and analyzer",
+      displayName: 'Divers-Lab.io',
+      url: 'https://divers-lab.io',
+      description: 'Loadout saver, randomizer, and analyzer',
     },
     {
-      displayName: "Helldivers Hub",
-      url: "https://helldivers-hub.com",
-      description: "A community hub for managing and sharing loadouts",
+      displayName: 'Democracy Hub',
+      url: 'https://democracy-hub.net',
+      description: 'A resource for loadouts, stats, and theory-crafting',
     },
     {
-      displayName: "Helldivers Wiki",
-      url: "https://helldivers.wiki.gg",
-      description:
-        "A comprehensive online database covering Helldivers and Helldivers 2",
+      displayName: 'Helldivers Hub',
+      url: 'https://helldivers-hub.com',
+      description: 'A community hub for managing and sharing loadouts',
     },
     {
-      displayName: "hd2random.com",
-      url: "https://hd2random.com",
-      description: "Another customizeable, ad-free loadout randomizer",
+      displayName: 'Helldivers Wiki',
+      url: 'https://helldivers.wiki.gg',
+      description: 'A comprehensive online database covering Helldivers and Helldivers 2',
+    },
+    {
+      displayName: 'hd2random.com',
+      url: 'https://hd2random.com',
+      description: 'Another customizeable, ad-free loadout randomizer',
     },
   ];
 

@@ -155,9 +155,9 @@ const reduceMissionCounter = () => {
 const uploadSaveData = async () => {
   await getStartingItems("bb");
   await populateDefaultItems();
-  const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
-  if (budgetBlitzSaveData) {
-    const currentGame = await getCurrentGame("budgetBlitzSaveData");
+  const debtDiversSaveData = localStorage.getItem("debtDiversSaveData");
+  if (debtDiversSaveData) {
+    const currentGame = await getCurrentGame("debtDiversSaveData");
 
     // the general working arrays
     newStrats = currentGame.newStrats;
@@ -295,8 +295,8 @@ const saveProgress = async () => {
   }
 
   let obj = {};
-  const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
-  if (!budgetBlitzSaveData) {
+  const debtDiversSaveData = localStorage.getItem("debtDiversSaveData");
+  if (!debtDiversSaveData) {
     obj = {
       savedGames: [
         {
@@ -332,11 +332,11 @@ const saveProgress = async () => {
         },
       ],
     };
-    localStorage.setItem("budgetBlitzSaveData", JSON.stringify(obj));
+    localStorage.setItem("debtDiversSaveData", JSON.stringify(obj));
     missionCounterText.innerHTML = `${getMissionText()}`;
     return;
   }
-  const data = JSON.parse(budgetBlitzSaveData);
+  const data = JSON.parse(debtDiversSaveData);
   const newSavedGames = await data.savedGames.map((sg) => {
     if (sg.currentGame === true) {
       sg = {
@@ -383,7 +383,7 @@ const saveProgress = async () => {
     ...obj,
     savedGames: newSavedGames,
   };
-  localStorage.setItem("budgetBlitzSaveData", JSON.stringify(obj));
+  localStorage.setItem("debtDiversSaveData", JSON.stringify(obj));
 
   // show score modal after local storage has been updated when challenge complete
   if (missionCounter >= 23) {
@@ -392,11 +392,11 @@ const saveProgress = async () => {
 };
 
 const saveDataAndRestart = async () => {
-  const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
-  if (!budgetBlitzSaveData) {
+  const debtDiversSaveData = localStorage.getItem("debtDiversSaveData");
+  if (!debtDiversSaveData) {
     return;
   }
-  const savedGames = JSON.parse(budgetBlitzSaveData).savedGames;
+  const savedGames = JSON.parse(debtDiversSaveData).savedGames;
   // make all saved game data currentGame = false
   let updatedSavedGames = await savedGames.map((sg) => {
     sg.currentGame = false;
@@ -437,12 +437,12 @@ const saveDataAndRestart = async () => {
   };
 
   updatedSavedGames.push(newSaveObj);
-  const newBudgetBlitzSaveData = {
+  const newdebtDiversSaveData = {
     savedGames: updatedSavedGames,
   };
   await localStorage.setItem(
-    "budgetBlitzSaveData",
-    JSON.stringify(newBudgetBlitzSaveData)
+    "debtDiversSaveData",
+    JSON.stringify(newdebtDiversSaveData)
   );
 
   // remove saved games that are at the first mission of their difficulty,
@@ -452,11 +452,11 @@ const saveDataAndRestart = async () => {
 
 // get rid of all games that arent the current game and are on the first mission
 const pruneSavedGames = async () => {
-  const budgetBlitzSaveData = localStorage.getItem("budgetBlitzSaveData");
-  if (!budgetBlitzSaveData) {
+  const debtDiversSaveData = localStorage.getItem("debtDiversSaveData");
+  if (!debtDiversSaveData) {
     return;
   }
-  const prunedGames = await JSON.parse(budgetBlitzSaveData).savedGames.filter(
+  const prunedGames = await JSON.parse(debtDiversSaveData).savedGames.filter(
     (sg) => {
       if (
         sg.currentGame === true ||
@@ -467,12 +467,12 @@ const pruneSavedGames = async () => {
       }
     }
   );
-  const oldData = JSON.parse(budgetBlitzSaveData);
+  const oldData = JSON.parse(debtDiversSaveData);
   const newData = {
     ...oldData,
     savedGames: prunedGames,
   };
-  localStorage.setItem("budgetBlitzSaveData", JSON.stringify(newData));
+  localStorage.setItem("debtDiversSaveData", JSON.stringify(newData));
 };
 
 uploadSaveData();

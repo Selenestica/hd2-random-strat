@@ -209,20 +209,6 @@ const getDefaultItems = () => {
   };
 };
 
-const getCurrentGame = async () => {
-  const savedGames = JSON.parse(
-    localStorage.getItem("penitentCrusadeSaveData")
-  ).savedGames;
-  const currentGame = await savedGames.filter((sg) => {
-    return sg.currentGame === true;
-  });
-  if (currentGame.length !== 1) {
-    console.log("SAVED GAME DATA CORRUPTED", savedGames);
-    return;
-  }
-  return currentGame[0];
-};
-
 const checkMissionButtons = () => {
   if (missionCounter !== 1) {
     for (let i = 0; i < warbondCheckboxes.length; i++) {
@@ -323,7 +309,7 @@ const claimPunishment = async (currentItemIndex) => {
   list.push(item);
 
   // remove item from local storage
-  const currentGame = await getCurrentGame();
+  const currentGame = await getCurrentGame("penitentCrusadeSaveData");
   const acquiredItems = currentGame.acquiredItems;
   const newAcquiredItems = acquiredItems.filter((acquiredItem) => {
     return acquiredItem.displayName !== item.displayName;
@@ -569,7 +555,7 @@ const rollPunishmentOptions = async () => {
   }
 
   let maxPunishmentItems = 3;
-  const game = await getCurrentGame();
+  const game = await getCurrentGame("penitentCrusadeSaveData");
   const acquiredItems = game.acquiredItems;
   if (acquiredItems.length <= 0) {
     return;
@@ -987,7 +973,7 @@ const uploadSaveData = async () => {
     // will need to set the difficulty button according to the difficulty in the save file
     unlockSuperPC();
 
-    const currentGame = await getCurrentGame();
+    const currentGame = await getCurrentGame("penitentCrusadeSaveData");
     difficulty = currentGame.difficulty ?? "normal";
     warbondCodes = currentGame.warbondCodes ?? warbondCodes;
     changeDifficulty(currentGame.difficulty ?? "normal");

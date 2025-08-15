@@ -13,11 +13,6 @@ const genOtherResourcesList = () => {
       description: "Loadout saver, randomizer, and analyzer",
     },
     {
-      displayName: "Democracy Hub",
-      url: "https://democracy-hub.net",
-      description: "A resource for loadouts, stats, and theorycrafting",
-    },
-    {
       displayName: "Helldivers Hub",
       url: "https://helldivers-hub.com",
       description: "A community hub for managing and sharing loadouts",

@@ -31,7 +31,7 @@ const saveNewSaveFileName = async (index) => {
   let newSaveObj = { ...saveData, savedGames };
   await localStorage.setItem("debtDiversSaveData", JSON.stringify(newSaveObj));
   debtDiversDataManagementModalSavesList.innerHTML = "";
-  genSnLDataManagementModalInfo(true);
+  genDebtDiversSaveDataManagementInfo(true);
 };
 
 const editSaveName = (index, oldName) => {
@@ -46,7 +46,7 @@ const editSaveName = (index, oldName) => {
   `;
 };
 
-const genSnLDataManagementModalInfo = (savedNewName = null) => {
+const genDebtDiversSaveDataManagementInfo = (savedNewName = null) => {
   const saveData = JSON.parse(localStorage.getItem("debtDiversSaveData"));
   if (!saveData) {
     debtDiversDataManagementModalSavesList.innerHTML =
@@ -77,7 +77,7 @@ const genSnLDataManagementModalInfo = (savedNewName = null) => {
   }
 };
 
-const clearSnLDataManagementModal = () => {
+const clearDebtDiversDataManagementModal = () => {
   debtDiversDataManagementModalSavesList.innerHTML = "";
   saveDataUploadInput.value = "";
   uploadedSaveFile = null;
@@ -101,7 +101,7 @@ const deleteSavedGameData = async () => {
   // get the index of the saved game data
   const saveIndex = getSavedGameIndex();
   if (saveIndex === undefined) {
-    clearSnLDataManagementModal();
+    clearDebtDiversDataManagementModal();
     return;
   }
 
@@ -118,7 +118,7 @@ const deleteSavedGameData = async () => {
     };
     localStorage.setItem("debtDiversSaveData", JSON.stringify(tempObj));
   }
-  clearSnLDataManagementModal();
+  clearDebtDiversDataManagementModal();
 };
 
 // let user choose a save file to populate the website with
@@ -155,7 +155,7 @@ const applySavedGameData = async (isUploadedSave = null) => {
 
   // then upload the current save
   uploadSaveData();
-  clearSnLDataManagementModal();
+  clearDebtDiversDataManagementModal();
   if (isUploadedSave) {
     saveDataManagementModalInstance.hide();
   }
@@ -200,7 +200,7 @@ const uploadSaveFile = async () => {
   newData.savedGames.push(uploadedSaveFile);
   await localStorage.setItem("debtDiversSaveData", JSON.stringify(newData));
   debtDiversDataManagementModalSavesList.innerHTML = "";
-  genSnLDataManagementModalInfo(true);
+  genDebtDiversSaveDataManagementInfo(true);
   uploadedSaveFile = null;
   saveDataUploadInput.value = "";
 };

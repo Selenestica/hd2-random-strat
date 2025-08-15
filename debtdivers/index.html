@@ -83,7 +83,7 @@
             </button>
             <button
               class="btn btn-primary mx-1"
-              onclick="genBudgetBlitzDataManagementModalInfo()"
+              onclick="genDebtDiversSaveDataManagementInfo()"
               type="button"
             >
               <i class="fa-solid text-light fa-floppy-disk"></i>
@@ -111,17 +111,18 @@
         </div>
       </div>
       <div class="row mt-2 justify-content-center text-white">
-        <div class="col-4 d-flex justify-content-start align-items-center">
+        <div
+          class="col-4 d-flex text-white justify-content-start align-items-center"
+        >
           <span id="superCreditsText">Super Credits</span>
           <span id="superCreditsIcon"
             ><i class="fa-solid fa-dollar-sign"></i
           ></span>
-          <span id="scCounter"></span>
+          <span id="scCounter"></span>/1000
         </div>
-        <div
-          class="col-4 text-white d-flex justify-content-center"
-          id="missionCounterText"
-        ></div>
+        <div class="col-4 text-white d-flex justify-content-center">
+          Mission:<span id="missionCounterText" class="mx-1 text-white"></span>
+        </div>
         <div class="col-4 d-flex justify-content-end"></div>
       </div>
       <div class="row my-2 justify-content-center">
@@ -371,7 +372,7 @@
             class="btn btn-warning"
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#restartBudgetBlitzModal"
+            data-bs-target="#restartDebtDiversModal"
           >
             <i class="fa-solid fa-rotate"></i>
           </button>
@@ -567,8 +568,82 @@
                   >NOTE: Lying will be considered treason.</small
                 >
               </div>
+              <div class="row d-flex pb-1 align-items-center px-0">
+                <p class="text-white mb-0 col-6" for="missionDifficultyInput">
+                  Mission Difficulty:
+                </p>
+                <input
+                  class="form-control col-6"
+                  id="missionDifficultyInput"
+                  style="width: 15%; margin-left: 0.5rem"
+                  type="text"
+                  pattern="\d*"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                  min="1"
+                  max="10"
+                  value="1"
+                  aria-describedby="missionDifficultyInput"
+                />
+              </div>
+
+              <div class="row d-flex pb-1 align-items-center px-0">
+                <p class="text-white mb-0 col-6" for="starsEarnedInput">
+                  Stars Earned:
+                </p>
+                <input
+                  class="form-control col-6"
+                  id="starsEarnedInput"
+                  style="width: 15%; margin-left: 0.5rem"
+                  type="text"
+                  pattern="\d*"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                  min="1"
+                  max="5"
+                  value="1"
+                  aria-describedby="starsEarnedInput"
+                />
+              </div>
+
+              <div class="row d-flex pb-1 align-items-center px-0">
+                <p class="text-white mb-0 col-6" for="numOfDeathsInput">
+                  Deaths (Yours Only):
+                </p>
+                <input
+                  class="form-control col-6"
+                  id="numOfDeathsInput"
+                  style="width: 15%; margin-left: 0.5rem"
+                  type="text"
+                  pattern="\d*"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                  min="0"
+                  max="24"
+                  value="0"
+                  aria-describedby="numOfDeathsInput"
+                />
+              </div>
+
+              <div class="row d-flex pb-1 align-items-center px-0">
+                <p class="text-white mb-0 col-6" for="timeRemainingInput">
+                  Time Remaining (%):
+                </p>
+                <input
+                  class="form-control col-6"
+                  id="timeRemainingInput"
+                  style="width: 15%; margin-left: 0.5rem"
+                  type="text"
+                  pattern="\d*"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                  min="0"
+                  max="100"
+                  value="0"
+                  aria-describedby="timeRemainingInput"
+                />
+              </div>
+
+              <hr class="text-white mt-3" />
+
               <div class="row">
-                <div class="form-check d-none" id="highValueItemCollectedForm">
+                <div class="form-check" id="highValueItemCollectedForm">
                   <label
                     class="form-check-label text-white"
                     for="highValueItemCollectedCheck"
@@ -579,84 +654,31 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
+                    disabled
                     id="highValueItemCollectedCheck"
                   />
                 </div>
-
-                <div class="row d-flex pb-1 align-items-center px-0">
-                  <p class="text-white mb-0 col-6" for="starsEarnedInput">
-                    Stars Earned:
-                  </p>
-                  <input
-                    class="form-control col-6"
-                    id="starsEarnedInput"
-                    style="width: 15%; margin-left: 0.5rem"
-                    type="text"
-                    pattern="\d*"
-                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                    min="1"
-                    max="5"
-                    value="1"
-                    aria-describedby="starsEarnedInput"
-                  />
-                </div>
-
-                <div class="row d-flex pb-1 align-items-center px-0">
-                  <p class="text-white mb-0 col-6" for="numOfDeathsInput">
-                    Deaths (Yours Only):
-                  </p>
-                  <input
-                    class="form-control col-6"
-                    id="numOfDeathsInput"
-                    style="width: 15%; margin-left: 0.5rem"
-                    type="text"
-                    pattern="\d*"
-                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                    min="0"
-                    max="24"
-                    value="0"
-                    aria-describedby="numOfDeathsInput"
-                  />
-                </div>
-
-                <div class="row d-flex pb-1 align-items-center px-0">
-                  <p class="text-white mb-0 col-6" for="timeRemainingInput">
-                    Time Remaining (%):
-                  </p>
-                  <input
-                    class="form-control col-6"
-                    id="timeRemainingInput"
-                    style="width: 15%; margin-left: 0.5rem"
-                    type="text"
-                    pattern="\d*"
-                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                    min="0"
-                    max="100"
-                    value="0"
-                    aria-describedby="timeRemainingInput"
-                  />
-                </div>
-
-                <div class="row d-flex pb-1 align-items-center px-0">
-                  <p
-                    class="text-white mb-0 col-6"
-                    for="superSamplesCollectedInput"
-                  >
-                    Super Samples Collected:
-                  </p>
-                  <input
-                    class="form-control col-6"
-                    id="superSamplesCollectedInput"
-                    style="width: 15%; margin-left: 0.5rem"
-                    type="text"
-                    pattern="\d*"
-                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                    min="0"
-                    max="9"
-                    value="0"
-                    aria-describedby="superSamplesCollectedInput"
-                  />
-                </div>
+              </div>
+              <div class="row d-flex pb-1 align-items-center px-0">
+                <p
+                  class="text-white mb-0 col-6"
+                  for="superSamplesCollectedInput"
+                >
+                  Super Samples Collected:
+                </p>
+                <input
+                  class="form-control col-6"
+                  id="superSamplesCollectedInput"
+                  style="width: 15%; margin-left: 0.5rem"
+                  disabled
+                  type="text"
+                  pattern="\d*"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                  min="0"
+                  max="9"
+                  value="0"
+                  aria-describedby="superSamplesCollectedInput"
+                />
               </div>
             </div>
             <div class="modal-footer row justify-content-between">
@@ -700,8 +722,7 @@
             </div>
             <div class="modal-body row d-flex justify-content-center">
               <p class="text-white">
-                Your current operation will be reset, and your equipped
-                purchased items will decrease by 1 use.
+                Your equipped purchased items will decrease by 1 use.
               </p>
               <br />
               <br />
@@ -1157,10 +1178,10 @@
       <!-- RESTART MODAL -->
       <div
         class="modal fade"
-        id="restartBudgetBlitzModal"
+        id="restartDebtDiversModal"
         tabindex="-1"
         open="true"
-        aria-labelledby="restartBudgetBlitzModalLabel"
+        aria-labelledby="restartDebtDiversModalLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-scrollable">
@@ -1241,10 +1262,10 @@
       <!-- SAVE DATA MANAGEMENT MODAL -->
       <div
         class="modal fade"
-        id="budgetBlitzDataManagementModal"
+        id="debtDiversDataManagementModal"
         tabindex="-1"
         open="true"
-        aria-labelledby="budgetBlitzDataManagementModalLabel"
+        aria-labelledby="debtDiversDataManagementModalLabel"
         aria-hidden="true"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
@@ -1256,7 +1277,7 @@
             </div>
             <div
               class="modal-body row d-flex justify-content-center"
-              id="budgetBlitzDataManagementModalBody"
+              id="debtDiversDataManagementModalBody"
             >
               <p class="text-white">
                 Switch your active save file here, delete save files, or upload
@@ -1289,7 +1310,7 @@
                 </div>
               </div>
               <div
-                id="budgetBlitzDataManagementModalSavesList"
+                id="debtDiversDataManagementModalSavesList"
                 class="btn-group-vertical"
                 role="group"
                 aria-label="Basic radio toggle button group"
@@ -1299,7 +1320,7 @@
               <div class="d-flex col justify-content-start">
                 <button
                   type="button"
-                  onclick="clearBudgetBlitzDataManagementModal()"
+                  onclick="clearDebtDiversDataManagementModal()"
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >

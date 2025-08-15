@@ -12,6 +12,19 @@ bbShopFilterDiv.style.display = "none";
 hellDiversMobilizeCheckbox.disabled = true;
 const inventoryIDs = ["defaultInventory", "purchasedItemsInventory"];
 
+// when the mission report modal opens, set the max stars able to be earned according to the missionCounter
+missionCompleteModal.addEventListener("shown.bs.modal", () => {
+  const maxStarsPossible = getMaxStarsForMission(missionCounter);
+  const maxSuperSamplesPossible = getMaxSuperSamplesForMission(missionCounter);
+  starsEarnedInput.max = maxStarsPossible;
+  superSamplesCollectedInput.max = maxSuperSamplesPossible;
+
+  // check if high value item in the level
+  if (missionCounter >= 20) {
+    highValueItemCollectedForm.classList.remove("d-none");
+  }
+});
+
 const startNewRun = async (isRestart = null) => {
   // probably want to set all warbond codes to checked just in case
   warbondCodes = [...masterWarbondCodes];

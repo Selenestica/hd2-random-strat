@@ -1,6 +1,6 @@
 const SPECIALOPSOBJECTIVES = [
   {
-    name: 'Extract with the High-Value Item 1 time',
+    name: 'As a team, collect 1 High Value Item',
     goal: 1,
     progress: 0,
     progressType: 'positive',

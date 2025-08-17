@@ -40,6 +40,16 @@ BUDGET BLITZ
   - accidentals subtracts credits
   - explanation of how credits are earned
 
+Debt Divers
+  - accrue credits, and challenge is finished when certain amount of credits are accrued (1000?)
+  - field for inputting difficulty
+  - extra credits for completing an operation (random item?)
+  - ending score based on amount of time it takes to get to 1000 credits (mission time and # of missions)
+  - buying and equipping items same as v1. obviously buying items reduces credits, meaning it will take more mission to reach goal
+  - accidentals and deaths subtract credits
+  - credits earned by mission stars, super samples, mission time remaining
+  - random item earned by collecting HVI
+
 SPECIAL OPERATIONS
   - SPECIALIST ideas:
   

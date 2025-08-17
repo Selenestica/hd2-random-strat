@@ -27,7 +27,7 @@ const SPECIALOPSOBJECTIVES = [
     inputName: 'Deaths:',
   },
   {
-    name: 'Collect X common samples',
+    name: 'As a team, collect X common samples',
     goal: 16,
     progress: 0,
     progressType: 'positive',
@@ -36,7 +36,7 @@ const SPECIALOPSOBJECTIVES = [
     inputName: 'Common Samples Collected:',
   },
   {
-    name: 'Collect X rare samples',
+    name: 'As a team, collect X rare samples',
     goal: 10,
     progress: 0,
     progressType: 'positive',
@@ -45,7 +45,7 @@ const SPECIALOPSOBJECTIVES = [
     inputName: 'Rare Samples Collected:',
   },
   {
-    name: 'Collect X super samples',
+    name: 'As a team, collect X super samples',
     goal: 7,
     progress: 0,
     progressType: 'positive',

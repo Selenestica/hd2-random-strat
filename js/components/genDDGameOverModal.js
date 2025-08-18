@@ -1,0 +1,90 @@
+const ddGameOverModal = document.getElementById('ddGameOverModal');
+const ddGameOverModalBody = document.getElementById('ddGameOverModalBody');
+
+const genDDGameOverModal = async () => {
+  const debtDiversSaveData = localStorage.getItem('debtDiversSaveData');
+  if (!debtDiversSaveData) return;
+
+  const savedGames = JSON.parse(debtDiversSaveData).savedGames;
+  const currentGame = await savedGames.filter((sg) => {
+    return sg.currentGame === true;
+  })[0];
+  const {
+    credits,
+    creditsPerMission,
+    failedMissions,
+    successfulMissions,
+    dateStarted,
+    dateEnded,
+    difficulty,
+  } = currentGame;
+
+  let par = 12;
+  let totalMissionTimeRemaining = 0;
+  let superSamplesCollected = 0;
+  let highValueItemsCollected = 0;
+  let starsEarned = 0;
+  let totalCreditsEarned = 0;
+  let numOfDeaths = 0;
+  let numOfAccidentals = 0;
+  let difficultyModifier = 0;
+  let totalMissions = failedMissions + successfulMissions;
+  let parScore = (par - totalMissions) * 100;
+  if (difficulty === 'Medium') {
+    difficultyModifier = 250;
+    par = 15;
+  }
+  if (difficulty === 'Hard') {
+    difficultyModifier = 500;
+    par = 18;
+  }
+
+  for (let j = 0; j < creditsPerMission.length; j++) {
+    const missionInfo = creditsPerMission[j];
+    totalMissionTimeRemaining += missionInfo.timeRemaining;
+    superSamplesCollected += missionInfo.superSamplesCollected;
+    highValueItemsCollected += missionInfo.highValueItemsCollected;
+    starsEarned += missionInfo.starsEarned;
+    totalCreditsEarned += missionInfo.totalCredits;
+    numOfDeaths += missionInfo.numOfDeaths;
+    numOfAccidentals += missionInfo.numOfAccidentals;
+  }
+
+  const totalScore = parScore + totalMissionTimeRemaining - failedMissions * 50;
+  superSamplesCollected += highValueItemsCollected * 2;
+
+  // par is, say, 15? 12? For each mission over or under par, that's 100 credits reduced or added to the score.
+  // add total mission time remaining to score
+  // par for Hard mode is 18
+  // par for Easy mode is 12
+
+  bbGameOverModalBody.innerHTML += `<h5 class="text-white">Breakdown:</h5>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Difficulty: ${difficulty}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Start Time: ${dateStarted}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">End Time: ${dateEnded}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Stars Earned: ${starsEarned}/72</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Super Samples Collected: ${superSamplesCollected}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Total Credits Earned: ${totalCreditsEarned}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Number of Deaths: ${numOfDeaths}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Number of Accidentals: ${numOfAccidentals}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">High Value Items Collected: ${highValueItemsCollected}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Ending Credits: ${credits}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Missions Failed: ${failedMissions}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white"><br /></p>`;
+  bbGameOverModalBody.innerHTML += `<h5 class="text-white">Score:</h5>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Par Modifier: ${parScore}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Total Mission Time Remaining: ${totalMissionTimeRemaining}</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Missions Failed Penalty: (${
+    failedMissions * 50
+  })</p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white"><br /></p>`;
+  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Total Score: ${totalScore}</p>`;
+
+  const modal = new bootstrap.Modal(bbGameOverModal);
+  modal.show();
+};
+
+// if the game over modal ever closes, reset the content
+ddGameOverModal.addEventListener('hidden.bs.modal', () => {
+  ddGameOverModalBody.innerHTML = '';
+});

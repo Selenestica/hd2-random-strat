@@ -213,10 +213,10 @@ const submitMissionReport = async (isMissionSucceeded) => {
   await unequipAllItems(true);
 
   if (isMissionSucceeded) {
-    let deathsDifficultyModifier = 20;
+    let deathsDifficultyModifier = 10;
     let accidentalsDifficultyModifier = 20;
-    const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 15;
-    const superSamplesModifier = superSamplesCollectedInput.value * 10;
+    const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 20;
+    const superSamplesModifier = superSamplesCollectedInput.value * 12;
 
     // if (difficulty === 'Easy') {
     //   deathsDifficultyModifier = 1;

@@ -213,22 +213,22 @@ const submitMissionReport = async (isMissionSucceeded) => {
   await unequipAllItems(true);
 
   if (isMissionSucceeded) {
-    let deathsDifficultyModifier = 2;
-    let accidentalsDifficultyModifier = 2;
-    const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 12;
-    const superSamplesModifier = superSamplesCollectedInput.value * 3;
+    let deathsDifficultyModifier = 20;
+    let accidentalsDifficultyModifier = 20;
+    const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 15;
+    const superSamplesModifier = superSamplesCollectedInput.value * 10;
 
-    if (difficulty === 'Easy') {
-      deathsDifficultyModifier = 1;
-      accidentalsDifficultyModifier = 1;
-    }
-    if (difficulty === 'Hard') {
-      deathsDifficultyModifier = 3;
-      accidentalsDifficultyModifier = 3;
-    }
+    // if (difficulty === 'Easy') {
+    //   deathsDifficultyModifier = 1;
+    //   accidentalsDifficultyModifier = 1;
+    // }
+    // if (difficulty === 'Hard') {
+    //   deathsDifficultyModifier = 3;
+    //   accidentalsDifficultyModifier = 3;
+    // }
     let numOfDeathsModifier = parseInt(numOfDeathsInput.value, 10) * deathsDifficultyModifier;
     let numOfAccidentalsModifier =
-      parseInt(numOfDeathsInput.value, 10) * accidentalsDifficultyModifier;
+      parseInt(numOfAccidentalsInput.value, 10) * accidentalsDifficultyModifier;
     if (numOfDeathsModifier > 10) {
       numOfDeathsModifier = 10;
     }
@@ -243,11 +243,12 @@ const submitMissionReport = async (isMissionSucceeded) => {
         newThrows,
       ]);
       await purchaseItem(null, true, true);
+      purchasedItemsInventory.innerHTML = '';
       populatePurchasedItemsInventory();
     }
 
-    const timeRemainingModifier = Math.ceil(timeRemainingInput.value * 0.3);
-    const operationCompleteModifier = operationCompleteCheck.checked ? 25 : 0;
+    const timeRemainingModifier = parseInt(timeRemainingInput.value, 10);
+    const operationCompleteModifier = operationCompleteCheck.checked ? 50 : 0;
     const total =
       starsEarnedModifier +
       superSamplesModifier +
@@ -256,6 +257,14 @@ const submitMissionReport = async (isMissionSucceeded) => {
       numOfDeathsModifier -
       numOfAccidentalsModifier;
     credits += total;
+    console.log(
+      starsEarnedModifier,
+      superSamplesModifier,
+      operationCompleteModifier,
+      timeRemainingModifier,
+      numOfDeathsModifier,
+      numOfAccidentalsModifier,
+    );
     scCounter.innerHTML = `${': ' + credits}`;
     showBBCreditsEarnedToast(total);
 
@@ -270,6 +279,12 @@ const submitMissionReport = async (isMissionSucceeded) => {
       numOfAccidentals: parseInt(numOfAccidentalsInput.value, 10),
     });
 
+    // here we want to go through all the items in the shop and update their cost and onSale property
+    // if they are starting a new operation
+    if (operationCompleteCheck.checked) {
+      await updateShopItemsCostAndSaleStatus();
+    }
+
     // reset values in modal when done calculating
     starsEarnedInput.value = 1;
     superSamplesCollectedInput.value = 0;
@@ -278,10 +293,6 @@ const submitMissionReport = async (isMissionSucceeded) => {
     numOfAccidentalsInput.value = 0;
     highValueItemCollectedCheck.checked = false;
     operationCompleteCheck.checked = false;
-
-    // here we want to go through all the items in the shop and update their cost and onSale property
-    // if they are starting a new operation
-    await updateShopItemsCostAndSaleStatus();
 
     missionCounterText.innerHTML = `${successfulMissions + failedMissions}`;
     checkMissionButtons();

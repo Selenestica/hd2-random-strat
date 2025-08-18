@@ -58,29 +58,29 @@ const genDDGameOverModal = async () => {
   // par for Hard mode is 18
   // par for Easy mode is 12
 
-  bbGameOverModalBody.innerHTML += `<h5 class="text-white">Breakdown:</h5>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Difficulty: ${difficulty}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Start Time: ${dateStarted}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">End Time: ${dateEnded}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Stars Earned: ${starsEarned}/72</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Super Samples Collected: ${superSamplesCollected}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Total Credits Earned: ${totalCreditsEarned}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Number of Deaths: ${numOfDeaths}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Number of Accidentals: ${numOfAccidentals}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">High Value Items Collected: ${highValueItemsCollected}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Ending Credits: ${credits}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Missions Failed: ${failedMissions}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white"><br /></p>`;
-  bbGameOverModalBody.innerHTML += `<h5 class="text-white">Score:</h5>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Par Modifier: ${parScore}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Total Mission Time Remaining: ${totalMissionTimeRemaining}</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Missions Failed Penalty: (${
+  ddGameOverModalBody.innerHTML += `<h5 class="text-white">Breakdown:</h5>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Difficulty: ${difficulty}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Start Time: ${dateStarted}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">End Time: ${dateEnded}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Stars Earned: ${starsEarned}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Super Samples Collected: ${superSamplesCollected}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Total Credits Earned: ${totalCreditsEarned}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Number of Deaths: ${numOfDeaths}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Number of Accidentals: ${numOfAccidentals}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">High Value Items Collected: ${highValueItemsCollected}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Ending Credits: ${credits}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Missions Failed: ${failedMissions}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white"><br /></p>`;
+  ddGameOverModalBody.innerHTML += `<h5 class="text-white">Score:</h5>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Par Modifier: ${parScore}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Total Mission Time Remaining: ${totalMissionTimeRemaining}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Missions Failed Penalty: (${
     failedMissions * 50
   })</p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white"><br /></p>`;
-  bbGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Total Score: ${totalScore}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white"><br /></p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Total Score: ${totalScore}</p>`;
 
-  const modal = new bootstrap.Modal(bbGameOverModal);
+  const modal = new bootstrap.Modal(ddGameOverModal);
   modal.show();
 };
 

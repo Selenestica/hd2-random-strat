@@ -113,7 +113,7 @@
           <span id="scCounter"></span>/1000
         </div>
         <div class="col-4 text-white d-flex justify-content-center">
-          Mission:<span id="missionCounterText" class="mx-1 text-white"></span>
+          Missions Elapsed:<span id="missionCounterText" class="mx-1 text-white"></span>
         </div>
         <div class="col-4 d-flex justify-content-end"></div>
       </div>
@@ -501,7 +501,12 @@
               </div>
 
               <div class="row my-1">
-                <div class="form-check" id="operationCompleteForm">
+                <div
+                  class="form-check"
+                  id="operationCompleteForm"
+                  data-bs-toggle="tooltip"
+                  title="+50 credits"
+                >
                   <label class="form-check-label text-white" for="operationCompleteCheck">
                     Does this mission complete an operation?
                   </label>
@@ -517,7 +522,14 @@
               <hr class="text-white mt-3" />
 
               <div class="row d-flex pb-1 align-items-center px-0">
-                <p class="text-white mb-0 col-6" for="starsEarnedInput">Stars Earned:</p>
+                <p
+                  class="text-white mb-0 col-6"
+                  data-bs-toggle="tooltip"
+                  title="+20 credits/star"
+                  for="starsEarnedInput"
+                >
+                  Stars Earned:
+                </p>
                 <input
                   class="form-control col-6"
                   id="starsEarnedInput"
@@ -533,7 +545,14 @@
               </div>
 
               <div class="row d-flex pb-1 align-items-center px-0">
-                <p class="text-white mb-0 col-6" for="numOfDeathsInput">Deaths (Yours):</p>
+                <p
+                  class="text-white mb-0 col-6"
+                  data-bs-toggle="tooltip"
+                  title="-20 credits/death"
+                  for="numOfDeathsInput"
+                >
+                  Deaths (Yours):
+                </p>
                 <input
                   class="form-control col-6"
                   id="numOfDeathsInput"
@@ -549,7 +568,12 @@
               </div>
 
               <div class="row d-flex pb-1 align-items-center px-0">
-                <p class="text-white mb-0 col-6" for="numOfAccidentalsInput">
+                <p
+                  class="text-white mb-0 col-6"
+                  data-bs-toggle="tooltip"
+                  title="-20 credits/accidental"
+                  for="numOfAccidentalsInput"
+                >
                   Accidentals (Yours):
                 </p>
                 <input
@@ -567,7 +591,14 @@
               </div>
 
               <div class="row d-flex pb-1 align-items-center px-0">
-                <p class="text-white mb-0 col-6" for="timeRemainingInput">Time Remaining (%):</p>
+                <p
+                  class="text-white mb-0 col-6"
+                  data-bs-toggle="tooltip"
+                  title="+1 credit/% remaining"
+                  for="timeRemainingInput"
+                >
+                  Time Remaining (%):
+                </p>
                 <input
                   class="form-control col-6"
                   id="timeRemainingInput"
@@ -585,9 +616,14 @@
               <hr class="text-white mt-3" />
 
               <div class="row">
-                <div class="form-check" id="highValueItemCollectedForm">
+                <div
+                  class="form-check"
+                  data-bs-toggle="tooltip"
+                  title="+1 random item"
+                  id="highValueItemCollectedForm"
+                >
                   <label class="form-check-label text-white" for="highValueItemCollectedCheck">
-                    High-Value Item Collected
+                    High Value Item Collected?
                   </label>
                   <input
                     class="form-check-input"
@@ -599,7 +635,12 @@
                 </div>
               </div>
               <div class="row d-flex pb-1 align-items-center px-0">
-                <p class="text-white mb-0 col-6" for="superSamplesCollectedInput">
+                <p
+                  class="text-white mb-0 col-6"
+                  data-bs-toggle="tooltip"
+                  title="+10 credits/sample"
+                  for="superSamplesCollectedInput"
+                >
                   Super Samples Collected:
                 </p>
                 <input
@@ -816,16 +857,12 @@
                   >
                     <div class="accordion-body">
                       <p class="text-white">
-                        Complete all missions in one operation on each difficulty, starting on
-                        difficulty 6 (Extreme) and moving up one difficulty as you go.
+                        Complete missions to earn Super Credits, which you can spend on equipment in
+                        the shop.
                         <br />
                         <br />
-                        Earn credits by submitting your after-mission report, and spend credits on
-                        equipment in the shop.
-                        <br />
-                        <br />
-                        Your goal is to complete a difficulty 10 (Super Helldive) operation having
-                        earned as many credits as possible along the way.
+                        Your goal is to have 1000 Super Credits in your account, to pay your way out
+                        of debt.
                       </p>
                     </div>
                   </div>
@@ -861,15 +898,9 @@
                         the top right corner of the item).
                         <br />
                         <br />
-                        After each mission, press the 'Mission Complete' button and input the number
-                        of stars you earned, the number of your individual deaths, the amount of
-                        Super Samples extracted, and the percentage (%) of time remaining in the
-                        mission (shown in-game at the bottom of the mission summary screen). You
-                        will earn credits based on these performance metrics.
-                        <br />
-                        <br />
-                        In higher difficulties, even more credits can be earned by extracting with
-                        the High-Value Item.
+                        After each mission, press the 'Mission Complete' button and complete the
+                        form. Hover over the text of each input to see how many credits you will
+                        earn or lose.
                       </p>
                     </div>
                   </div>
@@ -933,10 +964,8 @@
                   >
                     <div class="accordion-body">
                       <p class="text-white">
-                        If your squad fails a mission, you must start a new operation on the
-                        difficulty that you failed to complete. You will not lose credits, but item
-                        usage will still be counted. Additionally, your ending score will be
-                        negatively affected.
+                        If you fail a mission, you will not lose credits, but item usage will still
+                        be counted. Additionally, your ending score may be negatively affected.
                         <br />
                         Press the "Mission Failed" button to reset the operation.
                       </p>
@@ -1008,8 +1037,13 @@
                         <li class="text-white">
                           <b>Q: How many squadmates do I need to run this challenge?</b>
                           <p>
-                            A: Ideally you would run this challenge with a full squad of
-                            participating players.
+                            A: This challenge is viable for a squad of participating players, a
+                            squad with randoms, and solo players. Participating squadmates don't
+                            need to be on the same mission in order to help.
+                            <br />
+                            <br />
+                            <b>i.e.</b> You can be several missions ahead of your squadmate, and it
+                            doesn't necessarily affect your challenge run.
                           </p>
                         </li>
                         <li class="text-white">
@@ -1291,6 +1325,7 @@
     </div>
   </body>
 
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -1332,4 +1367,15 @@
   <script src="../js/utils/sharedShopAndLoadoutFunctions.js"></script>
   <script src="../js/debtdivers.js"></script>
   <script src="../js/components/genDebtDiversSaveDataManagementInfo.js"></script>
+  <script>
+    // This will enable all tooltips on the page
+    document.addEventListener('DOMContentLoaded', function () {
+      var tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]'),
+      );
+      tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    });
+  </script>
 </html>

@@ -229,9 +229,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
     let numOfDeathsModifier = parseInt(numOfDeathsInput.value, 10) * deathsDifficultyModifier;
     let numOfAccidentalsModifier =
       parseInt(numOfAccidentalsInput.value, 10) * accidentalsDifficultyModifier;
-    if (numOfDeathsModifier > 10) {
-      numOfDeathsModifier = 10;
-    }
+    
 
     if (highValueItemCollectedCheck.checked) {
       await genRandomItem([

@@ -149,4 +149,15 @@ const WARBONDS = [
     imageURL: "controlGroupWB.png",
     tier: "a",
   },
+
+  //   {
+  //   displayName: "ODST",
+  //   type: "Warbond",
+  //   category: "",
+  //   tags: [],
+  //   warbondCode: "warbond19",
+  //   internalName: "odstWB",
+  //   imageURL: "odstWB.png",
+  //   tier: "a",
+  // },
 ];

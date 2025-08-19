@@ -21,6 +21,7 @@ const warbondsList = [
   "Force of Law", // warbond16
   "Control Group", // warbond17
   "KILLZONE", // warbond18
+  // "ODST", //warbond19
 ];
 
 const genWarbondCheckboxes = () => {

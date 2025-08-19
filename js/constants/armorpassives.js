@@ -189,6 +189,16 @@ const ARMOR_PASSIVES = [
     imageURL: "adrenodefibrillator.png",
     tier: "b",
   },
+  // {
+  //   displayName: "Feet First",
+  //   type: "Equipment",
+  //   category: "armor",
+  //   tags: ["ArmorPassive"],
+  //   warbondCode: "warbond19",
+  //   internalName: "feetfirst",
+  //   imageURL: "feetfirst.png",
+  //   tier: "b",
+  // },
 ];
 
 // s: 1

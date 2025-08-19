@@ -169,6 +169,17 @@ const SECONDARIES = [
     imageURL: "p92warrant.png",
     tier: "b",
   },
+
+  // {
+  //   displayName: "M6C/SOCOM Pistol",
+  //   type: "Equipment",
+  //   category: "secondary",
+  //   tags: [],
+  //   warbondCode: "warbond19",
+  //   internalName: "m6csocompistol",
+  //   imageURL: "m6csocompistol.png",
+  //   tier: "b",
+  // },
 ];
 
 // s: 2

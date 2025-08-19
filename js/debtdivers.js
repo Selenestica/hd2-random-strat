@@ -1,6 +1,10 @@
-const missionDifficultyInput = document.getElementById('missionDifficultyInput');
-const numOfAccidentalsInput = document.getElementById('numOfAccidentalsInput');
-const operationCompleteCheck = document.getElementById('operationCompleteCheck');
+const missionDifficultyInput = document.getElementById(
+  "missionDifficultyInput"
+);
+const numOfAccidentalsInput = document.getElementById("numOfAccidentalsInput");
+const operationCompleteCheck = document.getElementById(
+  "operationCompleteCheck"
+);
 
 let failedMissions = 0;
 let successfulMissions = 0;
@@ -10,15 +14,15 @@ let creditsPerMission = [];
 let missionCounter = 0;
 
 let randomItem = null;
-let difficulty = 'Medium';
-let currentView = 'loadoutButton';
+let difficulty = "Medium";
+let currentView = "loadoutButton";
 let credits = 100;
-missionButtonsDiv.style.display = 'flex';
-bbShopFilterDiv.style.display = 'none';
+missionButtonsDiv.style.display = "flex";
+bbShopFilterDiv.style.display = "none";
 hellDiversMobilizeCheckbox.disabled = true;
-const inventoryIDs = ['defaultInventory', 'purchasedItemsInventory'];
+const inventoryIDs = ["defaultInventory", "purchasedItemsInventory"];
 
-missionDifficultyInput.addEventListener('change', (e) => {
+missionDifficultyInput.addEventListener("change", (e) => {
   if (e.target.value >= 10) {
     highValueItemCollectedCheck.disabled = false;
   } else {
@@ -34,8 +38,8 @@ missionDifficultyInput.addEventListener('change', (e) => {
 });
 
 // when the mission report modal opens...
-missionCompleteModal.addEventListener('shown.bs.modal', () => {
-  console.log('put input validation for mission difficulty here');
+missionCompleteModal.addEventListener("shown.bs.modal", () => {
+  console.log("put input validation for mission difficulty here");
 });
 
 const startNewRun = async (isRestart = null) => {
@@ -45,18 +49,18 @@ const startNewRun = async (isRestart = null) => {
     warbondCheckboxes[i].checked = true;
   }
 
-  difficulty = 'Medium';
+  difficulty = "Medium";
 
   await writeItems();
 
   credits = 100;
   creditsPerMission = [];
-  scCounter.innerHTML = `${': ' + credits}`;
+  scCounter.innerHTML = `${": " + credits}`;
   sesItem = {
     cost: 15,
     timesPurchased: 0,
-    warbondCode: 'none',
-    category: 'random',
+    warbondCode: "none",
+    category: "random",
   };
   currentItems = [];
   failedMissions = 0;
@@ -72,28 +76,28 @@ const startNewRun = async (isRestart = null) => {
   missionCounterText.innerHTML = `${successfulMissions + failedMissions}`;
 
   // open the modal to show the rules
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const modal = new bootstrap.Modal(flavorAndInstructionsModal);
     modal.show();
   });
 
   // only do this next part when restarting a run
   if (isRestart) {
-    stratagemsContainerBB.innerHTML = '';
+    stratagemsContainerBB.innerHTML = "";
     for (let i = 0; i < 4; i++) {
       stratagemsContainerBB.innerHTML += emptyStratagemBox;
     }
     // also need to apply empty equipment boxes
-    purchasedItemsInventory.innerHTML = '';
-    defaultInventory.innerHTML = '';
-    isRestart !== 'applyingSave' ? populateDefaultItems() : null;
+    purchasedItemsInventory.innerHTML = "";
+    defaultInventory.innerHTML = "";
+    isRestart !== "applyingSave" ? populateDefaultItems() : null;
 
-    missionButtonsDiv.style.display = 'flex';
-    bbShopFilterDiv.style.display = 'none';
-    bbShopItemsContainer.classList.remove('d-flex');
-    bbShopItemsContainer.classList.add('d-none');
-    loadoutContainer.classList.remove('d-none');
-    loadoutContainer.classList.add('d-flex');
+    missionButtonsDiv.style.display = "flex";
+    bbShopFilterDiv.style.display = "none";
+    bbShopItemsContainer.classList.remove("d-flex");
+    bbShopItemsContainer.classList.add("d-none");
+    loadoutContainer.classList.remove("d-none");
+    loadoutContainer.classList.add("d-flex");
     resetShopFilters();
     window.location.reload();
   }
@@ -101,12 +105,19 @@ const startNewRun = async (isRestart = null) => {
 
 // change this to fire if players completed an operation
 const updateShopItemsCostAndSaleStatus = async () => {
-  const allItemsList = [newPrims, newStrats, newBoosts, newSeconds, newArmorPassives, newThrows];
+  const allItemsList = [
+    newPrims,
+    newStrats,
+    newBoosts,
+    newSeconds,
+    newArmorPassives,
+    newThrows,
+  ];
   for (let i = 0; i < allItemsList.length; i++) {
     const list = allItemsList[i];
     for (let j = 0; j < list.length; j++) {
       const item = list[j];
-      item.cost = getItemCost(difficulty, item);
+      item.cost = getItemCost(difficulty, item, false);
       item.onSale = getIsItemOnSale(difficulty);
       updateMasterListItem(item);
     }
@@ -114,7 +125,11 @@ const updateShopItemsCostAndSaleStatus = async () => {
 };
 
 const checkMissionButtons = () => {
-  if (successfulMissions > 0 || purchasedItems.length > 0 || failedMissions > 0) {
+  if (
+    successfulMissions > 0 ||
+    purchasedItems.length > 0 ||
+    failedMissions > 0
+  ) {
     for (let i = 0; i < warbondCheckboxes.length; i++) {
       warbondCheckboxes[i].disabled = true;
     }
@@ -128,15 +143,15 @@ const checkMissionButtons = () => {
     missionCompleteButton.disabled = true;
 
     // hide the mission buttons, and show download items buttons
-    missionCompleteButton.style.display = 'none';
-    missionFailedButton.style.display = 'none';
-    downloadPDFButtonDiv.style.display = 'block';
+    missionCompleteButton.style.display = "none";
+    missionFailedButton.style.display = "none";
+    downloadPDFButtonDiv.style.display = "block";
   }
 
   if (credits < 1000) {
-    missionCompleteButton.style.display = 'block';
-    missionFailedButton.style.display = 'block';
-    downloadPDFButtonDiv.style.display = 'none';
+    missionCompleteButton.style.display = "block";
+    missionFailedButton.style.display = "block";
+    downloadPDFButtonDiv.style.display = "none";
 
     // if all equippedItems arrays are full, can start mission
     if (
@@ -157,11 +172,11 @@ const checkMissionButtons = () => {
 };
 
 const uploadSaveData = async () => {
-  await getStartingItems('bb');
+  await getStartingItems("dd");
   await populateDefaultItems();
-  const debtDiversSaveData = localStorage.getItem('debtDiversSaveData');
+  const debtDiversSaveData = localStorage.getItem("debtDiversSaveData");
   if (debtDiversSaveData) {
-    const currentGame = await getCurrentGame('debtDiversSaveData');
+    const currentGame = await getCurrentGame("debtDiversSaveData");
 
     // the general working arrays
     newStrats = currentGame.newStrats;
@@ -191,14 +206,16 @@ const uploadSaveData = async () => {
     creditsPerMission = currentGame.creditsPerMission;
     sesItem = currentGame.sesItem;
     difficulty = currentGame.difficulty;
-    scCounter.innerHTML = `${': ' + credits}`;
-    missionCounterText.innerHTML = `${currentGame.successfulMissions + currentGame.failedMissions}`;
+    scCounter.innerHTML = `${": " + credits}`;
+    missionCounterText.innerHTML = `${
+      currentGame.successfulMissions + currentGame.failedMissions
+    }`;
     checkMissionButtons();
 
-    if (difficulty === 'Easy') {
+    if (difficulty === "Easy") {
       bbDiffRadioEasy.checked = true;
     }
-    if (difficulty === 'Hard') {
+    if (difficulty === "Hard") {
       bbDiffRadioHard.checked = true;
     }
 
@@ -215,7 +232,10 @@ const submitMissionReport = async (isMissionSucceeded) => {
   if (isMissionSucceeded) {
     let deathsDifficultyModifier = 10;
     let accidentalsDifficultyModifier = 20;
-    const starsEarnedModifier = parseInt(starsEarnedInput.value, 10) * 20;
+    const starsEarnedModifier =
+      parseInt(starsEarnedInput.value, 10) *
+      parseInt(missionDifficultyInput.value, 10) *
+      2;
     const superSamplesModifier = superSamplesCollectedInput.value * 12;
 
     // if (difficulty === 'Easy') {
@@ -226,10 +246,10 @@ const submitMissionReport = async (isMissionSucceeded) => {
     //   deathsDifficultyModifier = 3;
     //   accidentalsDifficultyModifier = 3;
     // }
-    let numOfDeathsModifier = parseInt(numOfDeathsInput.value, 10) * deathsDifficultyModifier;
+    let numOfDeathsModifier =
+      parseInt(numOfDeathsInput.value, 10) * deathsDifficultyModifier;
     let numOfAccidentalsModifier =
       parseInt(numOfAccidentalsInput.value, 10) * accidentalsDifficultyModifier;
-    
 
     if (highValueItemCollectedCheck.checked) {
       await genRandomItem([
@@ -241,7 +261,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
         newThrows,
       ]);
       await purchaseItem(null, true, true);
-      purchasedItemsInventory.innerHTML = '';
+      purchasedItemsInventory.innerHTML = "";
       populatePurchasedItemsInventory();
     }
 
@@ -261,9 +281,9 @@ const submitMissionReport = async (isMissionSucceeded) => {
       operationCompleteModifier,
       timeRemainingModifier,
       numOfDeathsModifier,
-      numOfAccidentalsModifier,
+      numOfAccidentalsModifier
     );
-    scCounter.innerHTML = `${': ' + credits}`;
+    scCounter.innerHTML = `${": " + credits}`;
     showBBCreditsEarnedToast(total);
 
     successfulMissions++;
@@ -320,7 +340,7 @@ const saveProgress = async () => {
   }
 
   let obj = {};
-  const debtDiversSaveData = localStorage.getItem('debtDiversSaveData');
+  const debtDiversSaveData = localStorage.getItem("debtDiversSaveData");
   if (!debtDiversSaveData) {
     obj = {
       savedGames: [
@@ -358,7 +378,7 @@ const saveProgress = async () => {
         },
       ],
     };
-    localStorage.setItem('debtDiversSaveData', JSON.stringify(obj));
+    localStorage.setItem("debtDiversSaveData", JSON.stringify(obj));
     missionCounterText.innerHTML = `${successfulMissions + failedMissions}`;
     return;
   }
@@ -389,7 +409,9 @@ const saveProgress = async () => {
           : `${difficulty} | Missions: ${
               successfulMissions + failedMissions
             } | ${getCurrentDateTime()}`,
-        dateStarted: sg.dateStarted ? sg.dateStarted : `${getCurrentDateTime()}`,
+        dateStarted: sg.dateStarted
+          ? sg.dateStarted
+          : `${getCurrentDateTime()}`,
         dateEnded: credits >= 1000 ? `${getCurrentDateTime()}` : null,
         currentGame: true,
         failedMissions,
@@ -408,7 +430,7 @@ const saveProgress = async () => {
     ...obj,
     savedGames: newSavedGames,
   };
-  localStorage.setItem('debtDiversSaveData', JSON.stringify(obj));
+  localStorage.setItem("debtDiversSaveData", JSON.stringify(obj));
 
   // show score modal after local storage has been updated when challenge complete
   if (credits >= 1000) {
@@ -417,7 +439,7 @@ const saveProgress = async () => {
 };
 
 const saveDataAndRestart = async () => {
-  const debtDiversSaveData = localStorage.getItem('debtDiversSaveData');
+  const debtDiversSaveData = localStorage.getItem("debtDiversSaveData");
   if (!debtDiversSaveData) {
     return;
   }
@@ -466,7 +488,10 @@ const saveDataAndRestart = async () => {
   const newdebtDiversSaveData = {
     savedGames: updatedSavedGames,
   };
-  await localStorage.setItem('debtDiversSaveData', JSON.stringify(newdebtDiversSaveData));
+  await localStorage.setItem(
+    "debtDiversSaveData",
+    JSON.stringify(newdebtDiversSaveData)
+  );
 
   // remove saved games that are at the first mission of their difficulty,
   // as long as they are not the current game ...to prevent the user from having a million saves
@@ -475,25 +500,27 @@ const saveDataAndRestart = async () => {
 
 // get rid of all games that arent the current game and are on the first mission
 const pruneSavedGames = async () => {
-  const debtDiversSaveData = localStorage.getItem('debtDiversSaveData');
+  const debtDiversSaveData = localStorage.getItem("debtDiversSaveData");
   if (!debtDiversSaveData) {
     return;
   }
-  const prunedGames = await JSON.parse(debtDiversSaveData).savedGames.filter((sg) => {
-    if (
-      sg.currentGame === true ||
-      sg.successfulMissions + sg.failedMissions > 0 ||
-      sg.purchasedItems.length > 0
-    ) {
-      return sg;
+  const prunedGames = await JSON.parse(debtDiversSaveData).savedGames.filter(
+    (sg) => {
+      if (
+        sg.currentGame === true ||
+        sg.successfulMissions + sg.failedMissions > 0 ||
+        sg.purchasedItems.length > 0
+      ) {
+        return sg;
+      }
     }
-  });
+  );
   const oldData = JSON.parse(debtDiversSaveData);
   const newData = {
     ...oldData,
     savedGames: prunedGames,
   };
-  localStorage.setItem('debtDiversSaveData', JSON.stringify(newData));
+  localStorage.setItem("debtDiversSaveData", JSON.stringify(newData));
 };
 
 uploadSaveData();

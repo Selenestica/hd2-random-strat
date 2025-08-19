@@ -1,4 +1,4 @@
-const getItemCost = (difficulty, item) => {
+const getItemCost = (difficulty, item, addTimesPurchased = null) => {
   let cost = 0;
 
   // add cost by tier
@@ -30,7 +30,10 @@ const getItemCost = (difficulty, item) => {
   const random = Math.floor(Math.random() * highNumber) - 5;
 
   // add cost of times purchased
-  const timesPurchasedModifier = item.timesPurchased * 5;
+  let timesPurchasedModifier = item.timesPurchased * 5;
+  if (!addTimesPurchased) {
+    timesPurchasedModifier = 0;
+  }
   const total = cost + random + timesPurchasedModifier;
   if (total < 1) {
     return 1;

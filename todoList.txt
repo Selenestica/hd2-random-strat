@@ -3,6 +3,21 @@ GENERAL:
   - leaderboard integrated with GitHub Issues?
   - users submit verification files in discord server
   - add checklist for when new content comes out
+    - /js
+      - /utils
+        - warbondCodes.js
+      - /constants
+        - genWarbondCheckboxes.js
+        - armorpassives.js
+        - armorsets.js
+        - primaries.js
+        - secondaries.js
+        - stratagems.js
+        - throwables.js
+        - boosters.js
+      - randomizer.js
+
+
 
 RANDOMIZER:
   - add tags for THROWABLES
@@ -41,14 +56,8 @@ BUDGET BLITZ
   - explanation of how credits are earned
 
 Debt Divers
-  - accrue credits, and challenge is finished when certain amount of credits are accrued (1000?)
-  - field for inputting difficulty
-  - extra credits for completing an operation (random item?)
-  - ending score based on amount of time it takes to get to 1000 credits (mission time and # of missions)
-  - buying and equipping items same as v1. obviously buying items reduces credits, meaning it will take more mission to reach goal
-  - accidentals and deaths subtract credits
-  - credits earned by mission stars, super samples, mission time remaining
-  - random item earned by collecting HVI
+  - balance changes
+  - 
 
 SPECIAL OPERATIONS
   - SPECIALIST ideas:
@@ -65,6 +74,8 @@ SPECIAL OPERATIONS
 TIER MAKER
   - ability to rename tiers
   - make filter options checkbox toggles
+  - dragging an item from the bottom on mobile is difficult. consider making the items a button on mobile that OPERATIONS
+    a menu to select which list it should go to
 
 NEW CHALLENGE IDEAS:
 

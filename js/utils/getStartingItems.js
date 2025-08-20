@@ -33,7 +33,7 @@ let starterBoosterNames = [];
 const getStartingArmor = (diff) => {
   if (diff === "super") {
     return ["Integrated Explosives"];
-  } else if (diff === "bb") {
+  } else if (diff === "bb" || diff === "dd") {
     return ["Scout"];
   }
   return ["Extra Padding"];
@@ -54,7 +54,7 @@ const getStartingItems = (diff = null) => {
   starterSecNames = ["Stun Lance", "Stun Baton", "Combat Hatchet", "Saber"];
   diff !== "super" ? starterSecNames.push("Peacemaker") : null;
   starterThrowNames =
-    diff === "bb"
+    diff === "bb" || diff === "dd"
       ? ["G-3 Smoke", "K-2 Throwing Knife"]
       : ["G-12 High Explosive"];
   starterArmorPassiveNames = getStartingArmor(diff);

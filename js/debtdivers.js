@@ -275,14 +275,6 @@ const submitMissionReport = async (isMissionSucceeded) => {
       numOfDeathsModifier -
       numOfAccidentalsModifier;
     credits += total;
-    console.log(
-      starsEarnedModifier,
-      superSamplesModifier,
-      operationCompleteModifier,
-      timeRemainingModifier,
-      numOfDeathsModifier,
-      numOfAccidentalsModifier
-    );
     scCounter.innerHTML = `${": " + credits}`;
     showBBCreditsEarnedToast(total);
 

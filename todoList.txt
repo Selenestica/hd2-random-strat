@@ -57,7 +57,9 @@ BUDGET BLITZ
 
 Debt Divers
   - balance changes
-  - 
+
+  BUGS:
+    - primary isnt being used up after mission
 
 SPECIAL OPERATIONS
   - SPECIALIST ideas:
@@ -78,6 +80,14 @@ TIER MAKER
     a menu to select which list it should go to
 
 NEW CHALLENGE IDEAS:
+  - SPEEDRUN
+    - to start youre given a random movement stratagem
+      - FRV
+      - Jump Pack
+      - Warp Pack
+      - Supply Pack
+    - after mission report, you input time remaining and deaths
+      - score is calculated by mission time remaining - deaths - accidentals
 
 
 

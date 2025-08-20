@@ -78,6 +78,8 @@ TIER MAKER
   - make filter options checkbox toggles
   - dragging an item from the bottom on mobile is difficult. consider making the items a button on mobile that OPERATIONS
     a menu to select which list it should go to
+  BUGS
+    - loose items pool duplicates when starting a new list
 
 NEW CHALLENGE IDEAS:
   - SPEEDRUN

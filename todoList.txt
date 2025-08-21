@@ -58,9 +58,6 @@ BUDGET BLITZ
 Debt Divers
   - balance changes
 
-  BUGS:
-    - primary isnt being used up after mission
-
 SPECIAL OPERATIONS
   - SPECIALIST ideas:
   

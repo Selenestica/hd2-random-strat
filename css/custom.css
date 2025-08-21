@@ -249,6 +249,12 @@ body {
   }
 }
 
+@media only screen and (max-width: 445px) {
+  #changeLogDateText {
+    display: none;
+  }
+}
+
 #armorContainer {
   color: white;
 }

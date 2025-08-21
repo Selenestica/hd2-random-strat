@@ -16,7 +16,7 @@ const genChangeLogContent = (commits) => {
       changeLogDateText.innerHTML = `${formattedDate} | `;
     }
     changeLogContent.innerHTML += `
-        <li class="text-white">
+        <li class="text-white mb-2">
             ${formattedDate} | "${msg}"
         </li>
     `;
@@ -30,7 +30,7 @@ const genNumberOfCommitsText = (num) => {
 const fetchRepoCommits = async () => {
   console.log("Fetching GitHub data...");
   const url =
-    "https://api.github.com/repos/selenestica/hd2-random-strat/commits?per_page=15";
+    "https://api.github.com/repos/selenestica/hd2-random-strat/commits?per_page=10";
 
   try {
     const response = await fetch(url);
@@ -47,7 +47,7 @@ const fetchRepoCommits = async () => {
     // Extract the last page number from the Link header
     const match = linkHeader.match(/&page=(\d+)>; rel="last"/);
     if (match) {
-      genNumberOfCommitsText(parseInt(match[1], 10) * 15);
+      genNumberOfCommitsText(parseInt(match[1], 10) * 10);
     }
   } catch (error) {
     console.error("Error fetching data:", error);

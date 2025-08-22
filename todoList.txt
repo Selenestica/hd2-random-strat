@@ -79,15 +79,26 @@ TIER MAKER
     - loose items pool duplicates when starting a new list
 
 NEW CHALLENGE IDEAS:
-  - SPEEDRUN
-    - possible names: Freedom Express, Surgical Strike
+  - FREEDOM EXPRESS
     - to start youre given a random movement stratagem
       - FRV
       - Jump Pack
       - Warp Pack
       - Supply Pack
+    - every team must have a squad leader
+      - the squad leader will assign randomly selected boosters:
+        - Expert Extraction Pilot
+        - Dead Sprint
+        - Experimental Infusion
+        - Motivational Shocks
+        - Hellpod Space Optimization
+        - Muscle Enhancement
+        - Stamina Enhancement
+        - Vitality Enhancement
     - after mission report, you input time remaining and deaths
-      - score is calculated by mission time remaining - deaths - accidentals
+      - score is calculated by mission time remaining % - (deaths * 2)
+    - if mission failed, challenge starts over
+    - 3 operations on Super Helldive
 
 
 

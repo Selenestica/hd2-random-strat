@@ -7,6 +7,9 @@ const downloadSaveFile = (index, type) => {
   if (type === "dd") {
     lsData = "debtDiversSaveData";
   }
+  if (type === "fe") {
+    lsData = "freedomExpressSaveData";
+  }
   if (type === "tm") {
     lsData = "tierMakerSaveData";
     listName = "lists";

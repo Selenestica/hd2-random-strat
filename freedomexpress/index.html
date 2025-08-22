@@ -25,11 +25,12 @@
     />
     <meta
       name="description"
-      content="Deploy as a unique specialist in Helldivers 2. Complete operations to unlock powerful new roles and prove your mastery."
+      content="Freedom Express is a Helldivers 2 challenge where speed is the only objective. Drop in, crush the mission, and extract fast — liberty won't wait."
     />
-    <title>Helldivers 2: Special Ops</title>
+
+    <title>Helldivers 2: Freedom Express</title>
     <!-- Google tag (gtag.js) -->
-    <script
+    <!-- <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
     ></script>
@@ -41,7 +42,7 @@
       gtag("js", new Date());
 
       gtag("config", "G-BFREXT7F48");
-    </script>
+    </script> -->
   </head>
 
   <body>
@@ -73,19 +74,11 @@
         <div class="col-4">
           <div class="d-flex justify-content-end">
             <button
-              class="btn mx-1 btn-primary"
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#warbondSelectModal"
-            >
-              <i class="fa-solid fa-cog"></i>
-            </button>
-            <button
               class="btn btn-primary"
               type="button"
               data-bs-toggle="modal"
               data-bs-target="#saveDataManagementModal"
-              onclick="genSOSaveDataManagementModalContent()"
+              onclick="genFESaveDataManagementModalContent()"
             >
               <i class="fa-solid text-light fa-floppy-disk"></i>
             </button>
@@ -99,7 +92,7 @@
       </div>
       <div class="row d-flex justify-content-center">
         <div class="d-flex col justify-content-center align-items-center">
-          <h4 class="mb-0 text-white">Special Operations</h4>
+          <h4 class="mb-0 text-white">Freedom Express</h4>
           <button
             class="btn btn-secondary bg-none"
             style="border: none"
@@ -113,25 +106,13 @@
       </div>
       <div class="row mt-2 justify-content-center text-white">
         <div class="col-4"></div>
-        <div class="col-4 text-white d-flex justify-content-center">
-          <b>Points:</b
-          ><span class="mx-1 text-warning" id="pointsCounterText">0</span>
-        </div>
+        <div class="col-4 text-white d-flex justify-content-center"></div>
         <div class="col-4 d-flex justify-content-end"></div>
       </div>
       <div class="row justify-content-center">
         <div class="col-0 col-lg-2"></div>
         <div class="col-8 col-lg-6 d-flex justify-content-center">
-          <div class="d-flex align-items-center">
-            <button
-              class="btn btn-primary"
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#specialistsModal"
-            >
-              <i class="fa-solid fa-person-rifle"></i>
-            </button>
-          </div>
+          <div class="d-flex align-items-center"></div>
           <div class="btn-group my-2 mx-2" id="missionCompleteButtonDiv">
             <button
               class="btn btn-success"
@@ -175,7 +156,7 @@
           class="col-12 text-white d-flex justify-content-center"
         >
           <div class="col-5 text-white mx-0 mx-lg-4 d-flex justify-content-end">
-            <b>Operation Details:</b>
+            <span class="mx-1 text-warning" id="missionCounterText">0</span>
           </div>
           <div
             class="col-2 d-lg-none d-flex justify-content-center text-secondary"
@@ -183,56 +164,16 @@
             |
           </div>
           <div class="col-5 text-white mx-0 mx-lg-4 d-flex">
-            <b>Operation Goals:</b>
+            <b>Points:</b
+            ><span class="mx-1 text-warning" id="pointsCounterText">0</span>
           </div>
-        </div>
-        <div
-          class="row d-flex justify-content-center mt-2"
-          id="operationInfoContainer"
-        >
-          <div class="col text-end" style="border-right: 1px solid grey">
-            <div
-              id="planetNameDiv"
-              class="text-white justify-content-end d-flex align-items-center"
-            >
-              <b>Planet</b>:<span class="mx-1" id="planetNameText"></span>
-              <div class="btn-group" id="planetDropdown">
-                <button
-                  style="border: none; padding: 0rem !important"
-                  type="button"
-                  class="btn bg-none btn-primary dropdown-toggle py-0"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i class="fa-solid text-warning fa-earth-americas"></i>
-                </button>
-                <ul
-                  id="planetDropdownList"
-                  class="dropdown-menu scrollablePlanetList"
-                ></ul>
-              </div>
-            </div>
-            <div class="text-white">
-              <b>Enemy</b>:<span class="mx-1" id="enemyNameText"></span>
-            </div>
-            <div class="text-white">
-              <b>Hazards</b>:<span class="mx-1" id="hazardsText"></span>
-            </div>
-            <div class="text-white">
-              <b>Mission</b>:<b
-                class="mx-1 text-warning"
-                id="missionCounterText"
-              ></b>
-            </div>
-          </div>
-          <div class="col text-white" id="objectivesContainer"></div>
         </div>
 
         <!-- LOADOUT -->
         <hr class="text-white" />
         <div id="loadoutContainer" class="row d-flex justify-content-center">
           <div class="text-white d-flex justify-content-center">
-            <b>LOADOUT</b>:<span
+            <b>Stratagem</b>:<span
               class="mx-1 mb-1"
               id="specialistNameText"
             ></span>
@@ -285,7 +226,45 @@
                 >NOTE: Lying will be considered treason.</small
               >
             </div>
-            <div class="row" id="objectiveInputsContainer"></div>
+            <div
+              class="row d-flex pb-1 mt-3 align-items-center px-0 justify-content-center"
+            >
+              <p class="text-white mb-0 col-6" for="timeRemainingInput">
+                Time Remaining in % (optional, for speedrunners):
+              </p>
+              <input
+                class="form-control col-6"
+                id="timeRemainingInput"
+                style="width: 15%; margin-left: 0.5rem"
+                type="text"
+                pattern="\d*"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                min="0"
+                max="100"
+                value="0"
+                aria-describedby="timeRemainingInput"
+              />
+            </div>
+
+            <div
+              class="row d-flex pb-1 mt-3 align-items-center px-0 justify-content-center"
+            >
+              <p class="text-white mb-0 col-6" for="numOfDeathsInput">
+                Total Team Deaths:
+              </p>
+              <input
+                class="form-control col-6"
+                id="numOfDeathsInput"
+                style="width: 15%; margin-left: 0.5rem"
+                type="text"
+                pattern="\d*"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                min="0"
+                max="50"
+                value="0"
+                aria-describedby="numOfDeathsInput"
+              />
+            </div>
           </div>
           <div class="modal-footer row justify-content-between">
             <div class="col d-flex justify-content-start">
@@ -761,10 +740,10 @@
     <!-- SAVE DATA MANAGEMENT MODAL -->
     <div
       class="modal fade"
-      id="saveDataManagementModal"
+      id="freedomExpressDataManagementModal"
       tabindex="-1"
       open="true"
-      aria-labelledby="saveDataManagementModalLabel"
+      aria-labelledby="freedomExpressDataManagementModalLabel"
       aria-hidden="true"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
@@ -773,32 +752,23 @@
         <div class="modal-content bg-grey">
           <div class="modal-header">
             <h5 class="modal-title text-light" id="">Save Data Management</h5>
-            <button
-              type="button"
-              onclick="downloadSOScoreSummary()"
-              class="btn btn-success"
-            >
-              <i class="fa-regular fa-file-lines"></i>
-            </button>
           </div>
           <div
             class="modal-body row d-flex justify-content-center"
-            id="saveDataManagementModalBody"
+            id="freedomExpressDataManagementModalBody"
           >
             <p class="text-white">
-              Download or upload your save files here to make progress on other
-              devices. You can only have one save file for this challenge.
+              Switch your active save file here, delete save files, or upload
+              save files.
+              <br />
+              Select an entry below and press 'Apply' to load a different save
+              file.
               <br />
               <br />
-              WARNING: Deleting your save file will remove <b>all</b> of your
-              progress!
-              <br />
-              <br />
-              WARNING: Uploading a save file will
-              <b>overwrite your current save file</b>.
+              NOTE: You can't delete your current save file.
             </p>
             <div class="mb-3 d-flex row">
-              <div class="col-9 px-0">
+              <div class="col-9">
                 <input
                   class="form-control"
                   type="file"
@@ -809,7 +779,7 @@
                 <button
                   type="button"
                   onclick="uploadSaveFile()"
-                  class="btn btn-warning"
+                  class="btn btn-success"
                   id="uploadSaveFileButton"
                   disabled
                 >
@@ -817,12 +787,18 @@
                 </button>
               </div>
             </div>
-            <div id="saveDataManagementModalSavesList"></div>
+            <div
+              id="freedomExpressDataManagementModalSavesList"
+              class="btn-group-vertical"
+              role="group"
+              aria-label="Basic radio toggle button group"
+            ></div>
           </div>
           <div class="modal-footer row justify-content-between">
             <div class="d-flex col justify-content-start">
               <button
                 type="button"
+                onclick="clearSaveDataManagementModal()"
                 class="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
@@ -835,11 +811,27 @@
             >
               <button
                 type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#deleteSaveDataModal"
+                onclick="clearSaveDataAndRestart()"
                 class="btn btn-danger"
+                data-bs-dismiss="modal"
               >
-                <i class="fa-solid fa-trash-can"></i>
+                Delete ALL
+              </button>
+              <button
+                type="button"
+                onclick="deleteSavedGameData()"
+                class="btn btn-danger mx-2"
+                data-bs-dismiss="modal"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                onclick="applySavedGameData()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Apply
               </button>
             </div>
           </div>
@@ -887,169 +879,6 @@
         </div>
       </div>
     </div>
-
-    <!-- SPECIALISTS MODAL -->
-    <div
-      class="modal fade"
-      id="specialistsModal"
-      tabindex="-1"
-      open="true"
-      aria-labelledby="specialistsModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-xl modal-dialog-scrollable">
-        <div class="modal-content bg-grey">
-          <div class="modal-header">
-            <h5 class="modal-title text-light" id="">
-              Specialist Select
-              <small class="mx-2" id="amountOfSpecsUnlockedText"></small>
-            </h5>
-          </div>
-          <div
-            class="modal-body row d-flex justify-content-center"
-            id="specialistsModalBody"
-          >
-            <p class="text-white">
-              You can choose any of your previously unlocked specialists here.
-              However, you
-              <b
-                >must complete an operation with your most recently unlocked
-                specialist (<i class="fa-solid mx-1 text-warning fa-key"></i
-                >)</b
-              >
-              in order to unlock more specialists.
-              <br />
-              <br />
-              NOTE: A new operation will start if you change specialists.
-            </p>
-            <div
-              class="row d-flex justify-content-center"
-              id="specialistsList"
-            ></div>
-          </div>
-          <div class="modal-footer row justify-content-between">
-            <div class="d-flex col justify-content-start">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Cancel
-              </button>
-            </div>
-            <div class="d-flex col justify-content-end">
-              <button
-                type="button"
-                onclick="applySpecialist()"
-                class="btn btn-primary"
-                data-bs-dismiss="modal"
-                id="applySpecialistButton"
-              >
-                Apply
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CHALLENGE SETTINGS MODAL -->
-    <div
-      class="modal fade"
-      id="warbondSelectModal"
-      tabindex="-1"
-      aria-labelledby="warbondSelectModalLabel"
-      aria-hidden="true"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-    >
-      <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content bg-grey">
-          <div class="modal-header">
-            <h5 class="modal-title text-light" id="warbondSelectModalLabel">
-              Challenge Settings
-            </h5>
-          </div>
-          <div class="modal-body">
-            <p class="mb-0 text-white">
-              Toggle the warbonds you have obtained here, as well as Superstore
-              and Pre-Order bonus items. This will affect the specialist
-              loadouts you have available to unlock.
-              <br />
-              For the best experience, toggle warbonds before you start an
-              operation.
-              <br />
-              <br />
-              NOTE: If your current loadout is affected by your selection, a new
-              loadout will be unlocked for you.
-            </p>
-            <div class="p-3" id="warbondsChecklistContainer">
-              <h5 class="text-white">Warbond Select</h5>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              onclick="filterSpecialistsByWarbond(true)"
-            >
-              Apply
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SPECIALIST UNLOCKED TOAST -->
-    <div
-      class="position-fixed top-0 start-50 translate-middle-x p-3 pointer-events-none"
-      style="z-index: 1050"
-    >
-      <div
-        class="toast align-items-center text-white bg-success border-0 specialistUnlockedToast pointer-events-auto"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-        data-bs-autohide="true"
-        data-bs-delay="1000"
-      >
-        <div class="d-flex">
-          <div class="toast-body" id="specialistUnlockedToastBody"></div>
-          <button
-            type="button"
-            class="btn-close btn-close-white me-2 m-auto"
-            data-bs-dismiss="toast"
-            aria-label="Close"
-          ></button>
-        </div>
-      </div>
-    </div>
-
-    <!-- POINTS EARNED TOAST -->
-    <div
-      class="position-fixed top-0 start-50 translate-middle-x p-3 pointer-events-none"
-      style="z-index: 1045"
-    >
-      <div
-        class="toast align-items-center text-white bg-success border-0 pointsEarnedToast pointer-events-auto"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-        data-bs-autohide="true"
-        data-bs-delay="3000"
-      >
-        <div class="d-flex">
-          <div class="toast-body" id="pointsEarnedToastBody"></div>
-          <button
-            type="button"
-            class="btn-close btn-close-white me-2 m-auto"
-            data-bs-dismiss="toast"
-            aria-label="Close"
-          ></button>
-        </div>
-      </div>
-    </div>
   </body>
 
   <script
@@ -1061,25 +890,12 @@
     src="https://kit.fontawesome.com/a018c01272.js"
     crossorigin="anonymous"
   ></script>
-  <script src="../js/constants/primaries.js"></script>
-  <script src="../js/constants/secondaries.js"></script>
-  <script src="../js/constants/boosters.js"></script>
-  <script src="../js/constants/throwables.js"></script>
-  <script src="../js/constants/stratagems.js"></script>
-  <script src="../js/constants/armorpassives.js"></script>
-  <script src="../js/constants/specialOpsSpecialists.js"></script>
-  <script src="../js/constants/specialOpsObjectives.js"></script>
-  <script src="../js/utils/showSOSpecialistUnlockedToast.js"></script>
-  <script src="../js/utils/showSOPointsEarnedToast.js"></script>
+  <script src="../js/freedomexpress/constants/boosters.js"></script>
+  <script src="../js/freedomexpress/constants/stratagems.js"></script>
+  <script src="../js/freedomexpress/utils/getMissionText.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
-  <script src="../js/utils/downloadSOSaveFile.js"></script>
-  <script src="../js/utils/getRandomSpecialOpsObjectives.js"></script>
-  <script src="../js/utils/checkForSOSpecialistDiffs.js"></script>
-  <script src="../js/utils/warbondCodes.js"></script>
-  <script src="../js/components/genSOSpecialistsModalContent.js"></script>
-  <script src="../js/components/genWarbondCheckboxes.js"></script>
-  <script src="../js/utils/downloadSOScoreSummary.js"></script>
-  <script src="../js/specialops.js"></script>
-  <script src="../js/components/genSOMissionCompleteModalContent.js"></script>
-  <script src="../js/components/genSOSaveDataManagementModalContent.js"></script>
+  <script src="../js/utils/downloadSaveFile.js"></script>
+  <script src="../js/freedomexpress/utils/downloadFEScoreSummary.js"></script>
+  <script src="../js/freedomexpress/components/genFESaveDataManagementModalContent.js"></script>
+  <script src="../js/freedomexpress/freedomexpress.js"></script>
 </html>

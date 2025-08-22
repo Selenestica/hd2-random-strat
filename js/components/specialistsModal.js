@@ -32,7 +32,7 @@ const setSpecialist = (index) => {
     specialistHeader.classList.add("text-success");
     specialistHeader.classList.remove("text-white");
   } else {
-    // add a thick green border around the card
+    // add a thick cyan border around the card
     specCardId.style.border = "2px solid cyan";
   }
 

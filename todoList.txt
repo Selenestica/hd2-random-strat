@@ -80,6 +80,7 @@ TIER MAKER
 
 NEW CHALLENGE IDEAS:
   - SPEEDRUN
+    - possible names: Freedom Express, Surgical Strike
     - to start youre given a random movement stratagem
       - FRV
       - Jump Pack

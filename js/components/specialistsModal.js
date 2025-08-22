@@ -1,32 +1,47 @@
-const specialistsList = document.getElementById('specialistsList');
-const specialistCheckMarks = document.getElementsByClassName('specialistCheckMarks');
-const specialistNameText = document.getElementById('specialistNameText');
+const specialistsList = document.getElementById("specialistsList");
+const specialistCheckMarks = document.getElementsByClassName(
+  "specialistCheckMarks"
+);
+const specialistNameText = document.getElementById("specialistNameText");
 let specialist = null;
 
 const setSpecialist = (index) => {
   // remove the checkmark from all other specialists
-  const elements = document.querySelectorAll('.specialistCheckMarks');
+  const elements = document.querySelectorAll(".specialistCheckMarks");
   elements.forEach((element) => element.remove());
 
-  // remove green text from all other specialists
-  const specialistHeaders = document.querySelectorAll('.specialistHeadersClass');
+  // remove green text and/or cyan border from all other specialists
+  const specialistHeaders = document.querySelectorAll(
+    ".specialistHeadersClass"
+  );
   specialistHeaders.forEach((header) => {
-    header.classList.remove('text-success');
-    header.classList.add('text-white');
+    header.classList.remove("text-success");
+    header.classList.add("text-white");
+  });
+
+  const specialistCards = document.querySelectorAll(".specialistCards");
+  specialistCards.forEach((card) => {
+    card.style.border = "none";
   });
 
   // add the checkmark to the selected specialist
   const specialistHeader = document.getElementById(`specialistHeader${index}`);
-  specialistHeader.innerHTML += `<i class="fa-solid specialistCheckMarks text-success mx-1 fa-check"></i>`;
-  specialistHeader.classList.add('text-success');
-  specialistHeader.classList.remove('text-white');
+  const specCardId = document.getElementById(`pcSpecialistCard('${index}')`);
+  if (specialistHeader) {
+    specialistHeader.innerHTML += `<i class="fa-solid specialistCheckMarks text-success mx-1 fa-check"></i>`;
+    specialistHeader.classList.add("text-success");
+    specialistHeader.classList.remove("text-white");
+  } else {
+    // add a thick green border around the card
+    specCardId.style.border = "2px solid cyan";
+  }
 
   // set the selected specialist
   specialist = index;
 };
 
 const genStarterItems = (starterItems) => {
-  let items = '';
+  let items = "";
   for (let i = 0; i < starterItems.length; i++) {
     items += `<li class="text-white">${starterItems[i]}</li>`;
   }
@@ -49,13 +64,13 @@ const genTraits = (traits) => {
 const makeCard = (spc, index) => {
   if (spc.imageURL.length > 0) {
     return `
-          <div id="pcSpecialistCard('${index}')" class="card col-md-5 col-lg-3 col-sm-5 specialistCards m-2" onclick="setSpecialist('${index}')">
-                  <img
-          src="../images/pcSpecialists/${spc.imageURL}"
-          class="img-card-top"
-          alt="${spc.displayName}"
-      />
-          </div>
+            <div id="pcSpecialistCard('${index}')" class="card col-md-5 col-lg-3 col-sm-5 specialistCards m-2" onclick="setSpecialist('${index}')">
+              <img
+                src="../images/pcSpecialists/${spc.imageURL}"
+                class="img-card-top"
+                alt="${spc.displayName}"
+              />
+            </div>
           `;
   }
   return `
@@ -70,13 +85,13 @@ const makeCard = (spc, index) => {
               <ul>
                 ${genStarterItems(spc.starterItems)}
               </ul>
-              ${spc.traits.length > 0 ? genTraits(spc.traits) : ''}
+              ${spc.traits.length > 0 ? genTraits(spc.traits) : ""}
           </div>
     `;
 };
 
 const genSpecialistsCards = () => {
-  specialistsList.innerHTML = '';
+  specialistsList.innerHTML = "";
   if (specialistsList.children.length > 0) {
     return;
   }

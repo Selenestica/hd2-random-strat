@@ -2,7 +2,7 @@ GENERAL:
   - go through FontAwesome icons and possibly update to better icons
   - leaderboard integrated with GitHub Issues?
   - users submit verification files in discord server
-  - add checklist for when new content comes out
+  - checklist for when new content comes out
     - /js
       - /utils
         - warbondCodes.js
@@ -16,8 +16,6 @@ GENERAL:
         - throwables.js
         - boosters.js
       - randomizer.js
-
-
 
 RANDOMIZER:
   - add tags for THROWABLES
@@ -55,20 +53,16 @@ BUDGET BLITZ
   - accidentals subtracts credits
   - explanation of how credits are earned
 
-Debt Divers
-  - balance changes
-
 SPECIAL OPERATIONS
   - SPECIALIST ideas:
   
   - save data management modal
     - set file input to null when it closes
-
   - specialist modal
     - on large screens, set a fixed height
 
   BUGS:
-    - make green/red progress text a different color
+    - make green/red progress text a different color for colorblind people
 
 TIER MAKER
   - ability to rename tiers
@@ -78,27 +72,19 @@ TIER MAKER
   BUGS
     - loose items pool duplicates when starting a new list
 
+DEBT DIVERS
+  - balance changes
+    - remove OPS from free items
+    - reduce cost of accidentals
+    - higher difficulty deaths cost less than lower difficulty deaths
+      - level 10 deaths = 5sc > level 1 deaths = 15sc
+  - players who make par receive a C-01 permit
+
+- FREEDOM EXPRESS
+  - 3 operations on Super Helldive
+
 NEW CHALLENGE IDEAS:
-  - FREEDOM EXPRESS
-    - to start youre given a random movement stratagem
-      - FRV
-      - Jump Pack
-      - Warp Pack
-      - Supply Pack
-    - every team must have a squad leader
-      - the squad leader will assign randomly selected boosters:
-        - Expert Extraction Pilot
-        - Dead Sprint
-        - Experimental Infusion
-        - Motivational Shocks
-        - Hellpod Space Optimization
-        - Muscle Enhancement
-        - Stamina Enhancement
-        - Vitality Enhancement
-    - after mission report, you input time remaining and deaths
-      - score is calculated by mission time remaining % - (deaths * 2)
-    - if mission failed, challenge starts over
-    - 3 operations on Super Helldive
+
 
 
 

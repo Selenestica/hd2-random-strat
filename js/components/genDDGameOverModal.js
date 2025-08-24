@@ -19,7 +19,7 @@ const genDDGameOverModal = async () => {
     difficulty,
   } = currentGame;
 
-  let par = 12;
+  let par = 9;
   let totalMissionTimeRemaining = 0;
   let superSamplesCollected = 0;
   let highValueItemsCollected = 0;
@@ -32,11 +32,11 @@ const genDDGameOverModal = async () => {
   let parScore = (par - totalMissions) * 100;
   if (difficulty === 'Medium') {
     difficultyModifier = 250;
-    par = 15;
+    par = 12;
   }
   if (difficulty === 'Hard') {
     difficultyModifier = 500;
-    par = 18;
+    par = 15;
   }
 
   for (let j = 0; j < creditsPerMission.length; j++) {
@@ -52,11 +52,6 @@ const genDDGameOverModal = async () => {
 
   const totalScore = parScore + totalMissionTimeRemaining - failedMissions * 50;
   superSamplesCollected += highValueItemsCollected * 2;
-
-  // par is, say, 15? 12? For each mission over or under par, that's 100 credits reduced or added to the score.
-  // add total mission time remaining to score
-  // par for Hard mode is 18
-  // par for Easy mode is 12
 
   ddGameOverModalBody.innerHTML += `<h5 class="text-white">Breakdown:</h5>`;
   ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Difficulty: ${difficulty}</p>`;

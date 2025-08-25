@@ -1,4 +1,4 @@
-GENERAL:
+huGENERAL:
   - go through FontAwesome icons and possibly update to better icons
   - leaderboard integrated with GitHub Issues?
   - users submit verification files in discord server
@@ -79,6 +79,9 @@ DEBT DIVERS
     - higher difficulty deaths cost less than lower difficulty deaths
       - level 10 deaths = 5sc > level 1 deaths = 15sc
   - players who make par receive a C-01 permit
+	- when players reach 1000 credits, they can keep playing to
+		help the team, but there credits are reduced by 
+		1000 (taken by the creditors)
 
 - FREEDOM EXPRESS
   - 3 operations on Super Helldive

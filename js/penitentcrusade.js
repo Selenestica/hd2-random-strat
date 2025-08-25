@@ -116,8 +116,6 @@ const writeItems = () => {
   newStrats = OGstratsList.filter((strat) => {
     return !starterStratNames.includes(strat.displayName);
   });
-  console.log(starterStratNames);
-  console.log(newStrats);
   newPrims = OGprimsList.filter((prim) => {
     return !starterPrimNames.includes(prim.displayName);
   });
@@ -226,7 +224,6 @@ const checkMissionButtons = () => {
       hellDiversMobilizeCheckbox.disabled = true;
     }
   }
-
   if (difficulty === "normal") {
     if (missionCounter > 1) {
       applySpecialistButton.disabled = true;
@@ -1037,6 +1034,7 @@ const uploadSaveData = async () => {
 
 const saveDataAndRestart = async (diff = null) => {
   // probably want to set all warbond codes to checked just in case
+  difficulty = diff ? diff : "normal";
   warbondCodes = [...masterWarbondCodes];
   for (let i = 0; i < warbondCheckboxes.length; i++) {
     warbondCheckboxes[i].checked = true;
@@ -1051,8 +1049,7 @@ const saveDataAndRestart = async (diff = null) => {
   if (!penitentCrusadeSaveData && !diff) {
     return;
   }
-  if (!penitentCrusadeSaveData && diff) {
-  }
+
   const savedGames = JSON.parse(penitentCrusadeSaveData).savedGames;
 
   // make all saved game data currentGame = false

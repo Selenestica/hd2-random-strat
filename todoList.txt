@@ -84,6 +84,12 @@ DEBT DIVERS
   - 3 operations on Super Helldive
 
 NEW CHALLENGE IDEAS:
+	- RANDOMIZER MARATHON
+		- essentially, what you roll in the randomizer
+			is then eliminated from the pool so you
+			never roll it again
+		- challenge ends when all items have been used in a mission
+
 
 
 

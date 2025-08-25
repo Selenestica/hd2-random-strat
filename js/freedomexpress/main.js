@@ -1,24 +1,37 @@
-const missionCompleteModalBody = document.getElementById('missionCompleteModalBody');
-const missionCompleteModal = document.getElementById('missionCompleteModal');
-const objectiveInputsContainer = document.getElementById('objectiveInputsContainer');
-const planetContainer = document.getElementById('planetContainer');
-const objectivesContainer = document.getElementById('objectivesContainer');
-const loadoutContainer = document.getElementById('loadoutContainer');
-const stratagemsContainer = document.getElementById('stratagemsContainer');
-const equipmentContainer = document.getElementById('equipmentContainer');
-const armorContainer = document.getElementById('armorContainer');
-const primaryContainer = document.getElementById('primaryContainer');
-const secondaryContainer = document.getElementById('secondaryContainer');
-const throwableContainer = document.getElementById('throwableContainer');
-const maxStarsModalBody = document.getElementById('maxStarsModalBody');
-const pointsCounterText = document.getElementById('pointsCounterText');
-const missionCounterText = document.getElementById('missionCounterText');
-const flavorAndInstructionsModal = document.getElementById('flavorAndInstructionsModal');
-const missionCompleteButton = document.getElementById('missionCompleteButton');
-const missionFailedButton = document.getElementById('missionFailedButton');
-const missionCompleteButtonDiv = document.getElementById('missionCompleteButtonDiv');
-const missionFailedButtonDiv = document.getElementById('missionFailedButtonDiv');
-const maxStarsPromptModal = document.getElementById('maxStarsPromptModal');
+const missionCompleteModalBody = document.getElementById(
+  "missionCompleteModalBody"
+);
+const missionCompleteModal = document.getElementById("missionCompleteModal");
+const objectiveInputsContainer = document.getElementById(
+  "objectiveInputsContainer"
+);
+const planetContainer = document.getElementById("planetContainer");
+const objectivesContainer = document.getElementById("objectivesContainer");
+const loadoutContainer = document.getElementById("loadoutContainer");
+const stratagemsContainer = document.getElementById("stratagemsContainer");
+const equipmentContainer = document.getElementById("equipmentContainer");
+const armorContainer = document.getElementById("armorContainer");
+const primaryContainer = document.getElementById("primaryContainer");
+const secondaryContainer = document.getElementById("secondaryContainer");
+const throwableContainer = document.getElementById("throwableContainer");
+const maxStarsModalBody = document.getElementById("maxStarsModalBody");
+const pointsCounterText = document.getElementById("pointsCounterText");
+const missionCounterText = document.getElementById("missionCounterText");
+const flavorAndInstructionsModal = document.getElementById(
+  "flavorAndInstructionsModal"
+);
+const missionCompleteButton = document.getElementById("missionCompleteButton");
+const missionFailedButton = document.getElementById("missionFailedButton");
+const missionCompleteButtonDiv = document.getElementById(
+  "missionCompleteButtonDiv"
+);
+const missionFailedButtonDiv = document.getElementById(
+  "missionFailedButtonDiv"
+);
+const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
+const highValueItemCollectedCheck = document.getElementById(
+  "highValueItemCollectedCheck"
+);
 
 let missionCounter = 1;
 let randomBoosters = [];
@@ -29,18 +42,18 @@ let stratagems = [...FE_STRATAGEMS];
 let boosters = [...FE_BOOSTERS];
 
 // if the submit mission report modal ever closes, reset the inputs
-missionCompleteModal.addEventListener('hidden.bs.modal', () => {
+missionCompleteModal.addEventListener("hidden.bs.modal", () => {
   numOfDeathsInput.value = 0;
   timeRemainingInput.value = 0;
 });
 
 const generateItemCard = (item) => {
-  let imgDir = 'equipment';
-  if (item.category === 'armor') {
-    imgDir = 'armor';
+  let imgDir = "equipment";
+  if (item.category === "armor") {
+    imgDir = "armor";
   }
-  if (item.type === 'Stratagem') {
-    imgDir = 'svgs';
+  if (item.type === "Stratagem") {
+    imgDir = "svgs";
   }
   return `
     <div class="card d-flex col-2 col-lg-1 soItemCards mx-1">
@@ -57,7 +70,7 @@ const generateItemCard = (item) => {
 
 const saveProgress = async (item = null) => {
   let obj = {};
-  const freedomExpressSaveData = localStorage.getItem('freedomExpressSaveData');
+  const freedomExpressSaveData = localStorage.getItem("freedomExpressSaveData");
   if (!freedomExpressSaveData) {
     obj = {
       savedGames: [
@@ -69,10 +82,11 @@ const saveProgress = async (item = null) => {
           currentGame: true,
           missionCounter,
           pointsPerMission,
+          points,
         },
       ],
     };
-    localStorage.setItem('freedomExpressSaveData', JSON.stringify(obj));
+    localStorage.setItem("freedomExpressSaveData", JSON.stringify(obj));
     missionCounterText.innerHTML = `${getMissionText(missionCounter)}`;
     return;
   }
@@ -87,11 +101,11 @@ const saveProgress = async (item = null) => {
         ...sg,
         randomBoosters,
         randomStrat,
-        currentItems,
         seesRulesOnOpen: false,
         dataName: sg.editedName ? sg.dataName : `${getCurrentDateTime()}`,
         currentGame: true,
         missionCounter,
+        points,
         pointsPerMission,
       };
     }
@@ -102,7 +116,7 @@ const saveProgress = async (item = null) => {
     savedGames: newSavedGames,
   };
   missionCounterText.innerHTML = `${getMissionText(missionCounter)}`;
-  localStorage.setItem('freedomExpressSaveData', JSON.stringify(obj));
+  localStorage.setItem("freedomExpressSaveData", JSON.stringify(obj));
 };
 
 const submitMissionReport = async (isMissionSucceeded) => {
@@ -110,39 +124,50 @@ const submitMissionReport = async (isMissionSucceeded) => {
     missionCounter++;
     const numOfDeaths = parseInt(numOfDeathsInput.value, 10);
     const timeRemaining = parseInt(timeRemainingInput.value, 10);
-    const numOfDeathsModifier = numOfDeaths * 2;
-    const missionScore = numOfDeathsModifier + timeRemaining;
+    const numOfDeathsModifier = numOfDeaths * 1;
+    let hviModifier = 0;
+    if (highValueItemCollectedCheck.checked === true) {
+      hviModifier = 8;
+    }
+    const missionScore = timeRemaining + hviModifier - numOfDeathsModifier;
+
     pointsPerMission.push({
       missionScore,
       numOfDeaths,
       timeRemaining,
       randomStrat,
       randomBoosters,
+      hviCollected: highValueItemCollectedCheck.checked,
     });
 
     // show a toast here eventually
     // showFEPointsEarnedToast(operationPoints);
 
     points += missionScore;
-    pointsCounterText.innerHTML = missionScore;
+    pointsCounterText.innerHTML = points;
+
+    // get random strat
+    randomStrat = await getRandomStrat();
+    const stratCard = await generateItemCard(randomStrat);
+
+    // get random boosters
+    randomBoosters = await getRandomBoosters();
+    const boosterCards = await randomBoosters.map((bst) => {
+      return generateItemCard(bst);
+    });
+
+    populateWebPage(stratCard, boosterCards);
 
     saveProgress();
     missionCounterText.innerHTML = getMissionText(missionCounter);
     return;
   }
 
-  // startNewRun()
   if (!isMissionSucceeded) {
-    startNewRun();
+    // reset run, or delete current run and start a new one
+    saveDataAndRestart(true);
     return;
   }
-};
-
-const getCurrentEnemy = (planet) => {
-  if (planet.faction === 'Humans') {
-    return planet.planet.currentOwner;
-  }
-  return planet.faction;
 };
 
 const getRandomStrat = () => {
@@ -167,17 +192,17 @@ const getRandomBoosters = () => {
 };
 
 const startNewRun = async () => {
-  const saveData = await localStorage.getItem('freedomExpressSaveData');
-  if (saveData) {
-    return;
+  const freedomExpressSaveData = localStorage.getItem("freedomExpressSaveData");
+  if (!freedomExpressSaveData) {
+    const infoModal = new bootstrap.Modal(flavorAndInstructionsModal);
+    infoModal.show();
   }
-  const infoModal = new bootstrap.Modal(flavorAndInstructionsModal);
-  infoModal.show();
 
   // clear the slate
   missionCounter = 1;
   points = 0;
   pointsCounterText.innerHTML = 0;
+  pointsPerMission = [];
 
   missionCounterText.innerHTML = getMissionText(missionCounter);
 
@@ -194,29 +219,29 @@ const startNewRun = async () => {
   populateWebPage(stratCard, boosterCards);
 
   await saveProgress();
-  genFESaveDataManagementModalContent();
 };
 
 const populateWebPage = async (stratCard, boosterCards) => {
-  pointsCounterText.innerHTML = points;
-  missionCounterText.innerHTML = missionCounter;
-
   stratagemsContainer.innerHTML = stratCard;
+
+  equipmentContainer.innerHTML = "";
   boosterCards.forEach((bst) => {
     equipmentContainer.innerHTML += bst;
   });
   missionCounterText.innerHTML = `${getMissionText(missionCounter)}`;
+  pointsCounterText.innerHTML = points;
 };
 
 const uploadSaveData = async () => {
-  const freedomExpressSaveData = localStorage.getItem('freedomExpressSaveData');
+  const freedomExpressSaveData = localStorage.getItem("freedomExpressSaveData");
   if (freedomExpressSaveData) {
-    const currentGame = await getCurrentGame('freedomExpressSaveData');
+    const currentGame = await getCurrentGame("freedomExpressSaveData");
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;
     points = currentGame.points ?? 0;
     randomBoosters = currentGame.randomBoosters;
     randomStrat = currentGame.randomStrat;
+    pointsPerMission = currentGame.pointsPerMission;
     const stratCard = await generateItemCard(randomStrat);
     const boosterCards = await randomBoosters.map((bst) => {
       return generateItemCard(bst);
@@ -228,8 +253,69 @@ const uploadSaveData = async () => {
 };
 
 const clearSaveDataAndRestart = async () => {
-  localStorage.removeItem('freedomExpressSaveData');
+  localStorage.removeItem("freedomExpressSaveData");
   window.location.reload();
+};
+
+const saveDataAndRestart = async (missionFailed = null) => {
+  const freedomExpressSaveData = localStorage.getItem("freedomExpressSaveData");
+  if (!freedomExpressSaveData) {
+    return;
+  }
+  const savedGames = JSON.parse(freedomExpressSaveData).savedGames;
+  // make all saved game data currentGame = false
+  let updatedSavedGames = await savedGames.map((sg) => {
+    if (sg.currentGame === true && missionFailed) {
+      sg.failed = true;
+    }
+    sg.currentGame = false;
+    return sg;
+  });
+
+  await startNewRun(true);
+
+  const newSaveObj = {
+    randomBoosters,
+    randomStrat,
+    seesRulesOnOpen: false,
+    dataName: `${getCurrentDateTime()}`,
+    currentGame: true,
+    missionCounter,
+    pointsPerMission,
+  };
+
+  updatedSavedGames.push(newSaveObj);
+  const newfreedomExpressSaveData = {
+    savedGames: updatedSavedGames,
+  };
+  await localStorage.setItem(
+    "freedomExpressSaveData",
+    JSON.stringify(newfreedomExpressSaveData)
+  );
+
+  // remove saved games that are at the first mission of their difficulty,
+  // as long as they are not the current game ...to prevent the user from having a million saves
+  pruneSavedGames();
+};
+
+const pruneSavedGames = async () => {
+  const freedomExpressSaveData = localStorage.getItem("freedomExpressSaveData");
+  if (!freedomExpressSaveData) {
+    return;
+  }
+  const prunedGames = await JSON.parse(
+    freedomExpressSaveData
+  ).savedGames.filter((sg) => {
+    if ((sg.currentGame === true || sg.missionCounter > 1) && !sg.failed) {
+      return sg;
+    }
+  });
+  const oldData = JSON.parse(freedomExpressSaveData);
+  const newData = {
+    ...oldData,
+    savedGames: prunedGames,
+  };
+  localStorage.setItem("freedomExpressSaveData", JSON.stringify(newData));
 };
 
 uploadSaveData();

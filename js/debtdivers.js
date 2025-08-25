@@ -425,8 +425,9 @@ const saveProgress = async () => {
   localStorage.setItem("debtDiversSaveData", JSON.stringify(obj));
 
   // show score modal after local storage has been updated when challenge complete
+  // here we will want to subtract 1000 credits
   if (credits >= 1000) {
-    genBBGameOverModal();
+    genDDGameOverModal();
   }
 };
 

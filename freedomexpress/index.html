@@ -60,7 +60,11 @@
           <a target="_blank" href="https://discord.gg/nphn3YpqvY">
             <i class="socialIcons fa-brands fa-discord"></i>
           </a>
-          <a class="mx-2" target="_blank" href="https://github.com/Selenestica/hd2-random-strat">
+          <a
+            class="mx-2"
+            target="_blank"
+            href="https://github.com/Selenestica/hd2-random-strat"
+          >
             <i class="socialIcons fa-brands fa-github"></i>
           </a>
           <a target="_blank" href="https://buymeacoffee.com/breakfasttaco">
@@ -100,16 +104,13 @@
           </button>
         </div>
       </div>
-      <div class="row mt-2 justify-content-center text-white">
-        <div class="col-4"></div>
-        <div class="col-4 text-white d-flex justify-content-center"></div>
-        <div class="col-4 d-flex justify-content-end"></div>
-      </div>
       <div class="row justify-content-center">
-        <div class="col-0 col-lg-2"></div>
-        <div class="col-8 col-lg-6 d-flex justify-content-center">
-          <div class="d-flex align-items-center"></div>
-          <div class="btn-group my-2 mx-2" id="missionCompleteButtonDiv">
+        <div class="col-12 col-lg-6 d-flex justify-content-center">
+          <div
+            class="d-flex align-items-center"
+            style="margin-left: 2rem"
+          ></div>
+          <div class="btn-group my-2" id="missionCompleteButtonDiv">
             <button
               class="btn btn-success"
               type="button"
@@ -120,7 +121,7 @@
               <span> Mission Complete </span>
             </button>
           </div>
-          <div class="btn-group my-2" id="missionFailedButtonDiv">
+          <div class="btn-group my-2 mx-2" id="missionFailedButtonDiv">
             <button
               class="btn btn-danger"
               type="button"
@@ -131,18 +132,17 @@
               <span> Mission Failed </span>
             </button>
           </div>
-          <div class="d-flex align-items-center mx-2">
+          <div class="d-flex align-items-center">
             <button
               class="btn btn-warning"
               type="button"
               data-bs-toggle="modal"
-              data-bs-target="#restartOperationModal"
+              data-bs-target="#restartChallengeModal"
             >
               <i class="fa-solid fa-rotate"></i>
             </button>
           </div>
         </div>
-        <div class="col-0 col-lg-2"></div>
       </div>
 
       <div id="lowerContentContainer">
@@ -154,15 +154,23 @@
           <div class="col-5 text-white mx-0 mx-lg-4 d-flex justify-content-end">
             <span class="mx-1 text-white" id="missionCounterText">0</span>
           </div>
-          <div class="col-2 d-lg-none d-flex justify-content-center text-secondary">|</div>
+          <div
+            class="col-2 d-lg-none d-flex justify-content-center text-secondary"
+          >
+            |
+          </div>
           <div class="col-5 text-white mx-0 mx-lg-4 d-flex">
-            <b>Points:</b><span class="mx-1 text-warning" id="pointsCounterText">0</span>
+            <b>Points:</b
+            ><span class="mx-1 text-warning" id="pointsCounterText">0</span>
           </div>
         </div>
 
         <!-- LOADOUT -->
         <div id="loadoutContainer" class="row d-flex justify-content-center">
-          <div id="equippedItemsContainer" class="row px-0 d-flex justify-content-center">
+          <div
+            id="equippedItemsContainer"
+            class="row px-0 d-flex justify-content-center"
+          >
             <div class="col px-0">
               <div class="accordion px-0">
                 <div class="accordion-item bg-none">
@@ -228,11 +236,18 @@
     >
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
-          <div class="modal-body d-flex row justify-content-center">
-            <div class="row text-white d-flex justify-content-center text-center">
+          <div
+            class="modal-body d-flex row justify-content-center"
+            style="overflow-x: clip"
+          >
+            <div
+              class="row text-white d-flex justify-content-center text-center"
+            >
               <h4>Mission Report</h4>
             </div>
-            <div class="row text-white mb-4 d-flex justify-content-center align-items-center">
+            <div
+              class="row text-white mb-4 d-flex justify-content-center align-items-center"
+            >
               <img
                 src="../images/dressing/ministryOfTruthIcon.png"
                 class="img-fluid"
@@ -243,41 +258,71 @@
                 >NOTE: Lying will be considered treason.</small
               >
             </div>
-            <div class="row d-flex pb-1 mt-3 align-items-center px-0 justify-content-center">
-              <p class="text-white mb-0 col-6" for="timeRemainingInput">Time Remaining (%):</p>
-              <input
-                class="form-control col-6"
-                id="timeRemainingInput"
-                style="width: 15%; margin-left: 0.5rem"
-                type="text"
-                pattern="\d*"
-                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                min="0"
-                max="100"
-                value="0"
-                aria-describedby="timeRemainingInput"
-              />
-            </div>
 
-            <div class="row d-flex pb-1 mt-3 align-items-center px-0 justify-content-center">
-              <p class="text-white mb-0 col-6" for="numOfDeathsInput">Total Team Deaths:</p>
-              <input
-                class="form-control col-6"
-                id="numOfDeathsInput"
-                style="width: 15%; margin-left: 0.5rem"
-                type="text"
-                pattern="\d*"
-                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                min="0"
-                max="50"
-                value="0"
-                aria-describedby="numOfDeathsInput"
-              />
+            <div class="d-flex row">
+              <div class="row d-flex align-items-center">
+                <input
+                  class="form-control col-6"
+                  id="timeRemainingInput"
+                  style="width: 15%; margin-left: 0.5rem"
+                  type="text"
+                  pattern="\d*"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                  min="0"
+                  max="100"
+                  value="0"
+                  aria-describedby="timeRemainingInput"
+                />
+                <p class="text-white mb-0 col-6" for="timeRemainingInput">
+                  Time Remaining (%)
+                </p>
+              </div>
+
+              <div
+                class="form-check my-3"
+                id="highValueItemCollectedForm"
+                style="margin-left: 2.5rem"
+              >
+                <label
+                  class="form-check-label text-white"
+                  for="highValueItemCollectedCheck"
+                >
+                  High-Value Item Collected
+                </label>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="highValueItemCollectedCheck"
+                />
+              </div>
+
+              <div class="row align-items-center d-flex">
+                <input
+                  class="form-control col-6"
+                  id="numOfDeathsInput"
+                  style="width: 15%; margin-left: 0.5rem"
+                  type="text"
+                  pattern="\d*"
+                  oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                  min="0"
+                  max="50"
+                  value="0"
+                  aria-describedby="numOfDeathsInput"
+                />
+                <p class="text-white mb-0 col-6" for="numOfDeathsInput">
+                  Total Team Deaths
+                </p>
+              </div>
             </div>
           </div>
           <div class="modal-footer row justify-content-between">
             <div class="col d-flex justify-content-start">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
                 Cancel
               </button>
             </div>
@@ -312,14 +357,20 @@
           </div>
           <div class="modal-body row d-flex justify-content-center">
             <p class="text-white">
-              Your current operation will be reset, as well as your operational objectives.
+              Your current run will end, and a new run will be started.
             </p>
             <br />
             <br />
             <p class="text-white">Proceed?</p>
           </div>
           <div class="modal-footer d-flex justify-content-between">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
             <button
               type="button"
               onclick="submitMissionReport(false)"
@@ -336,30 +387,36 @@
     <!-- RESTART OPERATION MODAL -->
     <div
       class="modal fade"
-      id="restartOperationModal"
+      id="restartChallengeModal"
       tabindex="-1"
       open="true"
-      aria-labelledby="restartOperationModalLabel"
+      aria-labelledby="restartChallengeModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light">Restart Operation</h5>
+            <h5 class="modal-title text-light">Restart Challenge</h5>
           </div>
           <div class="modal-body row d-flex justify-content-center">
             <p class="text-white">
-              Your current operation will be reset, as well as your operational objectives.
+              Your current run will be saved, and a new run will begin.
             </p>
             <br />
             <br />
             <p class="text-white">Proceed?</p>
           </div>
           <div class="modal-footer d-flex justify-content-between">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button
               type="button"
-              onclick="submitMissionReport(false)"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onclick="saveDataAndRestart()"
               class="btn btn-warning"
               data-bs-dismiss="modal"
             >
@@ -382,7 +439,9 @@
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light">The Special Operations Challenge</h5>
+            <h5 class="modal-title text-light">
+              The Special Operations Challenge
+            </h5>
           </div>
           <div class="modal-body row d-flex justify-content-center">
             <div class="accordion" id="infoAccordion">
@@ -406,20 +465,14 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      In the wake of growing threats across the galactic frontier, Super Earth High
-                      Command has authorized the deployment of elite operatives. Each Helldiver is
-                      assigned a combat role and dispatched to hostile planets under strict
-                      operational parameters. These missions are more than just war—they're a
-                      proving ground. Those who survive not only bring liberty to alien worlds but
-                      also gain clearance to deploy with newly de-classified specialist loadouts.
-                      One role at a time, Helldivers climb the ranks, mastering tools of democracy
-                      previously locked behind bureaucratic red tape and explosive field tests.
-                      Glory awaits. Failure is treason.
-                      <br />
-                      <br />
-                      <em
-                        >Specialists aren’t born. They’re forged—in fire, gas, plasma, and paperwork
-                      </em>
+                      Freedom Express! In the name of efficiency, Super Earth
+                      commands only the swiftest of its elite to answer this
+                      call. The enemy grows bolder by the second, and hesitation
+                      is treason. Your mission: land, execute the primary
+                      objective with ruthless precision, and extract before the
+                      enemy knows what hit them. This is not a test of endurance
+                      — it's a test of speed, clarity, and unshakable devotion
+                      to the cause. Glory to the fast. Glory to Super Earth.
                     </p>
                   </div>
                 </div>
@@ -444,10 +497,10 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      Complete an operation on the given planet using the assigned specialist
-                      loadout, and fulfilling all operation goals, in order to unlock new specialist
-                      loadouts. There are many specialist loadouts to unlock, with more specialist
-                      loadouts to be added in the future as more content is added to the game.
+                      Complete 3 operations on difficulty 10 (Super Helldive) as
+                      fast as possible using the assigned stratagem and
+                      boosters. The squad leader assigns their boosters to the
+                      team.
                     </p>
                   </div>
                 </div>
@@ -462,7 +515,7 @@
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                    Completing Operations
+                    Scoring Points
                   </button>
                 </h2>
                 <div
@@ -472,18 +525,31 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      Operations must be on difficulty 10 (Super Helldive). Each operation will have
-                      2 goals that must be completed in order to progress.
-                      <br />
-                      <br />
-                      Upon mission success, click the 'Mission Complete' button, and input the
-                      progress you made toward fulfilling your operation's goals in the fields
-                      provided.
-                      <br />
-                      <br />
-                      If you fail a mission, click the 'Mission Failed' button. You will be given a
-                      new operation with new goals, on a different planet.
+                      Your score per mission is determined by 3 factors:
                     </p>
+
+                    <ul>
+                      <li class="text-white">
+                        % Mission Time Remaining
+                        <ul>
+                          <li class="text-white">1% = +1 point</li>
+                        </ul>
+                      </li>
+                      <li class="text-white">
+                        The High Value Item
+                        <ul>
+                          <li class="text-white">
+                            Extract with HVI = +8 points
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="text-white">
+                        Deaths
+                        <ul>
+                          <li class="text-white">1 Death = -1 points</li>
+                        </ul>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -497,7 +563,7 @@
                     aria-expanded="false"
                     aria-controls="collapseFour"
                   >
-                    Unlocking Specialists
+                    Mission Success
                   </button>
                 </h2>
                 <div
@@ -507,19 +573,10 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      After each successfully completed special operation, you will be automatically
-                      assigned a new specialist loadout. You may choose a previously unlocked
-                      loadout to play, but progress will not be made toward unlocking a new
-                      specialist.
-                      <br />
-                      <br />
-                      In other words, you must complete an operation with your latest unlocked
-                      specialist (<i class="fa-solid mx-2 text-warning fa-key"></i>) in order to
-                      unlock the next specialist.
-                      <br />
-                      <br />
-                      While you're planetside, you may share equipment with your squadmates. You're
-                      allowed to pick up equipment from your environment as well.
+                      After each successfully completed mission, press the green
+                      "Mission Complete" button and follow the prompts. Your
+                      running score will be updated and your progress will be
+                      automatically saved.
                     </p>
                   </div>
                 </div>
@@ -534,7 +591,7 @@
                     aria-expanded="false"
                     aria-controls="collapseFive"
                   >
-                    Choosing a Planet
+                    Mission Failure
                   </button>
                 </h2>
                 <div
@@ -544,20 +601,9 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      A planet will be assigned to you along with a set of operation goals, as long
-                      as you weren't previously in the middle of an operation.
-                      <br />
-                      <br />
-                      If you're part of a squad and you need to go to a different planet, open the
-                      planet list (
-                      <i class="fa-solid text-warning fa-earth-americas"></i> ) and choose the
-                      planet you want. Only planets that are able to be liberated or defended will
-                      show up on the list. A new set of operation goals will be given to you, and
-                      you will lose your progress on your previous planet.
-                      <br />
-                      <br />
-                      NOTE: Operation goals on a planet may vary from player to player. Work
-                      together to ensure everyone in your squad meets their goals.
+                      The run ends when you fail a mission. Press the red
+                      "Mission Failed" button to start a new run. You will be
+                      given a prompt to confirm.
                     </p>
                   </div>
                 </div>
@@ -582,12 +628,15 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      Your progress is saved in your browser's local storage. If you clear your
-                      browser's local storage, your progress will be lost.
+                      Your progress is saved in your browser's local storage. If
+                      you clear your browser's local storage, your progress will
+                      be lost.
                       <br />
-                      You can download your save file and upload it to a different device with the
-                      Save Data Management menu. Uploading a save file will overwrite any previous
-                      saved data for this challenge.
+                      You can download your save file and upload it to a
+                      different device with the Save Data Management menu (the
+                      blue floppy disk button in the upper right), change the
+                      name of your run, and delete any of your save data in this
+                      menu as well.
                     </p>
                   </div>
                 </div>
@@ -615,62 +664,31 @@
                       <li class="text-white">
                         <b>Q: Who was this challenge made for?</b>
                         <p>
-                          A: This challenge was made for veteran players who are looking to spice up
-                          their Super Helldive operations with rogue-like elements, themed loadouts,
-                          and roleplay.
+                          A: This challenge was made for veteran players who are
+                          looking to spice up their Super Helldive operations
+                          with speedrun elements and a little bit of RNG.
                         </p>
                       </li>
                       <li class="text-white">
-                        <b>Q: How many squadmates do I need to run this challenge?</b>
+                        <b>Q: How does my squad use the boosters?</b>
                         <p>
-                          A: This challenge is equally viable for solo players, a squad of friends,
-                          or a squad of randoms as you can progress at your own pace.
-                        </p>
-                      </li>
-                      <li class="text-white">
-                        <b>Q: What are points for and how are they earned?</b>
-                        <p>
-                          A: Points are there for bragging rights, and do not affect rewards or RNG
-                          in any way.
-                          <br />
-                          <br />
-                          For most objectives, 5 points are earned if the objective is accomplished
-                          in the first mission of an operation, 3 points are earned for
-                          accomplishing an objective in the second mission of an operation, and 1
-                          point is earned for accomplishing an objective int he last mission of an
-                          operation.
-                          <br />
-                          <br />
-                          For objectives that are impossible to accomplish in the first mission of
-                          an operation, 5 points are given for accomplishing the objective at the
-                          end of the operation.
-                        </p>
-                      </li>
-                      <li class="text-white">
-                        <b>Q: What if the planet I had an operation on is no longer available?</b>
-                        <p>
-                          A: If you or your squadmates can no longer access that planet in-game,
-                          choose a different planet from the planet list (
-                          <i class="fa-solid text-warning fa-earth-americas"></i>
-                          ). This list updates every ten minutes or so.
+                          A: Assign a leader for each mission. The squad will
+                          use the boosters on the mission leader's screen.
                         </p>
                       </li>
                       <li class="text-white">
                         <b
-                          >Q: Why didn't I unlock a new specialist after I completed an
-                          operation?</b
+                          >Q: How many squadmates do I need to run this
+                          challenge?</b
                         >
                         <p>
-                          A: You may not have met the operational objectives, or you may not have
-                          the correct specialist loadout equipped.
+                          A: This challenge is equally viable for solo players
+                          or a squad of participating divers.
                         </p>
                       </li>
                       <li class="text-white">
-                        <b>Q: How do I know which specialist I will unlock next?</b>
-                        <p>
-                          A: Your next unlocked specialist will be chosen at random amongst the list
-                          of specialists you have yet to unlock.
-                        </p>
+                        <b>Q: Can we share/trade equipment?</b>
+                        <p>A: YES. Sharing is caring.</p>
                       </li>
                     </ul>
                   </div>
@@ -679,7 +697,13 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -706,16 +730,22 @@
             id="freedomExpressDataManagementModalBody"
           >
             <p class="text-white">
-              Switch your active save file here, delete save files, or upload save files.
+              Switch your active save file here, delete save files, or upload
+              save files.
               <br />
-              Select an entry below and press 'Apply' to load a different save file.
+              Select an entry below and press 'Apply' to load a different save
+              file.
               <br />
               <br />
               NOTE: You can't delete your current save file.
             </p>
             <div class="mb-3 d-flex row">
               <div class="col-9">
-                <input class="form-control" type="file" id="saveDataUploadInput" />
+                <input
+                  class="form-control"
+                  type="file"
+                  id="saveDataUploadInput"
+                />
               </div>
               <div class="col-3">
                 <button
@@ -747,7 +777,10 @@
                 Cancel
               </button>
             </div>
-            <div id="saveDataModalFunctionsDiv" class="d-flex col justify-content-end">
+            <div
+              id="saveDataModalFunctionsDiv"
+              class="d-flex col justify-content-end"
+            >
               <button
                 type="button"
                 onclick="clearSaveDataAndRestart()"
@@ -794,12 +827,18 @@
           </div>
           <div class="modal-body row d-flex justify-content-center">
             <p class="text-white">
-              Are you sure you want to delete your save data? This action is irreversible, and you
-              will lose all progress.
+              Are you sure you want to delete your save data? This action is
+              irreversible, and you will lose all progress.
             </p>
           </div>
           <div class="modal-footer d-flex justify-content-between">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
             <button
               type="button"
               onclick="deleteSavedGameData()"
@@ -819,7 +858,10 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"
   ></script>
-  <script src="https://kit.fontawesome.com/a018c01272.js" crossorigin="anonymous"></script>
+  <script
+    src="https://kit.fontawesome.com/a018c01272.js"
+    crossorigin="anonymous"
+  ></script>
   <script src="../js/freedomexpress/constants/boosters.js"></script>
   <script src="../js/freedomexpress/constants/stratagems.js"></script>
   <script src="../js/freedomexpress/utils/getMissionText.js"></script>

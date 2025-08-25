@@ -116,6 +116,8 @@ const writeItems = () => {
   newStrats = OGstratsList.filter((strat) => {
     return !starterStratNames.includes(strat.displayName);
   });
+  console.log(starterStratNames);
+  console.log(newStrats);
   newPrims = OGprimsList.filter((prim) => {
     return !starterPrimNames.includes(prim.displayName);
   });
@@ -154,7 +156,7 @@ const startNewRun = async (spec = null, diff = null, removingSpec = null) => {
     specialistNameText.innerHTML = "";
   }
 
-  if (!removingSpec) {
+  if (!removingSpec || spec) {
     await writeItems();
   }
 

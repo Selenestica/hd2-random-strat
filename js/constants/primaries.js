@@ -79,18 +79,16 @@ const PRIMARIES = [
     imageURL: "ar61tenderizer.png",
     tier: "a",
   },
-
-  // {
-  //   displayName: "MA5C Assault Rifle",
-  //   type: "Equipment",
-  //   category: "primary",
-  //   tags: ["AssaultRifle"],
-  //   warbondCode: "warbond19",
-  //   internalName: "ma5cassaultrifle",
-  //   imageURL: "ma5cassaultrifle.png",
-  //   tier: "a",
-  // },
-
+  {
+    displayName: "MA5C Assault Rifle",
+    type: "Equipment",
+    category: "primary",
+    tags: ["AssaultRifle"],
+    warbondCode: "warbond19",
+    internalName: "ma5c",
+    imageURL: "ma5c.png",
+    tier: "a",
+  },
   {
     displayName: "Variable",
     type: "Equipment",
@@ -151,18 +149,16 @@ const PRIMARIES = [
     imageURL: "mp98knight.png",
     tier: "b",
   },
-
-  // {
-  //   displayName: "M7S SMG",
-  //   type: "Equipment",
-  //   category: "primary",
-  //   tags: ["SubmachineGun"],
-  //   warbondCode: "warbond19",
-  //   internalName: "m7ssmg",
-  //   imageURL: "m7ssmg.png",
-  //   tier: "b",
-  // },
-
+  {
+    displayName: "M7S SMG",
+    type: "Equipment",
+    category: "primary",
+    tags: ["SubmachineGun"],
+    warbondCode: "warbond19",
+    internalName: "m7s",
+    imageURL: "m7s.png",
+    tier: "b",
+  },
   {
     displayName: "Punisher",
     type: "Equipment",
@@ -233,18 +229,16 @@ const PRIMARIES = [
     imageURL: "sg20halt.png",
     tier: "a",
   },
-
-  // {
-  //   displayName: "M90A Shotgun",
-  //   type: "Equipment",
-  //   category: "primary",
-  //   tags: ["Shotgun"],
-  //   warbondCode: "warbond19",
-  //   internalName: "m90ashotgun",
-  //   imageURL: "m90ashotgun.png",
-  //   tier: "a",
-  // },
-
+  {
+    displayName: "M90A Shotgun",
+    type: "Equipment",
+    category: "primary",
+    tags: ["Shotgun"],
+    warbondCode: "warbond19",
+    internalName: "m90a",
+    imageURL: "m90a.png",
+    tier: "a",
+  },
   {
     displayName: "Diligence",
     type: "Equipment",

@@ -170,19 +170,19 @@ const SECONDARIES = [
     tier: "b",
   },
 
-  // {
-  //   displayName: "M6C/SOCOM Pistol",
-  //   type: "Equipment",
-  //   category: "secondary",
-  //   tags: [],
-  //   warbondCode: "warbond19",
-  //   internalName: "m6csocompistol",
-  //   imageURL: "m6csocompistol.png",
-  //   tier: "b",
-  // },
+  {
+    displayName: "M6C/SOCOM",
+    type: "Equipment",
+    category: "secondary",
+    tags: [],
+    warbondCode: "warbond19",
+    internalName: "m6csocompistol",
+    imageURL: "m6csocompistol.png",
+    tier: "b",
+  },
 ];
 
 // s: 2
 // a: 4
-// b: 5
+// b: 6
 // c: 6

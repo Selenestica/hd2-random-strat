@@ -5,17 +5,22 @@ huGENERAL:
   - checklist for when new content comes out
     - /js
       - /utils
-        - warbondCodes.js
+        - warbondCodes.js x
+      - /components
+        - genWarbondCheckboxes.js x
       - /constants
-        - genWarbondCheckboxes.js
-        - armorpassives.js
-        - armorsets.js
-        - primaries.js
-        - secondaries.js
-        - stratagems.js
-        - throwables.js
-        - boosters.js
-      - randomizer.js
+        - armorpassives.js x
+        - armorsets.js x
+        - primaries.js x
+        - secondaries.js x
+        - stratagems.js x
+        - throwables.js x
+        - boosters.js x
+        - warbonds.js x
+        - specialists.js x
+        - specialOpsSpecialists.js x
+      - randomizer.js x
+    - splash page change log
 
 RANDOMIZER:
   - add tags for THROWABLES

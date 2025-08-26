@@ -62,7 +62,7 @@ const genTraits = (traits) => {
 };
 
 const makeCard = (spc, index) => {
-  if (spc.imageURL.length > 0) {
+  if (spc.imageURL) {
     return `
             <div id="pcSpecialistCard('${index}')" class="card col-md-5 col-lg-3 col-sm-5 specialistCards m-2" onclick="setSpecialist('${index}')">
               <img

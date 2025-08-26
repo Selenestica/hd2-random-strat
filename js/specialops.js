@@ -72,7 +72,6 @@ missionCompleteModal.addEventListener("hidden.bs.modal", () => {
   }
 });
 
-// if the submit mission report modal ever closes, reset the inputs
 warbondSelectModal.addEventListener("hidden.bs.modal", async () => {
   const saveData = await localStorage.getItem("specialOpsSaveData");
   if (saveData) {

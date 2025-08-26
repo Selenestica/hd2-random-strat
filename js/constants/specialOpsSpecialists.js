@@ -585,7 +585,7 @@ const SPECOPSSPECS = [
     displayName: "The Recon Operative",
     stratagems: [
       "Eagle Airstrike",
-      "Orbital Gatling Barrage",
+      "Patriot Exosuit",
       "Jump Pack",
       "Anti-Material Rifle",
     ],

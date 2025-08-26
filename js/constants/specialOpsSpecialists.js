@@ -577,8 +577,8 @@ const SPECOPSSPECS = [
     primary: "MA5C Assault Rifle",
     secondary: "M6C/SOCOM",
     throwable: "G-6 Frag",
-    armorPassive: "Gunslinger",
-    warbonds: ["warbond0", "warbond4", "warbond14"],
+    armorPassive: "Feet First",
+    warbonds: ["warbond19", "warbond12"],
   },
   {
     locked: true,
@@ -592,7 +592,7 @@ const SPECOPSSPECS = [
     primary: "M7S SMG",
     secondary: "M6C/SOCOM",
     throwable: "G-3 Smoke",
-    armorPassive: "Gunslinger",
-    warbonds: ["warbond0", "warbond4", "warbond14"],
+    armorPassive: "Feet First",
+    warbonds: ["warbond19"],
   },
 ];

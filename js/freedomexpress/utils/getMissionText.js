@@ -23,7 +23,7 @@ const getMissionText = (num) => {
   if (num === 8) {
     return "Op: 3, Mission: 2";
   }
-  if (num >= 9) {
+  if (num === 9) {
     return "Op: 3, Mission: 3";
   }
   if (num >= 10) {

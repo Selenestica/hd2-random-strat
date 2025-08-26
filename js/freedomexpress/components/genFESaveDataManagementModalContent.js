@@ -207,3 +207,9 @@ const uploadSaveFile = async () => {
   uploadedSaveFile = null;
   saveDataUploadInput.value = "";
 };
+
+const clearSaveDataManagementModal = () => {
+  freedomExpressDataManagementModalSavesList.innerHTML = "";
+  saveDataUploadInput.value = "";
+  uploadedSaveFile = null;
+};

@@ -1,4 +1,4 @@
-const showSOPointsEarnedToast = (pointsEarned) => {
+const showPointsEarnedToast = (pointsEarned) => {
   const pointsEarnedToast = document.querySelector(".pointsEarnedToast");
   const toast = new bootstrap.Toast(pointsEarnedToast);
 

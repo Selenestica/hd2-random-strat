@@ -30,7 +30,7 @@
 
     <title>Helldivers 2: Freedom Express</title>
     <!-- Google tag (gtag.js) -->
-    <!-- <script
+    <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
     ></script>
@@ -42,7 +42,7 @@
       gtag("js", new Date());
 
       gtag("config", "G-BFREXT7F48");
-    </script> -->
+    </script>
   </head>
 
   <body>
@@ -110,6 +110,15 @@
             class="d-flex align-items-center"
             style="margin-left: 2rem"
           ></div>
+          <div class="btn-group my-2 mx-2" id="downloadPDFButtonDiv">
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="genFEGameOverModal()"
+            >
+              <span> View Score </span>
+            </button>
+          </div>
           <div class="btn-group my-2" id="missionCompleteButtonDiv">
             <button
               class="btn btn-success"
@@ -147,10 +156,7 @@
 
       <div id="lowerContentContainer">
         <!-- OPERATION INFO -->
-        <div
-          style="border-bottom: 1px solid grey"
-          class="col-12 text-white d-flex justify-content-center"
-        >
+        <div class="col-12 text-white d-flex justify-content-center">
           <div class="col-5 text-white mx-0 mx-lg-4 d-flex justify-content-end">
             <span class="mx-1 text-white" id="missionCounterText">0</span>
           </div>
@@ -169,9 +175,10 @@
         <div id="loadoutContainer" class="row d-flex justify-content-center">
           <div
             id="equippedItemsContainer"
-            class="row px-0 d-flex justify-content-center"
+            class="col-lg-6 col-md-8 col-sm-12 px-0 d-flex justify-content-center"
+            style="border-top: 1px solid grey"
           >
-            <div class="col px-0">
+            <div class="px-0">
               <div class="accordion px-0">
                 <div class="accordion-item bg-none">
                   <h2 class="accordion-header">
@@ -226,6 +233,47 @@
       </div>
     </div>
 
+    <!-- GAME OVER MODAL -->
+    <div
+      class="modal fade"
+      id="feGameOverModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="feGameOverModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light">
+              Challenge Complete - Freedom Express
+            </h5>
+          </div>
+          <div
+            id="feGameOverModalBody"
+            class="modal-body text-white row d-flex justify-content-center"
+          ></div>
+          <div class="modal-footer d-flex justify-content-between">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              onclick="downloadFEScoreSummary()"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Download File
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- MISSION COMPLETE MODAL -->
     <div
       class="modal fade"
@@ -259,7 +307,7 @@
               >
             </div>
 
-            <div class="d-flex row">
+            <div class="d-flex row justify-content-center">
               <div class="row d-flex align-items-center">
                 <input
                   class="form-control col-6"
@@ -273,7 +321,12 @@
                   value="0"
                   aria-describedby="timeRemainingInput"
                 />
-                <p class="text-white mb-0 col-6" for="timeRemainingInput">
+                <p
+                  class="text-white mb-0 col-6"
+                  for="timeRemainingInput"
+                  data-bs-toggle="tooltip"
+                  title="+1 point/% time remaining"
+                >
                   Time Remaining (%)
                 </p>
               </div>
@@ -286,6 +339,8 @@
                 <label
                   class="form-check-label text-white"
                   for="highValueItemCollectedCheck"
+                  data-bs-toggle="tooltip"
+                  title="+10 points"
                 >
                   High-Value Item Collected
                 </label>
@@ -310,7 +365,12 @@
                   value="0"
                   aria-describedby="numOfDeathsInput"
                 />
-                <p class="text-white mb-0 col-6" for="numOfDeathsInput">
+                <p
+                  class="text-white mb-0 col-6"
+                  for="numOfDeathsInput"
+                  data-bs-toggle="tooltip"
+                  title="-1 point per death"
+                >
                   Total Team Deaths
                 </p>
               </div>
@@ -331,7 +391,7 @@
                 type="button"
                 class="btn btn-primary"
                 onclick="submitMissionReport(true)"
-                data-bs-toggle="modal"
+                data-bs-dismiss="modal"
               >
                 Submit
               </button>
@@ -539,7 +599,7 @@
                         The High Value Item
                         <ul>
                           <li class="text-white">
-                            Extract with HVI = +8 points
+                            Extract with HVI = +10 points
                           </li>
                         </ul>
                       </li>
@@ -851,6 +911,31 @@
         </div>
       </div>
     </div>
+
+    <!-- POINTS EARNED TOAST -->
+    <div
+      class="position-fixed top-0 start-50 translate-middle-x p-3 pointer-events-none"
+      style="z-index: 1045"
+    >
+      <div
+        class="toast align-items-center text-white bg-success border-0 pointsEarnedToast pointer-events-auto"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        data-bs-autohide="true"
+        data-bs-delay="3000"
+      >
+        <div class="d-flex">
+          <div class="toast-body" id="pointsEarnedToastBody"></div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
   </body>
 
   <script
@@ -866,9 +951,22 @@
   <script src="../js/freedomexpress/constants/stratagems.js"></script>
   <script src="../js/freedomexpress/utils/getMissionText.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
+  <script src="../js/utils/showPointsEarnedToast.js"></script>
   <script src="../js/utils/getCurrentGame.js"></script>
   <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/freedomexpress/utils/downloadFEScoreSummary.js"></script>
+  <script src="../js/freedomexpress/components/genFEGameOverModal.js"></script>
   <script src="../js/freedomexpress/main.js"></script>
   <script src="../js/freedomexpress/components/genFESaveDataManagementModalContent.js"></script>
+  <script>
+    // This will enable all tooltips on the page
+    document.addEventListener("DOMContentLoaded", function () {
+      var tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    });
+  </script>
 </html>

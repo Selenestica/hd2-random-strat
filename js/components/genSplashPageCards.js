@@ -7,12 +7,6 @@ const genSplashPageCards = (type) => {
   let container = challengeCardsContainer;
   let list = [
     {
-      displayName: "Randomizer",
-      internalName: "randomizer",
-      icon: "fa-arrows-spin",
-      iconClasses: "color-changer",
-    },
-    {
       displayName: "Penitent Crusade",
       internalName: "penitentcrusade",
       icon: "fa-skull-crossbones",
@@ -24,12 +18,12 @@ const genSplashPageCards = (type) => {
       icon: "fa-sack-dollar",
       iconClasses: "text-success",
     },
-    // {
-    //   displayName: "Debt Divers",
-    //   internalName: "debtdivers",
-    //   icon: "fa-landmark",
-    //   iconClasses: "text-secondary",
-    // },
+    {
+      displayName: "Freedom Express",
+      internalName: "freedomexpress",
+      icon: "fa-person-running",
+      iconClasses: "text-warning",
+    },
     {
       displayName: "Special Ops",
       internalName: "specialops",
@@ -39,12 +33,12 @@ const genSplashPageCards = (type) => {
   ];
   if (type === "tools") {
     list = [
-      // {
-      //   displayName: "Randomizer",
-      //   internalName: "randomizer",
-      //   icon: "fa-arrows-spin",
-      //   iconClasses: "color-changer",
-      // },
+      {
+        displayName: "Randomizer",
+        internalName: "randomizer",
+        icon: "fa-arrows-spin",
+        iconClasses: "color-changer",
+      },
       {
         displayName: "Tier List Maker",
         internalName: "tiermaker",

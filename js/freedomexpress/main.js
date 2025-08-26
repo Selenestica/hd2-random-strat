@@ -28,10 +28,13 @@ const missionCompleteButtonDiv = document.getElementById(
 const missionFailedButtonDiv = document.getElementById(
   "missionFailedButtonDiv"
 );
+const downloadPDFButtonDiv = document.getElementById("downloadPDFButtonDiv");
 const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
 const highValueItemCollectedCheck = document.getElementById(
   "highValueItemCollectedCheck"
 );
+const numOfDeathsInput = document.getElementById("numOfDeathsInput");
+const timeRemainingInput = document.getElementById("timeRemainingInput");
 
 let missionCounter = 1;
 let randomBoosters = [];
@@ -45,6 +48,7 @@ let boosters = [...FE_BOOSTERS];
 missionCompleteModal.addEventListener("hidden.bs.modal", () => {
   numOfDeathsInput.value = 0;
   timeRemainingInput.value = 0;
+  highValueItemCollectedCheck.checked = false;
 });
 
 const generateItemCard = (item) => {
@@ -56,7 +60,7 @@ const generateItemCard = (item) => {
     imgDir = "svgs";
   }
   return `
-    <div class="card d-flex col-2 col-lg-1 soItemCards mx-1">
+    <div class="card d-flex col-4 col-lg-2 soItemCards mx-1">
       <img
           src="../images/${imgDir}/${item.imageURL}"
           class="img-card-top"
@@ -78,7 +82,9 @@ const saveProgress = async (item = null) => {
           randomBoosters,
           randomStrat,
           seesRulesOnOpen: false,
-          dataName: `${getCurrentDateTime()}`,
+          dataName: `${getMissionText(
+            missionCounter
+          )} | ${getCurrentDateTime()}`,
           currentGame: true,
           missionCounter,
           pointsPerMission,
@@ -102,7 +108,9 @@ const saveProgress = async (item = null) => {
         randomBoosters,
         randomStrat,
         seesRulesOnOpen: false,
-        dataName: sg.editedName ? sg.dataName : `${getCurrentDateTime()}`,
+        dataName: sg.editedName
+          ? sg.dataName
+          : `${getMissionText(missionCounter)} | ${getCurrentDateTime()}`,
         currentGame: true,
         missionCounter,
         points,
@@ -117,6 +125,11 @@ const saveProgress = async (item = null) => {
   };
   missionCounterText.innerHTML = `${getMissionText(missionCounter)}`;
   localStorage.setItem("freedomExpressSaveData", JSON.stringify(obj));
+
+  // show the score modal when challenge complete
+  if (missionCounter >= 10) {
+    genFEGameOverModal();
+  }
 };
 
 const submitMissionReport = async (isMissionSucceeded) => {
@@ -127,7 +140,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
     const numOfDeathsModifier = numOfDeaths * 1;
     let hviModifier = 0;
     if (highValueItemCollectedCheck.checked === true) {
-      hviModifier = 8;
+      hviModifier = 10;
     }
     const missionScore = timeRemaining + hviModifier - numOfDeathsModifier;
 
@@ -140,11 +153,20 @@ const submitMissionReport = async (isMissionSucceeded) => {
       hviCollected: highValueItemCollectedCheck.checked,
     });
 
-    // show a toast here eventually
-    // showFEPointsEarnedToast(operationPoints);
+    showPointsEarnedToast(missionScore);
 
     points += missionScore;
     pointsCounterText.innerHTML = points;
+
+    // check missionCounter
+    if (missionCounter >= 10) {
+      saveProgress();
+      missionCompleteButtonDiv.style.display = "none";
+      missionFailedButtonDiv.style.display = "none";
+      downloadPDFButtonDiv.style.display = "block";
+      missionCounterText.innerHTML = getMissionText(missionCounter);
+      return;
+    }
 
     // get random strat
     randomStrat = await getRandomStrat();
@@ -191,7 +213,7 @@ const getRandomBoosters = () => {
   }
 };
 
-const startNewRun = async () => {
+const startNewRun = async (applyingSave = null) => {
   const freedomExpressSaveData = localStorage.getItem("freedomExpressSaveData");
   if (!freedomExpressSaveData) {
     const infoModal = new bootstrap.Modal(flavorAndInstructionsModal);
@@ -206,19 +228,21 @@ const startNewRun = async () => {
 
   missionCounterText.innerHTML = getMissionText(missionCounter);
 
-  // get random strat
-  randomStrat = await getRandomStrat();
-  const stratCard = await generateItemCard(randomStrat);
+  if (!applyingSave) {
+    // get random strat
+    randomStrat = await getRandomStrat();
+    const stratCard = await generateItemCard(randomStrat);
 
-  // get random boosters
-  randomBoosters = await getRandomBoosters();
-  const boosterCards = await randomBoosters.map((bst) => {
-    return generateItemCard(bst);
-  });
+    // get random boosters
+    randomBoosters = await getRandomBoosters();
+    const boosterCards = await randomBoosters.map((bst) => {
+      return generateItemCard(bst);
+    });
 
-  populateWebPage(stratCard, boosterCards);
+    populateWebPage(stratCard, boosterCards);
 
-  await saveProgress();
+    await saveProgress();
+  }
 };
 
 const populateWebPage = async (stratCard, boosterCards) => {
@@ -228,6 +252,18 @@ const populateWebPage = async (stratCard, boosterCards) => {
   boosterCards.forEach((bst) => {
     equipmentContainer.innerHTML += bst;
   });
+
+  // check missionCounter
+  if (missionCounter >= 10) {
+    missionCompleteButtonDiv.style.display = "none";
+    missionFailedButtonDiv.style.display = "none";
+    downloadPDFButtonDiv.style.display = "block";
+  } else {
+    missionCompleteButtonDiv.style.display = "block";
+    missionFailedButtonDiv.style.display = "block";
+    downloadPDFButtonDiv.style.display = "none";
+  }
+
   missionCounterText.innerHTML = `${getMissionText(missionCounter)}`;
   pointsCounterText.innerHTML = points;
 };
@@ -272,13 +308,13 @@ const saveDataAndRestart = async (missionFailed = null) => {
     return sg;
   });
 
-  await startNewRun(true);
+  await startNewRun();
 
   const newSaveObj = {
     randomBoosters,
     randomStrat,
     seesRulesOnOpen: false,
-    dataName: `${getCurrentDateTime()}`,
+    dataName: `${getMissionText(missionCounter)} | ${getCurrentDateTime()}`,
     currentGame: true,
     missionCounter,
     pointsPerMission,

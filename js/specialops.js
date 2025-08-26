@@ -375,7 +375,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
         operationPoints = 0;
       }
 
-      showSOPointsEarnedToast(operationPoints);
+      showPointsEarnedToast(operationPoints);
       points += operationPoints;
       operationPoints = 0;
       pointsCounterText.innerHTML = points;

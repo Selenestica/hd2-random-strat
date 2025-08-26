@@ -1,31 +1,36 @@
-huGENERAL:
+GENERAL:
   - go through FontAwesome icons and possibly update to better icons
   - leaderboard integrated with GitHub Issues?
   - users submit verification files in discord server
   - checklist for when new content comes out
     - /js
       - /utils
-        - warbondCodes.js x
+        - warbondCodes.js
       - /components
-        - genWarbondCheckboxes.js x
+        - genWarbondCheckboxes.js
       - /constants
-        - armorpassives.js x
-        - armorsets.js x
-        - primaries.js x
-        - secondaries.js x
-        - stratagems.js x
-        - throwables.js x
-        - boosters.js x
-        - warbonds.js x
-        - specialists.js x
-        - specialOpsSpecialists.js x
-      - randomizer.js x
+        - armorpassives.js
+        - armorsets.js
+        - primaries.js
+        - secondaries.js
+        - stratagems.js
+        - throwables.js
+        - boosters.js
+        - warbonds.js
+        - specialists.js
+        - specialOpsSpecialists.js
+      - randomizer.js
     - splash page change log
 
 RANDOMIZER:
   - add tags for THROWABLES
   - add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons
-  - buy nvigneux a coffee
+  - ability to enable/disable specific items from warbonds
+  - option to guarantee to not roll the same item twice in a row
+  - add button to specifically roll boosters
+
+  BUGS:
+    - 
 
 PENITENT CRUSADE:
   - system to track max stars missions, incomplete missions, and failed missions. adding points for each
@@ -89,7 +94,13 @@ DEBT DIVERS
 		1000 (taken by the creditors)
 
 - FREEDOM EXPRESS
-  - 3 operations on Super Helldive
+  - test for funness
+
+- RANDOMIZER MARATHON
+  - essentially, what you roll in the randomizer
+    is then eliminated from the pool so you
+    never roll it again
+  - challenge ends when all items have been used in a mission
 
 NEW CHALLENGE IDEAS:
 	- RANDOMIZER MARATHON

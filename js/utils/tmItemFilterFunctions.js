@@ -27,25 +27,6 @@ const typeFiltersArray = [
   stratagemsFilterDropdownItem,
 ];
 
-const genTMWarbondFilterCheckboxes = () => {
-  for (let i = 0; i < warbondsList.length; i++) {
-    const option = `
-            <li>
-                <a
-                    class="dropdown-item"
-                    onclick="filterByWarbond('${i}')"
-                    href="#"
-                >
-                    ${warbondsList[i]}
-                </a>
-            </li>
-        `;
-    warbondsFilterList.innerHTML += option;
-  }
-};
-
-genTMWarbondFilterCheckboxes();
-
 const filterByType = (filter) => {
   const cards = document.querySelectorAll(".tierItem");
   // Reset all filters to visible

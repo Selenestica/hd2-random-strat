@@ -249,6 +249,7 @@ const startNewTierList = async () => {
 };
 
 const populateLooseItems = () => {
+  looseItemsContainer.innerHTML = "";
   newPrims = [...OGprimsList];
   newBoosts = [...OGboostsList];
   newArmorPassives = [...OGarmorPassivesList];

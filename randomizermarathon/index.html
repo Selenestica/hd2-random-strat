@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html id="html" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="../images/dressing/ministryOfTruthIcon.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <meta
+      name="description"
+      content="Prove that you have the Strength and the Courage to dispense freedom with Super Earth's surplus arsenal!"
+    />
+    <title>Helldivers 2: Randomizer Marathon</title>
+    <!-- Google tag (gtag.js) -->
+    <!-- <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-BFREXT7F48");
+    </script> -->
+  </head>
+  <body>
+    <div class="container mb-5">
+      <!-- HEADER -->
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="d-flex col-4 justify-content-start px-0">
+          <a href="../index.html">
+            <button class="btn text-light text-start py-0" type="button">
+              <i class="fa-solid fa-arrow-left"></i>
+              Back to Challenges
+            </button>
+          </a>
+        </div>
+        <div class="d-flex col-4 justify-content-center">
+          <a target="_blank" href="https://discord.gg/nphn3YpqvY">
+            <i class="socialIcons fa-brands fa-discord"></i>
+          </a>
+          <a
+            class="mx-2"
+            target="_blank"
+            href="https://github.com/Selenestica/hd2-random-strat"
+          >
+            <i class="socialIcons fa-brands fa-github"></i>
+          </a>
+          <a target="_blank" href="https://buymeacoffee.com/breakfasttaco">
+            <i class="socialIcons fa-solid fa-mug-saucer"></i>
+          </a>
+        </div>
+        <div class="col-4">
+          <div class="d-flex justify-content-end">
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#optionsModal"
+            >
+              <i class="fa-solid fa-cog"></i>
+            </button>
+            <button
+              class="btn btn-primary mx-1"
+              onclick="genRMDataManagementModalInfo()"
+              type="button"
+            >
+              <i class="fa-solid text-light fa-floppy-disk"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="d-flex col justify-content-center">
+          <h1 class="text-light my-0">Helldivers 2</h1>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="d-flex col justify-content-center align-items-center">
+          <h4 class="text-light mb-0">Randomizer Marathon</h4>
+          <button
+            class="btn btn-secondary bg-none"
+            style="border: none"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#infoModal"
+          >
+            <i class="fa-solid fa-circle-info"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- MAIN BODY -->
+      <div class="row d-flex justify-content-center pt-3">
+        <div class="col-sm-12 col-md-8 col-lg-5">
+          <div class="row my-2 justify-content-center">
+            <div class="col-2 d-flex align-items-center justify-content-start">
+              <div id="bbMainViewButtonGroup" class="btn-group" role="group">
+                <input
+                  type="radio"
+                  class="btn-check mainViewButtons"
+                  name="btnradio"
+                  id="loadoutButton"
+                  autocomplete="off"
+                  checked
+                />
+                <label
+                  class="btn btn-outline-primary text-white"
+                  for="loadoutButton"
+                >
+                  <span><i class="fa-solid fa-box-archive"></i></span>
+                </label>
+                <input
+                  type="radio"
+                  class="btn-check mainViewButtons"
+                  name="btnradio"
+                  id="shopButton"
+                  autocomplete="off"
+                />
+                <label
+                  class="btn btn-outline-primary text-white"
+                  for="shopButton"
+                >
+                  <span><i class="fa-solid fa-list-check"></i></span>
+                </label>
+              </div>
+            </div>
+            <div
+              class="col-8 d-flex justify-content-center"
+              id="missionButtonsDiv"
+            >
+              <div class="btn-group my-2" id="downloadPDFButtonDiv">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  onclick="genBBGameOverModal()"
+                >
+                  <span> View Score </span>
+                </button>
+              </div>
+              <div class="btn-group my-2 mx-1" id="missionCompleteButtonDiv">
+                <button
+                  class="btn btn-success"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#missionCompleteModal"
+                  id="missionCompleteButton"
+                >
+                  <span id="bbMissionCompleteText"> Mission Complete </span>
+                  <span id="bbMissionCompleteIcon">
+                    <i class="fa-solid fa-check"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="col-2 justify-content-end d-flex align-items-center">
+              <button
+                class="btn btn-warning"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#restartBudgetBlitzModal"
+              >
+                <i class="fa-solid fa-rotate"></i>
+              </button>
+            </div>
+          </div>
+          <hr class="text-white" />
+          <div id="loadoutContainer">
+            <div
+              id="armorContainer"
+              class="d-flex row justify-content-start"
+            ></div>
+            <div
+              id="equipmentContainer"
+              class="row pt-2 d-flex justify-content-center"
+            ></div>
+            <div
+              id="stratagemsContainer"
+              class="row pt-2 d-flex justify-content-center"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTIONS MODAL -->
+    <div
+      class="modal fade"
+      id="optionsModal"
+      tabindex="-1"
+      aria-labelledby="optionsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="optionsModalLabel">
+              Options
+            </h5>
+          </div>
+          <div class="modal-body">
+            <div class="accordion accordion-flush" id="optionsAccordion">
+              <div class="accordion-item bg-none">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed text-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#warbondsAccordion"
+                    aria-expanded="false"
+                    aria-controls="warbondsAccordion"
+                  >
+                    Warbonds and Editions
+                  </button>
+                </h2>
+                <div
+                  id="warbondsAccordion"
+                  class="accordion-collapse collapse p-3"
+                  aria-labelledby="Rules"
+                  data-bs-parent="#optionsAccordion"
+                >
+                  <div id="warbondsChecklistContainer"></div>
+                </div>
+              </div>
+              <div class="accordion-item bg-none">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed text-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#randomizerSettingsAccordion"
+                    aria-expanded="false"
+                    aria-controls="randomizerSettingsAccordion"
+                  >
+                    Randomizer Settings
+                  </button>
+                </h2>
+                <div
+                  id="randomizerSettingsAccordion"
+                  class="accordion-collapse collapse p-3"
+                  aria-labelledby="Rules"
+                  data-bs-parent="#optionsAccordion"
+                >
+                  <div id="randomizerOptionsChecksContainer">
+                    <div class="d-flex row my-2">
+                      <h5 class="text-white">General</h5>
+                      <div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input optionalCheckbox"
+                            type="checkbox"
+                            value=""
+                            id="oneSupportCheck"
+                          />
+                          <label
+                            class="form-check-label text-white"
+                            for="oneSupportCheck"
+                          >
+                            Only roll one support weapon
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input optionalCheckbox"
+                            type="checkbox"
+                            value=""
+                            id="oneBackpackCheck"
+                          />
+                          <label
+                            class="form-check-label text-white"
+                            for="oneBackpackCheck"
+                          >
+                            Only roll one backpack
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input optionalCheckbox"
+                            type="checkbox"
+                            value=""
+                            id="alwaysSupportCheck"
+                          />
+                          <label
+                            class="form-check-label text-white"
+                            for="alwaysSupportCheck"
+                          >
+                            Always roll a support weapon
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input optionalCheckbox"
+                            type="checkbox"
+                            value=""
+                            id="alwaysBackpackCheck"
+                          />
+                          <label
+                            class="form-check-label text-white"
+                            for="alwaysBackpackCheck"
+                          >
+                            Always roll a backpack
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex row" id="eaglesAndOrbitalsOptions">
+                      <div class="col">
+                        <h5 class="text-white my-2">Eagles</h5>
+                        <div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="Eagle"
+                              id="onlyEaglesRadio"
+                              value="onlyEagles"
+                            />
+                            <label
+                              class="text-white form-check-label"
+                              for="onlyEaglesRadio"
+                            >
+                              Only Eagles
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="Eagle"
+                              id="noEaglesRadio"
+                              value="noEagles"
+                            />
+                            <label
+                              class="text-white form-check-label"
+                              for="noEaglesRadio"
+                            >
+                              No Eagles
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="Eagle"
+                              id="defaultEaglesRadio"
+                              value="defaultEagles"
+                              checked
+                            />
+                            <label
+                              class="text-white form-check-label"
+                              for="defaultEaglesRadio"
+                            >
+                              Default
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <h5 class="text-white my-2">Orbitals</h5>
+                        <div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="Orbital"
+                              id="onlyOrbitalsRadio"
+                              value="onlyOrbital"
+                            />
+                            <label
+                              class="text-white form-check-label"
+                              for="onlyOrbitalsRadio"
+                            >
+                              Only Orbitals
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="Orbital"
+                              id="noOrbitalsRadio"
+                              value="noOrbitals"
+                            />
+                            <label
+                              class="text-white form-check-label"
+                              for="noOrbitalsRadio"
+                            >
+                              No Orbitals
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="Orbital"
+                              id="defaultOrbitalsRadio"
+                              value="defaultOrbitals"
+                              checked
+                            />
+                            <label
+                              class="text-white form-check-label"
+                              for="defaultOrbitalsRadio"
+                            >
+                              Default
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex row" id="defenseAndSupplyOptions">
+                      <div class="col">
+                        <h5 class="text-white my-2">Defense</h5>
+                        <div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="Defense"
+                              id="onlyDefenseRadio"
+                              value="onlyOrbital"
+                            />
+                            <label
+                              class="text-white form-check-label"
+                              for="onlyDefenseRadio"
+                            >
+                              Only Defense
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="Defense"
+                              id="noDefenseRadio"
+                              value="noOrbitals"
+                            />
+                            <label
+                              class="text-white form-check-label"
+                              for="noDefenseRadio"
+                            >
+                              No Defense
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="Defense"
+                              id="defaultDefenseRadio"
+                              value="defaultOrbitals"
+                              checked
+                            />
+                            <label
+                              class="text-white form-check-label"
+                              for="defaultDefenseRadio"
+                            >
+                              Default
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <h5 class="text-white my-2">Supply</h5>
+                        <div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="Supply"
+                              id="onlySupplyRadio"
+                              value="onlyOrbital"
+                            />
+                            <label
+                              class="text-white form-check-label"
+                              for="onlySupplyRadio"
+                            >
+                              Only Supply
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="Supply"
+                              id="noSupplyRadio"
+                              value="noOrbitals"
+                            />
+                            <label
+                              class="text-white form-check-label"
+                              for="noSupplyRadio"
+                            >
+                              No Supply
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="Supply"
+                              id="defaultSupplyRadio"
+                              value="defaultOrbitals"
+                              checked
+                            />
+                            <label
+                              class="text-white form-check-label"
+                              for="defaultSupplyRadio"
+                            >
+                              Default
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INFO MODAL -->
+    <div
+      class="modal fade"
+      id="infoModal"
+      tabindex="-1"
+      aria-labelledby="infoModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="infoModalLabel">Info</h5>
+          </div>
+          <div class="modal-body">
+            <div class="accordion-item bg-none">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed text-light"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqAccordion"
+                  aria-expanded="false"
+                  aria-controls="faqAccordion"
+                >
+                  FAQs
+                </button>
+              </h2>
+              <div
+                id="faqAccordion"
+                class="accordion-collapse collapse p-3"
+                aria-labelledby="Rules"
+                data-bs-parent="#rulesAndInfoAccordion"
+              >
+                <ul class="modalAccordionList">
+                  <li class="text-white">
+                    <b>Q: Who is this app for?</b>
+                    <p>
+                      A: This web app was made for Helldivers who are looking
+                      for a fun way to spice up their dives.
+                    </p>
+                  </li>
+                  <li class="text-white">
+                    <b
+                      >Q: What if I don't have some of the items in a
+                      warbond/the superstore/from the Pre-Order Bonus?</b
+                    >
+                    <p>
+                      A: You can toggle these items off in the Options menu. If
+                      you don't have the items, you won't roll them.
+                    </p>
+                  </li>
+                  <li class="text-white">
+                    <b
+                      >Q: What if I don't want to bring multiple support
+                      weapon/backpack stratagems?</b
+                    >
+                    <p>
+                      A: In the Options menu, in the Randomizer Settings tab,
+                      you will be able to customize the randomizer.
+                    </p>
+                  </li>
+                  <li class="text-white">
+                    <b
+                      >Q: What if I roll a booster, but a teammate has already
+                      chosen it?</b
+                    >
+                    <p>
+                      A: You can reroll just the booster by clicking on the
+                      booster icon. Or, feel free to choose a different booster
+                      than the one you have rolled. I don't make the rules, I
+                      just make the tools!
+                    </p>
+                  </li>
+                  <li class="text-white">
+                    <b>Q: Why don't you run ads on this site?</b>
+                    <p>
+                      A: The intention behind making this site was to provide
+                      maximum value to Helldivers everywhere. The majority of my
+                      code is browser-based, and I only pay out-of-pocket for
+                      the icons, build time, and hosting (I use AWS). Costs are
+                      relatively small, but if you would like to reward me for
+                      my efforts, feel free to buy me a coffee using the link at
+                      the top of the page!
+                    </p>
+                  </li>
+                  <li class="text-white">
+                    <b>Q: Can I contribute with time instead of money?</b>
+                    <p>
+                      A: Please! Feel free to join the discord and hit me up if
+                      you have any ideas/suggestions, or run into any bugs. If
+                      you're a coder, I can definitely use your help with
+                      upcoming features.
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="accordion-item bg-none">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed text-light"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#creditAccordion"
+                  aria-expanded="false"
+                  aria-controls="creditAccordion"
+                >
+                  Credits
+                </button>
+              </h2>
+              <div
+                id="creditAccordion"
+                class="accordion-collapse collapse p-3"
+                aria-labelledby="Rules"
+                data-bs-parent="#rulesAndInfoAccordion"
+              >
+                <ul class="modalAccordionList">
+                  <li class="text-white">
+                    Huge thanks to u/TylerJohnsonDaGOAT for writing up the
+                    attributes for stratagems and equipment, and for letting me
+                    bounce ideas off of them. Tons of drudgery was avoided
+                    because of their contributions. Thanks!
+                  </li>
+                  <li class="text-white">
+                    I came across this idea while browsing Reddit. After a quick
+                    Google search, I found that
+                    <a href="https://hd2random.com/"
+                      >someone had already made a web app for this challenge</a
+                    >
+                    (very cool). However, I had my own ideas regarding layout,
+                    more features, etc, and so here we are!
+                  </li>
+                  <li class="text-white">
+                    Would you like to contribute? If you're code savvy, I could
+                    use some help with colors and fonts, as well as upcoming
+                    features. Feel free to email me at
+                    joebenwilson.dev@gmail.com with any feedback/suggestions, or
+                    submit a PR on
+                    <a href="https://github.com/Selenestica/hd2-random-strat"
+                      >GitHub</a
+                    >.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://kit.fontawesome.com/a018c01272.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="../js/constants/primaries.js"></script>
+  <script src="../js/constants/secondaries.js"></script>
+  <script src="../js/constants/boosters.js"></script>
+  <script src="../js/constants/throwables.js"></script>
+  <script src="../js/constants/stratagems.js"></script>
+  <script src="../js/constants/armorpassives.js"></script>
+  <script src="../js/constants/protips.js"></script>
+  <script src="../js/components/genWarbondCheckboxes.js"></script>
+  <script src="../js/randomizermarathon/main.js"></script>
+</html>

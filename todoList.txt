@@ -28,7 +28,6 @@ RANDOMIZER:
   - ability to enable/disable specific items from warbonds
   - option to guarantee to not roll the same item twice in a row
   - add button to specifically roll boosters
-
   BUGS:
     - race condition can be created when certain stratagem options are checked and a stratagem is rolled individually
 
@@ -80,7 +79,7 @@ TIER MAKER
   - dragging an item from the bottom on mobile is difficult. consider making the items a button on mobile that OPERATIONS
     a menu to select which list it should go to
   BUGS
-    - loose items pool duplicates when starting a new list
+    - 
 
 DEBT DIVERS
   - balance changes
@@ -101,13 +100,29 @@ DEBT DIVERS
     is then eliminated from the pool so you
     never roll it again
   - challenge ends when all items have been used in a mission
+  - layout
+    - main view like randomizer
+    - secondary view like BB shop
+  - when a category is finished, player can choose items from that category to be persistent
+  - option to roll 1 backpack and 1 support weapon, or TRUE RANDOM
+  - score multiplier based on difficulty
+  - 
+  MODIFIERS
+    - Easy
+      - reroll token once per mission
+      - can choose to manually select items for a completed category at the cost of a score decrease
+    - Medium
+    - Hard
+    - Extreme
+    - Lucky (advantage on rolls)
+    - Bad Gambler (disadvantage on rolls)
+    - Random difficulty
+    - True Random
+    - Punishing (dont cross out items based on # of deaths in mission)
+    - Solo (for extra points)
 
 NEW CHALLENGE IDEAS:
-	- RANDOMIZER MARATHON
-		- essentially, what you roll in the randomizer
-			is then eliminated from the pool so you
-			never roll it again
-		- challenge ends when all items have been used in a mission
+	- 
 
 
 

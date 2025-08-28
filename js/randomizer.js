@@ -218,7 +218,10 @@ const rollStratagems = async () => {
 
   for (let i = 0; i < randomUniqueNumbers.length; i++) {
     const stratagem = filteredStratList[randomUniqueNumbers[i]];
-    rolledStrats.push(stratagem.internalName);
+    rolledStrats.unshift(stratagem.internalName);
+    if (rolledStrats.length > 4) {
+      rolledStrats.pop();
+    }
     stratagemsContainer.innerHTML += `
           <div class="col-3 px-1 d-flex justify-content-center">
             <div class="card itemCards" 

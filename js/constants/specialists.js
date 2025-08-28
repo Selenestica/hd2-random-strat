@@ -290,7 +290,7 @@ const SPECIALISTS = [
   //   armorPassives: ["Desert Stormer"],
   //   traits: [],
   //   imageURL: null,
-  //   warbonds: ["warbond20"],
+  //   warbonds: ["warbond20", "warbond15"],
   // },
 
   // {

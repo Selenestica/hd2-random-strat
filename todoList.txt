@@ -64,7 +64,15 @@ BUDGET BLITZ
 
 SPECIAL OPERATIONS
   - SPECIALIST ideas:
-  
+    - The Detonator
+      - change Dynamite to G-7 Pineapple
+    - The Engineer
+      - change HMG Emplacement to Solo Silo
+    - The Helghast Sniper
+      - change Anti-Tank Mines to Solo Silo
+    - The Supplier
+      - change Arc Thrower to EAT-700 Exp. Napalm
+
   - save data management modal
     - set file input to null when it closes
   - specialist modal
@@ -106,7 +114,7 @@ DEBT DIVERS
   - when a category is finished, player can choose items from that category to be persistent
   - option to roll 1 backpack and 1 support weapon, or TRUE RANDOM
   - score multiplier based on difficulty
-  - 
+  - maybe make boosters player's choice?
   MODIFIERS
     - Easy
       - reroll token once per mission

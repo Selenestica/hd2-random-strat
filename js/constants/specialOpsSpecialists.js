@@ -12,7 +12,7 @@ const SPECOPSSPECS = [
     secondary: "Crisper",
     throwable: "G-10 Incendiary",
     armorPassive: "Inflammable",
-    warbonds: ["warbond9", "warbond12"],
+    warbonds: ["warbond9", "warbond12", "warbond4"],
   },
   {
     locked: true,
@@ -87,7 +87,7 @@ const SPECOPSSPECS = [
     secondary: "Saber",
     throwable: "G-6 Frag",
     armorPassive: "Reinforced Epaulettes",
-    warbonds: ["warbond15"],
+    warbonds: ["warbond15", "warbond7"],
   },
   {
     locked: true,
@@ -564,7 +564,6 @@ const SPECOPSSPECS = [
     armorPassive: "Gunslinger",
     warbonds: ["warbond0", "warbond4", "warbond14"],
   },
-
   {
     locked: true,
     displayName: "The Helljumper",
@@ -595,4 +594,35 @@ const SPECOPSSPECS = [
     armorPassive: "Feet First",
     warbonds: ["warbond19"],
   },
+
+  // {
+  //   locked: true,
+  //   displayName: "The Raider",
+  //   stratagems: [
+  //     "S-11 Speargun",
+  //     "Shield Generator Pack",
+  //     "Rocket Sentry",
+  //     "Flame Sentry",
+  //   ],
+  //   primary: "Coyote",
+  //   secondary: "Saber",
+  //   throwable: "G-7 Pineapple",
+  //   armorPassive: "Desert Stormer",
+  //   warbonds: ["warbond20", "warbond15", "warbond12"],
+  // },
+  // {
+  //   locked: true,
+  //   displayName: "The Expendable",
+  //   stratagems: [
+  //     "Expendable Anti-Tank",
+  //     "Expendable Napalm",
+  //     "Commando",
+  //     "Solo Silo",
+  //   ],
+  //   primary: "Breaker",
+  //   secondary: "Talon",
+  //   throwable: "G-10 Incendiary",
+  //   armorPassive: "Integrated Explosives",
+  //   warbonds: ["warbond13", "warbond20", "warbond14", "warbond4"],
+  // },
 ];

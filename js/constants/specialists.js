@@ -278,6 +278,26 @@ const SPECIALISTS = [
     imageURL: null,
     warbonds: ["warbond19"],
   },
+
+  // {
+  //   displayName: "The Sardaukar",
+  //   starterItems: [
+  //     "MA5C Assault Rifle",
+  //     "M7S SMG",
+  //     "or M90A Shotgun",
+  //     "Feet First armor",
+  //   ],
+  //   stratagems: [],
+  //   primaries: ["MA5C Assault Rifle", "M7S SMG", "M90A Shotgun"],
+  //   boosters: [],
+  //   secondaries: [],
+  //   throwables: [],
+  //   armorPassives: ["Feet First"],
+  //   traits: [],
+  //   imageURL: null,
+  //   warbonds: ["warbond19"],
+  // },
+
   // {
   //   displayName: 'The O.G.',
   //   starterItems: ['Liberator'],

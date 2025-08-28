@@ -54,4 +54,8 @@ const PRO_TIPS = [
   "While using the Total firing mode with the Variable, you can prevent yourself from getting knocked over by firing while prone.",
   "To get the maximum distance with the Ultimatum, dive while firing at a 45 degree angle. You can launch the projectile at a maximum range of about 55 meters.",
   "The Ballistic Shield will block attacks from the Tesla Tower.",
+  "The Commando has two firing modes: one mode for laser-guided missiles, and another for dumb-fired missiles.",
+  "The missiles from the Commando will travel to the last location that the laser was targeted at, even if you're not actively pointing the laser.",
+  "The suppressors on the M7S SMG and M6C/SOCOM don't alert enemies that are over 35 meters away to your presence.",
+  "The shells used by the M90A Shotgun have hippos drawn on them.",
 ];

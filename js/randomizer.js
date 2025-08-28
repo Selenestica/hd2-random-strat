@@ -84,6 +84,7 @@ let checkedWarbonds = [
   "warbond17",
   "warbond18",
   "warbond19",
+  // "warbond20"
 ];
 
 let proTipCounter = 0;
@@ -218,7 +219,13 @@ const rollStratagems = async () => {
 
   for (let i = 0; i < randomUniqueNumbers.length; i++) {
     const stratagem = filteredStratList[randomUniqueNumbers[i]];
-    rolledStrats.push(stratagem.internalName);
+    // rolledStrats.push(stratagem.internalName);
+    rolledStrats.unshift(stratagem.internalName);
+    if (rolledStrats.length > 4) {
+      rolledStrats.pop();
+    }
+    console.log(rolledStrats);
+
     stratagemsContainer.innerHTML += `
           <div class="col-3 px-1 d-flex justify-content-center">
             <div class="card itemCards" 
@@ -390,6 +397,7 @@ const getRandomUniqueNumbers = (
   let numbers = [];
   let randomNumber = null;
   while (numbers.length < amt) {
+    console.log("getting random unique number");
     randomNumber = Math.floor(Math.random() * list.length);
     const tags = list[randomNumber].tags;
     if (
@@ -502,6 +510,7 @@ const checkLocalStorageForOptionsPreferences = async () => {
         warbond17: true,
         warbond18: true,
         warbond19: true,
+        // warbond20: true,
       },
       stratagemOptions: {
         onlyEaglesRadio: false,

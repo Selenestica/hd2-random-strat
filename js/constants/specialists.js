@@ -281,21 +281,16 @@ const SPECIALISTS = [
 
   // {
   //   displayName: "The Sardaukar",
-  //   starterItems: [
-  //     "MA5C Assault Rifle",
-  //     "M7S SMG",
-  //     "or M90A Shotgun",
-  //     "Feet First armor",
-  //   ],
-  //   stratagems: [],
-  //   primaries: ["MA5C Assault Rifle", "M7S SMG", "M90A Shotgun"],
+  //   starterItems: ["Shield Generator Pack", "Saber"],
+  //   stratagems: ["Shield Generator Pack"],
+  //   primaries: [],
   //   boosters: [],
-  //   secondaries: [],
+  //   secondaries: ["Saber"],
   //   throwables: [],
-  //   armorPassives: ["Feet First"],
+  //   armorPassives: ["Desert Stormer"],
   //   traits: [],
   //   imageURL: null,
-  //   warbonds: ["warbond19"],
+  //   warbonds: ["warbond20"],
   // },
 
   // {

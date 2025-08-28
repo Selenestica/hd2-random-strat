@@ -1,4 +1,5 @@
 GENERAL:
+  - normalize background color of all equipment images
   - go through FontAwesome icons and possibly update to better icons
   - leaderboard integrated with GitHub Issues?
   - users submit verification files in discord server
@@ -29,7 +30,7 @@ RANDOMIZER:
   - option to guarantee to not roll the same item twice in a row
   - add button to specifically roll boosters
   BUGS:
-    - race condition can be created when certain stratagem options are checked and a stratagem is rolled individually
+    - 
 
 PENITENT CRUSADE:
   - system to track max stars missions, incomplete missions, and failed missions. adding points for each

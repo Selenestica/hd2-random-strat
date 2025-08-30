@@ -49,7 +49,6 @@ const getStartingItems = (diff = null) => {
     "Shield Generator Relay",
   ];
   diff === "super" ? starterStratNames.push("Ballistic Shield") : null;
-  diff === "dd" ? starterStratNames.push("Orbital Precision Strike") : null;
   starterPrimNames = ["Constitution"];
   starterSecNames = ["Stun Lance", "Stun Baton", "Combat Hatchet", "Saber"];
   diff !== "super" ? starterSecNames.push("Peacemaker") : null;

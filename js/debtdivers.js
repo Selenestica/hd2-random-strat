@@ -232,10 +232,16 @@ const submitMissionReport = async (isMissionSucceeded) => {
   if (isMissionSucceeded) {
     let deathsDifficultyModifier = 10;
     let accidentalsDifficultyModifier = 20;
-    const starsEarnedModifier =
-      parseInt(starsEarnedInput.value, 10) *
-      parseInt(missionDifficultyInput.value, 10) *
-      2;
+    const starsEarnedValue = parseInt(starsEarnedInput.value, 10);
+    const missionDifficultyValue = parseInt(missionDifficultyInput.value, 10);
+
+    if (missionDifficultyValue >= 10) {
+      starsEarnedModifier = starsEarnedValue * (5 + missionDifficultyValue * 2);
+    } else if (missionDifficultyValue == 8 || missionDifficultyValue == 9) {
+      starsEarnedModifier = starsEarnedValue * (3 + missionDifficultyValue * 2);
+    } else {
+      starsEarnedModifier = starsEarnedValue * missionDifficultyValue * 2;
+    }
     const superSamplesModifier = superSamplesCollectedInput.value * 12;
 
     // if (difficulty === 'Easy') {

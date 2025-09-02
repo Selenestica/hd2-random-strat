@@ -24,11 +24,8 @@ GENERAL:
     - splash page change log
 
 RANDOMIZER:
-  - add tags for THROWABLES
-  - add in weapon and equipment icons from https://github.com/martin-dzhonov/Helldivers_2_weapon_icons
   - ability to enable/disable specific items from warbonds
   - option to guarantee to not roll the same item twice in a row
-  - add button to specifically roll boosters
   BUGS:
     - 
 
@@ -49,7 +46,11 @@ PENITENT CRUSADE:
 
   - SPECIALIST ideas:
     - The Shotgun Surgeon
-    - ybwamahe, Punisher, Bushwacker
+      - ybwamahe, Punisher, Bushwacker
+    - Canine Handler
+      - starts with all guard dogs
+      - needs some sort of nerf
+        - cant roll support weapons? backpacks?
   - BUGS:
     - mysterious specialist issues 
 
@@ -85,11 +86,12 @@ SPECIAL OPERATIONS
 TIER MAKER
   - ability to rename tiers
   - make filter options checkbox toggles
-  - dragging an item from the bottom on mobile is difficult. consider making the items a button on mobile that OPERATIONS
+  - dragging an item from the bottom on mobile is difficult. consider making the items a button on mobile that opens
     a menu to select which list it should go to
   - ability to put armor sets in tiers
+    - which means we would have to add the helmets too. yikes
   BUGS
-    - warbond button doesnt do anything. consider taking it out for now
+    -
 
 DEBT DIVERS
   - balance changes

@@ -87,8 +87,9 @@ TIER MAKER
   - make filter options checkbox toggles
   - dragging an item from the bottom on mobile is difficult. consider making the items a button on mobile that OPERATIONS
     a menu to select which list it should go to
+  - ability to put armor sets in tiers
   BUGS
-    - 
+    - warbond button doesnt do anything. consider taking it out for now
 
 DEBT DIVERS
   - balance changes

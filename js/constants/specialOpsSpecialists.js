@@ -605,10 +605,10 @@ const SPECOPSSPECS = [
   //     "Flame Sentry",
   //   ],
   //   primary: "Coyote",
-  //   secondary: "Saber",
+  //   secondary: "Machete",
   //   throwable: "G-7 Pineapple",
   //   armorPassive: "Desert Stormer",
-  //   warbonds: ["warbond20", "warbond15", "warbond12"],
+  //   warbonds: ["warbond20", "warbond15", "warbond12", "warbond1"],
   // },
   // {
   //   locked: true,

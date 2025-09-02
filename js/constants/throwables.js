@@ -158,7 +158,7 @@ const THROWABLES = [
   //   warbondCode: "warbond20",
   //   internalName: "g7pineapple",
   //   imageURL: "g7pineapple.png",
-  //   tier: "a",
+  //   tier: "b",
   // },
 ];
 

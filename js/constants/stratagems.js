@@ -19,6 +19,18 @@ const STRATAGEMS = [
     imageURL: "flam40flamethrower.svg",
     tier: "b",
   },
+
+  // {
+  //   displayName: "Speargun",
+  //   type: "Stratagem",
+  //   category: "Supply",
+  //   tags: ["Weapons"],
+  //   warbondCode: "warbond20",
+  //   internalName: "speargun",
+  //   imageURL: "speargun.svg",
+  //   tier: "b",
+  // },
+
   {
     displayName: "Laser Cannon",
     type: "Stratagem",
@@ -161,6 +173,17 @@ const STRATAGEMS = [
   //   tier: "b",
   // },
 
+  // {
+  //   displayName: "Solo Silo",
+  //   type: "Stratagem",
+  //   category: "Supply",
+  //   tags: ["Weapons"],
+  //   warbondCode: "warbond20",
+  //   internalName: "solosilo",
+  //   imageURL: "solosilo.svg",
+  //   tier: "b",
+  // },
+
   {
     displayName: "One True Flag",
     type: "Stratagem",
@@ -171,18 +194,6 @@ const STRATAGEMS = [
     imageURL: "onetrueflag.svg",
     tier: "c",
   },
-
-  // {
-  //   displayName: "Speargun",
-  //   type: "Stratagem",
-  //   category: "Supply",
-  //   tags: ["Weapons"],
-  //   warbondCode: "warbond20",
-  //   internalName: "speargun",
-  //   imageURL: "speargun.svg",
-  //   tier: "b",
-  // },
-
   {
     displayName: "Airburst Rocket Launcher",
     type: "Stratagem",
@@ -703,18 +714,6 @@ const STRATAGEMS = [
     imageURL: "grenadierbattlement.svg",
     tier: "b",
   },
-
-  // {
-  //   displayName: "Solo Silo",
-  //   type: "Stratagem",
-  //   category: "Defense",
-  //   tags: ["Emplacement"],
-  //   warbondCode: "warbond20",
-  //   internalName: "solosilo",
-  //   imageURL: "solosilo.svg",
-  //   tier: "b",
-  // },
-
   {
     displayName: "Anti-Tank Mines",
     type: "Stratagem",

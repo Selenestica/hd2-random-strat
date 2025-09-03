@@ -38,7 +38,7 @@ const editSaveName = (oldName) => {
     <p class="text-white mb-0">Rename save file:</p>
     <div id="saveDataNameEditDiv" class="my-1 d-flex" style="width: 90%">
       <input type="text" maxlength="50" id="newSaveFileNameInput" class="form-control" value="${oldName}">
-      <button type="button" onclick="saveNewSaveFileName()" class="mx-1 btn btn-success btn-sm"><i class="fa-solid fa-check"></i></button>
+      <button type="button" onclick="saveNewSaveFileName()" class="mx-1 btn btn-success btn-sm"><i class="bi bi-check-lg"></i></button>
     </div>
   `;
 };
@@ -53,8 +53,8 @@ const genSOSaveDataManagementModalContent = () => {
   saveDataManagementModalSavesList.innerHTML = `
       <div class="my-1" id="soSavedGameOptionDiv">
         <div id="savedGameOptionLabel" class="text-white">${saveData.dataName}</div>
-        <button type="button" onclick="editSaveName('${saveData.dataName}')" class="mx-1 btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></button>
-        <button type="button" onclick="downloadSOSaveFile('${saveData.dataName}')" class="btn btn-primary btn-sm"><i class="fa-solid fa-download"></i></button>
+        <button type="button" onclick="editSaveName('${saveData.dataName}')" class="mx-1 btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></button>
+        <button type="button" onclick="downloadSOSaveFile('${saveData.dataName}')" class="btn btn-primary btn-sm"><i class="bi bi-download"></i></button>
       </div>
     `;
 };

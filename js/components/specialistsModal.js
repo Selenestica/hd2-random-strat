@@ -28,7 +28,7 @@ const setSpecialist = (index) => {
   const specialistHeader = document.getElementById(`specialistHeader${index}`);
   const specCardId = document.getElementById(`pcSpecialistCard('${index}')`);
   if (specialistHeader) {
-    specialistHeader.innerHTML += `<i class="fa-solid specialistCheckMarks text-success mx-1 fa-check"></i>`;
+    specialistHeader.innerHTML += `<i class="specialistCheckMarks text-success mx-1 bi bi-check-lg"></i>`;
     specialistHeader.classList.add("text-success");
     specialistHeader.classList.remove("text-white");
   } else {

@@ -487,7 +487,7 @@ const generateSESItemCard = () => {
 
   card.className = `card col-2 col-lg-1 text-center bbShopItemCards pcItemCards bbItemCards none`;
   card.innerHTML = `
-    <i class="fa-2x text-info fa-solid fa-question pt-1 img-card-top"></i>
+    <i class="fa-2x text-info bi bi-question-lg pt-1 img-card-top"></i>
     <span class="costBadges translate-middle badge rounded-pill bg-warning text-dark">
       ${sesItem.cost}
     </span>

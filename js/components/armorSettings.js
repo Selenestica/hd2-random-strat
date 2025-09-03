@@ -92,9 +92,9 @@ const clearActiveArmorRollType = () => {
 
 const getArmorSizeIcon = async (size) => {
   if (size === "light") {
-    return `<i class="fa-solid armorSizeLogo p-1 d-flex justify-content-center fa-user-ninja"></i>`;
+    return `<i class="armorSizeLogo p-1 d-flex justify-content-center bi bi-shield-minus"></i>`;
   } else if (size === "medium") {
-    return `<i class="fa-solid armorSizeLogo p-1 d-flex justify-content-center fa-user"></i>`;
+    return `<i class="armorSizeLogo p-1 d-flex justify-content-center bi bi-shield"></i>`;
   }
-  return `<i class="fa-solid armorSizeLogo p-1 d-flex justify-content-center fa-user-shield"></i>`;
+  return `<i class="armorSizeLogo p-1 d-flex justify-content-center bi bi-shield-plus"></i>`;
 };

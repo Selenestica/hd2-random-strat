@@ -24,7 +24,7 @@ const genSpecialistCard = (spec, i, currentSpec, latestSpec) => {
     displayName += " (Current)";
   }
   if (latestSpec.displayName === spec.displayName) {
-    displayName += `<i class="fa-solid mx-2 text-warning fa-key"></i>`;
+    displayName += `<i class="bi bi-key-fill mx-2 text-warning"></i>`;
   }
   return `
       <div class="card col-lg-3 col-sm-12 specialistCards m-2" id="soSpecialistCard${i}" onclick="${
@@ -36,7 +36,7 @@ const genSpecialistCard = (spec, i, currentSpec, latestSpec) => {
         <div class="card-body ${spec.locked ? "text-center" : ""}">
           ${
             spec.locked
-              ? `<i class="fa-solid text-white fa-3x fa-question"></i>`
+              ? `<i class="bi bi-question-lg text-white fa-3x"></i>`
               : `
           <p class="text-white mb-0">Stratagems:</p>
           <ul>

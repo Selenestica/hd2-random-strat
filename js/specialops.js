@@ -463,7 +463,7 @@ const setSpecialist = (index) => {
 
   // add the checkmark to the selected specialist
   const specCardHeader = document.getElementById("specialistHeader" + index);
-  specCardHeader.innerHTML += `<i class="fa-solid specialistCheckMarks text-success mx-1 fa-check"></i>`;
+  specCardHeader.innerHTML += `<i class="bi bi-check-lg specialistCheckMarks text-success mx-1"></i>`;
   specCardHeader.classList.add("text-success");
   specCardHeader.classList.remove("text-white");
 };

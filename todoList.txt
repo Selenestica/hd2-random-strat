@@ -1,8 +1,9 @@
 GENERAL:
   - normalize background color of all equipment images
-  - go through FontAwesome icons and possibly update to better icons
+  - update to free icons
   - leaderboard integrated with GitHub Issues?
   - users submit verification files in discord server
+  - add full armor sets instead of headless ones, for Randomizer and Tier List Maker
   - checklist for when new content comes out
     - /js
       - /utils
@@ -88,8 +89,8 @@ TIER MAKER
   - make filter options checkbox toggles
   - dragging an item from the bottom on mobile is difficult. consider making the items a button on mobile that opens
     a menu to select which list it should go to
-  - ability to put armor sets in tiers
-    - which means we would have to add the helmets too. yikes
+  - ability to rate enemies
+  - ability to rate armor sets
   BUGS
     -
 
@@ -105,7 +106,8 @@ DEBT DIVERS
 		1000 (taken by the creditors)
 
 - FREEDOM EXPRESS
-  - test for funness
+  - more booster choices?
+  - 
 
 - RANDOMIZER MARATHON
   - essentially, what you roll in the randomizer
@@ -133,8 +135,11 @@ DEBT DIVERS
     - Punishing (dont cross out items based on # of deaths in mission)
     - Solo (for extra points)
 
-NEW CHALLENGE IDEAS:
-	- 
+NEW PAGE IDEAS:
+	- DRIP MAKER  
+    - can mix and match armor sets
+      - will need to bring in helmets
+
 
 
 

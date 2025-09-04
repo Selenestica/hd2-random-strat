@@ -49,7 +49,7 @@ const SPECOPSSPECS = [
     displayName: "The Engineer",
     stratagems: [
       "Rocket Sentry",
-      "HMG Emplacement",
+      "Solo Silo",
       "Shield Generator Relay",
       "Mortar Sentry",
     ],
@@ -57,7 +57,7 @@ const SPECOPSSPECS = [
     secondary: "P-92 Warrant",
     throwable: "G-50 Seeker",
     armorPassive: "Engineering Kit",
-    warbonds: ["warbond1", "warbond13"],
+    warbonds: ["warbond1", "warbond13", "warbond20"],
   },
   {
     locked: true,
@@ -130,9 +130,9 @@ const SPECOPSSPECS = [
     ],
     primary: "Exploding Crossbow",
     secondary: "Peacemaker",
-    throwable: "Dynamite",
+    throwable: "G-7 Pineapple",
     armorPassive: "Integrated Explosives",
-    warbonds: ["warbond13", "warbond6", "warbond14", "warbond13"],
+    warbonds: ["warbond13", "warbond6", "warbond20", "warbond13"],
   },
   {
     locked: true,
@@ -465,7 +465,7 @@ const SPECOPSSPECS = [
     stratagems: [
       "Orbital Gas Strike",
       "Orbital Smoke Strike",
-      "Anti-Tank Mines",
+      "Solo Silo",
       "EMS Mortar Sentry",
     ],
     primary: "PLAS-39 Accelerator Rifle",
@@ -480,14 +480,14 @@ const SPECOPSSPECS = [
     stratagems: [
       "Supply Pack",
       "Expendable Anti-Tank",
-      "Commando",
+      "Expendable Napalm",
       "Arc Thrower",
     ],
     primary: "Sickle",
     secondary: "Stim Pistol",
     throwable: "G-142 Pyrotech",
     armorPassive: "Med-Kit",
-    warbonds: ["warbond10", "warbond15"],
+    warbonds: ["warbond10", "warbond15", "warbond20"],
   },
   {
     locked: true,

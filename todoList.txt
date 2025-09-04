@@ -13,10 +13,10 @@ GENERAL:
       - /constants
         - armorpassives.js
         - armorsets.js ***need big game hunter!***
-        - primaries.js ***could use a better image***
+        - primaries.js
         - secondaries.js ***could use a better image***
         - stratagems.js
-        - throwables.js ***need pineapple image!***
+        - throwables.js
         - boosters.js
         - warbonds.js
         - specialists.js
@@ -67,14 +67,6 @@ BUDGET BLITZ
 
 SPECIAL OPERATIONS
   - SPECIALIST ideas:
-    - The Detonator
-      - change Dynamite to G-7 Pineapple
-    - The Engineer
-      - change HMG Emplacement to Solo Silo
-    - The Helghast Sniper
-      - change Anti-Tank Mines to Solo Silo
-    - The Supplier
-      - change Arc Thrower to EAT-700 Exp. Napalm
 
   - save data management modal
     - set file input to null when it closes

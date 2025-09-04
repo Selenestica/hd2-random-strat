@@ -35,14 +35,28 @@ PENITENT CRUSADE:
   - end game modal for showing max star missions, completed missions, and failed missions. number of items earned in each category. and total points calculated.
     - when challenge complete, remove Mission Complete/Failed buttons and add "View Results" button so they can see their score again
   - when mission fail, choose a and s tier items from acquiredItems, if any
-  - add nice icon for app icon shortcuts
-  - rare reroll token that randomly shows up as a reward
-  - add QR codes for data sharing
-  - add Discord bot compatibility
+  - add Lite mode, that starts at level 7, with different equipment
+    - Liberator or StA-52 AR instead of Constitution?
+    - Verdict instead of Peacemaker
+    - Extra Padding
+    - HE grenade
+    - One True Flag
+    - Sterilizer
+    - OPS
+    - Orbital Smoke Strike
+    - EMS Mortar Sentry
+    - Eagle Smoke Strike
+    - Orbital EMS Strike
+    - Shield Generator Relay
+    - UAV Recon booster
+    - Motivational Shocks
+    - Flexible Reinforcement Budget
+    - Stun Pods
 
   - challenge settings modal
     - antitank guarantee switch for squads of 2 or less
-    - difficulty select
+    - solo mode
+    - quickplay mode
   - show toast when super penitent crusade unlocked
 
   - SPECIALIST ideas:

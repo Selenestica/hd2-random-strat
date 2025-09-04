@@ -102,28 +102,7 @@
       </div>
       <div class="row d-flex justify-content-center">
         <div class="d-flex col justify-content-center align-items-center">
-          <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              id="currentDifficultyButton"
-            >
-              Penitent Crusade
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
-              <li>
-                <a
-                  id="difficultyOptionButton"
-                  class="dropdown-item"
-                  href="#"
-                  onclick="changeDifficulty()"
-                  >Super Penitent Crusade</a
-                >
-              </li>
-            </ul>
-          </div>
+          <h4 id="pcTitleName" class="mb-0 text-white">Penitent Crusade</h4>
           <button
             class="btn btn-secondary bg-none"
             style="border: none"
@@ -373,14 +352,43 @@
                 >Guarantee Anti-Tank by Difficulty 6 (recommended for squads of 2 or less)</label
               >
             </div> -->
-            <!-- <div class="p-3" id="pcDifficultyRadioContainer">
+            <div class="p-3" id="pcDifficultyRadioContainer">
               <h5 class="text-white">Difficulty</h5>
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
                   name="flexRadioDefault"
+                  id="pcDiffRadioSolo"
+                />
+                <label
+                  class="form-check-label text-white"
+                  for="pcDiffRadioSolo"
+                >
+                  Solo/Duo Mode
+                </label>
+              </div>
+              <!-- <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="pcDiffRadioQuick"
+                />
+                <label
+                  class="form-check-label text-white"
+                  for="pcDiffRadioQuick"
+                >
+                  Quickplay
+                </label>
+              </div> -->
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
                   id="pcDiffRadioNormal"
+                  checked
                 />
                 <label
                   class="form-check-label text-white"
@@ -395,7 +403,6 @@
                   type="radio"
                   name="flexRadioDefault"
                   id="pcDiffRadioSuper"
-                  checked
                 />
                 <label
                   class="form-check-label text-white"
@@ -404,7 +411,7 @@
                   Super Penitent Crusade
                 </label>
               </div>
-            </div> -->
+            </div>
             <div class="p-3" id="warbondsChecklistContainer">
               <h5 class="text-white">Warbond Select</h5>
             </div>

@@ -96,7 +96,6 @@ const genSpecialistsCards = () => {
     return;
   }
   for (let i = 0; i < SPECIALISTS.length; i++) {
-    console.log(SPECIALISTS);
     const specWarbonds = SPECIALISTS[i].warbonds;
     if (specWarbonds.length < 1) {
       specialistsList.innerHTML += makeCard(SPECIALISTS[i], i);

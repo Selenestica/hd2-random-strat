@@ -47,6 +47,11 @@ const difficultyOptionButton = document.getElementById(
 const timeRemainingInput = document.getElementById("timeRemainingInput");
 const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 const hellDiversMobilizeCheckbox = document.getElementById("warbond3");
+const pcDiffRadioSolo = document.getElementById("pcDiffRadioSolo");
+const pcDiffRadioQuick = document.getElementById("pcDiffRadioQuick");
+const pcDiffRadioNormal = document.getElementById("pcDiffRadioNormal");
+const pcDiffRadioSuper = document.getElementById("pcDiffRadioSuper");
+const pcTitleName = document.getElementById("pcTitleName");
 
 let missionsFailed = 0;
 let missionTimes = [];
@@ -89,6 +94,35 @@ for (let y = 0; y < warbondCheckboxes.length; y++) {
     currentItems = [];
     applySpecialist("default");
     genSpecialistsCards();
+  });
+}
+
+const diffRadios = [
+  pcDiffRadioSolo,
+  // pcDiffRadioQuick,
+  pcDiffRadioNormal,
+  pcDiffRadioSuper,
+];
+for (let w = 0; w < diffRadios.length; w++) {
+  diffRadios[w].addEventListener("change", async (e) => {
+    if (e.srcElement.id.includes("Solo")) {
+      difficulty = "solo";
+      pcTitleName.innerHTML = "Solo Crusade";
+    }
+    if (e.srcElement.id.includes("Quick")) {
+      difficulty = "quick";
+      pcTitleName.innerHTML = "Quick Crusade";
+    }
+    if (e.srcElement.id.includes("Normal")) {
+      difficulty = "normal";
+      pcTitleName.innerHTML = "Penitent Crusade";
+    }
+    if (e.srcElement.id.includes("Super")) {
+      difficulty = "super";
+      pcTitleName.innerHTML = "Super Penitent Crusade";
+    }
+    await changeDifficulty();
+    await writeItems();
   });
 }
 
@@ -210,26 +244,45 @@ const getDefaultItems = () => {
 };
 
 const checkMissionButtons = () => {
-  if (missionCounter !== 1) {
+  if (
+    missionCounter !== 1 &&
+    (difficulty === "normal" || difficulty === "solo")
+  ) {
     for (let i = 0; i < warbondCheckboxes.length; i++) {
       warbondCheckboxes[i].disabled = true;
     }
-    // for (let j = 0; j < diffRadios.length; j++) {
-    //   diffRadios[j].disabled = true;
-    // }
-  }
-  if (missionCounter === 1) {
-    for (let j = 0; j < warbondCheckboxes.length; j++) {
-      warbondCheckboxes[j].disabled = false;
-      hellDiversMobilizeCheckbox.disabled = true;
+    for (let j = 0; j < diffRadios.length; j++) {
+      diffRadios[j].disabled = true;
     }
   }
-  if (difficulty === "normal") {
+  if (missionCounter > 3 && difficulty === "super") {
+    for (let i = 0; i < warbondCheckboxes.length; i++) {
+      warbondCheckboxes[i].disabled = true;
+    }
+    for (let j = 0; j < diffRadios.length; j++) {
+      diffRadios[j].disabled = true;
+    }
+  }
+
+  if (missionCounter > 11 && difficulty === "quick") {
+    for (let i = 0; i < warbondCheckboxes.length; i++) {
+      warbondCheckboxes[i].disabled = true;
+    }
+    for (let j = 0; j < diffRadios.length; j++) {
+      diffRadios[j].disabled = true;
+    }
+  }
+
+  if (difficulty === "normal" || difficulty === "solo") {
     if (missionCounter > 1) {
       applySpecialistButton.disabled = true;
     }
     if (missionCounter === 1) {
       applySpecialistButton.disabled = false;
+      for (let i = 0; i < warbondCheckboxes.length; i++) {
+        warbondCheckboxes[i].disabled = false;
+      }
+      hellDiversMobilizeCheckbox.disabled = true;
     }
   }
   if (difficulty === "super") {
@@ -238,6 +291,22 @@ const checkMissionButtons = () => {
     }
     if (missionCounter === 3) {
       applySpecialistButton.disabled = false;
+      for (let i = 0; i < warbondCheckboxes.length; i++) {
+        warbondCheckboxes[i].disabled = false;
+      }
+      hellDiversMobilizeCheckbox.disabled = true;
+    }
+  }
+  if (difficulty === "quick") {
+    if (missionCounter > 11) {
+      applySpecialistButton.disabled = true;
+    }
+    if (missionCounter === 11) {
+      applySpecialistButton.disabled = false;
+      for (let i = 0; i < warbondCheckboxes.length; i++) {
+        warbondCheckboxes[i].disabled = false;
+      }
+      hellDiversMobilizeCheckbox.disabled = true;
     }
   }
 
@@ -641,6 +710,9 @@ const getMandatoryStratStyle = (stratName) => {
   if (difficulty === "super") {
     trueDefaultStrats.push("Ballistic Shield");
   }
+  if (difficulty === "solo") {
+    trueDefaultStrats.push("Orbital Precision Strike");
+  }
   if (
     (!trueDefaultStrats.includes(stratName) &&
       starterStratNames.includes(stratName)) ||
@@ -814,20 +886,22 @@ const changeDifficulty = async (uploadedDiff = null) => {
   // go here when page loads
   if (uploadedDiff) {
     if (uploadedDiff === "normal") {
-      currentDifficultyButton.innerHTML = "Penitent Crusade";
-      difficultyOptionButton.innerHTML = "Super Penitent Crusade";
-    } else if (uploadedDiff === "super") {
-      currentDifficultyButton.innerHTML = "Super Penitent Crusade";
-      difficultyOptionButton.innerHTML = "Penitent Crusade";
+      pcTitleName.innerHTML = "Penitent Crusade";
+    }
+    if (uploadedDiff === "super") {
+      pcTitleName.innerHTML = "Super Penitent Crusade";
+    }
+    if (uploadedDiff === "solo") {
+      pcTitleName.innerHTML = "Solo Crusade";
+    }
+    if (uploadedDiff === "Quick") {
+      pcTitleName.innerHTML = "Quick Crusade";
     }
     return;
   }
 
   // go here when the user clicks the button
-  if (difficulty === "normal") {
-    currentDifficultyButton.innerHTML = "Super Penitent Crusade";
-    difficultyOptionButton.innerHTML = "Penitent Crusade";
-    difficulty = "super";
+  if (difficulty === "super") {
     const penitentCrusadeSaveData = localStorage.getItem(
       "penitentCrusadeSaveData"
     );
@@ -839,11 +913,12 @@ const changeDifficulty = async (uploadedDiff = null) => {
     saveDataAndRestart("super");
     return;
   }
-  if (difficulty === "super") {
-    currentDifficultyButton.innerHTML = "Penitent Crusade";
-    difficultyOptionButton.innerHTML = "Super Penitent Crusade";
-    difficulty = "normal";
+  if (difficulty === "normal") {
     saveDataAndRestart("normal");
+    return;
+  }
+  if (difficulty === "solo") {
+    saveDataAndRestart("solo");
     return;
   }
 };
@@ -943,16 +1018,15 @@ const unlockSuperPC = () => {
         return;
       }
     }
-    difficultyOptionButton.classList.add("disabled");
-    localStorage.setItem("isSuperPenitentCrusadeUnlocked", "false");
+    pcDiffRadioSuper.classList.add("disabled");
     return;
   }
   const isSuperPenitentCrusadeUnlocked = JSON.parse(lsData);
   if (isSuperPenitentCrusadeUnlocked) {
-    difficultyOptionButton.classList.remove("disabled");
+    pcDiffRadioSuper.classList.remove("disabled");
     return;
   }
-  difficultyOptionButton.classList.add("disabled");
+  pcDiffRadioSuper.classList.add("disabled");
 };
 
 const uploadSaveData = async () => {
@@ -1033,8 +1107,12 @@ const uploadSaveData = async () => {
 };
 
 const saveDataAndRestart = async (diff = null) => {
-  // probably want to set all warbond codes to checked just in case
   difficulty = diff ? diff : "normal";
+  if (diff === null) {
+    pcTitleName.innerHTML = "Penitent Crusade";
+  }
+
+  // probably want to set all warbond codes to checked just in case
   warbondCodes = [...masterWarbondCodes];
   for (let i = 0; i < warbondCheckboxes.length; i++) {
     warbondCheckboxes[i].checked = true;
@@ -1042,6 +1120,10 @@ const saveDataAndRestart = async (diff = null) => {
       warbondCheckboxes[i].disabled = false;
     }
     hellDiversMobilizeCheckbox.disabled = true;
+  }
+
+  for (let j = 0; j < diffRadios.length; j++) {
+    diffRadios[j].disabled = false;
   }
   const penitentCrusadeSaveData = localStorage.getItem(
     "penitentCrusadeSaveData"
@@ -1057,11 +1139,6 @@ const saveDataAndRestart = async (diff = null) => {
     sg.currentGame = false;
     return sg;
   });
-
-  if (diff === null) {
-    currentDifficultyButton.innerHTML = "Penitent Crusade";
-    difficultyOptionButton.innerHTML = "Super Penitent Crusade";
-  }
 
   specialist = null;
   // will need to change starting items to account for super
@@ -1087,7 +1164,7 @@ const saveDataAndRestart = async (diff = null) => {
     currentGame: true,
     missionCounter,
     specialist,
-    difficulty: diff === "super" ? "super" : "normal",
+    difficulty: diff ? diff : "normal",
     warbondCodes,
     missionsFailed: 0,
     missionTimes: [],

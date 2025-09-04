@@ -12,11 +12,11 @@ GENERAL:
         - genWarbondCheckboxes.js
       - /constants
         - armorpassives.js
-        - armorsets.js
-        - primaries.js
-        - secondaries.js
+        - armorsets.js ***need big game hunter!***
+        - primaries.js ***could use a better image***
+        - secondaries.js ***could use a better image***
         - stratagems.js
-        - throwables.js
+        - throwables.js ***need pineapple image!***
         - boosters.js
         - warbonds.js
         - specialists.js

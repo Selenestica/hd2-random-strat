@@ -89,18 +89,16 @@ const PRIMARIES = [
     imageURL: "ma5c.png",
     tier: "b",
   },
-
-  // {
-  //   displayName: "AR-2 Coyote",
-  //   type: "Equipment",
-  //   category: "primary",
-  //   tags: ["AssaultRifle"],
-  //   warbondCode: "warbond20",
-  //   internalName: "ar2coyote",
-  //   imageURL: "ar2coyote.png",
-  //   tier: "a",
-  // },
-
+  {
+    displayName: "AR-2 Coyote",
+    type: "Equipment",
+    category: "primary",
+    tags: ["AssaultRifle"],
+    warbondCode: "warbond20",
+    internalName: "ar2coyote",
+    imageURL: "ar2coyote.png",
+    tier: "a",
+  },
   {
     displayName: "Variable",
     type: "Equipment",

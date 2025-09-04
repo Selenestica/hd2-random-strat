@@ -149,17 +149,16 @@ const THROWABLES = [
     imageURL: "g31arc.png",
     tier: "b",
   },
-
-  // {
-  //   displayName: "G-7 Pineapple",
-  //   type: "Equipment",
-  //   category: "throwable",
-  //   tags: [],
-  //   warbondCode: "warbond20",
-  //   internalName: "g7pineapple",
-  //   imageURL: "g7pineapple.png",
-  //   tier: "b",
-  // },
+  {
+    displayName: "G-7 Pineapple",
+    type: "Equipment",
+    category: "throwable",
+    tags: [],
+    warbondCode: "warbond20",
+    internalName: "g7pineapple",
+    imageURL: "g7pineapple.png",
+    tier: "b",
+  },
 ];
 
 // s: 2

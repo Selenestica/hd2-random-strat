@@ -159,15 +159,14 @@ const WARBONDS = [
     imageURL: "odstWB.png",
     tier: "b",
   },
-
-  // {
-  //   displayName: "Dust Devils",
-  //   type: "Warbond",
-  //   category: "",
-  //   tags: [],
-  //   warbondCode: "warbond20",
-  //   internalName: "dustdevilsWB",
-  //   imageURL: "dustdevilsWB.png",
-  //   tier: "c",
-  // },
+  {
+    displayName: "Dust Devils",
+    type: "Warbond",
+    category: "",
+    tags: [],
+    warbondCode: "warbond20",
+    internalName: "dustdevilsWB",
+    imageURL: "dustdevilsWB.png",
+    tier: "b",
+  },
 ];

@@ -199,17 +199,16 @@ const ARMOR_PASSIVES = [
     imageURL: "feetfirst.png",
     tier: "b",
   },
-
-  // {
-  //   displayName: "Desert Stormer",
-  //   type: "Equipment",
-  //   category: "armor",
-  //   tags: ["ArmorPassive"],
-  //   warbondCode: "warbond20",
-  //   internalName: "desertstormer",
-  //   imageURL: "desertstormer.png",
-  //   tier: "b",
-  // },
+  {
+    displayName: "Desert Stormer",
+    type: "Equipment",
+    category: "armor",
+    tags: ["ArmorPassive"],
+    warbondCode: "warbond20",
+    internalName: "desertstormer",
+    imageURL: "desertstormer.png",
+    tier: "b",
+  },
 ];
 
 // s: 1

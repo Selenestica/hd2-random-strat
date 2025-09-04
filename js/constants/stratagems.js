@@ -19,18 +19,16 @@ const STRATAGEMS = [
     imageURL: "flam40flamethrower.svg",
     tier: "b",
   },
-
-  // {
-  //   displayName: "Speargun",
-  //   type: "Stratagem",
-  //   category: "Supply",
-  //   tags: ["Weapons"],
-  //   warbondCode: "warbond20",
-  //   internalName: "speargun",
-  //   imageURL: "speargun.svg",
-  //   tier: "b",
-  // },
-
+  {
+    displayName: "Speargun",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Weapons"],
+    warbondCode: "warbond20",
+    internalName: "speargun",
+    imageURL: "speargun.svg",
+    tier: "a",
+  },
   {
     displayName: "Laser Cannon",
     type: "Stratagem",
@@ -161,29 +159,16 @@ const STRATAGEMS = [
     imageURL: "mls4xcommandorocketlauncher.svg",
     tier: "a",
   },
-
-  // {
-  //   displayName: "Expendable Napalm",
-  //   type: "Stratagem",
-  //   category: "Supply",
-  //   tags: ["Weapons"],
-  //   warbondCode: "warbond20",
-  //   internalName: "eat700expendablenapalm",
-  //   imageURL: "eat700expendablenapalm.svg",
-  //   tier: "b",
-  // },
-
-  // {
-  //   displayName: "Solo Silo",
-  //   type: "Stratagem",
-  //   category: "Supply",
-  //   tags: ["Weapons"],
-  //   warbondCode: "warbond20",
-  //   internalName: "solosilo",
-  //   imageURL: "solosilo.svg",
-  //   tier: "b",
-  // },
-
+  {
+    displayName: "Expendable Napalm",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Weapons"],
+    warbondCode: "warbond20",
+    internalName: "eat700expendablenapalm",
+    imageURL: "eat700expendablenapalm.svg",
+    tier: "b",
+  },
   {
     displayName: "One True Flag",
     type: "Stratagem",
@@ -683,6 +668,16 @@ const STRATAGEMS = [
     internalName: "shieldgeneratorrelay",
     imageURL: "shieldgeneratorrelay.svg",
     tier: "c",
+  },
+  {
+    displayName: "Solo Silo",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Weapons"],
+    warbondCode: "warbond20",
+    internalName: "solosilo",
+    imageURL: "solosilo.svg",
+    tier: "a",
   },
   {
     displayName: "HMG Emplacement",

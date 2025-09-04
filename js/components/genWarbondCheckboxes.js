@@ -22,7 +22,7 @@ const warbondsList = [
   "Control Group", // warbond17
   "KILLZONE", // warbond18
   "Halo ODST", //warbond19
-  //"Dust Devils", //warbond20
+  "Dust Devils", //warbond20
 ];
 
 const genWarbondCheckboxes = () => {

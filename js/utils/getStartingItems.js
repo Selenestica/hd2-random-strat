@@ -39,8 +39,8 @@ const getStartingArmor = (diff) => {
   return ["Extra Padding"];
 };
 
-const getStartingItems = (diff = null) => {
-  starterStratNames = [
+const getStartingStrats = (diff) => {
+  let strats = [
     "One True Flag",
     "Orbital EMS Strike",
     "Orbital Smoke Strike",
@@ -48,17 +48,51 @@ const getStartingItems = (diff = null) => {
     "EMS Mortar Sentry",
     "Shield Generator Relay",
   ];
-  diff === "super" ? starterStratNames.push("Ballistic Shield") : null;
-  diff === "solo" ? starterStratNames.push("Orbital Precision Strike") : null;
+
+  if (diff === "super") {
+    strats.push("Ballistic Shield");
+  }
+  if (diff === "solo") {
+    strats.push("Orbital Precision Strike");
+  }
+  if (diff === "quick") {
+    strats = strats.concat([
+      "Ballistic Shield",
+      "Orbital Precision Strike",
+      "Grenadier Battlement",
+      "Anti-Tank Mines",
+      "Eagle 110mm Rocket Pods",
+    ]);
+  }
+  return strats;
+};
+
+const getStartingBoosters = (diff) => {
+  if (diff === "quick") {
+    return ["UAV Recon", "Muscle Enhancement"];
+  }
+  return [];
+};
+
+const getStartingSecondaries = (diff) => {
+  let secondaries = ["Stun Lance", "Stun Baton", "Combat Hatchet", "Saber"];
+  if (diff !== "super") {
+    secondaries.push("Peacemaker");
+  }
+
+  return secondaries;
+};
+
+const getStartingItems = (diff = null) => {
+  starterStratNames = getStartingStrats(diff);
   starterPrimNames = ["Constitution"];
-  starterSecNames = ["Stun Lance", "Stun Baton", "Combat Hatchet", "Saber"];
-  diff !== "super" ? starterSecNames.push("Peacemaker") : null;
+  starterSecNames = getStartingSecondaries(diff);
   starterThrowNames =
     diff === "bb" || diff === "dd"
       ? ["G-3 Smoke", "K-2 Throwing Knife"]
       : ["G-12 High Explosive"];
   starterArmorPassiveNames = getStartingArmor(diff);
-  starterBoosterNames = [];
+  starterBoosterNames = getStartingBoosters(diff);
   if (specialist === null || specialist === undefined) {
     return {
       starterStratNames,

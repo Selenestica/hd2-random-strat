@@ -38,12 +38,6 @@ const missionCounterText = document.getElementById("missionCounterText");
 const oldDataDetectedModal = document.getElementById("oldDataDetectedModal");
 const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
 const applySpecialistButton = document.getElementById("applySpecialistButton");
-const currentDifficultyButton = document.getElementById(
-  "currentDifficultyButton"
-);
-const difficultyOptionButton = document.getElementById(
-  "difficultyOptionButton"
-);
 const timeRemainingInput = document.getElementById("timeRemainingInput");
 const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 const hellDiversMobilizeCheckbox = document.getElementById("warbond3");
@@ -99,7 +93,7 @@ for (let y = 0; y < warbondCheckboxes.length; y++) {
 
 const diffRadios = [
   pcDiffRadioSolo,
-  // pcDiffRadioQuick,
+  pcDiffRadioQuick,
   pcDiffRadioNormal,
   pcDiffRadioSuper,
 ];
@@ -244,6 +238,18 @@ const getDefaultItems = () => {
 };
 
 const checkMissionButtons = () => {
+  // default behaviour
+  hellDiversMobilizeCheckbox.disabled = true;
+  applySpecialistButton.disabled = false;
+  for (let u = 0; u < warbondCheckboxes.length; u++) {
+    warbondCheckboxes[u].disabled = false;
+  }
+  for (let y = 0; y < diffRadios.length; y++) {
+    diffRadios[y].disabled = false;
+  }
+
+  // disables challenge settings if past the first mission
+  // for normal and solo
   if (
     missionCounter !== 1 &&
     (difficulty === "normal" || difficulty === "solo")
@@ -254,7 +260,9 @@ const checkMissionButtons = () => {
     for (let j = 0; j < diffRadios.length; j++) {
       diffRadios[j].disabled = true;
     }
+    applySpecialistButton.disabled = true;
   }
+  // for super PC
   if (missionCounter > 3 && difficulty === "super") {
     for (let i = 0; i < warbondCheckboxes.length; i++) {
       warbondCheckboxes[i].disabled = true;
@@ -262,8 +270,9 @@ const checkMissionButtons = () => {
     for (let j = 0; j < diffRadios.length; j++) {
       diffRadios[j].disabled = true;
     }
+    applySpecialistButton.disabled = true;
   }
-
+  // for quick PC
   if (missionCounter > 11 && difficulty === "quick") {
     for (let i = 0; i < warbondCheckboxes.length; i++) {
       warbondCheckboxes[i].disabled = true;
@@ -271,45 +280,10 @@ const checkMissionButtons = () => {
     for (let j = 0; j < diffRadios.length; j++) {
       diffRadios[j].disabled = true;
     }
+    applySpecialistButton.disabled = true;
   }
 
-  if (difficulty === "normal" || difficulty === "solo") {
-    if (missionCounter > 1) {
-      applySpecialistButton.disabled = true;
-    }
-    if (missionCounter === 1) {
-      applySpecialistButton.disabled = false;
-      for (let i = 0; i < warbondCheckboxes.length; i++) {
-        warbondCheckboxes[i].disabled = false;
-      }
-      hellDiversMobilizeCheckbox.disabled = true;
-    }
-  }
-  if (difficulty === "super") {
-    if (missionCounter > 3) {
-      applySpecialistButton.disabled = true;
-    }
-    if (missionCounter === 3) {
-      applySpecialistButton.disabled = false;
-      for (let i = 0; i < warbondCheckboxes.length; i++) {
-        warbondCheckboxes[i].disabled = false;
-      }
-      hellDiversMobilizeCheckbox.disabled = true;
-    }
-  }
-  if (difficulty === "quick") {
-    if (missionCounter > 11) {
-      applySpecialistButton.disabled = true;
-    }
-    if (missionCounter === 11) {
-      applySpecialistButton.disabled = false;
-      for (let i = 0; i < warbondCheckboxes.length; i++) {
-        warbondCheckboxes[i].disabled = false;
-      }
-      hellDiversMobilizeCheckbox.disabled = true;
-    }
-  }
-
+  // conditional for when challenge is over
   if (missionCounter >= 23) {
     missionFailedButton.disabled = true;
     missionCompleteButton.disabled = true;
@@ -317,11 +291,10 @@ const checkMissionButtons = () => {
     missionCompleteButton.style.display = "none";
     missionFailedButton.style.display = "none";
     downloadPDFButtonDiv.style.display = "block";
-    // allow the user to start Super Penitent Crusade
-    difficultyOptionButton.classList.remove("disabled");
     localStorage.setItem("isSuperPenitentCrusadeUnlocked", "true");
   }
 
+  // conditional for an ongoing challenge
   if (missionCounter < 21) {
     missionCompleteButton.disabled = false;
     missionFailedButton.disabled = false;
@@ -574,10 +547,21 @@ const rollRewardOptions = async () => {
       return;
     }
     const numbers = new Set();
-    // your first reward pool will always have a stratagem or primary
-    if (missionCounter === 1) {
+
+    // your first reward pool will always have a stratagem
+    if (
+      missionCounter === 1 &&
+      (difficulty === "solo" || difficulty === "normal")
+    ) {
       numbers.add(0);
     }
+    if (missionCounter === 3 && difficulty === "super") {
+      numbers.add(0);
+    }
+    if (missionCounter === 11 && difficulty === "quick") {
+      numbers.add(0);
+    }
+
     while (numbers.size < 3) {
       const randomNumber = Math.floor(Math.random() * itemsLists.length);
       numbers.add(randomNumber);
@@ -707,11 +691,18 @@ const getMandatoryStratStyle = (stratName) => {
     "EMS Mortar Sentry",
     "Shield Generator Relay",
   ];
-  if (difficulty === "super") {
+  if (difficulty === "super" || difficulty === "quick") {
     trueDefaultStrats.push("Ballistic Shield");
   }
-  if (difficulty === "solo") {
+  if (difficulty === "solo" || difficulty === "quick") {
     trueDefaultStrats.push("Orbital Precision Strike");
+  }
+  if (difficulty === "quick") {
+    trueDefaultStrats = trueDefaultStrats.concat([
+      "Anti-Tank Mines",
+      "Grenadier Battlement",
+      "Eagle 110mm Rocket Pods",
+    ]);
   }
   if (
     (!trueDefaultStrats.includes(stratName) &&
@@ -901,26 +892,7 @@ const changeDifficulty = async (uploadedDiff = null) => {
   }
 
   // go here when the user clicks the button
-  if (difficulty === "super") {
-    const penitentCrusadeSaveData = localStorage.getItem(
-      "penitentCrusadeSaveData"
-    );
-    if (!penitentCrusadeSaveData) {
-      await getStartingItems(difficulty);
-      startNewRun(null, difficulty);
-      saveProgress();
-    }
-    saveDataAndRestart("super");
-    return;
-  }
-  if (difficulty === "normal") {
-    saveDataAndRestart("normal");
-    return;
-  }
-  if (difficulty === "solo") {
-    saveDataAndRestart("solo");
-    return;
-  }
+  saveDataAndRestart(difficulty);
 };
 
 const saveProgress = async (item = null) => {
@@ -1013,7 +985,6 @@ const unlockSuperPC = () => {
     for (let i = 0; i < savedGames.length; i++) {
       const game = savedGames[i];
       if (game.missionCounter >= 21) {
-        difficultyOptionButton.classList.remove("disabled");
         localStorage.setItem("isSuperPenitentCrusadeUnlocked", "true");
         return;
       }
@@ -1148,7 +1119,13 @@ const saveDataAndRestart = async (diff = null) => {
   await writeItems();
   currentItems = [];
   currentPunishmentItems = [];
-  missionCounter = diff === "super" ? 3 : 1;
+  missionCounter = 1;
+  if (diff === "super") {
+    missionCounter = 3;
+  }
+  if (diff === "quick") {
+    missionCounter = 11;
+  }
   missionCounterText.innerHTML = `${getMissionText()}`;
   checkMissionButtons();
   const newSaveObj = {
@@ -1213,8 +1190,10 @@ const pruneSavedGames = async () => {
   ).savedGames.filter((sg) => {
     if (
       sg.currentGame === true ||
-      (sg.missionCounter !== 1 && sg.difficulty === "normal") ||
-      (sg.missionCounter !== 3 && sg.difficulty === "super")
+      (sg.missionCounter !== 1 &&
+        (sg.difficulty === "normal" || sg.difficulty === "solo")) ||
+      (sg.missionCounter !== 3 && sg.difficulty === "super") ||
+      (sg.missionCounter !== 11 && sg.difficulty === "quick")
     ) {
       return sg;
     }

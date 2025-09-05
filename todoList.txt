@@ -37,26 +37,10 @@ PENITENT CRUSADE:
   - when mission fail, choose a and s tier items from acquiredItems, if any
   - add Lite mode, that starts at level 7, with different equipment
     - Liberator or StA-52 AR instead of Constitution?
-    - Verdict instead of Peacemaker
+    - Verdict or Redeemer instead of Peacemaker
     - Extra Padding
     - HE grenade
-    - One True Flag
-    - Sterilizer
-    - OPS
-    - Orbital Smoke Strike
-    - EMS Mortar Sentry
-    - Eagle Smoke Strike
-    - Orbital EMS Strike
-    - Shield Generator Relay
-    - UAV Recon booster
-    - Motivational Shocks
-    - Flexible Reinforcement Budget
-    - Stun Pods
 
-  - challenge settings modal
-    - antitank guarantee switch for squads of 2 or less
-    - solo mode
-    - quickplay mode
   - show toast when super penitent crusade unlocked
 
   - SPECIALIST ideas:

@@ -34,6 +34,12 @@ const generateTextFileContent = async () => {
     diffText = "Super ";
     difficultyModifier = 250;
   }
+  if (difficulty === "solo") {
+    diffText = "Solo/Duo ";
+  }
+  if (difficulty === "quick") {
+    diffText = "Quick ";
+  }
 
   score = difficultyModifier + totalTimeRemaining + missionsFailed * -50;
 

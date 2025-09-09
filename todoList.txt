@@ -38,6 +38,9 @@ PENITENT CRUSADE:
 
   - show toast when super penitent crusade unlocked
 
+  - give Sardaukar choice of Saber or Machete
+  - fix solo super penitent crusade wrong stratagems and secondaries
+
   - SPECIALIST ideas:
     - The Shotgun Surgeon
       - ybwamahe, Punisher, Bushwacker

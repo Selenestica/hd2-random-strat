@@ -49,7 +49,7 @@ const getStartingStrats = (diff) => {
     "Shield Generator Relay",
   ];
 
-  if (diff === "super") {
+  if (diff === "super" || diff === "supersolo") {
     strats.push("Ballistic Shield");
   }
   if (diff === "solo" || diff === "supersolo") {
@@ -75,8 +75,14 @@ const getStartingBoosters = (diff) => {
 };
 
 const getStartingSecondaries = (diff) => {
-  let secondaries = ["Stun Lance", "Stun Baton", "Combat Hatchet", "Saber"];
-  if (diff !== "super") {
+  let secondaries = [
+    "Stun Lance",
+    "Stun Baton",
+    "Combat Hatchet",
+    "Saber",
+    "Machete",
+  ];
+  if (diff !== "super" && diff !== "supersolo") {
     secondaries.push("Peacemaker");
   }
 

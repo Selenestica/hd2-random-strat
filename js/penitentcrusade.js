@@ -703,7 +703,11 @@ const getMandatoryStratStyle = (stratName) => {
     "EMS Mortar Sentry",
     "Shield Generator Relay",
   ];
-  if (difficulty === "super" || difficulty === "quick") {
+  if (
+    difficulty === "super" ||
+    difficulty === "quick" ||
+    difficulty === "supersolo"
+  ) {
     trueDefaultStrats.push("Ballistic Shield");
   }
   if (

@@ -25,6 +25,7 @@ let starterSecNames = [
   "Stun Baton",
   "Combat Hatchet",
   "Saber",
+  "Machete",
 ];
 let starterThrowNames = ["G-12 High Explosive"];
 let starterArmorPassiveNames = ["Extra Padding"];

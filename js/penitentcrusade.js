@@ -45,6 +45,7 @@ const pcDiffRadioSolo = document.getElementById("pcDiffRadioSolo");
 const pcDiffRadioQuick = document.getElementById("pcDiffRadioQuick");
 const pcDiffRadioNormal = document.getElementById("pcDiffRadioNormal");
 const pcDiffRadioSuper = document.getElementById("pcDiffRadioSuper");
+const pcDiffRadioSuperSolo = document.getElementById("pcDiffRadioSuperSolo");
 const pcTitleName = document.getElementById("pcTitleName");
 
 let missionsFailed = 0;
@@ -96,24 +97,29 @@ const diffRadios = [
   pcDiffRadioQuick,
   pcDiffRadioNormal,
   pcDiffRadioSuper,
+  pcDiffRadioSuperSolo,
 ];
 for (let w = 0; w < diffRadios.length; w++) {
   diffRadios[w].addEventListener("change", async (e) => {
-    if (e.srcElement.id.includes("Solo")) {
+    if (e.srcElement.id === "pcDiffRadioSolo") {
       difficulty = "solo";
       pcTitleName.innerHTML = "Solo Crusade";
     }
-    if (e.srcElement.id.includes("Quick")) {
+    if (e.srcElement.id === "pcDiffRadioQuick") {
       difficulty = "quick";
       pcTitleName.innerHTML = "Quick Crusade";
     }
-    if (e.srcElement.id.includes("Normal")) {
+    if (e.srcElement.id === "pcDiffRadioNormal") {
       difficulty = "normal";
       pcTitleName.innerHTML = "Penitent Crusade";
     }
-    if (e.srcElement.id.includes("Super")) {
+    if (e.srcElement.id === "pcDiffRadioSuper") {
       difficulty = "super";
       pcTitleName.innerHTML = "Super Penitent Crusade";
+    }
+    if (e.srcElement.id === "pcDiffRadioSuperSolo") {
+      difficulty = "supersolo";
+      pcTitleName.innerHTML = "Solo Super Crusade";
     }
     await changeDifficulty();
     await writeItems();
@@ -262,8 +268,11 @@ const checkMissionButtons = () => {
     }
     applySpecialistButton.disabled = true;
   }
-  // for super PC
-  if (missionCounter > 3 && difficulty === "super") {
+  // for super PC and solo super PC
+  if (
+    missionCounter > 3 &&
+    (difficulty === "super" || difficulty === "supersolo")
+  ) {
     for (let i = 0; i < warbondCheckboxes.length; i++) {
       warbondCheckboxes[i].disabled = true;
     }
@@ -555,7 +564,10 @@ const rollRewardOptions = async () => {
     ) {
       numbers.add(0);
     }
-    if (missionCounter === 3 && difficulty === "super") {
+    if (
+      missionCounter === 3 &&
+      (difficulty === "super" || difficulty === "supersolo")
+    ) {
       numbers.add(0);
     }
     if (missionCounter === 11 && difficulty === "quick") {
@@ -694,7 +706,11 @@ const getMandatoryStratStyle = (stratName) => {
   if (difficulty === "super" || difficulty === "quick") {
     trueDefaultStrats.push("Ballistic Shield");
   }
-  if (difficulty === "solo" || difficulty === "quick") {
+  if (
+    difficulty === "solo" ||
+    difficulty === "quick" ||
+    difficulty === "supersolo"
+  ) {
     trueDefaultStrats.push("Orbital Precision Strike");
   }
   if (difficulty === "quick") {
@@ -885,8 +901,11 @@ const changeDifficulty = async (uploadedDiff = null) => {
     if (uploadedDiff === "solo") {
       pcTitleName.innerHTML = "Solo Crusade";
     }
-    if (uploadedDiff === "Quick") {
+    if (uploadedDiff === "quick") {
       pcTitleName.innerHTML = "Quick Crusade";
+    }
+    if (uploadedDiff === "supersolo") {
+      pcTitleName.innerHTML = "Solo Super Crusade";
     }
     return;
   }
@@ -1120,7 +1139,7 @@ const saveDataAndRestart = async (diff = null) => {
   currentItems = [];
   currentPunishmentItems = [];
   missionCounter = 1;
-  if (diff === "super") {
+  if (diff === "super" || diff === "supersolo") {
     missionCounter = 3;
   }
   if (diff === "quick") {
@@ -1192,7 +1211,8 @@ const pruneSavedGames = async () => {
       sg.currentGame === true ||
       (sg.missionCounter !== 1 &&
         (sg.difficulty === "normal" || sg.difficulty === "solo")) ||
-      (sg.missionCounter !== 3 && sg.difficulty === "super") ||
+      (sg.missionCounter !== 3 &&
+        (sg.difficulty === "super" || sg.difficulty === "supersolo")) ||
       (sg.missionCounter !== 11 && sg.difficulty === "quick")
     ) {
       return sg;

@@ -31,7 +31,7 @@ let starterArmorPassiveNames = ["Extra Padding"];
 let starterBoosterNames = [];
 
 const getStartingArmor = (diff) => {
-  if (diff === "super") {
+  if (diff === "super" || diff === "supersolo") {
     return ["Integrated Explosives"];
   } else if (diff === "bb" || diff === "dd") {
     return ["Scout"];
@@ -52,7 +52,7 @@ const getStartingStrats = (diff) => {
   if (diff === "super") {
     strats.push("Ballistic Shield");
   }
-  if (diff === "solo") {
+  if (diff === "solo" || diff === "supersolo") {
     strats.push("Orbital Precision Strike");
   }
   if (diff === "quick") {

@@ -121,9 +121,8 @@ DEBT DIVERS
     - Solo (for extra points)
 
 ARMOR LAB
-  - rename capes 
-  - rename helmets
   - look through wiki images and see which armor set images are most compatible
+    - 1015 x 1015, .webp files
 
 NEW PAGE IDEAS:
 	- DRIP MAKER  

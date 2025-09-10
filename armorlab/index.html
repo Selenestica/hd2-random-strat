@@ -166,16 +166,61 @@
           <div id="loadoutContainer">
             <div
               id="armorContainer"
-              class="d-flex row justify-content-start"
-            ></div>
-            <div
-              id="armorContainer"
-              class="d-flex row justify-content-start"
-            ></div>
-            <div
-              id="armorContainer"
-              class="d-flex row justify-content-start"
-            ></div>
+              class="d-flex row justify-content-center position-relative"
+              style="z-index: 1; width: 50%"
+            >
+              <div
+                id="helmetContainer"
+                class="d-flex row justify-content-center position-absolute"
+                style="
+                  top: -13px;
+                  left: 52%;
+                  transform: translateX(-50%);
+                  z-index: 2;
+                  width: 50%;
+                "
+              >
+                <div
+                  class="card d-flex armorLabCards mx-1"
+                  style="clip-path: inset(10px 20px)"
+                >
+                  <img
+                    src="../images/helmets/300px-AD-26_Bleeding_Edge_Helmet_Icon.webp"
+                    class="img-card-top"
+                    alt="recon"
+                  />
+                  <div
+                    class="card-body itemNameContainer p-0 p-lg-2 align-items-center"
+                  ></div>
+                </div>
+              </div>
+              <div class="card d-flex armorLabCards mx-1">
+                <img
+                  src="../images/armor/ad26bleedingedge.png"
+                  class="img-card-top"
+                  alt="recon"
+                />
+                <div
+                  class="card-body itemNameContainer p-0 p-lg-2 align-items-center"
+                >
+                  <p class="card-title text-white">armor</p>
+                </div>
+              </div>
+            </div>
+            <!-- <div id="capeContainer" class="d-flex row justify-content-center">
+              <div class="card d-flex armorLabCards w-75 mx-1">
+                <img
+                  src="../images/capes/agentOfOblivion.webp"
+                  class="img-card-top"
+                  alt="recon"
+                />
+                <div
+                  class="card-body itemNameContainer p-0 p-lg-2 align-items-center"
+                >
+                  <p class="card-title text-white">armor</p>
+                </div>
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -357,6 +402,37 @@
                 </ul>
               </div>
             </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HELMETS MODAL -->
+    <div
+      class="modal fade"
+      id="helmetsModal"
+      tabindex="-1"
+      aria-labelledby="helmetsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="helmetsModalLabel">
+              Helmets
+            </h5>
+          </div>
+          <div class="modal-body">
+            <div class="p-3" id="helmetsList"></div>
           </div>
           <div class="modal-footer">
             <button

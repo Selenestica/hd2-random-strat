@@ -123,7 +123,6 @@ DEBT DIVERS
 ARMOR LAB
   - rename capes 
   - rename helmets
-  - create new directory for armor passives
   - look through wiki images and see which armor set images are most compatible
 
 NEW PAGE IDEAS:

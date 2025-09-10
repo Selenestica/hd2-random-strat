@@ -31,9 +31,13 @@ const rollArmor = async () => {
     Math.random() * activeArmorList.list.length
   );
   const rolledArmor = activeArmorList.list[randArmorIndex];
+  let armorPath = "armorpassives";
+  if (!rolledArmor.tags.includes("ArmorPassive")) {
+    armorPath = "armor";
+  }
   let armorImage = `                    
                     <img
-                        src="../images/armor/${rolledArmor.imageURL}"
+                        src="../images/${armorPath}/${rolledArmor.imageURL}"
                         class="img-card-top"
                         alt="${rolledArmor.displayName}"
                     />`;

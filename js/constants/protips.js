@@ -58,4 +58,13 @@ const PRO_TIPS = [
   "The missiles from the Commando will travel to the last location that the laser was targeted at, even if you're not actively pointing the laser.",
   "The suppressors on the M7S SMG and M6C/SOCOM don't alert enemies that are over 35 meters away to your presence.",
   "The shells used by the M90A Shotgun have hippos drawn on them.",
+  "You can often increase the area of effect of the Expendable Napalm by firing it at a wall or ceiling near a group of enemies, giving the bomblets more time to spread out.",
+  "The Solo Silo is able to destroy a Factory Strider from any distance and at any angle, making this stratagem particularly effective against the Automatons.",
+  "The Speargun can overpenetrate smaller enemies.",
+  "The Speargun can close bug holes and destroy bot fabricators",
+  "Enemies will attempt to destroy the Solo Silo, so placing the stratagem in an obscured or hard to reach area is recommended.",
+  "The Emancipator and Patriot Exosuit are particularly effective on planets with cave systems.",
+  "The Plasma Punisher, Scorcher, and other weapons with the explosive attribute can disrupt burrowing Terminids, including Rupture Chargers.",
+  "If you can manage to land a supply stratagem on a Hive Lord, you can track the Hive Lord on the map even when it's burrowing.",
+  "The best known method to kill a Hive Lord is for the entire squad to focus fire one armor segment, destroy it's armor there, then focus fire on the newly created weakpoint.",
 ];

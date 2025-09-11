@@ -124,7 +124,6 @@ ARMOR LAB
   - improve view on desktop
   - when user clicks helmet, armor, or cape image the corresponding menu shows up. same with buttons of course
   - create image modals
-  - create objects for capes and helmets
 
 NEW PAGE IDEAS:
 

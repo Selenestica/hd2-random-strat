@@ -124,6 +124,7 @@ ARMOR LAB
   - improve view on desktop
   - when user clicks helmet, armor, or cape image the corresponding menu shows up. same with buttons of course
   - add protection, stamina, speed, and passives to armorsets objects
+  - ability to filter by light, medium, heavy, armor passive, armor rating, speed, and stamina
 
 NEW PAGE IDEAS:
 

@@ -121,13 +121,13 @@ DEBT DIVERS
     - Solo (for extra points)
 
 ARMOR LAB
-  - look through wiki images and see which armor set images are most compatible
-    - 1015 x 1015, .webp files
+  - improve view on desktop
+  - when user clicks helmet, armor, or cape image the corresponding menu shows up. same with buttons of course
+  - create image modals
+  - create objects for capes and helmets
 
 NEW PAGE IDEAS:
-	- DRIP MAKER  
-    - can mix and match armor sets
-      - will need to bring in helmets
+
 
 
 

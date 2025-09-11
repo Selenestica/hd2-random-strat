@@ -77,7 +77,7 @@
             <i class="socialIcons bi bi-cup-hot"></i>
           </a>
         </div>
-        <div class="col-4">
+        <div class="col-4 px-0">
           <div class="d-flex justify-content-end">
             <button
               class="btn btn-primary"
@@ -120,7 +120,8 @@
 
       <!-- MAIN BODY -->
       <div class="row d-flex justify-content-center pt-3">
-        <div class="col-sm-12 col-md-8 col-lg-5">
+        <div class="col-sm-0 col-md-1 col-lg-2"></div>
+        <div class="col-sm-12 col-md-10 col-lg-8">
           <div class="row d-flex justify-content-between">
             <div class="col d-flex justify-content-center my-1">
               <div>
@@ -163,66 +164,56 @@
             </div>
           </div>
           <hr class="text-white" />
-          <div id="loadoutContainer" class="d-flex justify-content-center">
+          <div
+            id="armorContainer"
+            class="d-flex row justify-content-center position-relative col-12 col-lg-5"
+            style="z-index: 1; width: 400px"
+          >
             <div
-              id="armorContainer"
-              class="d-flex row justify-content-center position-relative"
-              style="z-index: 1; width: 400px"
+              id="helmetContainer"
+              class="d-flex row justify-content-center position-absolute"
+              style="
+                top: 2px;
+                left: 53%;
+                transform: translateX(-50%);
+                z-index: 2;
+                width: 32%;
+              "
             >
               <div
-                id="helmetContainer"
-                class="d-flex row justify-content-center position-absolute"
-                style="
-                  top: -13px;
-                  left: 53%;
-                  transform: translateX(-50%);
-                  z-index: 2;
-                  width: 33%;
-                "
+                class="card d-flex armorLabCards mx-1"
+                style="clip-path: inset(10px 25px 15px 22px)"
               >
-                <div
-                  class="card d-flex armorLabCards mx-1"
-                  style="clip-path: inset(10px 20px)"
-                >
-                  <img
-                    src="../images/helmets/uf84doubtkiller.webp"
-                    class="img-card-top img-fluid"
-                    alt="recon"
-                  />
-                  <div
-                    class="card-body itemNameContainer p-0 p-lg-2 align-items-center"
-                  ></div>
-                </div>
-              </div>
-              <div class="card d-flex armorLabCards mx-1">
                 <img
-                  src="../images/armor/imgi_508_SC-37_Legionnaire_Body_Icon.webp"
+                  src="../images/helmets/b01tactical.webp"
                   class="img-card-top img-fluid"
                   alt="recon"
                 />
-                <div
-                  class="card-body itemNameContainer p-0 p-lg-2 align-items-center"
-                >
-                  <p class="card-title text-white">armor</p>
-                </div>
               </div>
             </div>
-            <!-- <div id="capeContainer" class="d-flex row justify-content-center">
-              <div class="card d-flex armorLabCards w-75 mx-1">
-                <img
-                  src="../images/capes/agentOfOblivion.webp"
-                  class="img-card-top"
-                  alt="recon"
-                />
-                <div
-                  class="card-body itemNameContainer p-0 p-lg-2 align-items-center"
-                >
-                  <p class="card-title text-white">armor</p>
-                </div>
-              </div>
-            </div> -->
+            <div class="card d-flex armorLabCards mx-1 pt-3">
+              <img
+                src="../images/armor/800px-B-01_Tactical_Body_Icon.webp"
+                class="img-card-top img-fluid"
+                alt="recon"
+              />
+            </div>
+          </div>
+          <div
+            id="capeContainer"
+            class="d-flex row justify-content-center"
+            style="width: 400px"
+          >
+            <div class="card d-flex armorLabCards mx-1">
+              <img
+                src="../images/capes/agentOfOblivion.webp"
+                class="img-card-top"
+                alt="recon"
+              />
+            </div>
           </div>
         </div>
+        <div class="col-sm-0 col-md-1 col-lg-2"></div>
       </div>
     </div>
 

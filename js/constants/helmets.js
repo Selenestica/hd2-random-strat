@@ -1,8 +1,8 @@
-const ARMOR_SETS = [
+const HELMETS = [
   {
     displayName: "AF-50 Noxious Ranger",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond10",
     internalName: "af50noxiousranger",
@@ -12,7 +12,7 @@ const ARMOR_SETS = [
   {
     displayName: "AC-2 Obedient",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond18",
     internalName: "ac2obedient",
@@ -22,7 +22,7 @@ const ARMOR_SETS = [
   {
     displayName: "SR-24 Street Scout",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond12",
     internalName: "sr24streetscout",
@@ -32,7 +32,7 @@ const ARMOR_SETS = [
   {
     displayName: "SR-18 Road Block",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond12",
     internalName: "sr18roadblock",
@@ -42,7 +42,7 @@ const ARMOR_SETS = [
   {
     displayName: "B-08 Light Gunner",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond1",
     internalName: "b08lightgunner",
@@ -52,7 +52,7 @@ const ARMOR_SETS = [
   {
     displayName: "CE-07 Demolition Specialist",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond6",
     internalName: "ce07demolitionspecialist",
@@ -62,7 +62,7 @@ const ARMOR_SETS = [
   {
     displayName: "CE-67 Titan",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond1",
     internalName: "ce67titan",
@@ -72,7 +72,7 @@ const ARMOR_SETS = [
   {
     displayName: "CE-74 Breaker",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond1",
     internalName: "ce74breaker",
@@ -82,7 +82,7 @@ const ARMOR_SETS = [
   {
     displayName: "CM-21 Trench Paramedic",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond1",
     internalName: "cm21trenchparamedic",
@@ -92,7 +92,7 @@ const ARMOR_SETS = [
   {
     displayName: "CW-4 Arctic Ranger",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond7",
     internalName: "c4arcticranger",
@@ -102,7 +102,7 @@ const ARMOR_SETS = [
   {
     displayName: "EX-00 Prototype X",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond5",
     internalName: "ex00prototypex",
@@ -112,7 +112,7 @@ const ARMOR_SETS = [
   {
     displayName: "FS-37 Ravager",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond1",
     internalName: "fs37ravager",
@@ -122,7 +122,7 @@ const ARMOR_SETS = [
   {
     displayName: "FS-38 Eradicator",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond1",
     internalName: "fs38eradicator",
@@ -132,7 +132,7 @@ const ARMOR_SETS = [
   {
     displayName: "I-09 Heatseeker",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond9",
     internalName: "i09heatseeker",
@@ -142,7 +142,7 @@ const ARMOR_SETS = [
   {
     displayName: "PH-9 Predator",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond8",
     internalName: "ph9predator",
@@ -152,7 +152,7 @@ const ARMOR_SETS = [
   {
     displayName: "SC-30 Trailblazer Scout",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond3",
     internalName: "sc30trailblazerscout",
@@ -162,7 +162,7 @@ const ARMOR_SETS = [
   {
     displayName: "SC-34 Infiltrator",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond3",
     internalName: "sc34infiltrator",
@@ -172,7 +172,7 @@ const ARMOR_SETS = [
   {
     displayName: "SC-37 Legionnaire",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond1",
     internalName: "sc37legionnaire",
@@ -182,7 +182,7 @@ const ARMOR_SETS = [
   {
     displayName: "UF-16 Inspector",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond11",
     internalName: "uf16inspector",
@@ -192,7 +192,7 @@ const ARMOR_SETS = [
   {
     displayName: "AF-02 Haz-Master",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond10",
     internalName: "af02hazmaster",
@@ -202,7 +202,7 @@ const ARMOR_SETS = [
   {
     displayName: "AF-91 Field Chemist",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond1",
     internalName: "af91fieldchemist",
@@ -212,7 +212,7 @@ const ARMOR_SETS = [
   {
     displayName: "B-01 Tactical",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "none",
     internalName: "b01tactical",
@@ -222,7 +222,7 @@ const ARMOR_SETS = [
   {
     displayName: "B-24 Enforcer",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond1",
     internalName: "b24enforcer",
@@ -232,7 +232,7 @@ const ARMOR_SETS = [
   {
     displayName: "CE-27 Ground Breaker",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond6",
     internalName: "ce27groundbreaker",
@@ -242,7 +242,7 @@ const ARMOR_SETS = [
   {
     displayName: "CE-35 Trench Engineer",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond3",
     internalName: "ce35trenchengineer",
@@ -252,7 +252,7 @@ const ARMOR_SETS = [
   {
     displayName: "CE-81 Juggernaut",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond1",
     internalName: "ce81juggernaut",
@@ -262,7 +262,7 @@ const ARMOR_SETS = [
   {
     displayName: "CM-09 Bonesnapper",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond3",
     internalName: "cm09bonesnapper",
@@ -272,7 +272,7 @@ const ARMOR_SETS = [
   {
     displayName: "CM-10 Clinician",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond1",
     internalName: "cm10clinician",
@@ -282,7 +282,7 @@ const ARMOR_SETS = [
   {
     displayName: "CM-14 Physician",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond3",
     internalName: "cm14physician",
@@ -292,7 +292,7 @@ const ARMOR_SETS = [
   {
     displayName: "CW-9 White Wolf",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond1",
     internalName: "cw9whitewolf",
@@ -302,7 +302,7 @@ const ARMOR_SETS = [
   {
     displayName: "DP-00 Tactical",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "none",
     internalName: "dp00tactical",
@@ -312,7 +312,7 @@ const ARMOR_SETS = [
   {
     displayName: "DP-11 Champion of the People",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond3",
     internalName: "dp11championofthepeople",
@@ -322,7 +322,7 @@ const ARMOR_SETS = [
   {
     displayName: "AC-1 Dutiful",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond18",
     internalName: "ac1dutiful",
@@ -332,7 +332,7 @@ const ARMOR_SETS = [
   {
     displayName: "DP-40 Hero of the Federation",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond3",
     internalName: "dp40heroofthefederation",
@@ -342,7 +342,7 @@ const ARMOR_SETS = [
   {
     displayName: "DP-53 Savior of the Free",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond0",
     internalName: "dp53saviorofthefree",
@@ -352,7 +352,7 @@ const ARMOR_SETS = [
   {
     displayName: "EX-03 Prototype 3",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond5",
     internalName: "ex03prototype3",
@@ -362,7 +362,7 @@ const ARMOR_SETS = [
   {
     displayName: "EX-16 Prototype 16",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond5",
     internalName: "ex16prototype16",
@@ -372,7 +372,7 @@ const ARMOR_SETS = [
   {
     displayName: "FS-34 Exterminator",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond1",
     internalName: "fs34exterminator",
@@ -382,7 +382,7 @@ const ARMOR_SETS = [
   {
     displayName: "I-92 Fire Fighter",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond1",
     internalName: "i92firefighter",
@@ -392,7 +392,7 @@ const ARMOR_SETS = [
   {
     displayName: "I-102 Draconaught",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond9",
     internalName: "i102draconaught",
@@ -402,7 +402,7 @@ const ARMOR_SETS = [
   {
     displayName: "PH-56 Jaguar",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond1",
     internalName: "ph56jaguar",
@@ -412,7 +412,7 @@ const ARMOR_SETS = [
   {
     displayName: "SA-04 Combat Technician",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond3",
     internalName: "sa04combattechnician",
@@ -422,7 +422,7 @@ const ARMOR_SETS = [
   {
     displayName: "SA-12 Servo Assisted",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond4",
     internalName: "sa12servoassisted",
@@ -432,7 +432,7 @@ const ARMOR_SETS = [
   {
     displayName: "SA-25 Steel Trooper",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond4",
     internalName: "sa25steeltrooper",
@@ -442,7 +442,7 @@ const ARMOR_SETS = [
   {
     displayName: "SA-15 Drone Master",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond1",
     internalName: "sa15dronemaster",
@@ -452,7 +452,7 @@ const ARMOR_SETS = [
   {
     displayName: "TR-7 Ambassador of the Brand",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond2",
     internalName: "tr7ambassadorofthebrand",
@@ -462,7 +462,7 @@ const ARMOR_SETS = [
   {
     displayName: "TR-9 Cavalier of Democracy",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond2",
     internalName: "tr9cavalierofdemocracy",
@@ -472,7 +472,7 @@ const ARMOR_SETS = [
   {
     displayName: "TR-40 Golden Eagle",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "none",
     internalName: "tr40goldeneagle",
@@ -482,7 +482,7 @@ const ARMOR_SETS = [
   {
     displayName: "TR-117 Alpha Commander",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "twitchdrop",
     internalName: "tr117alphacommander",
@@ -492,7 +492,7 @@ const ARMOR_SETS = [
   {
     displayName: "UF-50 Bloodhound",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond11",
     internalName: "uf50bloodhound",
@@ -502,7 +502,7 @@ const ARMOR_SETS = [
   {
     displayName: "UF-84 Doubt Killer",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond1",
     internalName: "uf84doubtkiller",
@@ -512,7 +512,7 @@ const ARMOR_SETS = [
   {
     displayName: "AF-52 Lockdown",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond1",
     internalName: "af52lockdown",
@@ -522,7 +522,7 @@ const ARMOR_SETS = [
   {
     displayName: "B-27 Fortified Commando",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond1",
     internalName: "b27fortifiedcommando",
@@ -532,7 +532,7 @@ const ARMOR_SETS = [
   {
     displayName: "CE-64 Grenadier",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond1",
     internalName: "ce64grenadier",
@@ -542,7 +542,7 @@ const ARMOR_SETS = [
   {
     displayName: "CE-101 Guerilla Gorilla",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond1",
     internalName: "ce101guerillagorilla",
@@ -552,7 +552,7 @@ const ARMOR_SETS = [
   {
     displayName: "CM-17 Butcher",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond1",
     internalName: "cm17butcher",
@@ -562,7 +562,7 @@ const ARMOR_SETS = [
   {
     displayName: "CW-22 Kodiak",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond7",
     internalName: "cw22kodiak",
@@ -572,7 +572,7 @@ const ARMOR_SETS = [
   {
     displayName: "CW-36 Winter Warrior",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond7",
     internalName: "cw36winterwarrior",
@@ -582,7 +582,7 @@ const ARMOR_SETS = [
   {
     displayName: "FS-05 Marksman",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond3",
     internalName: "fs05marksman",
@@ -592,7 +592,7 @@ const ARMOR_SETS = [
   {
     displayName: "FS-11 Executioner",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond1",
     internalName: "fs11executioner",
@@ -602,7 +602,7 @@ const ARMOR_SETS = [
   {
     displayName: "FS-23 Battle Master",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond3",
     internalName: "fs23battlemaster",
@@ -612,7 +612,7 @@ const ARMOR_SETS = [
   {
     displayName: "FS-55 Devastator",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond6",
     internalName: "fs55devastator",
@@ -622,7 +622,7 @@ const ARMOR_SETS = [
   {
     displayName: "FS-51 Dreadnought",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond1",
     internalName: "fs51dreadnought",
@@ -632,7 +632,7 @@ const ARMOR_SETS = [
   {
     displayName: "I-44 Salamander",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond1",
     internalName: "i44salamander",
@@ -642,7 +642,7 @@ const ARMOR_SETS = [
   {
     displayName: "PH-202 Twigsnapper",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond8",
     internalName: "ph202twigsnapper",
@@ -652,7 +652,7 @@ const ARMOR_SETS = [
   {
     displayName: "SA-32 Dynamo",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond4",
     internalName: "sa32dynamo",
@@ -662,7 +662,7 @@ const ARMOR_SETS = [
   {
     displayName: "TR-62 Knight",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond2",
     internalName: "tr62knight",
@@ -672,7 +672,7 @@ const ARMOR_SETS = [
   {
     displayName: "SR-64 Cinderblock",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond1",
     internalName: "sr64cinderblock",
@@ -682,7 +682,7 @@ const ARMOR_SETS = [
   {
     displayName: "B-22 Model Citizen",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "none",
     internalName: "b22modelcitizen",
@@ -692,7 +692,7 @@ const ARMOR_SETS = [
   {
     displayName: "IE-3 Martyr",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond13",
     internalName: "ie3martyr",
@@ -702,7 +702,7 @@ const ARMOR_SETS = [
   {
     displayName: "IE-12 Righteous",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond13",
     internalName: "ie12righteous",
@@ -712,7 +712,7 @@ const ARMOR_SETS = [
   {
     displayName: "IE-57 Hell-Bent",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond1",
     internalName: "ie57hellbent",
@@ -722,7 +722,7 @@ const ARMOR_SETS = [
   {
     displayName: "GS-17 Frontier Marshal",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond14",
     internalName: "gs17frontiermarshal",
@@ -732,7 +732,7 @@ const ARMOR_SETS = [
   {
     displayName: "GS-66 Lawmaker",
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond14",
     internalName: "gs66lawmaker",
@@ -742,7 +742,7 @@ const ARMOR_SETS = [
   {
     displayName: `GS-11 Democracy's Deputy`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond1",
     internalName: "gs11democracysdeputy",
@@ -752,7 +752,7 @@ const ARMOR_SETS = [
   {
     displayName: `RE-824 Bearer of the Standard`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond1",
     internalName: "re824bearerofthestandard",
@@ -762,7 +762,7 @@ const ARMOR_SETS = [
   {
     displayName: `RE-1861 Parade Commander`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond15",
     internalName: "re1861paradecommander",
@@ -772,7 +772,7 @@ const ARMOR_SETS = [
   {
     displayName: `RE-2310 Honorary Guard`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond15",
     internalName: "re2310honoraryguard",
@@ -782,7 +782,7 @@ const ARMOR_SETS = [
   {
     displayName: `BP-20 Corrections Officer`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond16",
     internalName: "bp20correctionsofficer",
@@ -792,7 +792,7 @@ const ARMOR_SETS = [
   {
     displayName: `BP-32 Jackboot`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond16",
     internalName: "bp32jackboot",
@@ -802,7 +802,7 @@ const ARMOR_SETS = [
   {
     displayName: `BP-77 Grand Juror`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond1",
     internalName: "bp77grandjuror",
@@ -812,7 +812,7 @@ const ARMOR_SETS = [
   {
     displayName: `AD-11 Livewire`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond17",
     internalName: "ad11livewire",
@@ -822,7 +822,7 @@ const ARMOR_SETS = [
   {
     displayName: `AD-26 Bleeding Edge`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond17",
     internalName: "ad26bleedingedge",
@@ -832,7 +832,7 @@ const ARMOR_SETS = [
   {
     displayName: `AD-49 Apollonian`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond17",
     internalName: "ad49apollonian",
@@ -842,7 +842,7 @@ const ARMOR_SETS = [
   {
     displayName: `A-9 Helljumper`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond19",
     internalName: "a9helljumper",
@@ -852,7 +852,7 @@ const ARMOR_SETS = [
   {
     displayName: `A-35 Recon`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond19",
     internalName: "a35recon",
@@ -862,7 +862,7 @@ const ARMOR_SETS = [
   {
     displayName: `DS-42 Federation's Blade`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Heavy"],
     warbondCode: "warbond20",
     internalName: "ds42federationsblade",
@@ -872,7 +872,7 @@ const ARMOR_SETS = [
   {
     displayName: `DS-191 Scorpion`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Medium"],
     warbondCode: "warbond20",
     internalName: "ds191scorpion",
@@ -882,7 +882,7 @@ const ARMOR_SETS = [
   {
     displayName: `DS-10 Big Game Hunter`,
     type: "Equipment",
-    category: "armor",
+    category: "helmet",
     tags: ["Light"],
     warbondCode: "warbond1",
     internalName: "ds10biggamehunter",

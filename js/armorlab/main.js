@@ -1,6 +1,9 @@
 const helmetsList = document.getElementById("helmetsList");
 const armorList = document.getElementById("armorList");
 const capesList = document.getElementById("capesList");
+const helmetImg = document.getElementById("helmetImg");
+const armorImg = document.getElementById("armorImg");
+const capeImg = document.getElementById("capeImg");
 
 const genImageModalContent = async () => {
   // will need to refactor armor sets and armor passives images into separate files
@@ -22,18 +25,8 @@ const genImageModalContent = async () => {
 const generateItemCard = (item, type) => {
   // display the item image in the modal or accordion item
   let style = "col-2";
-  if (type === "helmets") {
-    console.log("helmet");
-  }
-  if (type === "capes") {
-    console.log("cape");
-  }
-  if (type === "armor") {
-    console.log("armor");
-  }
-  style = "pcModalItemCards col-1";
   return `
-    <div onclick="setItem(${item.internalName}, ${type})" class="card d-flex ${style} pcItemCards mx-1">
+    <div onclick="setItem('${item.internalName}', '${type}')" class="card d-flex ${style} pcItemCards mx-1 my-1">
       <img
           src="../images/${type}/${item.internalName}.webp"
           class="img-card-top"
@@ -47,6 +40,15 @@ const generateItemCard = (item, type) => {
 
 const setItem = (name, type) => {
   console.log(name, type);
+  if (type === "helmets") {
+    helmetImg.src = `../images/helmets/${name}.webp`;
+  }
+  if (type === "capes") {
+    capeImg.src = `../images/capes/${name}.webp`;
+  }
+  if (type === "armor") {
+    armorImg.src = `../images/armor/${name}.webp`;
+  }
 };
 
 genImageModalContent();

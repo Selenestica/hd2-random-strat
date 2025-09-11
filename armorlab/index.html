@@ -84,7 +84,6 @@
               type="button"
               data-bs-toggle="modal"
               data-bs-target="#warbondSelectModal"
-              id="warbondSelectButtonMobile"
             >
               <i class="bi bi-gear-fill"></i>
             </button>
@@ -120,8 +119,9 @@
 
       <!-- MAIN BODY -->
       <div class="row d-flex justify-content-center pt-3">
-        <div class="col-sm-0 col-md-1 col-lg-2"></div>
-        <div class="col-sm-12 col-md-10 col-lg-8">
+        <div class="col-sm-0 col-lg-2"></div>
+        <div class="col-sm-12col-lg-8">
+          <!-- Buttons Row -->
           <div class="row d-flex justify-content-between">
             <div class="col d-flex justify-content-center my-1">
               <div>
@@ -131,7 +131,7 @@
                     data-bs-toggle="modal"
                     data-bs-target="#helmetsModal"
                     type="button"
-                    id="rollStratsButton"
+                    id="selectHelmetsButton"
                   >
                     <span>Helmet</span>
                   </button>
@@ -139,7 +139,7 @@
               </div>
               <div class="mx-1">
                 <button
-                  id="rollEquipmentButton"
+                  id="selectArmorButton"
                   type="button"
                   class="btn btn-success"
                   data-bs-toggle="modal"
@@ -151,7 +151,7 @@
               <div class="btn-group" role="group">
                 <div class="btn-group">
                   <button
-                    id="rollArmorButton"
+                    id="selectCapesButton"
                     type="button"
                     class="btn btn-success"
                     data-bs-toggle="modal"
@@ -163,60 +163,92 @@
               </div>
             </div>
           </div>
+
           <hr class="text-white" />
-          <div
-            id="armorContainer"
-            class="d-flex row justify-content-center position-relative col-12 col-lg-5"
-            style="z-index: 1; width: 350px; overflow: scroll"
-          >
+
+          <div class="row justify-content-center">
+            <!-- Armor Container -->
             <div
-              id="helmetContainer"
-              class="d-flex row justify-content-center position-absolute"
-              style="
-                top: 2px;
-                left: 53%;
-                transform: translateX(-50%);
-                z-index: 2;
-                width: 34%;
-              "
+              id="armorContainer"
+              class="d-flex flex-column align-items-center position-relative col-12 col-md-6 mb-1 px-0"
+              style="z-index: 1; width: 350px"
             >
               <div
-                class="card d-flex armorLabCards mx-1"
-                style="clip-path: inset(10px 25px 15px 22px)"
+                id="helmetContainer"
+                class="d-flex row justify-content-center position-absolute"
+                style="
+                  top: 4px;
+                  left: 53.5%;
+                  transform: translateX(-50%);
+                  z-index: 2;
+                  width: 27%;
+                "
               >
+                <div
+                  class="card d-flex armorLabCards mx-1"
+                  style="clip-path: inset(1px 25px 12px 22px)"
+                >
+                  <img
+                    id="helmetImg"
+                    src="../images/helmets/b01tactical.webp"
+                    class="img-card-top img-fluid"
+                    alt="recon"
+                  />
+                </div>
+              </div>
+              <div class="card d-flex armorLabCards mx-1 pt-3">
                 <img
-                  id="helmetImg"
-                  src="../images/helmets/b01tactical.webp"
+                  id="armorImg"
+                  src="../images/armor/b01tactical.webp"
                   class="img-card-top img-fluid"
                   alt="recon"
                 />
               </div>
             </div>
-            <div class="card d-flex armorLabCards mx-1 pt-3">
-              <img
-                id="armorImg"
-                src="../images/armor/b01tactical.webp"
-                class="img-card-top img-fluid"
-                alt="recon"
-              />
+
+            <!-- Cape Container -->
+            <div
+              id="capeContainer"
+              class="d-flex flex-column align-items-center col-12 col-md-6 mb-3 px-0"
+              style="width: 350px"
+            >
+              <div class="card d-flex armorLabCards mx-1">
+                <img
+                  id="capeImg"
+                  src="../images/capes/foesmasher.webp"
+                  class="img-card-top"
+                  alt="recon"
+                />
+              </div>
             </div>
           </div>
-          <div
-            id="capeContainer"
-            class="d-flex row justify-content-center"
-            style="width: 350px"
-          >
-            <div class="card d-flex armorLabCards mx-1">
-              <img
-                id="capeImg"
-                src="../images/capes/agentOfOblivion.webp"
-                class="img-card-top"
-                alt="recon"
-              />
+
+          <hr class="text-white" />
+
+          <div class="row justify-content-center">
+            <!-- Info Container -->
+            <div
+              class="d-flex flex-column align-items-center justify-content-center col-12 col-md-6 mb-1 px-0"
+            >
+              <ul>
+                <li class="text-white"><b>Helmet:</b> B-01 Tactical</li>
+                <li class="text-white"><b>Armor:</b> B-01 Tactical</li>
+                <li class="text-white"><b>Cape:</b> Foesmasher</li>
+              </ul>
+            </div>
+            <div
+              class="d-flex flex-column align-items-center justify-content-center col-12 col-md-6 mb-1 px-0"
+            >
+              <ul>
+                <li class="text-white"><b>Passive:</b> Extra Padding</li>
+                <li class="text-white"><b>Protection:</b> 150</li>
+                <li class="text-white"><b>Speed:</b> 500</li>
+                <li class="text-white"><b>Stamina:</b> 100</li>
+              </ul>
             </div>
           </div>
         </div>
-        <div class="col-sm-0 col-md-1 col-lg-2"></div>
+        <div class="col-sm-0 col-lg-2"></div>
       </div>
     </div>
 

@@ -123,7 +123,7 @@ DEBT DIVERS
 ARMOR LAB
   - improve view on desktop
   - when user clicks helmet, armor, or cape image the corresponding menu shows up. same with buttons of course
-  - create image modals
+  - add protection, stamina, speed, and passives to armorsets objects
 
 NEW PAGE IDEAS:
 

@@ -123,8 +123,14 @@ DEBT DIVERS
 ARMOR LAB
   - improve view on desktop
   - when user clicks helmet, armor, or cape image the corresponding menu shows up. same with buttons of course
-  - add protection, stamina, speed, and passives to armorsets objects
   - ability to filter by light, medium, heavy, armor passive, armor rating, speed, and stamina
+    - search function
+  - ability to name and save armor loadouts (object will be pushed to an array in the save file)
+    - loadout name above images, with button to edit name
+    - save button next to Cape button
+    - toast shows when loadout is saved
+  - save data management modal is a list of all saved loadouts
+
 
 NEW PAGE IDEAS:
 

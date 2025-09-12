@@ -4,10 +4,20 @@ const capesList = document.getElementById("capesList");
 const helmetImg = document.getElementById("helmetImg");
 const armorImg = document.getElementById("armorImg");
 const capeImg = document.getElementById("capeImg");
+const infoContainer = document.getElementById("infoContainer");
+const armorNameText = document.getElementById("armorNameText");
+const helmetNameText = document.getElementById("helmetNameText");
+const capeNameText = document.getElementById("capeNameText");
+const passiveNameText = document.getElementById("passiveNameText");
+const protectionValueText = document.getElementById("protectionValueText");
+const speedValueText = document.getElementById("speedValueText");
+const staminaValueText = document.getElementById("staminaValueText");
+const typeValueText = document.getElementById("typeValueText");
+const armorDrawer = document.getElementById("armorDrawer");
+const helmetDrawer = document.getElementById("helmetDrawer");
+const capesDrawer = document.getElementById("capesDrawer");
 
-const genImageModalContent = async () => {
-  // will need to refactor armor sets and armor passives images into separate files
-  //   const paths = ["armor", "helmets", "capes"];
+const genImageDrawerContent = async () => {
   for (let i = 0; i < HELMETS.length; i++) {
     const helmetCard = await generateItemCard(HELMETS[i], "helmets");
     helmetsList.innerHTML += helmetCard;
@@ -23,32 +33,46 @@ const genImageModalContent = async () => {
 };
 
 const generateItemCard = (item, type) => {
-  // display the item image in the modal or accordion item
-  let style = "col-2";
   return `
-    <div onclick="setItem('${item.internalName}', '${type}')" class="card d-flex ${style} pcItemCards mx-1 my-1">
+    <div onclick="setItem('${item.internalName}', '${type}')" class="card d-flex col-2 pcItemCards cursorPointer mx-1 my-1">
       <img
           src="../images/${type}/${item.internalName}.webp"
           class="img-card-top"
           alt="${item.displayName}"
       />
       <div class="card-body itemNameContainer p-0 align-items-center">
-          <p class="card-title text-white">${item.displayName}</p>
+          <p class="card-title text-white" style="font-size: small">${item.displayName}</p>
       </div>
     </div>`;
 };
 
-const setItem = (name, type) => {
-  console.log(name, type);
+const setItem = async (name, type) => {
   if (type === "helmets") {
     helmetImg.src = `../images/helmets/${name}.webp`;
+    const helmetObjs = await HELMETS.filter(
+      (helm) => helm.internalName === name
+    );
+    helmetNameText.innerHTML = helmetObjs[0].displayName;
   }
   if (type === "capes") {
     capeImg.src = `../images/capes/${name}.webp`;
+    const capeObjs = await CAPES.filter((cape) => cape.internalName === name);
+    capeNameText.innerHTML = capeObjs[0].displayName;
   }
   if (type === "armor") {
     armorImg.src = `../images/armor/${name}.webp`;
+    armorNameText.innerHTML = dName;
+    const armorObjs = await ARMOR_SETS.filter(
+      (armor) => armor.internalName === name
+    );
+    const { armorRating, speed, stamina, passive, tags, warbondCode } =
+      armorObjs[0];
+    passiveNameText.innerHTML = passive;
+    protectionValueText.innerHTML = armorRating;
+    speedValueText.innerHTML = speed;
+    staminaValueText.innerHTML = stamina;
+    typeValueText.innerHTML = tags[0];
   }
 };
 
-genImageModalContent();
+genImageDrawerContent();

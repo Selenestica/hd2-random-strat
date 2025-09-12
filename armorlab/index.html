@@ -89,7 +89,7 @@
             </button>
             <button
               class="btn btn-primary mx-1"
-              onclick="genPCSaveDataManagementModalInfo()"
+              onclick="genALSaveDataManagementModalInfo()"
               type="button"
             >
               <i class="bi bi-save text-light"></i>
@@ -128,8 +128,9 @@
                 <div class="btn-group">
                   <button
                     class="btn btn-success"
-                    data-bs-toggle="modal"
-                    data-bs-target="#helmetsModal"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#helmetDrawer"
+                    aria-controls="helmetDrawer"
                     type="button"
                     id="selectHelmetsButton"
                   >
@@ -142,8 +143,9 @@
                   id="selectArmorButton"
                   type="button"
                   class="btn btn-success"
-                  data-bs-toggle="modal"
-                  data-bs-target="#armorModal"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#armorDrawer"
+                  aria-controls="armorDrawer"
                 >
                   <span>Armor</span>
                 </button>
@@ -154,8 +156,9 @@
                     id="selectCapesButton"
                     type="button"
                     class="btn btn-success"
-                    data-bs-toggle="modal"
-                    data-bs-target="#capesModal"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#capesDrawer"
+                    aria-controls="capesDrawer"
                   >
                     <span>Cape</span>
                   </button>
@@ -185,13 +188,16 @@
                 "
               >
                 <div
-                  class="card d-flex armorLabCards mx-1"
-                  style="clip-path: inset(1px 25px 12px 22px)"
+                  class="card d-flex mx-1"
+                  style="
+                    clip-path: inset(1px 25px 12px 22px);
+                    background-color: inherit;
+                  "
                 >
                   <img
                     id="helmetImg"
                     src="../images/helmets/b01tactical.webp"
-                    class="img-card-top img-fluid"
+                    class="img-fluid"
                     alt="recon"
                   />
                 </div>
@@ -200,7 +206,7 @@
                 <img
                   id="armorImg"
                   src="../images/armor/b01tactical.webp"
-                  class="img-card-top img-fluid"
+                  class="img-fluid"
                   alt="recon"
                 />
               </div>
@@ -209,15 +215,15 @@
             <!-- Cape Container -->
             <div
               id="capeContainer"
-              class="d-flex flex-column align-items-center col-12 col-md-6 mb-3 px-0"
+              class="d-flex flex-column col-12 col-md-6 px-0 justify-content-center"
               style="width: 350px"
             >
               <div class="card d-flex armorLabCards mx-1">
                 <img
                   id="capeImg"
                   src="../images/capes/foesmasher.webp"
-                  class="img-card-top"
                   alt="recon"
+                  style="height: 340px"
                 />
               </div>
             </div>
@@ -225,27 +231,51 @@
 
           <hr class="text-white" />
 
-          <div class="row justify-content-center">
-            <!-- Info Container -->
+          <!-- Info Container -->
+          <div class="row justify-content-center" id="infoContainer">
             <div
-              class="d-flex flex-column align-items-center justify-content-center col-12 col-md-6 mb-1 px-0"
+              class="d-flex flex-column align-items-center justify-content-center col-sm-0 col-md-3 mb-1 px-0"
+            ></div>
+            <div
+              class="d-flex flex-column align-items-center justify-content-center col-12 col-md-3 mb-1 px-0"
             >
               <ul>
-                <li class="text-white"><b>Helmet:</b> B-01 Tactical</li>
-                <li class="text-white"><b>Armor:</b> B-01 Tactical</li>
-                <li class="text-white"><b>Cape:</b> Foesmasher</li>
+                <li class="text-white">
+                  <b>Helmet:</b> <span id="helmetNameText">B-01 Tactical</span>
+                </li>
+                <li class="text-white">
+                  <b>Armor:</b> <span id="armorNameText">B-01 Tactical</span>
+                </li>
+                <li class="text-white">
+                  <b>Cape:</b> <span id="capeNameText">Foesmasher</span>
+                </li>
               </ul>
             </div>
             <div
-              class="d-flex flex-column align-items-center justify-content-center col-12 col-md-6 mb-1 px-0"
+              class="d-flex flex-column align-items-center justify-content-center col-12 col-md-3 mb-1 px-0"
             >
               <ul>
-                <li class="text-white"><b>Passive:</b> Extra Padding</li>
-                <li class="text-white"><b>Protection:</b> 150</li>
-                <li class="text-white"><b>Speed:</b> 500</li>
-                <li class="text-white"><b>Stamina:</b> 100</li>
+                <li class="text-white">
+                  <b>Passive:</b>
+                  <span id="passiveNameText">Extra Padding</span>
+                </li>
+                <li class="text-white">
+                  <b>Type:</b> <span id="typeValueText">Medium</span>
+                </li>
+                <li class="text-white">
+                  <b>Armor Rating:</b> <span id="protectionValueText">150</span>
+                </li>
+                <li class="text-white">
+                  <b>Speed:</b> <span id="speedValueText">500</span>
+                </li>
+                <li class="text-white">
+                  <b>Stamina:</b> <span id="staminaValueText">100</span>
+                </li>
               </ul>
             </div>
+            <div
+              class="d-flex flex-column align-items-center justify-content-center col-12 col-md-3 mb-1 px-0"
+            ></div>
           </div>
         </div>
         <div class="col-sm-0 col-lg-2"></div>
@@ -442,92 +472,72 @@
       </div>
     </div>
 
-    <!-- HELMETS MODAL -->
+    <!-- HELMETS DRAWER -->
     <div
-      class="modal fade"
-      id="helmetsModal"
+      class="offcanvas offcanvas-end bg-grey"
       tabindex="-1"
-      aria-labelledby="helmetsModalLabel"
-      aria-hidden="true"
+      id="helmetDrawer"
+      aria-labelledby="helmetDrawerLabel"
+      data-bs-backdrop="false"
+      data-bs-scroll="true"
     >
-      <div class="modal-dialog modal-lg modal-dialog-scrollable">
-        <div class="modal-content bg-grey">
-          <div class="modal-header">
-            <h5 class="modal-title text-light" id="helmetsModalLabel">
-              Helmets
-            </h5>
-          </div>
-          <div class="modal-body">
-            <div class="p-3 row justify-content-center" id="helmetsList"></div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
+      <div class="offcanvas-header">
+        <h5 class="modal-title text-light" id="helmetsModalLabel">Helmets</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="row justify-content-center" id="helmetsList"></div>
       </div>
     </div>
 
-    <!-- ARMOR MODAL -->
+    <!-- ARMOR DRAWER -->
     <div
-      class="modal fade"
-      id="armorModal"
+      class="offcanvas offcanvas-end bg-grey"
       tabindex="-1"
-      aria-labelledby="armorModalLabel"
-      aria-hidden="true"
+      id="armorDrawer"
+      aria-labelledby="armorDrawerLabel"
+      data-bs-backdrop="false"
+      data-bs-scroll="true"
     >
-      <div class="modal-dialog modal-lg modal-dialog-scrollable">
-        <div class="modal-content bg-grey">
-          <div class="modal-header">
-            <h5 class="modal-title text-light" id="armorModalLabel">Armor</h5>
-          </div>
-          <div class="modal-body">
-            <div class="p-3 row justify-content-center" id="armorList"></div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
+      <div class="offcanvas-header">
+        <h5 class="modal-title text-light" id="armorModalLabel">Armor</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="row justify-content-center" id="armorList"></div>
       </div>
     </div>
 
-    <!-- CAPES MODAL -->
+    <!-- CAPES DRAWER -->
     <div
-      class="modal fade"
-      id="capesModal"
+      class="offcanvas offcanvas-end bg-grey"
       tabindex="-1"
-      aria-labelledby="capesModalLabel"
-      aria-hidden="true"
+      id="capesDrawer"
+      aria-labelledby="capesDrawerLabel"
+      data-bs-backdrop="false"
+      data-bs-scroll="true"
     >
-      <div class="modal-dialog modal-lg modal-dialog-scrollable">
-        <div class="modal-content bg-grey">
-          <div class="modal-header">
-            <h5 class="modal-title text-light" id="capesModalLabel">Capes</h5>
-          </div>
-          <div class="modal-body">
-            <div class="p-3 row justify-content-center" id="capesList"></div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
+      <div class="offcanvas-header">
+        <h5 class="modal-title text-light" id="capesModalLabel">Capes</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="row justify-content-center" id="capesList"></div>
       </div>
     </div>
   </body>

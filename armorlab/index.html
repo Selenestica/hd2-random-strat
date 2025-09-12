@@ -124,52 +124,91 @@
           <!-- Buttons Row -->
           <div class="row d-flex justify-content-between">
             <div class="col d-flex justify-content-center my-1">
-              <div>
-                <div class="btn-group">
-                  <button
-                    class="btn btn-success"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#helmetDrawer"
-                    aria-controls="helmetDrawer"
-                    type="button"
-                    id="selectHelmetsButton"
-                  >
-                    <span>Helmet</span>
-                  </button>
-                </div>
-              </div>
-              <div class="mx-1">
-                <button
-                  id="selectArmorButton"
-                  type="button"
-                  class="btn btn-success"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#armorDrawer"
-                  aria-controls="armorDrawer"
-                >
-                  <span>Armor</span>
-                </button>
-              </div>
-              <div class="btn-group" role="group">
-                <div class="btn-group">
-                  <button
-                    id="selectCapesButton"
-                    type="button"
-                    class="btn btn-success"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#capesDrawer"
-                    aria-controls="capesDrawer"
-                  >
-                    <span>Cape</span>
-                  </button>
-                </div>
-              </div>
+              <button
+                class="btn btn-primary"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#helmetDrawer"
+                aria-controls="helmetDrawer"
+                type="button"
+                id="selectHelmetsButton"
+              >
+                <span>Helmet</span>
+              </button>
+              <button
+                id="selectArmorButton"
+                type="button"
+                class="btn btn-primary mx-1"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#armorDrawer"
+                aria-controls="armorDrawer"
+              >
+                <span>Armor</span>
+              </button>
+              <button
+                id="selectCapesButton"
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#capesDrawer"
+                aria-controls="capesDrawer"
+              >
+                <span>Cape</span>
+              </button>
+              <button
+                id="selectCapesButton"
+                type="button"
+                class="btn btn-success mx-1"
+                onclick="saveLoadout()"
+              >
+                <span><i class="bi bi-bookmark-star"></i></span>
+              </button>
             </div>
           </div>
 
           <hr class="text-white" />
 
           <div class="row justify-content-center">
+            <div class="row justify-content-center mb-3">
+              <div
+                class="col d-flex justify-content-center align-items-center"
+                id="loadoutNameContainer"
+              >
+                <b class="text-white mx-2">Name: </b>
+                <span class="text-white" id="loadoutNameText">
+                  Unnamed Set #1</span
+                >
+                <button
+                  class="btn btn-primary bg-none text-warning"
+                  style="border: none"
+                  type="button"
+                  onclick="editName()"
+                >
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+              </div>
+              <div
+                class="col d-flex justify-content-center align-items-center d-none"
+                id="loadoutEditNameContainer"
+              >
+                <div class="input-group" style="width: 250px">
+                  <input
+                    id="newLoadoutNameInput"
+                    type="text"
+                    class="form-control"
+                    placeholder="new name..."
+                    aria-label="new name..."
+                    aria-describedby="button-addon2"
+                  />
+                  <button
+                    class="btn btn-success"
+                    type="button"
+                    onclick="submitLoadoutName()"
+                  >
+                    <i class="bi bi-check2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
             <!-- Armor Container -->
             <div
               id="armorContainer"

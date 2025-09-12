@@ -16,6 +16,68 @@ const typeValueText = document.getElementById("typeValueText");
 const armorDrawer = document.getElementById("armorDrawer");
 const helmetDrawer = document.getElementById("helmetDrawer");
 const capesDrawer = document.getElementById("capesDrawer");
+const loadoutNameContainer = document.getElementById("loadoutNameContainer");
+const loadoutEditNameContainer = document.getElementById(
+  "loadoutEditNameContainer"
+);
+const loadoutNameText = document.getElementById("loadoutNameText");
+const newLoadoutNameInput = document.getElementById("newLoadoutNameInput");
+
+let currentArmor = {
+  displayName: "B-01 Tactical",
+  type: "Equipment",
+  category: "armor",
+  tags: ["Medium"],
+  armorRating: 150,
+  speed: 500,
+  stamina: 100,
+  passive: "Extra Padding",
+  warbondCode: "none",
+  internalName: "b01tactical",
+  imageURL: "b01tactical.webp",
+  tier: "b",
+};
+let currentHelmet = {
+  displayName: "B-01 Tactical",
+  type: "Equipment",
+  category: "helmet",
+  tags: ["Medium"],
+  warbondCode: "none",
+  internalName: "b01tactical",
+  imageURL: "b01tactical.webp",
+  tier: "b",
+};
+let currentCape = {
+  displayName: "Foesmasher",
+  type: "Equipment",
+  category: "cape",
+  tags: [],
+  warbondCode: "none",
+  internalName: "foesmasher",
+  imageURL: "foesmasher.webp",
+  tier: "b",
+};
+let currentLoadoutName = "Unnamed Set #1";
+
+const editName = () => {
+  loadoutNameContainer.classList.toggle("d-none", true);
+  loadoutEditNameContainer.classList.toggle("d-none", false);
+};
+
+const submitLoadoutName = () => {
+  loadoutNameContainer.classList.toggle("d-none", false);
+  loadoutEditNameContainer.classList.toggle("d-none", true);
+  loadoutNameText.innerHTML = newLoadoutNameInput.value;
+};
+
+const saveLoadout = async () => {
+  console.log("saving loadout");
+  const data = localStorage.getItem("armorLabSaveData");
+  if (!data) {
+    // create data
+    // return
+  }
+};
 
 const genImageDrawerContent = async () => {
   for (let i = 0; i < HELMETS.length; i++) {

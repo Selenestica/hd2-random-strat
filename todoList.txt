@@ -129,13 +129,9 @@ ARMOR LAB
   - OR, when user clicks helmet/armor or cape, a modal shows with the view expanded
   - ability to filter by light, medium, heavy, armor passive, armor rating, speed, and stamina
     - search function
-  - edit info modal
-    - warning! layout may break on screens less than 375px wide
   - manually adjust CSS inset values for helmet for certain armors and helmets
     - thing is, some helmets are smaller than the default helmet... so that is quiote a bit of work
   - random button!
-  - ability to toggle warbonds and their content
-
 
 
 NEW PAGE IDEAS:

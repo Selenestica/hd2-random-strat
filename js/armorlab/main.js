@@ -118,16 +118,15 @@ const uploadSaveData = async (saveIndex = null) => {
 
   // populate current loadout and save data modal here
   const parsedData = JSON.parse(data);
-  const { armor, cape, helmet, name } = !saveIndex
-    ? parsedData
-    : parsedData.loadouts[saveIndex];
+  const { armor, cape, helmet, name } =
+    saveIndex === null ? parsedData : parsedData.loadouts[saveIndex];
   setItem(armor, "armor");
   setItem(cape, "capes");
   setItem(helmet, "helmets");
   loadoutNameText.innerHTML = name;
   currentLoadoutName = name;
 
-  !saveIndex ? genSaveDataManagementModalContent() : null;
+  saveIndex === null ? genSaveDataManagementModalContent() : null;
 };
 
 const genImageDrawerContent = async () => {

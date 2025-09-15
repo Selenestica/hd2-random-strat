@@ -197,6 +197,7 @@
                     id="newLoadoutNameInput"
                     type="text"
                     class="form-control"
+                    maxlength="30"
                     placeholder="new name..."
                     aria-label="new name..."
                     aria-describedby="button-addon2"
@@ -406,7 +407,6 @@
                 type="button"
                 onclick="deleteSavedGameData()"
                 class="btn btn-danger mx-2"
-                data-bs-dismiss="modal"
               >
                 Delete
               </button>
@@ -723,6 +723,7 @@
   <script src="../js/constants/helmets.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
   <script src="../js/armorlab/utils/showLoadoutSavedToast.js"></script>
+  <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/armorlab/main.js"></script>
   <script src="../js/armorlab/components/genSaveDataManagementModalContent.js"></script>
 </html>

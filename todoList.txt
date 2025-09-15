@@ -125,14 +125,18 @@ DEBT DIVERS
 
 ARMOR LAB
   - improve view on desktop
-  - when user clicks helmet, armor, or cape image the corresponding menu shows up. same with buttons of course
+    - add armor passive image
   - OR, when user clicks helmet/armor or cape, a modal shows with the view expanded
   - ability to filter by light, medium, heavy, armor passive, armor rating, speed, and stamina
     - search function
-  - save data management modal is a list of all saved loadouts
+  - edit info modal
+    - warning! layout may break on screens less than 375px wide
   - manually adjust CSS inset values for helmet for certain armors and helmets
-  - character limit on loadout name
   - name of loadout will be the name of the entry in save data management. unable to edit in modal
+  - looks like we will need to cut off the top part of the armor image so that the default helmet wont be visible
+    when a smaller helmet is equipped
+  - random button!
+
 
 
 NEW PAGE IDEAS:

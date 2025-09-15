@@ -33,7 +33,7 @@ const genSaveDataManagementModalContent = () => {
       <div class="my-1" id="savedGameOptionDiv${i}">
         <input type="radio" class="btn-check" name="btnradio" id="savedGameOption${i}" autocomplete="off">
         <label id="savedGameOptionLabel${i}" class="btn btn-outline-primary text-white" for="savedGameOption${i}">${save.name}</label>
-        <button type="button" onclick="downloadSaveFile(${i}, 'tm')" class="btn btn-primary btn-sm"><i class="bi bi-download"></i></button>
+        <button type="button" onclick="downloadSaveFile(${i}, 'al')" class="btn btn-primary btn-sm"><i class="bi bi-download"></i></button>
       </div>
     `;
   }
@@ -73,6 +73,7 @@ const deleteSavedGameData = async () => {
     };
     localStorage.setItem("armorLabSaveData", JSON.stringify(tempObj));
   }
+  genSaveDataManagementModalContent();
 };
 
 // let user choose a save file to populate the website with
@@ -103,9 +104,8 @@ saveDataUploadInput.addEventListener("change", (e) => {
 
 const uploadSaveFile = async () => {
   let obj = {};
-  const data = localStorage.getItem("data");
+  const data = localStorage.getItem("armorLabSaveData");
   if (!data) {
-    uploadedSaveFile.currentList = true;
     obj = {
       armor: currentArmor,
       helmet: currentHelmet,

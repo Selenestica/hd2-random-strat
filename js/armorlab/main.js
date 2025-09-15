@@ -22,11 +22,29 @@ const loadoutEditNameContainer = document.getElementById(
 );
 const loadoutNameText = document.getElementById("loadoutNameText");
 const newLoadoutNameInput = document.getElementById("newLoadoutNameInput");
+const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 
 let currentArmor = "b01tactical";
 let currentHelmet = "b01tactical";
 let currentCape = "foesmasher";
 let currentLoadoutName = "Unnamed Set #1";
+
+for (let y = 0; y < warbondCheckboxes.length; y++) {
+  warbondCheckboxes[y].addEventListener("change", (e) => {
+    const elementName = e.target.id;
+    const warbondItems = document.querySelectorAll(`.${elementName}`);
+    if (e.target.checked && !warbondCodes.includes(elementName)) {
+      warbondCodes.push(elementName);
+      warbondItems.forEach((item) => item.classList.toggle("d-none", false));
+    }
+    if (!e.target.checked && warbondCodes.includes(elementName)) {
+      const indexToRemove = warbondCodes.indexOf(elementName);
+      warbondCodes.splice(indexToRemove, 1);
+      warbondItems.forEach((item) => item.classList.toggle("d-none", true));
+    }
+    updateCurrentLoadout();
+  });
+}
 
 const editName = () => {
   loadoutNameContainer.classList.toggle("d-none", true);
@@ -60,6 +78,7 @@ const saveLoadout = async () => {
           name: currentLoadoutName,
         },
       ],
+      wbs: warbondCodes,
     };
     localStorage.setItem("armorLabSaveData", JSON.stringify(newSaveObj));
     return;
@@ -95,6 +114,7 @@ const updateCurrentLoadout = async () => {
       helmet: currentHelmet,
       name: currentLoadoutName,
       loadouts: [],
+      wbs: warbondCodes,
     };
     localStorage.setItem("armorLabSaveData", JSON.stringify(newSaveObj));
     return;
@@ -106,6 +126,8 @@ const updateCurrentLoadout = async () => {
   newData.cape = currentCape;
   newData.helmet = currentHelmet;
   newData.name = currentLoadoutName;
+  newData.wbs = warbondCodes;
+
   localStorage.setItem("armorLabSaveData", JSON.stringify(newData));
 };
 
@@ -113,20 +135,30 @@ const uploadSaveData = async (saveIndex = null) => {
   // get ls data
   const data = await localStorage.getItem("armorLabSaveData");
   if (!data) {
+    genImageDrawerContent();
     return;
   }
 
   // populate current loadout and save data modal here
   const parsedData = JSON.parse(data);
-  const { armor, cape, helmet, name } =
+  const { armor, cape, helmet, name, wbs } =
     saveIndex === null ? parsedData : parsedData.loadouts[saveIndex];
   setItem(armor, "armor");
   setItem(cape, "capes");
   setItem(helmet, "helmets");
   loadoutNameText.innerHTML = name;
   currentLoadoutName = name;
-
-  saveIndex === null ? genSaveDataManagementModalContent() : null;
+  warbondCodes = wbs;
+  if (saveIndex === null) {
+    genSaveDataManagementModalContent();
+    const missingWarbondCodes = masterWarbondCodes.filter(
+      (code) => !warbondCodes.includes(code)
+    );
+    for (let i = 0; i < missingWarbondCodes.length; i++) {
+      document.getElementById(missingWarbondCodes[i]).checked = false;
+    }
+  }
+  genImageDrawerContent();
 };
 
 const genImageDrawerContent = async () => {
@@ -145,8 +177,13 @@ const genImageDrawerContent = async () => {
 };
 
 const generateItemCard = (item, type) => {
+  const wbCode = item.warbondCode;
+  let wbStyle = "d-flex";
+  if (!warbondCodes.includes(wbCode)) {
+    wbStyle = "d-none";
+  }
   return `
-    <div onclick="setItem('${item.internalName}', '${type}')" class="card d-flex col-2 pcItemCards cursorPointer mx-1 my-1">
+    <div onclick="setItem('${item.internalName}', '${type}')" class="card ${wbCode} ${wbStyle} col-3 pcItemCards cursorPointer mx-1 my-1">
       <img
           src="../images/${type}/${item.internalName}.webp"
           class="img-card-top"
@@ -191,5 +228,3 @@ const setItem = async (name, type) => {
 
   updateCurrentLoadout();
 };
-
-genImageDrawerContent();

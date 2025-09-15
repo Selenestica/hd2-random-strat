@@ -89,7 +89,6 @@
             </button>
             <button
               class="btn btn-primary mx-1"
-              onclick="genSaveDataManagementModalContent()"
               type="button"
               data-bs-toggle="modal"
               data-bs-target="#armorLabSaveDataManagementModal"
@@ -222,11 +221,11 @@
                 id="helmetContainer"
                 class="d-flex row justify-content-center position-absolute"
                 style="
-                  top: 4px;
+                  top: 11px;
                   left: 53.5%;
                   transform: translateX(-50%);
                   z-index: 2;
-                  width: 27%;
+                  width: 28%;
                 "
               >
                 <div
@@ -244,12 +243,19 @@
                   />
                 </div>
               </div>
-              <div class="card d-flex armorLabCards mx-1 pt-3">
+              <div class="card d-flex armorLabCards mx-1">
                 <img
                   id="armorImg"
                   src="../images/armor/b01tactical.webp"
                   class="img-fluid"
                   alt="recon"
+                  style="
+                    object-fit: cover;
+                    object-position: center -40px;
+                    height: 100%;
+                    width: 100%;
+                    padding-top: 4rem;
+                  "
                 />
               </div>
             </div>
@@ -455,149 +461,110 @@
       </div>
     </div>
 
-    <!-- INFO MODAL -->
+    <!-- FLAVOR AND INSTRUCTIONS MODAL -->
     <div
       class="modal fade"
       id="infoModal"
       tabindex="-1"
+      open="true"
       aria-labelledby="infoModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="infoModalLabel">Info</h5>
+            <h5 class="modal-title text-light">The Armor Lab</h5>
           </div>
-          <div class="modal-body">
-            <div class="accordion-item bg-none">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button collapsed text-light"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#faqAccordion"
-                  aria-expanded="false"
-                  aria-controls="faqAccordion"
+          <div class="modal-body row d-flex justify-content-center">
+            <div class="accordion" id="infoAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    FAQs
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse"
+                  data-bs-parent="#infoAccordion"
                 >
-                  FAQs
-                </button>
-              </h2>
-              <div
-                id="faqAccordion"
-                class="accordion-collapse collapse p-3"
-                aria-labelledby="Rules"
-                data-bs-parent="#rulesAndInfoAccordion"
-              >
-                <ul class="modalAccordionList">
-                  <li class="text-white">
-                    <b>Q: Who is this app for?</b>
-                    <p>
-                      A: This web app was made for Helldivers who are looking
-                      for a fun way to spice up their dives.
-                    </p>
-                  </li>
-                  <li class="text-white">
-                    <b
-                      >Q: What if I don't have some of the items in a
-                      warbond/the superstore/from the Pre-Order Bonus?</b
-                    >
-                    <p>
-                      A: You can toggle these items off in the Options menu. If
-                      you don't have the items, you won't roll them.
-                    </p>
-                  </li>
-                  <li class="text-white">
-                    <b
-                      >Q: What if I don't want to bring multiple support
-                      weapon/backpack stratagems?</b
-                    >
-                    <p>
-                      A: In the Options menu, in the Randomizer Settings tab,
-                      you will be able to customize the randomizer.
-                    </p>
-                  </li>
-                  <li class="text-white">
-                    <b
-                      >Q: What if I roll a booster, but a teammate has already
-                      chosen it?</b
-                    >
-                    <p>
-                      A: You can reroll just the booster by clicking on the
-                      booster icon. Or, feel free to choose a different booster
-                      than the one you have rolled. I don't make the rules, I
-                      just make the tools!
-                    </p>
-                  </li>
-                  <li class="text-white">
-                    <b>Q: Why don't you run ads on this site?</b>
-                    <p>
-                      A: The intention behind making this site was to provide
-                      maximum value to Helldivers everywhere. The majority of my
-                      code is browser-based, and I only pay out-of-pocket for
-                      the icons, build time, and hosting (I use AWS). Costs are
-                      relatively small, but if you would like to reward me for
-                      my efforts, feel free to buy me a coffee using the link at
-                      the top of the page!
-                    </p>
-                  </li>
-                  <li class="text-white">
-                    <b>Q: Can I contribute with time instead of money?</b>
-                    <p>
-                      A: Please! Feel free to join the discord and hit me up if
-                      you have any ideas/suggestions, or run into any bugs. If
-                      you're a coder, I can definitely use your help with
-                      upcoming features.
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="accordion-item bg-none">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button collapsed text-light"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#creditAccordion"
-                  aria-expanded="false"
-                  aria-controls="creditAccordion"
-                >
-                  Credits
-                </button>
-              </h2>
-              <div
-                id="creditAccordion"
-                class="accordion-collapse collapse p-3"
-                aria-labelledby="Rules"
-                data-bs-parent="#rulesAndInfoAccordion"
-              >
-                <ul class="modalAccordionList">
-                  <li class="text-white">
-                    Huge thanks to u/TylerJohnsonDaGOAT for writing up the
-                    attributes for stratagems and equipment, and for letting me
-                    bounce ideas off of them. Tons of drudgery was avoided
-                    because of their contributions. Thanks!
-                  </li>
-                  <li class="text-white">
-                    I came across this idea while browsing Reddit. After a quick
-                    Google search, I found that
-                    <a href="https://hd2random.com/"
-                      >someone had already made a web app for this challenge</a
-                    >
-                    (very cool). However, I had my own ideas regarding layout,
-                    more features, etc, and so here we are!
-                  </li>
-                  <li class="text-white">
-                    Would you like to contribute? If you're code savvy, I could
-                    use some help with colors and fonts, as well as upcoming
-                    features. Feel free to email me at
-                    joebenwilson.dev@gmail.com with any feedback/suggestions, or
-                    submit a PR on
-                    <a href="https://github.com/Selenestica/hd2-random-strat"
-                      >GitHub</a
-                    >.
-                  </li>
-                </ul>
+                  <div class="accordion-body">
+                    <ul class="modalAccordionList">
+                      <li class="text-white">
+                        <b>Q: What is this tool for?</b>
+                        <p>
+                          A: The Armor Lab is for divers who want to be able to
+                          theory-craft their drip when they're not able to play
+                          the game. Great care was taken to ensure that this
+                          tool, and the entire website, is a good experience on
+                          mobile devices.
+                          <br />
+                          <br />
+                          NOTE: Although a mobile-friendly web page was my
+                          primary concern, image quality may degrade on screen
+                          widths of 375 pixels or less.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: How can I save my armor loadouts?</b>
+                        <p>
+                          A: When you have a loadout you're happy with, press
+                          the
+                          <i class="bi bi-bookmark-star text-success"></i>
+                          button.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: How can I see my saved loadouts?</b>
+                        <p>
+                          A: Press the
+                          <i class="bi bi-save text-primary"></i> button at the
+                          upper right of the page. From there you can do many
+                          things concerning save data, such as importing,
+                          exporting, deleting, and applying loadouts.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: What if I don't have all the warbonds/content?</b>
+                        <p>
+                          A: Check out the Settings menu by pressing the
+                          <i class="bi bi-gear-fill text-primary"></i> button at
+                          the top right of the page. From there you can change
+                          your difficulty and toggle on/off the warbonds and
+                          other content.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: Why don't you run ads on this site?</b>
+                        <p>
+                          A: The intention behind making this site was to
+                          provide maximum value to Helldivers everywhere. The
+                          majority of my code is browser-based, and I only pay
+                          out-of-pocket for the icons, build time, and hosting
+                          (I use AWS). Costs are relatively small, but if you
+                          would like to reward me for my efforts, feel free to
+                          buy me a coffee using the link at the top of the page!
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: Can I contribute with time instead of money?</b>
+                        <p>
+                          A: Please! Feel free to join the discord and hit me up
+                          if you have any ideas/suggestions, or run into any
+                          bugs. If you're a coder, I can definitely use your
+                          help with upcoming features.
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -721,6 +688,7 @@
   <script src="../js/constants/armorsets.js"></script>
   <script src="../js/constants/capes.js"></script>
   <script src="../js/constants/helmets.js"></script>
+  <script src="../js/utils/warbondCodes.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
   <script src="../js/armorlab/utils/showLoadoutSavedToast.js"></script>
   <script src="../js/utils/downloadSaveFile.js"></script>

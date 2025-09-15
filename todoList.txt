@@ -132,10 +132,9 @@ ARMOR LAB
   - edit info modal
     - warning! layout may break on screens less than 375px wide
   - manually adjust CSS inset values for helmet for certain armors and helmets
-  - name of loadout will be the name of the entry in save data management. unable to edit in modal
-  - looks like we will need to cut off the top part of the armor image so that the default helmet wont be visible
-    when a smaller helmet is equipped
+    - thing is, some helmets are smaller than the default helmet... so that is quiote a bit of work
   - random button!
+  - ability to toggle warbonds and their content
 
 
 

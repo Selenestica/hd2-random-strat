@@ -515,6 +515,7 @@ const getRewardsItemsLists = () => {
   }
 
   lists = [newStrats];
+
   if (SPECIALISTS[specialist].armorPassives.length === 0) {
     lists.push(newArmorPassives);
   }
@@ -550,6 +551,7 @@ const rollRewardOptions = async () => {
 
   if (currentItems.length === 0) {
     let itemsLists = await getRewardsItemsLists();
+    console.log(itemsLists);
     itemsLists = itemsLists.filter((list) => list.length > 0);
     if (itemsLists.length < 1) {
       console.log("NOT ENOUGH ITEMS TO SHOW");
@@ -690,6 +692,9 @@ const getRandomItemListByTier = async (list) => {
 const getRandomItem = async (list) => {
   const listToUse = await getRandomItemListByTier(list);
   const item = listToUse[Math.floor(Math.random() * listToUse.length)];
+  if (starterStratNames.includes(item.displayName)) {
+    return getRandomItem(list);
+  }
   return item;
 };
 

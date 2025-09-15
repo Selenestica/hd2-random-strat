@@ -77,21 +77,21 @@
             <i class="socialIcons bi bi-cup-hot"></i>
           </a>
         </div>
-        <div class="col-4">
+        <div class="col-4 px-0">
           <div class="d-flex justify-content-end">
             <button
               class="btn btn-primary"
               type="button"
               data-bs-toggle="modal"
               data-bs-target="#warbondSelectModal"
-              id="warbondSelectButtonMobile"
             >
               <i class="bi bi-gear-fill"></i>
             </button>
             <button
               class="btn btn-primary mx-1"
-              onclick="genPCSaveDataManagementModalInfo()"
               type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#armorLabSaveDataManagementModal"
             >
               <i class="bi bi-save text-light"></i>
             </button>
@@ -119,63 +119,312 @@
       </div>
 
       <!-- MAIN BODY -->
-      <div class="row d-flex justify-content-center pt-3">
-        <div class="col-sm-12 col-md-8 col-lg-5">
+      <div class="row d-flex justify-content-center pt-1">
+        <div class="col-sm-0 col-lg-2"></div>
+        <div class="col-sm-12col-lg-8">
+          <!-- Buttons Row -->
           <div class="row d-flex justify-content-between">
             <div class="col d-flex justify-content-center my-1">
-              <div>
-                <div class="btn-group">
-                  <button
-                    class="btn btn-success"
-                    data-bs-toggle="modal"
-                    data-bs-target="#helmetsModal"
-                    type="button"
-                    id="rollStratsButton"
-                  >
-                    <span>Helmet</span>
-                  </button>
-                </div>
-              </div>
-              <div class="mx-1">
-                <button
-                  id="rollEquipmentButton"
-                  type="button"
-                  class="btn btn-success"
-                  data-bs-toggle="modal"
-                  data-bs-target="#armorsModal"
+              <button
+                class="btn btn-primary"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#helmetDrawer"
+                aria-controls="helmetDrawer"
+                type="button"
+                id="selectHelmetsButton"
+              >
+                <span>Helmet</span>
+              </button>
+              <button
+                id="selectArmorButton"
+                type="button"
+                class="btn btn-primary mx-1"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#armorDrawer"
+                aria-controls="armorDrawer"
+              >
+                <span>Armor</span>
+              </button>
+              <button
+                id="selectCapesButton"
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#capesDrawer"
+                aria-controls="capesDrawer"
+              >
+                <span>Cape</span>
+              </button>
+              <button
+                id="selectCapesButton"
+                type="button"
+                class="btn btn-success mx-1"
+                onclick="saveLoadout()"
+              >
+                <span><i class="bi bi-bookmark-star"></i></span>
+              </button>
+            </div>
+          </div>
+
+          <hr class="text-white" />
+
+          <div class="row justify-content-center">
+            <div class="row justify-content-center mb-3">
+              <div
+                class="col d-flex justify-content-center align-items-center"
+                id="loadoutNameContainer"
+              >
+                <b class="text-white mx-2">Name: </b>
+                <span class="text-white" id="loadoutNameText">
+                  Unnamed Set #1</span
                 >
-                  <span>Armor</span>
+                <button
+                  class="btn btn-primary bg-none text-warning"
+                  style="border: none"
+                  type="button"
+                  onclick="editName()"
+                >
+                  <i class="bi bi-pencil-square"></i>
                 </button>
               </div>
-              <div class="btn-group" role="group">
-                <div class="btn-group">
+              <div
+                class="col d-flex justify-content-center align-items-center d-none"
+                id="loadoutEditNameContainer"
+              >
+                <div class="input-group" style="width: 250px">
+                  <input
+                    id="newLoadoutNameInput"
+                    type="text"
+                    class="form-control"
+                    maxlength="30"
+                    placeholder="new name..."
+                    aria-label="new name..."
+                    aria-describedby="button-addon2"
+                  />
                   <button
-                    id="rollArmorButton"
-                    type="button"
                     class="btn btn-success"
-                    data-bs-toggle="modal"
-                    data-bs-target="#capesModal"
+                    type="button"
+                    onclick="submitLoadoutName()"
                   >
-                    <span>Cape</span>
+                    <i class="bi bi-check2"></i>
                   </button>
                 </div>
               </div>
             </div>
+            <!-- Armor Container -->
+            <div
+              id="armorContainer"
+              class="d-flex flex-column align-items-center position-relative col-12 col-md-6 mb-1 px-0"
+              style="z-index: 1; width: 350px"
+            >
+              <div
+                id="helmetContainer"
+                class="d-flex row justify-content-center position-absolute"
+                style="
+                  top: 11px;
+                  left: 53.5%;
+                  transform: translateX(-50%);
+                  z-index: 2;
+                  width: 28%;
+                "
+              >
+                <div
+                  class="card d-flex mx-1"
+                  style="
+                    clip-path: inset(1px 25px 12px 22px);
+                    background-color: inherit;
+                  "
+                >
+                  <img
+                    id="helmetImg"
+                    src="../images/helmets/b01tactical.webp"
+                    class="img-fluid"
+                    alt="recon"
+                  />
+                </div>
+              </div>
+              <div class="card d-flex armorLabCards mx-1">
+                <img
+                  id="armorImg"
+                  src="../images/armor/b01tactical.webp"
+                  class="img-fluid"
+                  alt="recon"
+                  style="
+                    object-fit: cover;
+                    object-position: center -40px;
+                    height: 100%;
+                    width: 100%;
+                    padding-top: 4rem;
+                  "
+                />
+              </div>
+            </div>
+
+            <!-- Cape Container -->
+            <div
+              id="capeContainer"
+              class="d-flex flex-column col-12 col-md-6 px-0 justify-content-center"
+              style="width: 350px"
+            >
+              <div class="card d-flex armorLabCards mx-1">
+                <img
+                  id="capeImg"
+                  src="../images/capes/foesmasher.webp"
+                  alt="recon"
+                  style="height: 340px"
+                />
+              </div>
+            </div>
           </div>
+
           <hr class="text-white" />
-          <div id="loadoutContainer">
+
+          <!-- Info Container -->
+          <div class="row justify-content-center" id="infoContainer">
             <div
-              id="armorContainer"
-              class="d-flex row justify-content-start"
+              class="d-flex flex-column align-items-center justify-content-center col-sm-0 col-md-3 mb-1 px-0"
             ></div>
             <div
-              id="armorContainer"
-              class="d-flex row justify-content-start"
-            ></div>
+              class="d-flex flex-column align-items-center justify-content-center col-12 col-md-3 mb-1 px-0"
+            >
+              <ul>
+                <li class="text-white">
+                  <b>Helmet:</b> <span id="helmetNameText">B-01 Tactical</span>
+                </li>
+                <li class="text-white">
+                  <b>Armor:</b> <span id="armorNameText">B-01 Tactical</span>
+                </li>
+                <li class="text-white">
+                  <b>Cape:</b> <span id="capeNameText">Foesmasher</span>
+                </li>
+              </ul>
+            </div>
             <div
-              id="armorContainer"
-              class="d-flex row justify-content-start"
+              class="d-flex flex-column align-items-center justify-content-center col-12 col-md-3 mb-1 px-0"
+            >
+              <ul>
+                <li class="text-white">
+                  <b>Passive:</b>
+                  <span id="passiveNameText">Extra Padding</span>
+                </li>
+                <li class="text-white">
+                  <b>Type:</b> <span id="typeValueText">Medium</span>
+                </li>
+                <li class="text-white">
+                  <b>Armor Rating:</b> <span id="protectionValueText">150</span>
+                </li>
+                <li class="text-white">
+                  <b>Speed:</b> <span id="speedValueText">500</span>
+                </li>
+                <li class="text-white">
+                  <b>Stamina:</b> <span id="staminaValueText">100</span>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="d-flex flex-column align-items-center justify-content-center col-12 col-md-3 mb-1 px-0"
             ></div>
+          </div>
+        </div>
+        <div class="col-sm-0 col-lg-2"></div>
+      </div>
+    </div>
+
+    <!-- SAVE DATA MANAGEMENT MODAL -->
+    <div
+      class="modal fade"
+      id="armorLabSaveDataManagementModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="armorLabSaveDataManagementModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="">Save Data Management</h5>
+          </div>
+          <div
+            class="modal-body row d-flex justify-content-center"
+            id="armorLabSaveDataManagementModalBody"
+          >
+            <p class="text-white">
+              Switch your active save file here, delete save files, or upload
+              save files.
+              <br />
+              Select an entry below and press 'Apply' to load a different save
+              file.
+              <br />
+              <br />
+              NOTE: You can't delete your current save file.
+            </p>
+            <div class="mb-3 d-flex row">
+              <div class="col-9">
+                <input
+                  class="form-control"
+                  type="file"
+                  id="saveDataUploadInput"
+                />
+              </div>
+              <div class="col-3">
+                <button
+                  type="button"
+                  onclick="uploadSaveFile()"
+                  class="btn btn-success"
+                  id="uploadSaveFileButton"
+                  disabled
+                >
+                  Upload
+                </button>
+              </div>
+            </div>
+            <div
+              id="armorLabSaveDataManagementModalSavesList"
+              class="btn-group-vertical"
+              role="group"
+              aria-label="Basic radio toggle button group"
+            ></div>
+          </div>
+          <div class="modal-footer row justify-content-between">
+            <div class="d-flex col justify-content-start">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+            <div
+              id="saveDataModalFunctionsDiv"
+              class="d-flex col justify-content-end"
+            >
+              <button
+                type="button"
+                onclick="clearSaveDataAndRestart()"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >
+                Delete ALL
+              </button>
+              <button
+                type="button"
+                onclick="deleteSavedGameData()"
+                class="btn btn-danger mx-2"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                onclick="applySavedGameData()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Apply
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -212,149 +461,110 @@
       </div>
     </div>
 
-    <!-- INFO MODAL -->
+    <!-- FLAVOR AND INSTRUCTIONS MODAL -->
     <div
       class="modal fade"
       id="infoModal"
       tabindex="-1"
+      open="true"
       aria-labelledby="infoModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="infoModalLabel">Info</h5>
+            <h5 class="modal-title text-light">The Armor Lab</h5>
           </div>
-          <div class="modal-body">
-            <div class="accordion-item bg-none">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button collapsed text-light"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#faqAccordion"
-                  aria-expanded="false"
-                  aria-controls="faqAccordion"
+          <div class="modal-body row d-flex justify-content-center">
+            <div class="accordion" id="infoAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    FAQs
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse"
+                  data-bs-parent="#infoAccordion"
                 >
-                  FAQs
-                </button>
-              </h2>
-              <div
-                id="faqAccordion"
-                class="accordion-collapse collapse p-3"
-                aria-labelledby="Rules"
-                data-bs-parent="#rulesAndInfoAccordion"
-              >
-                <ul class="modalAccordionList">
-                  <li class="text-white">
-                    <b>Q: Who is this app for?</b>
-                    <p>
-                      A: This web app was made for Helldivers who are looking
-                      for a fun way to spice up their dives.
-                    </p>
-                  </li>
-                  <li class="text-white">
-                    <b
-                      >Q: What if I don't have some of the items in a
-                      warbond/the superstore/from the Pre-Order Bonus?</b
-                    >
-                    <p>
-                      A: You can toggle these items off in the Options menu. If
-                      you don't have the items, you won't roll them.
-                    </p>
-                  </li>
-                  <li class="text-white">
-                    <b
-                      >Q: What if I don't want to bring multiple support
-                      weapon/backpack stratagems?</b
-                    >
-                    <p>
-                      A: In the Options menu, in the Randomizer Settings tab,
-                      you will be able to customize the randomizer.
-                    </p>
-                  </li>
-                  <li class="text-white">
-                    <b
-                      >Q: What if I roll a booster, but a teammate has already
-                      chosen it?</b
-                    >
-                    <p>
-                      A: You can reroll just the booster by clicking on the
-                      booster icon. Or, feel free to choose a different booster
-                      than the one you have rolled. I don't make the rules, I
-                      just make the tools!
-                    </p>
-                  </li>
-                  <li class="text-white">
-                    <b>Q: Why don't you run ads on this site?</b>
-                    <p>
-                      A: The intention behind making this site was to provide
-                      maximum value to Helldivers everywhere. The majority of my
-                      code is browser-based, and I only pay out-of-pocket for
-                      the icons, build time, and hosting (I use AWS). Costs are
-                      relatively small, but if you would like to reward me for
-                      my efforts, feel free to buy me a coffee using the link at
-                      the top of the page!
-                    </p>
-                  </li>
-                  <li class="text-white">
-                    <b>Q: Can I contribute with time instead of money?</b>
-                    <p>
-                      A: Please! Feel free to join the discord and hit me up if
-                      you have any ideas/suggestions, or run into any bugs. If
-                      you're a coder, I can definitely use your help with
-                      upcoming features.
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="accordion-item bg-none">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button collapsed text-light"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#creditAccordion"
-                  aria-expanded="false"
-                  aria-controls="creditAccordion"
-                >
-                  Credits
-                </button>
-              </h2>
-              <div
-                id="creditAccordion"
-                class="accordion-collapse collapse p-3"
-                aria-labelledby="Rules"
-                data-bs-parent="#rulesAndInfoAccordion"
-              >
-                <ul class="modalAccordionList">
-                  <li class="text-white">
-                    Huge thanks to u/TylerJohnsonDaGOAT for writing up the
-                    attributes for stratagems and equipment, and for letting me
-                    bounce ideas off of them. Tons of drudgery was avoided
-                    because of their contributions. Thanks!
-                  </li>
-                  <li class="text-white">
-                    I came across this idea while browsing Reddit. After a quick
-                    Google search, I found that
-                    <a href="https://hd2random.com/"
-                      >someone had already made a web app for this challenge</a
-                    >
-                    (very cool). However, I had my own ideas regarding layout,
-                    more features, etc, and so here we are!
-                  </li>
-                  <li class="text-white">
-                    Would you like to contribute? If you're code savvy, I could
-                    use some help with colors and fonts, as well as upcoming
-                    features. Feel free to email me at
-                    joebenwilson.dev@gmail.com with any feedback/suggestions, or
-                    submit a PR on
-                    <a href="https://github.com/Selenestica/hd2-random-strat"
-                      >GitHub</a
-                    >.
-                  </li>
-                </ul>
+                  <div class="accordion-body">
+                    <ul class="modalAccordionList">
+                      <li class="text-white">
+                        <b>Q: What is this tool for?</b>
+                        <p>
+                          A: The Armor Lab is for divers who want to be able to
+                          theory-craft their drip when they're not able to play
+                          the game. Great care was taken to ensure that this
+                          tool, and the entire website, is a good experience on
+                          mobile devices.
+                          <br />
+                          <br />
+                          NOTE: Although a mobile-friendly web page was my
+                          primary concern, image quality may degrade on screen
+                          widths of 375 pixels or less.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: How can I save my armor loadouts?</b>
+                        <p>
+                          A: When you have a loadout you're happy with, press
+                          the
+                          <i class="bi bi-bookmark-star text-success"></i>
+                          button.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: How can I see my saved loadouts?</b>
+                        <p>
+                          A: Press the
+                          <i class="bi bi-save text-primary"></i> button at the
+                          upper right of the page. From there you can do many
+                          things concerning save data, such as importing,
+                          exporting, deleting, and applying loadouts.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: What if I don't have all the warbonds/content?</b>
+                        <p>
+                          A: Check out the Settings menu by pressing the
+                          <i class="bi bi-gear-fill text-primary"></i> button at
+                          the top right of the page. From there you can change
+                          your difficulty and toggle on/off the warbonds and
+                          other content.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: Why don't you run ads on this site?</b>
+                        <p>
+                          A: The intention behind making this site was to
+                          provide maximum value to Helldivers everywhere. The
+                          majority of my code is browser-based, and I only pay
+                          out-of-pocket for the icons, build time, and hosting
+                          (I use AWS). Costs are relatively small, but if you
+                          would like to reward me for my efforts, feel free to
+                          buy me a coffee using the link at the top of the page!
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: Can I contribute with time instead of money?</b>
+                        <p>
+                          A: Please! Feel free to join the discord and hit me up
+                          if you have any ideas/suggestions, or run into any
+                          bugs. If you're a coder, I can definitely use your
+                          help with upcoming features.
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -370,6 +580,100 @@
         </div>
       </div>
     </div>
+
+    <!-- HELMETS DRAWER -->
+    <div
+      class="offcanvas offcanvas-end bg-grey"
+      tabindex="-1"
+      id="helmetDrawer"
+      aria-labelledby="helmetDrawerLabel"
+      data-bs-backdrop="false"
+      data-bs-scroll="true"
+    >
+      <div class="offcanvas-header">
+        <h5 class="modal-title text-light" id="helmetsModalLabel">Helmets</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="row justify-content-center" id="helmetsList"></div>
+      </div>
+    </div>
+
+    <!-- ARMOR DRAWER -->
+    <div
+      class="offcanvas offcanvas-end bg-grey"
+      tabindex="-1"
+      id="armorDrawer"
+      aria-labelledby="armorDrawerLabel"
+      data-bs-backdrop="false"
+      data-bs-scroll="true"
+    >
+      <div class="offcanvas-header">
+        <h5 class="modal-title text-light" id="armorModalLabel">Armor</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="row justify-content-center" id="armorList"></div>
+      </div>
+    </div>
+
+    <!-- CAPES DRAWER -->
+    <div
+      class="offcanvas offcanvas-end bg-grey"
+      tabindex="-1"
+      id="capesDrawer"
+      aria-labelledby="capesDrawerLabel"
+      data-bs-backdrop="false"
+      data-bs-scroll="true"
+    >
+      <div class="offcanvas-header">
+        <h5 class="modal-title text-light" id="capesModalLabel">Capes</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="row justify-content-center" id="capesList"></div>
+      </div>
+    </div>
+
+    <!-- LOADOUT SAVED TOAST -->
+    <div
+      class="position-fixed top-0 start-50 translate-middle-x p-3 pointer-events-none"
+      style="z-index: 1080"
+    >
+      <div
+        class="toast align-items-center text-white bg-success border-0 loadoutSavedToast pointer-events-auto"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        data-bs-autohide="true"
+        data-bs-delay="3000"
+      >
+        <div class="d-flex">
+          <div class="toast-body" id="loadoutSavedToastBody"></div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
   </body>
 
   <script
@@ -382,6 +686,12 @@
     crossorigin="anonymous"
   ></script>
   <script src="../js/constants/armorsets.js"></script>
+  <script src="../js/constants/capes.js"></script>
+  <script src="../js/constants/helmets.js"></script>
+  <script src="../js/utils/warbondCodes.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
+  <script src="../js/armorlab/utils/showLoadoutSavedToast.js"></script>
+  <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/armorlab/main.js"></script>
+  <script src="../js/armorlab/components/genSaveDataManagementModalContent.js"></script>
 </html>

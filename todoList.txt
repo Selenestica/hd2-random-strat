@@ -3,7 +3,7 @@ GENERAL:
   - update to free icons
   - leaderboard integrated with GitHub Issues?
   - users submit verification files in discord server
-  - add full armor sets instead of headless ones, for Randomizer and Tier List Maker
+  - add notification about dangers of using Safari!!!
   - checklist for when new content comes out
     - /js
       - /utils
@@ -65,6 +65,9 @@ SPECIAL OPERATIONS
     - set file input to null when it closes
   - specialist modal
     - on large screens, set a fixed height
+  - new GOALS
+    - complete X side objectives
+    - destroy X outposts/nests/camps
 
   BUGS:
     - make green/red progress text a different color for colorblind people
@@ -120,10 +123,19 @@ DEBT DIVERS
     - Punishing (dont cross out items based on # of deaths in mission)
     - Solo (for extra points)
 
+ARMOR LAB
+  - improve view on desktop
+    - add armor passive image
+  - OR, when user clicks helmet/armor or cape, a modal shows with the view expanded
+  - ability to filter by light, medium, heavy, armor passive, armor rating, speed, and stamina
+    - search function
+  - manually adjust CSS inset values for helmet for certain armors and helmets
+    - thing is, some helmets are smaller than the default helmet... so that is quiote a bit of work
+  - random button!
+
+
 NEW PAGE IDEAS:
-	- DRIP MAKER  
-    - can mix and match armor sets
-      - will need to bring in helmets
+
 
 
 

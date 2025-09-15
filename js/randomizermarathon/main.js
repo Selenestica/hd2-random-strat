@@ -191,7 +191,7 @@ const rollArmor = async () => {
   const rolledArmor = workingArmorPassivesList[randArmorIndex];
   let armorImage = `                    
                     <img
-                        src="../images/armor/${rolledArmor.imageURL}"
+                        src="../images/armorpassives/${rolledArmor.imageURL}"
                         class="img-card-top"
                         alt="${rolledArmor.displayName}"
                     />`;

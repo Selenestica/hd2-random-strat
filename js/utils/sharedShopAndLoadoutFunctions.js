@@ -509,7 +509,7 @@ const generateItemCard = (item, view = null) => {
     imgDir = "svgs";
   }
   if (item.category === "armor") {
-    imgDir = "armor";
+    imgDir = "armorpassives";
   }
   const card = document.createElement("div");
 

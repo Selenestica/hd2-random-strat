@@ -304,7 +304,7 @@ const generateItemCard = (item) => {
     imgDir = "warbonds";
   }
   if (item.category === "armor") {
-    imgDir = "armor";
+    imgDir = "armorpassives";
   }
   const card = document.createElement("div");
   card.dataset.type = getItemType(item);

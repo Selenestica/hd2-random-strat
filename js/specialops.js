@@ -135,7 +135,7 @@ const filterSpecialistsByWarbond = async (save = null) => {
 const generateItemCard = (item) => {
   let imgDir = "equipment";
   if (item.category === "armor") {
-    imgDir = "armor";
+    imgDir = "armorpassives";
   }
   if (item.type === "Stratagem") {
     imgDir = "svgs";

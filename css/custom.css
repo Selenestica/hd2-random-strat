@@ -90,6 +90,10 @@ body {
   border: 1px solid yellow;
 }
 
+.armorLabCards {
+  background-color: rgb(71, 71, 71);
+}
+
 .pcNoHoverItemCards {
   background-color: rgb(71, 71, 71);
   padding: 0rem;
@@ -446,4 +450,24 @@ body {
 
 #looseItemsContainer .item {
   background: #2ecc71;
+}
+
+@media (min-width: 992px) {
+  .modal.right-modal .modal-dialog {
+    position: fixed;
+    right: 0;
+    margin: 0;
+    height: 100%;
+    /* max-width: 400px; or whatever width you prefer */
+  }
+
+  .modal.right-modal .modal-content {
+    height: 100%;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+  }
+}
+
+.cursorPointer {
+  cursor: pointer;
 }

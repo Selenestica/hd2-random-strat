@@ -14,6 +14,10 @@ const downloadSaveFile = (index, type) => {
     lsData = "tierMakerSaveData";
     listName = "lists";
   }
+  if (type === "al") {
+    lsData = "armorLabSaveData";
+    listName = "loadouts";
+  }
   const saveData = JSON.parse(localStorage.getItem(lsData));
   if (!saveData) return;
   const file = JSON.stringify(saveData[listName][index]);

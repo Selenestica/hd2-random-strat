@@ -89,8 +89,10 @@
             </button>
             <button
               class="btn btn-primary mx-1"
-              onclick="genALSaveDataManagementModalInfo()"
+              onclick="genSaveDataManagementModalContent()"
               type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#armorLabSaveDataManagementModal"
             >
               <i class="bi bi-save text-light"></i>
             </button>
@@ -118,7 +120,7 @@
       </div>
 
       <!-- MAIN BODY -->
-      <div class="row d-flex justify-content-center pt-3">
+      <div class="row d-flex justify-content-center pt-1">
         <div class="col-sm-0 col-lg-2"></div>
         <div class="col-sm-12col-lg-8">
           <!-- Buttons Row -->
@@ -318,6 +320,107 @@
           </div>
         </div>
         <div class="col-sm-0 col-lg-2"></div>
+      </div>
+    </div>
+
+    <!-- SAVE DATA MANAGEMENT MODAL -->
+    <div
+      class="modal fade"
+      id="armorLabSaveDataManagementModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="armorLabSaveDataManagementModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="">Save Data Management</h5>
+          </div>
+          <div
+            class="modal-body row d-flex justify-content-center"
+            id="armorLabSaveDataManagementModalBody"
+          >
+            <p class="text-white">
+              Switch your active save file here, delete save files, or upload
+              save files.
+              <br />
+              Select an entry below and press 'Apply' to load a different save
+              file.
+              <br />
+              <br />
+              NOTE: You can't delete your current save file.
+            </p>
+            <div class="mb-3 d-flex row">
+              <div class="col-9">
+                <input
+                  class="form-control"
+                  type="file"
+                  id="saveDataUploadInput"
+                />
+              </div>
+              <div class="col-3">
+                <button
+                  type="button"
+                  onclick="uploadSaveFile()"
+                  class="btn btn-success"
+                  id="uploadSaveFileButton"
+                  disabled
+                >
+                  Upload
+                </button>
+              </div>
+            </div>
+            <div
+              id="armorLabSaveDataManagementModalSavesList"
+              class="btn-group-vertical"
+              role="group"
+              aria-label="Basic radio toggle button group"
+            ></div>
+          </div>
+          <div class="modal-footer row justify-content-between">
+            <div class="d-flex col justify-content-start">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+            <div
+              id="saveDataModalFunctionsDiv"
+              class="d-flex col justify-content-end"
+            >
+              <button
+                type="button"
+                onclick="clearSaveDataAndRestart()"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >
+                Delete ALL
+              </button>
+              <button
+                type="button"
+                onclick="deleteSavedGameData()"
+                class="btn btn-danger mx-2"
+                data-bs-dismiss="modal"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                onclick="applySavedGameData()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -579,6 +682,31 @@
         <div class="row justify-content-center" id="capesList"></div>
       </div>
     </div>
+
+    <!-- LOADOUT SAVED TOAST -->
+    <div
+      class="position-fixed top-0 start-50 translate-middle-x p-3 pointer-events-none"
+      style="z-index: 1080"
+    >
+      <div
+        class="toast align-items-center text-white bg-success border-0 loadoutSavedToast pointer-events-auto"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        data-bs-autohide="true"
+        data-bs-delay="3000"
+      >
+        <div class="d-flex">
+          <div class="toast-body" id="loadoutSavedToastBody"></div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
   </body>
 
   <script
@@ -594,5 +722,7 @@
   <script src="../js/constants/capes.js"></script>
   <script src="../js/constants/helmets.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
+  <script src="../js/armorlab/utils/showLoadoutSavedToast.js"></script>
   <script src="../js/armorlab/main.js"></script>
+  <script src="../js/armorlab/components/genSaveDataManagementModalContent.js"></script>
 </html>

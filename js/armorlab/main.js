@@ -23,40 +23,9 @@ const loadoutEditNameContainer = document.getElementById(
 const loadoutNameText = document.getElementById("loadoutNameText");
 const newLoadoutNameInput = document.getElementById("newLoadoutNameInput");
 
-let currentArmor = {
-  displayName: "B-01 Tactical",
-  type: "Equipment",
-  category: "armor",
-  tags: ["Medium"],
-  armorRating: 150,
-  speed: 500,
-  stamina: 100,
-  passive: "Extra Padding",
-  warbondCode: "none",
-  internalName: "b01tactical",
-  imageURL: "b01tactical.webp",
-  tier: "b",
-};
-let currentHelmet = {
-  displayName: "B-01 Tactical",
-  type: "Equipment",
-  category: "helmet",
-  tags: ["Medium"],
-  warbondCode: "none",
-  internalName: "b01tactical",
-  imageURL: "b01tactical.webp",
-  tier: "b",
-};
-let currentCape = {
-  displayName: "Foesmasher",
-  type: "Equipment",
-  category: "cape",
-  tags: [],
-  warbondCode: "none",
-  internalName: "foesmasher",
-  imageURL: "foesmasher.webp",
-  tier: "b",
-};
+let currentArmor = "b01tactical";
+let currentHelmet = "b01tactical";
+let currentCape = "foesmasher";
 let currentLoadoutName = "Unnamed Set #1";
 
 const editName = () => {
@@ -68,15 +37,97 @@ const submitLoadoutName = () => {
   loadoutNameContainer.classList.toggle("d-none", false);
   loadoutEditNameContainer.classList.toggle("d-none", true);
   loadoutNameText.innerHTML = newLoadoutNameInput.value;
+  currentLoadoutName = newLoadoutNameInput.value;
+  updateCurrentLoadout();
+  genSaveDataManagementModalContent();
 };
 
 const saveLoadout = async () => {
-  console.log("saving loadout");
   const data = localStorage.getItem("armorLabSaveData");
+
+  // create data if none exists
   if (!data) {
-    // create data
-    // return
+    let newSaveObj = {
+      armor: currentArmor,
+      cape: currentCape,
+      helmet: currentHelmet,
+      name: currentLoadoutName,
+      loadouts: [
+        {
+          armor: currentArmor,
+          cape: currentCape,
+          helmet: currentHelmet,
+          name: currentLoadoutName,
+        },
+      ],
+    };
+    localStorage.setItem("armorLabSaveData", JSON.stringify(newSaveObj));
+    return;
   }
+
+  const parsedData = JSON.parse(data);
+  let newData = { ...parsedData };
+  if (!JSON.parse(data).loadouts) {
+    localStorage.removeItem("armorLabSaveData");
+    return;
+  }
+
+  // if user selects an older loadout and then changes it, the original loadout is kept
+  // show a toast that the loadout was saved
+  const newLoadoutSaveObj = {
+    armor: currentArmor,
+    cape: currentCape,
+    helmet: currentHelmet,
+    name: currentLoadoutName,
+  };
+  newData.loadouts.push(newLoadoutSaveObj);
+  localStorage.setItem("armorLabSaveData", JSON.stringify(newData));
+  showLoadoutSavedToast(currentLoadoutName);
+};
+
+const updateCurrentLoadout = async () => {
+  const data = await localStorage.getItem("armorLabSaveData");
+  // create data if none exists
+  if (!data) {
+    let newSaveObj = {
+      armor: currentArmor,
+      cape: currentCape,
+      helmet: currentHelmet,
+      name: currentLoadoutName,
+      loadouts: [],
+    };
+    localStorage.setItem("armorLabSaveData", JSON.stringify(newSaveObj));
+    return;
+  }
+
+  const parsedData = JSON.parse(data);
+  let newData = { ...parsedData };
+  newData.armor = currentArmor;
+  newData.cape = currentCape;
+  newData.helmet = currentHelmet;
+  newData.name = currentLoadoutName;
+  localStorage.setItem("armorLabSaveData", JSON.stringify(newData));
+};
+
+const uploadSaveData = async (saveIndex = null) => {
+  // get ls data
+  const data = await localStorage.getItem("armorLabSaveData");
+  if (!data) {
+    return;
+  }
+
+  // populate current loadout and save data modal here
+  const parsedData = JSON.parse(data);
+  const { armor, cape, helmet, name } = !saveIndex
+    ? parsedData
+    : parsedData.loadouts[saveIndex];
+  setItem(armor, "armor");
+  setItem(cape, "capes");
+  setItem(helmet, "helmets");
+  loadoutNameText.innerHTML = name;
+  currentLoadoutName = name;
+
+  !saveIndex ? genSaveDataManagementModalContent() : null;
 };
 
 const genImageDrawerContent = async () => {
@@ -115,18 +166,21 @@ const setItem = async (name, type) => {
       (helm) => helm.internalName === name
     );
     helmetNameText.innerHTML = helmetObjs[0].displayName;
+    currentHelmet = name;
   }
   if (type === "capes") {
     capeImg.src = `../images/capes/${name}.webp`;
     const capeObjs = await CAPES.filter((cape) => cape.internalName === name);
     capeNameText.innerHTML = capeObjs[0].displayName;
+    currentCape = name;
   }
   if (type === "armor") {
     armorImg.src = `../images/armor/${name}.webp`;
-    armorNameText.innerHTML = dName;
     const armorObjs = await ARMOR_SETS.filter(
       (armor) => armor.internalName === name
     );
+    armorNameText.innerHTML = armorObjs[0].displayName;
+    currentArmor = name;
     const { armorRating, speed, stamina, passive, tags, warbondCode } =
       armorObjs[0];
     passiveNameText.innerHTML = passive;
@@ -135,6 +189,8 @@ const setItem = async (name, type) => {
     staminaValueText.innerHTML = stamina;
     typeValueText.innerHTML = tags[0];
   }
+
+  updateCurrentLoadout();
 };
 
 genImageDrawerContent();

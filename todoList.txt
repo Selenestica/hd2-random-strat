@@ -1,6 +1,5 @@
 GENERAL:
   - normalize background color of all equipment images
-  - update to free icons
   - leaderboard integrated with GitHub Issues?
   - users submit verification files in discord server
   - add notification about dangers of using Safari!!!
@@ -130,7 +129,7 @@ ARMOR LAB
   - ability to filter by light, medium, heavy, armor passive, armor rating, speed, and stamina
     - search function
   - manually adjust CSS inset values for helmet for certain armors and helmets
-    - thing is, some helmets are smaller than the default helmet... so that is quiote a bit of work
+    - thing is, some helmets are smaller than the default helmet... so that is quite a bit of work
   - random button!
 
 

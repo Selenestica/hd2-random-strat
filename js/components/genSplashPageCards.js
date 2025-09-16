@@ -1,49 +1,46 @@
-const challengeCardsContainer = document.getElementById(
-  "challengeCardsContainer"
-);
-const toolCardsContainer = document.getElementById("toolCardsContainer");
+const challengeCardsContainer = document.getElementById('challengeCardsContainer');
+const toolCardsContainer = document.getElementById('toolCardsContainer');
 
 const genSplashPageCards = (type) => {
   let container = challengeCardsContainer;
   let list = [
     {
-      displayName: "Penitent Crusade",
-      internalName: "penitentcrusade",
-      icon: "fa-skull-crossbones",
-      iconClasses: "",
+      displayName: 'Penitent Crusade',
+      internalName: 'penitentcrusade',
+      icon: 'skull-and-crossbones',
     },
     {
-      displayName: "Budget Blitz",
-      internalName: "budgetblitz",
-      icon: "fa-sack-dollar",
-      iconClasses: "text-success",
+      displayName: 'Budget Blitz',
+      internalName: 'budgetblitz',
+      icon: 'dollar-circle-list',
     },
     {
-      displayName: "Freedom Express",
-      internalName: "freedomexpress",
-      icon: "fa-person-running",
-      iconClasses: "text-warning",
+      displayName: 'Freedom Express',
+      internalName: 'freedomexpress',
+      icon: 'stopwatch',
     },
     {
-      displayName: "Special Ops",
-      internalName: "specialops",
-      icon: "fa-person-rifle",
-      iconClasses: "text-primary",
+      displayName: 'Special Ops',
+      internalName: 'specialops',
+      icon: 'soldier',
     },
   ];
-  if (type === "tools") {
+  if (type === 'tools') {
     list = [
       {
-        displayName: "Randomizer",
-        internalName: "randomizer",
-        icon: "fa-arrows-spin",
-        iconClasses: "color-changer",
+        displayName: 'Randomizer',
+        internalName: 'randomizer',
+        icon: 'dice',
       },
       {
-        displayName: "Tier List Maker",
-        internalName: "tiermaker",
-        icon: "fa-table-list",
-        iconClasses: "text-info",
+        displayName: 'Tier List Maker',
+        internalName: 'tiermaker',
+        icon: 'list',
+      },
+      {
+        displayName: 'Armor Lab',
+        internalName: 'armorlab',
+        icon: 'armor',
       },
     ];
     container = toolCardsContainer;
@@ -51,13 +48,11 @@ const genSplashPageCards = (type) => {
 
   for (let i = 0; i < list.length; i++) {
     const li = list[i];
-    const card = document.createElement("a");
+    const card = document.createElement('a');
     card.href = `./${li.internalName}`;
-    card.className = `card col-5 bg-none m-1 p-2 text-center challengeCards`;
+    card.className = `card col-5 col-lg-4 bg-none m-1 p-2 text-center challengeCards`;
     card.innerHTML = `
-    <i class="${
-      li.iconClasses ? li.iconClasses : "text-danger"
-    } fa-solid fa-7x ${li.icon}"></i>
+    <img class="img-fluid svgIconStyles" src="../images/iconSVGs/${li.icon}.svg" />
     <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
       <p class="card-title text-white pcItemCardText">${li.displayName}</p>
     </div>
@@ -66,5 +61,5 @@ const genSplashPageCards = (type) => {
   }
 };
 
-genSplashPageCards("challenges");
-genSplashPageCards("tools");
+genSplashPageCards('challenges');
+genSplashPageCards('tools');

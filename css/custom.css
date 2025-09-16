@@ -1,6 +1,6 @@
 body {
   background-color: #2d2d2d;
-  font-family: "Titillium Web", sans-serif;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 .bg-default {
@@ -329,6 +329,8 @@ body {
   text-decoration: none;
   color: inherit;
   border: none;
+  display: flex;
+  align-items: center;
 }
 
 .challengeCards:hover {
@@ -470,4 +472,8 @@ body {
 
 .cursorPointer {
   cursor: pointer;
+}
+
+.svgIconStyles {
+  width: 200px;
 }

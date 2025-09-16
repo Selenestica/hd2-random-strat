@@ -33,18 +33,15 @@
     />
     <title>Helldivers 2: Tier List Maker</title>
     <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
-    ></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag("js", new Date());
+      gtag('js', new Date());
 
-      gtag("config", "G-BFREXT7F48");
+      gtag('config', 'G-BFREXT7F48');
     </script>
   </head>
 
@@ -63,11 +60,7 @@
           <a target="_blank" href="https://discord.gg/nphn3YpqvY">
             <i class="socialIcons bi bi-discord"></i>
           </a>
-          <a
-            class="mx-2"
-            target="_blank"
-            href="https://github.com/Selenestica/hd2-random-strat"
-          >
+          <a class="mx-2" target="_blank" href="https://github.com/Selenestica/hd2-random-strat">
             <i class="socialIcons bi bi-github"></i>
           </a>
           <a target="_blank" href="https://buymeacoffee.com/breakfasttaco">
@@ -106,25 +99,13 @@
         </div>
       </div>
       <div class="row my-2 justify-content-center">
-        <div
-          class="col-2 d-flex align-items-center justify-content-start"
-        ></div>
+        <div class="col-2 d-flex align-items-center justify-content-start"></div>
         <div class="col-8 d-flex justify-content-center" id="bbShopFilterDiv">
-          <div
-            class="btn-group"
-            role="group"
-            aria-label="Basic outlined example"
-          >
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
             <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-outline-primary"
-                onclick="toggleItemNameText()"
-              >
+              <button type="button" class="btn btn-outline-primary" onclick="toggleItemNameText()">
                 <span id="bbPriceText" class="text-white">Text</span>
-                <span id="bbPriceIcon" class="text-white"
-                  ><i class="bi bi-fonts"></i
-                ></span>
+                <span id="bbPriceIcon" class="text-white"><i class="bi bi-fonts"></i></span>
               </button>
             </div>
             <div class="btn-group">
@@ -135,9 +116,7 @@
                 aria-expanded="false"
               >
                 <span id="bbTypeText" class="text-white">Type</span>
-                <span id="bbTypeIcon" class="text-white"
-                  ><i class="bi bi-list-task"></i
-                ></span>
+                <span id="bbTypeIcon" class="text-white"><i class="bi bi-list-task"></i></span>
               </button>
               <ul class="dropdown-menu">
                 <li>
@@ -222,11 +201,7 @@
                 id="warbondsFilterList"
               ></ul>
             </div> -->
-            <button
-              onclick="resetItemFilters()"
-              class="btn btn-primary"
-              type="button"
-            >
+            <button onclick="resetItemFilters()" class="btn btn-primary" type="button">
               <span id="bbResetText"> Reset </span>
               <span id="bbResetIcon"><i class="bi bi-x-lg"></i></span>
             </button>
@@ -248,10 +223,7 @@
       <div id="tierListContainer"></div>
 
       <!-- LOOSE ITEMS CONTAINER -->
-      <div
-        class="row d-flex justify-content-center"
-        id="looseItemsContainer"
-      ></div>
+      <div class="row d-flex justify-content-center" id="looseItemsContainer"></div>
 
       <!-- RESTART MODAL -->
       <div
@@ -276,11 +248,7 @@
               </p>
             </div>
             <div class="modal-footer d-flex justify-content-between">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Cancel
               </button>
               <button
@@ -335,40 +303,36 @@
                         <li class="text-white">
                           <b>Q: Can I save my tier list?</b>
                           <p>
-                            A: Yes! Your lists, like everything else on this
-                            site, is saved in your browsers local storage. You
-                            can even have multiple lists saved and switch
-                            between them any time.
+                            A: Yes! Your lists, like everything else on this site, is saved in your
+                            browsers local storage. You can even have multiple lists saved and
+                            switch between them any time.
                           </p>
                         </li>
                         <li class="text-white">
                           <b>Q: Can I share my tier list with others?</b>
                           <p>
-                            A: Yes! Simply click the download button next to the
-                            save file that you want to share. This will download
-                            a text file that others can upload in their app.
+                            A: Yes! Simply click the download button next to the save file that you
+                            want to share. This will download a text file that others can upload in
+                            their app.
                           </p>
                         </li>
                         <li class="text-white">
                           <b>Q: Why don't you run ads on this site?</b>
                           <p>
-                            A: The intention behind making this site was to
-                            provide maximum value to Helldivers everywhere. The
-                            majority of my code is browser-based, and I only pay
-                            out-of-pocket for the icons, build time, and hosting
-                            (I use AWS). Costs are relatively small, but if you
-                            would like to reward me for my efforts, feel free to
-                            buy me a coffee using the link at the top of the
-                            page!
+                            A: The intention behind making this site was to provide maximum value to
+                            Helldivers everywhere. The majority of my code is browser-based, and I
+                            only pay out-of-pocket for the domain, build time, and hosting (I use
+                            AWS). Costs are relatively small, but if you would like to reward me for
+                            my efforts, feel free to buy me a coffee using the link at the top of
+                            the page!
                           </p>
                         </li>
                         <li class="text-white">
                           <b>Q: Can I contribute with time instead of money?</b>
                           <p>
-                            A: Please! Feel free to join the discord and hit me
-                            up if you have any ideas/suggestions, or run into
-                            any bugs. If you're a coder, I can definitely use
-                            your help with upcoming features.
+                            A: Please! Feel free to join the discord and hit me up if you have any
+                            ideas/suggestions, or run into any bugs. If you're a coder, I can
+                            definitely use your help with upcoming features.
                           </p>
                         </li>
                       </ul>
@@ -378,13 +342,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -411,22 +369,16 @@
               id="tierMakerSaveDataManagementModalBody"
             >
               <p class="text-white">
-                Switch your active save file here, delete save files, or upload
-                save files.
+                Switch your active save file here, delete save files, or upload save files.
                 <br />
-                Select an entry below and press 'Apply' to load a different save
-                file.
+                Select an entry below and press 'Apply' to load a different save file.
                 <br />
                 <br />
                 NOTE: You can't delete your current save file.
               </p>
               <div class="mb-3 d-flex row">
                 <div class="col-9">
-                  <input
-                    class="form-control"
-                    type="file"
-                    id="saveDataUploadInput"
-                  />
+                  <input class="form-control" type="file" id="saveDataUploadInput" />
                 </div>
                 <div class="col-3">
                   <button
@@ -458,10 +410,7 @@
                   Close
                 </button>
               </div>
-              <div
-                id="saveDataModalFunctionsDiv"
-                class="d-flex col justify-content-end"
-              >
+              <div id="saveDataModalFunctionsDiv" class="d-flex col justify-content-end">
                 <button
                   type="button"
                   onclick="clearSaveDataAndRestart()"
@@ -499,10 +448,7 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"
   ></script>
-  <script
-    src="https://kit.fontawesome.com/a018c01272.js"
-    crossorigin="anonymous"
-  ></script>
+  <script src="https://kit.fontawesome.com/a018c01272.js" crossorigin="anonymous"></script>
   <script src="../js/constants/primaries.js"></script>
   <script src="../js/constants/secondaries.js"></script>
   <script src="../js/constants/boosters.js"></script>

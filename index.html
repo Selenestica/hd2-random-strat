@@ -12,11 +12,7 @@
     />
 
     <link rel="stylesheet" type="text/css" href="./css/custom.css" />
-    <link
-      rel="shortcut icon"
-      type="image/png"
-      href="./images/dressing/ministryOfTruthIcon.png"
-    />
+    <link rel="shortcut icon" type="image/png" href="./images/dressing/ministryOfTruthIcon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -34,18 +30,15 @@
     />
     <title>Helldivers 2 Challenges</title>
     <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
-    ></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag("js", new Date());
+      gtag('js', new Date());
 
-      gtag("config", "G-BFREXT7F48");
+      gtag('config', 'G-BFREXT7F48');
     </script>
   </head>
   <body>
@@ -63,20 +56,14 @@
             data-bs-toggle="modal"
             data-bs-target="#changeLogModal"
           >
-            <small class="text-light"
-              ><span id="changeLogDateText"></span>Dust Devils
-            </small>
+            <small class="text-light"><span id="changeLogDateText"></span>Dust Devils </small>
           </button>
         </div>
         <div class="d-flex col-6 justify-content-end">
           <a target="_blank" href="https://discord.gg/nphn3YpqvY">
             <i class="socialIcons bi bi-discord"></i>
           </a>
-          <a
-            class="mx-2"
-            target="_blank"
-            href="https://github.com/Selenestica/hd2-random-strat"
-          >
+          <a class="mx-2" target="_blank" href="https://github.com/Selenestica/hd2-random-strat">
             <i class="socialIcons bi bi-github"></i>
           </a>
           <a target="_blank" href="https://buymeacoffee.com/breakfasttaco">
@@ -108,17 +95,11 @@
 
       <!-- MAIN BODY -->
       <div class="d-flex justify-content-center">
-        <div
-          id="challengeCardsContainer"
-          class="row d-flex justify-content-center"
-        ></div>
+        <div id="challengeCardsContainer" class="row d-flex justify-content-center"></div>
       </div>
       <hr class="text-secondary" />
       <div class="d-flex justify-content-center">
-        <div
-          id="toolCardsContainer"
-          class="row gap-4 d-flex justify-content-center"
-        ></div>
+        <div id="toolCardsContainer" class="row d-flex justify-content-center"></div>
       </div>
       <hr class="text-secondary" />
       <div class="d-flex row justify-content-center">
@@ -138,30 +119,17 @@
       <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="changeLogModalLabel">
-              Change Log
-            </h5>
+            <h5 class="modal-title text-light" id="changeLogModalLabel">Change Log</h5>
           </div>
           <div id="changeLogBody" class="modal-body">
             <p class="text-white">
-              Showing last 10 commits (out of ~<span id="totalCommits"></span>)
-              on
-              <a
-                href="https://github.com/Selenestica/hd2-random-strat"
-                target="_blank"
-                >GitHub</a
-              >
+              Showing last 10 commits (out of ~<span id="totalCommits"></span>) on
+              <a href="https://github.com/Selenestica/hd2-random-strat" target="_blank">GitHub</a>
             </p>
             <ul id="changeLogContent"></ul>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -204,40 +172,33 @@
                   <li class="text-white">
                     <b>Q: Who is this app for?</b>
                     <p>
-                      A: This web app was made for Helldivers who are seeking a
-                      challenge, either solo or with a squad.
+                      A: This web app was made for Helldivers who are seeking a challenge, either
+                      solo or with a squad.
                     </p>
                   </li>
                   <li class="text-white">
-                    <b
-                      >Q: What if I want to have multiple challenge runs at the
-                      same time?</b
-                    >
+                    <b>Q: What if I want to have multiple challenge runs at the same time?</b>
                     <p>
-                      A: You can start a new challenge at any time, and this
-                      website will save your progress from your previous runs
-                      automatically for every challenge.
+                      A: You can start a new challenge at any time, and this website will save your
+                      progress from your previous runs automatically for every challenge.
                     </p>
                   </li>
                   <li class="text-white">
                     <b>Q: Why don't you run ads on this site?</b>
                     <p>
-                      A: The intention behind making this site was to provide
-                      maximum value to Helldivers everywhere. The majority of my
-                      code is browser-based, and I only pay out-of-pocket for
-                      the icons, build time, and hosting (I use AWS). Costs are
-                      relatively small, but if you would like to reward me for
-                      my efforts, feel free to buy me a coffee using the link at
-                      the top of the page!
+                      A: The intention behind making this site was to provide maximum value to
+                      Helldivers everywhere. The majority of my code is browser-based, and I only
+                      pay out-of-pocket for the domain, build time, and hosting (I use AWS). Costs
+                      are relatively small, but if you would like to reward me for my efforts, feel
+                      free to buy me a coffee using the link at the top of the page!
                     </p>
                   </li>
                   <li class="text-white">
                     <b>Q: Can I contribute with time instead of money?</b>
                     <p>
-                      A: Please! Feel free to join the discord and hit me up if
-                      you have any ideas/suggestions, or run into any bugs. If
-                      you're a coder, I can definitely use your help with
-                      upcoming features.
+                      A: Please! Feel free to join the discord and hit me up if you have any
+                      ideas/suggestions, or run into any bugs. If you're a coder, I can definitely
+                      use your help with upcoming features.
                     </p>
                   </li>
                 </ul>
@@ -264,9 +225,8 @@
               >
                 <div class="accordion-body">
                   <p class="text-white">
-                    A customizeable stratagem and equipment randomizer for
-                    really spicing up your loadouts. Ideal for any type of play
-                    and any amount of players.
+                    A customizeable stratagem and equipment randomizer for really spicing up your
+                    loadouts. Ideal for any type of play and any amount of players.
                   </p>
                 </div>
               </div>
@@ -292,15 +252,13 @@
               >
                 <div class="accordion-body">
                   <p class="text-white">
-                    A brutal rogue-like challenge for Helldivers 2 veterans.
-                    Earn random rewards based on mission performance, and work
-                    your way up to Super Helldive. Specialists are available for
-                    alternative starting kits and roleplay. Ideal for squads,
-                    duos, or solo players.
+                    A brutal rogue-like challenge for Helldivers 2 veterans. Earn random rewards
+                    based on mission performance, and work your way up to Super Helldive.
+                    Specialists are available for alternative starting kits and roleplay. Ideal for
+                    squads, duos, or solo players.
                     <br />
                     <br />
-                    Complete the normal difficulty to unlock Super Penitent
-                    Crusade.
+                    Complete the normal difficulty to unlock Super Penitent Crusade.
                   </p>
                 </div>
               </div>
@@ -326,10 +284,9 @@
               >
                 <div class="accordion-body">
                   <p class="text-white">
-                    A rogue-like challenge for Helldivers 2 speedrunners. Each
-                    mission assigns a movement stratagem and a choice of one of
-                    four boosters. Points are calculated by % mission time
-                    remaining, deaths, and acquisition of the High Value Item.
+                    A rogue-like challenge for Helldivers 2 speedrunners. Each mission assigns a
+                    movement stratagem and a choice of one of four boosters. Points are calculated
+                    by % mission time remaining, deaths, and acquisition of the High Value Item.
                     Ideal for squads or solo players.
                   </p>
                 </div>
@@ -356,10 +313,9 @@
               >
                 <div class="accordion-body">
                   <p class="text-white">
-                    A rogue-like challenge with shop and inventory mechanics
-                    ideal for veterans and new players alike. Fully
-                    customizeable with warbond and difficulty options. Ideal for
-                    squads.
+                    A rogue-like challenge with shop and inventory mechanics ideal for veterans and
+                    new players alike. Fully customizeable with warbond and difficulty options.
+                    Ideal for squads.
                   </p>
                 </div>
               </div>
@@ -385,10 +341,9 @@
               >
                 <div class="accordion-body">
                   <p class="text-white">
-                    A rogue-like challenge for Helldivers 2 veterans who are
-                    looking to spice up their Super Helldive operations with
-                    themed loadouts, extra objectives, and roleplay. Ideal for
-                    solo players, squads, and random squads alike.
+                    A rogue-like challenge for Helldivers 2 veterans who are looking to spice up
+                    their Super Helldive operations with themed loadouts, extra objectives, and
+                    roleplay. Ideal for solo players, squads, and random squads alike.
                   </p>
                 </div>
               </div>
@@ -414,42 +369,31 @@
               >
                 <ul class="modalAccordionList">
                   <li class="text-white">
-                    Huge thanks to u/TylerJohnsonDaGOAT for writing up the
-                    attributes for stratagems and equipment, and for letting me
-                    bounce ideas off of them. Tons of drudgery was avoided
-                    because of their contributions. Thanks!
+                    Huge thanks to u/TylerJohnsonDaGOAT for writing up the attributes for stratagems
+                    and equipment, and for letting me bounce ideas off of them. Tons of drudgery was
+                    avoided because of their contributions. Thanks!
                   </li>
                   <li class="text-white">
-                    I came across this idea while browsing Reddit. After a quick
-                    Google search, I found that
+                    I came across this idea while browsing Reddit. After a quick Google search, I
+                    found that
                     <a href="https://hd2random.com/"
                       >someone had already made a web app for a randomizer</a
                     >
-                    (very cool). However, I had my own ideas regarding layout,
-                    more features, and more challenges.
+                    (very cool). However, I had my own ideas regarding layout, more features, and
+                    more challenges.
                   </li>
                   <li class="text-white">
-                    Would you like to contribute? If you're code savvy, I could
-                    use some help with colors and fonts, as well as upcoming
-                    features. Feel free to email me at
-                    joebenwilson.dev@gmail.com with any feedback/suggestions, or
-                    submit an issue on
-                    <a href="https://github.com/Selenestica/hd2-random-strat"
-                      >GitHub</a
-                    >.
+                    Would you like to contribute? If you're code savvy, I could use some help with
+                    colors and fonts, as well as upcoming features. Feel free to email me at
+                    joebenwilson.dev@gmail.com with any feedback/suggestions, or submit an issue on
+                    <a href="https://github.com/Selenestica/hd2-random-strat">GitHub</a>.
                   </li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -461,10 +405,7 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"
   ></script>
-  <script
-    src="https://kit.fontawesome.com/a018c01272.js"
-    crossorigin="anonymous"
-  ></script>
+  <script src="https://kit.fontawesome.com/a018c01272.js" crossorigin="anonymous"></script>
   <script src="./js/main.js"></script>
   <script src="./js/components/genSplashPageCards.js"></script>
   <script src="./js/components/genOtherResourcesList.js"></script>

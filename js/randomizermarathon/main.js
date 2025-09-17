@@ -19,6 +19,9 @@ const defaultDefenseRadio = document.getElementById("defaultDefenseRadio");
 const onlySupplyRadio = document.getElementById("onlySupplyRadio");
 const noSupplyRadio = document.getElementById("noSupplyRadio");
 const defaultSupplyRadio = document.getElementById("defaultSupplyRadio");
+const viewItemsModal = document.getElementById("viewItemsModal");
+const viewItemsModalBody = document.getElementById("viewItemsModalBody");
+const viewItemsModalTitle = document.getElementById("viewItemsModalTitle");
 
 const stratOptionRadios = [
   onlyEaglesRadio,
@@ -133,6 +136,11 @@ const enableRadios = () => {
   }
 };
 
+// when the items modal closes, clear it
+viewItemsModal.addEventListener("hidden.bs.modal", () => {
+  viewItemsModalBody.innerHTML = "";
+});
+
 for (let z = 0; z < warbondCheckboxes.length; z++) {
   warbondCheckboxes[z].addEventListener("change", (e) => {
     // update localStorage obj
@@ -184,34 +192,54 @@ const filterItemsByWarbond = async () => {
   }
 };
 
-const rollArmor = async () => {
-  const randArmorIndex = Math.floor(
-    Math.random() * workingArmorPassivesList.length
-  );
-  const rolledArmor = workingArmorPassivesList[randArmorIndex];
-  let armorImage = `                    
-                    <img
-                        src="../images/armorpassives/${rolledArmor.imageURL}"
-                        class="img-card-top"
-                        alt="${rolledArmor.displayName}"
-                    />`;
-  if (rolledArmor.tags.includes("ArmorSize")) {
-    armorImage = await getArmorSizeIcon(rolledArmor.internalName);
+const generateItemCard = (item) => {
+  let imgDir = "equipment";
+  if (item.category === "armor") {
+    imgDir = "armorpassives";
   }
-  armorContainer.innerHTML = `
-          <div class="col-2 px-1 d-flex justify-content-center">
-            <div class="card itemCards armorLogo" 
-              onclick="rerollArmor('${rolledArmor.internalName}', 'armor')"
-            >
-                ${armorImage}
-            </div>
-          </div>
-          <div class="col-10 px-0 d-flex justify-content-start">
-              <div class="card-body d-flex align-items-center">
-                  <p class="card-title text-white">${rolledArmor.displayName}</p>
-              </div>
-          </div>
-    `;
+  if (item.type === "Stratagem") {
+    imgDir = "svgs";
+  }
+  return `
+    <div class="card d-flex col-2 soItemCards mx-1">
+      <img
+          src="../images/${imgDir}/${item.imageURL}"
+          class="img-card-top"
+          alt="${item.displayName}"
+      />
+      <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
+          <p class="card-title text-white">${item.displayName}</p>
+      </div>
+    </div>`;
+};
+
+const genItemsModalContent = async (cat) => {
+  let list = [];
+  if (cat === "secondary") {
+    list = workingSecondsList;
+    viewItemsModalTitle.innerHTML = "Secondaries";
+  }
+  if (cat === "primary") {
+    list = workingPrimsList;
+    viewItemsModalTitle.innerHTML = "Primaries";
+  }
+  if (cat === "stratagem") {
+    list = workingStratsList;
+    viewItemsModalTitle.innerHTML = "Stratagems";
+  }
+  if (cat === "throwable") {
+    list = workingThrowsList;
+    viewItemsModalTitle.innerHTML = "Throwables";
+  }
+  if (cat === "armor") {
+    list = workingArmorPassivesList;
+    viewItemsModalTitle.innerHTML = "Armor Passives";
+  }
+  for (let i = 0; i < list.length; i++) {
+    viewItemsModalBody.innerHTML += generateItemCard(list[i]);
+  }
+  const modal = new bootstrap.Modal(viewItemsModal);
+  modal.show();
 };
 
 const rollStratagems = async () => {
@@ -244,7 +272,7 @@ const rollStratagems = async () => {
     stratagemsContainer.innerHTML += `
           <div class="col-3 px-1 d-flex justify-content-center">
             <div class="card itemCards" 
-              onclick="rerollItem('${stratagem.internalName}', 'strat')"
+              onclick="genItemsModalContent('stratagem')"
             >
               <img
                   src="../images/svgs/${stratagem.imageURL}"
@@ -267,7 +295,7 @@ const rollEquipment = () => {
     workingPrimsList ?? primsList,
     workingSecondsList ?? secondsList,
     workingThrowsList ?? throwsList,
-    workingBoostsList ?? boostsList,
+    workingArmorPassivesList ?? armorPassivesList,
   ];
 
   for (let i = 0; i < equipmentLists.length; i++) {
@@ -284,16 +312,22 @@ const rollEquipment = () => {
       equipmentContainer.innerHTML += `
               <div class="col-3 px-1 d-flex justify-content-center">
                 <div class="card itemCards"
-                  onclick="rerollItem('${equipment.internalName}', '${equipment.category}')"
+                  onclick="genItemsModalContent('${equipment.category}')"
                 >
                   <img
-                      src="../images/equipment/${equipment.imageURL}"
+                      src="../images/${
+                        i !== 3 ? "equipment" : "armorpassives"
+                      }/${equipment.imageURL}"
                       class="img-card-top"
                       alt="${equipment.displayName}"
                       id="${equipment.internalName}-randImage"
                   />
                   <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
-                      <p id="${equipment.internalName}-randName" class="card-title text-white">${equipment.displayName}</p>
+                      <p id="${
+                        equipment.internalName
+                      }-randName" class="card-title text-white">${
+        equipment.displayName
+      }</p>
                   </div>
                 </div>
               </div>
@@ -347,10 +381,12 @@ const rerollItem = async (intName, cat) => {
     itemImage.src = `../images/equipment/${newItem.imageURL}`;
     itemName.innerText = newItem.displayName;
   }
-  if (cat === "booster") {
-    const randomNumber = Math.floor(Math.random() * workingBoostsList.length);
-    newItem = workingBoostsList[randomNumber];
-    itemImage.src = `../images/equipment/${newItem.imageURL}`;
+  if (cat === "armor") {
+    const randomNumber = Math.floor(
+      Math.random() * workingArmorPassivesList.length
+    );
+    newItem = workingArmorPassivesList[randomNumber];
+    itemImage.src = `../images/armorpassives/${newItem.imageURL}`;
     itemName.innerText = newItem.displayName;
   }
 };
@@ -583,7 +619,6 @@ const randomizeAll = async () => {
   await checkLocalStorageForOptionsPreferences();
   rollEquipment();
   rollStratagems();
-  rollArmor();
 };
 
 randomizeAll();

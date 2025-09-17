@@ -170,6 +170,16 @@ const STRATAGEMS = [
     tier: "b",
   },
   {
+    displayName: "Solo Silo",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Weapons"],
+    warbondCode: "warbond20",
+    internalName: "solosilo",
+    imageURL: "solosilo.svg",
+    tier: "a",
+  },
+  {
     displayName: "One True Flag",
     type: "Stratagem",
     category: "Supply",
@@ -668,16 +678,6 @@ const STRATAGEMS = [
     internalName: "shieldgeneratorrelay",
     imageURL: "shieldgeneratorrelay.svg",
     tier: "c",
-  },
-  {
-    displayName: "Solo Silo",
-    type: "Stratagem",
-    category: "Supply",
-    tags: ["Weapons"],
-    warbondCode: "warbond20",
-    internalName: "solosilo",
-    imageURL: "solosilo.svg",
-    tier: "a",
   },
   {
     displayName: "HMG Emplacement",

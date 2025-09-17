@@ -91,13 +91,20 @@ DEBT DIVERS
   - 
 
 - RANDOMIZER MARATHON
+  - PRIMARIES: 42
+  - SECONDARIES: 19
+  - THROWABLES: 16
+  - BOOSTERS: 17
+  - PASSIVES: 20
+  - ARMOR SETS: 89
+  - STRATAGEMS: 75
+  - clicking on the item opens a modal showing all the items of that type you have unlocked
+    - "Unlock all of these items to be able to choose which item you want to equip"
+  - failing a mission locks one random item of each type, even if you've completed a category type, and rolls a completely different loadout for you
   - essentially, what you roll in the randomizer
     is then eliminated from the pool so you
     never roll it again
   - challenge ends when all items have been used in a mission
-  - layout
-    - main view like randomizer
-    - secondary view like BB shop
   - when a category is finished, player can choose items from that category to be persistent
   - option to roll 1 backpack and 1 support weapon, or TRUE RANDOM
   - score multiplier based on difficulty

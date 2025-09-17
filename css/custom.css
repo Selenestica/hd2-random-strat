@@ -1,6 +1,6 @@
 body {
   background-color: #2d2d2d;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: "Titillium Web", sans-serif;
 }
 
 .bg-default {
@@ -476,4 +476,8 @@ body {
 
 .svgIconStyles {
   width: 200px;
+}
+
+.mediumFontSize {
+  font-size: medium;
 }

@@ -8,7 +8,6 @@ const objectiveInputsContainer = document.getElementById(
 );
 const planetContainer = document.getElementById("planetContainer");
 const objectivesContainer = document.getElementById("objectivesContainer");
-const loadoutContainer = document.getElementById("loadoutContainer");
 const stratagemsContainer = document.getElementById("stratagemsContainer");
 const equipmentContainer = document.getElementById("equipmentContainer");
 const armorContainer = document.getElementById("armorContainer");
@@ -141,7 +140,7 @@ const generateItemCard = (item) => {
     imgDir = "svgs";
   }
   return `
-    <div class="card d-flex col-2 col-lg-1 soItemCards mx-1">
+    <div class="card d-flex col-2 soItemCards mx-1">
       <img
           src="../images/${imgDir}/${item.imageURL}"
           class="img-card-top"

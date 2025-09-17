@@ -1,46 +1,53 @@
-const challengeCardsContainer = document.getElementById('challengeCardsContainer');
-const toolCardsContainer = document.getElementById('toolCardsContainer');
+const challengeCardsContainer = document.getElementById(
+  "challengeCardsContainer"
+);
+const toolCardsContainer = document.getElementById("toolCardsContainer");
 
 const genSplashPageCards = (type) => {
   let container = challengeCardsContainer;
   let list = [
     {
-      displayName: 'Penitent Crusade',
-      internalName: 'penitentcrusade',
-      icon: 'skull-and-crossbones',
+      displayName: "Penitent Crusade",
+      internalName: "penitentcrusade",
+      icon: "skull-and-crossbones",
     },
     {
-      displayName: 'Budget Blitz',
-      internalName: 'budgetblitz',
-      icon: 'dollar-circle-list',
+      displayName: "Budget Blitz",
+      internalName: "budgetblitz",
+      icon: "dollar-circle-list",
     },
     {
-      displayName: 'Freedom Express',
-      internalName: 'freedomexpress',
-      icon: 'stopwatch',
+      displayName: "Freedom Express",
+      internalName: "freedomexpress",
+      icon: "stopwatch",
     },
     {
-      displayName: 'Special Ops',
-      internalName: 'specialops',
-      icon: 'soldier',
+      displayName: "Special Ops",
+      internalName: "specialops",
+      icon: "soldier",
     },
+    // {
+    //   displayName: "Debt Divers",
+    //   internalName: "debtdivers",
+    //   icon: "bank",
+    // },
   ];
-  if (type === 'tools') {
+  if (type === "tools") {
     list = [
       {
-        displayName: 'Randomizer',
-        internalName: 'randomizer',
-        icon: 'dice',
+        displayName: "Randomizer",
+        internalName: "randomizer",
+        icon: "dice",
       },
       {
-        displayName: 'Tier List Maker',
-        internalName: 'tiermaker',
-        icon: 'list',
+        displayName: "Tier List Maker",
+        internalName: "tiermaker",
+        icon: "list",
       },
       {
-        displayName: 'Armor Lab',
-        internalName: 'armorlab',
-        icon: 'armor',
+        displayName: "Armor Lab",
+        internalName: "armorlab",
+        icon: "armor",
       },
     ];
     container = toolCardsContainer;
@@ -48,9 +55,9 @@ const genSplashPageCards = (type) => {
 
   for (let i = 0; i < list.length; i++) {
     const li = list[i];
-    const card = document.createElement('a');
+    const card = document.createElement("a");
     card.href = `./${li.internalName}`;
-    card.className = `card col-5 col-lg-4 bg-none m-1 p-2 text-center challengeCards`;
+    card.className = `card col-4 col-lg-3 bg-none m-1 p-2 text-center challengeCards`;
     card.innerHTML = `
     <img class="img-fluid svgIconStyles" src="../images/iconSVGs/${li.icon}.svg" />
     <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
@@ -61,5 +68,5 @@ const genSplashPageCards = (type) => {
   }
 };
 
-genSplashPageCards('challenges');
-genSplashPageCards('tools');
+genSplashPageCards("challenges");
+genSplashPageCards("tools");

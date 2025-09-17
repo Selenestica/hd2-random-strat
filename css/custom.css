@@ -437,12 +437,6 @@ body {
   box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-  .tierItem {
-    width: 80px;
-  }
-}
-
 #looseItemsContainer {
   margin-top: 10px;
   background: #1e1e1e;
@@ -468,14 +462,29 @@ body {
     border-left: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0;
   }
+
+  .svgIconStyles {
+    width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tierItem {
+    width: 80px;
+  }
+  .svgIconStyles {
+    width: 80px;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .svgIconStyles {
+    width: 120px;
+  }
 }
 
 .cursorPointer {
   cursor: pointer;
-}
-
-.svgIconStyles {
-  width: 200px;
 }
 
 .mediumFontSize {

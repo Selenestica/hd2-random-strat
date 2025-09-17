@@ -83,14 +83,8 @@ TIER MAKER
 
 DEBT DIVERS
   - balance changes
-    - remove OPS from free items
-    - reduce cost of accidentals
-    - higher difficulty deaths cost less than lower difficulty deaths
-      - level 10 deaths = 5sc > level 1 deaths = 15sc
+
   - players who make par receive a C-01 permit
-	- when players reach 1000 credits, they can keep playing to
-		help the team, but there credits are reduced by 
-		1000 (taken by the creditors)
 
 - FREEDOM EXPRESS
   - more booster choices?

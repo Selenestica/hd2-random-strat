@@ -1,8 +1,8 @@
-const ddGameOverModal = document.getElementById('ddGameOverModal');
-const ddGameOverModalBody = document.getElementById('ddGameOverModalBody');
+const ddGameOverModal = document.getElementById("ddGameOverModal");
+const ddGameOverModalBody = document.getElementById("ddGameOverModalBody");
 
 const genDDGameOverModal = async () => {
-  const debtDiversSaveData = localStorage.getItem('debtDiversSaveData');
+  const debtDiversSaveData = localStorage.getItem("debtDiversSaveData");
   if (!debtDiversSaveData) return;
 
   const savedGames = JSON.parse(debtDiversSaveData).savedGames;
@@ -10,12 +10,11 @@ const genDDGameOverModal = async () => {
     return sg.currentGame === true;
   })[0];
   const {
-    credits,
+    endingCredits,
     creditsPerMission,
     failedMissions,
     successfulMissions,
     dateStarted,
-    dateEnded,
     difficulty,
   } = currentGame;
 
@@ -29,15 +28,15 @@ const genDDGameOverModal = async () => {
   let numOfAccidentals = 0;
   let difficultyModifier = 0;
   let totalMissions = failedMissions + successfulMissions;
-  let parScore = (par - totalMissions) * 100;
-  if (difficulty === 'Medium') {
+  if (difficulty === "Medium") {
     difficultyModifier = 250;
     par = 12;
   }
-  if (difficulty === 'Hard') {
+  if (difficulty === "Hard") {
     difficultyModifier = 500;
-    par = 15;
+    par = 16;
   }
+  let parScore = (par - totalMissions) * 100;
 
   for (let j = 0; j < creditsPerMission.length; j++) {
     const missionInfo = creditsPerMission[j];
@@ -56,14 +55,13 @@ const genDDGameOverModal = async () => {
   ddGameOverModalBody.innerHTML += `<h5 class="text-white">Breakdown:</h5>`;
   ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Difficulty: ${difficulty}</p>`;
   ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Start Time: ${dateStarted}</p>`;
-  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">End Time: ${dateEnded}</p>`;
   ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Stars Earned: ${starsEarned}</p>`;
   ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Super Samples Collected: ${superSamplesCollected}</p>`;
   ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Total Credits Earned: ${totalCreditsEarned}</p>`;
   ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Number of Deaths: ${numOfDeaths}</p>`;
   ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Number of Accidentals: ${numOfAccidentals}</p>`;
   ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">High Value Items Collected: ${highValueItemsCollected}</p>`;
-  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Ending Credits: ${credits}</p>`;
+  ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Ending Credits: ${endingCredits}</p>`;
   ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Missions Failed: ${failedMissions}</p>`;
   ddGameOverModalBody.innerHTML += `<p class="mb-0 text-white"><br /></p>`;
   ddGameOverModalBody.innerHTML += `<h5 class="text-white">Score:</h5>`;
@@ -80,6 +78,6 @@ const genDDGameOverModal = async () => {
 };
 
 // if the game over modal ever closes, reset the content
-ddGameOverModal.addEventListener('hidden.bs.modal', () => {
-  ddGameOverModalBody.innerHTML = '';
+ddGameOverModal.addEventListener("hidden.bs.modal", () => {
+  ddGameOverModalBody.innerHTML = "";
 });

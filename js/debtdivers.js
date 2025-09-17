@@ -17,6 +17,7 @@ let randomItem = null;
 let difficulty = "Medium";
 let currentView = "loadoutButton";
 let credits = 100;
+let endingCredits = 0;
 missionButtonsDiv.style.display = "flex";
 bbShopFilterDiv.style.display = "none";
 hellDiversMobilizeCheckbox.disabled = true;
@@ -54,6 +55,7 @@ const startNewRun = async (isRestart = null) => {
   await writeItems();
 
   credits = 100;
+  endingCredits = 0;
   creditsPerMission = [];
   scCounter.innerHTML = `${": " + credits}`;
   sesItem = {
@@ -138,17 +140,12 @@ const checkMissionButtons = () => {
     }
   }
 
-  if (credits >= 1000) {
-    missionFailedButton.disabled = true;
-    missionCompleteButton.disabled = true;
-
-    // hide the mission buttons, and show download items buttons
-    missionCompleteButton.style.display = "none";
-    missionFailedButton.style.display = "none";
+  if (credits >= 1000 || endingCredits >= 1000) {
+    // hide the mission buttons, and show download button
     downloadPDFButtonDiv.style.display = "block";
   }
 
-  if (credits < 1000) {
+  if (credits < 1000 && endingCredits < 1000) {
     missionCompleteButton.style.display = "block";
     missionFailedButton.style.display = "block";
     downloadPDFButtonDiv.style.display = "none";
@@ -203,6 +200,7 @@ const uploadSaveData = async () => {
     warbondCodes = currentGame.warbondCodes;
     dataName = currentGame.dataName;
     credits = currentGame.credits;
+    endingCredits = currentGame.endingCredits;
     creditsPerMission = currentGame.creditsPerMission;
     sesItem = currentGame.sesItem;
     difficulty = currentGame.difficulty;
@@ -231,21 +229,12 @@ const submitMissionReport = async (isMissionSucceeded) => {
 
   if (isMissionSucceeded) {
     let deathsDifficultyModifier = 10;
-    let accidentalsDifficultyModifier = 20;
+    let accidentalsDifficultyModifier = 15;
     const starsEarnedModifier =
       parseInt(starsEarnedInput.value, 10) *
       parseInt(missionDifficultyInput.value, 10) *
-      2;
-    const superSamplesModifier = superSamplesCollectedInput.value * 12;
-
-    // if (difficulty === 'Easy') {
-    //   deathsDifficultyModifier = 1;
-    //   accidentalsDifficultyModifier = 1;
-    // }
-    // if (difficulty === 'Hard') {
-    //   deathsDifficultyModifier = 3;
-    //   accidentalsDifficultyModifier = 3;
-    // }
+      3;
+    const superSamplesModifier = superSamplesCollectedInput.value * 5; // 5
     let numOfDeathsModifier =
       parseInt(numOfDeathsInput.value, 10) * deathsDifficultyModifier;
     let numOfAccidentalsModifier =
@@ -267,6 +256,14 @@ const submitMissionReport = async (isMissionSucceeded) => {
 
     const timeRemainingModifier = parseInt(timeRemainingInput.value, 10);
     const operationCompleteModifier = operationCompleteCheck.checked ? 50 : 0;
+    console.log(
+      starsEarnedModifier,
+      superSamplesModifier,
+      operationCompleteModifier,
+      timeRemainingModifier,
+      numOfDeathsModifier,
+      numOfAccidentalsModifier
+    );
     const total =
       starsEarnedModifier +
       superSamplesModifier +
@@ -278,16 +275,19 @@ const submitMissionReport = async (isMissionSucceeded) => {
     scCounter.innerHTML = `${": " + credits}`;
     showBBCreditsEarnedToast(total);
 
-    successfulMissions++;
-    creditsPerMission.push({
-      totalCredits: total,
-      timeRemaining: parseInt(timeRemainingInput.value, 10),
-      starsEarned: parseInt(starsEarnedInput.value, 10),
-      superSamplesCollected: parseInt(superSamplesCollectedInput.value, 10),
-      highValueItemsCollected: highValueItemCollectedCheck.checked,
-      numOfDeaths: parseInt(numOfDeathsInput.value, 10),
-      numOfAccidentals: parseInt(numOfAccidentalsInput.value, 10),
-    });
+    if (endingCredits === 0) {
+      successfulMissions++;
+      creditsPerMission.push({
+        totalCredits: total,
+        timeRemaining: parseInt(timeRemainingInput.value, 10),
+        starsEarned: parseInt(starsEarnedInput.value, 10),
+        superSamplesCollected: parseInt(superSamplesCollectedInput.value, 10),
+        highValueItemsCollected: highValueItemCollectedCheck.checked,
+        numOfDeaths: parseInt(numOfDeathsInput.value, 10),
+        numOfAccidentals: parseInt(numOfAccidentalsInput.value, 10),
+      });
+      missionCounterText.innerHTML = `${successfulMissions + failedMissions}`;
+    }
 
     // here we want to go through all the items in the shop and update their cost and onSale property
     // if they are starting a new operation
@@ -304,7 +304,6 @@ const submitMissionReport = async (isMissionSucceeded) => {
     highValueItemCollectedCheck.checked = false;
     operationCompleteCheck.checked = false;
 
-    missionCounterText.innerHTML = `${successfulMissions + failedMissions}`;
     checkMissionButtons();
 
     saveProgress();
@@ -313,14 +312,26 @@ const submitMissionReport = async (isMissionSucceeded) => {
 
   if (!isMissionSucceeded) {
     checkMissionButtons();
-    failedMissions++;
-    missionCounterText.innerHTML = `${successfulMissions + failedMissions}`;
+    if (endingCredits === 0) {
+      failedMissions++;
+      missionCounterText.innerHTML = `${successfulMissions + failedMissions}`;
+    }
+
     saveProgress();
     return;
   }
 };
 
 const saveProgress = async () => {
+  // here we will want to subtract 1000 credits
+  let showGameOverModal = false;
+  if (credits >= 1000 && endingCredits === 0) {
+    endingCredits = credits;
+    credits -= 1000;
+    scCounter.innerHTML = `${": " + credits}`;
+    showGameOverModal = true;
+  }
+
   // we want to disable warbond and difficulty inputs here if player bought something but didnt start a mission
   if (successfulMissions < 1 && failedMissions < 1) {
     for (let i = 0; i < warbondCheckboxes.length; i++) {
@@ -362,6 +373,7 @@ const saveProgress = async () => {
           failedMissions,
           successfulMissions,
           credits,
+          endingCredits,
           creditsPerMission,
           sesItem,
           difficulty,
@@ -404,11 +416,11 @@ const saveProgress = async () => {
         dateStarted: sg.dateStarted
           ? sg.dateStarted
           : `${getCurrentDateTime()}`,
-        dateEnded: credits >= 1000 ? `${getCurrentDateTime()}` : null,
         currentGame: true,
         failedMissions,
         successfulMissions,
         credits,
+        endingCredits,
         creditsPerMission,
         sesItem,
         difficulty,
@@ -424,9 +436,7 @@ const saveProgress = async () => {
   };
   localStorage.setItem("debtDiversSaveData", JSON.stringify(obj));
 
-  // show score modal after local storage has been updated when challenge complete
-  // here we will want to subtract 1000 credits
-  if (credits >= 1000) {
+  if (endingCredits >= 1000 && showGameOverModal) {
     genDDGameOverModal();
   }
 };
@@ -470,6 +480,7 @@ const saveDataAndRestart = async () => {
     failedMissions,
     successfulMissions,
     credits,
+    endingCredits,
     creditsPerMission,
     sesItem,
     difficulty,

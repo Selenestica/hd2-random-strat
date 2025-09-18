@@ -1,5 +1,6 @@
 const stratagemsContainer = document.getElementById("stratagemsContainer");
 const equipmentContainer = document.getElementById("equipmentContainer");
+const boosterContainer = document.getElementById("boosterContainer");
 const rollStratsButton = document.getElementById("rollStratsButton");
 const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 const superCitizenCheckBox = document.getElementById("warbond0");
@@ -192,7 +193,34 @@ const filterItemsByWarbond = async () => {
   }
 };
 
-const generateItemCard = (item) => {
+const generateMainItemCard = (item) => {
+  let imgDir = "equipment";
+  if (item.category === "armor") {
+    imgDir = "armorpassives";
+  }
+  if (item.type === "Stratagem") {
+    imgDir = "svgs";
+  }
+  return `
+    <div class="col-3 px-1 d-flex justify-content-center">
+      <div class="card itemCards" 
+        onclick="genItemsModalContent('stratagem')"
+      >
+        <img
+            src="../images/${imgDir}/${item.imageURL}"
+            class="img-card-top"
+            alt="${item.displayName}"
+            id="${item.internalName}-randImage"
+        />
+        <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
+            <p id="${item.internalName}-randName" class="text-center card-title text-white">${item.displayName}</p>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
+const generateModalItemCard = (item) => {
   let imgDir = "equipment";
   if (item.category === "armor") {
     imgDir = "armorpassives";
@@ -208,7 +236,7 @@ const generateItemCard = (item) => {
           alt="${item.displayName}"
       />
       <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
-          <p class="card-title text-white">${item.displayName}</p>
+          <p class="card-title text-white" style="font-size: small;">${item.displayName}</p>
       </div>
     </div>`;
 };
@@ -235,8 +263,12 @@ const genItemsModalContent = async (cat) => {
     list = workingArmorPassivesList;
     viewItemsModalTitle.innerHTML = "Armor Passives";
   }
+  if (cat === "booster") {
+    list = workingBoostsList;
+    viewItemsModalTitle.innerHTML = "Boosters";
+  }
   for (let i = 0; i < list.length; i++) {
-    viewItemsModalBody.innerHTML += generateItemCard(list[i]);
+    viewItemsModalBody.innerHTML += generateModalItemCard(list[i]);
   }
   const modal = new bootstrap.Modal(viewItemsModal);
   modal.show();
@@ -269,38 +301,28 @@ const rollStratagems = async () => {
   for (let i = 0; i < randomUniqueNumbers.length; i++) {
     const stratagem = filteredStratList[randomUniqueNumbers[i]];
     rolledStrats.push(stratagem.internalName);
-    stratagemsContainer.innerHTML += `
-          <div class="col-3 px-1 d-flex justify-content-center">
-            <div class="card itemCards" 
-              onclick="genItemsModalContent('stratagem')"
-            >
-              <img
-                  src="../images/svgs/${stratagem.imageURL}"
-                  class="img-card-top"
-                  alt="${stratagem.displayName}"
-                  id="${stratagem.internalName}-randImage"
-              />
-              <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
-                  <p id="${stratagem.internalName}-randName" class="card-title text-white">${stratagem.displayName}</p>
-              </div>
-            </div>
-          </div>
-        `;
+    stratagemsContainer.innerHTML += generateMainItemCard(stratagem);
   }
 };
 
 const rollEquipment = () => {
   equipmentContainer.innerHTML = "";
+  boosterContainer.innerHTML = "";
+  let container = equipmentContainer;
   const equipmentLists = [
     workingPrimsList ?? primsList,
     workingSecondsList ?? secondsList,
     workingThrowsList ?? throwsList,
     workingArmorPassivesList ?? armorPassivesList,
+    workingBoostsList ?? boostsList,
   ];
 
   for (let i = 0; i < equipmentLists.length; i++) {
+    if (i === 4) {
+      container = boosterContainer;
+    }
     if (equipmentLists[i].length === 0) {
-      equipmentContainer.innerHTML += `
+      container.innerHTML += `
               <div class="col-3 d-flex justify-content-center">
                 <div class="card itemCards">
                 </div>
@@ -309,29 +331,7 @@ const rollEquipment = () => {
     } else {
       const randomNumber = Math.floor(Math.random() * equipmentLists[i].length);
       const equipment = equipmentLists[i][randomNumber];
-      equipmentContainer.innerHTML += `
-              <div class="col-3 px-1 d-flex justify-content-center">
-                <div class="card itemCards"
-                  onclick="genItemsModalContent('${equipment.category}')"
-                >
-                  <img
-                      src="../images/${
-                        i !== 3 ? "equipment" : "armorpassives"
-                      }/${equipment.imageURL}"
-                      class="img-card-top"
-                      alt="${equipment.displayName}"
-                      id="${equipment.internalName}-randImage"
-                  />
-                  <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
-                      <p id="${
-                        equipment.internalName
-                      }-randName" class="card-title text-white">${
-        equipment.displayName
-      }</p>
-                  </div>
-                </div>
-              </div>
-            `;
+      container.innerHTML += generateMainItemCard(equipment);
     }
   }
 };

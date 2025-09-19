@@ -306,7 +306,8 @@ const rerollItem = async () => {
   console.log(newItem);
   // set the new item to be the current item of it's category
   // if its a stratagem, we will need to replace the relevant stratagem in the current stratagems array
-  // also change it visually
+  // rerollTokens--
+  // update the page with the changes
   // saveProgress()
 };
 

@@ -229,7 +229,7 @@ const generateModalItemCard = (item, disableFunction) => {
     fcn = "";
   }
   return `
-    <div class="card d-flex col-3 col-lg-2 mx-1 ${lockedStyle}" onclick="${fcn}">
+    <div class="card d-flex col-3 col-lg-2 mx-1 my-1 ${lockedStyle}" onclick="${fcn}">
       <img
           src="../images/${imgDir}/${item.imageURL}"
           class="img-card-top"
@@ -294,8 +294,20 @@ const setItem = (name, cat) => {
   console.log(name, cat);
 };
 
-const rerollItem = () => {
+const rerollItem = async () => {
   console.log(itemToReroll);
+  const { list } = categoryMap(itemToReroll);
+  const listToUse = await list.filter(
+    (item) =>
+      item.locked === true && item.displayName !== itemToReroll.displayName
+  );
+  const randomNumber = Math.floor(Math.random() * listToUse.length);
+  const newItem = listToUse[randomNumber];
+  console.log(newItem);
+  // set the new item to be the current item of it's category
+  // if its a stratagem, we will need to replace the relevant stratagem in the current stratagems array
+  // also change it visually
+  // saveProgress()
 };
 
 const rollStratagems = async () => {

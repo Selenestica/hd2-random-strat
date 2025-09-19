@@ -507,3 +507,28 @@ border 3c434d
   background-color: #212830;
   opacity: 35%;
 }
+
+.rerollButton {
+  width: 50%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: none;
+  z-index: 2;
+  padding: 0px 0px;
+  border-radius: 100%;
+}
+
+.rerollButton:hover {
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+}
+
+.itemCards:hover .rerollButton {
+  display: block;
+}
+
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+  .rerollButton {
+    display: block !important;
+  }
+}

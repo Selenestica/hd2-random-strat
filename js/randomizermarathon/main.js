@@ -8,6 +8,8 @@ const oneSupportCheck = document.getElementById("oneSupportCheck");
 const oneBackpackCheck = document.getElementById("oneBackpackCheck");
 const alwaysSupportCheck = document.getElementById("alwaysSupportCheck");
 const alwaysBackpackCheck = document.getElementById("alwaysBackpackCheck");
+const rerollItemModal = document.getElementById("rerollItemModal");
+const rerollItemContainer = document.getElementById("rerollItemContainer");
 const viewItemsModal = document.getElementById("viewItemsModal");
 const viewItemsModalBody = document.getElementById("viewItemsModalBody");
 const viewItemsModalTitle = document.getElementById("viewItemsModalTitle");
@@ -20,6 +22,7 @@ const viewItemsModalTitleLockedText = document.getElementById(
 const randomModeToggleButtonsContainer = document.getElementById(
   "randomModeToggleButtonsContainer"
 );
+const numOfRerollTokensText = document.getElementById("numOfRerollTokensText");
 
 const supplyAmountOptions = [
   oneSupportCheck,
@@ -44,6 +47,7 @@ let workingBoostsList = [];
 let workingStratsList = [];
 let workingArmorPassivesList = [];
 let missionsFailed = 0;
+let rerollTokens = 0;
 let currentStratagems = [];
 let currentPrimary = null;
 let currentSecondary = null;
@@ -55,6 +59,8 @@ let oneBackpack = false;
 let oneSupportWeapon = false;
 let alwaysBackpack = false;
 let alwaysSupport = false;
+
+let itemToReroll = null;
 
 const disableOtherRadios = (radio) => {
   oneSupportCheck.disabled = true;
@@ -130,27 +136,69 @@ const filterItemsByWarbond = async () => {
   }
 };
 
-const categoryMap = (item) => {
-  let cat = item.category;
+const categoryMap = (item, cat = null) => {
   let imgDir = "equipment";
+  if (!cat) {
+    cat = item.category;
+  }
+  if (item && item.type === "Stratagem") {
+    cat = "stratagem";
+  }
+  let list = getWorkingList(cat);
   if (cat === "armor") {
     imgDir = "armorpassives";
   }
-  if (item.type === "Stratagem") {
+  if (cat === "stratagem") {
     imgDir = "svgs";
-    cat = "stratagem";
   }
 
-  return { imgDir, cat };
+  return { imgDir, cat, list };
+};
+
+const genRerollItemModalContent = async (name, category) => {
+  const { imgDir, list } = await categoryMap(null, category);
+  const item = list.filter((it) => name === it.displayName)[0];
+  itemToReroll = item;
+  rerollItemContainer.innerHTML = `
+      <div class="card w-50 soItemCards position-relative">
+        <img
+          src="../images/${imgDir}/${item.imageURL}"
+          class="img-card-top"
+          alt="${item.displayName}"
+          id="${item.internalName}"
+        />
+        <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
+          <p id="${item.internalName}-randName" class="text-center card-title text-white">
+            ${item.displayName}
+          </p>
+        </div>
+      </div>
+  `;
+  const modal = new bootstrap.Modal(rerollItemModal);
+  modal.show();
+};
+
+const generateRerollButton = (name, cat) => {
+  if (rerollTokens > 0) {
+    return `        
+      <img 
+        src="../images/iconSVGs/pinkDice.svg" 
+        class="img-fluid rerollButton"
+        onclick="event.stopPropagation(); genRerollItemModalContent('${name}', '${cat}');"
+      />
+    `;
+  }
+  return;
 };
 
 const generateMainItemCard = (item) => {
   const { imgDir, cat } = categoryMap(item);
   return `
     <div class="col-3 px-1 d-flex justify-content-center">
-      <div class="card itemCards" 
+      <div class="card itemCards position-relative" 
         onclick="genItemsModalContent('${cat}')"
       >
+        ${generateRerollButton(item.displayName, cat)}
         <img
             src="../images/${imgDir}/${item.imageURL}"
             class="img-card-top"
@@ -158,7 +206,11 @@ const generateMainItemCard = (item) => {
             id="${item.internalName}-randImage"
         />
         <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
-            <p id="${item.internalName}-randName" class="text-center card-title text-white">${item.displayName}</p>
+            <p id="${
+              item.internalName
+            }-randName" class="text-center card-title text-white">${
+    item.displayName
+  }</p>
         </div>
       </div>
     </div>
@@ -238,7 +290,13 @@ const genItemsModalContent = async (cat) => {
   modal.show();
 };
 
-const setItem = () => {};
+const setItem = (name, cat) => {
+  console.log(name, cat);
+};
+
+const rerollItem = () => {
+  console.log(itemToReroll);
+};
 
 const rollStratagems = async () => {
   // get random numbers that arent the same and get the strats at those indices
@@ -395,6 +453,7 @@ const saveProgress = async () => {
     dataName: `Randomizer Marathon Save Data`,
     warbondCodes,
     missionsFailed,
+    rerollTokens,
     currentStratagems,
     currentArmorPassive,
     currentBooster,
@@ -405,6 +464,11 @@ const saveProgress = async () => {
   localStorage.setItem("randomizerMarathonSaveData", JSON.stringify(obj));
 };
 
+const awardRerollToken = () => {
+  rerollTokens++;
+  numOfRerollTokensText.innerHTML = `${rerollTokens}`;
+};
+
 const unlockItem = (item, list) => {
   list.map((workingItem) => {
     if (item.displayName === workingItem.displayName) {
@@ -413,7 +477,11 @@ const unlockItem = (item, list) => {
   });
 };
 
-const missionComplete = async () => {
+const missionComplete = async (fullCleared = null) => {
+  if (fullCleared) {
+    awardRerollToken();
+  }
+
   const currentItemsArray = [
     currentStratagems,
     currentArmorPassive,
@@ -452,6 +520,8 @@ const missionComplete = async () => {
 
 const missionFailed = () => {
   missionsFailed++;
+  // we will want to lock an item in every category here, which may be kinda tough
+  // if an item type is set manually, will have to set it to random and then assign the newly locked item
   randomizeAll();
 };
 
@@ -481,17 +551,19 @@ const uploadSaveData = async () => {
     workingBoostsList = data.workingBoostsList;
     workingArmorPassivesList = data.workingArmorPassivesList;
     seesRulesOnOpen = data.seesRulesOnOpen;
-    missionCounter = data.missionCounter;
     currentStratagems = data.currentStratagems;
     currentArmorPassive = data.currentArmorPassive;
     currentBooster = data.currentBooster;
     currentPrimary = data.currentPrimary;
     currentSecondary = data.currentSecondary;
     currentThrowable = data.currentThrowable;
-    missionsFailed = data.missionsFailed ?? 0;
-    missionTimes = data.missionTimes ?? [];
+    missionsFailed = data.missionsFailed;
+    rerollTokens = data.rerollTokens;
 
     // populate the page with the uploaded data here
+    // rerollTokens
+    numOfRerollTokensText.innerHTML = rerollTokens;
+
     // equipment
     const currentEquipment = [
       currentPrimary,
@@ -538,6 +610,27 @@ const lockAllItems = async () => {
   await allItems.map((item) => {
     item.locked = true;
   });
+};
+
+const getWorkingList = (cat) => {
+  if (cat === "armor") {
+    return workingArmorPassivesList;
+  }
+  if (cat === "stratagem") {
+    return workingStratsList;
+  }
+  if (cat === "secondary") {
+    return workingSecondsList;
+  }
+  if (cat === "throwable") {
+    return workingThrowsList;
+  }
+  if (cat === "booster") {
+    return workingBoostsList;
+  }
+  if (cat === "primary") {
+    return workingPrimsList;
+  }
 };
 
 uploadSaveData();

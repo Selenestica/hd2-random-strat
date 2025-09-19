@@ -11,6 +11,15 @@ const alwaysBackpackCheck = document.getElementById("alwaysBackpackCheck");
 const viewItemsModal = document.getElementById("viewItemsModal");
 const viewItemsModalBody = document.getElementById("viewItemsModalBody");
 const viewItemsModalTitle = document.getElementById("viewItemsModalTitle");
+const viewItemsModalTitleText = document.getElementById(
+  "viewItemsModalTitleText"
+);
+const viewItemsModalTitleLockedText = document.getElementById(
+  "viewItemsModalTitleLockedText"
+);
+const randomModeToggleButtonsContainer = document.getElementById(
+  "randomModeToggleButtonsContainer"
+);
 
 const supplyAmountOptions = [
   oneSupportCheck,
@@ -157,10 +166,18 @@ const generateMainItemCard = (item) => {
 };
 
 // will need to give these functions eventually so that they can set them manually
-const generateModalItemCard = (item) => {
+const generateModalItemCard = (item, disableFunction) => {
   const { imgDir, cat } = categoryMap(item);
+  let fcn = `setItem('${item.displayName}', '${cat}')`;
+  let lockedStyle = "rmUnlockedItem";
+  if (item.locked) {
+    lockedStyle = "rmLockedItem";
+  }
+  if (disableFunction) {
+    fcn = "";
+  }
   return `
-    <div class="card d-flex col-3 col-lg-2 soItemCards mx-1">
+    <div class="card d-flex col-3 col-lg-2 mx-1 ${lockedStyle}" onclick="${fcn}">
       <img
           src="../images/${imgDir}/${item.imageURL}"
           class="img-card-top"
@@ -176,36 +193,52 @@ const genItemsModalContent = async (cat) => {
   let list = [];
   if (cat === "secondary") {
     list = workingSecondsList;
-    viewItemsModalTitle.innerHTML = "Secondaries";
+    viewItemsModalTitleText.innerHTML = "Secondaries";
   }
   if (cat === "primary") {
     list = workingPrimsList;
-    viewItemsModalTitle.innerHTML = "Primaries";
+    viewItemsModalTitleText.innerHTML = "Primaries";
   }
   if (cat === "stratagem") {
     list = workingStratsList;
-    viewItemsModalTitle.innerHTML = "Stratagems";
+    viewItemsModalTitleText.innerHTML = "Stratagems";
   }
   if (cat === "throwable") {
     list = workingThrowsList;
-    viewItemsModalTitle.innerHTML = "Throwables";
+    viewItemsModalTitleText.innerHTML = "Throwables";
   }
   if (cat === "armor") {
     list = workingArmorPassivesList;
-    viewItemsModalTitle.innerHTML = "Armor Passives";
+    viewItemsModalTitleText.innerHTML = "Armor Passives";
   }
   if (cat === "booster") {
     list = workingBoostsList;
-    viewItemsModalTitle.innerHTML = "Boosters";
+    viewItemsModalTitleText.innerHTML = "Boosters";
   }
   const unlockedArray = await list.filter((item) => item.locked === false);
-  viewItemsModalTitle.innerHTML += `<span class="mx-2">(${unlockedArray.length}/${list.length} unlocked)</span>`;
+  viewItemsModalTitleLockedText.innerHTML = `(${unlockedArray.length}/${list.length} unlocked)`;
+  let buttonsDisabled = unlockedArray.length !== list.length;
+  randomModeToggleButtonsContainer.innerHTML = `
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" disabled=${buttonsDisabled} checked value="option1">
+      <label class="form-check-label" for="inlineRadio1">Random</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" disabled=${buttonsDisabled} value="option2">
+      <label class="form-check-label" for="inlineRadio2">Manual</label>
+    </div>
+  `;
   for (let i = 0; i < list.length; i++) {
-    viewItemsModalBody.innerHTML += generateModalItemCard(list[i]);
+    viewItemsModalBody.innerHTML += generateModalItemCard(
+      list[i],
+      buttonsDisabled
+    );
   }
   const modal = new bootstrap.Modal(viewItemsModal);
   modal.show();
 };
+
+const setItem = () => {};
 
 const rollStratagems = async () => {
   // get random numbers that arent the same and get the strats at those indices

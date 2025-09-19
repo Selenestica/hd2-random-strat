@@ -490,3 +490,20 @@ border 3c434d
 .mediumFontSize {
   font-size: medium;
 }
+
+.rmUnlockedItem {
+  background-color: #212830;
+  cursor: pointer;
+}
+
+.rmUnlockedItem:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+  z-index: 1;
+  border: 1px solid yellow;
+}
+
+.rmLockedItem {
+  background-color: #212830;
+  opacity: 35%;
+}

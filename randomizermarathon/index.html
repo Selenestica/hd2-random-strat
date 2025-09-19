@@ -104,7 +104,7 @@
       <div class="row d-flex justify-content-center pt-1">
         <div class="col-sm-12 col-md-8 col-lg-5">
           <div class="row my-2 justify-content-center">
-            <div class="col-2 justify-content-end d-flex align-items-center">
+            <div class="col-2 justify-content-start d-flex align-items-center">
               <div class="btn-group my-2 mx-1">
                 <button
                   class="btn btn-primary"
@@ -233,30 +233,12 @@
         <div class="modal-content bg-grey">
           <div class="modal-header">
             <h5 class="modal-title text-light" id="viewItemsModalTitle">
-              <span id="viewItemsModalTitleText"></span><span id=""></span>
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                  <input
-                    type="radio"
-                    name="options"
-                    id="option1"
-                    autocomplete="off"
-                    checked
-                    disabled
-                  />
-                  Random
-                </label>
-                <label class="btn btn-secondary">
-                  <input
-                    type="radio"
-                    name="options"
-                    id="option2"
-                    autocomplete="off"
-                    disabled
-                  />
-                  Manual
-                </label>
-              </div>
+              <span id="viewItemsModalTitleText"></span
+              ><span class="mx-2" id="viewItemsModalTitleLockedText"></span>
+              <span
+                id="randomModeToggleButtonsContainer"
+                style="font-size: small"
+              ></span>
             </h5>
           </div>
           <div

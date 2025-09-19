@@ -199,7 +199,7 @@ const genItemsModalContent = async (cat) => {
     viewItemsModalTitle.innerHTML = "Boosters";
   }
   const unlockedArray = await list.filter((item) => item.locked === false);
-  viewItemsModalTitle.innerHTML += `   ${unlockedArray.length}/${list.length} unlocked`;
+  viewItemsModalTitle.innerHTML += `<span class="mx-2">(${unlockedArray.length}/${list.length} unlocked)</span>`;
   for (let i = 0; i < list.length; i++) {
     viewItemsModalBody.innerHTML += generateModalItemCard(list[i]);
   }
@@ -235,6 +235,7 @@ const rollStratagems = async () => {
     4
   );
 
+  currentStratagems = [];
   for (let i = 0; i < randomUniqueNumbers.length; i++) {
     let stratagem = lockedStrats[randomUniqueNumbers[i]];
     currentStratagems.push(stratagem);
@@ -259,10 +260,8 @@ const rollEquipment = async () => {
     const lockedItems = await equipmentLists[i].filter(
       (equip) => equip.locked === true
     );
-    console.log(lockedItems, equipmentLists[i]);
     const randomNumber = Math.floor(Math.random() * lockedItems.length);
     let equipment = lockedItems[randomNumber];
-    console.log(equipment);
     if (i === 0) {
       currentPrimary = equipment;
     }
@@ -424,7 +423,6 @@ const missionFailed = () => {
 };
 
 const randomizeAll = async () => {
-  // await filterItemsByWarbond();
   await rollEquipment();
   await rollStratagems();
   saveProgress();
@@ -432,6 +430,7 @@ const randomizeAll = async () => {
 
 const startNewRun = async () => {
   await lockAllItems();
+  await filterItemsByWarbond();
   randomizeAll();
 };
 

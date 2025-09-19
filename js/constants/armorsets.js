@@ -680,7 +680,7 @@ const ARMOR_SETS = [
     speed: 500,
     stamina: 100,
     passive: "Med-Kit",
-    warbondCode: "twitchdrop",
+    warbondCode: "none",
     internalName: "tr117alphacommander",
     imageURL: "tr117alphacommander.webp",
     tier: "b",

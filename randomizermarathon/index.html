@@ -232,7 +232,32 @@
       <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="viewItemsModalTitle"></h5>
+            <h5 class="modal-title text-light" id="viewItemsModalTitle">
+              <span id="viewItemsModalTitleText"></span><span id=""></span>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active">
+                  <input
+                    type="radio"
+                    name="options"
+                    id="option1"
+                    autocomplete="off"
+                    checked
+                    disabled
+                  />
+                  Random
+                </label>
+                <label class="btn btn-secondary">
+                  <input
+                    type="radio"
+                    name="options"
+                    id="option2"
+                    autocomplete="off"
+                    disabled
+                  />
+                  Manual
+                </label>
+              </div>
+            </h5>
           </div>
           <div
             class="modal-body row d-flex justify-content-center"

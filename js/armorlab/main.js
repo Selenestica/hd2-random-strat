@@ -182,6 +182,9 @@ const generateItemCard = (item, type) => {
   if (!warbondCodes.includes(wbCode)) {
     wbStyle = "d-none";
   }
+  if (wbCode === "none") {
+    wbStyle = "d-flex";
+  }
   return `
     <div onclick="setItem('${item.internalName}', '${type}')" class="card ${wbCode} ${wbStyle} col-3 pcItemCards cursorPointer mx-1 my-1">
       <img

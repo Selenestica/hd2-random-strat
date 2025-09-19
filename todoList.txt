@@ -106,9 +106,8 @@ DEBT DIVERS
     never roll it again
   - challenge ends when all items have been used in a mission
   - when a category is finished, player can choose items from that category to be persistent
-  - option to roll 1 backpack and 1 support weapon, or TRUE RANDOM
+  - option to roll 1 backpack and 1 support weapon, always roll 1 and 1, or TRUE RANDOM
   - score multiplier based on difficulty
-  - maybe make boosters player's choice?
   MODIFIERS
     - Easy
       - reroll token once per mission
@@ -126,12 +125,15 @@ DEBT DIVERS
 ARMOR LAB
   - improve view on desktop
     - add armor passive image
-  - OR, when user clicks helmet/armor or cape, a modal shows with the view expanded
+  - when user clicks helmet/armor or cape, a modal shows with the view expanded
   - ability to filter by light, medium, heavy, armor passive, armor rating, speed, and stamina
     - search function
   - manually adjust CSS inset values for helmet for certain armors and helmets
     - thing is, some helmets are smaller than the default helmet... so that is quite a bit of work
   - random button!
+
+  BUGS
+
 
 
 NEW PAGE IDEAS:

@@ -484,7 +484,7 @@ const HELMETS = [
     type: "Equipment",
     category: "helmet",
     tags: ["Medium"],
-    warbondCode: "twitchdrop",
+    warbondCode: "none",
     internalName: "tr117alphacommander",
     imageURL: "tr117alphacommander.webp",
     tier: "b",

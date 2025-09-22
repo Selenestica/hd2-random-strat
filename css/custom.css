@@ -1,6 +1,6 @@
 body {
   background-color: #151c24;
-  font-family: "Titillium Web", sans-serif;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 .bg-default {
@@ -531,4 +531,16 @@ border 3c434d
   .rerollButton {
     display: block !important;
   }
+}
+
+#helmetCard {
+  clip-path: inset(1px 25px 12px 22px);
+}
+
+#armorImg {
+  object-fit: cover;
+  object-position: center -40px;
+  height: 100%;
+  width: 100%;
+  padding-top: 4rem;
 }

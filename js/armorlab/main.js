@@ -102,6 +102,7 @@ const saveLoadout = async () => {
   newData.loadouts.push(newLoadoutSaveObj);
   localStorage.setItem('armorLabSaveData', JSON.stringify(newData));
   showLoadoutSavedToast(currentLoadoutName);
+  genSaveDataManagementModalContent();
 };
 
 const updateCurrentLoadout = async () => {

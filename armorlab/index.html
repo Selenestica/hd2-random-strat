@@ -12,7 +12,11 @@
     />
 
     <link rel="stylesheet" type="text/css" href="../css/custom.css" />
-    <link rel="shortcut icon" type="image/png" href="../images/dressing/ministryOfTruthIcon.png" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="../images/dressing/ministryOfTruthIcon.png"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,15 +33,18 @@
     />
     <title>Helldivers 2: Armor Lab</title>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-BFREXT7F48"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag('js', new Date());
+      gtag("js", new Date());
 
-      gtag('config', 'G-BFREXT7F48');
+      gtag("config", "G-BFREXT7F48");
     </script>
   </head>
   <body>
@@ -59,7 +66,11 @@
           <a target="_blank" href="https://discord.gg/nphn3YpqvY">
             <i class="socialIcons bi bi-discord"></i>
           </a>
-          <a class="mx-2" target="_blank" href="https://github.com/Selenestica/hd2-random-strat">
+          <a
+            class="mx-2"
+            target="_blank"
+            href="https://github.com/Selenestica/hd2-random-strat"
+          >
             <i class="socialIcons bi bi-github"></i>
           </a>
           <a target="_blank" href="https://buymeacoffee.com/breakfasttaco">
@@ -94,7 +105,9 @@
             data-bs-toggle="modal"
             data-bs-target="#infoModal"
           >
-            Helldivers 2 Armor Lab<i class="bi bi-info-circle mediumFontSize mx-1"></i>
+            Helldivers 2 Armor Lab<i
+              class="bi bi-info-circle mediumFontSize mx-1"
+            ></i>
           </h2>
         </div>
       </div>
@@ -156,7 +169,9 @@
                 id="loadoutNameContainer"
               >
                 <b class="text-white mx-2">Name: </b>
-                <span class="text-white" id="loadoutNameText"> Unnamed Set #1</span>
+                <span class="text-white" id="loadoutNameText">
+                  Unnamed Set #1</span
+                >
                 <button
                   class="btn btn-primary bg-none text-warning"
                   style="border: none"
@@ -180,7 +195,11 @@
                     aria-label="new name..."
                     aria-describedby="button-addon2"
                   />
-                  <button class="btn btn-success" type="button" onclick="submitLoadoutName()">
+                  <button
+                    class="btn btn-success"
+                    type="button"
+                    onclick="submitLoadoutName()"
+                  >
                     <i class="bi bi-check2"></i>
                   </button>
                 </div>
@@ -203,7 +222,11 @@
                   width: 27.5%;
                 "
               >
-                <div id="helmetCard" class="card d-flex mx-1" style="background-color: inherit">
+                <div
+                  id="helmetCard"
+                  class="card d-flex mx-1"
+                  style="background-color: inherit"
+                >
                   <img
                     id="helmetImg"
                     src="../images/helmets/b01tactical.webp"
@@ -256,7 +279,9 @@
                 <li class="text-white">
                   <b>Armor:</b> <span id="armorNameText">B-01 Tactical</span>
                 </li>
-                <li class="text-white"><b>Cape:</b> <span id="capeNameText">Foesmasher</span></li>
+                <li class="text-white">
+                  <b>Cape:</b> <span id="capeNameText">Foesmasher</span>
+                </li>
               </ul>
             </div>
             <div
@@ -267,12 +292,18 @@
                   <b>Passive:</b>
                   <span id="passiveNameText">Extra Padding</span>
                 </li>
-                <li class="text-white"><b>Type:</b> <span id="typeValueText">Medium</span></li>
+                <li class="text-white">
+                  <b>Type:</b> <span id="typeValueText">Medium</span>
+                </li>
                 <li class="text-white">
                   <b>Armor Rating:</b> <span id="protectionValueText">150</span>
                 </li>
-                <li class="text-white"><b>Speed:</b> <span id="speedValueText">500</span></li>
-                <li class="text-white"><b>Stamina:</b> <span id="staminaValueText">100</span></li>
+                <li class="text-white">
+                  <b>Speed:</b> <span id="speedValueText">500</span>
+                </li>
+                <li class="text-white">
+                  <b>Stamina:</b> <span id="staminaValueText">100</span>
+                </li>
               </ul>
             </div>
             <div
@@ -305,16 +336,22 @@
             id="armorLabSaveDataManagementModalBody"
           >
             <p class="text-white">
-              Switch your active save file here, delete save files, or upload save files.
+              Switch your active save file here, delete save files, or upload
+              save files.
               <br />
-              Select an entry below and press 'Apply' to load a different save file.
+              Select an entry below and press 'Apply' to load a different save
+              file.
               <br />
               <br />
               NOTE: You can't delete your current save file.
             </p>
             <div class="mb-3 d-flex row">
               <div class="col-9">
-                <input class="form-control" type="file" id="saveDataUploadInput" />
+                <input
+                  class="form-control"
+                  type="file"
+                  id="saveDataUploadInput"
+                />
               </div>
               <div class="col-3">
                 <button
@@ -337,11 +374,18 @@
           </div>
           <div class="modal-footer row justify-content-between">
             <div class="d-flex col justify-content-start">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
                 Cancel
               </button>
             </div>
-            <div id="saveDataModalFunctionsDiv" class="d-flex col justify-content-end">
+            <div
+              id="saveDataModalFunctionsDiv"
+              class="d-flex col justify-content-end"
+            >
               <button
                 type="button"
                 onclick="clearSaveDataAndRestart()"
@@ -350,7 +394,11 @@
               >
                 Delete ALL
               </button>
-              <button type="button" onclick="deleteSavedGameData()" class="btn btn-danger mx-2">
+              <button
+                type="button"
+                onclick="deleteSavedGameData()"
+                class="btn btn-danger mx-2"
+              >
                 Delete
               </button>
               <button
@@ -378,13 +426,21 @@
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="warbondSelectModalLabel">Warbond Select</h5>
+            <h5 class="modal-title text-light" id="warbondSelectModalLabel">
+              Warbond Select
+            </h5>
           </div>
           <div class="modal-body">
             <div class="p-3" id="warbondsChecklistContainer"></div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -419,39 +475,48 @@
                     FAQs
                   </button>
                 </h2>
-                <div id="collapseTwo" class="accordion-collapse" data-bs-parent="#infoAccordion">
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse"
+                  data-bs-parent="#infoAccordion"
+                >
                   <div class="accordion-body">
                     <ul class="modalAccordionList">
                       <li class="text-white">
                         <b>Q: What is this tool for?</b>
                         <p>
-                          A: The Armor Lab is for divers who want to be able to theory-craft their
-                          drip when they're not able to play the game. Great care was taken to
-                          ensure that this tool, and the entire website, is a good experience on
+                          A: The Armor Lab is for divers who want to be able to
+                          theory-craft their drip when they're not able to play
+                          the game. Great care was taken to ensure that this
+                          tool, and the entire website, is a good experience on
                           mobile devices.
                           <br />
                           <br />
-                          NOTE: Although a mobile-friendly web page was my primary concern, image
-                          quality may degrade on screen widths of 375 pixels or less.
+                          NOTE: Although a mobile-friendly web page was my
+                          primary concern, image quality may degrade on screen
+                          widths of 375 pixels or less.
                         </p>
                       </li>
                       <li class="text-white">
                         <b
-                          >Q: Some of the helmets/armors get parts of them cut off. What's up with
-                          that?</b
+                          >Q: Some of the helmets/armors get parts of them cut
+                          off. What's up with that?</b
                         >
                         <p>
-                          A: For now I'm basically just super-imposing the helmet image on top of
-                          the armor image. This works decently well for the majority of pieces, but
-                          some pieces have parts of them sticking out and I will have to make a code
-                          exception for each of these instances. I am planning on doing this in the
-                          future, but it will take a while.
+                          A: For now I'm basically just super-imposing the
+                          helmet image on top of the armor image. This works
+                          decently well for the majority of pieces, but some
+                          pieces have parts of them sticking out and I will have
+                          to make a code exception for each of these instances.
+                          I am planning on doing this in the future, but it will
+                          take a while.
                         </p>
                       </li>
                       <li class="text-white">
                         <b>Q: How can I save my armor loadouts?</b>
                         <p>
-                          A: When you have a loadout you're happy with, press the
+                          A: When you have a loadout you're happy with, press
+                          the
                           <i class="bi bi-bookmark-star text-success"></i>
                           button.
                         </p>
@@ -460,37 +525,41 @@
                         <b>Q: How can I see my saved loadouts?</b>
                         <p>
                           A: Press the
-                          <i class="bi bi-save text-primary"></i> button at the upper right of the
-                          page. From there you can do many things concerning save data, such as
-                          importing, exporting, deleting, and applying loadouts.
+                          <i class="bi bi-save text-primary"></i> button at the
+                          upper right of the page. From there you can do many
+                          things concerning save data, such as importing,
+                          exporting, deleting, and applying loadouts.
                         </p>
                       </li>
                       <li class="text-white">
                         <b>Q: What if I don't have all the warbonds/content?</b>
                         <p>
                           A: Check out the Settings menu by pressing the
-                          <i class="bi bi-gear-fill text-primary"></i> button at the top right of
-                          the page. From there you can change your difficulty and toggle on/off the
-                          warbonds and other content.
+                          <i class="bi bi-gear-fill text-primary"></i> button at
+                          the top right of the page. From there you can change
+                          your difficulty and toggle on/off the warbonds and
+                          other content.
                         </p>
                       </li>
                       <li class="text-white">
                         <b>Q: Why don't you run ads on this site?</b>
                         <p>
-                          A: The intention behind making this site was to provide maximum value to
-                          Helldivers everywhere. The majority of my code is browser-based, and I
-                          only pay out-of-pocket for the domain, build time, and hosting (I use
-                          AWS). Costs are relatively small, but if you would like to reward me for
-                          my efforts, feel free to buy me a coffee using the link at the top of the
-                          page!
+                          A: The intention behind making this site was to
+                          provide maximum value to Helldivers everywhere. The
+                          majority of my code is browser-based, and I only pay
+                          out-of-pocket for the domain, build time, and hosting
+                          (I use AWS). Costs are relatively small, but if you
+                          would like to reward me for my efforts, feel free to
+                          buy me a coffee using the link at the top of the page!
                         </p>
                       </li>
                       <li class="text-white">
                         <b>Q: Can I contribute with time instead of money?</b>
                         <p>
-                          A: Please! Feel free to join the discord and hit me up if you have any
-                          ideas/suggestions, or run into any bugs. If you're a coder, I can
-                          definitely use your help with upcoming features.
+                          A: Please! Feel free to join the discord and hit me up
+                          if you have any ideas/suggestions, or run into any
+                          bugs. If you're a coder, I can definitely use your
+                          help with upcoming features.
                         </p>
                       </li>
                     </ul>
@@ -500,7 +569,13 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -517,6 +592,54 @@
     >
       <div class="offcanvas-header">
         <h5 class="modal-title text-light" id="helmetsModalLabel">Helmets</h5>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-primary dropdown-toggle no-caret"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="text-white"
+                ><img
+                  class="img-fluid"
+                  style="width: 1.5rem"
+                  src="../images/iconSVGs/medal.svg"
+              /></span>
+            </button>
+            <ul
+              id="helmetsWarbondList"
+              class="dropdown-menu warbondFilter scrollableWarbondsList"
+            ></ul>
+          </div>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-primary dropdown-toggle no-caret"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="text-white"><i class="bi bi-search"></i></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <input type="text" id="helmetSearchInput" />
+              </li>
+            </ul>
+          </div>
+          <button
+            onclick="resetFilters('helmets')"
+            class="btn btn-primary"
+            type="button"
+          >
+            <span
+              ><img
+                src="../images/iconSVGs/clearFilter.svg"
+                style="width: 1.5rem"
+                class="img-fluid"
+            /></span>
+          </button>
+        </div>
         <button
           type="button"
           class="btn-close btn-close-white"
@@ -540,6 +663,117 @@
     >
       <div class="offcanvas-header">
         <h5 class="modal-title text-light" id="armorModalLabel">Armor</h5>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-primary dropdown-toggle no-caret"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="text-white"
+                ><img
+                  src="../images/iconSVGs/weight.svg"
+                  class="img-fluid"
+                  style="width: 1.5rem"
+              /></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a
+                  class="dropdown-item"
+                  id="primariesFilterDropdownItem"
+                  onclick="filterByType('Light')"
+                  href="#"
+                  >Light</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  id="secondariesFilterDropdownItem"
+                  onclick="filterByType('Medium')"
+                  href="#"
+                  >Medium</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  id="throwablesFilterDropdownItem"
+                  onclick="filterByType('Heavy')"
+                  href="#"
+                  >Heavy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-primary dropdown-toggle no-caret"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="text-white"
+                ><img
+                  src="../images/iconSVGs/shieldPlus.svg"
+                  class="img-fluid"
+                  style="width: 1.5rem"
+              /></span>
+            </button>
+            <ul
+              id="armorPassiveListOptions"
+              class="dropdown-menu scrollableWarbondsList"
+            ></ul>
+          </div>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-primary dropdown-toggle no-caret"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="text-white"
+                ><img
+                  class="img-fluid"
+                  style="width: 1.5rem"
+                  src="../images/iconSVGs/medal.svg"
+              /></span>
+            </button>
+            <ul
+              id="armorWarbondList"
+              class="dropdown-menu warbondFilter scrollableWarbondsList"
+            ></ul>
+          </div>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-primary dropdown-toggle no-caret"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="text-white"><i class="bi bi-search"></i></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <input type="text" id="armorSearchInput" />
+              </li>
+            </ul>
+          </div>
+          <button
+            onclick="resetFilters('armor')"
+            class="btn btn-primary"
+            type="button"
+          >
+            <span
+              ><img
+                src="../images/iconSVGs/clearFilter.svg"
+                style="width: 1.5rem"
+                class="img-fluid"
+            /></span>
+          </button>
+        </div>
         <button
           type="button"
           class="btn-close btn-close-white"
@@ -563,6 +797,54 @@
     >
       <div class="offcanvas-header">
         <h5 class="modal-title text-light" id="capesModalLabel">Capes</h5>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-primary dropdown-toggle no-caret"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="text-white"
+                ><img
+                  class="img-fluid"
+                  style="width: 1.5rem"
+                  src="../images/iconSVGs/medal.svg"
+              /></span>
+            </button>
+            <ul
+              id="capesWarbondList"
+              class="dropdown-menu warbondFilter scrollableWarbondsList"
+            ></ul>
+          </div>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-primary dropdown-toggle no-caret"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="text-white"><i class="bi bi-search"></i></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <input type="text" id="capeSearchInput" />
+              </li>
+            </ul>
+          </div>
+          <button
+            onclick="resetFilters('capes')"
+            class="btn btn-primary"
+            type="button"
+          >
+            <span
+              ><img
+                src="../images/iconSVGs/clearFilter.svg"
+                style="width: 1.5rem"
+                class="img-fluid"
+            /></span>
+          </button>
+        </div>
         <button
           type="button"
           class="btn-close btn-close-white"
@@ -610,10 +892,15 @@
   <script src="../js/constants/armorsets.js"></script>
   <script src="../js/constants/capes.js"></script>
   <script src="../js/constants/helmets.js"></script>
+  <script src="../js/constants/warbonds.js"></script>
+  <script src="../js/constants/armorpassives.js"></script>
   <script src="../js/utils/warbondCodes.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
   <script src="../js/armorlab/utils/showLoadoutSavedToast.js"></script>
   <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/armorlab/main.js"></script>
+  <script src="../js/armorlab/utils/itemFilterFunctions.js"></script>
   <script src="../js/armorlab/components/genSaveDataManagementModalContent.js"></script>
+  <script src="../js/armorlab/components/genWarbondFilterOptions.js"></script>
+  <script src="../js/armorlab/components/genArmorPassiveFilterOptions.js"></script>
 </html>

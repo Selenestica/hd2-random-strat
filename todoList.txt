@@ -121,10 +121,6 @@ ARMOR LAB
   - improve view on desktop
     - add armor passive image
   - when user clicks helmet/armor or cape, a modal shows with the view expanded
-  - ability to filter by light, medium, heavy, armor passive, armor rating, speed, and stamina
-    - search function
-  - manually adjust CSS inset values for helmet for certain armors and helmets
-    - thing is, some helmets are smaller than the default helmet... so that is quite a bit of work
   - random button!
 
   BUGS

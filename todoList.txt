@@ -129,6 +129,9 @@ ARMOR LAB
 
 
 NEW PAGE IDEAS:
+- challenge where you play a pre generated Helldiver with a name and loadout and maybe short back story?
+	- you can look ahead and see which Helldiver has what equipment
+	- the amount of times you die in a mission is the amount of Helldivers you'll skip
 
 
 

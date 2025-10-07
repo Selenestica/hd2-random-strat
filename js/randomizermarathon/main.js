@@ -138,21 +138,41 @@ const filterItemsByWarbond = async () => {
 
 const categoryMap = (item, cat = null) => {
   let imgDir = "equipment";
+  let currentItemReference = null;
+  let cardId = null;
   if (!cat) {
     cat = item.category;
   }
   if (item && item.type === "Stratagem") {
     cat = "stratagem";
+    imgDir = "svgs";
+    currentItemReference = currentStratagems;
+    container = stratagemsContainer;
   }
   let list = getWorkingList(cat);
   if (cat === "armor") {
     imgDir = "armorpassives";
+    currentItemReference = currentArmorPassive;
+    cardId = "armorCard";
   }
-  if (cat === "stratagem") {
-    imgDir = "svgs";
+  if (cat === "primary") {
+    currentItemReference = currentPrimary;
+    cardId = "primaryCard";
   }
-
-  return { imgDir, cat, list };
+  if (cat === "secondary") {
+    currentItemReference = currentSecondary;
+    cardId = "secondaryCard";
+  }
+  if (cat === "booster") {
+    currentItemReference = currentBooster;
+    cardId = "boosterCard";
+  }
+  if (cat === "throwable") {
+    currentItemReference = currentThrowable;
+    cardId = "throwableCard";
+  }
+  console.log(cardId);
+  return { imgDir, cat, list, currentItemReference, cardId };
 };
 
 const genRerollItemModalContent = async (name, category) => {
@@ -192,9 +212,9 @@ const generateRerollButton = (name, cat) => {
 };
 
 const generateMainItemCard = (item) => {
-  const { imgDir, cat } = categoryMap(item);
+  const { imgDir, cat, cardId } = categoryMap(item);
   return `
-    <div class="col-3 px-1 d-flex justify-content-center">
+    <div id="${cardId}" class="col-3 px-1 d-flex justify-content-center">
       <div class="card itemCards position-relative" 
         onclick="genItemsModalContent('${cat}')"
       >
@@ -295,19 +315,52 @@ const setItem = (name, cat) => {
 };
 
 const rerollItem = async () => {
-  console.log(itemToReroll);
-  const { list } = categoryMap(itemToReroll);
+  if (rerollTokens < 1) {
+    return;
+  }
+  const { list, currentItemReference, cardId } = categoryMap(itemToReroll);
   const listToUse = await list.filter(
     (item) =>
       item.locked === true && item.displayName !== itemToReroll.displayName
   );
   const randomNumber = Math.floor(Math.random() * listToUse.length);
   const newItem = listToUse[randomNumber];
-  console.log(newItem);
-  // set the new item to be the current item of it's category
-  // if its a stratagem, we will need to replace the relevant stratagem in the current stratagems array
-  // rerollTokens--
-  // update the page with the changes
+
+  // do this part if rerolling a stratagem
+  let oldStratIndex = null;
+  if (itemToReroll.category === "Stratagem") {
+    for (let i = 0; i < currentStratagems.length; i++) {
+      if (itemToReroll.displayName === currentStratagems[i].displayName) {
+        oldStratIndex = i;
+        break;
+      }
+    }
+    currentStratagems.splice(oldStratIndex, 1, newItem);
+    stratagemsContainer.innerHTML = "";
+    for (let j = 0; j < currentStratagems.length; j++) {
+      stratagemsContainer.innerHTML += generateMainItemCard(stratagem);
+    }
+  }
+  // else
+  if (itemToReroll.category !== "Stratagem") {
+    let cir = currentItemReference;
+    cir = newItem;
+    const oldCard = document.getElementById(cardId);
+    const newCardString = generateMainItemCard(newItem);
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(newCardString, "text/html");
+    const newCard = doc.body.firstChild;
+    oldCard.replaceWith(newCard);
+  }
+
+  rerollTokens--;
+  numOfRerollTokensText.innerHTML = rerollTokens;
+  // if num of tokens < 1, then remove all reroll buttons from DOM
+  // BUG: rerolling a stratagem replaces the first stratagem always
+  // BUG: stratagem images not showing up in reroll item modal
+
+  console.log(itemToReroll, newItem);
+
   // saveProgress()
 };
 

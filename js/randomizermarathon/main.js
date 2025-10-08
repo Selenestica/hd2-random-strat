@@ -176,6 +176,10 @@ const categoryMap = (item, cat = null) => {
 };
 
 const genRerollItemModalContent = async (name, category) => {
+  if (rerollTokens < 1) {
+    showNoRerollTokensToast();
+    return;
+  }
   const { imgDir, list } = await categoryMap(null, category);
   const item = list.filter((it) => name === it.displayName)[0];
   itemToReroll = item;
@@ -355,7 +359,7 @@ const rerollItem = async () => {
 
   rerollTokens--;
   numOfRerollTokensText.innerHTML = rerollTokens;
-  // if num of tokens < 1, then remove all reroll buttons from DOM
+
   // BUG: rerolling a stratagem replaces the first stratagem always
   // BUG: stratagem images not showing up in reroll item modal
 

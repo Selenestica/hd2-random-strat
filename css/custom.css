@@ -201,6 +201,9 @@ border 3c434d
   #stratText {
     display: none;
   }
+  #allRandomText {
+    display: none;
+  }
   #equipText {
     display: none;
   }
@@ -219,6 +222,9 @@ border 3c434d
   #stratIcon {
     display: block;
   }
+  #allRandomIcon {
+    display: block;
+  }
   #equipIcon {
     display: block;
   }
@@ -229,6 +235,9 @@ border 3c434d
 
 @media only screen and (min-width: 651px) {
   #stratText {
+    display: block;
+  }
+  #allRandomText {
     display: block;
   }
   #equipText {
@@ -247,6 +256,9 @@ border 3c434d
     display: none;
   }
   #stratIcon {
+    display: none;
+  }
+  #allRandomIcon {
     display: none;
   }
   #equipIcon {

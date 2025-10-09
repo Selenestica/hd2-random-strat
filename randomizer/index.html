@@ -87,7 +87,7 @@
           >
             Helldivers 2 Randomizer
           </h2>
-          <button
+          <!-- <button
             class="btn pt-0"
             type="button"
             data-bs-toggle="modal"
@@ -98,7 +98,7 @@
               style="max-width: 20px"
               src="../images/iconSVGs/china.svg"
             />
-          </button>
+          </button> -->
         </div>
       </div>
 
@@ -106,6 +106,18 @@
       <div class="row d-flex justify-content-center pt-2">
         <div class="col-sm-12 col-md-8 col-lg-5">
           <div class="row d-flex justify-content-between">
+            <div class="col d-flex justify-content-start">
+              <button
+                class="btn btn-warning my-1"
+                type="button"
+                onclick="randomizeAll()"
+              >
+                <span id="allRandomText"> ALL </span>
+                <span id="allRandomIcon">
+                  <i class="bi bi-arrow-repeat"></i>
+                </span>
+              </button>
+            </div>
             <div class="col d-flex justify-content-start my-1">
               <div>
                 <div class="btn-group">

@@ -143,7 +143,7 @@ const categoryMap = (item, cat = null) => {
   if (!cat) {
     cat = item.category;
   }
-  if (item && item.type === "Stratagem") {
+  if ((item && item.type === "Stratagem") || cat === "stratagem") {
     cat = "stratagem";
     imgDir = "svgs";
     currentItemReference = currentStratagems;
@@ -171,7 +171,6 @@ const categoryMap = (item, cat = null) => {
     currentItemReference = currentThrowable;
     cardId = "throwableCard";
   }
-  console.log(cardId);
   return { imgDir, cat, list, currentItemReference, cardId };
 };
 
@@ -322,17 +321,28 @@ const rerollItem = async () => {
   if (rerollTokens < 1) {
     return;
   }
+  // get the displayNames of all current stratagems and put them in a list
+  // if reroll is a stratagem, make sure you dont roll something in the currentStratagems list
+  let stratDisplayNameList = [];
+  if (itemToReroll.type === "Stratagem") {
+    for (let k = 0; k < currentStratagems.length; k++) {
+      stratDisplayNameList.push(currentStratagems.displayName);
+    }
+  }
   const { list, currentItemReference, cardId } = categoryMap(itemToReroll);
   const listToUse = await list.filter(
     (item) =>
-      item.locked === true && item.displayName !== itemToReroll.displayName
+      item.locked === true &&
+      item.displayName !== itemToReroll.displayName &&
+      !stratDisplayNameList.includes(item.displayName)
   );
   const randomNumber = Math.floor(Math.random() * listToUse.length);
   const newItem = listToUse[randomNumber];
 
   // do this part if rerolling a stratagem
   let oldStratIndex = null;
-  if (itemToReroll.category === "Stratagem") {
+  if (itemToReroll.type === "Stratagem") {
+    console.log("here");
     for (let i = 0; i < currentStratagems.length; i++) {
       if (itemToReroll.displayName === currentStratagems[i].displayName) {
         oldStratIndex = i;
@@ -342,11 +352,13 @@ const rerollItem = async () => {
     currentStratagems.splice(oldStratIndex, 1, newItem);
     stratagemsContainer.innerHTML = "";
     for (let j = 0; j < currentStratagems.length; j++) {
-      stratagemsContainer.innerHTML += generateMainItemCard(stratagem);
+      stratagemsContainer.innerHTML += generateMainItemCard(
+        currentStratagems[j]
+      );
     }
   }
   // else
-  if (itemToReroll.category !== "Stratagem") {
+  if (itemToReroll.type !== "Stratagem") {
     let cir = currentItemReference;
     cir = newItem;
     const oldCard = document.getElementById(cardId);
@@ -359,13 +371,14 @@ const rerollItem = async () => {
 
   rerollTokens--;
   numOfRerollTokensText.innerHTML = rerollTokens;
+  const rerollButtons = document.querySelectorAll(".rerollButton");
+  if (rerollTokens < 1) {
+    for (let i = 0; i < rerollButtons.length; i++) {
+      rerollButtons[i].style = "z-index: -10;";
+    }
+  }
 
-  // BUG: rerolling a stratagem replaces the first stratagem always
-  // BUG: stratagem images not showing up in reroll item modal
-
-  console.log(itemToReroll, newItem);
-
-  // saveProgress()
+  saveProgress();
 };
 
 const rollStratagems = async () => {
@@ -537,6 +550,12 @@ const saveProgress = async () => {
 const awardRerollToken = () => {
   rerollTokens++;
   numOfRerollTokensText.innerHTML = `${rerollTokens}`;
+  const rerollButtons = document.querySelectorAll(".rerollButton");
+  if (rerollTokens > 0) {
+    for (let i = 0; i < rerollButtons.length; i++) {
+      rerollButtons[i].style = "z-index: 1;";
+    }
+  }
 };
 
 const unlockItem = (item, list) => {

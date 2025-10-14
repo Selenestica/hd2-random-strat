@@ -229,6 +229,55 @@
       </div>
     </div>
 
+    <!-- RESTART CHALLENGE MODAL -->
+    <div
+      class="modal fade"
+      id="restartModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="restartModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light">Restart Challenge</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body row d-flex justify-content-center">
+            <p class="text-white">
+              Your save file will be deleted and all progress will be lost.
+            </p>
+            <br />
+            <br />
+            <p class="text-white">Proceed?</p>
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning"
+              data-bs-dismiss="modal"
+              onclick="restartChallenge()"
+            >
+              Proceed
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- MISSION FAILED MODAL -->
     <div
       class="modal fade"

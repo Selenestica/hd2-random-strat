@@ -396,22 +396,44 @@ const rollStratagems = async () => {
   // alwaysBackPack = false
   // alwaysSupport = false
 
-  const lockedStrats = await workingStratsList.filter(
-    (strat) => strat.locked === true
-  );
+  let leftoverStratIndices = [];
+  let strats = await workingStratsList.filter((strat, i) => {
+    if (strat.locked === true) {
+      leftoverStratIndices.push(i);
+      return strat;
+    }
+  });
 
-  const randomUniqueNumbers = getRandomUniqueNumbers(
-    lockedStrats,
-    oneSupportWeapon,
-    oneBackpack,
-    alwaysBackpack,
-    alwaysSupport,
-    4
-  );
+  // if more than 4 locked strats, proceed as normal
+  if (leftoverStratIndices.length > 4) {
+    leftoverStratIndices = [];
+  }
+
+  // if less than 4 locked strats, guarantee the player will roll the remaining locked strats
+  // and use the full strats list to fill in the remaining strats
+  if (leftoverStratIndices.length < 4) {
+    strats = workingStratsList;
+  }
+
+  // if exactly 4 locked strats remaining, guarantee that these will be rolled for the player
+  let randomUniqueNumbers = leftoverStratIndices;
+
+  // else do this
+  if (leftoverStratIndices !== 4) {
+    randomUniqueNumbers = getRandomUniqueNumbers(
+      strats,
+      oneSupportWeapon,
+      oneBackpack,
+      alwaysBackpack,
+      alwaysSupport,
+      4,
+      leftoverStratIndices
+    );
+  }
 
   currentStratagems = [];
   for (let i = 0; i < randomUniqueNumbers.length; i++) {
-    let stratagem = lockedStrats[randomUniqueNumbers[i]];
+    let stratagem = strats[randomUniqueNumbers[i]];
     currentStratagems.push(stratagem);
     rolledStrats.push(stratagem.internalName);
     stratagemsContainer.innerHTML += generateMainItemCard(stratagem);
@@ -431,11 +453,15 @@ const rollEquipment = async () => {
   ];
 
   for (let i = 0; i < equipmentLists.length; i++) {
-    const lockedItems = await equipmentLists[i].filter(
+    let items = await equipmentLists[i].filter(
       (equip) => equip.locked === true
     );
-    const randomNumber = Math.floor(Math.random() * lockedItems.length);
-    let equipment = lockedItems[randomNumber];
+    if (items.length < 1) {
+      items = equipmentLists[i];
+    }
+
+    const randomNumber = Math.floor(Math.random() * items.length);
+    let equipment = items[randomNumber];
     if (i === 0) {
       currentPrimary = equipment;
     }
@@ -462,12 +488,13 @@ const getRandomUniqueNumbers = (
   oneBackpack,
   alwaysBackpack,
   alwaysSupport,
-  amt
+  amt,
+  leftoverStratIndices
 ) => {
   let hasVehicle = false;
   let hasBackpack = false;
   let hasSupportWeapon = false;
-  let numbers = [];
+  let numbers = leftoverStratIndices.length > 0 ? leftoverStratIndices : [];
   let randomNumber = null;
   while (numbers.length < amt) {
     randomNumber = Math.floor(Math.random() * list.length);
@@ -720,6 +747,16 @@ const getWorkingList = (cat) => {
   if (cat === "primary") {
     return workingPrimsList;
   }
+};
+
+const restartChallenge = async () => {
+  const data = await localStorage.getItem("randomizerMarathonSaveData");
+  if (!data) {
+    return;
+  }
+
+  await localStorage.removeItem("randomizerMarathonSaveData");
+  window.location.reload();
 };
 
 uploadSaveData();

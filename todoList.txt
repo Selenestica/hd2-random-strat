@@ -98,7 +98,11 @@ DEBT DIVERS
   - PASSIVES: 20
   - ARMOR SETS: 89
   - STRATAGEMS: 75
+
+  
+
   - failing a mission locks one random item of each type, even if you've completed a category type, and rolls another loadout
+    - failing doesnt lock anything
   - challenge ends when all items have been used in a mission (although it will only truly end when AH stops making content for the game)
   - when a category is finished, player can choose items from that category to be persistent (manual select)
   - reroll token can be used on an item to reroll that item

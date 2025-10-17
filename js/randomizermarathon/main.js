@@ -241,18 +241,14 @@ const generateMainItemCard = (item) => {
 };
 
 // will need to give these functions eventually so that they can set them manually
-const generateModalItemCard = (item, disableFunction) => {
-  const { imgDir, cat } = categoryMap(item);
-  let fcn = `setItem('${item.displayName}', '${cat}')`;
+const generateModalItemCard = (item) => {
+  const { imgDir } = categoryMap(item);
   let lockedStyle = "rmUnlockedItem";
   if (item.locked) {
     lockedStyle = "rmLockedItem";
   }
-  if (disableFunction) {
-    fcn = "";
-  }
   return `
-    <div class="card d-flex col-3 col-lg-2 mx-1 my-1 ${lockedStyle}" onclick="${fcn}">
+    <div class="card d-flex col-3 col-lg-2 mx-1 my-1 ${lockedStyle}">
       <img
           src="../images/${imgDir}/${item.imageURL}"
           class="img-card-top"
@@ -292,29 +288,11 @@ const genItemsModalContent = async (cat) => {
   }
   const unlockedArray = await list.filter((item) => item.locked === false);
   viewItemsModalTitleLockedText.innerHTML = `(${unlockedArray.length}/${list.length} unlocked)`;
-  let buttonsDisabled = unlockedArray.length !== list.length;
-  randomModeToggleButtonsContainer.innerHTML = `
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" disabled=${buttonsDisabled} checked value="option1">
-      <label class="form-check-label" for="inlineRadio1">Random</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" disabled=${buttonsDisabled} value="option2">
-      <label class="form-check-label" for="inlineRadio2">Manual</label>
-    </div>
-  `;
   for (let i = 0; i < list.length; i++) {
-    viewItemsModalBody.innerHTML += generateModalItemCard(
-      list[i],
-      buttonsDisabled
-    );
+    viewItemsModalBody.innerHTML += generateModalItemCard(list[i]);
   }
   const modal = new bootstrap.Modal(viewItemsModal);
   modal.show();
-};
-
-const setItem = (name, cat) => {
-  console.log(name, cat);
 };
 
 const rerollItem = async () => {
@@ -326,23 +304,28 @@ const rerollItem = async () => {
   let stratDisplayNameList = [];
   if (itemToReroll.type === "Stratagem") {
     for (let k = 0; k < currentStratagems.length; k++) {
-      stratDisplayNameList.push(currentStratagems.displayName);
+      stratDisplayNameList.push(currentStratagems[k].displayName);
     }
   }
   const { list, currentItemReference, cardId } = categoryMap(itemToReroll);
-  const listToUse = await list.filter(
+  let listToUse = await list.filter(
     (item) =>
       item.locked === true &&
       item.displayName !== itemToReroll.displayName &&
       !stratDisplayNameList.includes(item.displayName)
   );
+  if (listToUse.length === 0) {
+    if (itemToReroll.locked) {
+      return;
+    }
+    listToUse = list;
+  }
   const randomNumber = Math.floor(Math.random() * listToUse.length);
   const newItem = listToUse[randomNumber];
 
   // do this part if rerolling a stratagem
   let oldStratIndex = null;
   if (itemToReroll.type === "Stratagem") {
-    console.log("here");
     for (let i = 0; i < currentStratagems.length; i++) {
       if (itemToReroll.displayName === currentStratagems[i].displayName) {
         oldStratIndex = i;
@@ -359,8 +342,21 @@ const rerollItem = async () => {
   }
   // else
   if (itemToReroll.type !== "Stratagem") {
-    let cir = currentItemReference;
-    cir = newItem;
+    if (currentItemReference.category === "primary") {
+      currentPrimary = newItem;
+    }
+    if (currentItemReference.category === "secondary") {
+      currentSecondary = newItem;
+    }
+    if (currentItemReference.category === "throwable") {
+      currentThrowable = newItem;
+    }
+    if (currentItemReference.category === "booster") {
+      currentBooster = newItem;
+    }
+    if (currentItemReference.category === "armor") {
+      currentArmorPassive = newItem;
+    }
     const oldCard = document.getElementById(cardId);
     const newCardString = generateMainItemCard(newItem);
     const parser = new DOMParser();
@@ -634,11 +630,36 @@ const missionComplete = async (fullCleared = null) => {
   randomizeAll();
 };
 
-const missionFailed = () => {
+const missionFailed = async () => {
   missionsFailed++;
-  // we will want to lock an item in every category here, which may be kinda tough
-  // if an item type is set manually, will have to set it to random and then assign the newly locked item
-  randomizeAll();
+  // we will want to lock an item in every category here
+  // go through every working list, get the unlocked items, then choose a random unlocked item to be locked again
+  const workingLists = [
+    workingArmorPassivesList,
+    workingBoostsList,
+    workingPrimsList,
+    workingSecondsList,
+    workingStratsList,
+    workingThrowsList,
+  ];
+  for (let i = 0; i < workingLists.length; i++) {
+    await lockRandomItem(workingLists[i]);
+  }
+  await randomizeAll();
+  await saveProgress();
+};
+
+const lockRandomItem = async (list) => {
+  let unlockedItems = [];
+  for (let i = 0; i < list.length; i++) {
+    const item = list[i];
+    if (!item.locked) {
+      unlockedItems.push(item);
+    }
+  }
+  let randomUnlockedItem =
+    unlockedItems[Math.floor(Math.random() * unlockedItems.length)];
+  randomUnlockedItem.locked = true;
 };
 
 const randomizeAll = async () => {

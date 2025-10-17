@@ -99,16 +99,11 @@ DEBT DIVERS
   - ARMOR SETS: 89
   - STRATAGEMS: 75
 
-  
+  BUGS:
 
-  - failing a mission locks one random item of each type, even if you've completed a category type, and rolls another loadout
-    - failing doesnt lock anything
   - challenge ends when all items have been used in a mission (although it will only truly end when AH stops making content for the game)
-  - when a category is finished, player can choose items from that category to be persistent (manual select)
-  - reroll token can be used on an item to reroll that item
-    - what to do when only 1 item left?
-      - show error toast saying the item wasnt rerolled because thats the last item
   - option to roll 1 backpack and 1 support weapon, always roll 1 and 1, or TRUE RANDOM
+    - true random will award more reroll tokens
   MODIFIERS
     - Easy
     - Medium

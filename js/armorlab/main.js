@@ -166,8 +166,8 @@ const uploadSaveData = async (saveIndex = null) => {
   currentLoadoutName = name;
   if (saveIndex === null) {
     genSaveDataManagementModalContent();
+    genImageDrawerContent();
   }
-  genImageDrawerContent();
 };
 
 const genImageDrawerContent = async () => {

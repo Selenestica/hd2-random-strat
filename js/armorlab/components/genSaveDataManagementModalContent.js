@@ -1,24 +1,30 @@
-const armorLabSaveDataManagementModal = document.getElementById('armorLabSaveDataManagementModal');
-const armorLabSaveDataManagementModalSavesList = document.getElementById(
-  'armorLabSaveDataManagementModalSavesList',
+const armorLabSaveDataManagementModal = document.getElementById(
+  "armorLabSaveDataManagementModal"
 );
-const saveDataModalFunctionsDiv = document.getElementById('saveDataModalFunctionsDiv');
-const saveDataUploadInput = document.getElementById('saveDataUploadInput');
-const uploadSaveFileButton = document.getElementById('uploadSaveFileButton');
-const saveDataManagementModalInstance = new bootstrap.Modal(armorLabSaveDataManagementModal);
+const armorLabSaveDataManagementModalSavesList = document.getElementById(
+  "armorLabSaveDataManagementModalSavesList"
+);
+const saveDataModalFunctionsDiv = document.getElementById(
+  "saveDataModalFunctionsDiv"
+);
+const saveDataUploadInput = document.getElementById("saveDataUploadInput");
+const uploadSaveFileButton = document.getElementById("uploadSaveFileButton");
+const saveDataManagementModalInstance = new bootstrap.Modal(
+  armorLabSaveDataManagementModal
+);
 let uploadedSaveFile = null;
 
 const genSaveDataManagementModalContent = () => {
-  const saveData = JSON.parse(localStorage.getItem('armorLabSaveData'));
+  const saveData = JSON.parse(localStorage.getItem("armorLabSaveData"));
   if (!saveData) {
     armorLabSaveDataManagementModalSavesList.innerHTML =
       "<p class='text-white'>No saved loadouts detected. Save or upload a loadout to get started.</p>";
     saveDataManagementModalInstance.show();
-    saveDataModalFunctionsDiv.classList.toggle('d-none', true);
+    saveDataModalFunctionsDiv.classList.toggle("d-none", true);
     return;
   }
-  armorLabSaveDataManagementModalSavesList.innerHTML = '';
-  saveDataModalFunctionsDiv.classList.toggle('d-none', false);
+  armorLabSaveDataManagementModalSavesList.innerHTML = "";
+  saveDataModalFunctionsDiv.classList.toggle("d-none", false);
   const loadouts = saveData.loadouts;
 
   for (let i = 0; i < loadouts.length; i++) {
@@ -56,14 +62,16 @@ const deleteSavedGameData = async () => {
 
   if (saveIndex !== undefined) {
     // remove data from local storage here
-    const armorLabSaveData = JSON.parse(localStorage.getItem('armorLabSaveData'));
+    const armorLabSaveData = JSON.parse(
+      localStorage.getItem("armorLabSaveData")
+    );
     let tempArray = [...armorLabSaveData.loadouts];
     tempArray.splice(saveIndex, 1);
     let tempObj = {
       ...armorLabSaveData,
       loadouts: tempArray,
     };
-    localStorage.setItem('armorLabSaveData', JSON.stringify(tempObj));
+    localStorage.setItem("armorLabSaveData", JSON.stringify(tempObj));
   }
   genSaveDataManagementModalContent();
 };
@@ -77,7 +85,7 @@ const applySavedGameData = async () => {
   uploadSaveData(saveIndex);
 };
 
-saveDataUploadInput.addEventListener('change', (e) => {
+saveDataUploadInput.addEventListener("change", (e) => {
   const uploadedFile = e.target.files[0];
   const reader = new FileReader();
   reader.onload = (event) => {
@@ -96,7 +104,7 @@ saveDataUploadInput.addEventListener('change', (e) => {
 
 const uploadSaveFile = async () => {
   let obj = {};
-  const data = localStorage.getItem('armorLabSaveData');
+  const data = localStorage.getItem("armorLabSaveData");
   if (!data) {
     obj = {
       armor: currentArmor,
@@ -105,24 +113,24 @@ const uploadSaveFile = async () => {
       name: currentLoadoutName,
       loadouts: [uploadedSaveFile],
     };
-    await localStorage.setItem('armorLabSaveData', JSON.stringify(obj));
-    armorLabSaveDataManagementModalSavesList.innerHTML = '';
+    await localStorage.setItem("armorLabSaveData", JSON.stringify(obj));
+    armorLabSaveDataManagementModalSavesList.innerHTML = "";
     genSaveDataManagementModalContent();
     uploadedSaveFile = null;
-    saveDataUploadInput.value = '';
+    saveDataUploadInput.value = "";
     return;
   }
   let newData = JSON.parse(data);
   newData.loadouts.push(uploadedSaveFile);
-  await localStorage.setItem('armorLabSaveData', JSON.stringify(newData));
-  armorLabSaveDataManagementModalSavesList.innerHTML = '';
+  await localStorage.setItem("armorLabSaveData", JSON.stringify(newData));
+  armorLabSaveDataManagementModalSavesList.innerHTML = "";
   genSaveDataManagementModalContent();
   uploadedSaveFile = null;
-  saveDataUploadInput.value = '';
+  saveDataUploadInput.value = "";
 };
 
 const clearSaveDataAndRestart = async () => {
-  await localStorage.removeItem('armorLabSaveData');
+  await localStorage.removeItem("armorLabSaveData");
   window.location.reload();
 };
 

@@ -649,4 +649,14 @@ const CAPES = [
     imageURL: "eyeoftheclandestine.webp",
     tier: "b",
   },
+  {
+    displayName: "Veridical Ideology",
+    type: "Equipment",
+    category: "cape",
+    tags: [],
+    warbondCode: "none",
+    internalName: "veridicalideology",
+    imageURL: "veridicalideology.webp",
+    tier: "b",
+  },
 ];

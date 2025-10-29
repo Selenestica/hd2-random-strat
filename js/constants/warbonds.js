@@ -169,4 +169,15 @@ const WARBONDS = [
     imageURL: "dustdevilsWB.png",
     tier: "b",
   },
+
+  // {
+  //   displayName: "Redacted Regiment",
+  //   type: "Warbond",
+  //   category: "",
+  //   tags: [],
+  //   warbondCode: "warbond21",
+  //   internalName: "redactedregimentWB",
+  //   imageURL: "redactedregimentWB.png",
+  //   tier: "b",
+  // },
 ];

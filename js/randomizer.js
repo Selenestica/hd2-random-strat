@@ -85,6 +85,7 @@ let checkedWarbonds = [
   "warbond18",
   "warbond19",
   "warbond20",
+  // "warbond21"
 ];
 
 let proTipCounter = 0;
@@ -507,6 +508,7 @@ const checkLocalStorageForOptionsPreferences = async () => {
         warbond18: true,
         warbond19: true,
         warbond20: true,
+        // warbond21: true
       },
       stratagemOptions: {
         onlyEaglesRadio: false,

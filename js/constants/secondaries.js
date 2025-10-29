@@ -109,6 +109,18 @@ const SECONDARIES = [
     imageURL: "gp31grenadepistol.png",
     tier: "s",
   },
+
+  // {
+  //   displayName: "Re-Educator",
+  //   type: "Equipment",
+  //   category: "secondary",
+  //   tags: [],
+  //   warbondCode: "warbond21",
+  //   internalName: "ps5reeducator",
+  //   imageURL: "ps5reeducator.png",
+  //   tier: "b",
+  // },
+
   {
     displayName: "Verdict",
     type: "Equipment",

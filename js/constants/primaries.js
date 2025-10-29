@@ -99,16 +99,18 @@ const PRIMARIES = [
     imageURL: "ar2coyote.png",
     tier: "a",
   },
-  {
-    displayName: "Variable",
-    type: "Equipment",
-    category: "primary",
-    tags: ["AssaultRifle"],
-    warbondCode: "warbond17",
-    internalName: "variable",
-    imageURL: "variable.png",
-    tier: "a",
-  },
+
+  // {
+  //   displayName: "Suppressor",
+  //   type: "Equipment",
+  //   category: "primary",
+  //   tags: ["AssaultRifle"],
+  //   warbondCode: "warbond21",
+  //   internalName: "ar39suppressor",
+  //   imageURL: "ar39suppressor.png",
+  //   tier: "b",
+  // },
+
   {
     displayName: "Defender",
     type: "Equipment",
@@ -289,6 +291,18 @@ const PRIMARIES = [
     imageURL: "r2amendment.png",
     tier: "a",
   },
+
+  // {
+  //   displayName: "Censor",
+  //   type: "Equipment",
+  //   category: "primary",
+  //   tags: ["MarksmanRifle"],
+  //   warbondCode: "warbond21",
+  //   internalName: "censor",
+  //   imageURL: "censor.png",
+  //   tier: "a",
+  // },
+
   {
     displayName: "Constitution",
     type: "Equipment",
@@ -398,6 +412,16 @@ const PRIMARIES = [
     internalName: "cb9explodingcrossbow",
     imageURL: "cb9explodingcrossbow.png",
     tier: "s",
+  },
+  {
+    displayName: "Variable",
+    type: "Equipment",
+    category: "primary",
+    tags: ["AssaultRifle"],
+    warbondCode: "warbond17",
+    internalName: "variable",
+    imageURL: "variable.png",
+    tier: "a",
   },
   {
     displayName: "Dominator",

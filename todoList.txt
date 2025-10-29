@@ -12,6 +12,7 @@ GENERAL:
       - /constants
         - armorpassives.js
         - armorsets.js
+        - helmets.js
         - primaries.js
         - secondaries.js
         - stratagems.js
@@ -22,6 +23,8 @@ GENERAL:
         - specialOpsSpecialists.js
       - randomizer.js
     - splash page change log
+
+  - add Redacted Regiment warbond details
 
 RANDOMIZER:
   - ability to enable/disable specific items from warbonds

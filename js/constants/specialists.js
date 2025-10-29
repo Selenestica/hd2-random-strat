@@ -297,6 +297,20 @@ const SPECIALISTS = [
   },
 
   // {
+  //   displayName: "The Saboteur",
+  //   starterItems: ["C4", "Reduced Signature armor", "Censor or Suppressor"],
+  //   stratagems: ["C4"],
+  //   primaries: ["Censor", "Suppressor"],
+  //   boosters: [],
+  //   secondaries: [],
+  //   throwables: [],
+  //   armorPassives: ["Reduced Signature"],
+  //   traits: [],
+  //   imageURL: "saboteur.webp",
+  //   warbonds: ["warbond21"],
+  // },
+
+  // {
   //   displayName: 'The O.G.',
   //   starterItems: ['Liberator'],
   //   stratagems: [],

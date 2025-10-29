@@ -598,7 +598,7 @@ const SPECOPSSPECS = [
     locked: true,
     displayName: "The Raider",
     stratagems: [
-      "S-11 Speargun",
+      "Speargun",
       "Eagle Strafing Run",
       "Orbital Railcannon Strike",
       "Flame Sentry",
@@ -639,4 +639,35 @@ const SPECOPSSPECS = [
     armorPassive: "Integrated Explosives",
     warbonds: ["warbond13", "warbond20", "warbond14", "warbond4"],
   },
+
+  // {
+  //   locked: true,
+  //   displayName: "The Assassin",
+  //   stratagems: [
+  //     "Warp Pack",
+  //     "Orbital Railcannon Strike",
+  //     "Eagle 110mm Rocket Pods",
+  //     "EMS Mortar Sentry",
+  //   ],
+  //   primary: "Censor",
+  //   secondary: "Saber",
+  //   throwable: "G-89 Smokescreen",
+  //   armorPassive: "Reduced Signature",
+  //   warbonds: ["warbond21", "warbond15"],
+  // },
+  // {
+  //   locked: true,
+  //   displayName: "The Saboteur",
+  //   stratagems: [
+  //     "C4",
+  //     "Portable Hellbomb",
+  //     "Anti-Tank Mines",
+  //     "Orbital Laser",
+  //   ],
+  //   primary: "Suppressor",
+  //   secondary: "Re-Educator",
+  //   throwable: "Lure Mine",
+  //   armorPassive: "Reduced Signature",
+  //   warbonds: ["warbond21", "warbond13"],
+  // },
 ];

@@ -209,6 +209,17 @@ const ARMOR_PASSIVES = [
     imageURL: "desertstormer.png",
     tier: "b",
   },
+
+  // {
+  //   displayName: "Reduced Signature",
+  //   type: "Equipment",
+  //   category: "armor",
+  //   tags: ["ArmorPassive"],
+  //   warbondCode: "warbond21",
+  //   internalName: "reducedsignature",
+  //   imageURL: "reducedsignature.png",
+  //   tier: "b",
+  // },
 ];
 
 // s: 1

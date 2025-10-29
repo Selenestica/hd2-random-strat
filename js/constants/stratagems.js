@@ -189,6 +189,18 @@ const STRATAGEMS = [
     imageURL: "onetrueflag.svg",
     tier: "c",
   },
+
+  // {
+  //   displayName: "C4",
+  //   type: "Stratagem",
+  //   category: "Supply",
+  //   tags: ["Weapons", "Backpacks"],
+  //   warbondCode: "warbond21",
+  //   internalName: "c4",
+  //   imageURL: "c4.svg",
+  //   tier: "b",
+  // },
+
   {
     displayName: "Airburst Rocket Launcher",
     type: "Stratagem",

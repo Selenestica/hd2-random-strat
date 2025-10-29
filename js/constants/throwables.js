@@ -59,6 +59,18 @@ const THROWABLES = [
     imageURL: "g3smokegrenade.png",
     tier: "c",
   },
+
+  // {
+  //   displayName: "G-89 Smokescreen",
+  //   type: "Equipment",
+  //   category: "throwable",
+  //   tags: [],
+  //   warbondCode: "warbond21",
+  //   internalName: "g89smokescreen",
+  //   imageURL: "g89smokescreen.png",
+  //   tier: "c",
+  // },
+
   {
     displayName: "G-10 Incendiary",
     type: "Equipment",
@@ -159,6 +171,17 @@ const THROWABLES = [
     imageURL: "g7pineapple.png",
     tier: "b",
   },
+
+  // {
+  //   displayName: "Lure Mine",
+  //   type: "Equipment",
+  //   category: "throwable",
+  //   tags: [],
+  //   warbondCode: "warbond21",
+  //   internalName: "tm1luremine",
+  //   imageURL: "tm1luremine.png",
+  //   tier: "b",
+  // },
 ];
 
 // s: 2

@@ -146,7 +146,7 @@ const generateItemCard = (item) => {
           class="img-card-top"
           alt="${item.displayName}"
       />
-      <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
+      <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center text-center">
           <p class="card-title text-white">${item.displayName}</p>
       </div>
     </div>`;

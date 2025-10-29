@@ -603,7 +603,7 @@ const SPECOPSSPECS = [
       "Orbital Railcannon Strike",
       "Flame Sentry",
     ],
-    primary: "Coyote",
+    primary: "AR-2 Coyote",
     secondary: "Machete",
     throwable: "G-7 Pineapple",
     armorPassive: "Desert Stormer",

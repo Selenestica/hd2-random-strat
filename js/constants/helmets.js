@@ -891,6 +891,27 @@ const HELMETS = [
   },
 
   // {
+  //   displayName: `RS-40 Beast of Prey`,
+  //   type: "Equipment",
+  //   category: "armor",
+  //   tags: ["Heavy"],
+  //   warbondCode: "warbond21",
+  //   internalName: "rs40beastofprey",
+  //   imageURL: "rs40beastofprey.webp",
+  //   tier: "b",
+  // },
+  // {
+  //   displayName: `RS-20 Constrictor`,
+  //   type: "Equipment",
+  //   category: "armor",
+  //   tags: ["Light"],
+  //   warbondCode: "warbond21",
+  //   internalName: "rs20constrictor",
+  //   imageURL: "rs20constrictor.webp",
+  //   tier: "b",
+  // },
+
+  // {
   //   displayName: `RS-89 Shadow Paragon`,
   //   type: "Equipment",
   //   category: "armor",

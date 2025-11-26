@@ -297,6 +297,60 @@ const SPECIALISTS = [
   },
 
   // {
+  //   displayName: "The Python Commando",
+  //   starterItems: [
+  //     "Rock Solid armor",
+  //     "Maxigun",
+  //   ],
+  //   stratagems: ["Maxigun"],
+  //   primaries: [],
+  //   boosters: [],
+  //   secondaries: [],
+  //   throwables: [],
+  //   armorPassives: ["Rock Solid"],
+  //   traits: [],
+  //   imageURL: "pythoncommando.webp",
+  //   warbonds: ["warbond21"],
+  // },
+
+  // {
+  //   displayName: "The Doom Guy",
+  //   starterItems: [
+  //     "Rock Solid armor",
+  //     "Double Freedom",
+  //   ],
+  //   stratagems: [],
+  //   primaries: ["Double Freedom"],
+  //   boosters: [],
+  //   secondaries: [],
+  //   throwables: [],
+  //   armorPassives: ["Rock Solid"],
+  //   traits: [],
+  //   imageURL: "pythoncommando.webp",
+  //   warbonds: ["warbond21"],
+  // },
+
+  // {
+  //   displayName: "The K9 Handler",
+  //   starterItems: [
+  //     "Guard Dog Bullets",
+  //     "Guard Dog Laser",
+  //     "Guard Dog Breath",
+  //     "Guard Dog Arc",
+  //     "Guard Dog Flames"
+  //   ],
+  //   stratagems: ["Guard Dog Bullets", "Guard Dog Laser", "Guard Dog Breath", "Guard Dog Arc", "Guard Dog Flames"],
+  //   primaries: [],
+  //   boosters: [],
+  //   secondaries: [],
+  //   throwables: [],
+  //   armorPassives: [],
+  //   traits: ["You cannot roll stratagems"],
+  //   imageURL: "thek9handler.webp",
+  //   warbonds: [??????????????????????],
+  // },
+
+  // {
   //   displayName: "The Saboteur",
   //   starterItems: ["C4", "Reduced Signature armor", "Concealed Insertion booster"],
   //   stratagems: ["C4"],

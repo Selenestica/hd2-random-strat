@@ -191,6 +191,17 @@ const STRATAGEMS = [
   },
 
   // {
+  //   displayName: "Defoliation Tool",
+  //   type: "Stratagem",
+  //   category: "Supply",
+  //   tags: ["Weapons"],
+  //   warbondCode: "warbond21",
+  //   internalName: "defoliationtool",
+  //   imageURL: "defoliationtool.svg",
+  //   tier: "c",
+  // },
+
+  // {
   //   displayName: "C4",
   //   type: "Stratagem",
   //   category: "Supply",
@@ -199,6 +210,16 @@ const STRATAGEMS = [
   //   internalName: "c4",
   //   imageURL: "c4.svg",
   //   tier: "b",
+  // },
+  // {
+  //   displayName: "Maxigun",
+  //   type: "Stratagem",
+  //   category: "Supply",
+  //   tags: ["Weapons", "Backpacks"],
+  //   warbondCode: "warbond21",
+  //   internalName: "maxigun",
+  //   imageURL: "maxigun.svg",
+  //   tier: "a",
   // },
 
   {
@@ -251,6 +272,16 @@ const STRATAGEMS = [
     imageURL: "faf14spear.svg",
     tier: "b",
   },
+  // {
+  //   displayName: "Guard Dog Flames",
+  //   type: "Stratagem",
+  //   category: "Supply",
+  //   tags: ["Backpacks"],
+  //   warbondCode: "warbond21",
+  //   internalName: "guarddogflames",
+  //   imageURL: "guarddogflames.svg",
+  //   tier: "b",
+  // },
   {
     displayName: "Guard Dog Breath",
     type: "Stratagem",

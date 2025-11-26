@@ -171,6 +171,18 @@ const PRIMARIES = [
     imageURL: "m7s.png",
     tier: "b",
   },
+
+  // {
+  //   displayName: "Double Freedom",
+  //   type: "Equipment",
+  //   category: "primary",
+  //   tags: ["Shotgun"],
+  //   warbondCode: "warbond1",
+  //   internalName: "doublefreedom",
+  //   imageURL: "doublefreedom.png",
+  //   tier: "b",
+  // },
+
   {
     displayName: "Punisher",
     type: "Equipment",
@@ -423,6 +435,18 @@ const PRIMARIES = [
     imageURL: "variable.png",
     tier: "a",
   },
+
+  // {
+  //   displayName: "One Two",
+  //   type: "Equipment",
+  //   category: "primary",
+  //   tags: ["Special"],
+  //   warbondCode: "warbond17",
+  //   internalName: "onetwo",
+  //   imageURL: "onetwo.png",
+  //   tier: "a",
+  // },
+
   {
     displayName: "Dominator",
     type: "Equipment",

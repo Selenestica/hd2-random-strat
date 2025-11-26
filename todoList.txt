@@ -24,6 +24,7 @@ GENERAL:
       - randomizer.js
     - splash page change log
 
+  - add Python Commandos warbond details
   - add Redacted Regiment warbond details
 
 RANDOMIZER:

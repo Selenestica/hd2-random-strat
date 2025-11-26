@@ -867,6 +867,12 @@ const applySpecialistRules = async () => {
     );
     return;
   }
+
+  // remove all stratagems for The K9 Handler
+  // if (specialist === "???") {
+  //   newStrats = []
+  //   return;
+  // }
 };
 
 const applySpecialist = async (specToApply = null) => {

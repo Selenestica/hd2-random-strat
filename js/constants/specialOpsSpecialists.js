@@ -642,6 +642,54 @@ const SPECOPSSPECS = [
 
   // {
   //   locked: true,
+  //   displayName: "The Python Commando",
+  //   stratagems: [
+  //     "Maxigun",
+  //     "Orbital Laser",
+  //     "Gatling Sentry",
+  //     "Eagle Napalm Strike",
+  //   ],
+  //   primary: "One Two",
+  //   secondary: "Machete",
+  //   throwable: "G-12 High Explosive",
+  //   armorPassive: "Rock Solid",
+  //   warbonds: ["warbond21"],
+  // },
+
+  // {
+  //   locked: true,
+  //   displayName: "The Intercessor",
+  //   stratagems: [
+  //     "Jump Pack",
+  //     "Defoliation Tool",
+  //     "EMS Mortar Sentry",
+  //     "Orbital Precision Strike",
+  //   ],
+  //   primary: "StA-11 SMG",
+  //   secondary: "Verdict",
+  //   throwable: "G-3 Smoke",
+  //   armorPassive: "Peak Physique",
+  //   warbonds: ["warbond21", "warbond18", "warbond7", "warbond8"],
+  // },
+
+  // {
+  //   locked: true,
+  //   displayName: "The Doom Guy",
+  //   stratagems: [
+  //     "Warp Pack",
+  //     "Stalwart",
+  //     "Machine Gun Sentry",
+  //     "Emancipator Exosuit",
+  //   ],
+  //   primary: "Double Freedom",
+  //   secondary: "Machete",
+  //   throwable: "G-6 Frag",
+  //   armorPassive: "Rock Solid",
+  //   warbonds: ["warbond21", "warbond1", "warbond20", "warbond17"],
+  // },
+
+  // {
+  //   locked: true,
   //   displayName: "The Assassin",
   //   stratagems: [
   //     "Warp Pack",

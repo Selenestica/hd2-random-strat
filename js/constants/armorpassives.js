@@ -211,6 +211,17 @@ const ARMOR_PASSIVES = [
   },
 
   // {
+  //   displayName: "Rock Solid",
+  //   type: "Equipment",
+  //   category: "armor",
+  //   tags: ["ArmorPassive"],
+  //   warbondCode: "warbond21",
+  //   internalName: "rocksolid",
+  //   imageURL: "rocksolid.png",
+  //   tier: "b",
+  // },
+
+  // {
   //   displayName: "Reduced Signature",
   //   type: "Equipment",
   //   category: "armor",

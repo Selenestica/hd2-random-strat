@@ -661,6 +661,27 @@ const CAPES = [
   },
 
   // {
+  //   displayName: "Mark of the Constrictor",
+  //   type: "Equipment",
+  //   category: "cape",
+  //   tags: [],
+  //   warbondCode: "none",
+  //   internalName: "markoftheconstrictor",
+  //   imageURL: "markoftheconstrictor.webp",
+  //   tier: "b",
+  // },
+  // {
+  //   displayName: "Foe Rent Asunder",
+  //   type: "Equipment",
+  //   category: "cape",
+  //   tags: [],
+  //   warbondCode: "none",
+  //   internalName: "foerentasunder",
+  //   imageURL: "foerentasunder.webp",
+  //   tier: "b",
+  // },
+
+  // {
   //   displayName: "Pillar of the Abyss",
   //   type: "Equipment",
   //   category: "cape",

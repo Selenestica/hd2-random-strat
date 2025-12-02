@@ -99,6 +99,16 @@ const PRIMARIES = [
     imageURL: "ar2coyote.png",
     tier: "a",
   },
+  {
+    displayName: "One Two",
+    type: "Equipment",
+    category: "primary",
+    tags: ["AssaultRifle"],
+    warbondCode: "warbond21",
+    internalName: "onetwo",
+    imageURL: "onetwo.webp",
+    tier: "a",
+  },
 
   // {
   //   displayName: "Suppressor",
@@ -171,18 +181,16 @@ const PRIMARIES = [
     imageURL: "m7s.png",
     tier: "b",
   },
-
-  // {
-  //   displayName: "Double Freedom",
-  //   type: "Equipment",
-  //   category: "primary",
-  //   tags: ["Shotgun"],
-  //   warbondCode: "warbond1",
-  //   internalName: "doublefreedom",
-  //   imageURL: "doublefreedom.png",
-  //   tier: "b",
-  // },
-
+  {
+    displayName: "Double Freedom",
+    type: "Equipment",
+    category: "primary",
+    tags: ["Shotgun"],
+    warbondCode: "warbond1",
+    internalName: "doublefreedom",
+    imageURL: "doublefreedom.webp",
+    tier: "b",
+  },
   {
     displayName: "Punisher",
     type: "Equipment",
@@ -435,18 +443,6 @@ const PRIMARIES = [
     imageURL: "variable.png",
     tier: "a",
   },
-
-  // {
-  //   displayName: "One Two",
-  //   type: "Equipment",
-  //   category: "primary",
-  //   tags: ["Special"],
-  //   warbondCode: "warbond17",
-  //   internalName: "onetwo",
-  //   imageURL: "onetwo.png",
-  //   tier: "a",
-  // },
-
   {
     displayName: "Dominator",
     type: "Equipment",
@@ -469,7 +465,7 @@ const PRIMARIES = [
   },
 ];
 
-// s: 6
+// s: 7
 // a: 16
-// b: 19
+// b: 20
 // c: 1

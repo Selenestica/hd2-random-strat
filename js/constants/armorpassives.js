@@ -209,17 +209,16 @@ const ARMOR_PASSIVES = [
     imageURL: "desertstormer.png",
     tier: "b",
   },
-
-  // {
-  //   displayName: "Rock Solid",
-  //   type: "Equipment",
-  //   category: "armor",
-  //   tags: ["ArmorPassive"],
-  //   warbondCode: "warbond21",
-  //   internalName: "rocksolid",
-  //   imageURL: "rocksolid.png",
-  //   tier: "b",
-  // },
+  {
+    displayName: "Rock Solid",
+    type: "Equipment",
+    category: "armor",
+    tags: ["ArmorPassive"],
+    warbondCode: "warbond21",
+    internalName: "rocksolid",
+    imageURL: "rocksolid.webp",
+    tier: "a",
+  },
 
   // {
   //   displayName: "Reduced Signature",
@@ -234,6 +233,6 @@ const ARMOR_PASSIVES = [
 ];
 
 // s: 1
-// a: 6
+// a: 7
 // b: 12
 // c: 2

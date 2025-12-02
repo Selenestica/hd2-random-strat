@@ -169,17 +169,16 @@ const WARBONDS = [
     imageURL: "dustdevilsWB.png",
     tier: "b",
   },
-
-  // {
-  //   displayName: "Python Commandos",
-  //   type: "Warbond",
-  //   category: "",
-  //   tags: [],
-  //   warbondCode: "warbond21",
-  //   internalName: "pythoncommandos",
-  //   imageURL: "pythoncommandos.png",
-  //   tier: "b",
-  // },
+  {
+    displayName: "Python Commandos",
+    type: "Warbond",
+    category: "",
+    tags: [],
+    warbondCode: "warbond21",
+    internalName: "pythoncommandos",
+    imageURL: "pythoncommandos.png",
+    tier: "b",
+  },
 
   // {
   //   displayName: "Redacted Regiment",

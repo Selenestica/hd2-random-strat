@@ -551,7 +551,6 @@ const rollRewardOptions = async () => {
 
   if (currentItems.length === 0) {
     let itemsLists = await getRewardsItemsLists();
-    console.log(itemsLists);
     itemsLists = itemsLists.filter((list) => list.length > 0);
     if (itemsLists.length < 1) {
       console.log("NOT ENOUGH ITEMS TO SHOW");
@@ -869,10 +868,10 @@ const applySpecialistRules = async () => {
   }
 
   // remove all stratagems for The K9 Handler
-  // if (specialist === "???") {
-  //   newStrats = []
-  //   return;
-  // }
+  if (specialist === "22") {
+    newStrats = [];
+    return;
+  }
 };
 
 const applySpecialist = async (specToApply = null) => {
@@ -897,7 +896,7 @@ const applySpecialist = async (specToApply = null) => {
   }
   await getStartingItems(difficulty);
   startNewRun(specialist, difficulty, true);
-  const traitSpecialists = ["16", "17", "18"];
+  const traitSpecialists = ["16", "17", "22"];
   if (traitSpecialists.includes(specialist)) {
     await applySpecialistRules();
   }

@@ -6,23 +6,35 @@ GENERAL:
   - checklist for when new content comes out
     - /js
       - /utils
-        - warbondCodes.js
+        - warbondCodes.js x
       - /components
-        - genWarbondCheckboxes.js
+        - genWarbondCheckboxes.js x
       - /constants
-        - armorpassives.js
-        - armorsets.js
-        - helmets.js
-        - primaries.js
-        - secondaries.js
-        - stratagems.js
-        - throwables.js
-        - boosters.js
-        - warbonds.js
-        - specialists.js
-        - specialOpsSpecialists.js
-      - randomizer.js
-    - splash page change log
+        - armorpassives.js x
+        - armorsets.js x
+        - helmets.js x
+        - primaries.js x
+        - secondaries.js x
+        - stratagems.js x
+        - throwables.js x
+        - boosters.js x
+        - warbonds.js x
+        - specialists.js x
+        - specialOpsSpecialists.js x
+      - randomizer.js x
+    - splash page change log x
+    - /images
+      - /armor NEEDS BETTER IMAGES (Python Commandos)
+      - /armorpassives x
+      - /capes NEEDS BETTER IMAGES (Python Commandos) 
+      - /equipment
+        - primaries x
+        - secondaries x
+        - boosters x
+        - throwables x
+      - /helmets NEEDS BETTER IMAGES (Python Commandos) 
+      - /warbonds x
+      - /svgs
 
   - add Python Commandos warbond details
   - add Redacted Regiment warbond details

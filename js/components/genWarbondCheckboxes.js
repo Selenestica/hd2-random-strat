@@ -23,7 +23,7 @@ const warbondsList = [
   "KILLZONE", // warbond18
   "Halo ODST", //warbond19
   "Dust Devils", //warbond20
-  // "Python Commandos" //warbond21
+  "Python Commandos", //warbond21
   // "Redacted Regiment" //warbond22
 ];
 

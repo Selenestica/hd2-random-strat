@@ -189,17 +189,16 @@ const STRATAGEMS = [
     imageURL: "onetrueflag.svg",
     tier: "c",
   },
-
-  // {
-  //   displayName: "Defoliation Tool",
-  //   type: "Stratagem",
-  //   category: "Supply",
-  //   tags: ["Weapons"],
-  //   warbondCode: "warbond21",
-  //   internalName: "defoliationtool",
-  //   imageURL: "defoliationtool.svg",
-  //   tier: "c",
-  // },
+  {
+    displayName: "Defoliation Tool",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Weapons"],
+    warbondCode: "warbond21",
+    internalName: "defoliationtool",
+    imageURL: "defoliationtool.svg",
+    tier: "c",
+  },
 
   // {
   //   displayName: "C4",
@@ -211,26 +210,15 @@ const STRATAGEMS = [
   //   imageURL: "c4.svg",
   //   tier: "b",
   // },
-  // {
-  //   displayName: "Maxigun",
-  //   type: "Stratagem",
-  //   category: "Supply",
-  //   tags: ["Weapons", "Backpacks"],
-  //   warbondCode: "warbond21",
-  //   internalName: "maxigun",
-  //   imageURL: "maxigun.svg",
-  //   tier: "a",
-  // },
-
   {
-    displayName: "Airburst Rocket Launcher",
+    displayName: "Maxigun",
     type: "Stratagem",
     category: "Supply",
     tags: ["Weapons", "Backpacks"],
-    warbondCode: "none",
-    internalName: "rl77airburstrocketlauncher",
-    imageURL: "rl77airburstrocketlauncher.svg",
-    tier: "b",
+    warbondCode: "warbond21",
+    internalName: "maxigun",
+    imageURL: "maxigun.svg",
+    tier: "a",
   },
   {
     displayName: "Autocannon",
@@ -253,6 +241,16 @@ const STRATAGEMS = [
     tier: "a",
   },
   {
+    displayName: "Airburst Rocket Launcher",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Weapons", "Backpacks"],
+    warbondCode: "none",
+    internalName: "rl77airburstrocketlauncher",
+    imageURL: "rl77airburstrocketlauncher.svg",
+    tier: "b",
+  },
+  {
     displayName: "Recoilless Rifle",
     type: "Stratagem",
     category: "Supply",
@@ -272,16 +270,16 @@ const STRATAGEMS = [
     imageURL: "faf14spear.svg",
     tier: "b",
   },
-  // {
-  //   displayName: "Guard Dog Flames",
-  //   type: "Stratagem",
-  //   category: "Supply",
-  //   tags: ["Backpacks"],
-  //   warbondCode: "warbond21",
-  //   internalName: "guarddogflames",
-  //   imageURL: "guarddogflames.svg",
-  //   tier: "b",
-  // },
+  {
+    displayName: "Guard Dog Flames",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Backpacks"],
+    warbondCode: "warbond21",
+    internalName: "guarddogflames",
+    imageURL: "guarddogflames.svg",
+    tier: "b",
+  },
   {
     displayName: "Guard Dog Breath",
     type: "Stratagem",
@@ -795,6 +793,6 @@ const STRATAGEMS = [
 ];
 
 // s: 11
-// a: 27
-// b: 29
-// c: 8
+// a: 28
+// b: 30
+// c: 9

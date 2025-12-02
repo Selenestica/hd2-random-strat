@@ -219,11 +219,20 @@ const applySpecialRules = () => {
   // default styles
   helmetCard.style.clipPath = "inset(1px 25px 12px 22px)";
   helmetContainer.style.top = "11px";
+  helmetContainer.style.left = "53.5%";
   armorImg.style.objectPosition = "center -40px";
+  helmetImg.style.width = "100%";
 
   // has a air filter that juts out
   if (currentHelmet === "ce27groundbreaker") {
     helmetCard.style.clipPath = "inset(1px 1px 12px 22px)";
+  }
+
+  // the helmet is larger than the others for some reason
+  if (currentHelmet === "rs6fienddestroyer") {
+    helmetImg.style.width = "85%";
+    helmetContainer.style.top = "21px";
+    helmetContainer.style.left = "55%";
   }
 
   // has a tall neck shield

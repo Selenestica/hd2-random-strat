@@ -24,15 +24,15 @@ GENERAL:
       - randomizer.js x
     - splash page change log x
     - /images
-      - /armor NEEDS BETTER IMAGES (Python Commandos)
+      - /armorx
       - /armorpassives x
-      - /capes NEEDS BETTER IMAGES (Python Commandos) 
+      - /capes x
       - /equipment
         - primaries x
         - secondaries x
         - boosters x
         - throwables x
-      - /helmets NEEDS BETTER IMAGES (Python Commandos) 
+      - /helmets x
       - /warbonds x
       - /svgs
 

@@ -679,6 +679,16 @@ const CAPES = [
     imageURL: "foerentasunder.webp",
     tier: "b",
   },
+  {
+    displayName: "De-Forester's Sailcloth",
+    type: "Equipment",
+    category: "cape",
+    tags: [],
+    warbondCode: "none",
+    internalName: "deforesterssailcloth",
+    imageURL: "deforesterssailcloth.webp",
+    tier: "b",
+  },
 
   // {
   //   displayName: "Pillar of the Abyss",

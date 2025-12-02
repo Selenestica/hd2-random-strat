@@ -1273,6 +1273,20 @@ const ARMOR_SETS = [
     imageURL: "rs20constrictor.webp",
     tier: "b",
   },
+  {
+    displayName: `RS-6 Fiend Destroyer`,
+    type: "Equipment",
+    category: "armor",
+    tags: ["Medium"],
+    armorRating: 100,
+    speed: 500,
+    stamina: 100,
+    passive: "Rock Solid",
+    warbondCode: "warbond21",
+    internalName: "rs6fienddestroyer",
+    imageURL: "rs6fienddestroyer.webp",
+    tier: "b",
+  },
 
   // {
   //   displayName: `RS-89 Shadow Paragon`,

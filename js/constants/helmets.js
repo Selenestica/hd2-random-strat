@@ -909,6 +909,16 @@ const HELMETS = [
     imageURL: "rs20constrictor.webp",
     tier: "b",
   },
+  {
+    displayName: `RS-6 Fiend Destroyer`,
+    type: "Equipment",
+    category: "armor",
+    tags: ["Medium"],
+    warbondCode: "warbond21",
+    internalName: "rs6fienddestroyer",
+    imageURL: "rs6fienddestroyer.webp",
+    tier: "b",
+  },
 
   // {
   //   displayName: `RS-89 Shadow Paragon`,

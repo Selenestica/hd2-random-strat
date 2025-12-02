@@ -24,7 +24,7 @@ GENERAL:
       - randomizer.js x
     - splash page change log x
     - /images
-      - /armorx
+      - /armor x
       - /armorpassives x
       - /capes x
       - /equipment
@@ -34,7 +34,7 @@ GENERAL:
         - throwables x
       - /helmets x
       - /warbonds x
-      - /svgs
+      - /svgs STILL NEED IMAGES FOR STRATAGEMS
 
   - add Python Commandos warbond details
   - add Redacted Regiment warbond details

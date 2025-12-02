@@ -117,6 +117,15 @@ const getStartingItems = (diff = null) => {
   starterStratNames = starterStratNames.concat(
     SPECIALISTS[specialist].stratagems
   );
+  if (specialist === "22") {
+    starterStratNames = [
+      "Guard Dog Bullets",
+      "Guard Dog Laser",
+      "Guard Dog Breath",
+      "Guard Dog Arc",
+      "Guard Dog Flames",
+    ];
+  }
   starterSecNames =
     SPECIALISTS[specialist].secondaries.length > 0
       ? SPECIALISTS[specialist].secondaries

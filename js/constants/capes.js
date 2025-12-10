@@ -689,6 +689,16 @@ const CAPES = [
     imageURL: "deforesterssailcloth.webp",
     tier: "b",
   },
+  {
+    displayName: "Against the Tyrant Cloud",
+    type: "Equipment",
+    category: "cape",
+    tags: [],
+    warbondCode: "none",
+    internalName: "againstthetyrantcloud",
+    imageURL: "againstthetyrantcloud.webp",
+    tier: "b",
+  },
 
   // {
   //   displayName: "Pillar of the Abyss",

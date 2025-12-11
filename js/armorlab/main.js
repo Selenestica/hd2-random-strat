@@ -223,7 +223,7 @@ const applySpecialRules = () => {
   armorImg.style.objectPosition = "center -40px";
   helmetImg.style.width = "100%";
 
-  // has a air filter that juts out
+  // has an air filter that juts out
   if (currentHelmet === "ce27groundbreaker") {
     helmetCard.style.clipPath = "inset(1px 1px 12px 22px)";
   }

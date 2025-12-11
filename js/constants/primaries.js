@@ -408,7 +408,7 @@ const PRIMARIES = [
     type: "Equipment",
     category: "primary",
     tags: ["MarksmanRifle"],
-    warbondCode: "none",
+    warbondCode: "warbond18",
     internalName: "plas39acceleratorrifle",
     imageURL: "plas39acceleratorrifle.png",
     tier: "b",

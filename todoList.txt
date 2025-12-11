@@ -36,7 +36,6 @@ GENERAL:
       - /warbonds
       - /svgs
 
-  - add Python Commandos warbond details
   - add Redacted Regiment warbond details
 
 RANDOMIZER:

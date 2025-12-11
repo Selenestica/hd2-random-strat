@@ -12,6 +12,7 @@ let newArmorPassives = [];
 let newBoosts = [];
 
 let starterStratNames = [
+  "One True Flag",
   "Orbital EMS Strike",
   "Orbital Smoke Strike",
   "Eagle Smoke Strike",

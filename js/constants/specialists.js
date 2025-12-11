@@ -305,7 +305,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Rock Solid"],
     traits: [],
-    imageURL: "",
+    imageURL: "pythoncommando.webp",
     warbonds: ["warbond21"],
   },
   {
@@ -318,7 +318,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Rock Solid"],
     traits: [],
-    imageURL: "",
+    imageURL: "doomguy.webp",
     warbonds: ["warbond21", "warbond1"],
   },
   {
@@ -343,7 +343,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: [],
     traits: ["You cannot roll stratagems"],
-    imageURL: "",
+    imageURL: "k9handler.webp",
     warbonds: ["warbond21", "warbond10", "warbond16"],
   },
 

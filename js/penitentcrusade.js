@@ -188,7 +188,7 @@ const startNewRun = async (spec = null, diff = null, removingSpec = null) => {
     specialistNameText.innerHTML = "";
   }
 
-  if (!removingSpec || spec) {
+  if (!removingSpec && !spec) {
     await writeItems();
   }
 

@@ -60,6 +60,7 @@ PENITENT CRUSADE:
 
   - BUGS:
     - mysterious specialist issues 
+    - when no previously saved games, unable to select quick play or Super Penitent Crusade (maybe just get rid of that so all mosdes are always available?)
 
 BUDGET BLITZ
   - more detailed breakdown of points in game over modal

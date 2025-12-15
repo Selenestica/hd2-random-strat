@@ -684,7 +684,21 @@ const SPECOPSSPECS = [
     armorPassive: "Rock Solid",
     warbonds: ["warbond21", "warbond1", "warbond20", "warbond17"],
   },
-
+  {
+    locked: true,
+    displayName: "Field Artillery",
+    stratagems: [
+      "Mortar Sentry",
+      "EMS Mortar Sentry",
+      "Orbital Walking Barrage",
+      "Airburst Rocket Launcher",
+    ],
+    primary: "Breaker Spray & Pray",
+    secondary: "Verdict",
+    throwable: "G-50 Seeker",
+    armorPassive: "Engineering Kit",
+    warbonds: ["warbond7", "warbond13"],
+  },
   // {
   //   locked: true,
   //   displayName: "The Assassin",
@@ -715,19 +729,68 @@ const SPECOPSSPECS = [
   //   armorPassive: "Reduced Signature",
   //   warbonds: ["warbond21", "warbond13", "warbond14"],
   // },
-  {
-    locked: true,
-    displayName: "Field Artillery",
-    stratagems: [
-      "Mortar Sentry",
-      "EMS Mortar Sentry",
-      "Orbital Walking Barrage",
-      "Airburst Rocket Launcher",
-    ],
-    primary: "Breaker Spray & Pray",
-    secondary: "Verdict",
-    throwable: "G-50 Seeker",
-    armorPassive: "Engineering Kit",
-    warbonds: ["warbond7", "warbond13"],
-  },
+
+  // {
+  //   locked: true,
+  //   displayName: "The Devil Dog",
+  //   stratagems: [
+  //     "Heavy Flamer",
+  //     "Mortar Sentry",
+  //     "Grenadier Battlement",
+  //     "TD-220 Bastion",
+  //   ],
+  //   primary: "trench shotgun",
+  //   secondary: "trench pistol",
+  //   throwable: "G-4 Gas",
+  //   armorPassive: "trench armor",
+  //   warbonds: ["warbond22", "warbond13", "warbond14"],
+  // },
+
+  // {
+  //   locked: true,
+  //   displayName: "The Mechanic",
+  //   stratagems: [
+  //     "Fast Recon Vehicle",
+  //     "Patriot Exosuit",
+  //     "TD-220 Bastion",
+  //     "Supply Pack",
+  //   ],
+  //   primary: "fire SMG",
+  //   secondary: "Grenade Pistol",
+  //   throwable: "energy shield grenade",
+  //   armorPassive: Engineering Kit",
+  //   warbonds: ["warbond22", "warbond13", "warbond14"],
+  // },
+
+  // {
+  //   locked: true,
+  //   displayName: "The Protector",
+  //   stratagems: [
+  //     "Shield Generator Relay",
+  //     "Directional Shield",
+  //     "Grenadier Battlement",
+  //     "De-Escalator",
+  //   ],
+  //   primary: "Pummeler",
+  //   secondary: "Stim Pistol",
+  //   throwable: "energy shield grenade",
+  //   armorPassive: "Med-Kit",
+  //   warbonds: ["warbond22", "warbond13", "warbond14"],
+  // },
+
+  // heavy flamer
+  // trench pistol
+  // trench shotgun
+  // trench armor
+  // energy shield grenade
+  // fire SMG
+  // TD-220 Bastion
+  // sledgehammer
+  // Trident
+
+  // UNUSED ITEMS:
+  // scorcher
+  // diligence CS
+  // purifier
+  //
 ];

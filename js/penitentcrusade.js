@@ -300,7 +300,6 @@ const checkMissionButtons = () => {
     missionCompleteButton.style.display = "none";
     missionFailedButton.style.display = "none";
     downloadPDFButtonDiv.style.display = "block";
-    localStorage.setItem("isSuperPenitentCrusadeUnlocked", "true");
   }
 
   // conditional for an ongoing challenge
@@ -1009,30 +1008,6 @@ const saveProgress = async (item = null) => {
   localStorage.setItem("penitentCrusadeSaveData", JSON.stringify(obj));
 };
 
-const unlockSuperPC = () => {
-  const lsData = localStorage.getItem("isSuperPenitentCrusadeUnlocked");
-  if (!lsData) {
-    const savedGames = JSON.parse(
-      localStorage.getItem("penitentCrusadeSaveData")
-    ).savedGames;
-    for (let i = 0; i < savedGames.length; i++) {
-      const game = savedGames[i];
-      if (game.missionCounter >= 21) {
-        localStorage.setItem("isSuperPenitentCrusadeUnlocked", "true");
-        return;
-      }
-    }
-    pcDiffRadioSuper.classList.add("disabled");
-    return;
-  }
-  const isSuperPenitentCrusadeUnlocked = JSON.parse(lsData);
-  if (isSuperPenitentCrusadeUnlocked) {
-    pcDiffRadioSuper.classList.remove("disabled");
-    return;
-  }
-  pcDiffRadioSuper.classList.add("disabled");
-};
-
 const uploadSaveData = async () => {
   const penitentCrusadeSaveData = localStorage.getItem(
     "penitentCrusadeSaveData"
@@ -1046,9 +1021,6 @@ const uploadSaveData = async () => {
       startNewRun();
       return;
     }
-
-    // will need to set the difficulty button according to the difficulty in the save file
-    unlockSuperPC();
 
     const currentGame = await getCurrentGame("penitentCrusadeSaveData");
     difficulty = currentGame.difficulty ?? "normal";
@@ -1136,13 +1108,15 @@ const saveDataAndRestart = async (diff = null) => {
     return;
   }
 
-  const savedGames = JSON.parse(penitentCrusadeSaveData).savedGames;
-
-  // make all saved game data currentGame = false
-  let updatedSavedGames = await savedGames.map((sg) => {
-    sg.currentGame = false;
-    return sg;
-  });
+  let updatedSavedGames = [];
+  const saveData = JSON.parse(penitentCrusadeSaveData);
+  if (saveData) {
+    // make all saved game data currentGame = false
+    updatedSavedGames = await saveData.savedGames.map((sg) => {
+      sg.currentGame = false;
+      return sg;
+    });
+  }
 
   specialist = null;
   // will need to change starting items to account for super
@@ -1180,14 +1154,16 @@ const saveDataAndRestart = async (diff = null) => {
     missionTimes: [],
   };
 
-  updatedSavedGames.push(newSaveObj);
-  const newPenitentCrusadeSaveData = {
-    savedGames: updatedSavedGames,
-  };
-  await localStorage.setItem(
-    "penitentCrusadeSaveData",
-    JSON.stringify(newPenitentCrusadeSaveData)
-  );
+  if (saveData) {
+    updatedSavedGames.push(newSaveObj);
+    const newPenitentCrusadeSaveData = {
+      savedGames: updatedSavedGames,
+    };
+    await localStorage.setItem(
+      "penitentCrusadeSaveData",
+      JSON.stringify(newPenitentCrusadeSaveData)
+    );
+  }
 
   // remove saved games that are at the first mission of their difficulty,
   // as long as they are not the current game

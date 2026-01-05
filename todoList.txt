@@ -56,6 +56,8 @@ PENITENT CRUSADE:
     - super: reward options = stars earned - 2
   - choosing a specialist reduces max reward options by 1 for normal and super
   - minimum reward options = 1
+  - make good items more rare for super crusades
+  - make items repeat less often for rewards
 
   - SPECIALIST ideas:
     - The Shotgun Surgeon

@@ -534,6 +534,8 @@ const getRewardsItemsLists = () => {
 };
 
 const rollRewardOptions = async () => {
+  // if there are items that were rolled previously but not chosen, show those items again
+  // so player isnt able to simply reroll for free
   if (currentItems.length > 0) {
     for (let i = 0; i < currentItems.length; i++) {
       const vals = await getItemMetaData(currentItems[i]);
@@ -558,7 +560,7 @@ const rollRewardOptions = async () => {
     const numbers = new Set();
 
     // your first reward pool will always have a stratagem
-    // what about K9 Handler though?
+    // unless K9 Handler was chosen, of course
     if (
       missionCounter === 1 &&
       (difficulty === "solo" || difficulty === "normal")
@@ -668,23 +670,38 @@ const getRandomItemListByTier = async (list) => {
     return item.tier === "c";
   });
   // if the list that we want has no items in it, just return list
-  if (num < 0.08 && sList.length > 0) {
+  let dropRates = [0.07, 0.3, 0.75];
+  const superDropRates = [0.05, 0.25, 0.75];
+  if (difficulty === "super" || difficulty === "supersolo") {
+    dropRates = superDropRates;
+  }
+  if (num < dropRates[0] && sList.length > 0) {
     return sList;
   }
-  if (num < 0.3 && num >= 0.09 && aList.length > 0) {
+  if (num < dropRates[1] && num > dropRates[0] && aList.length > 0) {
     return aList;
   }
-  if (num < 0.75 && num >= 0.31 && bList.length > 0) {
+  if (num < dropRates[2] && num > dropRates[1] && bList.length > 0) {
     return bList;
   }
-  if (num >= 0.76 && cList.length > 0) {
+  if (num > dropRates[2] && cList.length > 0) {
     return cList;
   }
   return list;
 };
 
 const getRandomItem = async (list) => {
-  const listToUse = await getRandomItemListByTier(list);
+  let listToUse = await getRandomItemListByTier(list);
+
+  // if at the end of diff 5, get all anti-tank options from the list and use the anti-tank list
+  // if no anti-tank options in the list, that probably means they already rolled an anti-tank option so just pick a random item like normal
+  if (missionCounter === 7) {
+    const antitankItems = await list.filter((it) => it.antitank === true);
+    if (antitankItems.length > 0) {
+      listToUse = antitankItems;
+    }
+  }
+
   const item = listToUse[Math.floor(Math.random() * listToUse.length)];
   if (starterStratNames.includes(item.displayName)) {
     return getRandomItem(list);

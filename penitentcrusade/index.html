@@ -251,9 +251,6 @@
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-body d-flex row justify-content-center">
-            <div class="row text-white d-flex justify-content-center">
-              Did you earn the maximum amount of stars for this mission?
-            </div>
             <div
               class="row text-white d-flex justify-content-center align-items-center"
             >
@@ -263,11 +260,69 @@
                 alt="ministry of truth eye"
                 id="motImage"
               />
-              <small class="d-flex justify-content-center"
-                >NOTE: Lying will be considered treason.</small
-              >
             </div>
-
+            <div class="row text-white d-flex justify-content-center my-3">
+              How many stars were earned this mission?
+            </div>
+            <div class="row text-white d-flex justify-content-center">
+              <div
+                class="btn-group col"
+                role="group"
+                aria-label="Basic radio toggle button group"
+              >
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="starsRadio"
+                  id="starsRadio1"
+                  autocomplete="off"
+                  checked
+                />
+                <label class="btn btn-outline-primary" for="starsRadio1">
+                  1</label
+                >
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="starsRadio"
+                  id="starsRadio2"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-primary" for="starsRadio2">
+                  2</label
+                >
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="starsRadio"
+                  id="starsRadio3"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-primary" for="starsRadio3">
+                  3</label
+                >
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="starsRadio"
+                  id="starsRadio4"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-primary" for="starsRadio4">
+                  4</label
+                >
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="starsRadio"
+                  id="starsRadio5"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-primary" for="starsRadio5">
+                  5</label
+                >
+              </div>
+            </div>
             <div
               class="row d-flex pb-1 mt-3 align-items-center px-0 justify-content-center"
             >
@@ -301,19 +356,11 @@
             <div class="col d-flex justify-content-end">
               <button
                 type="button"
-                class="btn btn-success"
+                class="btn btn-primary"
                 onclick="closeMaxStarsPromptModal()"
                 data-bs-toggle="modal"
               >
-                Yes
-              </button>
-              <button
-                type="button"
-                class="btn btn-danger mx-2"
-                onclick="maxStarsNotEarned()"
-                data-bs-dismiss="modal"
-              >
-                No
+                Submit
               </button>
             </div>
           </div>
@@ -970,6 +1017,9 @@
               rewards. For instance, if you choose The Zealous Martyr, you will
               only be able to equip the Combat Hatchet as your secondary, and
               you will never roll a secondary as a reward.
+              <br />
+              Also, choosing a specialist will reduce your maximum rewards by
+              one.
               <br />
               Specialist cards courtesy of the
               <a href="https://discord.gg/9thhellraisers" target="_blank"

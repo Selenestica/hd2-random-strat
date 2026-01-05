@@ -37,6 +37,11 @@ const downloadPDFButtonDiv = document.getElementById("downloadPDFButtonDiv");
 const missionCounterText = document.getElementById("missionCounterText");
 const oldDataDetectedModal = document.getElementById("oldDataDetectedModal");
 const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
+const starsRadio1 = document.getElementById("starsRadio1");
+const starsRadio2 = document.getElementById("starsRadio2");
+const starsRadio3 = document.getElementById("starsRadio3");
+const starsRadio4 = document.getElementById("starsRadio4");
+const starsRadio5 = document.getElementById("starsRadio5");
 const applySpecialistButton = document.getElementById("applySpecialistButton");
 const timeRemainingInput = document.getElementById("timeRemainingInput");
 const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
@@ -47,6 +52,13 @@ const pcDiffRadioNormal = document.getElementById("pcDiffRadioNormal");
 const pcDiffRadioSuper = document.getElementById("pcDiffRadioSuper");
 const pcDiffRadioSuperSolo = document.getElementById("pcDiffRadioSuperSolo");
 const pcTitleName = document.getElementById("pcTitleName");
+const starsRadioOptions = [
+  starsRadio1,
+  starsRadio2,
+  starsRadio3,
+  starsRadio4,
+  starsRadio5,
+];
 
 let missionsFailed = 0;
 let missionTimes = [];
@@ -451,30 +463,6 @@ const getItemMetaData = (item) => {
   return { imgDir, list, accBody, typeText, listKeyName };
 };
 
-const maxStarsNotEarned = async () => {
-  missionCounter++;
-  checkMissionButtons();
-  missionCounterText.innerHTML = `${getMissionText()}`;
-  // save progress just for missionCounter
-  const penitentCrusadeSaveData = JSON.parse(
-    localStorage.getItem("penitentCrusadeSaveData")
-  );
-  const updatedSavedGames = await penitentCrusadeSaveData.savedGames.map(
-    (sg) => {
-      if (sg.currentGame === true) {
-        sg.missionCounter = missionCounter;
-        return sg;
-      }
-      return sg;
-    }
-  );
-  let newObj = {
-    ...penitentCrusadeSaveData,
-    savedGames: updatedSavedGames,
-  };
-  localStorage.setItem("penitentCrusadeSaveData", JSON.stringify(newObj));
-};
-
 const closeMaxStarsPromptModal = () => {
   const mspModalElement = document.getElementById("maxStarsPromptModal");
   const mspModal = new bootstrap.Modal(maxStarsPromptModal);
@@ -534,10 +522,31 @@ const getRewardsItemsLists = () => {
 };
 
 const rollRewardOptions = async () => {
+  // check here how many stars were earned
+  let starsEarned = 1;
+  for (let k = 0; k < starsRadioOptions.length; k++) {
+    if (starsRadioOptions[k].checked) {
+      starsEarned = k + 1;
+      break;
+    }
+  }
+
+  // make sure the correct amount of rewards are shown
+  let rewardQuantity = starsEarned - 1;
+  if (difficulty === "super" || difficulty === "supersolo") {
+    rewardQuantity = starsEarned - 2;
+  }
+  if (specialist !== null) {
+    rewardQuantity -= 1;
+  }
+  if (rewardQuantity < 1) {
+    rewardQuantity = 1;
+  }
+
   // if there are items that were rolled previously but not chosen, show those items again
   // so player isnt able to simply reroll for free
   if (currentItems.length > 0) {
-    for (let i = 0; i < currentItems.length; i++) {
+    for (let i = 0; i < rewardQuantity; i++) {
       const vals = await getItemMetaData(currentItems[i]);
       itemOptionsModalBody.innerHTML += await generateItemCard(
         currentItems[i],
@@ -566,7 +575,7 @@ const rollRewardOptions = async () => {
       const randomItemIndices = await getUniqueRandomNumbers(
         0,
         antitankStratsList.length - 1,
-        3
+        rewardQuantity
       );
       for (let j = 0; j < randomItemIndices.length; j++) {
         const randomItem = antitankStratsList[randomItemIndices[j]];
@@ -608,13 +617,13 @@ const rollRewardOptions = async () => {
       numbers.add(0);
     }
 
-    while (numbers.size < 3) {
+    while (numbers.size < 4) {
       const randomNumber = Math.floor(Math.random() * itemsLists.length);
       numbers.add(randomNumber);
     }
 
     const numsList = Array.from(numbers);
-    for (let i = 0; i < numsList.length; i++) {
+    for (let i = 0; i < rewardQuantity; i++) {
       const list = itemsLists[numsList[i]];
       const randomItem = await getRandomItem(list);
       currentItems.push(randomItem);
@@ -702,11 +711,11 @@ const getRandomItemListByTier = async (list) => {
     return item.tier === "c";
   });
   // if the list that we want has no items in it, just return list
-  let dropRates = [0.07, 0.3, 0.75];
-  const superDropRates = [0.05, 0.25, 0.75];
-  if (difficulty === "super" || difficulty === "supersolo") {
-    dropRates = superDropRates;
-  }
+  let dropRates = [0.05, 0.25, 0.75];
+  // const superDropRates = [0.05, 0.25, 0.75];
+  // if (difficulty === "super" || difficulty === "supersolo") {
+  //   dropRates = superDropRates;
+  // }
   if (num < dropRates[0] && sList.length > 0) {
     return sList;
   }
@@ -799,7 +808,7 @@ const generateItemCard = (
   let fcn = "";
   let typeText = "";
   if (inModal) {
-    style = "pcModalItemCards col-6";
+    style = "pcModalItemCards col-2";
     modalTextStyle = "";
     fcn = !missionFailed
       ? `claimItem(${currentItemIndex})`

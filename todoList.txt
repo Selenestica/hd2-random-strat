@@ -50,12 +50,6 @@ PENITENT CRUSADE:
     - when challenge complete, add "View Results" button so they can see their score again
   - when mission fail, choose a and s tier items from acquiredItems, if any
   - random stratagem should probably be weighted to account for the fact that there are way more blue strats than other strats
-  - amount of rewards based off of amount of stars earned for mission
-    - normal and quickplay: reward options = stars earned - 1
-    - super: reward options = stars earned - 2
-  - choosing a specialist reduces max reward options by 1 for normal and super
-  - minimum reward options = 1
-  - make good items more rare for super crusades
   - make items repeat less often for rewards
 
   - SPECIALIST ideas:

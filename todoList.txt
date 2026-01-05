@@ -49,9 +49,13 @@ PENITENT CRUSADE:
   - end game modal for showing max star missions, completed missions, and failed missions. number of items earned in each category. and total points calculated.
     - when challenge complete, add "View Results" button so they can see their score again
   - when mission fail, choose a and s tier items from acquiredItems, if any
-
-  - show toast when super penitent crusade unlocked
   - random stratagem should probably be weighted to account for the fact that there are way more blue strats than other strats
+  - give anti-tank items after diff 5
+  - amount of rewards based off of amount of stars earned for mission
+    - normal and quickplay: reward options = stars earned - 1
+    - super: reward options = stars earned - 2
+  - choosing a specialist reduces max reward options by 1 for normal and super
+  - minimum reward options = 1
 
   - SPECIALIST ideas:
     - The Shotgun Surgeon
@@ -60,7 +64,6 @@ PENITENT CRUSADE:
 
   - BUGS:
     - mysterious specialist issues 
-    - when no previously saved games, unable to select quick play or Super Penitent Crusade (maybe just get rid of that so all mosdes are always available?)
 
 BUDGET BLITZ
   - more detailed breakdown of points in game over modal

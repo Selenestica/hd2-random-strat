@@ -558,6 +558,7 @@ const rollRewardOptions = async () => {
     const numbers = new Set();
 
     // your first reward pool will always have a stratagem
+    // what about K9 Handler though?
     if (
       missionCounter === 1 &&
       (difficulty === "solo" || difficulty === "normal")
@@ -653,38 +654,33 @@ const rollPunishmentOptions = async () => {
 
 const getRandomItemListByTier = async (list) => {
   // apply OG specialist trait here probably
-
   const num = Math.random();
-  const saList = await list.filter((item) => {
-    return item.tier === "s" || item.tier === "a";
+  const sList = await list.filter((item) => {
+    return item.tier === "s";
   });
-  const bcList = await list.filter((item) => {
-    return item.tier === "b" || item.tier === "c";
+  const aList = await list.filter((item) => {
+    return item.tier === "a";
   });
-  if (bcList.length === 0) {
-    return saList;
+  const bList = await list.filter((item) => {
+    return item.tier === "b";
+  });
+  const cList = await list.filter((item) => {
+    return item.tier === "c";
+  });
+  // if the list that we want has no items in it, just return list
+  if (num < 0.08 && sList.length > 0) {
+    return sList;
   }
-  if (saList.length === 0) {
-    return bcList;
+  if (num < 0.3 && num >= 0.09 && aList.length > 0) {
+    return aList;
   }
-  if (missionCounter <= 7) {
-    if (num < 0.05) {
-      return saList;
-    }
-    return bcList;
+  if (num < 0.75 && num >= 0.31 && bList.length > 0) {
+    return bList;
   }
-  if (missionCounter <= 16) {
-    if (num < 0.08) {
-      return saList;
-    }
-    return bcList;
+  if (num >= 0.76 && cList.length > 0) {
+    return cList;
   }
-  if (missionCounter <= 21) {
-    if (num < 0.11) {
-      return saList;
-    }
-    return bcList;
-  }
+  return list;
 };
 
 const getRandomItem = async (list) => {
@@ -700,6 +696,7 @@ const getRandomItem = async (list) => {
 const getMandatoryStratStyle = (stratName) => {
   let trueDefaultStrats = [
     "One True Flag",
+    "Defoliation Tool",
     "Orbital EMS Strike",
     "Orbital Smoke Strike",
     "Eagle Smoke Strike",

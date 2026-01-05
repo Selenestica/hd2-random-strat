@@ -550,13 +550,44 @@ const rollRewardOptions = async () => {
     return;
   }
 
+  let itemsLists = await getRewardsItemsLists();
+  itemsLists = itemsLists.filter((list) => list.length > 0);
+  if (itemsLists.length < 1) {
+    console.log("NOT ENOUGH ITEMS TO SHOW");
+    return;
+  }
+
   if (currentItems.length === 0) {
-    let itemsLists = await getRewardsItemsLists();
-    itemsLists = itemsLists.filter((list) => list.length > 0);
-    if (itemsLists.length < 1) {
-      console.log("NOT ENOUGH ITEMS TO SHOW");
+    // roll antitank stratagems for non-K9 Handler after mission 7
+    if (missionCounter === 7 && specialist !== "22") {
+      const antitankStratsList = await itemsLists[0].filter(
+        (strat) => strat.antitank === true
+      );
+      const randomItemIndices = await getUniqueRandomNumbers(
+        0,
+        antitankStratsList.length - 1,
+        3
+      );
+      for (let j = 0; j < randomItemIndices.length; j++) {
+        const randomItem = antitankStratsList[randomItemIndices[j]];
+        currentItems.push(randomItem);
+        const vals = getItemMetaData(randomItem);
+        itemOptionsModalBody.innerHTML += generateItemCard(
+          randomItem,
+          true,
+          vals.imgDir,
+          j,
+          vals.typeText
+        );
+      }
+
+      // save current items in LS
+      if (missionCounter !== 1) {
+        saveProgress();
+      }
       return;
     }
+
     const numbers = new Set();
 
     // your first reward pool will always have a stratagem
@@ -581,6 +612,7 @@ const rollRewardOptions = async () => {
       const randomNumber = Math.floor(Math.random() * itemsLists.length);
       numbers.add(randomNumber);
     }
+
     const numsList = Array.from(numbers);
     for (let i = 0; i < numsList.length; i++) {
       const list = itemsLists[numsList[i]];

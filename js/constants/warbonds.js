@@ -150,6 +150,16 @@ const WARBONDS = [
     tier: "a",
   },
   {
+    displayName: "Killzone",
+    type: "Warbond",
+    category: "",
+    tags: [],
+    warbondCode: "warbond18",
+    internalName: "killzoneWB",
+    imageURL: "killzoneWB.webp",
+    tier: "b",
+  },
+  {
     displayName: "ODST",
     type: "Warbond",
     category: "",
@@ -175,8 +185,8 @@ const WARBONDS = [
     category: "",
     tags: [],
     warbondCode: "warbond21",
-    internalName: "pythoncommandos",
-    imageURL: "pythoncommandos.png",
+    internalName: "pythoncommandosWB",
+    imageURL: "pythoncommandosWB.webp",
     tier: "b",
   },
 

@@ -58,7 +58,7 @@ PENITENT CRUSADE:
     - for the Hellpod Enthusiast, maybe make them unable to use Eagle Smoke and Orbitals
 
   - BUGS:
-    - mysterious specialist issues 
+    
 
 BUDGET BLITZ
   - more detailed breakdown of points in game over modal

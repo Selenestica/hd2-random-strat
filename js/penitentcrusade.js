@@ -621,6 +621,9 @@ const rollRewardOptions = async () => {
     if (specialist !== null) {
       maxNumbers = 3;
     }
+    if (itemsLists.length < maxNumbers) {
+      maxNumbers = itemsLists.length;
+    }
     while (numbers.size < maxNumbers) {
       const randomNumber = Math.floor(Math.random() * itemsLists.length);
       numbers.add(randomNumber);

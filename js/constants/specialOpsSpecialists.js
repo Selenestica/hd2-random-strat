@@ -771,10 +771,42 @@ const SPECOPSSPECS = [
   //     "Grenadier Battlement",
   //     "De-Escalator",
   //   ],
-  //   primary: "Pummeler",
+  //   primary: "Trident",
   //   secondary: "Stim Pistol",
   //   throwable: "energy shield grenade",
   //   armorPassive: "Med-Kit",
+  //   warbonds: ["warbond22", "warbond13", "warbond14"],
+  // },
+
+  // {
+  //   locked: true,
+  //   displayName: "The Counter Sniper",
+  //   stratagems: [
+  //     "Spear",
+  //     "Solo Silo",
+  //     "Rocket Sentry",
+  //     "Anti-Tank Emplacement",
+  //   ],
+  //   primary: "Diligence Counter Sniper",
+  //   secondary: "M6C/SOCOM",
+  //   throwable: "energy shield grenade",
+  //   armorPassive: "Scout",
+  //   warbonds: ["warbond22", "warbond13", "warbond14"],
+  // },
+
+  // {
+  //   locked: true,
+  //   displayName: "The Grenadier",
+  //   stratagems: [
+  //     "belt fed grenade launcher",
+  //     "Grenadier Battlement",
+  //     "Eagle Cluster Bomb",
+  //     "Orbital Gatling Barrage",
+  //   ],
+  //   primary: "One Two",
+  //   secondary: "Grenade Pistol",
+  //   throwable: "G-16 Impact",
+  //   armorPassive: "Integrated Explosives",
   //   warbonds: ["warbond22", "warbond13", "warbond14"],
   // },
 
@@ -787,10 +819,10 @@ const SPECOPSSPECS = [
   // TD-220 Bastion
   // sledgehammer
   // Trident
+  // belt fed grenade launcher
 
   // UNUSED ITEMS:
   // scorcher
-  // diligence CS
   // purifier
   //
 ];

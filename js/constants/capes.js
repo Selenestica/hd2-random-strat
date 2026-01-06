@@ -699,6 +699,16 @@ const CAPES = [
     imageURL: "againstthetyrantcloud.webp",
     tier: "b",
   },
+  {
+    displayName: "Reckoning's Cheer",
+    type: "Equipment",
+    category: "cape",
+    tags: [],
+    warbondCode: "none",
+    internalName: "reckoningscheer",
+    imageURL: "reckoningscheer.webp",
+    tier: "b",
+  },
 
   // {
   //   displayName: "Pillar of the Abyss",

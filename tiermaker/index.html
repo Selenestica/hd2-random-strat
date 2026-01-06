@@ -201,23 +201,6 @@
                 </li>
               </ul>
             </div>
-            <!-- <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-outline-primary dropdown-toggle no-caret"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span id="bbPriceText" class="text-white">Warbond</span>
-                <span id="bbPriceIcon" class="text-white"
-                  ><i class="bi bi-tag-fill"></i
-                ></span>
-              </button>
-              <ul
-                class="dropdown-menu scrollableWarbondsList"
-                id="warbondsFilterList"
-              ></ul>
-            </div> -->
             <button
               onclick="resetItemFilters()"
               class="btn btn-primary"
@@ -286,6 +269,50 @@
                 data-bs-dismiss="modal"
               >
                 Save and Restart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIER CUSTOMIZATION MODAL -->
+      <div
+        class="modal fade"
+        id="tierCustomizationModal"
+        tabindex="-1"
+        open="true"
+        aria-labelledby="tierCustomizationModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light" id="">Customize Tier</h5>
+            </div>
+            <div class="modal-body row d-flex justify-content-center">
+              <p class="text-white">
+                This will be the modal for tier customization :)
+              </p>
+              <p class="text-white">
+                And possibly creating a new tier as well. We can change the
+                label, sublabel, and background color
+              </p>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onclick="saveTierCustomization()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Save
               </button>
             </div>
           </div>

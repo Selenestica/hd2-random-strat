@@ -329,11 +329,23 @@ const createTiers = async () => {
   if (container.children.length === 5) {
     return;
   }
-  await TIERS.forEach((label) => {
+  await TIERS.forEach((label, i) => {
     const tier = document.createElement("div");
     tier.className = "tier text-white";
     tier.innerHTML = `
-      <div class="tierLabel">${label}</div>
+      <button type="button" 
+          id="tierCustomizationBtn${i}"
+          data-bs-toggle="modal"
+          data-bs-target="#tierCustomizationModal" 
+          class="btn tierLabelButton btn-outline-primary"
+      >
+        <div>
+          <span class="tierLabel text-white">${label}</span>
+        </div>
+        <div>
+          <span class="text-white tierSubLabel"></span>
+        </div>
+      </button>
       <div class="tierCategories" data-tier="${label}" id="${
       label.toLocaleLowerCase() + "List"
     }" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
@@ -499,6 +511,10 @@ const toggleItemNameText = () => {
   itemNameContainers.forEach((container) => {
     container.classList.toggle("d-none");
   });
+};
+
+const saveTierCustomization = () => {
+  console.log("saving customization");
 };
 
 uploadSaveData();

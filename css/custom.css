@@ -426,11 +426,20 @@ border 3c434d
   min-height: 60px;
 }
 
+.tierLabelButton {
+  width: 50px;
+  margin-right: 10px;
+  text-align: center;
+}
+
 .tierLabel {
   width: 50px;
   font-weight: bold;
-  margin-right: 10px;
   text-align: center;
+}
+
+.tierSubLabel {
+  font-size: x-small;
 }
 
 .tierCategories {

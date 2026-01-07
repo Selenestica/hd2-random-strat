@@ -381,6 +381,11 @@ border 3c434d
   overflow-y: auto;
 }
 
+.scrollableTierColorsList {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
 #soSavedGameOptionDiv {
   display: flex;
   justify-content: center;
@@ -430,6 +435,7 @@ border 3c434d
   width: 50px;
   margin-right: 10px;
   text-align: center;
+  background-color: #151c24 !important;
 }
 
 .tierLabel {
@@ -459,6 +465,10 @@ border 3c434d
   width: 100px;
   flex: 0 0 auto;
   box-sizing: border-box;
+}
+
+#tierButtonPreview {
+  background-color: #151c24 !important;
 }
 
 #looseItemsContainer {

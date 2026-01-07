@@ -16,7 +16,7 @@ let uploadedSaveFile = null;
 
 const saveNewSaveFileName = async (index) => {
   const newSaveFileNameInput = document.getElementById("newSaveFileNameInput");
-  const saveData = JSON.parse(localStorage.getItem("tierMakerSaveData"));
+  const saveData = JSON.parse(localStorage.getItem("tierMakerSaveData2"));
   if (!saveData) return;
   let lists = [...saveData.lists];
   const updatedSaveFile = {
@@ -28,7 +28,7 @@ const saveNewSaveFileName = async (index) => {
   };
   lists.splice(index, 1, updatedSaveFile);
   let newSaveObj = { ...saveData, lists };
-  await localStorage.setItem("tierMakerSaveData", JSON.stringify(newSaveObj));
+  await localStorage.setItem("tierMakerSaveData2", JSON.stringify(newSaveObj));
   tierMakerSaveDataManagementModalSavesList.innerHTML = "";
   genTierMakerSaveDataManagementInfo(true);
 };
@@ -46,7 +46,7 @@ const editSaveName = (index, oldName) => {
 };
 
 const genTierMakerSaveDataManagementInfo = (savedNewName = null) => {
-  const saveData = JSON.parse(localStorage.getItem("tierMakerSaveData"));
+  const saveData = JSON.parse(localStorage.getItem("tierMakerSaveData2"));
   if (!saveData) {
     tierMakerSaveDataManagementModalSavesList.innerHTML =
       "<p class='text-white'>No save data detected. Start a list or upload a list to get started.</p>";
@@ -107,7 +107,7 @@ const deleteSavedGameData = async () => {
   if (saveIndex !== undefined) {
     // remove data from local storage here
     const tierMakerSaveData = JSON.parse(
-      localStorage.getItem("tierMakerSaveData")
+      localStorage.getItem("tierMakerSaveData2")
     );
     let tempArray = [...tierMakerSaveData.lists];
     tempArray.splice(saveIndex, 1);
@@ -115,7 +115,7 @@ const deleteSavedGameData = async () => {
       ...tierMakerSaveData,
       lists: tempArray,
     };
-    localStorage.setItem("tierMakerSaveData", JSON.stringify(tempObj));
+    localStorage.setItem("tierMakerSaveData2", JSON.stringify(tempObj));
   }
   clearTierMakerSaveDataManagementModal();
 };
@@ -129,7 +129,7 @@ const applySavedGameData = async (isUploadedSave = null) => {
   }
   // we just want to change the currentList
   const tierMakerSaveData = JSON.parse(
-    localStorage.getItem("tierMakerSaveData")
+    localStorage.getItem("tierMakerSaveData2")
   );
   let tempArray = [...tierMakerSaveData.lists];
   const updatedSavedGames = await tempArray.map((sg, i) => {
@@ -148,7 +148,7 @@ const applySavedGameData = async (isUploadedSave = null) => {
     ...tierMakerSaveData,
     lists: updatedSavedGames,
   };
-  localStorage.setItem("tierMakerSaveData", JSON.stringify(newSaveObj));
+  localStorage.setItem("tierMakerSaveData2", JSON.stringify(newSaveObj));
   // clear everything first
   await startNewTierList();
 
@@ -182,14 +182,14 @@ const uploadSaveFile = async () => {
     uploadedSaveFile.currentList = false;
   }
   let obj = {};
-  const tierMakerSaveData = localStorage.getItem("tierMakerSaveData");
+  const tierMakerSaveData = localStorage.getItem("tierMakerSaveData2");
   // will lead to a situation where there is one saved game that's not set to true. may cause problems we'll see
   if (!tierMakerSaveData) {
     uploadedSaveFile.currentList = true;
     obj = {
       lists: [uploadedSaveFile],
     };
-    await localStorage.setItem("tierMakerSaveData", JSON.stringify(obj));
+    await localStorage.setItem("tierMakerSaveData2", JSON.stringify(obj));
     applySavedGameData(true);
     uploadedSaveFile = null;
     saveDataUploadInput.value = "";
@@ -197,7 +197,7 @@ const uploadSaveFile = async () => {
   }
   let newData = JSON.parse(tierMakerSaveData);
   newData.lists.push(uploadedSaveFile);
-  await localStorage.setItem("tierMakerSaveData", JSON.stringify(newData));
+  await localStorage.setItem("tierMakerSaveData2", JSON.stringify(newData));
   tierMakerSaveDataManagementModalSavesList.innerHTML = "";
   genTierMakerSaveDataManagementInfo(true);
   uploadedSaveFile = null;

@@ -701,6 +701,22 @@ const SPECOPSSPECS = [
   },
   // {
   //   locked: true,
+  //   displayName: "The Truth Enforcer",
+  //   stratagems: [
+  //     "Eagle Napalm Strike",
+  //     "Gatling Sentry",
+  //     "Orbital 380mm Barrage",
+  //     "Orbital Napalm Barrage",
+  //   ],
+  //   primary: "Halt",
+  //   secondary: "Loyalist",
+  //   throwable: "G-50 Seeker",
+  //   armorPassive: "Unflinching",
+  //   warbonds: ["warbond7", "warbond13"],
+  // },
+
+  // {
+  //   locked: true,
   //   displayName: "The Assassin",
   //   stratagems: [
   //     "Warp Pack",

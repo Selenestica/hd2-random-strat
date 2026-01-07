@@ -291,12 +291,74 @@
             </div>
             <div class="modal-body row d-flex justify-content-center">
               <p class="text-white">
-                This will be the modal for tier customization :)
-              </p>
-              <p class="text-white">
                 And possibly creating a new tier as well. We can change the
                 label, sublabel, and background color
               </p>
+              <div id="tierPreview" class="tier my-3">
+                <button
+                  id="tierButtonPreview"
+                  class="btn tierLabelButton btn-outline-primary"
+                >
+                  <div>
+                    <span
+                      id="tierButtonPreviewLabel"
+                      class="tierLabel text-white"
+                      >S</span
+                    >
+                  </div>
+                  <div>
+                    <span
+                      id="tierButtonPreviewSubLabel"
+                      class="text-white tierSubLabel"
+                      >subtext</span
+                    >
+                  </div>
+                </button>
+                <div class="tierCategories"></div>
+              </div>
+              <div class="my-1">
+                <button
+                  type="button"
+                  class="btn btn-primary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span class="text-white">Change Color</span>
+                </button>
+                <ul
+                  id="tierColorsList"
+                  class="dropdown-menu scrollableTierColorsList"
+                ></ul>
+              </div>
+              <div class="my-1">
+                <label class="form-check-label text-white" for="labelNameInput">
+                  Tier Name (3 characters max)
+                </label>
+                <input
+                  id="labelNameInput"
+                  type="text"
+                  class="form-control w-50"
+                  maxlength="3"
+                  placeholder=""
+                  aria-label=""
+                />
+              </div>
+              <div class="my-1">
+                <label
+                  class="form-check-label text-white"
+                  for="subLabelNameInput"
+                >
+                  Subtext (20 characters max)
+                </label>
+                <input
+                  id="subLabelNameInput"
+                  type="text"
+                  class="form-control w-50"
+                  maxlength="20"
+                  placeholder=""
+                  aria-label=""
+                />
+              </div>
             </div>
             <div class="modal-footer d-flex justify-content-between">
               <button
@@ -313,6 +375,57 @@
                 data-bs-dismiss="modal"
               >
                 Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OLD DATA REFORMATTED MODAL -->
+      <div
+        class="modal fade"
+        id="reformattedOldDataModal"
+        tabindex="-1"
+        open="true"
+        aria-labelledby="reformattedOldDataModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content bg-grey">
+            <div class="modal-header">
+              <h5 class="modal-title text-light" id="">
+                Welcome to Tier Maker 2.0!
+              </h5>
+            </div>
+            <div class="modal-body row d-flex justify-content-center">
+              <p class="text-white">
+                New features have been added to Tier Maker, and the way that
+                data is saved has been changed that makes your old data
+                obsolete. An attempt has been made to reformat your save data to
+                be compatible with the new version of Tier Maker. Hopefully it
+                worked!
+                <br />
+                If it didn't work, I sincerely apologize for the inconvenience.
+                <br />
+                <br />
+                The new features include:
+              </p>
+              <ul>
+                <li class="text-white">Ability to rename tiers</li>
+                <li class="text-white">Ability to add subtext to tiers</li>
+                <li class="text-white">
+                  Ability to change the color of each tier
+                </li>
+                <li class="text-white">Ability to add/remove tiers</li>
+              </ul>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
               </button>
             </div>
           </div>
@@ -530,6 +643,8 @@
   <script src="../js/constants/stratagems.js"></script>
   <script src="../js/constants/armorpassives.js"></script>
   <script src="../js/constants/warbonds.js"></script>
+  <script src="../js/constants/tierListColors.js"></script>
+  <script src="../js/utils/convertRGBToHex.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
   <script src="../js/utils/getItemType.js"></script>
   <script src="../js/utils/warbondCodes.js"></script>

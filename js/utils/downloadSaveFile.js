@@ -11,7 +11,7 @@ const downloadSaveFile = (index, type) => {
     lsData = "freedomExpressSaveData";
   }
   if (type === "tm") {
-    lsData = "tierMakerSaveData";
+    lsData = "tierMakerSaveData2";
     listName = "lists";
   }
   if (type === "al") {

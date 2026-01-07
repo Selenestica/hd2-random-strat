@@ -85,10 +85,7 @@ SPECIAL OPERATIONS
     - make green/red progress text a different color for colorblind people
 
 TIER MAKER
-  - ability to rename tiers
-  - ability to add sublabel for tiers
-  - ability to add tiers
-  - ability to change background color of tier
+  - ability to add/remove tiers
   - make filter options checkbox toggles
   - dragging an item from the bottom on mobile is difficult. consider making the items a button on mobile that opens
     a menu to select which list it should go to

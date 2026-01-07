@@ -14,6 +14,11 @@ const tierColorsList = document.getElementById("tierColorsList");
 const reformattedOldDataModal = document.getElementById(
   "reformattedOldDataModal"
 );
+const tierCustomizationModal = document.getElementById(
+  "tierCustomizationModal"
+);
+const deleteTierButton = document.getElementById("deleteTierButton");
+const tierListContainer = document.getElementById("tierListContainer");
 
 let OGarmorPassivesList = [...ARMOR_PASSIVES];
 let OGstratsList = [...STRATAGEMS];
@@ -30,7 +35,7 @@ let newThrows = [...OGthrowsList];
 let newStrats = [...OGstratsList];
 let newWarbonds = [...OGwarbondsList];
 
-let customizingTier = "";
+let customizingTier = null;
 let tiers = [
   {
     lab: "S",
@@ -70,6 +75,12 @@ labelNameInput.addEventListener("input", (e) => {
 
 subLabelNameInput.addEventListener("input", (e) => {
   tierButtonPreviewSubLabel.innerText = e.target.value;
+});
+
+// make this null when the modal closes so we're ready for whatever comes next
+tierCustomizationModal.addEventListener("hidden.bs.modal", async () => {
+  customizingTier = null;
+  deleteTierButton.classList.toggle("d-none", true);
 });
 
 const changeTierPreviewColor = (color) => {
@@ -269,8 +280,7 @@ const startNewTierList = async () => {
     warbondCheckboxes[i].checked = true;
   }
 
-  const container = document.getElementById("tierListContainer");
-  container.innerHTML = "";
+  tierListContainer.innerHTML = "";
   createTiers();
   await populateLooseItems();
 };
@@ -357,8 +367,7 @@ const generateItemCard = (item) => {
 };
 
 const createTiers = async () => {
-  const container = document.getElementById("tierListContainer");
-  if (container.children.length === tiers.length) {
+  if (tierListContainer.children.length === tiers.length) {
     return;
   }
   await tiers.forEach((tr, i) => {
@@ -390,7 +399,7 @@ const createTiers = async () => {
         ondrop="drop(event)">
       </div>
     `;
-    container.appendChild(tier);
+    tierListContainer.appendChild(tier);
   });
 };
 
@@ -537,9 +546,13 @@ const toggleItemNameText = () => {
 
 const genTierCustomizationModalContent = (index) => {
   customizingTier = index;
+  deleteTierButton.classList.toggle("d-none", false);
   const tierData = tiers[index];
-  tierButtonPreviewLabel.innerText = tierData.lab;
-  tierButtonPreviewSubLabel.innerText = tierData.subLab;
+  const { lab, subLab } = tierData;
+  tierButtonPreviewLabel.innerText = lab;
+  tierButtonPreviewSubLabel.innerText = subLab;
+  labelNameInput.value = lab;
+  subLabelNameInput.value = subLab;
 };
 
 const genTierColorOptions = () => {
@@ -550,7 +563,78 @@ const genTierColorOptions = () => {
   });
 };
 
+const deleteTier = async () => {
+  tiers.splice(customizingTier, 1);
+
+  // if theres any items in the tier, then we'll have to add them back to the pool
+  await populateLooseItems();
+  tierListContainer.innerHTML = "";
+  await createTiers();
+  await populateTierListItems();
+  await saveProgress();
+
+  const modal = bootstrap.Modal.getInstance(tierCustomizationModal);
+  modal.hide();
+};
+
+const createNewTier = async () => {
+  let newColor = "#151c24";
+  let newLabel = labelNameInput.value;
+  let newSubLabel = subLabelNameInput.value;
+  const bgColor = tierPreview.style.backgroundColor;
+  if (bgColor) {
+    newColor = convertRGBToHex(bgColor);
+  }
+  const newTier = {
+    lab: newLabel,
+    subLab: newSubLabel,
+    color: newColor,
+    list: [],
+  };
+  tiers.push(newTier);
+  await saveProgress();
+
+  const tier = document.createElement("div");
+  const index = tiers.length - 1;
+  tier.id = `tier${index}`;
+  tier.style.backgroundColor = newColor;
+  tier.className = "tier text-white";
+  tier.innerHTML = `
+      <button type="button" 
+          id="tierCustomizationBtn${index}"
+          data-bs-toggle="modal"
+          data-bs-target="#tierCustomizationModal" 
+          class="btn tierLabelButton btn-outline-primary"
+          onclick="genTierCustomizationModalContent(${index})"
+      >
+        <div>
+          <span id="tierLabel${index}" class="tierLabel text-white">${newLabel}</span>
+        </div>
+        <div>
+          <span id="tierSubLabel${index}" class="text-white tierSubLabel">
+            ${newSubLabel}
+          </span>
+        </div>
+      </button>
+      <div 
+        class="tierCategories" 
+        id="tierCat${index}" 
+        ondragover="allowDrop(event)" 
+        ondrop="drop(event)">
+      </div>
+    `;
+  tierListContainer.appendChild(tier);
+};
+
+// this handles editing a tier and creating a new tier
+// redirect to create new tier function if customizingTier is null
 const saveTierCustomization = async () => {
+  console.log(customizingTier);
+  if (customizingTier === null) {
+    createNewTier();
+    return;
+  }
+
   const tierEl = document.getElementById(`tier${customizingTier}`);
   const tierLabelEl = document.getElementById(`tierLabel${customizingTier}`);
   const tierSubLabelEl = document.getElementById(
@@ -581,6 +665,7 @@ const saveTierCustomization = async () => {
   });
 
   saveProgress();
+  customizingTier = null;
 };
 
 const attemptToReformatOldData = async (oldData) => {

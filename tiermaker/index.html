@@ -210,6 +210,16 @@
               <span id="bbResetIcon"><i class="bi bi-x-lg"></i></span>
             </button>
           </div>
+          <div class="mx-1">
+            <button
+              class="btn btn-success"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#tierCustomizationModal"
+            >
+              <span><i class="bi bi-plus-lg"></i></span>
+            </button>
+          </div>
         </div>
         <div class="col-2 justify-content-end d-flex align-items-center">
           <button
@@ -290,10 +300,6 @@
               <h5 class="modal-title text-light" id="">Customize Tier</h5>
             </div>
             <div class="modal-body row d-flex justify-content-center">
-              <p class="text-white">
-                And possibly creating a new tier as well. We can change the
-                label, sublabel, and background color
-              </p>
               <div id="tierPreview" class="tier my-3">
                 <button
                   id="tierButtonPreview"
@@ -303,15 +309,13 @@
                     <span
                       id="tierButtonPreviewLabel"
                       class="tierLabel text-white"
-                      >S</span
-                    >
+                    ></span>
                   </div>
                   <div>
                     <span
                       id="tierButtonPreviewSubLabel"
                       class="text-white tierSubLabel"
-                      >subtext</span
-                    >
+                    ></span>
                   </div>
                 </button>
                 <div class="tierCategories"></div>
@@ -361,13 +365,23 @@
               </div>
             </div>
             <div class="modal-footer d-flex justify-content-between">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Cancel
-              </button>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <button
+                  id="deleteTierButton"
+                  type="button"
+                  class="btn d-none btn-danger mx-1"
+                  onclick="deleteTier()"
+                >
+                  Delete
+                </button>
+              </div>
               <button
                 type="button"
                 onclick="saveTierCustomization()"
@@ -400,12 +414,14 @@
             <div class="modal-body row d-flex justify-content-center">
               <p class="text-white">
                 New features have been added to Tier Maker, and the way that
-                data is saved has been changed that makes your old data
-                obsolete. An attempt has been made to reformat your save data to
-                be compatible with the new version of Tier Maker. Hopefully it
+                data is now saved has made your old save data obsolete. An
+                attempt has been made to reformat your save data to be
+                compatible with the new version of Tier Maker. Hopefully it
                 worked!
                 <br />
                 If it didn't work, I sincerely apologize for the inconvenience.
+                Feel free to reach out to me on Discord, and I will do my best
+                to restore it manually.
                 <br />
                 <br />
                 The new features include:

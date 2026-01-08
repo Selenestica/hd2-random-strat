@@ -307,7 +307,6 @@ const addItemToTierArray = async () => {
 const startNewTierList = async () => {
   tiers = TIERS;
   tierListContainer.innerHTML = "";
-  console.log("here?");
   createTiers();
   await populateLooseItems();
 };

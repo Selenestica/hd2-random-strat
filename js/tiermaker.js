@@ -644,39 +644,9 @@ const createNewTier = async () => {
   };
   tiers.splice(newTierIndex, 0, newTier);
   await saveProgress();
-  createTiers();
+  tierListContainer.innerHTML = "";
+  await createTiers();
   populateTierListItems();
-
-  // const tier = document.createElement("div");
-  // const index = tiers.length - 1;
-  // tier.id = `tier${index}`;
-  // tier.style.backgroundColor = newColor;
-  // tier.className = "tier text-white";
-  // tier.innerHTML = `
-  //     <button type="button"
-  //         id="tierCustomizationBtn${index}"
-  //         data-bs-toggle="modal"
-  //         data-bs-target="#tierCustomizationModal"
-  //         class="btn tierLabelButton btn-outline-primary"
-  //         onclick="genTierCustomizationModalContent(${index})"
-  //     >
-  //       <div>
-  //         <span id="tierLabel${index}" class="tierLabel text-white">${newLabel}</span>
-  //       </div>
-  //       <div>
-  //         <span id="tierSubLabel${index}" class="text-white tierSubLabel">
-  //           ${newSubLabel}
-  //         </span>
-  //       </div>
-  //     </button>
-  //     <div
-  //       class="tierCategories"
-  //       id="tierCat${index}"
-  //       ondragover="allowDrop(event)"
-  //       ondrop="drop(event)">
-  //     </div>
-  //   `;
-  // tierListContainer.appendChild(tier);
 };
 
 // this handles editing a tier and creating a new tier

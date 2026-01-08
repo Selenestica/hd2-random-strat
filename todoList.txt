@@ -85,8 +85,6 @@ SPECIAL OPERATIONS
     - make green/red progress text a different color for colorblind people
 
 TIER MAKER
-  - ability to add tiers in specific order
-    - plus symbol with up and down arrow buttons above and below
   - make filter options checkbox toggles
   - dragging an item from the bottom on mobile is difficult. consider making the items a button on mobile that opens
     a menu to select which list it should go to

@@ -433,7 +433,7 @@ border 3c434d
 
 .tierLabelButton {
   width: 50px;
-  margin-right: 10px;
+  margin-right: 5px;
   text-align: center;
   background-color: #151c24 !important;
 }
@@ -455,7 +455,7 @@ border 3c434d
   flex-wrap: wrap;
   min-height: 40px;
   border-left: 2px dashed #3c434d;
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 .tierItem {

@@ -81,6 +81,11 @@ subLabelNameInput.addEventListener("input", (e) => {
 tierCustomizationModal.addEventListener("hidden.bs.modal", async () => {
   customizingTier = null;
   deleteTierButton.classList.toggle("d-none", true);
+  labelNameInput.value = "";
+  subLabelNameInput.value = "";
+  tierButtonPreviewLabel.innerText = "";
+  tierButtonPreviewSubLabel.innerText = "";
+  tierPreview.style.backgroundColor = "#151c24";
 });
 
 const changeTierPreviewColor = (color) => {
@@ -598,7 +603,8 @@ const genTierCustomizationModalContent = (index) => {
   customizingTier = index;
   deleteTierButton.classList.toggle("d-none", false);
   const tierData = tiers[index];
-  const { lab, subLab } = tierData;
+  const { lab, subLab, color } = tierData;
+  tierPreview.style.backgroundColor = color;
   tierButtonPreviewLabel.innerText = lab;
   tierButtonPreviewSubLabel.innerText = subLab;
   labelNameInput.value = lab;

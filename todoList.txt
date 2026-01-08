@@ -87,14 +87,12 @@ SPECIAL OPERATIONS
 TIER MAKER
   - ability to add tiers in specific order
     - plus symbol with up and down arrow buttons above and below
-  - ability to add item back to pool
   - make filter options checkbox toggles
   - dragging an item from the bottom on mobile is difficult. consider making the items a button on mobile that opens
     a menu to select which list it should go to
   - ability to rate enemies
   - ability to rate armor sets
   BUGS
-    - tier customization modal shows wrong color in preview when it pops up (color is always the last one saved)
 
 DEBT DIVERS
   - balance changes

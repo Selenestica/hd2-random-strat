@@ -150,7 +150,7 @@ const applySavedGameData = async (isUploadedSave = null) => {
   };
   localStorage.setItem("tierMakerSaveData2", JSON.stringify(newSaveObj));
   // clear everything first
-  await startNewTierList();
+  // await startNewTierList(true);
 
   // then upload the current save
   uploadSaveData();

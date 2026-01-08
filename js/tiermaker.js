@@ -1,6 +1,5 @@
 const looseItemsContainer = document.getElementById("looseItemsContainer");
 const itemsSearchInput = document.getElementById("itemsSearchInput");
-const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 const tierPreview = document.getElementById("tierPreview");
 const tierButtonPreviewLabel = document.getElementById(
   "tierButtonPreviewLabel"
@@ -36,6 +35,7 @@ let newStrats = [...OGstratsList];
 let newWarbonds = [...OGwarbondsList];
 
 let customizingTier = null;
+let newTierIndex = null;
 let tiers = [
   {
     lab: "S",
@@ -172,7 +172,7 @@ const handleTouchMove = (e) => {
   }
 };
 
-const handleTouchEnd = (e) => {
+const handleTouchEnd = async (e) => {
   e.preventDefault();
 
   if (!hasStartedDragging || !cloneElement) {
@@ -183,6 +183,7 @@ const handleTouchEnd = (e) => {
   const touch = e.changedTouches[0];
   const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
   const tierContainer = dropTarget?.closest?.(".tierCategories");
+  const looseContainer = dropTarget?.closest?.("#looseItemsContainer");
 
   if (tierContainer) {
     const original = cloneElement._original;
@@ -196,6 +197,24 @@ const handleTouchEnd = (e) => {
     tierContainer.appendChild(cloneElement);
     setupCardEvents(cloneElement);
     addItemToTierArray();
+  } else if (looseContainer) {
+    const original = cloneElement._original;
+    if (original?.parentElement) {
+      if (original.parentElement.id === "looseItemsContainer") {
+        window.location.reload();
+        resetTouchState();
+        return;
+      }
+      original.parentElement.removeChild(original);
+    }
+
+    cloneElement.classList.remove("dragging");
+    cloneElement.style = "";
+
+    looseContainer.appendChild(cloneElement);
+    setupCardEvents(cloneElement);
+    addItemToTierArray();
+    populateLooseItems();
   } else {
     cloneElement.remove(); // Not dropped in a valid area
   }
@@ -228,28 +247,40 @@ const drag = (e) => {
   e.dataTransfer.setData("text/plain", e.currentTarget.id);
 };
 
-const drop = (e) => {
+const drop = async (e) => {
   e.preventDefault();
 
   const itemId = e.dataTransfer.getData("text/plain");
   const draggedItem = document.getElementById(itemId);
   if (!draggedItem) return;
 
-  let dropTarget = e.target.closest(".tierItem");
+  const dropTarget = e.target.closest(".tierItem");
   const parentTier = e.target.closest(".tierCategories");
+  const looseContainer = e.target.closest("#looseItemsContainer");
+
+  // Dropped back into loose items pool
+  if (looseContainer) {
+    if (draggedItem.parentElement?.id === "looseItemsContainer") {
+      return;
+    }
+    looseContainer.appendChild(draggedItem);
+    await addItemToTierArray();
+    populateLooseItems();
+    return;
+  }
 
   if (!parentTier) return;
 
-  // If dropped on another item → insert before it
+  // Dropped on another item in a tier
   if (dropTarget && dropTarget !== draggedItem) {
     parentTier.insertBefore(draggedItem, dropTarget);
-    addItemToTierArray();
   }
-  // If dropped on empty tier or gap → append to end
+  // Dropped in empty tier or gap
   else {
     parentTier.appendChild(draggedItem);
-    addItemToTierArray();
   }
+
+  addItemToTierArray();
 };
 
 const addItemToTierArray = async () => {
@@ -274,13 +305,9 @@ const addItemToTierArray = async () => {
 };
 
 const startNewTierList = async () => {
-  // probably want to set all warbond codes to checked just in case
-  warbondCodes = [...masterWarbondCodes];
-  for (let i = 0; i < warbondCheckboxes.length; i++) {
-    warbondCheckboxes[i].checked = true;
-  }
-
+  tiers = TIERS;
   tierListContainer.innerHTML = "";
+  console.log("here?");
   createTiers();
   await populateLooseItems();
 };
@@ -366,6 +393,10 @@ const generateItemCard = (item) => {
   return card;
 };
 
+const setNewTierIndex = (index) => {
+  newTierIndex = index;
+};
+
 const createTiers = async () => {
   if (tierListContainer.children.length === tiers.length) {
     return;
@@ -398,6 +429,26 @@ const createTiers = async () => {
         ondragover="allowDrop(event)" 
         ondrop="drop(event)">
       </div>
+      <div class="addTierButtonDivs">
+        <button
+          class="btn btn-success btn-sm addTierButtons"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#tierCustomizationModal"
+          onclick="setNewTierIndex(${i})"
+        >
+          <span><i class="bi bi-arrow-up"></i></span>
+        </button>
+        <button
+          class="btn btn-success btn-sm addTierButtons mt-1"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#tierCustomizationModal"
+          onclick="setNewTierIndex(${i + 1})"
+        >
+          <span><i class="bi bi-arrow-down"></i></span>
+        </button>
+      </div>
     `;
     tierListContainer.appendChild(tier);
   });
@@ -409,12 +460,13 @@ const uploadSaveData = async () => {
     attemptToReformatOldData(tierMakerSaveDataOld);
   }
 
-  const tierMakerSaveData = localStorage.getItem("tierMakerSaveData2");
+  const tierMakerSaveData = await localStorage.getItem("tierMakerSaveData2");
   if (tierMakerSaveData) {
     const currentList = await getCurrentTierList();
 
     tiers = currentList.tiers;
     dataName = currentList.dataName;
+    tierListContainer.innerHTML = "";
 
     await populateLooseItems();
     await createTiers();
@@ -474,9 +526,8 @@ const saveDataAndRestart = async () => {
   });
 
   await startNewTierList();
-
   const newSaveObj = {
-    tiers,
+    tiers: TIERS,
     dataName: `List #${generateSemiUniqueCode()}`,
     currentList: true,
   };
@@ -591,45 +642,46 @@ const createNewTier = async () => {
     color: newColor,
     list: [],
   };
-  tiers.push(newTier);
+  tiers.splice(newTierIndex, 0, newTier);
   await saveProgress();
+  createTiers();
+  populateTierListItems();
 
-  const tier = document.createElement("div");
-  const index = tiers.length - 1;
-  tier.id = `tier${index}`;
-  tier.style.backgroundColor = newColor;
-  tier.className = "tier text-white";
-  tier.innerHTML = `
-      <button type="button" 
-          id="tierCustomizationBtn${index}"
-          data-bs-toggle="modal"
-          data-bs-target="#tierCustomizationModal" 
-          class="btn tierLabelButton btn-outline-primary"
-          onclick="genTierCustomizationModalContent(${index})"
-      >
-        <div>
-          <span id="tierLabel${index}" class="tierLabel text-white">${newLabel}</span>
-        </div>
-        <div>
-          <span id="tierSubLabel${index}" class="text-white tierSubLabel">
-            ${newSubLabel}
-          </span>
-        </div>
-      </button>
-      <div 
-        class="tierCategories" 
-        id="tierCat${index}" 
-        ondragover="allowDrop(event)" 
-        ondrop="drop(event)">
-      </div>
-    `;
-  tierListContainer.appendChild(tier);
+  // const tier = document.createElement("div");
+  // const index = tiers.length - 1;
+  // tier.id = `tier${index}`;
+  // tier.style.backgroundColor = newColor;
+  // tier.className = "tier text-white";
+  // tier.innerHTML = `
+  //     <button type="button"
+  //         id="tierCustomizationBtn${index}"
+  //         data-bs-toggle="modal"
+  //         data-bs-target="#tierCustomizationModal"
+  //         class="btn tierLabelButton btn-outline-primary"
+  //         onclick="genTierCustomizationModalContent(${index})"
+  //     >
+  //       <div>
+  //         <span id="tierLabel${index}" class="tierLabel text-white">${newLabel}</span>
+  //       </div>
+  //       <div>
+  //         <span id="tierSubLabel${index}" class="text-white tierSubLabel">
+  //           ${newSubLabel}
+  //         </span>
+  //       </div>
+  //     </button>
+  //     <div
+  //       class="tierCategories"
+  //       id="tierCat${index}"
+  //       ondragover="allowDrop(event)"
+  //       ondrop="drop(event)">
+  //     </div>
+  //   `;
+  // tierListContainer.appendChild(tier);
 };
 
 // this handles editing a tier and creating a new tier
 // redirect to create new tier function if customizingTier is null
 const saveTierCustomization = async () => {
-  console.log(customizingTier);
   if (customizingTier === null) {
     createNewTier();
     return;

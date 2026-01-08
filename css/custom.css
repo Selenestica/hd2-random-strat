@@ -419,14 +419,14 @@ border 3c434d
 #tierListContainer {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2px;
 }
 
 .tier {
   display: flex;
   align-items: center;
   background: #151c24;
-  padding: 10px;
+  padding: 5px;
   border: 2px solid #3c434d;
   min-height: 60px;
 }
@@ -451,7 +451,7 @@ border 3c434d
 .tierCategories {
   flex: 1;
   display: flex;
-  gap: 10px;
+  gap: 2px;
   flex-wrap: wrap;
   min-height: 40px;
   border-left: 2px dashed #3c434d;
@@ -461,7 +461,6 @@ border 3c434d
 .tierItem {
   cursor: grab;
   user-select: none;
-  margin: 0.05rem;
   width: 100px;
   flex: 0 0 auto;
   box-sizing: border-box;
@@ -472,10 +471,19 @@ border 3c434d
 }
 
 #looseItemsContainer {
-  margin-top: 10px;
+  margin-top: 2px;
   background: #151c24;
-  padding: 10px;
+  padding: 2px;
   border: 2px solid #3c434d;
+}
+
+.addTierButtonDivs {
+  display: flex;
+  flex-direction: column;
+}
+
+.addTierButtons {
+  padding: 3px;
 }
 
 @media (min-width: 992px) {

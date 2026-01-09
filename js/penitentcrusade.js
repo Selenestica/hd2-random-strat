@@ -52,6 +52,9 @@ const pcDiffRadioNormal = document.getElementById("pcDiffRadioNormal");
 const pcDiffRadioSuper = document.getElementById("pcDiffRadioSuper");
 const pcDiffRadioSuperSolo = document.getElementById("pcDiffRadioSuperSolo");
 const pcTitleName = document.getElementById("pcTitleName");
+const diff4Input = document.getElementById("diff4Input");
+const diff6Input = document.getElementById("diff6Input");
+const diff8Input = document.getElementById("diff8Input");
 const starsRadioOptions = [
   starsRadio1,
   starsRadio2,
@@ -702,6 +705,16 @@ const rollPunishmentOptions = async () => {
   saveProgress();
 };
 
+// const getDropRates = () => {
+//   let startingRate = [0, 0.2, 0.7]
+//   let diff4Rate = [0.03, 0.3, 0.8]
+//   let diff6Rate = [0.05, 0.4, 0.9]
+//   let diff8Rate = [0.1, 0.5, 0.99]
+//   if (diff4Input.value && isFormattedCorrectly(diff4Input)) {
+//     diff4Rate =
+//   }
+// }
+
 const getRandomItemListByTier = async (list) => {
   // apply OG specialist trait here probably
   const num = Math.random();
@@ -718,8 +731,8 @@ const getRandomItemListByTier = async (list) => {
     return item.tier === "c";
   });
   // if the list that we want has no items in it, just return list
-  let dropRates = [0.05, 0.25, 0.75];
-  // const superDropRates = [0.05, 0.25, 0.75];
+  // const dropRates = await getDropRates();
+  const dropRates = [0.05, 0.25, 0.75];
   // if (difficulty === "super" || difficulty === "supersolo") {
   //   dropRates = superDropRates;
   // }
@@ -734,6 +747,15 @@ const getRandomItemListByTier = async (list) => {
   }
   if (num > dropRates[2] && cList.length > 0) {
     return cList;
+  }
+  if (bList.length > 0) {
+    return bList;
+  }
+  if (aList.length > 0) {
+    return aList;
+  }
+  if (sList.length > 0) {
+    return sList;
   }
   return list;
 };

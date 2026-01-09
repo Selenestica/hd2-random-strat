@@ -85,7 +85,6 @@ SPECIAL OPERATIONS
     - make green/red progress text a different color for colorblind people
 
 TIER MAKER
-  - make size and text choices persist with the save data
   - make filter options checkbox toggles
   - dragging an item from the bottom on mobile is difficult. consider making the items a button on mobile that opens
     a menu to select which list it should go to
@@ -93,7 +92,6 @@ TIER MAKER
   - ability to rate armor sets
   BUGS
     - sometimes when making a new list, stuff from the old list will persist. unable to recreate
-    - when putting items back in pool, text and size options dont persist
 
 DEBT DIVERS
   - balance changes

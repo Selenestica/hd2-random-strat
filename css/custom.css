@@ -142,7 +142,8 @@ border 3c434d
   #bbResetText,
   #bbSearchText,
   #superCreditsText,
-  #warbondSelectButtonDesktop {
+  #warbondSelectButtonDesktop,
+  .responsiveText {
     display: none;
   }
 
@@ -155,7 +156,8 @@ border 3c434d
   #bbResetIcon,
   #bbSearchIcon,
   #superCreditsIcon,
-  #warbondSelectButtonMobile {
+  #warbondSelectButtonMobile,
+  .responsiveIcon {
     display: block;
   }
 
@@ -174,7 +176,8 @@ border 3c434d
   #bbResetText,
   #bbSearchText,
   #superCreditsText,
-  #warbondSelectButtonDesktop {
+  #warbondSelectButtonDesktop,
+  .responsiveText {
     display: block;
   }
 
@@ -187,7 +190,8 @@ border 3c434d
   #bbResetIcon,
   #bbSearchIcon,
   #superCreditsIcon,
-  #warbondSelectButtonMobile {
+  #warbondSelectButtonMobile,
+  .responsiveIcon {
     display: none;
   }
 
@@ -461,7 +465,7 @@ border 3c434d
 .tierItem {
   cursor: grab;
   user-select: none;
-  width: 100px;
+  width: 80px;
   flex: 0 0 auto;
   box-sizing: border-box;
 }
@@ -507,9 +511,6 @@ border 3c434d
 }
 
 @media (max-width: 768px) {
-  .tierItem {
-    width: 80px;
-  }
   .svgIconStyles {
     width: 80px;
   }

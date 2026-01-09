@@ -112,11 +112,69 @@
             <div class="btn-group">
               <button
                 type="button"
+                class="btn btn-outline-primary dropdown-toggle no-caret"
+                style="padding: 4px 8px"
+                data-bs-toggle="dropdown"
+              >
+                <span class="text-white responsiveText">Size</span>
+                <span class="responsiveIcon"
+                  ><img
+                    src="../images/iconSVGs/item-size.svg"
+                    style="width: 1.5rem"
+                    class="img-fluid"
+                /></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    onclick="changeItemSize('40px')"
+                    href="#"
+                    >Extra Small</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    onclick="changeItemSize('60px')"
+                    href="#"
+                    >Small</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    onclick="changeItemSize('80px')"
+                    href="#"
+                    >Medium</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    onclick="changeItemSize('100px')"
+                    href="#"
+                    >Large</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    onclick="changeItemSize('120px')"
+                    href="#"
+                    >Extra Large</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <button
+                type="button"
                 class="btn btn-outline-primary"
                 onclick="toggleItemNameText()"
               >
-                <span id="bbPriceText" class="text-white">Text</span>
-                <span id="bbPriceIcon" class="text-white"
+                <span class="text-white responsiveText">Text</span>
+                <span class="text-white responsiveIcon"
                   ><i class="bi bi-fonts"></i
                 ></span>
               </button>
@@ -128,8 +186,8 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <span id="bbTypeText" class="text-white">Type</span>
-                <span id="bbTypeIcon" class="text-white"
+                <span class="text-white responsiveText">Type</span>
+                <span class="text-white responsiveIcon"
                   ><i class="bi bi-list-task"></i
                 ></span>
               </button>
@@ -202,10 +260,16 @@
             <button
               onclick="resetItemFilters()"
               class="btn btn-primary"
+              style="padding: 4px 8px"
               type="button"
             >
-              <span id="bbResetText"> Reset </span>
-              <span id="bbResetIcon"><i class="bi bi-x-lg"></i></span>
+              <span class="responsiveText"> Reset </span>
+              <span class="responsiveIcon"
+                ><img
+                  src="../images/iconSVGs/clearFilter.svg"
+                  style="width: 1.5rem"
+                  class="img-fluid"
+              /></span>
             </button>
           </div>
         </div>

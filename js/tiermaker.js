@@ -751,5 +751,12 @@ const attemptToReformatOldData = async (oldData) => {
   uploadSaveData();
 };
 
+const changeItemSize = (newSize) => {
+  const tierItems = document.querySelectorAll(".tierItem");
+  tierItems.forEach((it) => {
+    it.style.width = newSize;
+  });
+};
+
 uploadSaveData();
 genTierColorOptions();

@@ -36,6 +36,8 @@ let newWarbonds = [...OGwarbondsList];
 
 let customizingTier = null;
 let newTierIndex = null;
+let itemsSize = "80px";
+let showText = true;
 let tiers = [
   {
     lab: "S",
@@ -383,13 +385,16 @@ const generateItemCard = (item) => {
   card.dataset.type = getItemType(item);
   card.id = item.internalName;
   card.className = `card tierItem pcItemCards ${item.warbondCode}`;
+  card.style.width = itemsSize;
   card.innerHTML = `
     <img
       src="../images/${imgDir}/${item.imageURL}"
       class="img-card-top"
       alt="${item.displayName}"
     />
-    <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
+    <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center ${
+      showText ? "" : "d-none"
+    }">
       <p class="card-title text-white pcItemCardText">${item.displayName}</p>
     </div>
   `;
@@ -471,6 +476,8 @@ const uploadSaveData = async () => {
     tiers = currentList.tiers;
     dataName = currentList.dataName;
     tierListContainer.innerHTML = "";
+    showText = currentList.showText;
+    itemsSize = currentList.itemsSize;
 
     await populateLooseItems();
     await createTiers();
@@ -490,6 +497,8 @@ const saveProgress = async () => {
           tiers,
           dataName: `List #${generateSemiUniqueCode()}`,
           currentList: true,
+          showText,
+          itemsSize,
         },
       ],
     };
@@ -502,6 +511,8 @@ const saveProgress = async () => {
       sg = {
         ...sg,
         tiers,
+        showText,
+        itemsSize,
         dataName: sg.editedName
           ? sg.dataName
           : `List #${generateSemiUniqueCode()}`,
@@ -592,11 +603,17 @@ const getCurrentTierList = async () => {
   return currentList[0];
 };
 
-const toggleItemNameText = () => {
+const toggleItemNameText = async () => {
   const itemNameContainers = document.querySelectorAll(".itemNameContainer");
-  itemNameContainers.forEach((container) => {
+  await itemNameContainers.forEach((container) => {
     container.classList.toggle("d-none");
+    if (container.classList.contains("d-none")) {
+      showText = false;
+    } else {
+      showText = true;
+    }
   });
+  saveProgress();
 };
 
 const genTierCustomizationModalContent = (index) => {
@@ -756,6 +773,8 @@ const changeItemSize = (newSize) => {
   tierItems.forEach((it) => {
     it.style.width = newSize;
   });
+  itemsSize = newSize;
+  saveProgress();
 };
 
 uploadSaveData();

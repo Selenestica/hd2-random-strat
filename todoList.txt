@@ -93,6 +93,7 @@ TIER MAKER
   - ability to rate armor sets
   BUGS
     - sometimes when making a new list, stuff from the old list will persist. unable to recreate
+    - when putting items back in pool, text and size options dont persist
 
 DEBT DIVERS
   - balance changes

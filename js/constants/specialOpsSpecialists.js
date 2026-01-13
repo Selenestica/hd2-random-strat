@@ -701,6 +701,37 @@ const SPECOPSSPECS = [
   },
   // {
   //   locked: true,
+  //   displayName: "The Assassin",
+  //   stratagems: [
+  //     "Warp Pack",
+  //     "Orbital Railcannon Strike",
+  //     "Eagle 110mm Rocket Pods",
+  //     "Anti-Personnel Mines",
+  //   ],
+  //   primary: "Censor",
+  //   secondary: "Saber",
+  //   throwable: "G-3 Smoke",
+  //   armorPassive: "Reduced Signature",
+  //   warbonds: ["warbond22", "warbond15"],
+  // },
+  // {
+  //   locked: true,
+  //   displayName: "The Saboteur",
+  //   stratagems: [
+  //     "C4 Pack",
+  //     "Portable Hellbomb",
+  //     "Anti-Tank Mines",
+  //     "Orbital Laser",
+  //   ],
+  //   primary: "Suppressor",
+  //   secondary: "Re-Educator",
+  //   throwable: "Dynamite",
+  //   armorPassive: "Reduced Signature",
+  //   warbonds: ["warbond21", "warbond13", "warbond14"],
+  // },
+
+  // {
+  //   locked: true,
   //   displayName: "The Truth Enforcer",
   //   stratagems: [
   //     "Eagle Napalm Strike",
@@ -713,37 +744,6 @@ const SPECOPSSPECS = [
   //   throwable: "G-50 Seeker",
   //   armorPassive: "Unflinching",
   //   warbonds: ["warbond7", "warbond13"],
-  // },
-
-  // {
-  //   locked: true,
-  //   displayName: "The Assassin",
-  //   stratagems: [
-  //     "Warp Pack",
-  //     "Orbital Railcannon Strike",
-  //     "Eagle 110mm Rocket Pods",
-  //     "Anti-Personnel Mines",
-  //   ],
-  //   primary: "Censor",
-  //   secondary: "Saber",
-  //   throwable: "G-89 Smokescreen",
-  //   armorPassive: "Reduced Signature",
-  //   warbonds: ["warbond21", "warbond15"],
-  // },
-  // {
-  //   locked: true,
-  //   displayName: "The Saboteur",
-  //   stratagems: [
-  //     "C4",
-  //     "Portable Hellbomb",
-  //     "Anti-Tank Mines",
-  //     "Orbital Laser",
-  //   ],
-  //   primary: "Suppressor",
-  //   secondary: "Re-Educator",
-  //   throwable: "Dynamite",
-  //   armorPassive: "Reduced Signature",
-  //   warbonds: ["warbond21", "warbond13", "warbond14"],
   // },
 
   // {

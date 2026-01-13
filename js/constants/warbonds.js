@@ -189,15 +189,14 @@ const WARBONDS = [
     imageURL: "pythoncommandosWB.webp",
     tier: "b",
   },
-
   // {
   //   displayName: "Redacted Regiment",
   //   type: "Warbond",
   //   category: "",
   //   tags: [],
-  //   warbondCode: "warbond21",
+  //   warbondCode: "warbond22",
   //   internalName: "redactedregimentWB",
-  //   imageURL: "redactedregimentWB.png",
+  //   imageURL: "redactedregimentWB.webp",
   //   tier: "b",
   // },
 ];

@@ -175,6 +175,17 @@ const THROWABLES = [
     antitank: false,
     tier: "b",
   },
+  // {
+  //   displayName: "TM-01 Lure Mine",
+  //   type: "Equipment",
+  //   category: "throwable",
+  //   tags: [],
+  //   warbondCode: "warbond22",
+  //   internalName: "tm01luremine",
+  //   imageURL: "tm01luremine.png",
+  //   antitank: false,
+  //   tier: "b",
+  // },
 ];
 
 // s: 2

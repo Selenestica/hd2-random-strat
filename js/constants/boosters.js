@@ -175,7 +175,7 @@ const BOOSTERS = [
   //   type: "Equipment",
   //   category: "booster",
   //   tags: [],
-  //   warbondCode: "warbond21",
+  //   warbondCode: "warbond22",
   //   internalName: "concealedinsertion",
   //   imageURL: "concealedinsertion.png",
   //   tier: "b",

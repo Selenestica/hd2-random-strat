@@ -225,7 +225,7 @@ const ARMOR_PASSIVES = [
   //   type: "Equipment",
   //   category: "armor",
   //   tags: ["ArmorPassive"],
-  //   warbondCode: "warbond21",
+  //   warbondCode: "warbond22",
   //   internalName: "reducedsignature",
   //   imageURL: "reducedsignature.png",
   //   tier: "b",

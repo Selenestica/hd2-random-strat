@@ -50,7 +50,6 @@ PENITENT CRUSADE:
     - when challenge complete, add "View Results" button so they can see their score again
   - when mission fail, choose a and s tier items from acquiredItems, if any
   - random stratagem should probably be weighted to account for the fact that there are way more blue strats than other strats
-  - make items repeat less often for rewards
 
   - SPECIALIST ideas:
     - The Shotgun Surgeon

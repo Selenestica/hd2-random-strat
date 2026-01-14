@@ -1,7 +1,6 @@
 const missionCompleteModalBody = document.getElementById(
   "missionCompleteModalBody"
 );
-const maxStarsModalBody = document.getElementById("maxStarsModalBody");
 const primaryAccordionBody = document.getElementById("PrimariesAccordionBody");
 const secondaryAccordionBody = document.getElementById(
   "SecondariesAccordionBody"
@@ -37,11 +36,6 @@ const downloadPDFButtonDiv = document.getElementById("downloadPDFButtonDiv");
 const missionCounterText = document.getElementById("missionCounterText");
 const oldDataDetectedModal = document.getElementById("oldDataDetectedModal");
 const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
-const starsRadio1 = document.getElementById("starsRadio1");
-const starsRadio2 = document.getElementById("starsRadio2");
-const starsRadio3 = document.getElementById("starsRadio3");
-const starsRadio4 = document.getElementById("starsRadio4");
-const starsRadio5 = document.getElementById("starsRadio5");
 const applySpecialistButton = document.getElementById("applySpecialistButton");
 const timeRemainingInput = document.getElementById("timeRemainingInput");
 const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
@@ -55,14 +49,9 @@ const pcTitleName = document.getElementById("pcTitleName");
 const diff4Input = document.getElementById("diff4Input");
 const diff6Input = document.getElementById("diff6Input");
 const diff8Input = document.getElementById("diff8Input");
-const starsRadioOptions = [
-  starsRadio1,
-  starsRadio2,
-  starsRadio3,
-  starsRadio4,
-  starsRadio5,
-];
+const starsOptionsDiv = document.getElementById("starsOptionsDiv");
 
+let starsRadioOptions = [];
 let missionsFailed = 0;
 let missionTimes = [];
 let currentItems = [];
@@ -76,6 +65,12 @@ let masterThrowsList = [];
 let masterBoostsList = [];
 let masterStratsList = [];
 let masterArmorPassivesList = [];
+
+// whenever maxStarsModal opens, generate how many stars options they will have
+// options will reset when modal is closed
+maxStarsPromptModal.addEventListener("show.bs.modal", function () {
+  genStarsOptions();
+});
 
 timeRemainingInput.addEventListener("input", () => {
   let value = parseInt(timeRemainingInput.value, 10);
@@ -466,6 +461,30 @@ const getItemMetaData = (item) => {
   return { imgDir, list, accBody, typeText, listKeyName };
 };
 
+const genStarsOptions = () => {
+  const maxStars = getMaxStarsForMission(missionCounter);
+  starsRadioOptions = [];
+  for (let i = 0; i < maxStars; i++) {
+    starsOptionsDiv.innerHTML += `
+      <input
+        type="radio"
+        class="btn-check"
+        name="starsRadio"
+        id="starsRadio${i + 1}"
+        autocomplete="off"
+        ${i === maxStars - 1 ? "checked" : ""}
+      />
+      <label class="btn btn-outline-primary text-white" for="starsRadio${
+        i + 1
+      }">
+        ${i + 1}</label
+      >
+    `;
+    const sro = document.getElementById(`starsRadio${i + 1}`);
+    starsRadioOptions.push(sro);
+  }
+};
+
 const closeMaxStarsPromptModal = () => {
   const mspModalElement = document.getElementById("maxStarsPromptModal");
   const mspModal = new bootstrap.Modal(maxStarsPromptModal);
@@ -533,6 +552,7 @@ const rollRewardOptions = async () => {
       break;
     }
   }
+  starsOptionsDiv.innerHTML = "";
 
   // make sure the correct amount of rewards are shown
   let rewardQuantity = starsEarned - 1;
@@ -705,19 +725,39 @@ const rollPunishmentOptions = async () => {
   saveProgress();
 };
 
-// const getDropRates = () => {
-//   let startingRate = [0, 0.2, 0.7]
-//   let diff4Rate = [0.03, 0.3, 0.8]
-//   let diff6Rate = [0.05, 0.4, 0.9]
-//   let diff8Rate = [0.1, 0.5, 0.99]
-//   if (diff4Input.value && isFormattedCorrectly(diff4Input)) {
-//     diff4Rate =
-//   }
-// }
+const isDropRateInputFormattedCorrectly = (input) => {
+  const regex = /^(100|[1-9]?\d),(100|[1-9]?\d),(100|[1-9]?\d)$/;
+  if (typeof input === "string") {
+    return regex.test(input);
+  }
+  return false;
+};
+
+const formatDropRateInput = (input) => {
+  return input.split(",").map(Number);
+};
+
+const getDropRate = () => {
+  const startingRate = [0, 20, 70];
+  let rate = [5, 25, 75];
+  if (missionCounter <= 2) {
+    return startingRate;
+  } else if (missionCounter > 2 && missionCounter <= 7) {
+    rate = diff4Input.value;
+  } else if (missionCounter > 7 && missionCounter <= 13) {
+    rate = diff6Input.value;
+  } else if (missionCounter > 13) {
+    rate = diff8Input.value;
+  }
+  if (!isDropRateInputFormattedCorrectly(rate)) {
+    return [5, 25, 75];
+  }
+  return formatDropRateInput(rate);
+};
 
 const getRandomItemListByTier = async (list) => {
   // apply OG specialist trait here probably
-  const num = Math.random();
+  const num = Math.random() * 100;
   const sList = await list.filter((item) => {
     return item.tier === "s";
   });
@@ -730,31 +770,35 @@ const getRandomItemListByTier = async (list) => {
   const cList = await list.filter((item) => {
     return item.tier === "c";
   });
-  // if the list that we want has no items in it, just return list
-  // const dropRates = await getDropRates();
-  const dropRates = [0.05, 0.25, 0.75];
-  // if (difficulty === "super" || difficulty === "supersolo") {
-  //   dropRates = superDropRates;
-  // }
-  if (num < dropRates[0] && sList.length > 0) {
+  // if the list that we want has no items in it, start from bList and go up rarity until a populated list is found
+  const dropRate = await getDropRate();
+  console.log(dropRate, num);
+  if (num <= dropRate[0] && sList.length > 0) {
+    console.log(sList);
     return sList;
   }
-  if (num < dropRates[1] && num > dropRates[0] && aList.length > 0) {
+  if (num <= dropRate[1] && num > dropRate[0] && aList.length > 0) {
+    console.log(aList);
     return aList;
   }
-  if (num < dropRates[2] && num > dropRates[1] && bList.length > 0) {
+  if (num <= dropRate[2] && num > dropRate[1] && bList.length > 0) {
+    console.log(bList);
     return bList;
   }
-  if (num > dropRates[2] && cList.length > 0) {
+  if (num > dropRate[2] && cList.length > 0) {
+    console.log(cList);
     return cList;
   }
   if (bList.length > 0) {
+    console.log("BACKUP B!!!", bList);
     return bList;
   }
   if (aList.length > 0) {
+    console.log("BACKUP A!!!", aList);
     return aList;
   }
   if (sList.length > 0) {
+    console.log("BACKUP S!!!", sList);
     return sList;
   }
   return list;

@@ -266,62 +266,10 @@
             </div>
             <div class="row text-white d-flex justify-content-center">
               <div
+                id="starsOptionsDiv"
                 class="btn-group col"
                 role="group"
-                aria-label="Basic radio toggle button group"
-              >
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="starsRadio"
-                  id="starsRadio1"
-                  autocomplete="off"
-                  checked
-                />
-                <label class="btn btn-outline-primary" for="starsRadio1">
-                  1</label
-                >
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="starsRadio"
-                  id="starsRadio2"
-                  autocomplete="off"
-                />
-                <label class="btn btn-outline-primary" for="starsRadio2">
-                  2</label
-                >
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="starsRadio"
-                  id="starsRadio3"
-                  autocomplete="off"
-                />
-                <label class="btn btn-outline-primary" for="starsRadio3">
-                  3</label
-                >
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="starsRadio"
-                  id="starsRadio4"
-                  autocomplete="off"
-                />
-                <label class="btn btn-outline-primary" for="starsRadio4">
-                  4</label
-                >
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="starsRadio"
-                  id="starsRadio5"
-                  autocomplete="off"
-                />
-                <label class="btn btn-outline-primary" for="starsRadio5">
-                  5</label
-                >
-              </div>
+              ></div>
             </div>
             <div
               class="row d-flex pb-1 mt-3 align-items-center px-0 justify-content-center"
@@ -468,6 +416,18 @@
               <h5 class="text-white">Warbond Select</h5>
             </div>
             <div class="row">
+              <p class="text-white">
+                Choose 3 numbers from 0 - 100 (inclusive), separated by commas,
+                in incrementing order
+              </p>
+              <p class="text-white">
+                Examples: 3,15,80 | 10,30,70 | 5,25,75 | 2,18,50
+              </p>
+              <p class="text-white">Example: 5,25,75 means...</p>
+              <p class="text-white">
+                S tier = 5% chance (0 - 5), A tier = 20% chance (5+ - 25), B
+                tier = 50% chance (25+ - 75), C tier = 25% chance (75+ - 100)
+              </p>
               <div class="col">
                 <label class="form-check-label text-white" for="diff4Input">
                   Diff 4
@@ -504,6 +464,13 @@
                   aria-label=""
                 />
               </div>
+              <small class="text-white my-2">
+                Basically a random number is chosen between 0 and 100 and
+                wherever it falls on the scale is what tier item you will get.
+                Diff 4 are for missions Diff 4 and Diff 5, Diff 6 is for 6 and
+                7, and Diff 8 is for 8 - 10. Diff 3 will always have the this
+                scale: 0,20,70.</small
+              >
             </div>
           </div>
           <div class="modal-footer">
@@ -1257,6 +1224,7 @@
   <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/utils/warbondCodes.js"></script>
   <script src="../js/utils/genUniqueRandomNumbers.js"></script>
+  <script src="../js/utils/getMaxStarsForMission.js"></script>
   <script src="../js/components/specialistsModal.js"></script>
   <script src="../js/components/genShowAllItemsModal.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>

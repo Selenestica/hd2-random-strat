@@ -49,6 +49,11 @@ const genSplashPageCards = (type) => {
         internalName: "armorlab",
         icon: "armor",
       },
+      {
+        displayName: "Loadout Builder",
+        internalName: "loadoutbuilder",
+        icon: "tools",
+      },
     ];
     container = toolCardsContainer;
   }

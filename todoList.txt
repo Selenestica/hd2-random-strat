@@ -89,6 +89,8 @@ TIER MAKER
     a menu to select which list it should go to
   - ability to rate enemies
   - ability to rate armor sets
+  - ability to use your tier lists for Penitent Crusade and Budget Blitz
+
   BUGS
     - sometimes when making a new list, stuff from the old list will persist. unable to recreate
 
@@ -131,6 +133,12 @@ ARMOR LAB
     - add armor passive image
   - when user clicks helmet/armor or cape, a modal shows with the view expanded
   - random button!
+
+  BUGS
+    - 
+
+LOADOUT BUILDER
+  - change text input for changing loadout name to white, and make it more obvious as an input
 
   BUGS
     - 

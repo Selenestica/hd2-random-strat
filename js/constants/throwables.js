@@ -129,7 +129,7 @@ const THROWABLES = [
     internalName: "ted63throwabledynamite",
     imageURL: "ted63throwabledynamite.png",
     antitank: true,
-    tier: "b",
+    tier: "a",
   },
   {
     displayName: "G-142 Pyrotech",
@@ -195,11 +195,11 @@ const THROWABLES = [
   //   internalName: "tm01luremine",
   //   imageURL: "tm01luremine.png",
   //   antitank: false,
-  //   tier: "b",
+  //   tier: "c",
   // },
 ];
 
-// s: 2
-// a: 6
-// b: 5
+// s: 3
+// a: 5
+// b: 6
 // c: 2

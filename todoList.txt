@@ -138,7 +138,6 @@ ARMOR LAB
     - 
 
 LOADOUT BUILDER
-  - change text input for changing loadout name to white, and make it more obvious as an input
 
   BUGS
     - 

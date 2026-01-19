@@ -62,7 +62,7 @@ const genSplashPageCards = (type) => {
     const li = list[i];
     const card = document.createElement("a");
     card.href = `./${li.internalName}`;
-    card.className = `card col-4 col-lg-3 bg-none m-1 p-2 text-center challengeCards`;
+    card.className = `card col-4 col-lg-2 bg-none m-1 p-2 text-center challengeCards`;
     card.innerHTML = `
     <img class="img-fluid svgIconStyles" src="../images/iconSVGs/${li.icon}.svg" />
     <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">

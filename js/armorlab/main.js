@@ -221,6 +221,7 @@ const applySpecialRules = () => {
   helmetCard.style.clipPath = "inset(1px 25px 12px 22px)";
   helmetContainer.style.top = "11px";
   helmetContainer.style.left = "53.5%";
+  helmetContainer.style.minWidth = "96px";
   armorImg.style.objectPosition = "center -40px";
   helmetImg.style.width = "100%";
   capeImg.style.width = "100%";

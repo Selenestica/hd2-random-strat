@@ -175,31 +175,31 @@ const THROWABLES = [
     antitank: false,
     tier: "b",
   },
-  // {
-  //   displayName: "TM-01 Lure Mine",
-  //   type: "Equipment",
-  //   category: "throwable",
-  //   tags: [],
-  //   warbondCode: "warbond22",
-  //   internalName: "tm01luremine",
-  //   imageURL: "tm01luremine.png",
-  //   antitank: false,
-  //   tier: "b",
-  // },
-  // {
-  //   displayName: "smoke impact",
-  //   type: "Equipment",
-  //   category: "throwable",
-  //   tags: [],
-  //   warbondCode: "warbond22",
-  //   internalName: "tm01luremine",
-  //   imageURL: "tm01luremine.png",
-  //   antitank: false,
-  //   tier: "c",
-  // },
+  {
+    displayName: "TM-01 Lure Mine",
+    type: "Equipment",
+    category: "throwable",
+    tags: [],
+    warbondCode: "warbond22",
+    internalName: "tm01luremine",
+    imageURL: "tm01luremine.webp",
+    antitank: false,
+    tier: "b",
+  },
+  {
+    displayName: "G-89 Smokescreen",
+    type: "Equipment",
+    category: "throwable",
+    tags: [],
+    warbondCode: "warbond1",
+    internalName: "g89smokescreen",
+    imageURL: "g89smokescreen.webp",
+    antitank: false,
+    tier: "c",
+  },
 ];
 
 // s: 3
 // a: 5
-// b: 6
-// c: 2
+// b: 7
+// c: 3

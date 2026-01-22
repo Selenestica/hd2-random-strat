@@ -24,19 +24,21 @@ GENERAL:
       - randomizer.js
     - splash page change log
     - /images
-      - /armor
+      - /armor ***NEED BETTER IMAGES***
       - /armorpassives
-      - /capes
+      - /capes ***NEED BETTER IMAGES***
       - /equipment
         - primaries
         - secondaries
         - boosters
-        - throwables
-      - /helmets
+        - throwables ***NEED G-89 Smokescreen IMAGE***
+      - /helmets 
       - /warbonds
       - /svgs
 
   - add Redacted Regiment warbond details
+  - add images and stats to Loadout Builder
+  - tweak wiki armor images for Armor Lab
 
 RANDOMIZER:
   - ability to enable/disable specific items from warbonds

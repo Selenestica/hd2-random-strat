@@ -1,5 +1,5 @@
 const warbondsChecklistContainer = document.getElementById(
-  "warbondsChecklistContainer"
+  "warbondsChecklistContainer",
 );
 const warbondsList = [
   "Super Citizen Edition", // warbond0
@@ -24,7 +24,7 @@ const warbondsList = [
   "Halo ODST", //warbond19
   "Dust Devils", //warbond20
   "Python Commandos", //warbond21
-  // "Redacted Regiment" //warbond22
+  "Redacted Regiment", //warbond22
 ];
 
 const genWarbondCheckboxes = () => {

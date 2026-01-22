@@ -86,7 +86,7 @@ let checkedWarbonds = [
   "warbond19",
   "warbond20",
   "warbond21",
-  // "warbond22"
+  "warbond22",
 ];
 
 let proTipCounter = 0;
@@ -171,7 +171,7 @@ const filterItemsByWarbond = async () => {
     itemsList[i] = await tempList.filter(
       (item) =>
         checkedWarbonds.includes(item.warbondCode) ||
-        item.warbondCode === "none"
+        item.warbondCode === "none",
     );
     if (i === 0) {
       workingPrimsList = itemsList[i];
@@ -216,7 +216,7 @@ const rollStratagems = async () => {
     oneBackpack,
     alwaysBackpack,
     alwaysSupport,
-    4
+    4,
   );
 
   for (let i = 0; i < randomUniqueNumbers.length; i++) {
@@ -310,7 +310,7 @@ const rerollItem = async (intName, cat) => {
         oneBackpack,
         alwaysBackpack,
         alwaysSupport,
-        1
+        1,
       );
       newItem = filteredStratList[randomUniqueNumber];
     }
@@ -363,7 +363,7 @@ const filterStratList = async () => {
   for (let i = 0; i < onlyRadios.length; i++) {
     if (onlyRadios[i].checked) {
       newList = await warbondFilteredStratList.filter(
-        (strat) => strat.category === onlyRadios[i].name
+        (strat) => strat.category === onlyRadios[i].name,
       );
       return newList;
     }
@@ -376,7 +376,7 @@ const filterStratList = async () => {
     }
   }
   newList = await warbondFilteredStratList.filter(
-    (strat) => !categoriesToFilter.includes(strat.category)
+    (strat) => !categoriesToFilter.includes(strat.category),
   );
 
   return newList;
@@ -388,7 +388,7 @@ const getRandomUniqueNumbers = (
   oneBackpack,
   alwaysBackpack,
   alwaysSupport,
-  amt
+  amt,
 ) => {
   let hasVehicle = false;
   let hasBackpack = false;
@@ -454,7 +454,7 @@ const updateLocalStorage = (element, type) => {
   const elID = element.id;
   const checked = element.checked;
   const randomizerOptions = JSON.parse(
-    localStorage.getItem("randomizerOptions")
+    localStorage.getItem("randomizerOptions"),
   );
   let tempInnerObj;
   let newObj;
@@ -510,7 +510,7 @@ const checkLocalStorageForOptionsPreferences = async () => {
         warbond19: true,
         warbond20: true,
         warbond21: true,
-        // warbond22: true,
+        warbond22: true,
       },
       stratagemOptions: {
         onlyEaglesRadio: false,

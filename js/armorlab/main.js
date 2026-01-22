@@ -20,7 +20,7 @@ const helmetDrawer = document.getElementById("helmetDrawer");
 const capesDrawer = document.getElementById("capesDrawer");
 const loadoutNameContainer = document.getElementById("loadoutNameContainer");
 const loadoutEditNameContainer = document.getElementById(
-  "loadoutEditNameContainer"
+  "loadoutEditNameContainer",
 );
 const loadoutNameText = document.getElementById("loadoutNameText");
 const newLoadoutNameInput = document.getElementById("newLoadoutNameInput");
@@ -208,6 +208,7 @@ const generateItemCard = (item, type) => {
           src="../images/${type}/${item.internalName}.webp"
           class="img-card-top"
           alt="${item.displayName}"
+          style="max-height: 100px"
       />
       <div class="card-body itemNameContainer p-0 align-items-center">
           <p class="card-title text-white" style="font-size: small">${item.displayName}</p>
@@ -222,16 +223,30 @@ const applySpecialRules = () => {
   helmetContainer.style.left = "53.5%";
   armorImg.style.objectPosition = "center -40px";
   helmetImg.style.width = "100%";
+  capeImg.style.width = "100%";
 
   // has an air filter that juts out
   if (currentHelmet === "ce27groundbreaker") {
     helmetCard.style.clipPath = "inset(1px 1px 12px 22px)";
   }
 
-  // the helmet is larger than the others for some reason
-  if (currentHelmet === "rs6fienddestroyer") {
-    helmetImg.style.width = "85%";
-    helmetContainer.style.top = "21px";
+  // tall and skinny Redacted Regiment armors. hopefully they update them to be consistent witht he others soon
+  const rrArmors = ["rs67nullcipher", "rs89shadowparagon"];
+  if (rrArmors.includes(currentArmor)) {
+    armorImg.style.maxHeight = "390px";
+    helmetContainer.style.left = "53.5%";
+    helmetContainer.style.top = "13.5px";
+  }
+
+  // the helmets are larger than the others for some reason
+  const largeHelmets = [
+    "rs6fienddestroyer",
+    "rs89shadowparagon",
+    "rs67nullcipher",
+  ];
+  if (largeHelmets.includes(currentHelmet)) {
+    helmetImg.style.width = "84%";
+    helmetContainer.style.top = "22px";
     helmetContainer.style.left = "55%";
   }
 
@@ -251,13 +266,19 @@ const applySpecialRules = () => {
   if (shortSets.includes(currentArmor)) {
     helmetContainer.style.top = "21.5px";
   }
+
+  // these capes are too skinny
+  const skinnyCapes = ["pillaroftheabyss", "triangulationveil"];
+  if (skinnyCapes.includes(currentCape)) {
+    capeImg.style.width = "45%";
+  }
 };
 
 const setItem = async (name, type) => {
   if (type === "helmets") {
     helmetImg.src = `../images/helmets/${name}.webp`;
     const helmetObjs = await HELMETS.filter(
-      (helm) => helm.internalName === name
+      (helm) => helm.internalName === name,
     );
     helmetNameText.innerHTML = helmetObjs[0].displayName;
     currentHelmet = name;
@@ -271,7 +292,7 @@ const setItem = async (name, type) => {
   if (type === "armor") {
     armorImg.src = `../images/armor/${name}.webp`;
     const armorObjs = await ARMOR_SETS.filter(
-      (armor) => armor.internalName === name
+      (armor) => armor.internalName === name,
     );
     armorNameText.innerHTML = armorObjs[0].displayName;
     currentArmor = name;

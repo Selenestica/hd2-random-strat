@@ -219,20 +219,19 @@ const ARMOR_PASSIVES = [
     imageURL: "rocksolid.webp",
     tier: "a",
   },
-
-  // {
-  //   displayName: "Reduced Signature",
-  //   type: "Equipment",
-  //   category: "armor",
-  //   tags: ["ArmorPassive"],
-  //   warbondCode: "warbond22",
-  //   internalName: "reducedsignature",
-  //   imageURL: "reducedsignature.png",
-  //   tier: "b",
-  // },
+  {
+    displayName: "Reduced Signature",
+    type: "Equipment",
+    category: "armor",
+    tags: ["ArmorPassive"],
+    warbondCode: "warbond22",
+    internalName: "reducedsignature",
+    imageURL: "reducedsignature.webp",
+    tier: "b",
+  },
 ];
 
 // s: 1
 // a: 7
-// b: 12
+// b: 13
 // c: 2

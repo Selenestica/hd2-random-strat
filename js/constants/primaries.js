@@ -120,17 +120,17 @@ const PRIMARIES = [
     antitank: false,
     tier: "b",
   },
-  // {
-  //   displayName: "Suppressor",
-  //   type: "Equipment",
-  //   category: "primary",
-  //   tags: ["AssaultRifle"],
-  //   warbondCode: "warbond22",
-  //   internalName: "ar59suppressor",
-  //   imageURL: "ar59suppressor.webp",
-  //   antitank: false,
-  //   tier: "b",
-  // },
+  {
+    displayName: "Suppressor",
+    type: "Equipment",
+    category: "primary",
+    tags: ["AssaultRifle"],
+    warbondCode: "warbond22",
+    internalName: "ar59suppressor",
+    imageURL: "ar59suppressor.webp",
+    antitank: false,
+    tier: "b",
+  },
   {
     displayName: "Defender",
     type: "Equipment",
@@ -340,17 +340,17 @@ const PRIMARIES = [
     antitank: false,
     tier: "a",
   },
-  // {
-  //   displayName: "Censor",
-  //   type: "Equipment",
-  //   category: "primary",
-  //   tags: ["MarksmanRifle"],
-  //   warbondCode: "warbond22",
-  //   internalName: "r72censor",
-  //   imageURL: "r72censor.webp",
-  //   antitank: false,
-  //   tier: "a",
-  // },
+  {
+    displayName: "Censor",
+    type: "Equipment",
+    category: "primary",
+    tags: ["MarksmanRifle"],
+    warbondCode: "warbond22",
+    internalName: "r72censor",
+    imageURL: "r72censor.webp",
+    antitank: false,
+    tier: "a",
+  },
   {
     displayName: "Constitution",
     type: "Equipment",
@@ -508,6 +508,6 @@ const PRIMARIES = [
 ];
 
 // s: 7
-// a: 16
-// b: 20
+// a: 17
+// b: 21
 // c: 1

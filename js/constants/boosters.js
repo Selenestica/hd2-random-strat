@@ -169,17 +169,16 @@ const BOOSTERS = [
     imageURL: "stunpods.png",
     tier: "b",
   },
-
-  // {
-  //   displayName: "Concealed Insertion",
-  //   type: "Equipment",
-  //   category: "booster",
-  //   tags: [],
-  //   warbondCode: "warbond22",
-  //   internalName: "concealedinsertion",
-  //   imageURL: "concealedinsertion.png",
-  //   tier: "b",
-  // },
+  {
+    displayName: "Concealed Insertion",
+    type: "Equipment",
+    category: "booster",
+    tags: [],
+    warbondCode: "warbond22",
+    internalName: "concealedinsertion",
+    imageURL: "concealedinsertion.webp",
+    tier: "b",
+  },
 ];
 
 // s: 4

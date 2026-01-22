@@ -120,19 +120,17 @@ const SECONDARIES = [
     antitank: false,
     tier: "s",
   },
-
-  // {
-  //   displayName: "Re-Educator",
-  //   type: "Equipment",
-  //   category: "secondary",
-  //   tags: [],
-  //   warbondCode: "warbond22",
-  //   internalName: "ps35reeducator",
-  //   imageURL: "ps35reeducator.webp",
-  //   antitank: false,
-  //   tier: "b",
-  // },
-
+  {
+    displayName: "Re-Educator",
+    type: "Equipment",
+    category: "secondary",
+    tags: [],
+    warbondCode: "warbond22",
+    internalName: "p35reeducator",
+    imageURL: "p35reeducator.webp",
+    antitank: false,
+    tier: "b",
+  },
   {
     displayName: "Verdict",
     type: "Equipment",

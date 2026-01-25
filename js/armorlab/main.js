@@ -251,12 +251,6 @@ const applySpecialRules = () => {
     armorImg.style.objectPosition = 'center -25px';
   }
 
-  // these armors are short for some reason
-  const shortSets = ['ds191scorpion', 'ds10biggamehunter', 'ds42federationsblade'];
-  if (shortSets.includes(currentArmor)) {
-    helmetContainer.style.top = '21.5px';
-  }
-
   // these capes are too skinny
   const skinnyCapes = ['pillaroftheabyss', 'triangulationveil'];
   if (skinnyCapes.includes(currentCape)) {

@@ -39,8 +39,6 @@ GENERAL:
   - add Redacted Regiment warbond details
   - add images and stats to Loadout Builder
   - tweak wiki armor images for Armor Lab
-  - give The Saboteur the new armor passive
-  - add Specialist images to PC cards
 
 RANDOMIZER:
   - ability to enable/disable specific items from warbonds

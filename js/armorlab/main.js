@@ -249,6 +249,10 @@ const applySpecialRules = () => {
     helmetCard.style.clipPath = 'inset(1px 25px 32px 22px)';
     helmetContainer.style.top = '28px';
     armorImg.style.objectPosition = 'center -25px';
+    if (largeHelmets.includes(currentHelmet)) {
+      helmetContainer.style.top = '38px';
+      helmetContainer.style.left = '54%';
+    }
   }
 
   // these capes are too skinny

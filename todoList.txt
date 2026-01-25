@@ -39,6 +39,8 @@ GENERAL:
   - add Redacted Regiment warbond details
   - add images and stats to Loadout Builder
   - tweak wiki armor images for Armor Lab
+  - give The Saboteur the new armor passive
+  - add Specialist images to PC cards
 
 RANDOMIZER:
   - ability to enable/disable specific items from warbonds
@@ -47,6 +49,7 @@ RANDOMIZER:
     - 
 
 PENITENT CRUSADE:
+  - make specialist details more visible
   - system to track max stars missions, incomplete missions, and failed missions. adding points for each
   - end game modal for showing max star missions, completed missions, and failed missions. number of items earned in each category. and total points calculated.
     - when challenge complete, add "View Results" button so they can see their score again
@@ -74,6 +77,7 @@ BUDGET BLITZ
 SPECIAL OPERATIONS
   - SPECIALIST ideas:
 
+  - Multiple options for item categories
   - save data management modal
     - set file input to null when it closes
   - specialist modal

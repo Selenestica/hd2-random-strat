@@ -12,6 +12,7 @@ const ARMOR_SETS = [
     internalName: 'af50noxiousranger',
     imageURL: 'af50noxiousranger.webp',
     tier: 'b',
+    index: 0,
   },
   {
     displayName: 'AC-2 Obedient',
@@ -26,6 +27,7 @@ const ARMOR_SETS = [
     internalName: 'ac2obedient',
     imageURL: 'ac2obedient.webp',
     tier: 'b',
+    index: 1,
   },
   {
     displayName: 'SR-24 Street Scout',
@@ -40,6 +42,7 @@ const ARMOR_SETS = [
     internalName: 'sr24streetscout',
     imageURL: 'sr24streetscout.webp',
     tier: 'b',
+    index: 2,
   },
   {
     displayName: 'SR-18 Road Block',
@@ -54,6 +57,7 @@ const ARMOR_SETS = [
     internalName: 'sr18roadblock',
     imageURL: 'sr18roadblock.webp',
     tier: 'b',
+    index: 3,
   },
   {
     displayName: 'B-08 Light Gunner',
@@ -68,6 +72,7 @@ const ARMOR_SETS = [
     internalName: 'b08lightgunner',
     imageURL: 'b08lightgunner.webp',
     tier: 'b',
+    index: 4,
   },
   {
     displayName: 'CE-07 Demolition Specialist',
@@ -82,6 +87,7 @@ const ARMOR_SETS = [
     internalName: 'ce07demolitionspecialist',
     imageURL: 'ce07demolitionspecialist.webp',
     tier: 'b',
+    index: 5,
   },
   {
     displayName: 'CE-67 Titan',
@@ -96,6 +102,7 @@ const ARMOR_SETS = [
     internalName: 'ce67titan',
     imageURL: 'ce67titan.webp',
     tier: 'b',
+    index: 6,
   },
   {
     displayName: 'CE-74 Breaker',
@@ -110,6 +117,7 @@ const ARMOR_SETS = [
     internalName: 'ce74breaker',
     imageURL: 'ce74breaker.webp',
     tier: 'b',
+    index: 7,
   },
   {
     displayName: 'CM-21 Trench Paramedic',
@@ -124,6 +132,7 @@ const ARMOR_SETS = [
     internalName: 'cm21trenchparamedic',
     imageURL: 'cm21trenchparamedic.webp',
     tier: 'b',
+    index: 8,
   },
   {
     displayName: 'CW-4 Arctic Ranger',
@@ -138,6 +147,7 @@ const ARMOR_SETS = [
     internalName: 'cw4arcticranger',
     imageURL: 'cw4arcticranger.webp',
     tier: 'b',
+    index: 9,
   },
   {
     displayName: 'EX-00 Prototype X',
@@ -152,6 +162,7 @@ const ARMOR_SETS = [
     internalName: 'ex00prototypex',
     imageURL: 'ex00prototypex.webp',
     tier: 'b',
+    index: 10,
   },
   {
     displayName: 'FS-37 Ravager',
@@ -166,6 +177,7 @@ const ARMOR_SETS = [
     internalName: 'fs37ravager',
     imageURL: 'fs37ravager.webp',
     tier: 'b',
+    index: 11,
   },
   {
     displayName: 'FS-38 Eradicator',
@@ -180,6 +192,7 @@ const ARMOR_SETS = [
     internalName: 'fs38eradicator',
     imageURL: 'fs38eradicator.webp',
     tier: 'b',
+    index: 12,
   },
   {
     displayName: 'I-09 Heatseeker',
@@ -194,6 +207,7 @@ const ARMOR_SETS = [
     internalName: 'i09heatseeker',
     imageURL: 'i09heatseeker.webp',
     tier: 'b',
+    index: 13,
   },
   {
     displayName: 'PH-9 Predator',
@@ -208,6 +222,7 @@ const ARMOR_SETS = [
     internalName: 'ph9predator',
     imageURL: 'ph9predator.webp',
     tier: 'b',
+    index: 14,
   },
   {
     displayName: 'SC-30 Trailblazer Scout',
@@ -222,6 +237,7 @@ const ARMOR_SETS = [
     internalName: 'sc30trailblazerscout',
     imageURL: 'sc30trailblazerscout.webp',
     tier: 'b',
+    index: 15,
   },
   {
     displayName: 'SC-34 Infiltrator',
@@ -236,6 +252,7 @@ const ARMOR_SETS = [
     internalName: 'sc34infiltrator',
     imageURL: 'sc34infiltrator.webp',
     tier: 'b',
+    index: 16,
   },
   {
     displayName: 'SC-37 Legionnaire',
@@ -250,6 +267,7 @@ const ARMOR_SETS = [
     internalName: 'sc37legionnaire',
     imageURL: 'sc37legionnaire.webp',
     tier: 'b',
+    index: 17,
   },
   {
     displayName: 'UF-16 Inspector',
@@ -264,6 +282,7 @@ const ARMOR_SETS = [
     internalName: 'uf16inspector',
     imageURL: 'uf16inspector.webp',
     tier: 'b',
+    index: 18,
   },
   {
     displayName: 'AF-02 Haz-Master',
@@ -278,6 +297,7 @@ const ARMOR_SETS = [
     internalName: 'af02hazmaster',
     imageURL: 'af02hazmaster.webp',
     tier: 'b',
+    index: 19,
   },
   {
     displayName: 'AF-91 Field Chemist',
@@ -292,6 +312,7 @@ const ARMOR_SETS = [
     internalName: 'af91fieldchemist',
     imageURL: 'af91fieldchemist.webp',
     tier: 'b',
+    index: 20,
   },
   {
     displayName: 'B-01 Tactical',
@@ -306,6 +327,7 @@ const ARMOR_SETS = [
     internalName: 'b01tactical',
     imageURL: 'b01tactical.webp',
     tier: 'b',
+    index: 21,
   },
   {
     displayName: 'B-24 Enforcer',
@@ -320,6 +342,7 @@ const ARMOR_SETS = [
     internalName: 'b24enforcer',
     imageURL: 'b24enforcer.webp',
     tier: 'b',
+    index: 22,
   },
   {
     displayName: 'CE-27 Ground Breaker',
@@ -334,6 +357,7 @@ const ARMOR_SETS = [
     internalName: 'ce27groundbreaker',
     imageURL: 'ce27groundbreaker.webp',
     tier: 'b',
+    index: 23,
   },
   {
     displayName: 'CE-35 Trench Engineer',
@@ -348,6 +372,7 @@ const ARMOR_SETS = [
     internalName: 'ce35trenchengineer',
     imageURL: 'ce35trenchengineer.webp',
     tier: 'b',
+    index: 24,
   },
   {
     displayName: 'CE-81 Juggernaut',
@@ -362,6 +387,7 @@ const ARMOR_SETS = [
     internalName: 'ce81juggernaut',
     imageURL: 'ce81juggernaut.webp',
     tier: 'b',
+    index: 25,
   },
   {
     displayName: 'CM-09 Bonesnapper',
@@ -376,6 +402,7 @@ const ARMOR_SETS = [
     internalName: 'cm09bonesnapper',
     imageURL: 'cm09bonesnapper.webp',
     tier: 'b',
+    index: 26,
   },
   {
     displayName: 'CM-10 Clinician',
@@ -390,6 +417,7 @@ const ARMOR_SETS = [
     internalName: 'cm10clinician',
     imageURL: 'cm10clinician.webp',
     tier: 'b',
+    index: 27,
   },
   {
     displayName: 'CM-14 Physician',
@@ -404,6 +432,7 @@ const ARMOR_SETS = [
     internalName: 'cm14physician',
     imageURL: 'cm14physician.webp',
     tier: 'b',
+    index: 28,
   },
   {
     displayName: 'CW-9 White Wolf',
@@ -418,6 +447,7 @@ const ARMOR_SETS = [
     internalName: 'cw9whitewolf',
     imageURL: 'cw9whitewolf.webp',
     tier: 'b',
+    index: 29,
   },
   {
     displayName: 'DP-00 Tactical',
@@ -432,6 +462,7 @@ const ARMOR_SETS = [
     internalName: 'dp00tactical',
     imageURL: 'dp00tactical.webp',
     tier: 'b',
+    index: 30,
   },
   {
     displayName: 'DP-11 Champion of the People',
@@ -446,6 +477,7 @@ const ARMOR_SETS = [
     internalName: 'dp11championofthepeople',
     imageURL: 'dp11championofthepeople.webp',
     tier: 'b',
+    index: 31,
   },
   {
     displayName: 'AC-1 Dutiful',
@@ -460,6 +492,7 @@ const ARMOR_SETS = [
     internalName: 'ac1dutiful',
     imageURL: 'ac1dutiful.webp',
     tier: 'b',
+    index: 32,
   },
   {
     displayName: 'DP-40 Hero of the Federation',
@@ -474,6 +507,7 @@ const ARMOR_SETS = [
     internalName: 'dp40heroofthefederation',
     imageURL: 'dp40heroofthefederation.webp',
     tier: 'b',
+    index: 33,
   },
   {
     displayName: 'DP-53 Savior of the Free',
@@ -488,6 +522,7 @@ const ARMOR_SETS = [
     internalName: 'dp53saviorofthefree',
     imageURL: 'dp53saviorofthefree.webp',
     tier: 'b',
+    index: 34,
   },
   {
     displayName: 'EX-03 Prototype 3',
@@ -502,6 +537,7 @@ const ARMOR_SETS = [
     internalName: 'ex03prototype3',
     imageURL: 'ex03prototype3.webp',
     tier: 'b',
+    index: 35,
   },
   {
     displayName: 'EX-16 Prototype 16',
@@ -516,6 +552,7 @@ const ARMOR_SETS = [
     internalName: 'ex16prototype16',
     imageURL: 'ex16prototype16.webp',
     tier: 'b',
+    index: 36,
   },
   {
     displayName: 'FS-34 Exterminator',
@@ -530,6 +567,7 @@ const ARMOR_SETS = [
     internalName: 'fs34exterminator',
     imageURL: 'fs34exterminator.webp',
     tier: 'b',
+    index: 37,
   },
   {
     displayName: 'I-92 Fire Fighter',
@@ -544,6 +582,7 @@ const ARMOR_SETS = [
     internalName: 'i92firefighter',
     imageURL: 'i92firefighter.webp',
     tier: 'b',
+    index: 38,
   },
   {
     displayName: 'I-102 Draconaught',
@@ -558,6 +597,7 @@ const ARMOR_SETS = [
     internalName: 'i102draconaught',
     imageURL: 'i102draconaught.webp',
     tier: 'b',
+    index: 39,
   },
   {
     displayName: 'PH-56 Jaguar',
@@ -572,6 +612,7 @@ const ARMOR_SETS = [
     internalName: 'ph56jaguar',
     imageURL: 'ph56jaguar.webp',
     tier: 'b',
+    index: 40,
   },
   {
     displayName: 'SA-04 Combat Technician',
@@ -586,6 +627,7 @@ const ARMOR_SETS = [
     internalName: 'sa04combattechnician',
     imageURL: 'sa04combattechnician.webp',
     tier: 'b',
+    index: 41,
   },
   {
     displayName: 'SA-12 Servo Assisted',
@@ -600,6 +642,7 @@ const ARMOR_SETS = [
     internalName: 'sa12servoassisted',
     imageURL: 'sa12servoassisted.webp',
     tier: 'b',
+    index: 42,
   },
   {
     displayName: 'SA-25 Steel Trooper',
@@ -614,6 +657,7 @@ const ARMOR_SETS = [
     internalName: 'sa25steeltrooper',
     imageURL: 'sa25steeltrooper.webp',
     tier: 'b',
+    index: 43,
   },
   {
     displayName: 'SA-15 Drone Master',
@@ -628,6 +672,7 @@ const ARMOR_SETS = [
     internalName: 'sc15dronemaster',
     imageURL: 'sc15dronemaster.webp',
     tier: 'b',
+    index: 44,
   },
   {
     displayName: 'TR-7 Ambassador of the Brand',
@@ -642,6 +687,7 @@ const ARMOR_SETS = [
     internalName: 'tr7ambassadorofthebrand',
     imageURL: 'tr7ambassadorofthebrand.webp',
     tier: 'b',
+    index: 45,
   },
   {
     displayName: 'TR-9 Cavalier of Democracy',
@@ -656,6 +702,7 @@ const ARMOR_SETS = [
     internalName: 'tr9cavalierofdemocracy',
     imageURL: 'tr9cavalierofdemocracy.webp',
     tier: 'b',
+    index: 46,
   },
   {
     displayName: 'TR-40 Gold Eagle',
@@ -670,6 +717,7 @@ const ARMOR_SETS = [
     internalName: 'tr40goldeagle',
     imageURL: 'tr40goldeagle.webp',
     tier: 'b',
+    index: 47,
   },
   {
     displayName: 'TR-117 Alpha Commander',
@@ -684,6 +732,7 @@ const ARMOR_SETS = [
     internalName: 'tr117alphacommander',
     imageURL: 'tr117alphacommander.webp',
     tier: 'b',
+    index: 48,
   },
   {
     displayName: 'UF-50 Bloodhound',
@@ -698,6 +747,7 @@ const ARMOR_SETS = [
     internalName: 'uf50bloodhound',
     imageURL: 'uf50bloodhound.webp',
     tier: 'b',
+    index: 49,
   },
   {
     displayName: 'UF-84 Doubt Killer',
@@ -712,6 +762,7 @@ const ARMOR_SETS = [
     internalName: 'uf84doubtkiller',
     imageURL: 'uf84doubtkiller.webp',
     tier: 'b',
+    index: 50,
   },
   {
     displayName: 'AF-52 Lockdown',
@@ -726,6 +777,7 @@ const ARMOR_SETS = [
     internalName: 'af52lockdown',
     imageURL: 'af52lockdown.webp',
     tier: 'b',
+    index: 51,
   },
   {
     displayName: 'B-27 Fortified Commando',
@@ -740,6 +792,7 @@ const ARMOR_SETS = [
     internalName: 'b27fortifiedcommando',
     imageURL: 'b27fortifiedcommando.webp',
     tier: 'b',
+    index: 52,
   },
   {
     displayName: 'CE-64 Grenadier',
@@ -754,6 +807,7 @@ const ARMOR_SETS = [
     internalName: 'ce64grenadier',
     imageURL: 'ce64grenadier.webp',
     tier: 'b',
+    index: 53,
   },
   {
     displayName: 'CE-101 Guerilla Gorilla',
@@ -768,6 +822,7 @@ const ARMOR_SETS = [
     internalName: 'ce101guerillagorilla',
     imageURL: 'ce101guerillagorilla.webp',
     tier: 'b',
+    index: 54,
   },
   {
     displayName: 'CM-17 Butcher',
@@ -782,6 +837,7 @@ const ARMOR_SETS = [
     internalName: 'cm17butcher',
     imageURL: 'cm17butcher.webp',
     tier: 'b',
+    index: 55,
   },
   {
     displayName: 'CW-22 Kodiak',
@@ -796,6 +852,7 @@ const ARMOR_SETS = [
     internalName: 'cw22kodiak',
     imageURL: 'cw22kodiak.webp',
     tier: 'b',
+    index: 56,
   },
   {
     displayName: 'CW-36 Winter Warrior',
@@ -810,6 +867,7 @@ const ARMOR_SETS = [
     internalName: 'cw36winterwarrior',
     imageURL: 'cw36winterwarrior.webp',
     tier: 'b',
+    index: 57,
   },
   {
     displayName: 'FS-05 Marksman',
@@ -824,6 +882,7 @@ const ARMOR_SETS = [
     internalName: 'fs05marksman',
     imageURL: 'fs05marksman.webp',
     tier: 'b',
+    index: 58,
   },
   {
     displayName: 'FS-11 Executioner',
@@ -838,6 +897,7 @@ const ARMOR_SETS = [
     internalName: 'fs11executioner',
     imageURL: 'fs11executioner.webp',
     tier: 'b',
+    index: 59,
   },
   {
     displayName: 'FS-23 Battle Master',
@@ -852,6 +912,7 @@ const ARMOR_SETS = [
     internalName: 'fs23battlemaster',
     imageURL: 'fs23battlemaster.webp',
     tier: 'b',
+    index: 60,
   },
   {
     displayName: 'FS-55 Devastator',
@@ -866,6 +927,7 @@ const ARMOR_SETS = [
     internalName: 'fs55devastator',
     imageURL: 'fs55devastator.webp',
     tier: 'b',
+    index: 61,
   },
   {
     displayName: 'FS-61 Dreadnought',
@@ -880,6 +942,7 @@ const ARMOR_SETS = [
     internalName: 'fs61dreadnought',
     imageURL: 'fs61dreadnought.webp',
     tier: 'b',
+    index: 62,
   },
   {
     displayName: 'I-44 Salamander',
@@ -894,6 +957,7 @@ const ARMOR_SETS = [
     internalName: 'i44salamander',
     imageURL: 'i44salamander.webp',
     tier: 'b',
+    index: 63,
   },
   {
     displayName: 'PH-202 Twigsnapper',
@@ -908,6 +972,7 @@ const ARMOR_SETS = [
     internalName: 'ph202twigsnapper',
     imageURL: 'ph202twigsnapper.webp',
     tier: 'b',
+    index: 64,
   },
   {
     displayName: 'SA-32 Dynamo',
@@ -922,6 +987,7 @@ const ARMOR_SETS = [
     internalName: 'sa32dynamo',
     imageURL: 'sa32dynamo.webp',
     tier: 'b',
+    index: 65,
   },
   {
     displayName: 'TR-62 Knight',
@@ -936,6 +1002,7 @@ const ARMOR_SETS = [
     internalName: 'tr62knight',
     imageURL: 'tr62knight.webp',
     tier: 'b',
+    index: 66,
   },
   {
     displayName: 'SR-64 Cinderblock',
@@ -950,6 +1017,7 @@ const ARMOR_SETS = [
     internalName: 'sr64cinderblock',
     imageURL: 'sr64cinderblock.webp',
     tier: 'b',
+    index: 67,
   },
   {
     displayName: 'B-22 Model Citizen',
@@ -964,6 +1032,7 @@ const ARMOR_SETS = [
     internalName: 'b22modelcitizen',
     imageURL: 'b22modelcitizen.webp',
     tier: 'b',
+    index: 68,
   },
   {
     displayName: 'IE-3 Martyr',
@@ -978,6 +1047,7 @@ const ARMOR_SETS = [
     internalName: 'ie3martyr',
     imageURL: 'ie3martyr.webp',
     tier: 'b',
+    index: 69,
   },
   {
     displayName: 'IE-12 Righteous',
@@ -992,6 +1062,7 @@ const ARMOR_SETS = [
     internalName: 'ie12righteous',
     imageURL: 'ie12righteous.webp',
     tier: 'b',
+    index: 70,
   },
   {
     displayName: 'IE-57 Hell-Bent',
@@ -1006,6 +1077,7 @@ const ARMOR_SETS = [
     internalName: 'ie57hellbent',
     imageURL: 'ie57hellbent.webp',
     tier: 'b',
+    index: 71,
   },
   {
     displayName: 'GS-17 Frontier Marshal',
@@ -1020,6 +1092,7 @@ const ARMOR_SETS = [
     internalName: 'gs17frontiermarshal',
     imageURL: 'gs17frontiermarshal.webp',
     tier: 'b',
+    index: 72,
   },
   {
     displayName: 'GS-66 Lawmaker',
@@ -1034,6 +1107,7 @@ const ARMOR_SETS = [
     internalName: 'gs66lawmaker',
     imageURL: 'gs66lawmaker.webp',
     tier: 'b',
+    index: 73,
   },
   {
     displayName: `GS-11 Democracy's Deputy`,
@@ -1048,6 +1122,7 @@ const ARMOR_SETS = [
     internalName: 'gs11democracysdeputy',
     imageURL: 'gs11democracysdeputy.webp',
     tier: 'b',
+    index: 74,
   },
   {
     displayName: `RE-824 Bearer of the Standard`,
@@ -1062,6 +1137,7 @@ const ARMOR_SETS = [
     internalName: 're824bearerofthestandard',
     imageURL: 're824bearerofthestandard.webp',
     tier: 'b',
+    index: 75,
   },
   {
     displayName: `RE-1861 Parade Commander`,
@@ -1076,6 +1152,7 @@ const ARMOR_SETS = [
     internalName: 're1861paradecommander',
     imageURL: 're1861paradecommander.webp',
     tier: 'b',
+    index: 76,
   },
   {
     displayName: `RE-2310 Honorary Guard`,
@@ -1090,6 +1167,7 @@ const ARMOR_SETS = [
     internalName: 're2310honoraryguard',
     imageURL: 're2310honoraryguard.webp',
     tier: 'b',
+    index: 77,
   },
   {
     displayName: `BP-20 Correct Officer`,
@@ -1104,6 +1182,7 @@ const ARMOR_SETS = [
     internalName: 'bp20correctofficer',
     imageURL: 'bp20correctofficer.webp',
     tier: 'b',
+    index: 78,
   },
   {
     displayName: `BP-32 Jackboot`,
@@ -1118,6 +1197,7 @@ const ARMOR_SETS = [
     internalName: 'bp32jackboot',
     imageURL: 'bp32jackboot.webp',
     tier: 'b',
+    index: 79,
   },
   {
     displayName: `BP-77 Grand Juror`,
@@ -1132,6 +1212,7 @@ const ARMOR_SETS = [
     internalName: 'bp77grandjuror',
     imageURL: 'bp77grandjuror.webp',
     tier: 'b',
+    index: 80,
   },
   {
     displayName: `AD-11 Livewire`,
@@ -1146,6 +1227,7 @@ const ARMOR_SETS = [
     internalName: 'ad11livewire',
     imageURL: 'ad11livewire.webp',
     tier: 'b',
+    index: 81,
   },
   {
     displayName: `AD-26 Bleeding Edge`,
@@ -1160,6 +1242,7 @@ const ARMOR_SETS = [
     internalName: 'ad26bleedingedge',
     imageURL: 'ad26bleedingedge.webp',
     tier: 'b',
+    index: 82,
   },
   {
     displayName: `AD-49 Apollonian`,
@@ -1174,6 +1257,7 @@ const ARMOR_SETS = [
     internalName: 'ad49apollonian',
     imageURL: 'ad49apollonian.webp',
     tier: 'b',
+    index: 83,
   },
   {
     displayName: `A-9 Helljumper`,
@@ -1188,6 +1272,7 @@ const ARMOR_SETS = [
     internalName: 'a9helljumper',
     imageURL: 'a9helljumper.webp',
     tier: 'b',
+    index: 84,
   },
   {
     displayName: `A-35 Recon`,
@@ -1202,6 +1287,7 @@ const ARMOR_SETS = [
     internalName: 'a35recon',
     imageURL: 'a35recon.webp',
     tier: 'b',
+    index: 85,
   },
   {
     displayName: `DS-42 Federation's Blade`,
@@ -1216,6 +1302,7 @@ const ARMOR_SETS = [
     internalName: 'ds42federationsblade',
     imageURL: 'ds42federationsblade.webp',
     tier: 'b',
+    index: 86,
   },
   {
     displayName: `DS-191 Scorpion`,
@@ -1230,6 +1317,7 @@ const ARMOR_SETS = [
     internalName: 'ds191scorpion',
     imageURL: 'ds191scorpion.webp',
     tier: 'b',
+    index: 87,
   },
   {
     displayName: `DS-10 Big Game Hunter`,
@@ -1244,6 +1332,7 @@ const ARMOR_SETS = [
     internalName: 'ds10biggamehunter',
     imageURL: 'ds10biggamehunter.webp',
     tier: 'b',
+    index: 88,
   },
   {
     displayName: `RS-40 Beast of Prey`,
@@ -1258,6 +1347,7 @@ const ARMOR_SETS = [
     internalName: 'rs40beastofprey',
     imageURL: 'rs40beastofprey.webp',
     tier: 'b',
+    index: 89,
   },
   {
     displayName: `RS-20 Constrictor`,
@@ -1272,6 +1362,7 @@ const ARMOR_SETS = [
     internalName: 'rs20constrictor',
     imageURL: 'rs20constrictor.webp',
     tier: 'b',
+    index: 90,
   },
   {
     displayName: `RS-6 Fiend Destroyer`,
@@ -1286,6 +1377,7 @@ const ARMOR_SETS = [
     internalName: 'rs6fienddestroyer',
     imageURL: 'rs6fienddestroyer.webp',
     tier: 'b',
+    index: 91,
   },
   {
     displayName: `RS-89 Shadow Paragon`,
@@ -1300,6 +1392,7 @@ const ARMOR_SETS = [
     internalName: 'rs89shadowparagon',
     imageURL: 'rs89shadowparagon.webp',
     tier: 'b',
+    index: 92,
   },
   {
     displayName: `RS-100 Sanctioner`,
@@ -1314,6 +1407,7 @@ const ARMOR_SETS = [
     internalName: 'rs100sanctioner',
     imageURL: 'rs100sanctioner.webp',
     tier: 'b',
+    index: 93,
   },
   {
     displayName: `RS-67 Null Cipher`,
@@ -1328,5 +1422,6 @@ const ARMOR_SETS = [
     internalName: 'rs67nullcipher',
     imageURL: 'rs67nullcipher.png',
     tier: 'b',
+    index: 94,
   },
 ];

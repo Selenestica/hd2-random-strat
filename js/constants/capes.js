@@ -7,7 +7,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "foesmasher",
     imageURL: "foesmasher.webp",
-    tier: "b",
+    tier: 'b',
+    index: 0,
   },
   {
     displayName: "Will of the People",
@@ -17,7 +18,8 @@ const CAPES = [
     warbondCode: "warbond0",
     internalName: "willofthepeople",
     imageURL: "willofthepeople.webp",
-    tier: "b",
+    tier: 'b',
+    index: 1,
   },
   {
     displayName: "Independence Bringer",
@@ -27,7 +29,8 @@ const CAPES = [
     warbondCode: "warbond3",
     internalName: "independencebringer",
     imageURL: "independencebringer.webp",
-    tier: "b",
+    tier: 'b',
+    index: 2,
   },
   {
     displayName: "Liberty's Herald",
@@ -37,7 +40,8 @@ const CAPES = [
     warbondCode: "warbond3",
     internalName: "libertysherald",
     imageURL: "libertysherald.webp",
-    tier: "b",
+    tier: 'b',
+    index: 3,
   },
   {
     displayName: "Tideturner",
@@ -47,7 +51,8 @@ const CAPES = [
     warbondCode: "warbond3",
     internalName: "tideturner",
     imageURL: "tideturner.webp",
-    tier: "b",
+    tier: 'b',
+    index: 4,
   },
   {
     displayName: "Stars and Suffrage",
@@ -57,7 +62,8 @@ const CAPES = [
     warbondCode: "warbond3",
     internalName: "thecapeofstarsandsuffrage",
     imageURL: "thecapeofstarsandsuffrage.webp",
-    tier: "b",
+    tier: 'b',
+    index: 5,
   },
   {
     displayName: "Unblemished Allegiance",
@@ -67,7 +73,8 @@ const CAPES = [
     warbondCode: "warbond3",
     internalName: "unblemishedallegiance",
     imageURL: "unblemishedallegiance.webp",
-    tier: "b",
+    tier: 'b',
+    index: 6,
   },
   {
     displayName: "Judgment Day",
@@ -77,7 +84,8 @@ const CAPES = [
     warbondCode: "warbond3",
     internalName: "judgmentday",
     imageURL: "judgmentday.webp",
-    tier: "b",
+    tier: 'b',
+    index: 7,
   },
   {
     displayName: "Cresting Honor",
@@ -87,7 +95,8 @@ const CAPES = [
     warbondCode: "warbond3",
     internalName: "crestinghonor",
     imageURL: "crestinghonor.webp",
-    tier: "b",
+    tier: 'b',
+    index: 8,
   },
   {
     displayName: "Mantle of True Citizenship",
@@ -97,7 +106,8 @@ const CAPES = [
     warbondCode: "warbond3",
     internalName: "mantleoftruecitizenship",
     imageURL: "mantleoftruecitizenship.webp",
-    tier: "b",
+    tier: 'b',
+    index: 9,
   },
   {
     displayName: "Blazing Samaritan",
@@ -107,7 +117,8 @@ const CAPES = [
     warbondCode: "warbond3",
     internalName: "blazingsamaritan",
     imageURL: "blazingsamaritan.webp",
-    tier: "b",
+    tier: 'b',
+    index: 10,
   },
   {
     displayName: "Light of Eternal Liberty",
@@ -117,7 +128,8 @@ const CAPES = [
     warbondCode: "warbond3",
     internalName: "lightofeternalliberty",
     imageURL: "lightofeternalliberty.webp",
-    tier: "b",
+    tier: 'b',
+    index: 11,
   },
   {
     displayName: "Tyrant Hunter",
@@ -127,7 +139,8 @@ const CAPES = [
     warbondCode: "warbond4",
     internalName: "tyranthunter",
     imageURL: "tyranthunter.webp",
-    tier: "b",
+    tier: 'b',
+    index: 12,
   },
   {
     displayName: "Cloak of Posterity's Gratitude",
@@ -137,7 +150,8 @@ const CAPES = [
     warbondCode: "warbond4",
     internalName: "cloakofposteritysgratitude",
     imageURL: "cloakofposteritysgratitude.webp",
-    tier: "b",
+    tier: 'b',
+    index: 13,
   },
   {
     displayName: "Drape of Glory",
@@ -147,7 +161,8 @@ const CAPES = [
     warbondCode: "warbond4",
     internalName: "drapeofglory",
     imageURL: "drapeofglory.webp",
-    tier: "b",
+    tier: 'b',
+    index: 14,
   },
   {
     displayName: "Bastion of Integrity",
@@ -157,7 +172,8 @@ const CAPES = [
     warbondCode: "warbond3",
     internalName: "bastionofintegrity",
     imageURL: "bastionofintegrity.webp",
-    tier: "b",
+    tier: 'b',
+    index: 15,
   },
   {
     displayName: "Botslayer",
@@ -167,7 +183,8 @@ const CAPES = [
     warbondCode: "warbond5",
     internalName: "botslayer",
     imageURL: "botslayer.webp",
-    tier: "b",
+    tier: 'b',
+    index: 16,
   },
   {
     displayName: "Martyris Rex",
@@ -177,7 +194,8 @@ const CAPES = [
     warbondCode: "warbond5",
     internalName: "martyrisrex",
     imageURL: "martyrisrex.webp",
-    tier: "b",
+    tier: 'b',
+    index: 17,
   },
   {
     displayName: "Agent of Oblivion",
@@ -187,7 +205,8 @@ const CAPES = [
     warbondCode: "warbond5",
     internalName: "agentofoblivion",
     imageURL: "agentofoblivion.webp",
-    tier: "b",
+    tier: 'b',
+    index: 18,
   },
   {
     displayName: "Fallen Hero's Vengeance",
@@ -197,7 +216,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "fallenherosvengeance",
     imageURL: "fallenherosvengeance.webp",
-    tier: "b",
+    tier: 'b',
+    index: 19,
   },
   {
     displayName: "Harbinger of True Equality",
@@ -207,7 +227,8 @@ const CAPES = [
     warbondCode: "warbond6",
     internalName: "harbingeroftrueequality",
     imageURL: "harbingeroftrueequality.webp",
-    tier: "b",
+    tier: 'b',
+    index: 20,
   },
   {
     displayName: "Eagle's Fury",
@@ -217,7 +238,8 @@ const CAPES = [
     warbondCode: "warbond6",
     internalName: "eaglesfury",
     imageURL: "eaglesfury.webp",
-    tier: "b",
+    tier: 'b',
+    index: 21,
   },
   {
     displayName: "Freedom's Tapestry",
@@ -227,7 +249,8 @@ const CAPES = [
     warbondCode: "warbond6",
     internalName: "freedomstapestry",
     imageURL: "freedomstapestry.webp",
-    tier: "b",
+    tier: 'b',
+    index: 22,
   },
   {
     displayName: "Dissident's Nightmare",
@@ -237,7 +260,8 @@ const CAPES = [
     warbondCode: "warbond7",
     internalName: "dissidentsnightmare",
     imageURL: "dissidentsnightmare.webp",
-    tier: "b",
+    tier: 'b',
+    index: 23,
   },
   {
     displayName: "Rightful Occupier",
@@ -247,7 +271,8 @@ const CAPES = [
     warbondCode: "warbond20",
     internalName: "rightfuloccupier",
     imageURL: "rightfuloccupier.webp",
-    tier: "b",
+    tier: 'b',
+    index: 24,
   },
   {
     displayName: "Pinions of Everlasting Glory",
@@ -257,7 +282,8 @@ const CAPES = [
     warbondCode: "warbond7",
     internalName: "pinionsofeverlastingglory",
     imageURL: "pinionsofeverlastingglory.webp",
-    tier: "b",
+    tier: 'b',
+    index: 25,
   },
   {
     displayName: "Windswept Wayfinder",
@@ -267,7 +293,8 @@ const CAPES = [
     warbondCode: "warbond20",
     internalName: "windsweptwayfinder",
     imageURL: "windsweptwayfinder.webp",
-    tier: "b",
+    tier: 'b',
+    index: 26,
   },
   {
     displayName: "Order of the Venerated Ballot",
@@ -277,7 +304,8 @@ const CAPES = [
     warbondCode: "warbond7",
     internalName: "orderoftheveneratedballot",
     imageURL: "orderoftheveneratedballot.webp",
-    tier: "b",
+    tier: 'b',
+    index: 27,
   },
   {
     displayName: "Mark of the Crimson Fang",
@@ -287,7 +315,8 @@ const CAPES = [
     warbondCode: "warbond8",
     internalName: "markofthecrimsonfang",
     imageURL: "markofthecrimsonfang.webp",
-    tier: "b",
+    tier: 'b',
+    index: 28,
   },
   {
     displayName: "Executioner's Canopy",
@@ -297,7 +326,8 @@ const CAPES = [
     warbondCode: "warbond8",
     internalName: "executionerscanopy",
     imageURL: "executionerscanopy.webp",
-    tier: "b",
+    tier: 'b',
+    index: 29,
   },
   {
     displayName: "Purifying Eclipse",
@@ -307,7 +337,8 @@ const CAPES = [
     warbondCode: "warbond9",
     internalName: "purifyingeclipse",
     imageURL: "purifyingeclipse.webp",
-    tier: "b",
+    tier: 'b',
+    index: 30,
   },
   {
     displayName: "The Breach",
@@ -317,7 +348,8 @@ const CAPES = [
     warbondCode: "warbond9",
     internalName: "thebreach",
     imageURL: "thebreach.webp",
-    tier: "b",
+    tier: 'b',
+    index: 31,
   },
   {
     displayName: "Standard of Safe Distance",
@@ -327,7 +359,8 @@ const CAPES = [
     warbondCode: "warbond10",
     internalName: "standardofsafedistance",
     imageURL: "standardofsafedistance.webp",
-    tier: "b",
+    tier: 'b',
+    index: 32,
   },
   {
     displayName: "Patient Zero's Remembrance",
@@ -337,7 +370,8 @@ const CAPES = [
     warbondCode: "warbond10",
     internalName: "patientzerosremembrance",
     imageURL: "patientzerosremembrance.webp",
-    tier: "b",
+    tier: 'b',
+    index: 33,
   },
   {
     displayName: "Cover of Darkness",
@@ -347,7 +381,8 @@ const CAPES = [
     warbondCode: "warbond1",
     internalName: "coverofdarkness",
     imageURL: "coverofdarkness.webp",
-    tier: "b",
+    tier: 'b',
+    index: 34,
   },
   {
     displayName: "Pride of the Whistleblower",
@@ -357,7 +392,8 @@ const CAPES = [
     warbondCode: "warbond11",
     internalName: "prideofthewhistleblower",
     imageURL: "prideofthewhistleblower.webp",
-    tier: "b",
+    tier: 'b',
+    index: 35,
   },
   {
     displayName: "Proof of Faultless Virtue",
@@ -367,7 +403,8 @@ const CAPES = [
     warbondCode: "warbond11",
     internalName: "proofoffaultlessvirtue",
     imageURL: "proofoffaultlessvirtue.webp",
-    tier: "b",
+    tier: 'b',
+    index: 36,
   },
   {
     displayName: "Stone-Wrought Perseverance",
@@ -377,7 +414,8 @@ const CAPES = [
     warbondCode: "warbond1",
     internalName: "stonewroughtperserverance",
     imageURL: "stonewroughtperserverance.webp",
-    tier: "b",
+    tier: 'b',
+    index: 37,
   },
   {
     displayName: "Greatcloak of Rebar Resolve",
@@ -387,7 +425,8 @@ const CAPES = [
     warbondCode: "warbond12",
     internalName: "greatcloakofrebarresolve",
     imageURL: "greatcloakofrebarresolve.webp",
-    tier: "b",
+    tier: 'b',
+    index: 38,
   },
   {
     displayName: "Holder of the Yellow Line",
@@ -397,7 +436,8 @@ const CAPES = [
     warbondCode: "warbond12",
     internalName: "holderoftheyellowline",
     imageURL: "holderoftheyellowline.webp",
-    tier: "b",
+    tier: 'b',
+    index: 39,
   },
   {
     displayName: "Strength in Our Arms",
@@ -407,7 +447,8 @@ const CAPES = [
     warbondCode: "warbond18",
     internalName: "strengthinourarms",
     imageURL: "strengthinourarms.webp",
-    tier: "b",
+    tier: 'b',
+    index: 40,
   },
   {
     displayName: "Defender of Our Dream",
@@ -417,7 +458,8 @@ const CAPES = [
     warbondCode: "warbond18",
     internalName: "defenderofourdream",
     imageURL: "defenderofourdream.webp",
-    tier: "b",
+    tier: 'b',
+    index: 41,
   },
   {
     displayName: "Vision of Freedom",
@@ -427,7 +469,8 @@ const CAPES = [
     warbondCode: "warbond1",
     internalName: "visionoffreedom",
     imageURL: "visionoffreedom.webp",
-    tier: "b",
+    tier: 'b',
+    index: 42,
   },
   {
     displayName: "Eternal Corona",
@@ -437,7 +480,8 @@ const CAPES = [
     warbondCode: "warbond1",
     internalName: "eternalcorona",
     imageURL: "eternalcorona.webp",
-    tier: "b",
+    tier: 'b',
+    index: 43,
   },
   {
     displayName: "Fre Liberam",
@@ -447,7 +491,8 @@ const CAPES = [
     warbondCode: "warbond13",
     internalName: "freliberam",
     imageURL: "freliberam.webp",
-    tier: "b",
+    tier: 'b',
+    index: 44,
   },
   {
     displayName: "Per Democrasum",
@@ -457,7 +502,8 @@ const CAPES = [
     warbondCode: "warbond13",
     internalName: "perdemocrasum",
     imageURL: "perdemocrasum.webp",
-    tier: "b",
+    tier: 'b',
+    index: 45,
   },
   {
     displayName: "Eye of Freedom",
@@ -467,7 +513,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "eyeoffreedom",
     imageURL: "eyeoffreedom.webp",
-    tier: "b",
+    tier: 'b',
+    index: 46,
   },
   {
     displayName: "Emblem of Freedom",
@@ -477,7 +524,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "emblemoffreedom",
     imageURL: "emblemoffreedom.webp",
-    tier: "b",
+    tier: 'b',
+    index: 47,
   },
   {
     displayName: "Veil of the Valorous Vagabond",
@@ -487,7 +535,8 @@ const CAPES = [
     warbondCode: "warbond1",
     internalName: "veilofthevalorousvagabond",
     imageURL: "veilofthevalorousvagabond.webp",
-    tier: "b",
+    tier: 'b',
+    index: 48,
   },
   {
     displayName: "Reaper of Bounties",
@@ -497,7 +546,8 @@ const CAPES = [
     warbondCode: "warbond14",
     internalName: "reaperofbounties",
     imageURL: "reaperofbounties.webp",
-    tier: "b",
+    tier: 'b',
+    index: 49,
   },
   {
     displayName: "Way of the Bandolier",
@@ -507,7 +557,8 @@ const CAPES = [
     warbondCode: "warbond14",
     internalName: "wayofthebandolier",
     imageURL: "wayofthebandolier.webp",
-    tier: "b",
+    tier: 'b',
+    index: 50,
   },
   {
     displayName: "Seal of General Consensus",
@@ -517,7 +568,8 @@ const CAPES = [
     warbondCode: "warbond1",
     internalName: "sealofgeneralconsensus",
     imageURL: "sealofgeneralconsensus.webp",
-    tier: "b",
+    tier: 'b',
+    index: 51,
   },
   {
     displayName: "Federation's Embrace",
@@ -527,7 +579,8 @@ const CAPES = [
     warbondCode: "warbond15",
     internalName: "federationsembrace",
     imageURL: "federationsembrace.webp",
-    tier: "b",
+    tier: 'b',
+    index: 52,
   },
   {
     displayName: "Humble Regalia",
@@ -537,7 +590,8 @@ const CAPES = [
     warbondCode: "warbond15",
     internalName: "humbleregalia",
     imageURL: "humbleregalia.webp",
-    tier: "b",
+    tier: 'b',
+    index: 53,
   },
   {
     displayName: "Badge of Order",
@@ -547,7 +601,8 @@ const CAPES = [
     warbondCode: "warbond1",
     internalName: "badgeoforder",
     imageURL: "badgeoforder.webp",
-    tier: "b",
+    tier: 'b',
+    index: 54,
   },
   {
     displayName: "Miranda's Legacy",
@@ -557,7 +612,8 @@ const CAPES = [
     warbondCode: "warbond16",
     internalName: "mirandaslegacy",
     imageURL: "mirandaslegacy.webp",
-    tier: "b",
+    tier: 'b',
+    index: 55,
   },
   {
     displayName: "Mother Eagle's Wings",
@@ -567,7 +623,8 @@ const CAPES = [
     warbondCode: "warbond16",
     internalName: "mothereagleswings",
     imageURL: "mothereagleswings.webp",
-    tier: "b",
+    tier: 'b',
+    index: 56,
   },
   {
     displayName: "Protector of the Heart",
@@ -577,7 +634,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "protectoroftheheart",
     imageURL: "protectoroftheheart.webp",
-    tier: "b",
+    tier: 'b',
+    index: 57,
   },
   {
     displayName: "Pillars of Freedom",
@@ -587,7 +645,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "pillarsoffreedom",
     imageURL: "pillarsoffreedom.webp",
-    tier: "b",
+    tier: 'b',
+    index: 58,
   },
   {
     displayName: "Conductor of Brilliance",
@@ -597,7 +656,8 @@ const CAPES = [
     warbondCode: "warbond17",
     internalName: "conductorofbrilliance",
     imageURL: "conductorofbrilliance.webp",
-    tier: "b",
+    tier: 'b',
+    index: 59,
   },
   {
     displayName: "Over Artifice Triumphant",
@@ -607,7 +667,8 @@ const CAPES = [
     warbondCode: "warbond17",
     internalName: "overartificetriumphant",
     imageURL: "overartificetriumphant.webp",
-    tier: "b",
+    tier: 'b',
+    index: 60,
   },
   {
     displayName: "Schema Laid Bare",
@@ -617,7 +678,8 @@ const CAPES = [
     warbondCode: "warbond1",
     internalName: "schemalaidbare",
     imageURL: "schemalaidbare.webp",
-    tier: "b",
+    tier: 'b',
+    index: 61,
   },
   {
     displayName: "Ingress-81",
@@ -627,7 +689,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "ingress81",
     imageURL: "ingress81.webp",
-    tier: "b",
+    tier: 'b',
+    index: 62,
   },
   {
     displayName: "Honored Heirloom",
@@ -637,7 +700,8 @@ const CAPES = [
     warbondCode: "warbond19",
     internalName: "honoredheirloom",
     imageURL: "honoredheirloom.webp",
-    tier: "b",
+    tier: 'b',
+    index: 63,
   },
   {
     displayName: "Eye of the Clandestine",
@@ -647,7 +711,8 @@ const CAPES = [
     warbondCode: "warbond19",
     internalName: "eyeoftheclandestine",
     imageURL: "eyeoftheclandestine.webp",
-    tier: "b",
+    tier: 'b',
+    index: 64,
   },
   {
     displayName: "Veridical Ideology",
@@ -657,7 +722,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "veridicalideology",
     imageURL: "veridicalideology.webp",
-    tier: "b",
+    tier: 'b',
+    index: 65,
   },
   {
     displayName: "Mark of the Constrictor",
@@ -667,7 +733,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "markoftheconstrictor",
     imageURL: "markoftheconstrictor.webp",
-    tier: "b",
+    tier: 'b',
+    index: 66,
   },
   {
     displayName: "Foe Rent Asunder",
@@ -677,7 +744,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "foerentasunder",
     imageURL: "foerentasunder.webp",
-    tier: "b",
+    tier: 'b',
+    index: 67,
   },
   {
     displayName: "De-Forester's Sailcloth",
@@ -687,7 +755,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "deforesterssailcloth",
     imageURL: "deforesterssailcloth.webp",
-    tier: "b",
+    tier: 'b',
+    index: 68,
   },
   {
     displayName: "Against the Tyrant Cloud",
@@ -697,7 +766,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "againstthetyrantcloud",
     imageURL: "againstthetyrantcloud.webp",
-    tier: "b",
+    tier: 'b',
+    index: 69,
   },
   {
     displayName: "Reckoning's Cheer",
@@ -707,7 +777,8 @@ const CAPES = [
     warbondCode: "none",
     internalName: "reckoningscheer",
     imageURL: "reckoningscheer.webp",
-    tier: "b",
+    tier: 'b',
+    index: 70,
   },
   {
     displayName: "Pillar of the Abyss",
@@ -717,7 +788,8 @@ const CAPES = [
     warbondCode: "warbond22",
     internalName: "pillaroftheabyss",
     imageURL: "pillaroftheabyss.webp",
-    tier: "b",
+    tier: 'b',
+    index: 71,
   },
   {
     displayName: "Triangulation Veil",
@@ -727,7 +799,8 @@ const CAPES = [
     warbondCode: "warbond22",
     internalName: "triangulationveil",
     imageURL: "triangulationveil.webp",
-    tier: "b",
+    tier: 'b',
+    index: 72,
   },
   {
     displayName: "Gilded Quill",
@@ -737,6 +810,7 @@ const CAPES = [
     warbondCode: "warbond1",
     internalName: "gildedquill",
     imageURL: "gildedquill.webp",
-    tier: "b",
+    tier: 'b',
+    index: 73,
   },
 ];

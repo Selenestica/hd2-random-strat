@@ -1,45 +1,35 @@
-const missionCompleteModalBody = document.getElementById(
-  "missionCompleteModalBody"
-);
-const missionCompleteModal = document.getElementById("missionCompleteModal");
-const specialistsModal = document.getElementById("specialistsModal");
-const objectiveInputsContainer = document.getElementById(
-  "objectiveInputsContainer"
-);
-const planetContainer = document.getElementById("planetContainer");
-const objectivesContainer = document.getElementById("objectivesContainer");
-const stratagemsContainer = document.getElementById("stratagemsContainer");
-const equipmentContainer = document.getElementById("equipmentContainer");
-const armorContainer = document.getElementById("armorContainer");
-const primaryContainer = document.getElementById("primaryContainer");
-const secondaryContainer = document.getElementById("secondaryContainer");
-const throwableContainer = document.getElementById("throwableContainer");
-const planetDropdownList = document.getElementById("planetDropdownList");
-const planetNameText = document.getElementById("planetNameText");
-const enemyNameText = document.getElementById("enemyNameText");
-const hazardsText = document.getElementById("hazardsText");
-const objectiveNameText = document.getElementById("objectiveNameText");
-const objectiveProgressText = document.getElementById("objectiveProgressText");
-const specialistNameText = document.getElementById("specialistNameText");
-const maxStarsModalBody = document.getElementById("maxStarsModalBody");
-const pointsCounterText = document.getElementById("pointsCounterText");
-const flavorAndInstructionsModal = document.getElementById(
-  "flavorAndInstructionsModal"
-);
-const warbondSelectModal = document.getElementById("warbondSelectModal");
-const missionCompleteButton = document.getElementById("missionCompleteButton");
-const missionFailedButton = document.getElementById("missionFailedButton");
-const missionCompleteButtonDiv = document.getElementById(
-  "missionCompleteButtonDiv"
-);
-const missionFailedButtonDiv = document.getElementById(
-  "missionFailedButtonDiv"
-);
-const missionCounterText = document.getElementById("missionCounterText");
-const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
-const applySpecialistButton = document.getElementById("applySpecialistButton");
-const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
-const hellDiversMobilizeCheckbox = document.getElementById("warbond3");
+const missionCompleteModalBody = document.getElementById('missionCompleteModalBody');
+const missionCompleteModal = document.getElementById('missionCompleteModal');
+const specialistsModal = document.getElementById('specialistsModal');
+const objectiveInputsContainer = document.getElementById('objectiveInputsContainer');
+const planetContainer = document.getElementById('planetContainer');
+const objectivesContainer = document.getElementById('objectivesContainer');
+const stratagemsContainer = document.getElementById('stratagemsContainer');
+const equipmentContainer = document.getElementById('equipmentContainer');
+const armorContainer = document.getElementById('armorContainer');
+const primaryContainer = document.getElementById('primaryContainer');
+const secondaryContainer = document.getElementById('secondaryContainer');
+const throwableContainer = document.getElementById('throwableContainer');
+const planetDropdownList = document.getElementById('planetDropdownList');
+const planetNameText = document.getElementById('planetNameText');
+const enemyNameText = document.getElementById('enemyNameText');
+const hazardsText = document.getElementById('hazardsText');
+const objectiveNameText = document.getElementById('objectiveNameText');
+const objectiveProgressText = document.getElementById('objectiveProgressText');
+const specialistNameText = document.getElementById('specialistNameText');
+const maxStarsModalBody = document.getElementById('maxStarsModalBody');
+const pointsCounterText = document.getElementById('pointsCounterText');
+const flavorAndInstructionsModal = document.getElementById('flavorAndInstructionsModal');
+const warbondSelectModal = document.getElementById('warbondSelectModal');
+const missionCompleteButton = document.getElementById('missionCompleteButton');
+const missionFailedButton = document.getElementById('missionFailedButton');
+const missionCompleteButtonDiv = document.getElementById('missionCompleteButtonDiv');
+const missionFailedButtonDiv = document.getElementById('missionFailedButtonDiv');
+const missionCounterText = document.getElementById('missionCounterText');
+const maxStarsPromptModal = document.getElementById('maxStarsPromptModal');
+const applySpecialistButton = document.getElementById('applySpecialistButton');
+const warbondCheckboxes = document.getElementsByClassName('warbondCheckboxes');
+const hellDiversMobilizeCheckbox = document.getElementById('warbond3');
 
 hellDiversMobilizeCheckbox.disabled = true;
 let missionCounter = 1;
@@ -62,17 +52,15 @@ let armorPassives = [...ARMOR_PASSIVES];
 let stratagems = [...STRATAGEMS];
 
 // if the submit mission report modal ever closes, reset the inputs
-missionCompleteModal.addEventListener("hidden.bs.modal", () => {
+missionCompleteModal.addEventListener('hidden.bs.modal', () => {
   for (let z = 0; z < currentObjectives.length; z++) {
-    const objInputEl = document.getElementById(
-      `objId-${currentObjectives[z].id}`
-    );
+    const objInputEl = document.getElementById(`objId-${currentObjectives[z].id}`);
     objInputEl.value = 0;
   }
 });
 
-warbondSelectModal.addEventListener("hidden.bs.modal", async () => {
-  const saveData = await localStorage.getItem("specialOpsSaveData");
+warbondSelectModal.addEventListener('hidden.bs.modal', async () => {
+  const saveData = await localStorage.getItem('specialOpsSaveData');
   if (saveData) {
     return;
   }
@@ -81,7 +69,7 @@ warbondSelectModal.addEventListener("hidden.bs.modal", async () => {
 
 // will need to keep track of master list
 for (let y = 0; y < warbondCheckboxes.length; y++) {
-  warbondCheckboxes[y].addEventListener("change", (e) => {
+  warbondCheckboxes[y].addEventListener('change', (e) => {
     if (e.target.checked && !warbondCodes.includes(e.srcElement.id)) {
       warbondCodes.push(e.srcElement.id);
     }
@@ -92,18 +80,16 @@ for (let y = 0; y < warbondCheckboxes.length; y++) {
   });
 }
 
-specialistsModal.addEventListener("hidden.bs.modal", () => {
+specialistsModal.addEventListener('hidden.bs.modal', () => {
   // remove the checkmark from all specialists
-  const elements = document.querySelectorAll(".specialistCheckMarks");
+  const elements = document.querySelectorAll('.specialistCheckMarks');
   elements.forEach((element) => element.remove());
 
   // remove green text from all specialists
-  const specialistHeaders = document.querySelectorAll(
-    ".specialistHeadersClass"
-  );
+  const specialistHeaders = document.querySelectorAll('.specialistHeadersClass');
   specialistHeaders.forEach((header) => {
-    header.classList.remove("text-success");
-    header.classList.add("text-white");
+    header.classList.remove('text-success');
+    header.classList.add('text-white');
   });
 });
 
@@ -112,7 +98,7 @@ const filterSpecialistsByWarbond = async (save = null) => {
     specialists,
     currentSpecialist,
     latestUnlockedSpecialist,
-    warbondCodes
+    warbondCodes,
   );
   specialists = newSpecialistInfo.newSpecialistsList;
   currentSpecialist = newSpecialistInfo.newCurrentSpec;
@@ -124,7 +110,7 @@ const filterSpecialistsByWarbond = async (save = null) => {
     await genNewOperation(true, null, null);
     save = false;
   }
-  specialistsList.innerHTML = "";
+  specialistsList.innerHTML = '';
   genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
   if (save) {
     saveProgress();
@@ -132,12 +118,12 @@ const filterSpecialistsByWarbond = async (save = null) => {
 };
 
 const generateItemCard = (item) => {
-  let imgDir = "equipment";
-  if (item.category === "armor") {
-    imgDir = "armorpassives";
+  let imgDir = 'equipment';
+  if (item.category === 'armor') {
+    imgDir = 'armorpassives';
   }
-  if (item.type === "Stratagem") {
-    imgDir = "svgs";
+  if (item.type === 'Stratagem') {
+    imgDir = 'svgs';
   }
   return `
     <div class="card d-flex col-2 soItemCards mx-1">
@@ -154,7 +140,7 @@ const generateItemCard = (item) => {
 
 const saveProgress = async () => {
   let obj = {};
-  const specialOpsSaveData = localStorage.getItem("specialOpsSaveData");
+  const specialOpsSaveData = localStorage.getItem('specialOpsSaveData');
   if (!specialOpsSaveData) {
     obj = {
       dataName: `Special Ops Save Data`,
@@ -170,7 +156,7 @@ const saveProgress = async () => {
       operationPoints,
       warbondCodes,
     };
-    localStorage.setItem("specialOpsSaveData", JSON.stringify(obj));
+    localStorage.setItem('specialOpsSaveData', JSON.stringify(obj));
     missionCounterText.innerHTML = missionCounter;
     return;
   }
@@ -190,13 +176,12 @@ const saveProgress = async () => {
     warbondCodes,
   };
 
-  localStorage.setItem("specialOpsSaveData", JSON.stringify(data));
+  localStorage.setItem('specialOpsSaveData', JSON.stringify(data));
 };
 
 const fetchCampaignsData = async () => {
-  console.log("Fetching campaign data...");
-  const url =
-    "https://helldivers2challengesapi.s3.us-east-2.amazonaws.com/helldivers-data.json";
+  console.log('Fetching campaign data...');
+  const url = 'https://helldivers2challengesapi.s3.us-east-2.amazonaws.com/helldivers-data.json';
 
   try {
     const response = await fetch(url);
@@ -205,12 +190,12 @@ const fetchCampaignsData = async () => {
     campaignsData = data;
     genPlanetsList(data);
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error('Error fetching data:', error);
   }
 };
 
 const genPlanetsList = async (campaigns) => {
-  planetDropdownList.innerHTML = "";
+  planetDropdownList.innerHTML = '';
   for (let i = 0; i < campaigns.length; i++) {
     const planetName = campaigns[i].planet.name;
     planetDropdownList.innerHTML += `
@@ -226,17 +211,11 @@ const switchPlanet = async (planetName) => {
 };
 
 const getCampaignFromPlanetName = async (planetName) => {
-  const newPlanet = await campaignsData.filter(
-    (cd) => cd.planet.name === planetName
-  );
+  const newPlanet = await campaignsData.filter((cd) => cd.planet.name === planetName);
   return newPlanet[0];
 };
 
-const genNewOperation = async (
-  unlockSpecialist,
-  planetName = null,
-  newGame = null
-) => {
+const genNewOperation = async (unlockSpecialist, planetName = null, newGame = null) => {
   // random planet
   const randPlanetNumber = Math.floor(Math.random() * campaignsData.length);
   let planetToUse = campaignsData[randPlanetNumber];
@@ -273,46 +252,45 @@ const genNewOperation = async (
   }
 
   // random mission objectives
-  objectivesContainer.innerHTML = "";
+  objectivesContainer.innerHTML = '';
   const objectives = await getRandomSpecialOpsObjectives(currentEnemy);
   currentObjectives = objectives;
   // add progress bars too that would be cool
   for (let i = 0; i < objectives.length; i++) {
-    const objName = objectives[i].name.replace("X", objectives[i].goal);
+    const objName = objectives[i].name.replace('X', objectives[i].goal);
     const progType = objectives[i].progressType;
     objectivesContainer.innerHTML += `
       <div id="objectiveNameText${i}" class="text-white">${objName}</div>
       <small class="text-white">Progress: <span class="${
-        progType === "positive" ? "text-danger" : "text-success"
+        progType === 'positive' ? 'text-danger' : 'text-success'
       }" id="objectiveProgressText${i}">${objectives[i].progress}/${
-      objectives[i].goal
-    }</span></small>
+        objectives[i].goal
+      }</span></small>
     `;
   }
 
   missionCounter = 1;
-  missionCounterText.innerHTML = "1";
+  missionCounterText.innerHTML = '1';
   genSOMissionCompleteModalContent(objectives);
 };
 
 const renderObjectiveProgressText = () => {
   for (let i = 0; i < currentObjectives.length; i++) {
-    const progressText = document.getElementById("objectiveProgressText" + i);
-    progressText.innerHTML =
-      currentObjectives[i].progress + "/" + currentObjectives[i].goal;
+    const progressText = document.getElementById('objectiveProgressText' + i);
+    progressText.innerHTML = currentObjectives[i].progress + '/' + currentObjectives[i].goal;
     if (
       currentObjectives[i].progress >= currentObjectives[i].goal &&
-      currentObjectives[i].progressType === "positive"
+      currentObjectives[i].progressType === 'positive'
     ) {
-      progressText.classList.remove("text-danger");
-      progressText.classList.add("text-success");
+      progressText.classList.remove('text-danger');
+      progressText.classList.add('text-success');
     }
     if (
       currentObjectives[i].progress >= currentObjectives[i].goal &&
-      currentObjectives[i].progressType === "negative"
+      currentObjectives[i].progressType === 'negative'
     ) {
-      progressText.classList.remove("text-success");
-      progressText.classList.add("text-danger");
+      progressText.classList.remove('text-success');
+      progressText.classList.add('text-danger');
     }
   }
 };
@@ -321,14 +299,10 @@ const submitMissionReport = async (isMissionSucceeded) => {
   if (isMissionSucceeded) {
     for (let i = 0; i < currentObjectives.length; i++) {
       let val;
-      val = parseInt(
-        document.getElementById("objId-" + currentObjectives[i].id).value,
-        10
-      );
+      val = parseInt(document.getElementById('objId-' + currentObjectives[i].id).value, 10);
       currentObjectives[i].progress += val;
-      const { progress, goal, progressType, pointsAdded } =
-        currentObjectives[i];
-      if (progressType === "positive" && progress >= goal && !pointsAdded) {
+      const { progress, goal, progressType, pointsAdded } = currentObjectives[i];
+      if (progressType === 'positive' && progress >= goal && !pointsAdded) {
         if (missionCounter === 1) {
           operationPoints += 5;
           currentObjectives[i].pointsAdded = true;
@@ -345,11 +319,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
           }
         }
       }
-      if (
-        progressType === "negative" &&
-        progress < goal &&
-        missionCounter === 3
-      ) {
+      if (progressType === 'negative' && progress < goal && missionCounter === 3) {
         operationPoints += 5;
         currentObjectives[i].pointsAdded = true;
       }
@@ -367,9 +337,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
       }
 
       // only by using latest unlock can you unlock the next specialist
-      if (
-        latestUnlockedSpecialist.displayName !== currentSpecialist.displayName
-      ) {
+      if (latestUnlockedSpecialist.displayName !== currentSpecialist.displayName) {
         objectivesMet = false;
         operationPoints = 0;
       }
@@ -401,34 +369,23 @@ const submitMissionReport = async (isMissionSucceeded) => {
 };
 
 const getCurrentEnemy = (planet) => {
-  if (planet.faction === "Humans") {
+  if (planet.faction === 'Humans') {
     return planet.planet.currentOwner;
   }
   return planet.faction;
 };
 
 const displaySpecialistLoadout = () => {
-  stratagemsContainer.innerHTML = "";
-  equipmentContainer.innerHTML = "";
+  stratagemsContainer.innerHTML = '';
+  equipmentContainer.innerHTML = '';
 
   specialistNameText.innerText = currentSpecialist.displayName;
-  const primaryObj = primaries.find(
-    (obj) => obj.displayName === currentSpecialist.primary
-  );
-  const secondaryObj = secondaries.find(
-    (obj) => obj.displayName === currentSpecialist.secondary
-  );
-  const throwObj = throwables.find(
-    (obj) => obj.displayName === currentSpecialist.throwable
-  );
-  const armorObj = armorPassives.find(
-    (obj) => obj.displayName === currentSpecialist.armorPassive
-  );
-
+  const primaryObj = primaries[currentSpecialist.primary];
+  const secondaryObj = secondaries[currentSpecialist.secondary];
+  const throwObj = throwables[currentSpecialist.throwable];
+  const armorObj = armorPassives[currentSpecialist.armorPassive];
   for (let i = 0; i < currentSpecialist.stratagems.length; i++) {
-    let stratagem = stratagems.find(
-      (obj) => obj.displayName === currentSpecialist.stratagems[i]
-    );
+    let stratagem = stratagems[currentSpecialist.stratagems[i]];
     const card = generateItemCard(stratagem);
     stratagemsContainer.innerHTML += card;
   }
@@ -448,23 +405,21 @@ const setSpecialist = (index) => {
   }
 
   // remove the checkmark from all other specialists
-  const elements = document.querySelectorAll(".specialistCheckMarks");
+  const elements = document.querySelectorAll('.specialistCheckMarks');
   elements.forEach((element) => element.remove());
 
   // remove green text from all other specialists
-  const specialistHeaders = document.querySelectorAll(
-    ".specialistHeadersClass"
-  );
+  const specialistHeaders = document.querySelectorAll('.specialistHeadersClass');
   specialistHeaders.forEach((header) => {
-    header.classList.remove("text-success");
-    header.classList.add("text-white");
+    header.classList.remove('text-success');
+    header.classList.add('text-white');
   });
 
   // add the checkmark to the selected specialist
-  const specCardHeader = document.getElementById("specialistHeader" + index);
+  const specCardHeader = document.getElementById('specialistHeader' + index);
   specCardHeader.innerHTML += `<i class="bi bi-check-lg specialistCheckMarks text-success mx-1"></i>`;
-  specCardHeader.classList.add("text-success");
-  specCardHeader.classList.remove("text-white");
+  specCardHeader.classList.add('text-success');
+  specCardHeader.classList.remove('text-white');
 };
 
 const applySpecialist = async () => {
@@ -481,7 +436,7 @@ const applySpecialist = async () => {
 };
 
 const startNewRun = async () => {
-  const saveData = await localStorage.getItem("specialOpsSaveData");
+  const saveData = await localStorage.getItem('specialOpsSaveData');
   if (saveData) {
     return;
   }
@@ -518,9 +473,7 @@ const populateWebPage = async () => {
   hazardsText.innerHTML = currentPlanet.planet.hazards[0].name;
   pointsCounterText.innerHTML = points;
 
-  const missingWarbondCodes = masterWarbondCodes.filter(
-    (code) => !warbondCodes.includes(code)
-  );
+  const missingWarbondCodes = masterWarbondCodes.filter((code) => !warbondCodes.includes(code));
   for (let i = 0; i < missingWarbondCodes.length; i++) {
     document.getElementById(missingWarbondCodes[i]).checked = false;
   }
@@ -532,18 +485,15 @@ const populateWebPage = async () => {
 
   // this part handles rendering the progress text. surprisingly complex
   for (let i = 0; i < currentObjectives.length; i++) {
-    const objName = currentObjectives[i].name.replace(
-      "X",
-      currentObjectives[i].goal
-    );
+    const objName = currentObjectives[i].name.replace('X', currentObjectives[i].goal);
     const progType = currentObjectives[i].progressType;
     objectivesContainer.innerHTML += `
       <div class="text-white">${objName}</div>
       <small class="text-white">Progress: <span class="${
-        progType === "positive" ? "text-danger" : "text-success"
+        progType === 'positive' ? 'text-danger' : 'text-success'
       }" id="objectiveProgressText${i}">${currentObjectives[i].progress}/${
-      currentObjectives[i].goal
-    }</span></small>
+        currentObjectives[i].goal
+      }</span></small>
     `;
   }
   renderObjectiveProgressText();
@@ -554,7 +504,7 @@ const populateWebPage = async () => {
 
 const uploadSaveData = async () => {
   await fetchCampaignsData();
-  const specialOpsSaveData = await localStorage.getItem("specialOpsSaveData");
+  const specialOpsSaveData = await localStorage.getItem('specialOpsSaveData');
   if (specialOpsSaveData) {
     // do a check here to make sure the planet they were on is still available
     // if not, put a warning up that teammates may not be able to select that planet
@@ -570,7 +520,7 @@ const uploadSaveData = async () => {
       data.specialists,
       data.currentSpecialist,
       data.latestUnlockedSpecialist,
-      warbondCodes
+      warbondCodes,
     );
 
     specialists = newSpecialistInfo.newSpecialistsList;
@@ -589,7 +539,7 @@ const uploadSaveData = async () => {
 };
 
 const clearSaveDataAndRestart = async () => {
-  localStorage.removeItem("specialOpsSaveData");
+  localStorage.removeItem('specialOpsSaveData');
   window.location.reload();
 };
 

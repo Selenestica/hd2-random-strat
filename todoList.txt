@@ -38,7 +38,7 @@ GENERAL:
 
   - add Redacted Regiment warbond details
   - add images and stats to Loadout Builder
-  - tweak wiki armor images for Armor Lab
+  - add indices for all items
 
 RANDOMIZER:
   - ability to enable/disable specific items from warbonds

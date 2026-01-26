@@ -422,6 +422,7 @@ const populateDefaultItems = () => {
   }
 };
 
+// get primaries and stratagems to recatogorize properly here probably
 const populateShopItems = () => {
   const allItemsList = [newPrims, newStrats, newBoosts, newSeconds, newArmorPassives, newThrows];
   genRandomItem(allItemsList);

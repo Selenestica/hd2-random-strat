@@ -1,23 +1,15 @@
-const looseItemsContainer = document.getElementById("looseItemsContainer");
-const itemsSearchInput = document.getElementById("itemsSearchInput");
-const tierPreview = document.getElementById("tierPreview");
-const tierButtonPreviewLabel = document.getElementById(
-  "tierButtonPreviewLabel"
-);
-const tierButtonPreviewSubLabel = document.getElementById(
-  "tierButtonPreviewSubLabel"
-);
-const labelNameInput = document.getElementById("labelNameInput");
-const subLabelNameInput = document.getElementById("subLabelNameInput");
-const tierColorsList = document.getElementById("tierColorsList");
-const reformattedOldDataModal = document.getElementById(
-  "reformattedOldDataModal"
-);
-const tierCustomizationModal = document.getElementById(
-  "tierCustomizationModal"
-);
-const deleteTierButton = document.getElementById("deleteTierButton");
-const tierListContainer = document.getElementById("tierListContainer");
+const looseItemsContainer = document.getElementById('looseItemsContainer');
+const itemsSearchInput = document.getElementById('itemsSearchInput');
+const tierPreview = document.getElementById('tierPreview');
+const tierButtonPreviewLabel = document.getElementById('tierButtonPreviewLabel');
+const tierButtonPreviewSubLabel = document.getElementById('tierButtonPreviewSubLabel');
+const labelNameInput = document.getElementById('labelNameInput');
+const subLabelNameInput = document.getElementById('subLabelNameInput');
+const tierColorsList = document.getElementById('tierColorsList');
+const reformattedOldDataModal = document.getElementById('reformattedOldDataModal');
+const tierCustomizationModal = document.getElementById('tierCustomizationModal');
+const deleteTierButton = document.getElementById('deleteTierButton');
+const tierListContainer = document.getElementById('tierListContainer');
 
 let OGarmorPassivesList = [...ARMOR_PASSIVES];
 let OGstratsList = [...STRATAGEMS];
@@ -36,58 +28,58 @@ let newWarbonds = [...OGwarbondsList];
 
 let customizingTier = null;
 let newTierIndex = null;
-let itemsSize = "80px";
+let itemsSize = '80px';
 let showText = true;
 let tiers = [
   {
-    lab: "S",
-    subLab: "",
-    color: "",
+    lab: 'S',
+    subLab: '',
+    color: '',
     list: [],
   },
   {
-    lab: "A",
-    subLab: "",
-    color: "",
+    lab: 'A',
+    subLab: '',
+    color: '',
     list: [],
   },
   {
-    lab: "B",
-    subLab: "",
-    color: "",
+    lab: 'B',
+    subLab: '',
+    color: '',
     list: [],
   },
   {
-    lab: "C",
-    subLab: "",
-    color: "",
+    lab: 'C',
+    subLab: '',
+    color: '',
     list: [],
   },
   {
-    lab: "D",
-    subLab: "",
-    color: "",
+    lab: 'D',
+    subLab: '',
+    color: '',
     list: [],
   },
 ];
 
-labelNameInput.addEventListener("input", (e) => {
+labelNameInput.addEventListener('input', (e) => {
   tierButtonPreviewLabel.innerText = e.target.value;
 });
 
-subLabelNameInput.addEventListener("input", (e) => {
+subLabelNameInput.addEventListener('input', (e) => {
   tierButtonPreviewSubLabel.innerText = e.target.value;
 });
 
 // make this null when the modal closes so we're ready for whatever comes next
-tierCustomizationModal.addEventListener("hidden.bs.modal", async () => {
+tierCustomizationModal.addEventListener('hidden.bs.modal', async () => {
   customizingTier = null;
-  deleteTierButton.classList.toggle("d-none", true);
-  labelNameInput.value = "";
-  subLabelNameInput.value = "";
-  tierButtonPreviewLabel.innerText = "";
-  tierButtonPreviewSubLabel.innerText = "";
-  tierPreview.style.backgroundColor = "#151c24";
+  deleteTierButton.classList.toggle('d-none', true);
+  labelNameInput.value = '';
+  subLabelNameInput.value = '';
+  tierButtonPreviewLabel.innerText = '';
+  tierButtonPreviewSubLabel.innerText = '';
+  tierPreview.style.backgroundColor = '#151c24';
 });
 
 const changeTierPreviewColor = (color) => {
@@ -108,16 +100,12 @@ const populateTierListItems = async () => {
 
   for (let i = 0; i < tiers.length; i++) {
     const list = tiers[i].list;
-    const tierCatElName = "tierCat" + i;
+    const tierCatElName = 'tierCat' + i;
     const tierEl = document.getElementById(tierCatElName);
-    const foundItems = await flatItemsList.filter((item) =>
-      list.includes(item.internalName)
-    );
+    const foundItems = await flatItemsList.filter((item) => list.includes(item.internalName));
     if (foundItems.length > 0) {
       for (let j = 0; j < list.length; j++) {
-        const item = await foundItems.filter(
-          (it) => it.internalName === list[j]
-        );
+        const item = await foundItems.filter((it) => it.internalName === list[j]);
         await tierEl.appendChild(generateItemCard(item[0]));
       }
     }
@@ -162,10 +150,10 @@ const handleTouchMove = (e) => {
 
     // Clone only once
     cloneElement = draggedItem.cloneNode(true);
-    cloneElement.classList.add("dragging");
-    cloneElement.style.position = "absolute";
-    cloneElement.style.pointerEvents = "none";
-    cloneElement.style.zIndex = "9999";
+    cloneElement.classList.add('dragging');
+    cloneElement.style.position = 'absolute';
+    cloneElement.style.pointerEvents = 'none';
+    cloneElement.style.zIndex = '9999';
     cloneElement._original = draggedItem;
 
     document.body.appendChild(cloneElement);
@@ -189,8 +177,8 @@ const handleTouchEnd = async (e) => {
 
   const touch = e.changedTouches[0];
   const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
-  const tierContainer = dropTarget?.closest?.(".tierCategories");
-  const looseContainer = dropTarget?.closest?.("#looseItemsContainer");
+  const tierContainer = dropTarget?.closest?.('.tierCategories');
+  const looseContainer = dropTarget?.closest?.('#looseItemsContainer');
 
   if (tierContainer) {
     const original = cloneElement._original;
@@ -198,8 +186,8 @@ const handleTouchEnd = async (e) => {
       original.parentElement.removeChild(original);
     }
 
-    cloneElement.classList.remove("dragging");
-    cloneElement.style = "";
+    cloneElement.classList.remove('dragging');
+    cloneElement.style = '';
 
     tierContainer.appendChild(cloneElement);
     setupCardEvents(cloneElement);
@@ -207,7 +195,7 @@ const handleTouchEnd = async (e) => {
   } else if (looseContainer) {
     const original = cloneElement._original;
     if (original?.parentElement) {
-      if (original.parentElement.id === "looseItemsContainer") {
+      if (original.parentElement.id === 'looseItemsContainer') {
         window.location.reload();
         resetTouchState();
         return;
@@ -215,8 +203,8 @@ const handleTouchEnd = async (e) => {
       original.parentElement.removeChild(original);
     }
 
-    cloneElement.classList.remove("dragging");
-    cloneElement.style = "";
+    cloneElement.classList.remove('dragging');
+    cloneElement.style = '';
 
     looseContainer.appendChild(cloneElement);
     setupCardEvents(cloneElement);
@@ -251,23 +239,23 @@ const allowDrop = (e) => {
 };
 
 const drag = (e) => {
-  e.dataTransfer.setData("text/plain", e.currentTarget.id);
+  e.dataTransfer.setData('text/plain', e.currentTarget.id);
 };
 
 const drop = async (e) => {
   e.preventDefault();
 
-  const itemId = e.dataTransfer.getData("text/plain");
+  const itemId = e.dataTransfer.getData('text/plain');
   const draggedItem = document.getElementById(itemId);
   if (!draggedItem) return;
 
-  const dropTarget = e.target.closest(".tierItem");
-  const parentTier = e.target.closest(".tierCategories");
-  const looseContainer = e.target.closest("#looseItemsContainer");
+  const dropTarget = e.target.closest('.tierItem');
+  const parentTier = e.target.closest('.tierCategories');
+  const looseContainer = e.target.closest('#looseItemsContainer');
 
   // Dropped back into loose items pool
   if (looseContainer) {
-    if (draggedItem.parentElement?.id === "looseItemsContainer") {
+    if (draggedItem.parentElement?.id === 'looseItemsContainer') {
       return;
     }
     looseContainer.appendChild(draggedItem);
@@ -297,7 +285,7 @@ const addItemToTierArray = async () => {
   }
 
   // maybe just go through every tier element and loop through its children, and save based on that
-  const tierCategories = document.querySelectorAll(".tierCategories");
+  const tierCategories = document.querySelectorAll('.tierCategories');
   for (let i = 0; i < tierCategories.length; i++) {
     const tc = tierCategories[i];
     if (tc.children.length > 0) {
@@ -313,13 +301,14 @@ const addItemToTierArray = async () => {
 
 const startNewTierList = async () => {
   tiers = TIERS;
-  tierListContainer.innerHTML = "";
+  tierListContainer.innerHTML = '';
   createTiers();
   await populateLooseItems();
 };
 
+// make sure all items here are ordered correctly since we went to index-based storage of items
 const populateLooseItems = () => {
-  looseItemsContainer.innerHTML = "";
+  looseItemsContainer.innerHTML = '';
   newPrims = [...OGprimsList];
   newBoosts = [...OGboostsList];
   newArmorPassives = [...OGarmorPassivesList];
@@ -355,33 +344,32 @@ const populateLooseItems = () => {
 
 const setupCardEvents = (card) => {
   // Enable native dragging for desktop
-  const isTouchDevice =
-    "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
   if (!isTouchDevice) {
-    card.setAttribute("draggable", "true");
+    card.setAttribute('draggable', 'true');
     card.ondragstart = drag;
   } else {
-    card.setAttribute("draggable", "false");
+    card.setAttribute('draggable', 'false');
   }
 
-  card.addEventListener("touchstart", handleTouchStart, { passive: false });
-  card.addEventListener("touchmove", handleTouchMove, { passive: false });
-  card.addEventListener("touchend", handleTouchEnd, { passive: false });
+  card.addEventListener('touchstart', handleTouchStart, { passive: false });
+  card.addEventListener('touchmove', handleTouchMove, { passive: false });
+  card.addEventListener('touchend', handleTouchEnd, { passive: false });
 };
 
 const generateItemCard = (item) => {
-  let imgDir = "equipment";
-  if (item.type === "Stratagem") {
-    imgDir = "svgs";
+  let imgDir = 'equipment';
+  if (item.type === 'Stratagem') {
+    imgDir = 'svgs';
   }
-  if (item.type === "Warbond") {
-    imgDir = "warbonds";
+  if (item.type === 'Warbond') {
+    imgDir = 'warbonds';
   }
-  if (item.category === "armor") {
-    imgDir = "armorpassives";
+  if (item.category === 'armor') {
+    imgDir = 'armorpassives';
   }
-  const card = document.createElement("div");
+  const card = document.createElement('div');
   card.dataset.type = getItemType(item);
   card.id = item.internalName;
   card.className = `card tierItem pcItemCards ${item.warbondCode}`;
@@ -393,7 +381,7 @@ const generateItemCard = (item) => {
       alt="${item.displayName}"
     />
     <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center ${
-      showText ? "" : "d-none"
+      showText ? '' : 'd-none'
     }">
       <p class="card-title text-white pcItemCardText">${item.displayName}</p>
     </div>
@@ -411,10 +399,10 @@ const createTiers = async () => {
     return;
   }
   await tiers.forEach((tr, i) => {
-    const tier = document.createElement("div");
+    const tier = document.createElement('div');
     tier.id = `tier${i}`;
     tier.style.backgroundColor = tr.color;
-    tier.className = "tier text-white";
+    tier.className = 'tier text-white';
     tier.innerHTML = `
       <button type="button" 
           id="tierCustomizationBtn${i}"
@@ -464,18 +452,18 @@ const createTiers = async () => {
 };
 
 const uploadSaveData = async () => {
-  const tierMakerSaveDataOld = localStorage.getItem("tierMakerSaveData");
+  const tierMakerSaveDataOld = localStorage.getItem('tierMakerSaveData');
   if (tierMakerSaveDataOld) {
     attemptToReformatOldData(tierMakerSaveDataOld);
   }
 
-  const tierMakerSaveData = await localStorage.getItem("tierMakerSaveData2");
+  const tierMakerSaveData = await localStorage.getItem('tierMakerSaveData2');
   if (tierMakerSaveData) {
     const currentList = await getCurrentTierList();
 
     tiers = currentList.tiers;
     dataName = currentList.dataName;
-    tierListContainer.innerHTML = "";
+    tierListContainer.innerHTML = '';
     showText = currentList.showText;
     itemsSize = currentList.itemsSize;
 
@@ -489,7 +477,7 @@ const uploadSaveData = async () => {
 
 const saveProgress = async () => {
   let obj = {};
-  const tierMakerSaveData = localStorage.getItem("tierMakerSaveData2");
+  const tierMakerSaveData = localStorage.getItem('tierMakerSaveData2');
   if (!tierMakerSaveData) {
     obj = {
       lists: [
@@ -502,7 +490,7 @@ const saveProgress = async () => {
         },
       ],
     };
-    localStorage.setItem("tierMakerSaveData2", JSON.stringify(obj));
+    localStorage.setItem('tierMakerSaveData2', JSON.stringify(obj));
     return;
   }
   const data = JSON.parse(tierMakerSaveData);
@@ -513,9 +501,7 @@ const saveProgress = async () => {
         tiers,
         showText,
         itemsSize,
-        dataName: sg.editedName
-          ? sg.dataName
-          : `List #${generateSemiUniqueCode()}`,
+        dataName: sg.editedName ? sg.dataName : `List #${generateSemiUniqueCode()}`,
         currentList: true,
       };
     }
@@ -525,11 +511,11 @@ const saveProgress = async () => {
     ...obj,
     lists: newSavedTierLists,
   };
-  localStorage.setItem("tierMakerSaveData2", JSON.stringify(obj));
+  localStorage.setItem('tierMakerSaveData2', JSON.stringify(obj));
 };
 
 const saveDataAndRestart = async () => {
-  const tierMakerSaveData = localStorage.getItem("tierMakerSaveData2");
+  const tierMakerSaveData = localStorage.getItem('tierMakerSaveData2');
   if (!tierMakerSaveData) {
     return;
   }
@@ -551,10 +537,7 @@ const saveDataAndRestart = async () => {
   const newTierMakerSaveData = {
     lists: updatedSavedTierLists,
   };
-  await localStorage.setItem(
-    "tierMakerSaveData2",
-    JSON.stringify(newTierMakerSaveData)
-  );
+  await localStorage.setItem('tierMakerSaveData2', JSON.stringify(newTierMakerSaveData));
 
   // remove saved lists that weren't changed in any way
   pruneSavedTierLists();
@@ -562,7 +545,7 @@ const saveDataAndRestart = async () => {
 
 // get rid of all lists that have no items in tier lists
 const pruneSavedTierLists = async () => {
-  const tierMakerSaveData = localStorage.getItem("tierMakerSaveData2");
+  const tierMakerSaveData = localStorage.getItem('tierMakerSaveData2');
   if (!tierMakerSaveData) {
     return;
   }
@@ -581,33 +564,31 @@ const pruneSavedTierLists = async () => {
     ...oldData,
     lists: prunedGames,
   };
-  localStorage.setItem("tierMakerSaveData2", JSON.stringify(newData));
+  localStorage.setItem('tierMakerSaveData2', JSON.stringify(newData));
 };
 
 const clearSaveDataAndRestart = async () => {
-  localStorage.removeItem("tierMakerSaveData2");
+  localStorage.removeItem('tierMakerSaveData2');
   window.location.reload();
 };
 
 const getCurrentTierList = async () => {
-  const savedTierLists = JSON.parse(
-    localStorage.getItem("tierMakerSaveData2")
-  ).lists;
+  const savedTierLists = JSON.parse(localStorage.getItem('tierMakerSaveData2')).lists;
   const currentList = await savedTierLists.filter((sg) => {
     return sg.currentList === true;
   });
   if (currentList.length !== 1) {
-    console.log("SAVED GAME DATA CORRUPTED", savedTierLists);
+    console.log('SAVED GAME DATA CORRUPTED', savedTierLists);
     return;
   }
   return currentList[0];
 };
 
 const toggleItemNameText = async () => {
-  const itemNameContainers = document.querySelectorAll(".itemNameContainer");
+  const itemNameContainers = document.querySelectorAll('.itemNameContainer');
   await itemNameContainers.forEach((container) => {
-    container.classList.toggle("d-none");
-    if (container.classList.contains("d-none")) {
+    container.classList.toggle('d-none');
+    if (container.classList.contains('d-none')) {
       showText = false;
     } else {
       showText = true;
@@ -618,7 +599,7 @@ const toggleItemNameText = async () => {
 
 const genTierCustomizationModalContent = (index) => {
   customizingTier = index;
-  deleteTierButton.classList.toggle("d-none", false);
+  deleteTierButton.classList.toggle('d-none', false);
   const tierData = tiers[index];
   const { lab, subLab, color } = tierData;
   tierPreview.style.backgroundColor = color;
@@ -641,7 +622,7 @@ const deleteTier = async () => {
 
   // if theres any items in the tier, then we'll have to add them back to the pool
   await populateLooseItems();
-  tierListContainer.innerHTML = "";
+  tierListContainer.innerHTML = '';
   await createTiers();
   await populateTierListItems();
   await saveProgress();
@@ -651,7 +632,7 @@ const deleteTier = async () => {
 };
 
 const createNewTier = async () => {
-  let newColor = "#151c24";
+  let newColor = '#151c24';
   let newLabel = labelNameInput.value;
   let newSubLabel = subLabelNameInput.value;
   const bgColor = tierPreview.style.backgroundColor;
@@ -666,7 +647,7 @@ const createNewTier = async () => {
   };
   tiers.splice(newTierIndex, 0, newTier);
   await saveProgress();
-  tierListContainer.innerHTML = "";
+  tierListContainer.innerHTML = '';
   await createTiers();
   populateTierListItems();
 };
@@ -681,10 +662,8 @@ const saveTierCustomization = async () => {
 
   const tierEl = document.getElementById(`tier${customizingTier}`);
   const tierLabelEl = document.getElementById(`tierLabel${customizingTier}`);
-  const tierSubLabelEl = document.getElementById(
-    `tierSubLabel${customizingTier}`
-  );
-  let newColor = "#151c24";
+  const tierSubLabelEl = document.getElementById(`tierSubLabel${customizingTier}`);
+  let newColor = '#151c24';
   let newLabel = labelNameInput.value;
   let newSubLabel = subLabelNameInput.value;
   const bgColor = tierPreview.style.backgroundColor;
@@ -717,37 +696,36 @@ const attemptToReformatOldData = async (oldData) => {
   let newLists = [];
   for (let i = 0; i < oldLists.length; i++) {
     let newList = {};
-    const { sList, aList, bList, cList, dList, dataName, currentList } =
-      oldLists[i];
+    const { sList, aList, bList, cList, dList, dataName, currentList } = oldLists[i];
     const newTiers = [
       {
-        lab: "S",
-        subLab: "",
-        color: "",
+        lab: 'S',
+        subLab: '',
+        color: '',
         list: sList,
       },
       {
-        lab: "A",
-        subLab: "",
-        color: "",
+        lab: 'A',
+        subLab: '',
+        color: '',
         list: aList,
       },
       {
-        lab: "B",
-        subLab: "",
-        color: "",
+        lab: 'B',
+        subLab: '',
+        color: '',
         list: bList,
       },
       {
-        lab: "C",
-        subLab: "",
-        color: "",
+        lab: 'C',
+        subLab: '',
+        color: '',
         list: cList,
       },
       {
-        lab: "D",
-        subLab: "",
-        color: "",
+        lab: 'D',
+        subLab: '',
+        color: '',
         list: dList,
       },
     ];
@@ -759,9 +737,9 @@ const attemptToReformatOldData = async (oldData) => {
     newLists.push(newList);
   }
   const newSaveObj = { lists: newLists };
-  await localStorage.setItem("tierMakerSaveData2", JSON.stringify(newSaveObj));
-  await localStorage.removeItem("tierMakerSaveData");
-  document.addEventListener("DOMContentLoaded", () => {
+  await localStorage.setItem('tierMakerSaveData2', JSON.stringify(newSaveObj));
+  await localStorage.removeItem('tierMakerSaveData');
+  document.addEventListener('DOMContentLoaded', () => {
     const modal = new bootstrap.Modal(reformattedOldDataModal);
     modal.show();
   });
@@ -769,7 +747,7 @@ const attemptToReformatOldData = async (oldData) => {
 };
 
 const changeItemSize = (newSize) => {
-  const tierItems = document.querySelectorAll(".tierItem");
+  const tierItems = document.querySelectorAll('.tierItem');
   tierItems.forEach((it) => {
     it.style.width = newSize;
   });

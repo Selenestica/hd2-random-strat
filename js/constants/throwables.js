@@ -210,7 +210,7 @@ const THROWABLES = [
     tags: [],
     warbondCode: 'warbond1',
     internalName: 'g89smokescreen',
-    imageURL: 'g89smokescreen.webp',
+    imageURL: 'g89smokescreen.png',
     antitank: false,
     index: 17,
     tier: 'c',

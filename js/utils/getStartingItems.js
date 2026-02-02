@@ -88,9 +88,9 @@ const getStartingSecondaries = (diff) => {
 };
 
 const getStartingThrowables = (diff) => {
-  let throwables = ['G-3 Smoke', 'K-2 Throwing Knife', 'G-12 High Explosive'];
+  let throwables = ['G-3 Smoke', 'K-2 Throwing Knife', 'G-12 High Explosive', 'G-89 Smokescreen'];
   if (diff === 'bb' || diff === 'dd') {
-    return ['G-3 Smoke', 'K-2 Throwing Knife'];
+    return ['G-3 Smoke', 'K-2 Throwing Knife', 'G-89 Smokescreen'];
   }
   return throwables;
 };

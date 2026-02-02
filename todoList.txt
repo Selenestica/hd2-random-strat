@@ -36,7 +36,6 @@ GENERAL:
       - /warbonds
       - /svgs
 
-  - add Redacted Regiment warbond details
   - add images and stats to Loadout Builder
   - add indices for all items
 

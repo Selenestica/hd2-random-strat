@@ -231,16 +231,33 @@ const applySpecialRules = () => {
   }
 
   // with the Redacted Regiment armors, i fixed them to play a little nicer, but they still need a slight tweak
-  const rrArmors = ['rs89shadowparagon', 'rs67nullcipher'];
+  const rrArmors = ['rs89shadowparagon', 'rs67nullcipher', 'sa7headfirst', 'sa8ram'];
   if (rrArmors.includes(currentArmor)) {
     armorImg.style.marginTop = '0.25rem';
   }
 
   // the helmets are larger than the others for some reason
-  const largeHelmets = ['rs6fienddestroyer', 'rs89shadowparagon', 'rs67nullcipher'];
+  const largeHelmets = [
+    'rs6fienddestroyer',
+    'rs89shadowparagon',
+    'rs67nullcipher',
+    'sa7headfirst',
+    'sa8ram',
+  ];
   if (largeHelmets.includes(currentHelmet)) {
     helmetImg.style.width = '84%';
     helmetContainer.style.top = '22px';
+    helmetContainer.style.left = '54.5%';
+  }
+
+  if (currentHelmet === 'sa8ram' && currentArmor === 'sa8ram') {
+    helmetContainer.style.top = '12px';
+    helmetCard.style.clipPath = 'inset(1px 1px 1px 1px)';
+  }
+
+  if (currentHelmet === 'sa7headfirst' && currentArmor === 'sa7headfirst') {
+    helmetContainer.style.top = '15px';
+    helmetCard.style.clipPath = 'inset(1px 1px 1px 1px)';
     helmetContainer.style.left = '55%';
   }
 
@@ -256,7 +273,12 @@ const applySpecialRules = () => {
   }
 
   // these capes are too skinny
-  const skinnyCapes = ['pillaroftheabyss', 'triangulationveil'];
+  const skinnyCapes = [
+    'pillaroftheabyss',
+    'triangulationveil',
+    'wedgefultricorn',
+    'ragsofthefashionable',
+  ];
   if (skinnyCapes.includes(currentCape)) {
     capeImg.style.width = '45%';
   }

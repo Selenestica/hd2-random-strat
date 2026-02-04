@@ -342,6 +342,33 @@ const SPECIALISTS = [
   },
 
   // {
+  //   displayName: 'The Siege Breaker',
+  //   starterItems: ['Leveller', 'Supplementary Adrenaline armor'],
+  //   stratagems: ['Leveller'],
+  //   primaries: [],
+  //   boosters: [],
+  //   secondaries: [],
+  //   throwables: [],
+  //   armorPassives: ['Supplementary Adrenaline'],
+  //   traits: [],
+  //   imageURL: 'siegebreaker.webp',
+  //   warbonds: ['warbond23'],
+  // },
+  // {
+  //   displayName: 'The Juggernaut',
+  //   starterItems: ['Breaching Hammer', 'Shield Generator Pack', 'Supplementary Adrenaline armor'],
+  //   stratagems: ['Breaching Hammer'. 'Shield Generator Pack'],
+  //   primaries: [],
+  //   boosters: [],
+  //   secondaries: [],
+  //   throwables: [],
+  //   armorPassives: ['Supplementary Adrenaline'],
+  //   traits: [],
+  //   imageURL: 'siegebreaker.webp',
+  //   warbonds: ['warbond23'],
+  // },
+
+  // {
   //   displayName: 'The O.G.',
   //   starterItems: ['Liberator'],
   //   stratagems: [],

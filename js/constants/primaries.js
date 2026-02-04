@@ -551,6 +551,18 @@ const PRIMARIES = [
     tier: 'b',
     index: 45,
   },
+  {
+    displayName: 'Trident',
+    type: 'Equipment',
+    category: 'primary',
+    tags: ['EnergyWeapon'],
+    warbondCode: 'warbond23',
+    internalName: 'las16trident',
+    imageURL: 'las16trident.webp',
+    antitank: false,
+    tier: 'b',
+    index: 46,
+  },
 ];
 
 // s: 7

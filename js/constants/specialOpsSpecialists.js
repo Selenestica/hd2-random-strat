@@ -82,7 +82,7 @@ const SPECOPSSPECS = [
   {
     locked: true,
     displayName: 'The Detonator',
-    stratagems: [8, 45, 39, 76],
+    stratagems: [8, 45, 39, 76], // 81 belt fed grenade launcher, 26 c4 pack
     primary: 42,
     secondary: 0,
     throwable: 15,
@@ -422,7 +422,7 @@ const SPECOPSSPECS = [
   {
     locked: true,
     displayName: 'The Expendable',
-    stratagems: [14, 16, 15, 39, 17],
+    stratagems: [14, 16, 15, 39, 17], // 80 leveller
     primary: 22,
     secondary: 17,
     throwable: 4,
@@ -492,6 +492,47 @@ const SPECOPSSPECS = [
 
   // {
   //   locked: true,
+  //   displayName: 'The Juggernaut',
+  //   stratagems: [37, 79, 66, 54], // shield generator pack, breaching hammer, gatling sentry, orbital airburst strike
+  //   primary: 35, // scorcher
+  //   secondary: 13, // bushwhacker
+  //   throwable: 0, // HE grenade
+  //   armorPassive: 23, // supplemental adrenaline
+  //   warbonds: ['warbond23', 'warbond8'],
+  // },
+  // {
+  //   locked: true,
+  //   displayName: "The Protector",
+  //   stratagems: [
+  //     "Shield Generator Relay",
+  //     "Directional Shield",
+  //     "Grenadier Battlement",
+  //     "De-Escalator",
+  //   ],
+  //   primary: "Trident",
+  //   secondary: 11,
+  //   throwable: "energy shield grenade",
+  //   armorPassive: "Med-Kit",
+  //   warbonds: ["warbond22", "warbond13", "warbond14"],
+  // },
+  // {
+  //   locked: true,
+  //   displayName: "The Counter Sniper",
+  //   stratagems: [
+  //     "Spear",
+  //     "Solo Silo",
+  //     "Rocket Sentry",
+  //     "Anti-Tank Emplacement",
+  //   ],
+  //   primary: 28, // "Diligence Counter Sniper"
+  //   secondary: 10, // "SOCOM"
+  //   throwable: 18, // "energy shield grenade"
+  //   armorPassive: 10, // "Scout"
+  //   warbonds: ["warbond22", "warbond13", "warbond14"],
+  // },
+
+  // {
+  //   locked: true,
   //   displayName: "The Truth Enforcer",
   //   stratagems: [
   //     "Eagle Napalm Strike",
@@ -538,67 +579,14 @@ const SPECOPSSPECS = [
   //   warbonds: ["warbond22", "warbond13", "warbond14"],
   // },
 
-  // {
-  //   locked: true,
-  //   displayName: "The Protector",
-  //   stratagems: [
-  //     "Shield Generator Relay",
-  //     "Directional Shield",
-  //     "Grenadier Battlement",
-  //     "De-Escalator",
-  //   ],
-  //   primary: "Trident",
-  //   secondary: 11,
-  //   throwable: "energy shield grenade",
-  //   armorPassive: "Med-Kit",
-  //   warbonds: ["warbond22", "warbond13", "warbond14"],
-  // },
-
-  // {
-  //   locked: true,
-  //   displayName: "The Counter Sniper",
-  //   stratagems: [
-  //     "Spear",
-  //     "Solo Silo",
-  //     "Rocket Sentry",
-  //     "Anti-Tank Emplacement",
-  //   ],
-  //   primary: "Diligence Counter Sniper",
-  //   secondary: 10,
-  //   throwable: "energy shield grenade",
-  //   armorPassive: "Scout",
-  //   warbonds: ["warbond22", "warbond13", "warbond14"],
-  // },
-
-  // {
-  //   locked: true,
-  //   displayName: "The Grenadier",
-  //   stratagems: [
-  //     "belt fed grenade launcher",
-  //     "Grenadier Battlement",
-  //     "Eagle Cluster Bomb",
-  //     "Orbital Gatling Barrage",
-  //   ],
-  //   primary: "One Two",
-  //   secondary: 14,
-  //   throwable: 2,
-  //   armorPassive: "Integrated Explosives",
-  //   warbonds: ["warbond22", "warbond13", "warbond14"],
-  // },
-
   // heavy flamer
   // trench pistol
   // trench shotgun
   // trench armor
-  // energy shield grenade
   // fire SMG
   // TD-220 Bastion
-  // sledgehammer
-  // Trident
-  // belt fed grenade launcher
 
   // UNUSED ITEMS:
-  // scorcher
   // purifier
   //
 ];

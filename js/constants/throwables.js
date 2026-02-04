@@ -215,6 +215,18 @@ const THROWABLES = [
     index: 17,
     tier: 'c',
   },
+  {
+    displayName: 'G/SH-39 Shield',
+    type: 'Equipment',
+    category: 'throwable',
+    tags: [],
+    warbondCode: 'warbond23',
+    internalName: 'gsh39shield',
+    imageURL: 'gsh39shield.webp',
+    antitank: false,
+    index: 18,
+    tier: 'b',
+  },
 ];
 
 // s: 3

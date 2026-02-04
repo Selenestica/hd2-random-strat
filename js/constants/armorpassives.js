@@ -252,6 +252,17 @@ const ARMOR_PASSIVES = [
     tier: 'b',
     index: 22,
   },
+  {
+    displayName: 'Supplementary Adrenaline',
+    type: 'Equipment',
+    category: 'armor',
+    tags: ['ArmorPassive'],
+    warbondCode: 'warbond23',
+    internalName: 'supplementaryadrenaline',
+    imageURL: 'supplementaryadrenaline.webp',
+    tier: 'b',
+    index: 23,
+  },
 ];
 
 // s: 1

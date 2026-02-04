@@ -24,20 +24,24 @@ GENERAL:
       - randomizer.js
     - splash page change log
     - /images
-      - /armor ***NEED BETTER IMAGES***
+      - /armor
       - /armorpassives
-      - /capes ***NEED BETTER IMAGES***
+      - /capes
       - /equipment
         - primaries
         - secondaries
         - boosters
-        - throwables ***NEED G-89 Smokescreen IMAGE***
+        - throwables
       - /helmets 
       - /warbonds
       - /svgs
 
-  - add images and stats to Loadout Builder
-  - add indices for all items
+  - add images to Loadout Builder for Redacted Regiment items
+  - fix drawer images for Redacted Regiment capes
+  - get images for RS-100 Sanctioner armor
+  - Supplementary Adrenaline image needed
+  - implement code for using item indices
+  - create specialists for Siege Breakers
 
 RANDOMIZER:
   - ability to enable/disable specific items from warbonds

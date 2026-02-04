@@ -386,7 +386,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Supplementary Adrenaline"],
     traits: [],
-    imageURL: "siegebreaker.webp",
+    imageURL: "",
     warbonds: ["warbond23"],
   },
   {
@@ -403,7 +403,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Supplementary Adrenaline"],
     traits: [],
-    imageURL: "siegebreaker.webp",
+    imageURL: "",
     warbonds: ["warbond23"],
   },
 

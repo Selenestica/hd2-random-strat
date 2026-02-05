@@ -145,9 +145,9 @@ const SPECOPSSPECS = [
     stratagems: [47, 71, 35, 40],
     primary: 2,
     secondary: 11,
-    throwable: 3,
+    throwable: 18,
     armorPassive: 8,
-    warbonds: ["warbond4", "warbond10"],
+    warbonds: ["warbond4", "warbond10", "warbond23"],
   },
   {
     locked: true,

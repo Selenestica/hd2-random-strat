@@ -36,8 +36,6 @@ GENERAL:
       - /warbonds
       - /svgs
 
-  - add images to Loadout Builder for Redacted Regiment items
-  - add Siege Breakers content in to Loadout Builder
   - fix drawer images for Redacted Regiment capes
   - get images for RS-100 Sanctioner armor
   - Supplementary Adrenaline image needed

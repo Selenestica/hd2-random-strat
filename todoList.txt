@@ -36,9 +36,8 @@ GENERAL:
       - /warbonds
       - /svgs
 
-  - fix drawer images for Redacted Regiment capes
+  - fix drawer images for new capes
   - get images for RS-100 Sanctioner armor
-  - Supplementary Adrenaline image needed
   - implement code for using item indices
 
 RANDOMIZER:

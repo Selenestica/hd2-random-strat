@@ -1,75 +1,77 @@
-const helmetsList = document.getElementById('helmetsList');
-const armorList = document.getElementById('armorList');
-const capesList = document.getElementById('capesList');
-const helmetCard = document.getElementById('helmetCard');
-const helmetImg = document.getElementById('helmetImg');
-const helmetContainer = document.getElementById('helmetContainer');
-const armorImg = document.getElementById('armorImg');
-const capeImg = document.getElementById('capeImg');
-const infoContainer = document.getElementById('infoContainer');
-const armorNameText = document.getElementById('armorNameText');
-const helmetNameText = document.getElementById('helmetNameText');
-const capeNameText = document.getElementById('capeNameText');
-const passiveNameText = document.getElementById('passiveNameText');
-const protectionValueText = document.getElementById('protectionValueText');
-const speedValueText = document.getElementById('speedValueText');
-const staminaValueText = document.getElementById('staminaValueText');
-const typeValueText = document.getElementById('typeValueText');
-const armorDrawer = document.getElementById('armorDrawer');
-const helmetDrawer = document.getElementById('helmetDrawer');
-const capesDrawer = document.getElementById('capesDrawer');
-const loadoutNameContainer = document.getElementById('loadoutNameContainer');
-const loadoutEditNameContainer = document.getElementById('loadoutEditNameContainer');
-const loadoutNameText = document.getElementById('loadoutNameText');
-const newLoadoutNameInput = document.getElementById('newLoadoutNameInput');
-const warbondCheckboxes = document.getElementsByClassName('warbondCheckboxes');
-const helmetSearchInput = document.getElementById('helmetSearchInput');
-const armorSearchInput = document.getElementById('armorSearchInput');
-const capeSearchInput = document.getElementById('capeSearchInput');
+const helmetsList = document.getElementById("helmetsList");
+const armorList = document.getElementById("armorList");
+const capesList = document.getElementById("capesList");
+const helmetCard = document.getElementById("helmetCard");
+const helmetImg = document.getElementById("helmetImg");
+const helmetContainer = document.getElementById("helmetContainer");
+const armorImg = document.getElementById("armorImg");
+const capeImg = document.getElementById("capeImg");
+const infoContainer = document.getElementById("infoContainer");
+const armorNameText = document.getElementById("armorNameText");
+const helmetNameText = document.getElementById("helmetNameText");
+const capeNameText = document.getElementById("capeNameText");
+const passiveNameText = document.getElementById("passiveNameText");
+const protectionValueText = document.getElementById("protectionValueText");
+const speedValueText = document.getElementById("speedValueText");
+const staminaValueText = document.getElementById("staminaValueText");
+const typeValueText = document.getElementById("typeValueText");
+const armorDrawer = document.getElementById("armorDrawer");
+const helmetDrawer = document.getElementById("helmetDrawer");
+const capesDrawer = document.getElementById("capesDrawer");
+const loadoutNameContainer = document.getElementById("loadoutNameContainer");
+const loadoutEditNameContainer = document.getElementById(
+  "loadoutEditNameContainer",
+);
+const loadoutNameText = document.getElementById("loadoutNameText");
+const newLoadoutNameInput = document.getElementById("newLoadoutNameInput");
+const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
+const helmetSearchInput = document.getElementById("helmetSearchInput");
+const armorSearchInput = document.getElementById("armorSearchInput");
+const capeSearchInput = document.getElementById("capeSearchInput");
 
-let currentArmor = 'b01tactical';
-let currentHelmet = 'b01tactical';
-let currentCape = 'foesmasher';
-let currentLoadoutName = 'Unnamed Set #1';
+let currentArmor = "b01tactical";
+let currentHelmet = "b01tactical";
+let currentCape = "foesmasher";
+let currentLoadoutName = "Unnamed Set #1";
 
-helmetSearchInput.addEventListener('input', () => {
-  const itemCards = document.getElementsByClassName('helmetsCards');
+helmetSearchInput.addEventListener("input", () => {
+  const itemCards = document.getElementsByClassName("helmetsCards");
   const query = helmetSearchInput.value.toLowerCase();
 
   Array.from(itemCards).forEach((item) => {
     const match = item.dataset.internalname.toLowerCase().includes(query);
-    item.classList.toggle('d-none', !match);
+    item.classList.toggle("d-none", !match);
   });
 });
 
-armorSearchInput.addEventListener('input', () => {
-  const itemCards = document.getElementsByClassName('armorCards');
+armorSearchInput.addEventListener("input", () => {
+  const itemCards = document.getElementsByClassName("armorCards");
   const query = armorSearchInput.value.toLowerCase();
 
   Array.from(itemCards).forEach((item) => {
     const match = item.dataset.internalname.toLowerCase().includes(query);
-    item.classList.toggle('d-none', !match);
+    item.classList.toggle("d-none", !match);
   });
 });
 
-capeSearchInput.addEventListener('input', () => {
-  const itemCards = document.getElementsByClassName('capesCards');
+capeSearchInput.addEventListener("input", () => {
+  const itemCards = document.getElementsByClassName("capesCards");
   const query = capeSearchInput.value.toLowerCase();
 
   Array.from(itemCards).forEach((item) => {
     const match = item.dataset.internalname.toLowerCase().includes(query);
-    item.classList.toggle('d-none', !match);
+    item.classList.toggle("d-none", !match);
   });
 });
 
 const editName = () => {
-  loadoutNameContainer.classList.toggle('d-none', true);
-  loadoutEditNameContainer.classList.toggle('d-none', false);
+  loadoutNameContainer.classList.toggle("d-none", true);
+  loadoutEditNameContainer.classList.toggle("d-none", false);
 };
 
 const submitLoadoutName = () => {
-  loadoutNameContainer.classList.toggle('d-none', false);
-  loadoutEditNameContainer.classList.toggle('d-none', true);
+  loadoutNameContainer.classList.toggle("d-none", false);
+  loadoutEditNameContainer.classList.toggle("d-none", true);
   loadoutNameText.innerHTML = newLoadoutNameInput.value;
   currentLoadoutName = newLoadoutNameInput.value;
   updateCurrentLoadout();
@@ -77,7 +79,7 @@ const submitLoadoutName = () => {
 };
 
 const saveLoadout = async () => {
-  const data = localStorage.getItem('armorLabSaveData');
+  const data = localStorage.getItem("armorLabSaveData");
 
   // create data if none exists
   if (!data) {
@@ -95,14 +97,14 @@ const saveLoadout = async () => {
         },
       ],
     };
-    localStorage.setItem('armorLabSaveData', JSON.stringify(newSaveObj));
+    localStorage.setItem("armorLabSaveData", JSON.stringify(newSaveObj));
     return;
   }
 
   const parsedData = JSON.parse(data);
   let newData = { ...parsedData };
   if (!JSON.parse(data).loadouts) {
-    localStorage.removeItem('armorLabSaveData');
+    localStorage.removeItem("armorLabSaveData");
     return;
   }
 
@@ -115,13 +117,13 @@ const saveLoadout = async () => {
     name: currentLoadoutName,
   };
   newData.loadouts.push(newLoadoutSaveObj);
-  localStorage.setItem('armorLabSaveData', JSON.stringify(newData));
+  localStorage.setItem("armorLabSaveData", JSON.stringify(newData));
   showLoadoutSavedToast(currentLoadoutName);
   genSaveDataManagementModalContent();
 };
 
 const updateCurrentLoadout = async () => {
-  const data = await localStorage.getItem('armorLabSaveData');
+  const data = await localStorage.getItem("armorLabSaveData");
   // create data if none exists
   if (!data) {
     let newSaveObj = {
@@ -131,7 +133,7 @@ const updateCurrentLoadout = async () => {
       name: currentLoadoutName,
       loadouts: [],
     };
-    localStorage.setItem('armorLabSaveData', JSON.stringify(newSaveObj));
+    localStorage.setItem("armorLabSaveData", JSON.stringify(newSaveObj));
     return;
   }
 
@@ -142,12 +144,12 @@ const updateCurrentLoadout = async () => {
   newData.helmet = currentHelmet;
   newData.name = currentLoadoutName;
 
-  localStorage.setItem('armorLabSaveData', JSON.stringify(newData));
+  localStorage.setItem("armorLabSaveData", JSON.stringify(newData));
 };
 
 const uploadSaveData = async (saveIndex = null) => {
   // get ls data
-  const data = await localStorage.getItem('armorLabSaveData');
+  const data = await localStorage.getItem("armorLabSaveData");
   if (!data) {
     genImageDrawerContent();
     return;
@@ -157,9 +159,9 @@ const uploadSaveData = async (saveIndex = null) => {
   const parsedData = JSON.parse(data);
   const { armor, cape, helmet, name } =
     saveIndex === null ? parsedData : parsedData.loadouts[saveIndex];
-  setItem(armor, 'armor');
-  setItem(cape, 'capes');
-  setItem(helmet, 'helmets');
+  setItem(armor, "armor");
+  setItem(cape, "capes");
+  setItem(helmet, "helmets");
   loadoutNameText.innerHTML = name;
   currentLoadoutName = name;
   if (saveIndex === null) {
@@ -170,15 +172,15 @@ const uploadSaveData = async (saveIndex = null) => {
 
 const genImageDrawerContent = async () => {
   for (let i = 0; i < HELMETS.length; i++) {
-    const helmetCard = await generateItemCard(HELMETS[i], 'helmets');
+    const helmetCard = await generateItemCard(HELMETS[i], "helmets");
     helmetsList.innerHTML += helmetCard;
   }
   for (let j = 0; j < ARMOR_SETS.length; j++) {
-    const armorCard = await generateItemCard(ARMOR_SETS[j], 'armor');
+    const armorCard = await generateItemCard(ARMOR_SETS[j], "armor");
     armorList.innerHTML += armorCard;
   }
   for (let i = 0; i < CAPES.length; i++) {
-    const capeCard = await generateItemCard(CAPES[i], 'capes');
+    const capeCard = await generateItemCard(CAPES[i], "capes");
     capesList.innerHTML += capeCard;
   }
 };
@@ -186,13 +188,13 @@ const genImageDrawerContent = async () => {
 const generateItemCard = (item, type) => {
   // get width of screen
   const width = window.innerWidth;
-  let closeDrawerFnc = '';
+  let closeDrawerFnc = "";
   if (width < 1200) {
     closeDrawerFnc = 'data-bs-dismiss="offcanvas"';
   }
-  let armorTypeClass = '';
-  let armorPassive = '';
-  if (type === 'armor') {
+  let armorTypeClass = "";
+  let armorPassive = "";
+  if (type === "armor") {
     armorTypeClass = item.tags[0];
     armorPassive = item.passive;
   }
@@ -216,90 +218,112 @@ const generateItemCard = (item, type) => {
 
 const applySpecialRules = () => {
   // default styles
-  helmetCard.style.clipPath = 'inset(1px 25px 12px 22px)';
-  helmetContainer.style.top = '11px';
-  helmetContainer.style.left = '53.5%';
-  helmetContainer.style.minWidth = '96px';
-  armorImg.style.objectPosition = 'center -40px';
-  armorImg.style.marginTop = '0rem';
-  helmetImg.style.width = '100%';
-  capeImg.style.width = '100%';
+  helmetCard.style.clipPath = "inset(1px 25px 12px 22px)";
+  helmetContainer.style.top = "11px";
+  helmetContainer.style.left = "53.5%";
+  helmetContainer.style.minWidth = "96px";
+  armorImg.style.objectPosition = "center -40px";
+  armorImg.style.marginTop = "0rem";
+  helmetImg.style.width = "100%";
+  capeImg.style.width = "100%";
 
   // has an air filter that juts out
-  if (currentHelmet === 'ce27groundbreaker') {
-    helmetCard.style.clipPath = 'inset(1px 1px 12px 22px)';
+  if (currentHelmet === "ce27groundbreaker") {
+    helmetCard.style.clipPath = "inset(1px 1px 12px 22px)";
   }
 
   // with the Redacted Regiment armors, i fixed them to play a little nicer, but they still need a slight tweak
-  const rrArmors = ['rs89shadowparagon', 'rs67nullcipher', 'sa7headfirst', 'sa8ram'];
+  const rrArmors = [
+    "rs89shadowparagon",
+    "rs67nullcipher",
+    "sa7headfirst",
+    "sa8ram",
+  ];
   if (rrArmors.includes(currentArmor)) {
-    armorImg.style.marginTop = '0.25rem';
+    armorImg.style.marginTop = "0.25rem";
   }
 
   // the helmets are larger than the others for some reason
   const largeHelmets = [
-    'rs6fienddestroyer',
-    'rs89shadowparagon',
-    'rs67nullcipher',
-    'sa7headfirst',
-    'sa8ram',
+    "rs6fienddestroyer",
+    "rs89shadowparagon",
+    "rs67nullcipher",
+    "sa7headfirst",
+    "sa8ram",
   ];
   if (largeHelmets.includes(currentHelmet)) {
-    helmetImg.style.width = '84%';
-    helmetContainer.style.top = '22px';
-    helmetContainer.style.left = '54.5%';
+    helmetImg.style.width = "84%";
+    helmetContainer.style.top = "22px";
+    helmetContainer.style.left = "54.5%";
   }
 
-  if (currentHelmet === 'sa8ram' && currentArmor === 'sa8ram') {
-    helmetContainer.style.top = '12px';
-    helmetCard.style.clipPath = 'inset(1px 1px 1px 1px)';
+  if (currentHelmet === "sa8ram" && currentArmor === "sa8ram") {
+    helmetContainer.style.top = "12px";
+    helmetCard.style.clipPath = "inset(1px 1px 1px 1px)";
   }
 
-  if (currentHelmet === 'sa7headfirst' && currentArmor === 'sa7headfirst') {
-    helmetContainer.style.top = '15px';
-    helmetCard.style.clipPath = 'inset(1px 1px 1px 1px)';
-    helmetContainer.style.left = '55%';
+  if (currentHelmet === "sa7headfirst" && currentArmor === "sa7headfirst") {
+    helmetContainer.style.top = "15px";
+    helmetCard.style.clipPath = "inset(1px 1px 1px 1px)";
+    helmetContainer.style.left = "55%";
+  }
+
+  if (currentHelmet === "dp8mountainscaled") {
+    // helmetContainer.style.top = "15px";
+    helmetContainer.style.left = "52.5%";
+  }
+
+  if (currentArmor === "dp8mountainscaled") {
+    armorImg.style.marginTop = "-0.2rem";
+    if (currentHelmet === "dp8mountainscaled") {
+      armorImg.style.marginTop = "-0.5rem";
+    }
   }
 
   // has a tall neck shield
-  if (currentArmor === 'fs55devastator') {
-    helmetCard.style.clipPath = 'inset(1px 25px 32px 22px)';
-    helmetContainer.style.top = '28px';
-    armorImg.style.objectPosition = 'center -25px';
+  if (currentArmor === "fs55devastator") {
+    helmetCard.style.clipPath = "inset(1px 25px 32px 22px)";
+    helmetContainer.style.top = "28px";
+    armorImg.style.objectPosition = "center -25px";
     if (largeHelmets.includes(currentHelmet)) {
-      helmetContainer.style.top = '38px';
-      helmetContainer.style.left = '54%';
+      helmetContainer.style.top = "38px";
+      helmetContainer.style.left = "54%";
     }
   }
 
   // these capes are too skinny
   const skinnyCapes = [
-    'pillaroftheabyss',
-    'triangulationveil',
-    'wedgefultricorn',
-    'ragsofthefashionable',
+    "pillaroftheabyss",
+    "triangulationveil",
+    "wedgefultricorn",
+    "ragsofthefashionable",
+    "thunderinghoovesofloyalty",
   ];
   if (skinnyCapes.includes(currentCape)) {
-    capeImg.style.width = '45%';
+    capeImg.style.width = "45%";
   }
 };
 
 const setItem = async (name, type) => {
-  if (type === 'helmets') {
+  if (type === "helmets") {
     helmetImg.src = `../images/helmets/${name}.webp`;
-    const helmetObjs = await HELMETS.filter((helm) => helm.internalName === name);
+    const helmetObjs = await HELMETS.filter(
+      (helm) => helm.internalName === name,
+    );
     helmetNameText.innerHTML = helmetObjs[0].displayName;
     currentHelmet = name;
   }
-  if (type === 'capes') {
+  if (type === "capes") {
     capeImg.src = `../images/capes/${name}.webp`;
     const capeObjs = await CAPES.filter((cape) => cape.internalName === name);
     capeNameText.innerHTML = capeObjs[0].displayName;
     currentCape = name;
   }
-  if (type === 'armor') {
+  if (type === "armor") {
     armorImg.src = `../images/armor/${name}.webp`;
-    const armorObjs = await ARMOR_SETS.filter((armor) => armor.internalName === name);
+    const armorObjs = await ARMOR_SETS.filter(
+      (armor) => armor.internalName === name,
+    );
     armorNameText.innerHTML = armorObjs[0].displayName;
     currentArmor = name;
     const { armorRating, speed, stamina, passive, tags } = armorObjs[0];

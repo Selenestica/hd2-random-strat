@@ -280,6 +280,11 @@ const applySpecialRules = () => {
     }
   }
 
+  if (currentArmor === "rs100sanctioner") {
+    armorImg.style.objectPosition = "center -48px";
+    armorImg.style.marginLeft = "0.5rem";
+  }
+
   // has a tall neck shield
   if (currentArmor === "fs55devastator") {
     helmetCard.style.clipPath = "inset(1px 25px 32px 22px)";

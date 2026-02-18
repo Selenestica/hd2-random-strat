@@ -224,6 +224,7 @@ const applySpecialRules = () => {
   helmetContainer.style.minWidth = "96px";
   armorImg.style.objectPosition = "center -40px";
   armorImg.style.marginTop = "0rem";
+  armorImg.style.marginLeft = "0rem";
   helmetImg.style.width = "100%";
   capeImg.style.width = "100%";
 
@@ -283,6 +284,10 @@ const applySpecialRules = () => {
   if (currentArmor === "rs100sanctioner") {
     armorImg.style.objectPosition = "center -48px";
     armorImg.style.marginLeft = "0.5rem";
+  }
+
+  if (currentHelmet === "rs100sanctioner") {
+    helmetContainer.style.top = "16px";
   }
 
   // has a tall neck shield

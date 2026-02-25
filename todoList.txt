@@ -37,7 +37,6 @@ GENERAL:
       - /svgs
 
   - fix drawer images for new capes
-  - get images for RS-100 Sanctioner armor
   - implement code for using item indices
 
 RANDOMIZER:
@@ -53,6 +52,7 @@ PENITENT CRUSADE:
     - when challenge complete, add "View Results" button so they can see their score again
   - when mission fail, choose a and s tier items from acquiredItems, if any
   - random stratagem should probably be weighted to account for the fact that there are way more blue strats than other strats
+  - add modal or page for equipment rarity map
 
   - SPECIALIST ideas:
     - The Shotgun Surgeon
@@ -60,6 +60,7 @@ PENITENT CRUSADE:
     - for the Hellpod Enthusiast, maybe make them unable to use Eagle Smoke and Orbitals
 
   - BUGS:
+    - sometimes specialist doesnt display until page is reloaded
     
 
 BUDGET BLITZ

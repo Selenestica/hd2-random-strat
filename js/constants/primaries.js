@@ -284,7 +284,7 @@ const PRIMARIES = [
     internalName: 'sg225iebreakerincendiary',
     imageURL: 'sg225iebreakerincendiary.png',
     antitank: false,
-    tier: 's',
+    tier: 'a',
     index: 23,
   },
   {

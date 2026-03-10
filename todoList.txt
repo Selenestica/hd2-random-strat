@@ -36,8 +36,10 @@ GENERAL:
       - /warbonds
       - /svgs
 
+  - add new anniversary cape
   - fix drawer images for new capes
   - implement code for using item indices
+  - get ready for Entrenched Division warbond
 
 RANDOMIZER:
   - ability to enable/disable specific items from warbonds
@@ -87,6 +89,7 @@ SPECIAL OPERATIONS
 
   BUGS:
     - make green/red progress text a different color for colorblind people
+    - cant select Aecharnar Secundus as a planet
 
 TIER MAKER
   - make filter options checkbox toggles

@@ -65,7 +65,7 @@ const PRO_TIPS = [
   "The Emancipator and Patriot Exosuit are particularly effective on planets with cave systems.",
   "The Plasma Punisher, Scorcher, and other weapons with the explosive attribute can disrupt burrowing Terminids, including Rupture Chargers.",
   "If you can manage to land a supply stratagem on a Hive Lord, you can track the Hive Lord on the map even when it's burrowing.",
-  "You can turn the Lure Mine into an extended use decoy against melee enemies by throwing it high enough on a wall so that they can't reach it.",
+  "You can turn the TM-01 Lure Mine into an extended use decoy against melee enemies by throwing it high enough on a wall so that they can't reach it.",
   "The Re-Educator is useful for stealthily taking out Hulks. Shoot the Hulk with a gas dart, then destroy it's heat vent with a suppressed weapon.",
   "In the gunner position in the TD-220 Bastion, press the reload button to reload the main gun.",
   "The TD-220 Bastion tank has a large amount of ammunition, especially for it's coaxial heavy machine gun. Make sure that ammunition doesn't go to waste by firing at enemies every chance you get.",
@@ -74,4 +74,6 @@ const PRO_TIPS = [
   "Shooting the rear heating vents on the Vox Engine will open a hatch that you can throw a grenade into, which will destroy it.",
   "You can adjust the firing speed when using the Belt-Fed Grenade Launcher.",
   "The G/SH-39 throwable shield generator is excellent for protection when interacting with terminals and valves at objectives.",
+  "Make sure to aim high when throwing the TM-01 Lure Mine, as it will explode as soon as it's deployed if you're standing too close.",
+  "You can become completely immune to gas damage if you wear heavy armor with the Advanced Filtration passive while the Vitality Enhancement booster is in effect.",
 ];

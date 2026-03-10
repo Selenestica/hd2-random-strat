@@ -12,7 +12,7 @@ const SPECOPSSPECS = [
   {
     locked: true,
     displayName: "The Asphyxiator",
-    stratagems: [0, 51, 77, 28],
+    stratagems: [0, 51, 77, 28, 2],
     primary: 23,
     secondary: 15,
     throwable: 12,
@@ -566,7 +566,7 @@ const SPECOPSSPECS = [
   //   displayName: "The Devil Dog",
   //   stratagems: [
   //     "Heavy Flamer",
-  //     "Mortar Sentry",
+  //     "Gas Mortar Sentry",
   //     "Grenadier Battlement",
   //     "TD-220 Bastion",
   //   ],
@@ -577,12 +577,13 @@ const SPECOPSSPECS = [
   //   warbonds: ["warbond22", "warbond13", "warbond14"],
   // },
 
-  // heavy flamer
-  // trench pistol
-  // trench shotgun
-  // trench armor
-  // fire SMG
-
-  // UNUSED ITEMS:
-  // diligence CS
+  // UNUSED
+  // P-69 Veto secondary
+  // CQC-73 Entrenchment Tool secondary
+  // Concussive Padding armor
+  // SMG/FLAM-34 Stoker primary
+  // A/GM-17 Gas Mortar Sentry stratagem
+  // B/FLAM-80 Cremator stratagem
+  // G-48 Giga Grenade throwable
+  // trench shotgun ?
 ];

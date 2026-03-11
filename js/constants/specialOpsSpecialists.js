@@ -82,7 +82,7 @@ const SPECOPSSPECS = [
   {
     locked: true,
     displayName: "The Detonator",
-    stratagems: [8, 45, 39, 76], // 81 belt fed grenade launcher, 26 c4 pack
+    stratagems: [8, 45, 39, 76, 26], // 81 belt fed grenade launcher, 26 c4 pack
     primary: 42,
     secondary: 0,
     throwable: 15,
@@ -502,7 +502,7 @@ const SPECOPSSPECS = [
   {
     locked: true,
     displayName: "The Siege Breaker",
-    stratagems: [80, 82, 59, 63], // leveller, bastion tank, 380, mortar sentry
+    stratagems: [80, 81, 82, 59, 63], // leveller, bastion tank, 380, mortar sentry
     primary: 46, // trident
     secondary: 7, // verdict
     throwable: 18, // shield grenade
@@ -565,25 +565,32 @@ const SPECOPSSPECS = [
   //   locked: true,
   //   displayName: "The Devil Dog",
   //   stratagems: [
-  //     "Heavy Flamer",
-  //     "Gas Mortar Sentry",
-  //     "Grenadier Battlement",
-  //     "TD-220 Bastion",
+  //     84, // Cremator,
+  //     54, // Orbital Airburst Strike,
+  //     44, // Eagle Airstrike,
+  //     82 // "TD-220 Bastion",
   //   ],
   //   primary: "trench shotgun",
-  //   secondary: "trench pistol",
-  //   throwable: 12,
-  //   armorPassive: "trench armor",
-  //   warbonds: ["warbond22", "warbond13", "warbond14"],
+  //   secondary: 20, // Veto
+  //   throwable: 12, // Gas grenade
+  //   armorPassive: 24, // Concussive Padding
+  //   warbonds: ["warbond24", "warbond1", "warbond10"],
+  // },
+  // {
+  //   locked: true,
+  //   displayName: "The Kriegsman",
+  //   stratagems: [
+  //     5, // Machine Gun
+  //     83, // "Gas Mortar Sentry",
+  //     74, // "Grenadier Battlement",
+  //     18 // One True Flag,
+  //   ],
+  //   primary: 47, // Stoker
+  //   secondary: 21, // Entrenchment Tool
+  //   throwable: 19, // Giga
+  //   armorPassive: 24, // Concussive Padding
+  //   warbonds: ["warbond24", "warbond15"],
   // },
 
   // UNUSED
-  // P-69 Veto secondary
-  // CQC-73 Entrenchment Tool secondary
-  // Concussive Padding armor
-  // SMG/FLAM-34 Stoker primary
-  // A/GM-17 Gas Mortar Sentry stratagem
-  // B/FLAM-80 Cremator stratagem
-  // G-48 Giga Grenade throwable
-  // trench shotgun ?
 ];

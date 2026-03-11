@@ -575,6 +575,18 @@ const PRIMARIES = [
   //   tier: "b",
   //   index: 47,
   // },
+  // {
+  //   displayName: "trench shotgun?",
+  //   type: "Equipment",
+  //   category: "primary",
+  //   tags: ["Shotgun"],
+  //   warbondCode: "warbond1",
+  //   internalName: "smgflam34stoker",
+  //   imageURL: "smgflam34stoker.webp",
+  //   antitank: false,
+  //   tier: "b",
+  //   index: 48,
+  // },
 ];
 
 // s: 7

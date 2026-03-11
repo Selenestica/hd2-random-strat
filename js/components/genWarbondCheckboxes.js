@@ -26,7 +26,7 @@ const warbondsList = [
   "Python Commandos", //warbond21
   "Redacted Regiment", //warbond22
   "Siege Breakers", //warbond23
-  //   'Entrenched Division' //warbond24
+  //'Entrenched Division' //warbond24
 ];
 
 const genWarbondCheckboxes = () => {

@@ -240,7 +240,7 @@ const SECONDARIES = [
     tier: "s",
   },
   // {
-  //   displayName: "P-69 Veto",
+  //   displayName: "Veto",
   //   type: "Equipment",
   //   category: "secondary",
   //   tags: [],
@@ -252,7 +252,7 @@ const SECONDARIES = [
   //   tier: "b",
   // },
   // {
-  //   displayName: "CQC-73 Entrenchment Tool",
+  //   displayName: "Entrenchment Tool",
   //   type: "Equipment",
   //   category: "secondary",
   //   tags: [],

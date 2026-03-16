@@ -584,7 +584,7 @@ const STRATAGEMS = [
     internalName: "eagle110mmrocketpods",
     imageURL: "eagle110mmrocketpods.svg",
     antitank: true,
-    tier: "b",
+    tier: "c",
     index: 48,
   },
   {
@@ -812,7 +812,7 @@ const STRATAGEMS = [
     internalName: "aflam40flamesentry",
     imageURL: "aflam40flamesentry.svg",
     antitank: false,
-    tier: "b",
+    tier: "c",
     index: 67,
   },
   {
@@ -908,7 +908,7 @@ const STRATAGEMS = [
     internalName: "antitankmines",
     imageURL: "antitankmines.svg",
     antitank: true,
-    tier: "b",
+    tier: "c",
     index: 75,
   },
   {

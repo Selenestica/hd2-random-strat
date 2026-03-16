@@ -36,7 +36,6 @@ GENERAL:
       - /warbonds
       - /svgs
 
-  - add new anniversary cape
   - fix drawer images for new capes
   - implement code for using item indices
   - get ready for Entrenched Division warbond

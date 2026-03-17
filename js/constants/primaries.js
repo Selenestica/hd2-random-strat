@@ -576,7 +576,7 @@ const PRIMARIES = [
     index: 47,
   },
   {
-    displayName: "SG-97 Sweeper",
+    displayName: "Sweeper",
     type: "Equipment",
     category: "primary",
     tags: ["Shotgun"],

@@ -538,7 +538,7 @@ const SPECOPSSPECS = [
       44, // Eagle Airstrike,
       82, // "TD-220 Bastion",
     ],
-    primary: "trench shotgun",
+    primary: 48, // Sweeper
     secondary: 20, // Veto
     throwable: 12, // Gas grenade
     armorPassive: 24, // Concussive Padding

@@ -244,6 +244,36 @@ const applySpecialRules = () => {
     armorImg.style.marginTop = "0.25rem";
   }
 
+  const edArmors = ["cph26commandant"];
+  if (edArmors.includes(currentArmor)) {
+    armorImg.style.objectPosition = "center -60px";
+    armorImg.style.marginLeft = "0.2rem";
+  }
+  if (edArmors.includes(currentHelmet)) {
+    helmetCard.style.clipPath = "inset(1px 20px 12px 22px)";
+  }
+  if (edArmors.includes(currentHelmet) && edArmors.includes(currentArmor)) {
+    armorImg.style.marginLeft = "0.35rem";
+  }
+
+  const sapperArmor = ["cpg48sapper"];
+  if (sapperArmor.includes(currentArmor)) {
+    armorImg.style.objectPosition = "center -60px";
+    armorImg.style.marginLeft = "0.2rem";
+  }
+  if (sapperArmor.includes(currentHelmet)) {
+    helmetCard.style.clipPath = "inset(1px 10px 16px 22px)";
+    helmetContainer.style.left = "53%";
+  }
+  if (
+    sapperArmor.includes(currentHelmet) &&
+    sapperArmor.includes(currentArmor)
+  ) {
+    armorImg.style.marginLeft = "0.35rem";
+    helmetContainer.style.top = "8px";
+    helmetContainer.style.left = "54%";
+  }
+
   // the helmets are larger than the others for some reason
   const largeHelmets = [
     "rs6fienddestroyer",
@@ -308,9 +338,17 @@ const applySpecialRules = () => {
     "wedgefultricorn",
     "ragsofthefashionable",
     "thunderinghoovesofloyalty",
+    "dignityoftoil",
+    "crestoftheunsullied",
   ];
   if (skinnyCapes.includes(currentCape)) {
     capeImg.style.width = "45%";
+  }
+
+  // these capes are too skinny but not as skinny as the ones above
+  const skinnyishCapes = ["dignityoftoil", "crestoftheunsullied"];
+  if (skinnyishCapes.includes(currentCape)) {
+    capeImg.style.width = "60%";
   }
 };
 

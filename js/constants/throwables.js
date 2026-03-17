@@ -227,18 +227,18 @@ const THROWABLES = [
     index: 18,
     tier: "b",
   },
-  // {
-  //   displayName: "G-48 Giga",
-  //   type: "Equipment",
-  //   category: "throwable",
-  //   tags: [],
-  //   warbondCode: "warbond24",
-  //   internalName: "g48giga",
-  //   imageURL: "g48giga.webp",
-  //   antitank: true,
-  //   index: 19,
-  //   tier: "a",
-  // },
+  {
+    displayName: "G-48 Giga",
+    type: "Equipment",
+    category: "throwable",
+    tags: [],
+    warbondCode: "warbond24",
+    internalName: "g48giga",
+    imageURL: "g48giga.webp",
+    antitank: true,
+    index: 19,
+    tier: "a",
+  },
 ];
 
 // s: 3

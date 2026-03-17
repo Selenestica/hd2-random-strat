@@ -563,33 +563,33 @@ const PRIMARIES = [
     tier: "b",
     index: 46,
   },
-  // {
-  //   displayName: "Stoker",
-  //   type: "Equipment",
-  //   category: "primary",
-  //   tags: ["SubmachineGun"],
-  //   warbondCode: "warbond24",
-  //   internalName: "smgflam34stoker",
-  //   imageURL: "smgflam34stoker.webp",
-  //   antitank: false,
-  //   tier: "b",
-  //   index: 47,
-  // },
-  // {
-  //   displayName: "trench shotgun?",
-  //   type: "Equipment",
-  //   category: "primary",
-  //   tags: ["Shotgun"],
-  //   warbondCode: "warbond1",
-  //   internalName: "smgflam34stoker",
-  //   imageURL: "smgflam34stoker.webp",
-  //   antitank: false,
-  //   tier: "b",
-  //   index: 48,
-  // },
+  {
+    displayName: "Stoker",
+    type: "Equipment",
+    category: "primary",
+    tags: ["SubmachineGun"],
+    warbondCode: "warbond24",
+    internalName: "smgflam34stoker",
+    imageURL: "smgflam34stoker.webp",
+    antitank: false,
+    tier: "b",
+    index: 47,
+  },
+  {
+    displayName: "SG-97 Sweeper",
+    type: "Equipment",
+    category: "primary",
+    tags: ["Shotgun"],
+    warbondCode: "warbond1",
+    internalName: "sg97sweeper",
+    imageURL: "sg97sweeper.webp",
+    antitank: false,
+    tier: "a",
+    index: 48,
+  },
 ];
 
 // s: 7
-// a: 17
-// b: 21
+// a: 18
+// b: 22
 // c: 1

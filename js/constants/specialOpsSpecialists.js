@@ -529,6 +529,36 @@ const SPECOPSSPECS = [
     armorPassive: 10, // "Scout"
     warbonds: ["warbond20", "warbond12", "warbond19", "warbond23"],
   },
+  {
+    locked: true,
+    displayName: "The Devil Dog",
+    stratagems: [
+      84, // Cremator,
+      54, // Orbital Airburst Strike,
+      44, // Eagle Airstrike,
+      82, // "TD-220 Bastion",
+    ],
+    primary: "trench shotgun",
+    secondary: 20, // Veto
+    throwable: 12, // Gas grenade
+    armorPassive: 24, // Concussive Padding
+    warbonds: ["warbond24", "warbond1", "warbond10"],
+  },
+  {
+    locked: true,
+    displayName: "The Kriegsman",
+    stratagems: [
+      5, // Machine Gun
+      83, // "Gas Mortar Sentry",
+      74, // "Grenadier Battlement",
+      76, // Anti-Personnel Mines,
+    ],
+    primary: 47, // Stoker
+    secondary: 21, // Entrenchment Tool
+    throwable: 19, // Giga
+    armorPassive: 24, // Concussive Padding
+    warbonds: ["warbond24", "warbond15"],
+  },
   // {
   //   locked: true,
   //   displayName: "The Protector",
@@ -559,37 +589,6 @@ const SPECOPSSPECS = [
   //   throwable: 9,
   //   armorPassive: "Unflinching",
   //   warbonds: ["warbond7", "warbond13"],
-  // },
-
-  // {
-  //   locked: true,
-  //   displayName: "The Devil Dog",
-  //   stratagems: [
-  //     84, // Cremator,
-  //     54, // Orbital Airburst Strike,
-  //     44, // Eagle Airstrike,
-  //     82 // "TD-220 Bastion",
-  //   ],
-  //   primary: "trench shotgun",
-  //   secondary: 20, // Veto
-  //   throwable: 12, // Gas grenade
-  //   armorPassive: 24, // Concussive Padding
-  //   warbonds: ["warbond24", "warbond1", "warbond10"],
-  // },
-  // {
-  //   locked: true,
-  //   displayName: "The Kriegsman",
-  //   stratagems: [
-  //     5, // Machine Gun
-  //     83, // "Gas Mortar Sentry",
-  //     74, // "Grenadier Battlement",
-  //     18 // One True Flag,
-  //   ],
-  //   primary: 47, // Stoker
-  //   secondary: 21, // Entrenchment Tool
-  //   throwable: 19, // Giga
-  //   armorPassive: 24, // Concussive Padding
-  //   warbonds: ["warbond24", "warbond15"],
   // },
 
   // UNUSED

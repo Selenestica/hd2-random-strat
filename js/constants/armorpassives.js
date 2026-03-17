@@ -263,17 +263,17 @@ const ARMOR_PASSIVES = [
     tier: "b",
     index: 23,
   },
-  // {
-  //   displayName: "Concussive Padding",
-  //   type: "Equipment",
-  //   category: "armor",
-  //   tags: ["ArmorPassive"],
-  //   warbondCode: "warbond23",
-  //   internalName: "concussivepadding",
-  //   imageURL: "concussivepadding.webp",
-  //   tier: "b",
-  //   index: 24,
-  // },
+  {
+    displayName: "Concussive Padding",
+    type: "Equipment",
+    category: "armor",
+    tags: ["ArmorPassive"],
+    warbondCode: "warbond23",
+    internalName: "concussivepadding",
+    imageURL: "concussivepadding.webp",
+    tier: "b",
+    index: 24,
+  },
 ];
 
 // s: 1

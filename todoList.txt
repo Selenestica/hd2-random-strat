@@ -38,7 +38,8 @@ GENERAL:
 
   - fix drawer images for new capes
   - implement code for using item indices
-  - get ready for Entrenched Division warbond
+  - Entrenched Division superstore item images
+  - update Loadout Builder with new Entrenched Division content
 
 RANDOMIZER:
   - ability to enable/disable specific items from warbonds
@@ -53,7 +54,8 @@ PENITENT CRUSADE:
     - when challenge complete, add "View Results" button so they can see their score again
   - when mission fail, choose a and s tier items from acquiredItems, if any
   - random stratagem should probably be weighted to account for the fact that there are way more blue strats than other strats
-  - add modal or page for equipment rarity map
+  - add options for different fronts, which affects starting loadout
+  - for solo/duo, minimum reward options to be 2 instead of 1 when not using a specialist (maybe?)
 
   - SPECIALIST ideas:
     - The Shotgun Surgeon

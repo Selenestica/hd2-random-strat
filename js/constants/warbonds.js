@@ -196,7 +196,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond22",
     internalName: "redactedregimentWB",
-    imageURL: "redactedregimentWB.webp",
+    imageURL: "redactedRegimentWB.webp",
     tier: "b",
   },
   {
@@ -206,7 +206,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond23",
     internalName: "siegebreakersWB",
-    imageURL: "siegebreakersWB.webp",
+    imageURL: "siegeBreakersWB.webp",
     tier: "b",
   },
   {

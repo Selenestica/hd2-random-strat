@@ -38,7 +38,6 @@ GENERAL:
 
   - fix drawer images for new capes
   - implement code for using item indices
-  - Entrenched Division superstore item images
   - update Loadout Builder with new Entrenched Division content
 
 RANDOMIZER:

@@ -281,6 +281,7 @@ const applySpecialRules = () => {
     "rs67nullcipher",
     "sa7headfirst",
     "sa8ram",
+    "cpr80bulwark",
   ];
   if (largeHelmets.includes(currentHelmet)) {
     helmetImg.style.width = "84%";
@@ -328,6 +329,16 @@ const applySpecialRules = () => {
     if (largeHelmets.includes(currentHelmet)) {
       helmetContainer.style.top = "38px";
       helmetContainer.style.left = "54%";
+    }
+  }
+
+  // also has a tall neck shield, but not as tall as the other one
+  if (currentArmor === "cpr80bulwark") {
+    helmetCard.style.clipPath = "inset(1px 25px 20px 22px)";
+    helmetContainer.style.top = "17px";
+    armorImg.style.objectPosition = "center -39px";
+    if (largeHelmets.includes(currentHelmet)) {
+      helmetContainer.style.top = "28px";
     }
   }
 

@@ -28,6 +28,7 @@ let starterSecNames = [
   "Combat Hatchet",
   "Saber",
   "Machete",
+  "Entrenchment Tool",
 ];
 let starterThrowNames = ["G-12 High Explosive"];
 let starterArmorPassiveNames = ["Extra Padding"];
@@ -66,6 +67,8 @@ const getStartingStrats = (diff) => {
       "Grenadier Battlement",
       "Anti-Tank Mines",
       "Eagle 110mm Rocket Pods",
+      "Orbital Gatling Barrage",
+      "Arc Thrower",
     ]);
   }
   return strats;
@@ -85,6 +88,7 @@ const getStartingSecondaries = (diff) => {
     "Combat Hatchet",
     "Saber",
     "Machete",
+    "Entrenchment Tool",
   ];
   if (diff !== "super" && diff !== "supersolo") {
     secondaries.push("Peacemaker");

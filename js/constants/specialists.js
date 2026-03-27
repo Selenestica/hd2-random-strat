@@ -432,6 +432,19 @@ const SPECIALISTS = [
     imageURL: "",
     warbonds: ["warbond24"],
   },
+  {
+    displayName: "The Intercessor",
+    starterItems: ["Jump Pack", "Defoliation Tool and/or Breaching Hammer"],
+    stratagems: ["Jump Pack", "Defoliation Tool", "Breaching Hammer"],
+    primaries: [],
+    boosters: [],
+    secondaries: [],
+    throwables: [],
+    armorPassives: [],
+    traits: [],
+    imageURL: "",
+    warbonds: ["warbond23", "warbond21"],
+  },
 
   // {
   //   displayName: 'The O.G.',

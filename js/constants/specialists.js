@@ -433,7 +433,7 @@ const SPECIALISTS = [
     warbonds: ["warbond24"],
   },
   {
-    displayName: "The Intercessor",
+    displayName: "The Assault Marine",
     starterItems: ["Jump Pack", "Defoliation Tool and/or Breaching Hammer"],
     stratagems: ["Jump Pack", "Defoliation Tool", "Breaching Hammer"],
     primaries: [],

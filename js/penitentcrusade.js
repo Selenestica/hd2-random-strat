@@ -991,6 +991,19 @@ const applySpecialistRules = async () => {
     newStrats = [];
     return;
   }
+
+  // only Eagles for EGC
+  if (specialist === "30") {
+    newStrats = await newStrats.filter((ns) => ns.category === "Eagle");
+    console.log(newStrats);
+    return;
+  }
+
+  // only Orbitals for OBGC
+  if (specialist === "31") {
+    newStrats = await newStrats.filter((ns) => ns.category === "Orbital");
+    return;
+  }
 };
 
 const applySpecialist = async (specToApply = null) => {
@@ -1015,7 +1028,7 @@ const applySpecialist = async (specToApply = null) => {
   }
   await getStartingItems(difficulty);
   startNewRun(specialist, difficulty, true);
-  const traitSpecialists = ["16", "17", "22"];
+  const traitSpecialists = ["16", "17", "22", "30", "31"];
   if (traitSpecialists.includes(specialist)) {
     await applySpecialistRules();
   }

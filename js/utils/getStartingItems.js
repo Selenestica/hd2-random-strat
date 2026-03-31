@@ -156,7 +156,7 @@ const getStartingItems = (diff = null) => {
       ? SPECIALISTS[specialist].armorPassives
       : starterArmorPassiveNames;
   starterBoosterNames =
-    SPECIALISTS[specialist].boosters > 0
+    SPECIALISTS[specialist].boosters.length > 0
       ? SPECIALISTS[specialist].boosters
       : starterBoosterNames;
 };

@@ -1011,7 +1011,7 @@ const STRATAGEMS = [
     displayName: "Cremator",
     type: "Stratagem",
     category: "Supply",
-    tags: ["Backpack", "Weapons"],
+    tags: ["Weapons", "Backpacks"],
     warbondCode: "warbond24",
     internalName: "cremator",
     imageURL: "cremator.svg",

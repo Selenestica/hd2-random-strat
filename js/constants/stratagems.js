@@ -104,7 +104,7 @@ const STRATAGEMS = [
     internalName: "gl21grenadelauncher",
     imageURL: "gl21grenadelauncher.svg",
     antitank: true,
-    tier: "s",
+    tier: "a",
     index: 8,
   },
   {
@@ -824,7 +824,7 @@ const STRATAGEMS = [
     internalName: "lasersentry",
     imageURL: "lasersentry.svg",
     antitank: true,
-    tier: "a",
+    tier: "b",
     index: 68,
   },
   {
@@ -884,7 +884,7 @@ const STRATAGEMS = [
     internalName: "eat12antitankemplacement",
     imageURL: "eat12antitankemplacement.svg",
     antitank: true,
-    tier: "s",
+    tier: "b",
     index: 73,
   },
   {
@@ -1016,7 +1016,7 @@ const STRATAGEMS = [
     internalName: "cremator",
     imageURL: "cremator.svg",
     antitank: false,
-    tier: "b",
+    tier: "a",
     index: 84,
   },
 ];

@@ -544,6 +544,19 @@ const SPECIALISTS = [
     imageURL: "",
     warbonds: [],
   },
+  {
+    displayName: "The Turtle",
+    starterItems: ["Shield Generator Pack", "G/SH-39 Shield"],
+    stratagems: ["Shield Generator Pack"],
+    primaries: [],
+    boosters: [],
+    secondaries: [],
+    throwables: ["G/SH-39 Shield"],
+    armorPassives: [],
+    traits: [],
+    imageURL: "",
+    warbonds: [],
+  },
 
   // {
   //   displayName: 'The O.G.',

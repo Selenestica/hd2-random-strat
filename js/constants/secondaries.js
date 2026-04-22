@@ -177,7 +177,7 @@ const SECONDARIES = [
     imageURL: "gp31grenadepistol.png",
     antitank: false,
     index: 14,
-    tier: "s",
+    tier: "a",
   },
   {
     displayName: "Re-Educator",
@@ -189,7 +189,7 @@ const SECONDARIES = [
     imageURL: "p35reeducator.webp",
     antitank: false,
     index: 15,
-    tier: "b",
+    tier: "c",
   },
   {
     displayName: "Dagger",

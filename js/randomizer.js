@@ -88,24 +88,11 @@ const initEventListeners = () => {
     cb.addEventListener("change", handleWarbondChange);
   });
 
-  // Add event delegation for rerolling items
-  elements.stratagemsContainer.addEventListener("click", (e) => {
-    const card = e.target.closest(".card");
-    if (card && card.dataset.internalName && card.dataset.category) {
-      const internalName = card.dataset.internalName;
-      const category = card.dataset.category;
-      rerollItem(internalName, category);
-    }
-  });
-
-  elements.equipmentContainer.addEventListener("click", (e) => {
-    const card = e.target.closest(".card");
-    if (card && card.dataset.internalName && card.dataset.category) {
-      const internalName = card.dataset.internalName;
-      const category = card.dataset.category;
-      rerollItem(internalName, category);
-    }
-  });
+  // Add toggle all warbonds functionality
+  const toggleAllButton = document.getElementById("toggleAllWarbonds");
+  if (toggleAllButton) {
+    toggleAllButton.addEventListener("change", handleToggleAllWarbonds);
+  }
 };
 
 // Handle stratagem radio changes
@@ -164,6 +151,60 @@ const updateRadioButtonsState = () => {
   }
 };
 
+// Update the toggle all button state based on individual checkboxes
+const updateToggleAllButton = () => {
+  const toggleAllButton = document.getElementById("toggleAllWarbonds");
+  if (!toggleAllButton) return;
+
+  const allWarbondCheckboxes = document.querySelectorAll(".warbondCheckboxes");
+  if (allWarbondCheckboxes.length === 0) return;
+
+  const checkedCount = Array.from(allWarbondCheckboxes).filter(
+    (cb) => cb.checked,
+  ).length;
+  const totalCount = allWarbondCheckboxes.length;
+
+  if (checkedCount === 0) {
+    toggleAllButton.checked = false;
+    toggleAllButton.indeterminate = false;
+  } else if (checkedCount === totalCount) {
+    toggleAllButton.checked = true;
+    toggleAllButton.indeterminate = false;
+  } else {
+    toggleAllButton.indeterminate = true;
+  }
+};
+
+// Handle toggle all warbonds
+const handleToggleAllWarbonds = (e) => {
+  const isChecked = e.target.checked;
+  const allWarbondCheckboxes = document.querySelectorAll(".warbondCheckboxes");
+
+  allWarbondCheckboxes.forEach((checkbox) => {
+    if (checkbox.checked !== isChecked) {
+      checkbox.checked = isChecked;
+
+      // Update the checkedWarbonds Set
+      if (isChecked) {
+        checkedWarbonds.add(checkbox.id);
+      } else {
+        checkedWarbonds.delete(checkbox.id);
+      }
+
+      // Update localStorage
+      updateLocalStorage(checkbox, "warbondOptions");
+    }
+  });
+
+  // Filter all items after toggling
+  filterItemsByWarbond();
+
+  // Re-roll everything to reflect new warbond selection
+  rollEquipment();
+  rollStratagems();
+  if (typeof rollArmor === "function") rollArmor();
+};
+
 // Handle warbond changes
 const handleWarbondChange = (e) => {
   updateLocalStorage(e.target, "warbondOptions");
@@ -174,6 +215,7 @@ const handleWarbondChange = (e) => {
     checkedWarbonds.delete(e.target.id);
   }
 
+  updateToggleAllButton(); // Update the toggle button state
   filterItemsByWarbond();
 };
 
@@ -635,8 +677,9 @@ const applyStoredOptionsToLists = async (options) => {
     if (cb.checked) checkedWarbonds.add(cb.id);
   });
 
+  updateToggleAllButton(); // Update the toggle button state after loading
   await filterItemsByWarbond();
-  updateRadioButtonsState(); // Ensure radio button states are correct after loading
+  updateRadioButtonsState();
 };
 
 // Utility functions
@@ -650,6 +693,7 @@ const rollProTip = () => {
 
 const randomizeAll = async () => {
   await checkLocalStorageForOptionsPreferences();
+  updateToggleAllButton(); // Ensure toggle button reflects current state
   rollEquipment();
   await rollStratagems();
   if (typeof rollArmor === "function") rollArmor();

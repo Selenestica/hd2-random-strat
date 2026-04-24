@@ -30,6 +30,17 @@ const warbondsList = [
 ];
 
 const genWarbondCheckboxes = () => {
+  warbondsChecklistContainer.innerHTML = `
+    <h5 class="text-white d-flex justify-content-center">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="toggleAllWarbonds" />
+        <label class="form-check-label" for="toggleAllWarbonds">
+          <div>Warbond Select</div>
+        </label>
+      </div>
+    </h5>
+  `;
+
   for (let i = 0; i < warbondsList.length; i++) {
     warbondsChecklistContainer.innerHTML += `                                    
           <div class="form-check">

@@ -25,12 +25,90 @@ missionCompleteModal.addEventListener("shown.bs.modal", () => {
   }
 });
 
+// Handle toggle all warbonds for Budget Blitz
+const handleToggleAllWarbonds = (e) => {
+  const isChecked = e.target.checked;
+  const allWarbondCheckboxes = document.querySelectorAll(".warbondCheckboxes");
+
+  allWarbondCheckboxes.forEach((checkbox) => {
+    // Skip warbond3 (Helldivers Mobilize) - it should always stay disabled and checked
+    if (checkbox.id === "warbond3") return;
+
+    if (checkbox.checked !== isChecked) {
+      checkbox.checked = isChecked;
+
+      // Update the warbondCodes array
+      if (isChecked) {
+        if (!warbondCodes.includes(checkbox.id)) {
+          warbondCodes.push(checkbox.id);
+        }
+      } else {
+        const indexToRemove = warbondCodes.indexOf(checkbox.id);
+        if (indexToRemove !== -1) {
+          warbondCodes.splice(indexToRemove, 1);
+        }
+      }
+
+      // Trigger change event to update localStorage and filtering
+      const changeEvent = new Event("change", { bubbles: true });
+      checkbox.dispatchEvent(changeEvent);
+    }
+  });
+
+  // Filter items and update UI
+  filterItemsByWarbond();
+  if (currentView === "shopButton") {
+    bbShopItemsContainer.innerHTML = "";
+    populateShopItems();
+  }
+};
+
+// Add toggle all warbonds functionality
+if (toggleAllButton) {
+  toggleAllButton.addEventListener("change", handleToggleAllWarbonds);
+}
+
+// Update the toggle all button state based on individual checkboxes
+const updateToggleAllButton = () => {
+  const toggleAllButton = document.getElementById("toggleAllWarbonds");
+  if (!toggleAllButton) return;
+
+  const allWarbondCheckboxes = document.querySelectorAll(".warbondCheckboxes");
+  // Filter out warbond3 (Helldivers Mobilize) since it's always disabled
+  const enabledCheckboxes = Array.from(allWarbondCheckboxes).filter(
+    (cb) => cb.id !== "warbond3",
+  );
+  if (enabledCheckboxes.length === 0) return;
+
+  const checkedCount = enabledCheckboxes.filter((cb) => cb.checked).length;
+  const totalCount = enabledCheckboxes.length;
+
+  if (checkedCount === 0) {
+    toggleAllButton.checked = false;
+    toggleAllButton.indeterminate = false;
+  } else if (checkedCount === totalCount) {
+    toggleAllButton.checked = true;
+    toggleAllButton.indeterminate = false;
+  } else {
+    toggleAllButton.indeterminate = true;
+  }
+};
+
 const startNewRun = async (isRestart = null) => {
   // probably want to set all warbond codes to checked just in case
   warbondCodes = [...masterWarbondCodes];
   for (let i = 0; i < warbondCheckboxes.length; i++) {
-    warbondCheckboxes[i].checked = true;
+    if (warbondCheckboxes[i].id === "warbond3") {
+      warbondCheckboxes[i].checked = true;
+      warbondCheckboxes[i].disabled = true;
+    } else {
+      warbondCheckboxes[i].checked = true;
+      warbondCheckboxes[i].disabled = false;
+    }
   }
+
+  // Update toggle button after setting checkboxes
+  updateToggleAllButton();
 
   difficulty = "Medium";
 
@@ -113,6 +191,7 @@ const updateShopItemsCostAndSaleStatus = async () => {
 
 const checkMissionButtons = () => {
   if (missionCounter > 8 || purchasedItems.length > 0) {
+    toggleAllButton.disabled = true;
     for (let i = 0; i < warbondCheckboxes.length; i++) {
       warbondCheckboxes[i].disabled = true;
     }
@@ -212,8 +291,18 @@ const uploadSaveData = async () => {
       bbDiffRadioHard.checked = true;
     }
 
+    // Ensure warbond3 is always checked and disabled
+    const warbond3Checkbox = document.getElementById("warbond3");
+    if (warbond3Checkbox) {
+      warbond3Checkbox.checked = true;
+      warbond3Checkbox.disabled = true;
+    }
+
     await filterItemsByWarbond(true);
     await populatePurchasedItemsInventory();
+
+    // Update toggle button after loading
+    updateToggleAllButton();
     return;
   }
   startNewRun();
@@ -418,6 +507,19 @@ const saveDataAndRestart = async () => {
 
   await startNewRun(true);
 
+  // Reset warbond checkboxes for the new run
+  for (let i = 0; i < warbondCheckboxes.length; i++) {
+    if (warbondCheckboxes[i].id === "warbond3") {
+      warbondCheckboxes[i].checked = true;
+      warbondCheckboxes[i].disabled = true;
+    } else {
+      warbondCheckboxes[i].checked = true;
+      warbondCheckboxes[i].disabled = false;
+    }
+  }
+
+  updateToggleAllButton();
+
   const newSaveObj = {
     purchasedItems,
 
@@ -455,7 +557,7 @@ const saveDataAndRestart = async () => {
   };
   await localStorage.setItem(
     "budgetBlitzSaveData",
-    JSON.stringify(newBudgetBlitzSaveData)
+    JSON.stringify(newBudgetBlitzSaveData),
   );
 
   // remove saved games that are at the first mission of their difficulty,
@@ -478,7 +580,7 @@ const pruneSavedGames = async () => {
       ) {
         return sg;
       }
-    }
+    },
   );
   const oldData = JSON.parse(budgetBlitzSaveData);
   const newData = {

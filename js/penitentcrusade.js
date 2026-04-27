@@ -50,6 +50,7 @@ const diff4Input = document.getElementById("diff4Input");
 const diff6Input = document.getElementById("diff6Input");
 const diff8Input = document.getElementById("diff8Input");
 const starsOptionsDiv = document.getElementById("starsOptionsDiv");
+const toggleAllButton = document.getElementById("toggleAllWarbonds");
 
 let selectedStars = 1;
 let missionsFailed = 0;
@@ -128,7 +129,6 @@ const handleToggleAllWarbonds = (e) => {
   genSpecialistsCards();
 };
 
-const toggleAllButton = document.getElementById("toggleAllWarbonds");
 if (toggleAllButton) {
   toggleAllButton.addEventListener("change", handleToggleAllWarbonds);
 }
@@ -356,6 +356,7 @@ const checkMissionButtons = () => {
     missionCounter !== 1 &&
     (difficulty === "normal" || difficulty === "solo")
   ) {
+    toggleAllButton.disabled = true;
     for (let i = 0; i < warbondCheckboxes.length; i++) {
       warbondCheckboxes[i].disabled = true;
     }
@@ -369,6 +370,7 @@ const checkMissionButtons = () => {
     missionCounter > 3 &&
     (difficulty === "super" || difficulty === "supersolo")
   ) {
+    toggleAllButton.disabled = true;
     for (let i = 0; i < warbondCheckboxes.length; i++) {
       warbondCheckboxes[i].disabled = true;
     }
@@ -379,6 +381,7 @@ const checkMissionButtons = () => {
   }
   // for quick PC
   if (missionCounter > 11 && difficulty === "quick") {
+    toggleAllButton.disabled = true;
     for (let i = 0; i < warbondCheckboxes.length; i++) {
       warbondCheckboxes[i].disabled = true;
     }

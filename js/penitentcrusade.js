@@ -1315,8 +1315,12 @@ const uploadSaveData = async () => {
       }
     }
 
-    // Update toggle button after loading
-    hellDiversMobilizeCheckbox.disabled = true;
+    // Ensure warbond3 is always checked and disabled
+    const warbond3Checkbox = document.getElementById("warbond3");
+    if (warbond3Checkbox) {
+      warbond3Checkbox.checked = true;
+      warbond3Checkbox.disabled = true;
+    }
     updateToggleAllButton();
     return;
   }

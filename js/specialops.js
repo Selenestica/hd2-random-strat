@@ -82,6 +82,13 @@ warbondSelectModal.addEventListener("hidden.bs.modal", async () => {
 // will need to keep track of master list
 for (let y = 0; y < warbondCheckboxes.length; y++) {
   warbondCheckboxes[y].addEventListener("change", (e) => {
+    // Skip warbond3 (Helldivers Mobilize) - it should always stay checked
+    if (e.target.id === "warbond3") {
+      // Ensure it stays checked
+      e.target.checked = true;
+      return;
+    }
+
     if (e.target.checked && !warbondCodes.includes(e.srcElement.id)) {
       warbondCodes.push(e.srcElement.id);
     }
@@ -89,6 +96,9 @@ for (let y = 0; y < warbondCheckboxes.length; y++) {
       const indexToRemove = warbondCodes.indexOf(e.srcElement.id);
       warbondCodes.splice(indexToRemove, 1);
     }
+
+    // Update the toggle all button state
+    updateToggleAllButton();
   });
 }
 
@@ -106,6 +116,72 @@ specialistsModal.addEventListener("hidden.bs.modal", () => {
     header.classList.add("text-white");
   });
 });
+
+// Handle toggle all warbonds for Special Ops
+const handleToggleAllWarbonds = (e) => {
+  const isChecked = e.target.checked;
+  const allWarbondCheckboxes = document.querySelectorAll(".warbondCheckboxes");
+
+  allWarbondCheckboxes.forEach((checkbox) => {
+    // Skip warbond3 (Helldivers Mobilize) - it should always stay disabled and checked
+    if (checkbox.id === "warbond3") return;
+
+    if (checkbox.checked !== isChecked) {
+      checkbox.checked = isChecked;
+
+      // Update the warbondCodes array
+      if (isChecked) {
+        if (!warbondCodes.includes(checkbox.id)) {
+          warbondCodes.push(checkbox.id);
+        }
+      } else {
+        const indexToRemove = warbondCodes.indexOf(checkbox.id);
+        if (indexToRemove !== -1) {
+          warbondCodes.splice(indexToRemove, 1);
+        }
+      }
+
+      // Trigger change event to update filtering
+      const changeEvent = new Event("change", { bubbles: true });
+      checkbox.dispatchEvent(changeEvent);
+    }
+  });
+
+  // Filter specialists and update UI
+  filterSpecialistsByWarbond(true);
+};
+
+// Add toggle all warbonds functionality
+const toggleAllButton = document.getElementById("toggleAllWarbonds");
+if (toggleAllButton) {
+  toggleAllButton.addEventListener("change", handleToggleAllWarbonds);
+}
+
+// Update the toggle all button state based on individual checkboxes
+const updateToggleAllButton = () => {
+  const toggleAllButton = document.getElementById("toggleAllWarbonds");
+  if (!toggleAllButton) return;
+
+  const allWarbondCheckboxes = document.querySelectorAll(".warbondCheckboxes");
+  // Filter out warbond3 (Helldivers Mobilize) since it's always disabled
+  const enabledCheckboxes = Array.from(allWarbondCheckboxes).filter(
+    (cb) => cb.id !== "warbond3",
+  );
+  if (enabledCheckboxes.length === 0) return;
+
+  const checkedCount = enabledCheckboxes.filter((cb) => cb.checked).length;
+  const totalCount = enabledCheckboxes.length;
+
+  if (checkedCount === 0) {
+    toggleAllButton.checked = false;
+    toggleAllButton.indeterminate = false;
+  } else if (checkedCount === totalCount) {
+    toggleAllButton.checked = true;
+    toggleAllButton.indeterminate = false;
+  } else {
+    toggleAllButton.indeterminate = true;
+  }
+};
 
 const filterSpecialistsByWarbond = async (save = null) => {
   const newSpecialistInfo = await checkForSOSpecialistDiffs(
@@ -126,6 +202,10 @@ const filterSpecialistsByWarbond = async (save = null) => {
   }
   specialistsList.innerHTML = "";
   genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
+
+  // Update the toggle all button state
+  updateToggleAllButton();
+
   if (save) {
     saveProgress();
   }
@@ -492,6 +572,20 @@ const startNewRun = async () => {
 
   pointsCounterText.innerHTML = 0;
 
+  // Set checkbox states for new run
+  for (let i = 0; i < warbondCheckboxes.length; i++) {
+    if (warbondCheckboxes[i].id === "warbond3") {
+      warbondCheckboxes[i].checked = true;
+      warbondCheckboxes[i].disabled = true;
+    } else {
+      warbondCheckboxes[i].checked = true;
+      warbondCheckboxes[i].disabled = false;
+    }
+  }
+
+  // Update toggle button after setting checkboxes
+  updateToggleAllButton();
+
   // get a specialist, objective list, and planet
   await genNewOperation(true, null, true);
 
@@ -513,6 +607,9 @@ const populateWebPage = async () => {
   for (let i = 0; i < missingWarbondCodes.length; i++) {
     document.getElementById(missingWarbondCodes[i]).checked = false;
   }
+
+  // Update toggle button state
+  updateToggleAllButton();
 
   // specialistsList.innerHTML = "";
   // await filterSpecialistsByWarbond(false);
@@ -555,6 +652,14 @@ const uploadSaveData = async () => {
     currentSpecialist = data.currentSpecialist;
     latestUnlockedSpecialist = data.latestUnlockedSpecialist;
     warbondCodes = data.warbondCodes ?? [...masterWarbondCodes];
+
+    // Ensure warbond3 is always checked and disabled
+    const warbond3Checkbox = document.getElementById("warbond3");
+    if (warbond3Checkbox) {
+      warbond3Checkbox.checked = true;
+      warbond3Checkbox.disabled = true;
+    }
+
     const newSpecialistInfo = await checkForSOSpecialistDiffs(
       data.specialists,
       data.currentSpecialist,
@@ -571,6 +676,10 @@ const uploadSaveData = async () => {
     dataName = data.dataName;
     points = data.points ?? 0;
     operationPoints = data.operationPoints ?? 0;
+
+    // Update toggle button after loading
+    updateToggleAllButton();
+
     populateWebPage();
     return;
   }

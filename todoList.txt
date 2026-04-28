@@ -34,7 +34,6 @@ GENERAL:
 
   - fix drawer images for new capes
   - implement code for using item indices
-  - Button for unchecking/checking all warbonds on warbond select modals
 
 RANDOMIZER:
   - ability to enable/disable specific items from warbonds

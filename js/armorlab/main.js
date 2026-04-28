@@ -274,6 +274,35 @@ const applySpecialRules = () => {
     helmetContainer.style.left = "54%";
   }
 
+  const exoArmors = ["o2heavyoperator", "o3freespirit"];
+  if (exoArmors.includes(currentHelmet)) {
+    helmetCard.style.clipPath = "inset(1px 1px 1px 1px)";
+    helmetImg.style.width = "70%";
+  }
+
+  const exoArmorHeavy = ["o2heavyoperator"];
+  if (exoArmorHeavy.includes(currentArmor)) {
+    armorImg.style.objectPosition = "center -55px";
+    armorImg.style.marginLeft = "-0.2rem";
+  }
+
+  const exoArmorLight = ["o3freespirit"];
+  if (exoArmorLight.includes(currentArmor)) {
+    armorImg.style.objectPosition = "center -57px";
+    armorImg.style.marginLeft = "0.35rem";
+  }
+
+  if (exoArmors.includes(currentHelmet) && exoArmors.includes(currentArmor)) {
+    helmetContainer.style.top = "20px";
+    helmetContainer.style.left = "56%";
+  } else if (
+    exoArmors.includes(currentHelmet) &&
+    !exoArmors.includes(currentArmor)
+  ) {
+    helmetContainer.style.top = "22px";
+    helmetContainer.style.left = "57%";
+  }
+
   // the helmets are larger than the others for some reason
   const largeHelmets = [
     "rs6fienddestroyer",
@@ -357,7 +386,12 @@ const applySpecialRules = () => {
   }
 
   // these capes are too skinny but not as skinny as the ones above
-  const skinnyishCapes = ["dignityoftoil", "crestoftheunsullied"];
+  const skinnyishCapes = [
+    "dignityoftoil",
+    "crestoftheunsullied",
+    "watchfulcompatriot",
+    "freespiritedspangles",
+  ];
   if (skinnyishCapes.includes(currentCape)) {
     capeImg.style.width = "60%";
   }

@@ -902,7 +902,7 @@ const CAPES = [
     index: 81,
   },
   {
-    displayName: "watchfulcompatriot",
+    displayName: "Watchful Compatriot",
     type: "Equipment",
     category: "cape",
     tags: [],

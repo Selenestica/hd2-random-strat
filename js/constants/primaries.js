@@ -587,6 +587,18 @@ const PRIMARIES = [
     tier: "a",
     index: 48,
   },
+  {
+    displayName: "Gallant",
+    type: "Equipment",
+    category: "primary",
+    tags: ["SubmachineGun"],
+    warbondCode: "warbond25",
+    internalName: "smg203gallant",
+    imageURL: "smg203gallant.webp",
+    antitank: false,
+    tier: "a",
+    index: 49,
+  },
 ];
 
 // s: 7

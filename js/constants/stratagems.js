@@ -1019,6 +1019,43 @@ const STRATAGEMS = [
     tier: "a",
     index: 84,
   },
+
+  {
+    displayName: "Lumberer Exosuit",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Vehicles"],
+    warbondCode: "warbond25",
+    internalName: "exo51lumbererexosuit",
+    imageURL: "exo51lumbererexosuit.svg",
+    antitank: true,
+    tier: "s",
+    index: 85,
+  },
+  {
+    displayName: "Breakthrough Exosuit",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Vehicles"],
+    warbondCode: "warbond25",
+    internalName: "exo55breakthroughexosuit",
+    imageURL: "exo55breakthroughexosuit.svg",
+    antitank: false,
+    tier: "a",
+    index: 86,
+  },
+  {
+    displayName: "Bullet Storm",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Weapons"],
+    warbondCode: "warbond25",
+    internalName: "mgx42bulletstorm",
+    imageURL: "mgx42bulletstorm.svg",
+    antitank: false,
+    tier: "a",
+    index: 87,
+  },
 ];
 
 // s: 11

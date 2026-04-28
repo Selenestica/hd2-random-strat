@@ -219,4 +219,14 @@ const WARBONDS = [
     imageURL: "entrenchedDivisionWB.webp",
     tier: "b",
   },
+  {
+    displayName: "Exo Experts",
+    type: "Warbond",
+    category: "",
+    tags: [],
+    warbondCode: "warbond25",
+    internalName: "exoExpertsWB",
+    imageURL: "exoExpertsWB.webp",
+    tier: "b",
+  },
 ];

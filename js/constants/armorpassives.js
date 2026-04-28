@@ -268,11 +268,22 @@ const ARMOR_PASSIVES = [
     type: "Equipment",
     category: "armor",
     tags: ["ArmorPassive"],
-    warbondCode: "warbond23",
+    warbondCode: "warbond24",
     internalName: "concussivepadding",
     imageURL: "concussivepadding.webp",
     tier: "b",
     index: 24,
+  },
+  {
+    displayName: "Oxygenator",
+    type: "Equipment",
+    category: "armor",
+    tags: ["ArmorPassive"],
+    warbondCode: "warbond25",
+    internalName: "oxygenator",
+    imageURL: "oxygenator.webp",
+    tier: "b",
+    index: 25,
   },
 ];
 

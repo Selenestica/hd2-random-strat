@@ -27,6 +27,7 @@ const warbondsList = [
   "Redacted Regiment", //warbond22
   "Siege Breakers", //warbond23
   "Entrenched Division", //warbond24
+  "Exo Experts", //warbond25
 ];
 
 const genWarbondCheckboxes = () => {

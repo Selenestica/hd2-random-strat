@@ -263,6 +263,18 @@ const SECONDARIES = [
     index: 21,
     tier: "c",
   },
+  {
+    displayName: "Missile Pistol",
+    type: "Equipment",
+    category: "secondary",
+    tags: [],
+    warbondCode: "warbond25",
+    internalName: "p33missilepistol",
+    imageURL: "p33missilepistol.webp",
+    antitank: false,
+    index: 22,
+    tier: "a",
+  },
 ];
 
 // s: 2

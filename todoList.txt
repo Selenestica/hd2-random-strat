@@ -34,6 +34,8 @@ GENERAL:
 
   - fix drawer images for new capes
   - implement code for using item indices
+  - stratagems for Exo Experts
+  - Exo Experts content for Loadout Builder
 
 RANDOMIZER:
   - ability to enable/disable specific items from warbonds

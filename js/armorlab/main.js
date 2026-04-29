@@ -274,10 +274,16 @@ const applySpecialRules = () => {
     helmetContainer.style.left = "54%";
   }
 
-  const exoArmors = ["o2heavyoperator", "o3freespirit"];
+  const exoArmors = ["o2heavyoperator", "o3freespirit", "o44bondedpilot"];
   if (exoArmors.includes(currentHelmet)) {
     helmetCard.style.clipPath = "inset(1px 1px 1px 1px)";
     helmetImg.style.width = "70%";
+    if (currentHelmet === "o44bondedpilot") {
+      helmetCard.style.clipPath = "inset(1px 1px 5px 15px)";
+      helmetContainer.style.top = "24px";
+      helmetImg.style.width = "75%";
+      helmetContainer.style.left = "56%";
+    }
   }
 
   const exoArmorHeavy = ["o2heavyoperator"];
@@ -292,12 +298,17 @@ const applySpecialRules = () => {
     armorImg.style.marginLeft = "0.35rem";
   }
 
-  if (exoArmors.includes(currentHelmet) && exoArmors.includes(currentArmor)) {
+  if (
+    exoArmors.includes(currentHelmet) &&
+    exoArmors.includes(currentArmor) &&
+    currentHelmet !== "o44bondedpilot"
+  ) {
     helmetContainer.style.top = "20px";
     helmetContainer.style.left = "56%";
   } else if (
     exoArmors.includes(currentHelmet) &&
-    !exoArmors.includes(currentArmor)
+    !exoArmors.includes(currentArmor) &&
+    currentHelmet !== "o44bondedpilot"
   ) {
     helmetContainer.style.top = "22px";
     helmetContainer.style.left = "57%";

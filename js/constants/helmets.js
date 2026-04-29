@@ -1140,4 +1140,16 @@ const HELMETS = [
     tier: "a",
     index: 102,
   },
+  {
+    displayName: `O-44 Bonded Pilot`,
+    type: "Equipment",
+    category: "armor",
+    tags: ["Light"],
+    passive: "Oxygenator",
+    warbondCode: "warbond1",
+    internalName: "o44bondedpilot",
+    imageURL: "o44bondedpilot.webp",
+    tier: "b",
+    index: 103,
+  },
 ];

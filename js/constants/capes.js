@@ -912,4 +912,15 @@ const CAPES = [
     tier: "b",
     index: 82,
   },
+  {
+    displayName: "Diagram of the Noblest Payload",
+    type: "Equipment",
+    category: "cape",
+    tags: [],
+    warbondCode: "warbond1",
+    internalName: "diagramofthenoblestpayload",
+    imageURL: "diagramofthenoblestpayload.webp",
+    tier: "b",
+    index: 83,
+  },
 ];

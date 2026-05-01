@@ -271,7 +271,7 @@ const SECONDARIES = [
     warbondCode: "warbond25",
     internalName: "p33missilepistol",
     imageURL: "p33missilepistol.webp",
-    antitank: false,
+    antitank: true,
     index: 22,
     tier: "a",
   },

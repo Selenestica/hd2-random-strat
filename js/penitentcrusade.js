@@ -666,7 +666,7 @@ const rollRewardOptions = async () => {
 
   if (currentItems.length === 0) {
     // roll antitank stratagems for most specialists after mission 7
-    const specsThatDontNeedATHelp = ["22", "30", "31", "32", "33", "39", "41"];
+    const specsThatDontNeedATHelp = ["22", "30", "31", "32", "33", "40", "42"];
     if (missionCounter === 7 && !specsThatDontNeedATHelp.includes(specialist)) {
       const antitankStratsList = await itemsLists[0].filter(
         (strat) => strat.antitank === true,
@@ -1108,7 +1108,7 @@ const applySpecialistRules = async () => {
   }
 
   // only Vehicles/Mechs for The Pilot
-  if (specialist === "39") {
+  if (specialist === "40") {
     newStrats = await newStrats.filter(
       (ns) =>
         ns.tags.includes("Vehicles") &&
@@ -1118,7 +1118,7 @@ const applySpecialistRules = async () => {
   }
 
   // only AT for The Tank Hunter
-  if (specialist === "41") {
+  if (specialist === "42") {
     newStrats = await newStrats.filter(
       (ns) =>
         ns.antitank === true && ns.displayName !== "Anti-Tank Emplacement",
@@ -1157,8 +1157,8 @@ const applySpecialist = async (specToApply = null) => {
     "31",
     "32",
     "33",
-    "39",
-    "41",
+    "40",
+    "42",
   ];
   if (traitSpecialists.includes(specialist)) {
     await applySpecialistRules();

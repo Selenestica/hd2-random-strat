@@ -295,6 +295,7 @@ const getRandomUniqueNumbers = (list, options, amt) => {
   const { oneSupport, oneBackpack, alwaysSupport, alwaysBackpack } = options;
   let hasBackpack = false;
   let hasSupportWeapon = false;
+  let hasExosuit = false;
   const numbers = [];
 
   // Early exit if constraints can't be met
@@ -317,9 +318,15 @@ const getRandomUniqueNumbers = (list, options, amt) => {
     const tags = item.tags || [];
     const isSupport = tags.includes('Weapons');
     const isBackpack = tags.includes('Backpacks');
+    const isExosuit = tags.includes('exosuit');
 
     // Skip duplicates
     if (numbers.includes(randomNumber)) {
+      continue;
+    }
+
+    // If we already have an exosuit, skip any additional exosuits (enforces max 1 exosuit)
+    if (hasExosuit && isExosuit) {
       continue;
     }
 
@@ -352,6 +359,7 @@ const getRandomUniqueNumbers = (list, options, amt) => {
     numbers.push(randomNumber);
     if (isSupport) hasSupportWeapon = true;
     if (isBackpack) hasBackpack = true;
+    if (isExosuit) hasExosuit = true;
   }
 
   if (attempts >= maxAttempts) {
@@ -444,7 +452,6 @@ const rerollItem = async (internalName, category) => {
     const clickedCard = document.querySelector(
       `.card[data-internal-name="${internalName}"][data-category="strat"]`,
     );
-    console.log(clickedCard);
     if (!clickedCard) return;
 
     // Get all stratagem cards

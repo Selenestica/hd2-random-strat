@@ -560,4 +560,17 @@ const SPECIALISTS = [
     imageURL: '',
     warbonds: [],
   },
+  {
+    displayName: 'The Spartan',
+    starterItems: ['Ballistic Shield', 'Peak Physique armor', 'Melee weapon secondaries'],
+    stratagems: ['Ballistic Shield'],
+    primaries: [],
+    boosters: [],
+    secondaries: ['Stun Lance', 'Stun Baton', 'Machete', 'Saber', 'Combat Hatchet'],
+    throwables: [],
+    armorPassives: ['Peak Physique'],
+    traits: [],
+    imageURL: '',
+    warbonds: [],
+  },
 ];

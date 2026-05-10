@@ -629,7 +629,7 @@ const rollRewardOptions = async () => {
 
   if (currentItems.length === 0) {
     // roll antitank stratagems for most specialists after mission 7
-    const specsThatDontNeedATHelp = ['22', '30', '31', '32', '33', '38', '40'];
+    const specsThatDontNeedATHelp = ['22', '30', '31', '32', '33', '38', '40', '44'];
     if (missionCounter === 7 && !specsThatDontNeedATHelp.includes(specialist)) {
       const antitankStratsList = await itemsLists[0].filter((strat) => strat.antitank === true);
       const randomItemIndices = await getUniqueRandomNumbers(
@@ -1044,6 +1044,14 @@ const applySpecialistRules = async () => {
     );
     return;
   }
+
+  // only expendables for The Expendable
+  if (specialist === '44') {
+    newStrats = await newStrats.filter(
+      (ns) => ns.tags.includes('expendable') && ns.displayName !== 'Bullet Storm',
+    );
+    return;
+  }
 };
 
 const applySpecialist = async (specToApply = null) => {
@@ -1068,7 +1076,7 @@ const applySpecialist = async (specToApply = null) => {
   }
   await getStartingItems(difficulty);
   startNewRun(specialist, difficulty, true);
-  const traitSpecialists = ['16', '17', '22', '30', '31', '32', '33', '38', '40'];
+  const traitSpecialists = ['16', '17', '22', '30', '31', '32', '33', '38', '40', '44'];
   if (traitSpecialists.includes(specialist)) {
     await applySpecialistRules();
   }

@@ -105,6 +105,13 @@
 
       <div class="row justify-content-center d-flex">
         <div class="col-sm-12 col-md-10 col-lg-7">
+          <div class="row justify-content-center text-white">
+            <div class="col-4"></div>
+            <div class="col-4 text-white d-flex justify-content-center">
+              <b>Points:</b><span class="mx-1 text-warning" id="pointsCounterText">0</span>
+            </div>
+            <div class="col-4 d-flex justify-content-end"></div>
+          </div>
           <div class="row justify-content-center">
             <div class="col-0 col-lg-2"></div>
             <div class="col-8 col-lg-6 d-flex justify-content-center">
@@ -164,11 +171,44 @@
               style="border-bottom: 1px solid grey"
               class="row text-white d-flex justify-content-center"
             >
-              <div class="d-flex justify-content-center text-white mx-0 mx-lg-4 d-flex">
-                <b>Complete for Next Unlock:</b>
+              <div class="col-5 text-white mx-0 mx-lg-4 d-flex justify-content-end">
+                <b>Operation Details:</b>
+              </div>
+              <div class="col-2 d-lg-none d-flex justify-content-center text-secondary">|</div>
+              <div class="col-5 text-white mx-0 mx-lg-4 d-flex">
+                <b>Operation Goals:</b>
               </div>
             </div>
             <div class="row d-flex justify-content-center mt-2" id="operationInfoContainer">
+              <div class="col text-end" style="border-right: 1px solid grey">
+                <div
+                  id="planetNameDiv"
+                  class="text-white justify-content-end d-flex align-items-center"
+                >
+                  <b>Planet</b>:<span class="mx-1" id="planetNameText"></span>
+                  <div class="btn-group" id="planetDropdown">
+                    <button
+                      style="border: none; padding: 0rem !important"
+                      type="button"
+                      class="btn bg-none btn-primary dropdown-toggle py-0"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-globe-americas text-warning"></i>
+                    </button>
+                    <ul id="planetDropdownList" class="dropdown-menu scrollablePlanetList"></ul>
+                  </div>
+                </div>
+                <div class="text-white">
+                  <b>Enemy</b>:<span class="mx-1" id="enemyNameText"></span>
+                </div>
+                <div class="text-white">
+                  <b>Hazards</b>:<span class="mx-1" id="hazardsText"></span>
+                </div>
+                <div class="text-white">
+                  <b>Mission</b>:<b class="mx-1 text-warning" id="missionCounterText"></b>
+                </div>
+              </div>
               <div class="col text-white" id="objectivesContainer"></div>
             </div>
 
@@ -583,6 +623,15 @@
                         </p>
                       </li>
                       <li class="text-white">
+                        <b>Q: What if the planet I had an operation on is no longer available?</b>
+                        <p>
+                          A: If you or your squadmates can no longer access that planet in-game,
+                          choose a different planet from the planet list (
+                          <i class="text-warning bi bi-globe-americas"></i>
+                          ). This list updates every ten minutes or so.
+                        </p>
+                      </li>
+                      <li class="text-white">
                         <b
                           >Q: Why didn't I unlock a new specialist after I completed an
                           operation?</b
@@ -898,7 +947,7 @@
   <script src="../js/components/genSOSpecialistsModalContent.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
   <script src="../js/utils/downloadSOScoreSummary.js"></script>
+  <script src="../js/specialops.js"></script>
   <script src="../js/components/genSOMissionCompleteModalContent.js"></script>
   <script src="../js/components/genSOSaveDataManagementModalContent.js"></script>
-  <script src="../js/specialops.js"></script>
 </html>

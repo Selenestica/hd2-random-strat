@@ -437,7 +437,7 @@ const SPECOPSSPECS = [
     secondary: 3,
     throwable: 0,
     armorPassive: 21,
-    warbonds: ["warbond21"],
+    warbonds: ["warbond21", "warbond1"],
   },
   {
     locked: true,

@@ -273,7 +273,7 @@ const SPECIALISTS = [
     armorPassives: ['Rock Solid'],
     traits: [],
     imageURL: 'pythoncommando.webp',
-    warbonds: ['warbond21'],
+    warbonds: ['warbond21', 'warbond1'],
   },
   {
     displayName: 'The Doom Guy',

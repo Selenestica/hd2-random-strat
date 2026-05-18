@@ -200,6 +200,18 @@
           <div class="accordion" id="acquiredStarItemsAccordion"></div>
         </div>
       </div>
+      <div class="row">
+        <div class="col d-flex justify-content-end">
+          <button
+            class="btn btn-secondary"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#showAllRewardsModal"
+          >
+            Rewards
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM OPTIONS MODAL -->
@@ -1318,6 +1330,37 @@
           <div
             class="modal-body row d-flex justify-content-center"
             id="showAllItemsModalBody"
+          ></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOW REWARDS MODAL -->
+    <div
+      class="modal fade"
+      id="showAllRewardsModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="showAllRewardsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light">Rewards Earned</h5>
+          </div>
+          <div
+            class="modal-body row d-flex justify-content-center"
+            id="showAllRewardsModalBody"
           ></div>
           <div class="modal-footer">
             <button

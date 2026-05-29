@@ -119,9 +119,9 @@
       <div class="row justify-content-center d-flex">
         <div class="col-sm-12 col-md-10 col-lg-7">
           <div class="row justify-content-center text-white">
-            <div class="col-2"></div>
-            <div class="col-8 text-white" id="missionInfoContainer"></div>
-            <div class="col-2 d-flex justify-content-end"></div>
+            <div class="col-4"></div>
+            <div class="col-4 text-white" id="missionInfoContainer"></div>
+            <div class="col-4 d-flex justify-content-end"></div>
           </div>
           <div class="row justify-content-center">
             <div class="col-0 col-lg-2"></div>
@@ -356,24 +356,26 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      In the wake of growing threats across the galactic
-                      frontier, Super Earth High Command has authorized the
-                      deployment of elite operatives. Each Helldiver is assigned
-                      a combat role and dispatched to hostile planets under
-                      strict operational parameters. These missions are more
-                      than just war—they're a proving ground. Those who survive
-                      not only bring liberty to alien worlds but also gain
-                      clearance to deploy with newly de-classified specialist
-                      loadouts. One role at a time, Helldivers climb the ranks,
-                      mastering tools of democracy previously locked behind
-                      bureaucratic red tape and explosive field tests. Glory
-                      awaits. Failure is treason.
+                      During the First Galactic War the famed Rabble Rousers,
+                      the group that inspired the creation of the Mad Bastards,
+                      completed a series of harrowing jumps across the galaxy.
+                      Documented in Vera Holt's war journal, the Rabble Rousers
+                      were chasing a rogue transmission that was bouncing
+                      through the relays all across the galaxy.
                       <br />
                       <br />
-                      <em
-                        >Specialists aren’t born. They’re forged—in fire, gas,
-                        plasma, and paperwork
-                      </em>
+                      Supplies grew shorter. Munitions stockpiles dwindled. Time
+                      was running out. But in the end, the Rabble Rousers were
+                      successful.
+                      <br />
+                      <br />
+                      In the honored spirit of this heroic feat, the Hell
+                      Admiral has established The Gauntlet as a means of testing
+                      the most determined of Mad Bastards. Those who follow in
+                      the footsteps of the honored Rabble Rousers come through
+                      the other side changed, born anew in the radiance of
+                      Democracy. Wielders of Liberty's fire and Bane to Tyranny
+                      everywhere.
                     </p>
                   </div>
                 </div>
@@ -398,12 +400,17 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      Complete an operation on the given planet using the
-                      assigned specialist loadout, and fulfilling all operation
-                      goals, in order to unlock new specialist loadouts. There
-                      are many specialist loadouts to unlock, with more
-                      specialist loadouts to be added in the future as more
-                      content is added to the game.
+                      The Gauntlet is a series of missions with increasingly
+                      difficult constraints, across multiple enemy factions.
+                      Completing one 40 minute mission at each difficulty,
+                      starting from difficulty 5 and ending at difficulty 10.
+                      <br />
+                      The challenge can be undertaken with two or more players.
+                      <br />
+                      <br />
+                      With each successful mission, the challenge increases not
+                      only by the difficulty itself, but with additional
+                      constraints as well.
                     </p>
                   </div>
                 </div>
@@ -764,27 +771,13 @@
       <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <div class="modal-content bg-grey">
           <div class="modal-header">
-            <h5 class="modal-title text-light" id="">
-              Specialist Select
-              <small class="mx-2" id="amountOfSpecsUnlockedText"></small>
-            </h5>
+            <h5 class="modal-title text-light" id="">Specialist Select</h5>
           </div>
           <div
             class="modal-body row d-flex justify-content-center"
             id="specialistsModalBody"
           >
-            <p class="text-white">
-              You can choose any of your previously unlocked specialists here.
-              However, you
-              <b
-                >must complete an operation with your most recently unlocked
-                specialist (<i class="bi bi-key-fill mx-1 text-warning"></i>)</b
-              >
-              in order to unlock more specialists.
-              <br />
-              <br />
-              NOTE: A new operation will start if you change specialists.
-            </p>
+            <p class="text-white">Select a specialist to start the game.</p>
             <div
               class="row d-flex justify-content-center"
               id="specialistsList"
@@ -933,7 +926,7 @@
   <script src="../js/utils/getCurrentDateTime.js"></script>
   <script src="../js/utils/downloadSOSaveFile.js"></script>
   <script src="../js/utils/checkForSOSpecialistDiffs.js"></script>
-  <script src="../js/components/genSOSpecialistsModalContent.js"></script>
+  <script src="../js/thegauntlet/components/genGauntletSpecialistModalContent.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
   <script src="../js/utils/downloadSOScoreSummary.js"></script>
   <script src="../js/thegauntlet/utils/getMissionData.js"></script>

@@ -98,11 +98,15 @@ const generateItemCard = (item) => {
 };
 
 const makeMissionRow = (label, value, id, extraClass = "") =>
-  `<div class="row d-block"><b>${label}</b><span class="mx-1 ${extraClass}" id="${id}">${value}</span></div>`;
+  `<div class="d-flex justify-content-between">
+    <span class="fw-bold">${label}</span>
+    <span id="${id}" class="${extraClass}">${value}</span>
+  </div>`;
 
 const genCurrentMissionInfo = () => {
   const { stims, stratagems, boosters, deaths, text, minutes, obtainHVI } =
     getMissionData(missionCounter);
+  console.log(currentSpecialist);
 
   const rows = [
     makeMissionRow("Difficulty:", text, "currentMissionText"),
@@ -139,7 +143,6 @@ const saveProgress = async () => {
       dataName: `The Gauntlet Save Data`,
       missionCounter,
       currentSpecialist,
-      latestUnlockedSpecialist,
       currentObjectives,
       specialists,
       restarts,
@@ -156,7 +159,6 @@ const saveProgress = async () => {
     ...data,
     missionCounter,
     currentSpecialist,
-    latestUnlockedSpecialist,
     currentObjectives,
     specialists,
     restarts,
@@ -186,8 +188,7 @@ const genNewOperation = async (unlockSpecialist, newGame = null) => {
     }
     specialist.locked = false;
     currentSpecialist = specialist;
-    latestUnlockedSpecialist = specialist;
-    genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
+    genGauntletSpecialistsModalContent(currentSpecialist);
     displaySpecialistLoadout();
   }
 
@@ -341,7 +342,7 @@ const startNewRun = async () => {
 };
 
 const populateWebPage = async () => {
-  genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
+  genGauntletSpecialistsModalContent(currentSpecialist);
   displaySpecialistLoadout();
 
   // this part handles rendering the progress text. surprisingly complex

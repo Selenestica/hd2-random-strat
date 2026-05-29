@@ -3,7 +3,7 @@ const getMissionData = (missionCounter) => {
     return {
       text: "5 - Hard",
       stims: -100,
-      boosters: -100,
+      boosters: 4,
       stratagems: 48,
       deaths: -100,
       minutes: -100,
@@ -14,7 +14,7 @@ const getMissionData = (missionCounter) => {
     return {
       text: "6 - Extreme",
       stims: 26,
-      boosters: -100,
+      boosters: 4,
       stratagems: 46,
       deaths: -100,
       minutes: -100,

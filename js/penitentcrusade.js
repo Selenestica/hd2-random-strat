@@ -643,7 +643,7 @@ const getRewardsItemsLists = () => {
   if (SPECIALISTS[specialist].boosters.length === 0) {
     lists.push(newBoosts);
   }
-  if (SPECIALISTS[specialist].primaries.length === 0) {
+  if (SPECIALISTS[specialist].primaries.length === 0 || specialist === "47") {
     lists.push(newPrims);
   }
   if (SPECIALISTS[specialist].secondaries.length === 0) {
@@ -1169,6 +1169,14 @@ const applySpecialistRules = async () => {
     );
     return;
   }
+
+  // only expendables for The Athlete
+  if (specialist === "47") {
+    newPrims = await newPrims.filter(
+      (np) => np.tags.includes("onehanded") && np.displayName !== "Defender",
+    );
+    return;
+  }
 };
 
 const applySpecialist = async (specToApply = null) => {
@@ -1204,6 +1212,7 @@ const applySpecialist = async (specToApply = null) => {
     "38",
     "40",
     "44",
+    "47",
   ];
   if (traitSpecialists.includes(specialist)) {
     await applySpecialistRules();

@@ -6,7 +6,8 @@ const specialistsModal = document.getElementById("specialistsModal");
 const objectiveInputsContainer = document.getElementById(
   "objectiveInputsContainer",
 );
-const objectivesContainer = document.getElementById("objectivesContainer");
+const constraintsContainer = document.getElementById("constraintsContainer");
+const missionInfoContainer = document.getElementById("missionInfoContainer");
 const stratagemsContainer = document.getElementById("stratagemsContainer");
 const equipmentContainer = document.getElementById("equipmentContainer");
 const armorContainer = document.getElementById("armorContainer");
@@ -17,7 +18,6 @@ const objectiveNameText = document.getElementById("objectiveNameText");
 const objectiveProgressText = document.getElementById("objectiveProgressText");
 const specialistNameText = document.getElementById("specialistNameText");
 const maxStarsModalBody = document.getElementById("maxStarsModalBody");
-const pointsCounterText = document.getElementById("pointsCounterText");
 const flavorAndInstructionsModal = document.getElementById(
   "flavorAndInstructionsModal",
 );
@@ -30,7 +30,6 @@ const missionCompleteButtonDiv = document.getElementById(
 const missionFailedButtonDiv = document.getElementById(
   "missionFailedButtonDiv",
 );
-const missionCounterText = document.getElementById("missionCounterText");
 const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
 const applySpecialistButton = document.getElementById("applySpecialistButton");
 const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
@@ -98,6 +97,40 @@ const generateItemCard = (item) => {
     </div>`;
 };
 
+const makeMissionRow = (label, value, id, extraClass = "") =>
+  `<div class="row d-block"><b>${label}</b><span class="mx-1 ${extraClass}" id="${id}">${value}</span></div>`;
+
+const genCurrentMissionInfo = () => {
+  const { stims, stratagems, boosters, deaths, text, minutes, obtainHVI } =
+    getMissionData(missionCounter);
+
+  const rows = [
+    makeMissionRow("Difficulty:", text, "currentMissionText"),
+    makeMissionRow("Stratagems Available:", stratagems, "stratagemCounterText"),
+    stims !== -100 &&
+      makeMissionRow("Stims Available:", stims, "stimCounterText"),
+    minutes !== -100 &&
+      makeMissionRow(
+        "Minutes Remaining Required:",
+        minutes,
+        "minutesCounterText",
+      ),
+    boosters !== -100 &&
+      makeMissionRow("Booster Slots:", boosters, "boosterCounterText"),
+    deaths !== -100 &&
+      makeMissionRow("Reinforcements Available:", deaths, "deathsCounterText"),
+    obtainHVI &&
+      makeMissionRow(
+        "",
+        "Extract with the High Value Item",
+        "hviText",
+        "text-warning",
+      ),
+  ];
+
+  missionInfoContainer.innerHTML = rows.filter(Boolean).join("\n");
+};
+
 const saveProgress = async () => {
   let obj = {};
   const theGauntletSaveData = localStorage.getItem("theGauntletSaveData");
@@ -115,7 +148,7 @@ const saveProgress = async () => {
       warbondCodes,
     };
     localStorage.setItem("theGauntletSaveData", JSON.stringify(obj));
-    missionCounterText.innerHTML = missionCounter;
+    genCurrentMissionInfo();
     return;
   }
   let data = JSON.parse(theGauntletSaveData);
@@ -158,49 +191,9 @@ const genNewOperation = async (unlockSpecialist, newGame = null) => {
     displaySpecialistLoadout();
   }
 
-  // random mission objectives
-  objectivesContainer.innerHTML = "";
-  const objectives = await getRandomSpecialOpsObjectives();
-  currentObjectives = objectives;
-  // add progress bars too that would be cool
-  for (let i = 0; i < objectives.length; i++) {
-    const objName = objectives[i].name.replace("X", objectives[i].goal);
-    const progType = objectives[i].progressType;
-    objectivesContainer.innerHTML += `
-      <div id="objectiveNameText${i}" class="text-white">${objName}</div>
-      <small class="text-white">Progress: <span class="${
-        progType === "positive" ? "text-danger" : "text-success"
-      }" id="objectiveProgressText${i}">${objectives[i].progress}/${
-        objectives[i].goal
-      }</span></small>
-    `;
-  }
-
   missionCounter = 1;
-  missionCounterText.innerHTML = "1";
-  genSOMissionCompleteModalContent(objectives);
-};
-
-const renderObjectiveProgressText = () => {
-  for (let i = 0; i < currentObjectives.length; i++) {
-    const progressText = document.getElementById("objectiveProgressText" + i);
-    progressText.innerHTML =
-      currentObjectives[i].progress + "/" + currentObjectives[i].goal;
-    if (
-      currentObjectives[i].progress >= currentObjectives[i].goal &&
-      currentObjectives[i].progressType === "positive"
-    ) {
-      progressText.classList.remove("text-danger");
-      progressText.classList.add("text-success");
-    }
-    if (
-      currentObjectives[i].progress >= currentObjectives[i].goal &&
-      currentObjectives[i].progressType === "negative"
-    ) {
-      progressText.classList.remove("text-success");
-      progressText.classList.add("text-danger");
-    }
-  }
+  genCurrentMissionInfo();
+  genGauntletMissionCompleteModalContent(objectives);
 };
 
 const submitMissionReport = async (isMissionSucceeded) => {
@@ -240,39 +233,11 @@ const submitMissionReport = async (isMissionSucceeded) => {
         currentObjectives[i].pointsAdded = true;
       }
     }
-    renderObjectiveProgressText();
 
     missionCounter++;
-    if (missionCounter > 3) {
-      let objectivesMet = true;
-      for (let j = 0; j < currentObjectives.length; j++) {
-        if (!currentObjectives[j].pointsAdded) {
-          objectivesMet = false;
-          break;
-        }
-      }
-
-      // only by using latest unlock can you unlock the next specialist
-      if (
-        latestUnlockedSpecialist.displayName !== currentSpecialist.displayName
-      ) {
-        objectivesMet = false;
-        operationPoints = 0;
-      }
-
-      showPointsEarnedToast(operationPoints);
-      points += operationPoints;
-      operationPoints = 0;
-      pointsCounterText.innerHTML = points;
-
-      missionCounter = 1;
-      await genNewOperation(objectivesMet, null, null);
-      saveProgress();
-      return;
-    }
 
     saveProgress();
-    missionCounterText.innerHTML = missionCounter;
+    genCurrentMissionInfo();
     return;
   }
 
@@ -366,8 +331,6 @@ const startNewRun = async () => {
   operationPoints = 0;
   specialists = structuredClone(SPECOPSSPECS);
 
-  pointsCounterText.innerHTML = 0;
-
   // get a specialist, objective list
   await genNewOperation(true, null, true);
 
@@ -378,7 +341,6 @@ const startNewRun = async () => {
 };
 
 const populateWebPage = async () => {
-  pointsCounterText.innerHTML = points;
   genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
   displaySpecialistLoadout();
 
@@ -389,7 +351,7 @@ const populateWebPage = async () => {
       currentObjectives[i].goal,
     );
     const progType = currentObjectives[i].progressType;
-    objectivesContainer.innerHTML += `
+    constraintsContainer.innerHTML += `
       <div class="text-white">${objName}</div>
       <small class="text-white">Progress: <span class="${
         progType === "positive" ? "text-danger" : "text-success"
@@ -400,8 +362,8 @@ const populateWebPage = async () => {
   }
   renderObjectiveProgressText();
 
-  missionCounterText.innerHTML = missionCounter;
-  genSOMissionCompleteModalContent(currentObjectives);
+  genCurrentMissionInfo();
+  genGauntletMissionCompleteModalContent(currentObjectives);
 };
 
 const uploadSaveData = async () => {

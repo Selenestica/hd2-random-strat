@@ -62,21 +62,41 @@ const genTraits = (traits) => {
 };
 
 const makeCard = (spc, index) => {
+  const imageHeader = `
+    <div style="
+      position: relative;
+      height: 400px;
+      background-image: url('../images/pcSpecialists/${spc.imageURL ? spc.imageURL : "johnHelldiver.webp"}');
+      background-size: cover;
+      background-position: top;
+    ">
+      <div style="
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 30%,
+          rgba(33, 37, 41, 0.85) 60%,
+          rgba(33, 37, 41, 1) 80%
+        );
+      "></div>
+      <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 0.75rem;">
+        <h5 class="text-white specialistHeadersClass pb-0" id="specialistHeader${index}">${spc.displayName}</h5>
+        <div class="card-body pb-0">
+          <ul>
+            ${genStarterItems(spc.starterItems)}
+          </ul>
+          ${spc.traits.length > 0 ? genTraits(spc.traits) : ""}
+        </div>
+      </div>
+    </div>
+  `;
+
   return `
-          <div id="pcSpecialistCard('${index}')" class="card col-12 col-sm-6 col-md-6 col-lg-3 specialistCards m-2" onclick="setSpecialist('${index}')">
-            <div class="card-header">
-              <h5 class="text-white specialistHeadersClass" id="specialistHeader${index}">${
-                spc.displayName
-              }</h5>
-            </div>
-            <div class="card-body">
-              <p class="text-white">${index === 38 ? "You begin with the following items, and must always have an exosuit equipped" : "You begin with, and must always have equipped:"}</p>
-              <ul>
-                ${genStarterItems(spc.starterItems)}
-              </ul>
-              ${spc.traits.length > 0 ? genTraits(spc.traits) : ""}
-          </div>
-    `;
+    <div id="pcSpecialistCard('${index}')" class="card col-12 col-sm-6 col-md-6 col-lg-3 specialistCards m-2" onclick="setSpecialist('${index}')">
+      ${imageHeader}
+    </div>
+  `;
 };
 
 const genSpecialistsCards = () => {

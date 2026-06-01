@@ -55,14 +55,6 @@ PENITENT CRUSADE:
   - FAN IDEA: Custom start where you can set your own items and difficulty and share a link to others
   - Able to open multiple tabs in the same browser so one person can coordinate PC
 
-  - SPECIALIST ideas:
-    - The Shotgun Surgeon
-      - ybwamahe, Punisher, Bushwacker
-    - Eagle Ground Coordinator
-      - servo-assisted, Strafing Run, can only roll eagle stratagems
-    - Orbital Bombardment Ground Coordinator
-      - servo-assisted, OPS, can only roll orbital stratagems
-
   - BUGS:
     - sometimes specialist doesnt display until page is reloaded
     
@@ -153,9 +145,15 @@ ARMOR LAB
     - 
 
 LOADOUT BUILDER
+  - ability to add booster
 
   BUGS
     - 
+
+THE GAUNTLET
+  - players must choose a specialist before they start (disable mission buttons until specialist is applied)
+  - show resource buckets
+
 
 
 

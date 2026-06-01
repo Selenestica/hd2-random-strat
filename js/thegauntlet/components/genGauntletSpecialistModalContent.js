@@ -23,26 +23,14 @@ const genSpecialistItemNames = (spec, type) => {
   return elementsList;
 };
 
-const genSpecialistCard = (spec, i, currentSpec, latestSpec) => {
+const genSpecialistCard = (spec, i) => {
   let displayName = spec.displayName;
-  if (spec.locked) {
-    displayName = "Locked";
-  }
-  if (currentSpec.displayName === spec.displayName) {
-    displayName += " (Current)";
-  }
   return `
-      <div class="card col-lg-3 col-sm-12 specialistCards m-2" id="soSpecialistCard${i}" onclick="${
-        spec.locked ? "" : `setSpecialist('${i}')`
-      }">
+      <div class="card col-lg-3 col-sm-12 specialistCards m-2" id="soSpecialistCard${i}" onclick="${`setSpecialist('${i}')`}">
         <div class="card-header">
           <h5 class="text-white specialistHeadersClass" id="specialistHeader${i}">${displayName}</h5>
         </div>
         <div class="card-body ${spec.locked ? "text-center" : ""}">
-          ${
-            spec.locked
-              ? `<i class="bi bi-question-lg text-white fa-3x"></i>`
-              : `
           <p class="text-white mb-0">Stratagems:</p>
           <ul>
             ${genSpecialistItemNames(spec, "strat")}
@@ -50,17 +38,16 @@ const genSpecialistCard = (spec, i, currentSpec, latestSpec) => {
           <p class="text-white mb-0">Equipment:</p>
           <ul>
             ${genSpecialistItemNames(spec, "equip")}
-          </ul>`
-          }
+          </ul>
         </div>
     `;
 };
 
-const genGauntletSpecialistsModalContent = (currSpecialist) => {
+const genGauntletSpecialistsModalContent = () => {
   specialistsList.innerHTML = "";
   // create specialist cards and add them to an array
   for (let i = 0; i < specialists.length; i++) {
-    const card = genSpecialistCard(specialists[i], i, currSpecialist);
+    const card = genSpecialistCard(specialists[i], i);
     specialistsList.innerHTML += card;
   }
 };

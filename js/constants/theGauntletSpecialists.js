@@ -1,6 +1,5 @@
 const SPECOPSSPECS = [
   {
-    locked: true,
     displayName: "The Arsonist",
     stratagems: [1, 27, 46, 61, 67],
     primary: 20,
@@ -15,7 +14,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Engineer",
     stratagems: [70, 17, 71, 63],
     primary: 12,
@@ -30,7 +28,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Tankbuster",
     stratagems: [25, 48, 55, 75],
     primary: 41,
@@ -45,7 +42,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Demoman",
     stratagems: [8, 45, 39, 76, 26], // 81 belt fed grenade launcher, 26 c4 pack
     primary: 42,
@@ -60,7 +56,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Ghost",
     stratagems: [53, 47, 10, 33],
     primary: 27,
@@ -75,7 +70,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Paramedic",
     stratagems: [47, 71, 35, 40],
     primary: 2,
@@ -90,7 +84,6 @@ const SPECOPSSPECS = [
     stims: 2,
   },
   {
-    locked: true,
     displayName: "The Peace Officer",
     stratagems: [38, 9, 74, 40],
     primary: 6,
@@ -105,7 +98,6 @@ const SPECOPSSPECS = [
     stims: 1,
   },
   {
-    locked: true,
     displayName: "The Overwatch",
     stratagems: [35, 6, 73, 49],
     primary: 1,
@@ -120,7 +112,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Heavy Gunner",
     stratagems: [6, 72, 57, 30],
     primary: 4,
@@ -135,7 +126,6 @@ const SPECOPSSPECS = [
     stims: 1,
   },
   {
-    locked: true,
     displayName: "The Lightshow",
     stratagems: [3, 56, 29, 68],
     primary: 33,
@@ -150,7 +140,6 @@ const SPECOPSSPECS = [
     stims: 1,
   },
   {
-    locked: true,
     displayName: "The Stormcaller",
     stratagems: [7, 31, 62, 52],
     primary: 38,
@@ -165,7 +154,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Mad Scientist",
     stratagems: [13, 34, 56, 62],
     primary: 37,
@@ -180,7 +168,6 @@ const SPECOPSSPECS = [
     stims: 1,
   },
   {
-    locked: true,
     displayName: "The Lone Penant",
     stratagems: [18, 52, 53, 47],
     primary: 32,
@@ -195,7 +182,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Wall",
     stratagems: [72, 73, 74, 36],
     primary: 13,
@@ -210,7 +196,6 @@ const SPECOPSSPECS = [
     stims: 1,
   },
   {
-    locked: true,
     displayName: "The Supplier",
     stratagems: [35, 14, 16, 7],
     primary: 34,
@@ -225,7 +210,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "Vanguard",
     stratagems: [40, 41, 82, 79], // frv, patriot, bastion, hammer
     primary: 36, // purifier
@@ -240,7 +224,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Recon Operative",
     stratagems: [44, 41, 32, 10],
     primary: 17,
@@ -255,7 +238,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Expendable",
     stratagems: [14, 16, 15, 39, 17, 80], // 80 leveller
     primary: 22,
@@ -270,7 +252,6 @@ const SPECOPSSPECS = [
     stims: 1,
   },
   {
-    locked: true,
     displayName: "Field Artillery",
     stratagems: [63, 64, 60, 23],
     primary: 24,
@@ -285,7 +266,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Assassin",
     stratagems: [34, 55, 48, 76],
     primary: 31,
@@ -300,7 +280,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Saboteur",
     stratagems: [26, 39, 75, 56],
     primary: 11,
@@ -315,7 +294,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Juggernaut",
     stratagems: [37, 79, 66, 54], // shield generator pack, breaching hammer, gatling sentry, orbital airburst strike
     primary: 35, // scorcher
@@ -330,7 +308,6 @@ const SPECOPSSPECS = [
     stims: 1,
   },
   {
-    locked: true,
     displayName: "The Counter Sniper",
     stratagems: [25, 17, 70, 73], // spear, solo silo, rocket sentry, anti-tank emplacement
     primary: 28, // "Diligence Counter Sniper"
@@ -345,7 +322,6 @@ const SPECOPSSPECS = [
     stims: 0,
   },
   {
-    locked: true,
     displayName: "The Devil Dog",
     stratagems: [
       84, // Cremator,

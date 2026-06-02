@@ -37,6 +37,8 @@ const hellDiversMobilizeCheckbox = document.getElementById("warbond3");
 const stimsUsedInput = document.getElementById("stimsUsedInput");
 const deathsInput = document.getElementById("deathsInput");
 const stratsUsedInput = document.getElementById("stratsUsedInput");
+const challengePage = document.getElementById("challengePage");
+const specialistSelectPage = document.getElementById("specialistSelectPage");
 
 hellDiversMobilizeCheckbox.disabled = true;
 let missionCounter = 1;
@@ -74,20 +76,20 @@ missionCompleteModal.addEventListener("hidden.bs.modal", () => {
   }
 });
 
-specialistsModal.addEventListener("hidden.bs.modal", () => {
-  // remove the checkmark from all specialists
-  const elements = document.querySelectorAll(".specialistCheckMarks");
-  elements.forEach((element) => element.remove());
+// specialistsModal.addEventListener("hidden.bs.modal", () => {
+//   // remove the checkmark from all specialists
+//   const elements = document.querySelectorAll(".specialistCheckMarks");
+//   elements.forEach((element) => element.remove());
 
-  // remove green text from all specialists
-  const specialistHeaders = document.querySelectorAll(
-    ".specialistHeadersClass",
-  );
-  specialistHeaders.forEach((header) => {
-    header.classList.remove("text-success");
-    header.classList.add("text-white");
-  });
-});
+//   // remove green text from all specialists
+//   const specialistHeaders = document.querySelectorAll(
+//     ".specialistHeadersClass",
+//   );
+//   specialistHeaders.forEach((header) => {
+//     header.classList.remove("text-success");
+//     header.classList.add("text-white");
+//   });
+// });
 
 const generateItemCard = (item) => {
   let imgDir = "equipment";
@@ -124,7 +126,6 @@ const makeMissionRowFromResourcesUsed = (label, val) =>
 
 const genCurrentMissionInfo = () => {
   const { boosters, text, minutes, obtainHVI } = getMissionData(missionCounter);
-  console.log(currentSpecialist);
 
   const rows = [
     makeMissionRow("Difficulty:", text, "currentMissionText"),
@@ -184,12 +185,6 @@ const saveProgress = async () => {
   localStorage.setItem("theGauntletSaveData", JSON.stringify(data));
 };
 
-const genNewOperation = async (unlockSpecialist, newGame = null) => {
-  missionCounter = 1;
-  genCurrentMissionInfo();
-  genGauntletMissionCompleteModalContent();
-};
-
 const submitMissionReport = async (isMissionSucceeded) => {
   if (isMissionSucceeded) {
     console.log("mission succeeded!");
@@ -206,7 +201,6 @@ const submitMissionReport = async (isMissionSucceeded) => {
     console.log("mission failed oh no");
     // missionCounter = 1;
     // restarts += 1;
-    // await genNewOperation(false, null, null);
     // saveProgress();
   }
 };
@@ -234,12 +228,17 @@ const displaySpecialistLoadout = () => {
   }
 };
 
-const setSpecialist = (index) => {
-  selectedSpecialist = specialists[index];
-  if (selectedSpecialist.displayName === currentSpecialist.displayName) {
-    return;
-  }
+const showSpecialistOptions = () => {
+  challengePage.classList.toggle("d-none", true);
+  specialistSelectPage.classList.toggle("d-none", false);
+  genGauntletSpecialistsModalContent();
+};
 
+const applySpecialist = async (index) => {
+  challengePage.classList.toggle("d-none", false);
+  specialistSelectPage.classList.toggle("d-none", true);
+
+  // just handles the UI decor
   // remove the checkmark from all other specialists
   const elements = document.querySelectorAll(".specialistCheckMarks");
   elements.forEach((element) => element.remove());
@@ -258,46 +257,43 @@ const setSpecialist = (index) => {
   specCardHeader.innerHTML += `<i class="bi bi-check-lg specialistCheckMarks text-success mx-1"></i>`;
   specCardHeader.classList.add("text-success");
   specCardHeader.classList.remove("text-white");
-};
 
-const applySpecialist = async () => {
-  if (selectedSpecialist.displayName === currentSpecialist.displayName) {
-    selectedSpecialist = null;
-    return;
-  }
-
-  currentSpecialist = selectedSpecialist;
+  // logic goes here
+  currentSpecialist = specialists[index];
   displaySpecialistLoadout();
-  await genNewOperation(false, null, null);
-  saveProgress();
-  selectedSpecialist = null;
+  // saveProgress();
 };
 
 const startNewRun = async () => {
   const saveData = await localStorage.getItem("theGauntletSaveData");
-  if (saveData) {
-    return;
-  }
+  // if (saveData) {
+  //   return;
+  // }
   const infoModal = new bootstrap.Modal(flavorAndInstructionsModal);
   infoModal.show();
 
   // clear the slate
   missionCounter = 1;
   currentSpecialist = null;
-  latestUnlockedSpecialist = null;
   currentObjectives = null;
   restarts = 0;
-  points = 0;
-  operationPoints = 0;
   specialists = structuredClone(SPECOPSSPECS);
-  console.log(specialists);
-  // get a specialist, objective list
-  await genNewOperation(true, null, true);
+  stimsUsed = 0;
+  reinforcementsUsed = 0;
+  stratsUsed = 0;
 
-  // save the randomly selected objectives, and specialist to ls
-  // so user doesnt cycle through specialists
-  await saveProgress();
-  genSOSaveDataManagementModalContent();
+  maxStims = 50;
+  maxDeaths = 12;
+  maxStrats = 110;
+
+  stimsAvailable = 50;
+  reinforcementsAvailable = 12;
+  stratsAvailable = 110;
+  showSpecialistOptions();
+  // populateWebPage();
+
+  // await saveProgress();
+  // genTGSaveDataManagementModalContent();
 };
 
 const populateWebPage = async () => {

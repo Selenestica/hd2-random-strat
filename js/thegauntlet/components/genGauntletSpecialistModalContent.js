@@ -1,4 +1,4 @@
-const specialistsList = document.getElementById("specialistsList");
+const specialistsList = document.getElementsByClassName("specialistsList");
 
 const genSpecialistItemNames = (spec, type) => {
   let elementsList = "";
@@ -26,9 +26,10 @@ const genSpecialistItemNames = (spec, type) => {
 const genSpecialistCard = (spec, i) => {
   let displayName = spec.displayName;
   return `
-      <div class="card col-lg-3 col-sm-12 specialistCards m-2" id="soSpecialistCard${i}" onclick="${`setSpecialist('${i}')`}">
-        <div class="card-header">
-          <h5 class="text-white specialistHeadersClass" id="specialistHeader${i}">${displayName}</h5>
+      <div class="card col-lg-3 col-sm-12 specialistCards m-2" id="soSpecialistCard${i}">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="text-white mb-0 specialistHeadersClass" id="specialistHeader${i}">${displayName}</h5>
+          <button class="btn btn-success" onclick="${`applySpecialist('${i}')`}">Select</button>
         </div>
         <div class="card-body ${spec.locked ? "text-center" : ""}">
           <p class="text-white mb-0">Stratagems:</p>
@@ -48,6 +49,6 @@ const genGauntletSpecialistsModalContent = () => {
   // create specialist cards and add them to an array
   for (let i = 0; i < specialists.length; i++) {
     const card = genSpecialistCard(specialists[i], i);
-    specialistsList.innerHTML += card;
+    specialistsList[0].innerHTML += card;
   }
 };

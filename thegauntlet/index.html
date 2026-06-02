@@ -76,7 +76,7 @@
         </div>
         <div class="col-4">
           <div class="d-flex justify-content-end">
-            <button
+            <!-- <button
               class="btn btn-primary mx-1"
               type="button"
               data-bs-toggle="modal"
@@ -87,7 +87,7 @@
                 style="max-width: 25px"
                 src="../images/iconSVGs/soldier-white.svg"
               />
-            </button>
+            </button> -->
             <button
               class="btn btn-primary"
               type="button"
@@ -116,7 +116,7 @@
 
       <hr class="text-white" />
 
-      <div class="row justify-content-center d-flex">
+      <div class="row justify-content-center d-flex" id="challengePage">
         <div class="col-sm-12 col-md-10 col-lg-7">
           <div class="row justify-content-center text-white">
             <div class="col-4"></div>
@@ -171,6 +171,12 @@
             ></div>
           </div>
         </div>
+      </div>
+      <div class="row justify-content-center d-none" id="specialistSelectPage">
+        <p class="text-white">
+          Select a specialist from the list below to begin the challenge
+        </p>
+        <div class="specialistsList"></div>
       </div>
     </div>
 
@@ -668,7 +674,7 @@
     </div>
 
     <!-- SPECIALISTS MODAL -->
-    <div
+    <!-- <div
       class="modal fade"
       id="specialistsModal"
       tabindex="-1"
@@ -687,8 +693,7 @@
           >
             <p class="text-white">Select a specialist to start the game.</p>
             <div
-              class="row d-flex justify-content-center"
-              id="specialistsList"
+              class="row d-flex justify-content-center specialistsList"
             ></div>
           </div>
           <div class="modal-footer row justify-content-between">
@@ -715,7 +720,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- CHALLENGE SETTINGS MODAL -->
     <div

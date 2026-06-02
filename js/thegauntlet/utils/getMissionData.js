@@ -8,6 +8,7 @@ const getMissionData = (missionCounter) => {
       deaths: -100,
       minutes: -100,
       obtainHVI: false,
+      enemy: "Automatons",
     };
   }
   if (missionCounter === 2) {
@@ -19,6 +20,7 @@ const getMissionData = (missionCounter) => {
       deaths: -100,
       minutes: -100,
       obtainHVI: false,
+      enemy: "Illuminate",
     };
   }
   if (missionCounter === 3) {
@@ -30,6 +32,7 @@ const getMissionData = (missionCounter) => {
       deaths: -100,
       minutes: 10,
       obtainHVI: false,
+      enemy: "Terminids",
     };
   }
   if (missionCounter === 4) {
@@ -41,6 +44,7 @@ const getMissionData = (missionCounter) => {
       deaths: 6,
       minutes: 8,
       obtainHVI: false,
+      enemy: "Illuminate",
     };
   }
   if (missionCounter === 5) {
@@ -52,6 +56,7 @@ const getMissionData = (missionCounter) => {
       deaths: 5,
       minutes: 5,
       obtainHVI: false,
+      enemy: "Terminids",
     };
   }
   if (missionCounter === 6) {
@@ -63,6 +68,7 @@ const getMissionData = (missionCounter) => {
       deaths: 4,
       minutes: 0,
       obtainHVI: true,
+      enemy: "Automatons",
     };
   }
   if (missionCounter > 6) {

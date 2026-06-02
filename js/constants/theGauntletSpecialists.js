@@ -1,5 +1,19 @@
 const SPECOPSSPECS = [
   {
+    displayName: "The Helldiver",
+    stratagems: [50, 44, 65, 5],
+    primary: 0,
+    secondary: 0,
+    throwable: 0,
+    armorPassive: 5,
+    warbonds: [],
+    deaths: 0,
+    booster: 0,
+    minutes: 0,
+    extraStrats: 2,
+    stims: 0,
+  },
+  {
     displayName: "The Arsonist",
     stratagems: [1, 27, 46, 61, 67],
     primary: 20,

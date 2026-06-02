@@ -39,11 +39,11 @@ const deathsInput = document.getElementById("deathsInput");
 const stratsUsedInput = document.getElementById("stratsUsedInput");
 const challengePage = document.getElementById("challengePage");
 const specialistSelectPage = document.getElementById("specialistSelectPage");
+const minutesCounterText = document.getElementById("minutesCounterText");
 
 hellDiversMobilizeCheckbox.disabled = true;
 let missionCounter = 1;
 let currentSpecialist = null;
-let currentObjectives = null;
 let selectedSpecialist = null;
 let specialists = null;
 let restarts = 0;
@@ -51,10 +51,6 @@ let restarts = 0;
 let stimsUsed = 0;
 let reinforcementsUsed = 0;
 let stratsUsed = 0;
-
-let maxStims = 50;
-let maxDeaths = 12;
-let maxStrats = 110;
 
 let stimsAvailable = 50;
 let reinforcementsAvailable = 12;
@@ -67,14 +63,14 @@ let armorPassives = [...ARMOR_PASSIVES];
 let stratagems = [...STRATAGEMS];
 
 // if the submit mission report modal ever closes, reset the inputs
-missionCompleteModal.addEventListener("hidden.bs.modal", () => {
-  for (let z = 0; z < currentObjectives.length; z++) {
-    const objInputEl = document.getElementById(
-      `objId-${currentObjectives[z].id}`,
-    );
-    objInputEl.value = 0;
-  }
-});
+// missionCompleteModal.addEventListener("hidden.bs.modal", () => {
+//   for (let z = 0; z < currentObjectives.length; z++) {
+//     const objInputEl = document.getElementById(
+//       `objId-${currentObjectives[z].id}`,
+//     );
+//     objInputEl.value = 0;
+//   }
+// });
 
 // specialistsModal.addEventListener("hidden.bs.modal", () => {
 //   // remove the checkmark from all specialists
@@ -113,22 +109,24 @@ const generateItemCard = (item) => {
 };
 
 const makeMissionRow = (label, value, id, extraClass = "") =>
-  `<div class="d-flex justify-content-between">
+  `<div class="d-flex justify-content-between" style="border-bottom: 1px solid grey">
     <span class="fw-bold">${label}</span>
     <span id="${id}" class="${extraClass}">${value}</span>
   </div>`;
 
-const makeMissionRowFromResourcesUsed = (label, val) =>
-  `<div class="d-flex justify-content-between">
+const makeMissionRowFromResourcesUsed = (label, val, id) =>
+  `<div class="d-flex justify-content-between" style="border-bottom: 1px solid grey">
     <span class="fw-bold">${label}</span>
-    <span>${val}</span>
+    <span id="${id}">${val}</span>
   </div>`;
 
 const genCurrentMissionInfo = () => {
-  const { boosters, text, minutes, obtainHVI } = getMissionData(missionCounter);
+  const { boosters, text, minutes, obtainHVI, enemy } =
+    getMissionData(missionCounter);
 
   const rows = [
     makeMissionRow("Difficulty:", text, "currentMissionText"),
+    makeMissionRow("Enemy:", enemy, "currentEnemyText"),
     minutes !== -100 &&
       makeMissionRow(
         "Minutes Remaining Required:",
@@ -145,12 +143,21 @@ const genCurrentMissionInfo = () => {
         "text-warning",
       ),
 
-    makeMissionRowFromResourcesUsed("Stims Available:", stimsAvailable),
+    makeMissionRowFromResourcesUsed(
+      "Stims Available:",
+      stimsAvailable,
+      "stimsCounterText",
+    ),
     makeMissionRowFromResourcesUsed(
       "Reinforcements Available:",
       reinforcementsAvailable,
+      "reinforcementsCounterText",
     ),
-    makeMissionRowFromResourcesUsed("Stratagems Available:", stratsAvailable),
+    makeMissionRowFromResourcesUsed(
+      "Stratagems Available:",
+      stratsAvailable,
+      "stratsCounterText",
+    ),
   ];
 
   missionInfoContainer.innerHTML = rows.filter(Boolean).join("\n");
@@ -164,7 +171,6 @@ const saveProgress = async () => {
       dataName: `The Gauntlet Save Data`,
       missionCounter,
       currentSpecialist,
-      currentObjectives,
       specialists,
       restarts,
     };
@@ -177,7 +183,6 @@ const saveProgress = async () => {
     ...data,
     missionCounter,
     currentSpecialist,
-    currentObjectives,
     specialists,
     restarts,
   };
@@ -260,6 +265,26 @@ const applySpecialist = async (index) => {
 
   // logic goes here
   currentSpecialist = specialists[index];
+  // add specialist boons to total
+  const { stims, booster, deaths, extraStrats, minutes } = currentSpecialist;
+  // add booster
+  let boosterNumber = parseInt(boosterCounterText.innerHTML);
+  boosterNumber += booster;
+  boosterCounterText.innerHTML = boosterNumber;
+  // add minutes
+  if (minutesCounterText) {
+    let minutesNumber = parseInt(minutesCounterText.innerHTML);
+    minutesNumber += booster;
+    minutesCounterText.innerHTML = minutesNumber;
+  }
+  // add deaths, strats, stims
+  stimsAvailable += stims;
+  reinforcementsAvailable += deaths;
+  stratsAvailable += extraStrats;
+  stimsCounterText.innerHTML = stimsAvailable;
+  reinforcementsCounterText.innerHTML = reinforcementsAvailable;
+  stratsCounterText.innerHTML = stratsAvailable;
+
   displaySpecialistLoadout();
   // saveProgress();
 };
@@ -275,24 +300,18 @@ const startNewRun = async () => {
   // clear the slate
   missionCounter = 1;
   currentSpecialist = null;
-  currentObjectives = null;
   restarts = 0;
   specialists = structuredClone(SPECOPSSPECS);
   stimsUsed = 0;
   reinforcementsUsed = 0;
   stratsUsed = 0;
 
-  maxStims = 50;
-  maxDeaths = 12;
-  maxStrats = 110;
-
   stimsAvailable = 50;
   reinforcementsAvailable = 12;
   stratsAvailable = 110;
   showSpecialistOptions();
-  // populateWebPage();
-
-  // await saveProgress();
+  genCurrentMissionInfo();
+  genGauntletMissionCompleteModalContent(missionCounter);
   // genTGSaveDataManagementModalContent();
 };
 
@@ -300,15 +319,13 @@ const populateWebPage = async () => {
   genGauntletSpecialistsModalContent();
   displaySpecialistLoadout();
 
-  genCurrentMissionInfo();
-  genGauntletMissionCompleteModalContent();
+  genGauntletMissionCompleteModalContent(missionCounter);
 };
 
 const uploadSaveData = async () => {
   const theGauntletSaveData = await localStorage.getItem("theGauntletSaveData");
   if (theGauntletSaveData) {
     const data = JSON.parse(theGauntletSaveData);
-    currentObjectives = data.currentObjectives;
     currentSpecialist = data.currentSpecialist;
 
     missionCounter = data.missionCounter;

@@ -23,6 +23,24 @@ const genSpecialistItemNames = (spec, type) => {
   return elementsList;
 };
 
+const genSpecialistBoons = (spec) => {
+  let elementsList = "";
+  const { minutes, deaths, extraStrats, stims, booster } = spec;
+  let list = [
+    { name: "Minutes", val: minutes },
+    { val: deaths, name: "Deaths" },
+    { val: extraStrats, name: "Stratagems" },
+    { val: stims, name: "Stims" },
+    { val: booster, name: "Boosters" },
+  ];
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].val !== 0) {
+      elementsList += `<li class="text-white">+${list[i].val} ${list[i].name}</li>`;
+    }
+  }
+  return elementsList;
+};
+
 const genSpecialistCard = (spec, i) => {
   let displayName = spec.displayName;
   return `
@@ -39,6 +57,10 @@ const genSpecialistCard = (spec, i) => {
           <p class="text-white mb-0">Equipment:</p>
           <ul>
             ${genSpecialistItemNames(spec, "equip")}
+          </ul>
+          <p class="text-white mb-0">Boons:</p>
+          <ul>
+            ${genSpecialistBoons(spec)}
           </ul>
         </div>
     `;

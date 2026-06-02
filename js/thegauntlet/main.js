@@ -40,6 +40,10 @@ const stratsUsedInput = document.getElementById("stratsUsedInput");
 const challengePage = document.getElementById("challengePage");
 const specialistSelectPage = document.getElementById("specialistSelectPage");
 const minutesCounterText = document.getElementById("minutesCounterText");
+const challengeCompleteButtonDiv = document.getElementById(
+  "challengeCompleteButtonDiv",
+);
+const challengeButtonsDiv = document.getElementById("challengeButtonsDiv");
 
 hellDiversMobilizeCheckbox.disabled = true;
 let missionCounter = 1;
@@ -122,6 +126,10 @@ const makeMissionRowFromResourcesUsed = (label, val, id) =>
   </div>`;
 
 const genCurrentMissionInfo = () => {
+  if (missionCounter > 6) {
+    challengeButtonsDiv.classList.toggle("d-none", true);
+    challengeCompleteButtonDiv.classList.toggle("d-none", false);
+  }
   const { boosters, text, minutes, obtainHVI, enemy } =
     getMissionData(missionCounter);
 
@@ -245,23 +253,33 @@ const submitMissionReport = async (isMissionSucceeded) => {
       hviObtainedCheck,
       minutesRemaining,
     );
-    console.log(didPlayerMeetObjectives);
-    // if everything good, then proceed to next mission
-    // missionCounter++;
-    // saveProgress();
-    // genCurrentMissionInfo();
-    // return;
 
-    // if not good, then mission failed
     // resources set back to when the mission was started the first time (resources used during failed missions dont count)
-    // choose new specialist (optional)
-    // mission counter doesnt increase
-    // restarts++
-    // genCurrentMissionInfo();
-    // saveProgress()
+    if (!didPlayerMeetObjectives) {
+      console.log("player didnt meet objectives!");
+      // show mission failed modal
+      // give option to change specialists in mission failed modal
+      // if changing specialist, showSpecialistOptions();
+      // if not, just close the modal
+      restarts++;
+      // showSpecialistOptions();
+      // probably want to wipe inputs in mission report modal
+      // saveProgress()
+      return;
+    }
+
+    console.log("player moves on to next mission!");
+    // if everything good, then proceed to next mission
+    missionCounter++;
+    stimsAvailable -= stimsUsed;
+    reinforcementsAvailable -= numOfDeaths;
+    stratsAvailable -= stratagemsUsed;
+    genCurrentMissionInfo();
+    genGauntletMissionCompleteModalContent(missionCounter);
+    // saveProgress();
+    // return;
   }
 
-  // set missionCounter back to start of operation
   if (!isMissionSucceeded) {
     console.log("mission failed oh no");
     // missionCounter = 1;
@@ -386,8 +404,8 @@ const uploadSaveData = async () => {
   const theGauntletSaveData = await localStorage.getItem("theGauntletSaveData");
   if (theGauntletSaveData) {
     const data = JSON.parse(theGauntletSaveData);
-    currentSpecialist = data.currentSpecialist;
 
+    currentSpecialist = data.currentSpecialist;
     missionCounter = data.missionCounter;
     restarts = data.restarts;
     dataName = data.dataName;
@@ -396,6 +414,10 @@ const uploadSaveData = async () => {
     return;
   }
   startNewRun();
+};
+
+const saveDataAndRestart = () => {
+  console.log("starting a new run after saving the old run!");
 };
 
 const clearSaveDataAndRestart = async () => {

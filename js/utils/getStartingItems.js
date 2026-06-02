@@ -110,7 +110,7 @@ const getStartingThrowables = (diff) => {
   return throwables;
 };
 
-const getStartingItems = (diff = null) => {
+const getStartingItems = async (diff = null) => {
   starterStratNames = getStartingStrats(diff);
   starterPrimNames = ["Constitution"];
   starterSecNames = getStartingSecondaries(diff);
@@ -131,7 +131,7 @@ const getStartingItems = (diff = null) => {
     SPECIALISTS[specialist].primaries.length > 0
       ? SPECIALISTS[specialist].primaries
       : ["Constitution"];
-  starterStratNames = starterStratNames.concat(
+  starterStratNames = await starterStratNames.concat(
     SPECIALISTS[specialist].stratagems,
   );
   if (specialist === "22") {

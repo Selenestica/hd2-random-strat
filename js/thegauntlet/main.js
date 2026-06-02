@@ -55,6 +55,7 @@ let stratsUsed = 0;
 let stimsAvailable = 50;
 let reinforcementsAvailable = 12;
 let stratsAvailable = 110;
+let minutesNumber = 40;
 
 let primaries = [...PRIMARIES];
 let secondaries = [...SECONDARIES];
@@ -190,15 +191,74 @@ const saveProgress = async () => {
   localStorage.setItem("theGauntletSaveData", JSON.stringify(data));
 };
 
+const calculateResources = (
+  stimsUsed,
+  numOfDeaths,
+  stratagemsUsed,
+  hviObtainedCheck,
+  minutesRemaining,
+) => {
+  if (stimsUsed > stimsAvailable) {
+    return false;
+  }
+  if (numOfDeaths > reinforcementsAvailable) {
+    return false;
+  }
+  if (stratagemsUsed > stratsAvailable) {
+    return false;
+  }
+  if (hviObtainedCheck === false) {
+    return false;
+  }
+  if (minutesRemaining > minutesNumber) {
+    return false;
+  }
+  return true;
+};
+
 const submitMissionReport = async (isMissionSucceeded) => {
   if (isMissionSucceeded) {
-    console.log("mission succeeded!");
+    const stimsUsed = parseInt(
+      document.getElementById("stimsUsedInput").value,
+      10,
+    );
+    const numOfDeaths = parseInt(
+      document.getElementById("deathsInput").value,
+      10,
+    );
+    const stratagemsUsed = parseInt(
+      document.getElementById("stratsUsedInput").value,
+      10,
+    );
+    const hviObtainedCheck =
+      document.getElementById("hviObtainedCheck") &&
+      document.getElementById("hviObtainedCheck").value;
+    const minutesRemaining =
+      document.getElementById("minutesRemainingInput") &&
+      parseInt(document.getElementById("minutesRemainingInput").value, 10);
 
+    // we're going to want to check and see if the objectives were met and resources didn't exceed the limits
+    const didPlayerMeetObjectives = await calculateResources(
+      stimsUsed,
+      numOfDeaths,
+      stratagemsUsed,
+      hviObtainedCheck,
+      minutesRemaining,
+    );
+    console.log(didPlayerMeetObjectives);
+    // if everything good, then proceed to next mission
     // missionCounter++;
-
     // saveProgress();
     // genCurrentMissionInfo();
     // return;
+
+    // if not good, then mission failed
+    // resources set back to when the mission was started the first time (resources used during failed missions dont count)
+    // choose new specialist (optional)
+    // mission counter doesnt increase
+    // restarts++
+    // genCurrentMissionInfo();
+    // saveProgress()
   }
 
   // set missionCounter back to start of operation
@@ -273,8 +333,8 @@ const applySpecialist = async (index) => {
   boosterCounterText.innerHTML = boosterNumber;
   // add minutes
   if (minutesCounterText) {
-    let minutesNumber = parseInt(minutesCounterText.innerHTML);
-    minutesNumber += booster;
+    minutesNumber = getMissionData(missionCounter);
+    minutesNumber += minutes;
     minutesCounterText.innerHTML = minutesNumber;
   }
   // add deaths, strats, stims

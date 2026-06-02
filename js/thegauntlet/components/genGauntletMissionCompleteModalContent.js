@@ -31,7 +31,7 @@ const genGauntletMissionCompleteModalContent = (missionCounter) => {
                 max="1000"
                 min="0"
                 oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                id="objId-${stat.elId}"
+                id="${stat.elId}"
             />
         </div>`;
   }

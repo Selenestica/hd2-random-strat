@@ -6,8 +6,8 @@ const genGauntletMissionCompleteModalContent = (missionCounter) => {
     { label: "Stims Used", elId: "stimsUsedInput" },
     { label: "Deaths", elId: "deathsInput" },
     { label: "Stratagems Used", elId: "stratsUsedInput" },
-    { label: "High Value Item Obtained", elId: "hviObtainedCheck" },
     { label: "Minutes Remaining", elId: "minutesRemainingInput" },
+    { label: "High Value Item Obtained", elId: "hviObtainedCheck" },
   ];
   objectiveInputsContainer.innerHTML = "";
   if (missionCounter < 3) {

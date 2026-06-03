@@ -1,4 +1,7 @@
 const specialistsList = document.getElementsByClassName("specialistsList");
+const specialistPageHeaderText = document.getElementById(
+  "specialistPageHeaderText",
+);
 
 const genSpecialistItemNames = (spec, type) => {
   let elementsList = "";
@@ -44,7 +47,7 @@ const genSpecialistBoons = (spec) => {
 const genSpecialistCard = (spec, i) => {
   let displayName = spec.displayName;
   return `
-      <div class="card col-lg-3 col-sm-12 specialistCards m-2" id="soSpecialistCard${i}">
+      <div class="card col-lg-3 col-md-5 col-xs-12 tgSpecialistCards m-2" id="soSpecialistCard${i}">
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5 class="text-white mb-0 specialistHeadersClass" id="specialistHeader${i}">${displayName}</h5>
           <button class="btn btn-success" onclick="${`applySpecialist('${i}')`}">Select</button>
@@ -66,8 +69,15 @@ const genSpecialistCard = (spec, i) => {
     `;
 };
 
-const genGauntletSpecialistsModalContent = () => {
+const genGauntletSpecialistsModalContent = (isRestart = null) => {
+  specialistPageHeaderText.innerText =
+    "Select a specialist from the list below to begin the challenge.";
   specialistsList.innerHTML = "";
+
+  if (isRestart) {
+    specialistPageHeaderText.innerText =
+      "When restarting a mission, you have the option of changing your specialist. Select a specialist below to continue.";
+  }
   // create specialist cards and add them to an array
   for (let i = 0; i < specialists.length; i++) {
     const card = genSpecialistCard(specialists[i], i);

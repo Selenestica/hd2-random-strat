@@ -44,6 +44,8 @@ const challengeCompleteButtonDiv = document.getElementById(
   "challengeCompleteButtonDiv",
 );
 const challengeButtonsDiv = document.getElementById("challengeButtonsDiv");
+const hviObtainedCheck = document.getElementById("hviObtainedCheck");
+const minutesRemainingInput = document.getElementById("minutesRemainingInput");
 
 hellDiversMobilizeCheckbox.disabled = true;
 let missionCounter = 1;
@@ -67,15 +69,27 @@ let throwables = [...THROWABLES];
 let armorPassives = [...ARMOR_PASSIVES];
 let stratagems = [...STRATAGEMS];
 
+const missionReportInputs = [
+  "stimsUsedInput",
+  "deathsInput",
+  "stratsUsedInput",
+  "minutesRemainingInput",
+  "hviObtainedCheck",
+];
 // if the submit mission report modal ever closes, reset the inputs
-// missionCompleteModal.addEventListener("hidden.bs.modal", () => {
-//   for (let z = 0; z < currentObjectives.length; z++) {
-//     const objInputEl = document.getElementById(
-//       `objId-${currentObjectives[z].id}`,
-//     );
-//     objInputEl.value = 0;
-//   }
-// });
+missionCompleteModal.addEventListener("hidden.bs.modal", () => {
+  for (let z = 0; z < missionReportInputs.length; z++) {
+    const inputEl = document.getElementById(`${missionReportInputs[z]}`);
+    if (!inputEl) {
+      continue;
+    }
+    if (z !== 4) {
+      inputEl.value = 0;
+    } else {
+      inputEl.checked = false;
+    }
+  }
+});
 
 // specialistsModal.addEventListener("hidden.bs.modal", () => {
 //   // remove the checkmark from all specialists
@@ -199,6 +213,56 @@ const saveProgress = async () => {
   localStorage.setItem("theGauntletSaveData", JSON.stringify(data));
 };
 
+const proceedToNextLevel = () => {
+  missionCounter++;
+  stimsAvailable -= stimsUsed;
+  reinforcementsAvailable -= numOfDeaths;
+  stratsAvailable -= stratagemsUsed;
+  genCurrentMissionInfo();
+  genGauntletMissionCompleteModalContent(missionCounter);
+};
+
+const closeMissionReportModal = (
+  didPlayerSucceed,
+  stimsUsed = null,
+  numOfDeaths = null,
+  stratagemsUsed = null,
+) => {
+  const mspModalElement = document.getElementById("maxStarsPromptModal");
+  const mspModal = new bootstrap.Modal(maxStarsPromptModal);
+  mspModal.hide();
+
+  if (didPlayerSucceed) {
+    // tell player that they were successful
+    // ask player if other players were successful
+    // if yes, click Proceed
+    // proceedToNextLevel(stimsUsed, numOfDeaths, stratagemsUsed);
+
+    // if no, click Restart Mission
+    // submitMissionReport(false)
+    return;
+  }
+
+  // if that was the last mission, dont show rewards because theyre done
+  if (missionCounter >= 22) {
+    missionCounter++;
+    checkMissionButtons();
+    missionTimes.push(parseInt(timeRemainingInput.value, 10));
+    missionCounterText.innerHTML = `${getMissionText()}`;
+    mspModal.hide();
+    saveProgress();
+    return;
+  }
+
+  // Wait until modal is fully hidden before showing next
+  mspModalElement.addEventListener("hidden.bs.modal", function handleHidden() {
+    mspModalElement.removeEventListener("hidden.bs.modal", handleHidden); // Clean up
+    const itemsModal = new bootstrap.Modal(itemOptionsModal);
+    itemsModal.show();
+    rollRewardOptions();
+  });
+};
+
 const calculateResources = (
   stimsUsed,
   numOfDeaths,
@@ -256,35 +320,16 @@ const submitMissionReport = async (isMissionSucceeded) => {
 
     // resources set back to when the mission was started the first time (resources used during failed missions dont count)
     if (!didPlayerMeetObjectives) {
-      console.log("player didnt meet objectives!");
-      // show mission failed modal
-      // give option to change specialists in mission failed modal
-      // if changing specialist, showSpecialistOptions();
-      // if not, just close the modal
-      restarts++;
-      // showSpecialistOptions();
-      // probably want to wipe inputs in mission report modal
-      // saveProgress()
+      showSpecialistOptions(true);
       return;
     }
 
-    console.log("player moves on to next mission!");
     // if everything good, then proceed to next mission
-    missionCounter++;
-    stimsAvailable -= stimsUsed;
-    reinforcementsAvailable -= numOfDeaths;
-    stratsAvailable -= stratagemsUsed;
-    genCurrentMissionInfo();
-    genGauntletMissionCompleteModalContent(missionCounter);
-    // saveProgress();
-    // return;
+    closeMissionReportModal(true, stimsUsed, numOfDeaths, stratagemsUsed);
   }
 
   if (!isMissionSucceeded) {
-    console.log("mission failed oh no");
-    // missionCounter = 1;
-    // restarts += 1;
-    // saveProgress();
+    showSpecialistOptions(true);
   }
 };
 
@@ -311,17 +356,17 @@ const displaySpecialistLoadout = () => {
   }
 };
 
-const showSpecialistOptions = () => {
+const showSpecialistOptions = (isRestart = null) => {
   challengePage.classList.toggle("d-none", true);
   specialistSelectPage.classList.toggle("d-none", false);
-  genGauntletSpecialistsModalContent();
+  genGauntletSpecialistsModalContent(isRestart);
 };
 
 const applySpecialist = async (index) => {
   challengePage.classList.toggle("d-none", false);
   specialistSelectPage.classList.toggle("d-none", true);
 
-  // just handles the UI decor
+  //// just handles the UI decor
   // remove the checkmark from all other specialists
   const elements = document.querySelectorAll(".specialistCheckMarks");
   elements.forEach((element) => element.remove());
@@ -341,7 +386,9 @@ const applySpecialist = async (index) => {
   specCardHeader.classList.add("text-success");
   specCardHeader.classList.remove("text-white");
 
-  // logic goes here
+  //// logic goes here
+  // check to see if they already have a currentSpecialist
+  // if yes, will need to deduct the boons from the current specialist from the buckets
   currentSpecialist = specialists[index];
   // add specialist boons to total
   const { stims, booster, deaths, extraStrats, minutes } = currentSpecialist;

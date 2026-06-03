@@ -151,10 +151,16 @@ LOADOUT BUILDER
     - 
 
 THE GAUNTLET
-  - players must choose a specialist before they start (disable mission buttons until specialist is applied)
-  - show resource buckets
+  - save progress
+  - specialist menu disabled unless mission failed
+    - player chooses another specialist, then button becomes disabled again
+  - restart button starts a new run
 
-
+  QUESTIONS
+    - what happens if one player fails but another player doesnt, and the succeeding player moves forward on accident?
+      - maybe make a menu where you can go back to the previous mission
+      - or, a prompt show up after player inputs mission report that asks if everyone else passed the mission
+      - or both?
 
 
 NEW PAGE IDEAS:

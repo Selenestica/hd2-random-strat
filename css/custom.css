@@ -107,17 +107,21 @@ border 3c434d
   text-align: center;
 }
 
-.pcNoHoverItemCards:hover {
-  border: 1px solid yellow;
-}
-
 .specialistCards {
   cursor: pointer;
   background-color: #212830;
 }
 
+.tgSpecialistCards:hover,
+.challengeCards:hover,
+.pcNoHoverItemCards:hover,
+.itemCards:hover,
 .specialistCards:hover {
   border: 1px solid yellow;
+}
+
+.tgSpecialistCards {
+  background-color: #212830;
 }
 
 .pcModalItemCards {
@@ -126,10 +130,6 @@ border 3c434d
 
 .pcItemCardText {
   font-size: 0.75rem;
-}
-
-.itemCards:hover {
-  border: 1px solid yellow;
 }
 
 @media only screen and (max-width: 767px) {
@@ -350,10 +350,6 @@ border 3c434d
   border: none;
   display: flex;
   align-items: center;
-}
-
-.challengeCards:hover {
-  border: 1px solid yellow;
 }
 
 @keyframes colorCycle {

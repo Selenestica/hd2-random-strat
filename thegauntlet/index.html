@@ -81,7 +81,7 @@
               type="button"
               data-bs-toggle="modal"
               data-bs-target="#saveDataManagementModal"
-              onclick="genSOSaveDataManagementModalContent()"
+              onclick="genSaveDataManagementModalContent()"
             >
               <i class="bi bi-save text-light"></i>
             </button>
@@ -118,12 +118,13 @@
               class="col-8 col-lg-6 d-flex justify-content-center"
               id="challengeButtonsDiv"
             >
-              <div class="btn-group my-2" id="specialistMenuButtonDiv">
+              <!-- <div class="btn-group my-2" id="specialistMenuButtonDiv">
                 <button
                   class="btn btn-primary"
                   type="button"
                   data-bs-toggle="modal"
                   data-bs-target="#specialistsModal"
+                  id="specialistMenuButton"
                 >
                   <img
                     class="img-fluid"
@@ -131,7 +132,7 @@
                     src="../images/iconSVGs/soldier-white.svg"
                   />
                 </button>
-              </div>
+              </div> -->
               <div class="btn-group my-2 mx-2" id="missionCompleteButtonDiv">
                 <button
                   class="btn btn-success"
@@ -199,10 +200,13 @@
         </div>
       </div>
       <div class="row justify-content-center d-none" id="specialistSelectPage">
-        <p class="text-white text-center">
+        <p class="text-white text-center" id="specialistPageHeaderText">
           Select a specialist from the list below to begin the challenge
         </p>
-        <div class="specialistsList"></div>
+        <div
+          class="specialistsList d-flex justify-content-center"
+          style="flex-wrap: inherit"
+        ></div>
       </div>
     </div>
 
@@ -435,7 +439,8 @@
                       Completing one 40 minute mission at each difficulty,
                       starting from difficulty 5 and ending at difficulty 10.
                       <br />
-                      The challenge can be undertaken with two or more players.
+                      The challenge can be undertaken with any amount of
+                      players, including solo.
                       <br />
                       <br />
                       With each successful mission, the challenge increases not
@@ -580,36 +585,23 @@
         <div class="modal-content bg-grey">
           <div class="modal-header">
             <h5 class="modal-title text-light" id="">Save Data Management</h5>
-            <button
-              type="button"
-              onclick="downloadTGScoreSummary()"
-              class="btn btn-success"
-            >
-              <img
-                class="img-fluid"
-                style="max-width: 25px"
-                src="../images/iconSVGs/file-check.svg"
-              />
-            </button>
           </div>
           <div
             class="modal-body row d-flex justify-content-center"
             id="saveDataManagementModalBody"
           >
             <p class="text-white">
-              Download or upload your save files here to make progress on other
-              devices. You can only have one save file for this challenge.
+              Switch your active save file here, delete save files, or upload
+              save files.
+              <br />
+              Select an entry below and press 'Apply' to load a different save
+              file.
               <br />
               <br />
-              WARNING: Deleting your save file will remove <b>all</b> of your
-              progress!
-              <br />
-              <br />
-              WARNING: Uploading a save file will
-              <b>overwrite your current save file</b>.
+              NOTE: You can't delete your current save file.
             </p>
             <div class="mb-3 d-flex row">
-              <div class="col-9 px-0">
+              <div class="col-9">
                 <input
                   class="form-control"
                   type="file"
@@ -620,7 +612,7 @@
                 <button
                   type="button"
                   onclick="uploadSaveFile()"
-                  class="btn btn-warning"
+                  class="btn btn-success"
                   id="uploadSaveFileButton"
                   disabled
                 >
@@ -628,12 +620,18 @@
                 </button>
               </div>
             </div>
-            <div id="saveDataManagementModalSavesList"></div>
+            <div
+              id="saveDataManagementModalSavesList"
+              class="btn-group-vertical"
+              role="group"
+              aria-label="Basic radio toggle button group"
+            ></div>
           </div>
           <div class="modal-footer row justify-content-between">
             <div class="d-flex col justify-content-start">
               <button
                 type="button"
+                onclick="clearSaveDataManagementModal()"
                 class="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
@@ -646,11 +644,27 @@
             >
               <button
                 type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#deleteSaveDataModal"
+                onclick="clearSaveDataAndRestart()"
                 class="btn btn-danger"
+                data-bs-dismiss="modal"
               >
-                <i class="bi bi-trash"></i>
+                Delete ALL
+              </button>
+              <button
+                type="button"
+                onclick="deleteSavedGameData()"
+                class="btn btn-danger mx-2"
+                data-bs-dismiss="modal"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                onclick="applySavedGameData()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Apply
               </button>
             </div>
           </div>
@@ -742,55 +756,6 @@
       </div>
     </div>
 
-    <!-- SPECIALISTS MODAL -->
-    <!-- <div
-      class="modal fade"
-      id="specialistsModal"
-      tabindex="-1"
-      open="true"
-      aria-labelledby="specialistsModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-xl modal-dialog-scrollable">
-        <div class="modal-content bg-grey">
-          <div class="modal-header">
-            <h5 class="modal-title text-light" id="">Specialist Select</h5>
-          </div>
-          <div
-            class="modal-body row d-flex justify-content-center"
-            id="specialistsModalBody"
-          >
-            <p class="text-white">Select a specialist to start the game.</p>
-            <div
-              class="row d-flex justify-content-center specialistsList"
-            ></div>
-          </div>
-          <div class="modal-footer row justify-content-between">
-            <div class="d-flex col justify-content-start">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Cancel
-              </button>
-            </div>
-            <div class="d-flex col justify-content-end">
-              <button
-                type="button"
-                onclick="applySpecialist()"
-                class="btn btn-primary"
-                data-bs-dismiss="modal"
-                id="applySpecialistButton"
-              >
-                Apply
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
     <!-- CHALLENGE SETTINGS MODAL -->
     <div
       class="modal fade"
@@ -878,15 +843,15 @@
   <script src="../js/constants/stratagems.js"></script>
   <script src="../js/constants/armorpassives.js"></script>
   <script src="../js/constants/theGauntletSpecialists.js"></script>
-  <script src="../js/utils/showSOSpecialistUnlockedToast.js"></script>
   <script src="../js/utils/showPointsEarnedToast.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
-  <script src="../js/utils/downloadSOSaveFile.js"></script>
+  <!-- <script src="../js/utils/downloadSOSaveFile.js"></script> -->
+  <script src="../js/utils/getCurrentGame.js"></script>
   <script src="../js/thegauntlet/components/genGauntletSpecialistModalContent.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
-  <script src="../js/utils/downloadSOScoreSummary.js"></script>
+  <!-- <script src="../js/utils/downloadSOScoreSummary.js"></script> -->
   <script src="../js/thegauntlet/utils/getMissionData.js"></script>
   <script src="../js/thegauntlet/components/genGauntletMissionCompleteModalContent.js"></script>
   <script src="../js/thegauntlet/main.js"></script>
-  <script src="../js/components/genSOSaveDataManagementModalContent.js"></script>
+  <script src="../js/thegauntlet/components/genSaveDataManagementModalContent.js"></script>
 </html>

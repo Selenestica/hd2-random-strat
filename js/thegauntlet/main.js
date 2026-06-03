@@ -2,6 +2,7 @@ const missionCompleteModalBody = document.getElementById(
   "missionCompleteModalBody",
 );
 const missionCompleteModal = document.getElementById("missionCompleteModal");
+const missionFailedModal = document.getElementById("missionFailedModal");
 const specialistsModal = document.getElementById("specialistsModal");
 const objectiveInputsContainer = document.getElementById(
   "objectiveInputsContainer",
@@ -46,6 +47,11 @@ const challengeCompleteButtonDiv = document.getElementById(
 const challengeButtonsDiv = document.getElementById("challengeButtonsDiv");
 const hviObtainedCheck = document.getElementById("hviObtainedCheck");
 const minutesRemainingInput = document.getElementById("minutesRemainingInput");
+const boosterCounterText = document.getElementById("boosterCounterText");
+const missionSuccessConfirmationModal = document.getElementById(
+  "missionSuccessConfirmationModal",
+);
+const failureReasonsList = document.getElementById("failureReasonsList");
 
 hellDiversMobilizeCheckbox.disabled = true;
 let missionCounter = 1;
@@ -54,9 +60,11 @@ let selectedSpecialist = null;
 let specialists = null;
 let restarts = 0;
 
-let stimsUsed = 0;
-let reinforcementsUsed = 0;
-let stratsUsed = 0;
+let stimsUsed = null;
+let reinforcementsUsed = null;
+let stratsUsed = null;
+
+let failureReasons = [];
 
 let stimsAvailable = 50;
 let reinforcementsAvailable = 12;
@@ -216,73 +224,84 @@ const saveProgress = async () => {
 const proceedToNextLevel = () => {
   missionCounter++;
   stimsAvailable -= stimsUsed;
-  reinforcementsAvailable -= numOfDeaths;
-  stratsAvailable -= stratagemsUsed;
+  reinforcementsAvailable -= reinforcementsUsed;
+  stratsAvailable -= stratsUsed;
   genCurrentMissionInfo();
   genGauntletMissionCompleteModalContent(missionCounter);
+  stimsUsed = null;
+  reinforcementsUsed = null;
+  stratsUsed = null;
+  // saveProgress()
 };
 
-const closeMissionReportModal = (
-  didPlayerSucceed,
-  stimsUsed = null,
-  numOfDeaths = null,
-  stratagemsUsed = null,
-) => {
-  const mspModalElement = document.getElementById("maxStarsPromptModal");
-  const mspModal = new bootstrap.Modal(maxStarsPromptModal);
-  mspModal.hide();
-
-  if (didPlayerSucceed) {
-    // tell player that they were successful
-    // ask player if other players were successful
-    // if yes, click Proceed
-    // proceedToNextLevel(stimsUsed, numOfDeaths, stratagemsUsed);
-
-    // if no, click Restart Mission
-    // submitMissionReport(false)
-    return;
+const genMissionFailedReasons = () => {
+  failureReasonsList.innerHTML = "";
+  console.log(failureReasons);
+  for (let i = 0; i < failureReasons.length; i++) {
+    failureReasonsList.innerHTML += `
+      <li class="text-white">${failureReasons[i]}<li/>
+    `;
   }
+};
 
-  // if that was the last mission, dont show rewards because theyre done
-  if (missionCounter >= 22) {
-    missionCounter++;
-    checkMissionButtons();
-    missionTimes.push(parseInt(timeRemainingInput.value, 10));
-    missionCounterText.innerHTML = `${getMissionText()}`;
-    mspModal.hide();
-    saveProgress();
-    return;
+const closeMissionReportModal = (didSucceed) => {
+  const mcModal = new bootstrap.Modal(missionCompleteModal);
+  mcModal.hide();
+  let modal = missionSuccessConfirmationModal;
+  if (!didSucceed) {
+    genMissionFailedReasons();
+    modal = missionFailedModal;
   }
 
   // Wait until modal is fully hidden before showing next
-  mspModalElement.addEventListener("hidden.bs.modal", function handleHidden() {
-    mspModalElement.removeEventListener("hidden.bs.modal", handleHidden); // Clean up
-    const itemsModal = new bootstrap.Modal(itemOptionsModal);
-    itemsModal.show();
-    rollRewardOptions();
-  });
+  missionCompleteModal.addEventListener(
+    "hidden.bs.modal",
+    function handleHidden() {
+      missionCompleteModal.removeEventListener("hidden.bs.modal", handleHidden); // Clean up
+      const nextModal = new bootstrap.Modal(modal);
+      nextModal.show();
+    },
+  );
 };
 
 const calculateResources = (
-  stimsUsed,
+  stims,
   numOfDeaths,
   stratagemsUsed,
   hviObtainedCheck,
   minutesRemaining,
 ) => {
-  if (stimsUsed > stimsAvailable) {
-    return false;
-  }
-  if (numOfDeaths > reinforcementsAvailable) {
-    return false;
-  }
-  if (stratagemsUsed > stratsAvailable) {
-    return false;
-  }
+  failureReasons = [];
   if (hviObtainedCheck === false) {
-    return false;
+    failureReasons.push("Failed to extract with the High Value Item");
   }
   if (minutesRemaining > minutesNumber) {
+    failureReasons.push(
+      `Early extraction. Minutes remaining required: ${minutesNumber}. Extracted with ${minutesRemaining} minutes remaining.`,
+    );
+  }
+  if (stims > stimsAvailable) {
+    failureReasons.push(
+      `Used too many stims. ${stims}/${stimsAvailable} available`,
+    );
+  }
+  if (numOfDeaths > reinforcementsAvailable) {
+    failureReasons.push(
+      `Used too many reinforcements. ${numOfDeaths}/${reinforcementsAvailable} available`,
+    );
+  }
+  if (stratagemsUsed > stratsAvailable) {
+    failureReasons.push(
+      `Used too many stratagems. ${stratagemsUsed}/${stratsAvailable} available`,
+    );
+  }
+  if (
+    stims > stimsAvailable ||
+    numOfDeaths > reinforcementsAvailable ||
+    stratagemsUsed > stratsAvailable ||
+    hviObtainedCheck === false ||
+    minutesRemaining > minutesNumber
+  ) {
     return false;
   }
   return true;
@@ -290,18 +309,12 @@ const calculateResources = (
 
 const submitMissionReport = async (isMissionSucceeded) => {
   if (isMissionSucceeded) {
-    const stimsUsed = parseInt(
-      document.getElementById("stimsUsedInput").value,
-      10,
-    );
-    const numOfDeaths = parseInt(
+    stimsUsed = parseInt(document.getElementById("stimsUsedInput").value, 10);
+    reinforcementsUsed = parseInt(
       document.getElementById("deathsInput").value,
       10,
     );
-    const stratagemsUsed = parseInt(
-      document.getElementById("stratsUsedInput").value,
-      10,
-    );
+    stratsUsed = parseInt(document.getElementById("stratsUsedInput").value, 10);
     const hviObtainedCheck =
       document.getElementById("hviObtainedCheck") &&
       document.getElementById("hviObtainedCheck").value;
@@ -312,24 +325,24 @@ const submitMissionReport = async (isMissionSucceeded) => {
     // we're going to want to check and see if the objectives were met and resources didn't exceed the limits
     const didPlayerMeetObjectives = await calculateResources(
       stimsUsed,
-      numOfDeaths,
-      stratagemsUsed,
+      reinforcementsUsed,
+      stratsUsed,
       hviObtainedCheck,
       minutesRemaining,
     );
 
     // resources set back to when the mission was started the first time (resources used during failed missions dont count)
     if (!didPlayerMeetObjectives) {
-      showSpecialistOptions(true);
+      closeMissionReportModal(false);
       return;
     }
 
     // if everything good, then proceed to next mission
-    closeMissionReportModal(true, stimsUsed, numOfDeaths, stratagemsUsed);
+    closeMissionReportModal(true);
   }
 
   if (!isMissionSucceeded) {
-    showSpecialistOptions(true);
+    closeMissionReportModal(false);
   }
 };
 
@@ -362,7 +375,31 @@ const showSpecialistOptions = (isRestart = null) => {
   genGauntletSpecialistsModalContent(isRestart);
 };
 
-const applySpecialist = async (index) => {
+const removePreviousSpecialistBoons = () => {
+  const { stims, booster, deaths, extraStrats, minutes } = currentSpecialist;
+  if (boosterCounterText) {
+    let boosterNumber = parseInt(boosterCounterText.innerHTML);
+    boosterNumber -= booster;
+    boosterCounterText.innerHTML = boosterNumber;
+  }
+
+  if (minutesCounterText) {
+    minutesNumber = getMissionData(missionCounter);
+    minutesNumber -= minutes;
+    minutesCounterText.innerHTML = minutesNumber;
+  }
+
+  stimsAvailable -= stims;
+  reinforcementsAvailable -= deaths;
+  stratsAvailable -= extraStrats;
+  stimsCounterText.innerHTML = stimsAvailable;
+  reinforcementsCounterText.innerHTML = reinforcementsAvailable;
+  stratsCounterText.innerHTML = stratsAvailable;
+};
+
+const applySpecialist = async (index, isRestartString = null) => {
+  const isRestart = isRestartString === "true";
+
   challengePage.classList.toggle("d-none", false);
   specialistSelectPage.classList.toggle("d-none", true);
 
@@ -389,13 +426,19 @@ const applySpecialist = async (index) => {
   //// logic goes here
   // check to see if they already have a currentSpecialist
   // if yes, will need to deduct the boons from the current specialist from the buckets
+  if (currentSpecialist) {
+    await removePreviousSpecialistBoons();
+  }
   currentSpecialist = specialists[index];
   // add specialist boons to total
   const { stims, booster, deaths, extraStrats, minutes } = currentSpecialist;
   // add booster
-  let boosterNumber = parseInt(boosterCounterText.innerHTML);
-  boosterNumber += booster;
-  boosterCounterText.innerHTML = boosterNumber;
+  if (boosterCounterText) {
+    let boosterNumber = parseInt(boosterCounterText.innerHTML);
+    boosterNumber += booster;
+    boosterCounterText.innerHTML = boosterNumber;
+  }
+
   // add minutes
   if (minutesCounterText) {
     minutesNumber = getMissionData(missionCounter);
@@ -409,7 +452,11 @@ const applySpecialist = async (index) => {
   stimsCounterText.innerHTML = stimsAvailable;
   reinforcementsCounterText.innerHTML = reinforcementsAvailable;
   stratsCounterText.innerHTML = stratsAvailable;
-
+  if (isRestart) {
+    restarts++;
+    failureReasons = [];
+    failureReasonsList.innerHTML = "";
+  }
   displaySpecialistLoadout();
   // saveProgress();
 };

@@ -44,13 +44,13 @@ const genSpecialistBoons = (spec) => {
   return elementsList;
 };
 
-const genSpecialistCard = (spec, i) => {
+const genSpecialistCard = (spec, i, isRestart = null) => {
   let displayName = spec.displayName;
   return `
       <div class="card col-lg-3 col-md-5 col-xs-12 tgSpecialistCards m-2" id="soSpecialistCard${i}">
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5 class="text-white mb-0 specialistHeadersClass" id="specialistHeader${i}">${displayName}</h5>
-          <button class="btn btn-success" onclick="${`applySpecialist('${i}')`}">Select</button>
+          <button class="btn btn-success" onclick="${`applySpecialist('${i}', '${isRestart}')`}">Select</button>
         </div>
         <div class="card-body ${spec.locked ? "text-center" : ""}">
           <p class="text-white mb-0">Stratagems:</p>
@@ -72,7 +72,7 @@ const genSpecialistCard = (spec, i) => {
 const genGauntletSpecialistsModalContent = (isRestart = null) => {
   specialistPageHeaderText.innerText =
     "Select a specialist from the list below to begin the challenge.";
-  specialistsList.innerHTML = "";
+  specialistsList[0].innerHTML = "";
 
   if (isRestart) {
     specialistPageHeaderText.innerText =
@@ -80,7 +80,7 @@ const genGauntletSpecialistsModalContent = (isRestart = null) => {
   }
   // create specialist cards and add them to an array
   for (let i = 0; i < specialists.length; i++) {
-    const card = genSpecialistCard(specialists[i], i);
+    const card = genSpecialistCard(specialists[i], i, isRestart);
     specialistsList[0].innerHTML += card;
   }
 };

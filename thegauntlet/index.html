@@ -266,6 +266,50 @@
       </div>
     </div>
 
+    <!-- MISSION SUCCESS CONFIRMATION MODAL -->
+    <div
+      class="modal fade"
+      id="missionSuccessConfirmationModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="missionSuccessConfirmationModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light">Mission Succeeded</h5>
+          </div>
+          <div class="modal-body row d-flex justify-content-center">
+            <p class="text-white">
+              In order to proceed to the next level, all of your squadmates must
+              be eligible to proceed as well.
+              <br />
+              Has everyone met the requirements to continue?
+            </p>
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+              onclick="showSpecialistOptions(true)"
+            >
+              No, Mission Failed
+            </button>
+            <button
+              type="button"
+              onclick="proceedToNextLevel()"
+              class="btn btn-success"
+              data-bs-dismiss="modal"
+            >
+              Yes, Proceed
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- MISSION FAILED MODAL -->
     <div
       class="modal fade"
@@ -280,15 +324,18 @@
           <div class="modal-header">
             <h5 class="modal-title text-light">Mission Failed</h5>
           </div>
-          <!-- <div class="modal-body row d-flex justify-content-center">
+          <div class="modal-body row d-flex justify-content-center">
+            <div class="d-flex">
+              <ul id="failureReasonsList"></ul>
+            </div>
             <p class="text-white">
-              Your current mission will be reset, as well as your operational
-              objectives.
+              You will restart the failed mission, and you will be given the
+              option to choose another specialist.
             </p>
             <br />
             <br />
             <p class="text-white">Proceed?</p>
-          </div> -->
+          </div>
           <div class="modal-footer d-flex justify-content-between">
             <button
               type="button"
@@ -299,7 +346,7 @@
             </button>
             <button
               type="button"
-              onclick="submitMissionReport(false)"
+              onclick="showSpecialistOptions(true)"
               class="btn btn-warning"
               data-bs-dismiss="modal"
             >

@@ -1,7 +1,6 @@
 const genGauntletMissionCompleteModalContent = (missionCounter) => {
   const missionData = getMissionData(missionCounter);
   const { text, minutes, obtainHVI } = missionData;
-  console.log(text, minutes, obtainHVI);
   const stats = [
     { label: "Stims Used", elId: "stimsUsedInput" },
     { label: "Deaths", elId: "deathsInput" },

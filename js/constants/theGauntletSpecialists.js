@@ -1,4 +1,4 @@
-const SPECOPSSPECS = [
+const GAUNTLETSPECIALISTS = [
   {
     displayName: "The Helldiver",
     stratagems: [50, 44, 65, 5],

@@ -56,7 +56,6 @@ const failureReasonsList = document.getElementById("failureReasonsList");
 hellDiversMobilizeCheckbox.disabled = true;
 let missionCounter = 1;
 let currentSpecialist = null;
-let selectedSpecialist = null;
 let specialists = null;
 let restarts = 0;
 
@@ -199,26 +198,49 @@ const saveProgress = async () => {
   const theGauntletSaveData = localStorage.getItem("theGauntletSaveData");
   if (!theGauntletSaveData) {
     obj = {
-      dataName: `The Gauntlet Save Data`,
-      missionCounter,
-      currentSpecialist,
-      specialists,
-      restarts,
+      savedGames: [
+        {
+          dataName: `The Gauntlet Save Data`,
+          missionCounter,
+          currentSpecialist,
+          specialists,
+          restarts,
+          stimsAvailable,
+          reinforcementsAvailable,
+          stratsAvailable,
+          currentGame: true,
+        },
+      ],
     };
     localStorage.setItem("theGauntletSaveData", JSON.stringify(obj));
-    genCurrentMissionInfo();
     return;
   }
-  let data = JSON.parse(theGauntletSaveData);
-  data = {
-    ...data,
-    missionCounter,
-    currentSpecialist,
-    specialists,
-    restarts,
+  const data = JSON.parse(theGauntletSaveData);
+  const newSavedGames = await data.savedGames.map((sg) => {
+    if (sg.currentGame === true) {
+      sg = {
+        ...sg,
+        missionCounter,
+        currentSpecialist,
+        specialists,
+        restarts,
+        stimsAvailable,
+        reinforcementsAvailable,
+        stratsAvailable,
+        seesRulesOnOpen: false,
+        dataName: sg.editedName
+          ? sg.dataName
+          : `The Gauntlet Save Data | ${getCurrentDateTime()} | ${currentSpecialist.displayName}`,
+        currentGame: true,
+      };
+    }
+    return sg;
+  });
+  obj = {
+    ...obj,
+    savedGames: newSavedGames,
   };
-
-  localStorage.setItem("theGauntletSaveData", JSON.stringify(data));
+  localStorage.setItem("theGauntletSaveData", JSON.stringify(obj));
 };
 
 const proceedToNextLevel = () => {
@@ -231,7 +253,7 @@ const proceedToNextLevel = () => {
   stimsUsed = null;
   reinforcementsUsed = null;
   stratsUsed = null;
-  // saveProgress()
+  saveProgress();
 };
 
 const genMissionFailedReasons = () => {
@@ -458,7 +480,7 @@ const applySpecialist = async (index, isRestartString = null) => {
     failureReasonsList.innerHTML = "";
   }
   displaySpecialistLoadout();
-  // saveProgress();
+  saveProgress();
 };
 
 const startNewRun = async () => {
@@ -473,7 +495,9 @@ const startNewRun = async () => {
   missionCounter = 1;
   currentSpecialist = null;
   restarts = 0;
-  specialists = structuredClone(SPECOPSSPECS);
+  specialists = structuredClone(GAUNTLETSPECIALISTS);
+  failureReasons = [];
+
   stimsUsed = 0;
   reinforcementsUsed = 0;
   stratsUsed = 0;
@@ -481,30 +505,34 @@ const startNewRun = async () => {
   stimsAvailable = 50;
   reinforcementsAvailable = 12;
   stratsAvailable = 110;
+  minutesNumber = 40;
   showSpecialistOptions();
   genCurrentMissionInfo();
   genGauntletMissionCompleteModalContent(missionCounter);
-  // genTGSaveDataManagementModalContent();
+  genSaveDataManagementModalContent();
 };
 
 const populateWebPage = async () => {
   genGauntletSpecialistsModalContent();
   displaySpecialistLoadout();
-
+  genCurrentMissionInfo();
   genGauntletMissionCompleteModalContent(missionCounter);
 };
 
 const uploadSaveData = async () => {
   const theGauntletSaveData = await localStorage.getItem("theGauntletSaveData");
   if (theGauntletSaveData) {
-    const data = JSON.parse(theGauntletSaveData);
-
-    currentSpecialist = data.currentSpecialist;
-    missionCounter = data.missionCounter;
-    restarts = data.restarts;
-    dataName = data.dataName;
-
+    const currentGame = await getCurrentGame("theGauntletSaveData");
+    missionCounter = currentGame.missionCounter;
+    dataName = currentGame.dataName;
+    currentSpecialist = currentGame.currentSpecialist;
+    restarts = currentGame.restarts;
+    stimsAvailable = currentGame.stimsAvailable;
+    reinforcementsAvailable = currentGame.reinforcementsAvailable;
+    stratsAvailable = currentGame.stratsAvailable;
+    specialists = structuredClone(GAUNTLETSPECIALISTS);
     populateWebPage();
+
     return;
   }
   startNewRun();

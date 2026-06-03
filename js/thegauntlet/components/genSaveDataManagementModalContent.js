@@ -51,7 +51,7 @@ const genSaveDataManagementModalContent = (savedNewName = null) => {
   if (!saveData) {
     saveDataManagementModalSavesList.innerHTML =
       "<p class='text-white'>No save data detected. Begin the challenge or upload save data to get started.</p>";
-    saveDataManagementModalInstance.show();
+    // saveDataManagementModalInstance.show();
     saveDataModalFunctionsDiv.classList.toggle("d-none", true);
     return;
   }

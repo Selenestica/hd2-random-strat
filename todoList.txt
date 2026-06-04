@@ -151,8 +151,13 @@ LOADOUT BUILDER
     - 
 
 THE GAUNTLET
-  - save progress
-  - restart button starts a new run
+  - rename save file
+  - re-render save data management modal after saved data name change
+  - info modal and rules
+  - keep track of which specialists were used
+  - keep track of per mission stats such as stims used per mission, specialist used, etc
+  - specialist balance?
+  - specialist images?
 
 
 NEW PAGE IDEAS:

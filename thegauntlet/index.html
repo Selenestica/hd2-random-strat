@@ -118,21 +118,6 @@
               class="col-8 col-lg-6 d-flex justify-content-center"
               id="challengeButtonsDiv"
             >
-              <!-- <div class="btn-group my-2" id="specialistMenuButtonDiv">
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  data-bs-toggle="modal"
-                  data-bs-target="#specialistsModal"
-                  id="specialistMenuButton"
-                >
-                  <img
-                    class="img-fluid"
-                    style="max-width: 25px"
-                    src="../images/iconSVGs/soldier-white.svg"
-                  />
-                </button>
-              </div> -->
               <div class="btn-group my-2 mx-2" id="missionCompleteButtonDiv">
                 <button
                   class="btn btn-success"
@@ -167,12 +152,26 @@
               </div>
             </div>
             <div
-              class="col-8 col-lg-6 d-none justify-content-center"
+              class="col-8 col-lg-6 d-none justify-content-center text-center"
               id="challengeCompleteButtonDiv"
             >
-              <div class="btn-group my-2 mx-2">
-                <button class="btn btn-success" type="button">
+              <div class="btn-group my-2">
+                <button
+                  class="btn btn-success"
+                  type="button"
+                  onclick="downloadCompletionFile()"
+                >
                   Download Completion File
+                </button>
+              </div>
+              <div class="btn-group my-2 mx-2" id="restartRunButtonDiv">
+                <button
+                  class="btn btn-warning"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#restartModal"
+                >
+                  <i class="bi bi-arrow-repeat"></i>
                 </button>
               </div>
             </div>
@@ -892,11 +891,11 @@
   <script src="../js/constants/theGauntletSpecialists.js"></script>
   <script src="../js/utils/showPointsEarnedToast.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>
-  <!-- <script src="../js/utils/downloadSOSaveFile.js"></script> -->
+  <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/utils/getCurrentGame.js"></script>
   <script src="../js/thegauntlet/components/genGauntletSpecialistModalContent.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
-  <!-- <script src="../js/utils/downloadSOScoreSummary.js"></script> -->
+  <script src="../js/thegauntlet/utils/downloadCompletionFile.js"></script>
   <script src="../js/thegauntlet/utils/getMissionData.js"></script>
   <script src="../js/thegauntlet/components/genGauntletMissionCompleteModalContent.js"></script>
   <script src="../js/thegauntlet/components/genSaveDataManagementModalContent.js"></script>

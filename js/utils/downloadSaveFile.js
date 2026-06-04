@@ -18,6 +18,9 @@ const downloadSaveFile = (index, type) => {
     lsData = "armorLabSaveData";
     listName = "loadouts";
   }
+  if (type === "tg") {
+    lsData = "theGauntletSaveData";
+  }
   const saveData = JSON.parse(localStorage.getItem(lsData));
   if (!saveData) return;
   const file = JSON.stringify(saveData[listName][index]);
@@ -31,7 +34,7 @@ const downloadSaveFile = (index, type) => {
     link.download = `${lsData}.txt`;
     link.href = window.URL.createObjectURL(blob);
     link.dataset.downloadurl = ["text/json", link.download, link.href].join(
-      ":"
+      ":",
     );
 
     const evt = new MouseEvent("click", {

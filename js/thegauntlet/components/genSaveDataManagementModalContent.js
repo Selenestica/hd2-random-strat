@@ -66,14 +66,14 @@ const genSaveDataManagementModalContent = (savedNewName = null) => {
         <input type="radio" class="btn-check" name="btnradio" id="savedGameOption${i}" autocomplete="off" ${isDisabled}>
         <label id="savedGameOptionLabel${i}" class="btn btn-outline-primary text-white" for="savedGameOption${i}">${save.dataName} ${displayCurrentText}</label>
         <button type="button" onclick="editSaveName(${i},'${save.dataName}')" class="ml-1 btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></button>
-        <button type="button" onclick="downloadSaveFile(${i}, 'pc')" class="btn btn-primary btn-sm"><i class="bi bi-download"></i></button>
+        <button type="button" onclick="downloadSaveFile(${i}, 'tg')" class="btn btn-primary btn-sm"><i class="bi bi-download"></i></button>
       </div>
     `;
   }
 
-  if (!savedNewName) {
-    saveDataManagementModalInstance.show();
-  }
+  // if (!savedNewName) {
+  //   saveDataManagementModalInstance.show();
+  // }
 };
 
 const clearSaveDataManagementModal = () => {

@@ -200,7 +200,7 @@ const saveProgress = async () => {
     obj = {
       savedGames: [
         {
-          dataName: `The Gauntlet Save Data`,
+          dataName,
           missionCounter,
           currentSpecialist,
           specialists,
@@ -538,8 +538,68 @@ const uploadSaveData = async () => {
   startNewRun();
 };
 
-const saveDataAndRestart = () => {
-  console.log("starting a new run after saving the old run!");
+const saveDataAndRestart = async () => {
+  const theGauntletSaveData = localStorage.getItem("theGauntletSaveData");
+  if (!theGauntletSaveData) {
+    return;
+  }
+
+  let updatedSavedGames = [];
+  const saveData = JSON.parse(theGauntletSaveData);
+  if (saveData) {
+    // make all saved game data currentGame = false
+    updatedSavedGames = await saveData.savedGames.map((sg) => {
+      sg.currentGame = false;
+      return sg;
+    });
+  }
+
+  // clear the slate
+  missionCounter = 1;
+  currentSpecialist = null;
+  restarts = 0;
+  specialists = structuredClone(GAUNTLETSPECIALISTS);
+  failureReasons = [];
+
+  stimsUsed = 0;
+  reinforcementsUsed = 0;
+  stratsUsed = 0;
+
+  stimsAvailable = 50;
+  reinforcementsAvailable = 12;
+  stratsAvailable = 110;
+  minutesNumber = 40;
+  showSpecialistOptions();
+  genCurrentMissionInfo();
+  genGauntletMissionCompleteModalContent(missionCounter);
+  genSaveDataManagementModalContent();
+  const newSaveObj = {
+    dataName,
+    missionCounter,
+    currentSpecialist,
+    specialists,
+    restarts,
+    stimsAvailable,
+    reinforcementsAvailable,
+    stratsAvailable,
+    currentGame: true,
+  };
+
+  if (saveData) {
+    updatedSavedGames.push(newSaveObj);
+    const newtheGauntletSaveData = {
+      savedGames: updatedSavedGames,
+    };
+    await localStorage.setItem(
+      "theGauntletSaveData",
+      JSON.stringify(newtheGauntletSaveData),
+    );
+  }
+
+  // remove saved games that are at the first mission of their difficulty,
+  // as long as they are not the current game
+  // ...this is to prevent the user from having a million saves
+  pruneSavedGames();
 };
 
 const clearSaveDataAndRestart = async () => {

@@ -151,7 +151,7 @@ LOADOUT BUILDER
     - 
 
 THE GAUNTLET
-  - warbond toggle for specialists
+  - implement total squad boons page (modal pops up after specialists select. checkbox input for solo players)
   - info modal and rules
   - specialist balance?
   - specialist images?

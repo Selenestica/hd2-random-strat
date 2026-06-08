@@ -80,6 +80,7 @@ const getMissionData = (missionCounter) => {
       deaths: 0,
       minutes: 0,
       obtainHVI: false,
+      enemy: "None",
     };
   }
 };

@@ -151,11 +151,13 @@ LOADOUT BUILDER
     - 
 
 THE GAUNTLET
-  - make mission info show stats of the run instead when the run is over
   - warbond toggle for specialists
   - info modal and rules
   - specialist balance?
   - specialist images?
+
+  BUGS:
+    - 
 
 
 NEW PAGE IDEAS:

@@ -98,6 +98,110 @@ missionCompleteModal.addEventListener("hidden.bs.modal", () => {
   }
 });
 
+// will need to keep track of master list
+for (let y = 0; y < warbondCheckboxes.length; y++) {
+  warbondCheckboxes[y].addEventListener("change", (e) => {
+    // Skip warbond3 (Helldivers Mobilize) - it should always stay checked
+    if (e.target.id === "warbond3") {
+      // Ensure it stays checked
+      e.target.checked = true;
+      return;
+    }
+
+    if (e.target.checked && !warbondCodes.includes(e.srcElement.id)) {
+      warbondCodes.push(e.srcElement.id);
+    }
+    if (!e.target.checked && warbondCodes.includes(e.srcElement.id)) {
+      const indexToRemove = warbondCodes.indexOf(e.srcElement.id);
+      warbondCodes.splice(indexToRemove, 1);
+    }
+
+    // Filter specialists and update UI
+    filterSpecialistsByWarbond();
+    // Update the toggle all button state
+    updateToggleAllButton();
+  });
+}
+
+// Handle toggle all warbonds for Special Ops
+const handleToggleAllWarbonds = (e) => {
+  const isChecked = e.target.checked;
+  const allWarbondCheckboxes = document.querySelectorAll(".warbondCheckboxes");
+
+  allWarbondCheckboxes.forEach((checkbox) => {
+    // Skip warbond3 (Helldivers Mobilize) - it should always stay disabled and checked
+    if (checkbox.id === "warbond3") return;
+
+    if (checkbox.checked !== isChecked) {
+      checkbox.checked = isChecked;
+
+      // Update the warbondCodes array
+      if (isChecked) {
+        if (!warbondCodes.includes(checkbox.id)) {
+          warbondCodes.push(checkbox.id);
+        }
+      } else {
+        const indexToRemove = warbondCodes.indexOf(checkbox.id);
+        if (indexToRemove !== -1) {
+          warbondCodes.splice(indexToRemove, 1);
+        }
+      }
+
+      // Trigger change event to update filtering
+      const changeEvent = new Event("change", { bubbles: true });
+      checkbox.dispatchEvent(changeEvent);
+    }
+  });
+
+  // Filter specialists and update UI
+  filterSpecialistsByWarbond();
+};
+
+// Add toggle all warbonds functionality
+const toggleAllButton = document.getElementById("toggleAllWarbonds");
+if (toggleAllButton) {
+  toggleAllButton.addEventListener("change", handleToggleAllWarbonds);
+}
+
+// Update the toggle all button state based on individual checkboxes
+const updateToggleAllButton = () => {
+  const toggleAllButton = document.getElementById("toggleAllWarbonds");
+  if (!toggleAllButton) return;
+
+  const allWarbondCheckboxes = document.querySelectorAll(".warbondCheckboxes");
+  // Filter out warbond3 (Helldivers Mobilize) since it's always disabled
+  const enabledCheckboxes = Array.from(allWarbondCheckboxes).filter(
+    (cb) => cb.id !== "warbond3",
+  );
+  if (enabledCheckboxes.length === 0) return;
+
+  const checkedCount = enabledCheckboxes.filter((cb) => cb.checked).length;
+  const totalCount = enabledCheckboxes.length;
+
+  if (checkedCount === 0) {
+    toggleAllButton.checked = false;
+    toggleAllButton.indeterminate = false;
+  } else if (checkedCount === totalCount) {
+    toggleAllButton.checked = true;
+    toggleAllButton.indeterminate = false;
+  } else {
+    toggleAllButton.indeterminate = true;
+  }
+};
+
+const filterSpecialistsByWarbond = async () => {
+  let masterSpecialistList = structuredClone(GAUNTLETSPECIALISTS);
+  const filteredSpecialists = await masterSpecialistList.filter((spec) => {
+    const specWarbonds = spec.warbonds;
+    return specWarbonds.every((wb) => warbondCodes.includes(wb));
+  });
+  specialists = filteredSpecialists;
+  genGauntletSpecialistsModalContent();
+
+  // Update the toggle all button state
+  updateToggleAllButton();
+};
+
 const generateItemCard = (item) => {
   let imgDir = "equipment";
   if (item.category === "armor") {
@@ -141,7 +245,7 @@ const genCurrentMissionInfo = () => {
   const { boosters, text, minutes, obtainHVI, enemy } =
     getMissionData(missionCounter);
 
-  const rows = [
+  let rows = [
     makeMissionRow("Difficulty:", text, "currentMissionText"),
     makeMissionRow("Enemy:", enemy, "currentEnemyText"),
     minutes !== -100 &&
@@ -154,7 +258,7 @@ const genCurrentMissionInfo = () => {
       makeMissionRow("Booster Slots:", boosters, "boosterCounterText"),
     obtainHVI &&
       makeMissionRow(
-        "",
+        "Special Requirement:",
         "Extract with the High Value Item",
         "hviText",
         "text-warning",
@@ -177,6 +281,26 @@ const genCurrentMissionInfo = () => {
     ),
   ];
 
+  if (missionCounter > 6) {
+    rows = [
+      makeMissionRowFromResourcesUsed(
+        "Stims Available:",
+        stimsAvailable,
+        "stimsCounterText",
+      ),
+      makeMissionRowFromResourcesUsed(
+        "Reinforcements Available:",
+        reinforcementsAvailable,
+        "reinforcementsCounterText",
+      ),
+      makeMissionRowFromResourcesUsed(
+        "Stratagems Available:",
+        stratsAvailable,
+        "stratsCounterText",
+      ),
+    ];
+  }
+
   missionInfoContainer.innerHTML = rows.filter(Boolean).join("\n");
 };
 
@@ -187,7 +311,7 @@ const saveProgress = async () => {
     obj = {
       savedGames: [
         {
-          dataName,
+          dataName: `The Gauntlet Save Data | ${getCurrentDateTime()} | ${currentSpecialist.displayName}`,
           missionCounter,
           currentSpecialist,
           restarts,
@@ -373,6 +497,10 @@ const submitMissionReport = async (isMissionSucceeded) => {
 };
 
 const displaySpecialistLoadout = () => {
+  if (!currentSpecialist) {
+    showSpecialistOptions();
+    return;
+  }
   stratagemsContainer.innerHTML = "";
   equipmentContainer.innerHTML = "";
 

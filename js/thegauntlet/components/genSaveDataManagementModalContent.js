@@ -46,7 +46,10 @@ const editSaveName = (index, oldName) => {
   `;
 };
 
-const genSaveDataManagementModalContent = (savedNewName = null) => {
+const genSaveDataManagementModalContent = (
+  savedNewName = null,
+  uploadedFile = null,
+) => {
   const saveData = JSON.parse(localStorage.getItem("theGauntletSaveData"));
   if (!saveData) {
     saveDataManagementModalSavesList.innerHTML =
@@ -71,7 +74,7 @@ const genSaveDataManagementModalContent = (savedNewName = null) => {
     `;
   }
 
-  // if (!savedNewName) {
+  // if (uploadedFile) {
   //   saveDataManagementModalInstance.show();
   // }
 };
@@ -152,6 +155,8 @@ const applySavedGameData = async (isUploadedSave = null) => {
   uploadSaveData();
   clearSaveDataManagementModal();
   if (isUploadedSave) {
+    challengePage.classList.toggle("d-none", false);
+    specialistSelectPage.classList.toggle("d-none", true);
     saveDataManagementModalInstance.hide();
   }
 };
@@ -195,7 +200,7 @@ const uploadSaveFile = async () => {
   newData.savedGames.push(uploadedSaveFile);
   await localStorage.setItem("theGauntletSaveData", JSON.stringify(newData));
   saveDataManagementModalSavesList.innerHTML = "";
-  genSaveDataManagementModalContent(true);
+  genSaveDataManagementModalContent(null, true);
   uploadedSaveFile = null;
   saveDataUploadInput.value = "";
 };

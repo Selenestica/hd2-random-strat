@@ -77,6 +77,14 @@
         <div class="col-4">
           <div class="d-flex justify-content-end">
             <button
+              class="btn btn-primary mx-1"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#warbondSelectModal"
+            >
+              <i class="bi bi-gear-fill"></i>
+            </button>
+            <button
               class="btn btn-primary"
               type="button"
               data-bs-toggle="modal"
@@ -824,12 +832,7 @@
               and Pre-Order bonus items. This will affect the specialist
               loadouts you have available to unlock.
               <br />
-              For the best experience, toggle warbonds before you start an
-              operation.
-              <br />
-              <br />
-              NOTE: If your current loadout is affected by your selection, a new
-              loadout will be unlocked for you.
+              For the best experience, toggle warbonds before you start a run.
             </p>
             <div class="p-3" id="warbondsChecklistContainer">
               <h5 class="text-white">Warbond Select</h5>
@@ -848,31 +851,6 @@
         </div>
       </div>
     </div>
-
-    <!-- SPECIALIST UNLOCKED TOAST -->
-    <div
-      class="position-fixed top-0 start-50 translate-middle-x p-3 pointer-events-none"
-      style="z-index: 1050"
-    >
-      <div
-        class="toast align-items-center text-white bg-success border-0 specialistUnlockedToast pointer-events-auto"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-        data-bs-autohide="true"
-        data-bs-delay="1000"
-      >
-        <div class="d-flex">
-          <div class="toast-body" id="specialistUnlockedToastBody"></div>
-          <button
-            type="button"
-            class="btn-close btn-close-white me-2 m-auto"
-            data-bs-dismiss="toast"
-            aria-label="Close"
-          ></button>
-        </div>
-      </div>
-    </div>
   </body>
 
   <script
@@ -887,6 +865,7 @@
   <script src="../js/constants/throwables.js"></script>
   <script src="../js/constants/stratagems.js"></script>
   <script src="../js/constants/armorpassives.js"></script>
+  <script src="../js/utils/warbondCodes.js"></script>
   <script src="../js/constants/theGauntletSpecialists.js"></script>
   <script src="../js/utils/showPointsEarnedToast.js"></script>
   <script src="../js/utils/getCurrentDateTime.js"></script>

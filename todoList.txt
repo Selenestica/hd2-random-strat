@@ -151,11 +151,9 @@ LOADOUT BUILDER
     - 
 
 THE GAUNTLET
-  - rename save file
-  - re-render save data management modal after saved data name change
+  - make mission info show stats of the run instead when the run is over
+  - warbond toggle for specialists
   - info modal and rules
-  - keep track of which specialists were used
-  - keep track of per mission stats such as stims used per mission, specialist used, etc
   - specialist balance?
   - specialist images?
 

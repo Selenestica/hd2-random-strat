@@ -31,7 +31,7 @@ const saveNewSaveFileName = async (index) => {
   let newSaveObj = { ...saveData, savedGames };
   await localStorage.setItem("theGauntletSaveData", JSON.stringify(newSaveObj));
   saveDataManagementModalSavesList.innerHTML = "";
-  genPCSaveDataManagementModalInfo(true);
+  genSaveDataManagementModalContent(true);
 };
 
 const editSaveName = (index, oldName) => {
@@ -149,17 +149,6 @@ const applySavedGameData = async (isUploadedSave = null) => {
     savedGames: updatedSavedGames,
   };
   localStorage.setItem("theGauntletSaveData", JSON.stringify(newSaveObj));
-  // clear everything first
-  await getStartingItems();
-  startNewRun();
-  stratagemAccordionBody.innerHTML = "";
-  primaryAccordionBody.innerHTML = "";
-  secondaryAccordionBody.innerHTML = "";
-  throwableAccordionBody.innerHTML = "";
-  armorPassiveAccordionBody.innerHTML = "";
-  boosterAccordionBody.innerHTML = "";
-  addDefaultItemsToAccordions();
-  // then upload the current save
   uploadSaveData();
   clearSaveDataManagementModal();
   if (isUploadedSave) {
@@ -206,7 +195,7 @@ const uploadSaveFile = async () => {
   newData.savedGames.push(uploadedSaveFile);
   await localStorage.setItem("theGauntletSaveData", JSON.stringify(newData));
   saveDataManagementModalSavesList.innerHTML = "";
-  genPCSaveDataManagementModalInfo(true);
+  genSaveDataManagementModalContent(true);
   uploadedSaveFile = null;
   saveDataUploadInput.value = "";
 };

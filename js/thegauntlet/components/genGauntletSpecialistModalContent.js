@@ -2,6 +2,7 @@ const specialistsList = document.getElementsByClassName("specialistsList");
 const specialistPageHeaderText = document.getElementById(
   "specialistPageHeaderText",
 );
+let specialists = structuredClone(GAUNTLETSPECIALISTS);
 
 const genSpecialistItemNames = (spec, type) => {
   let elementsList = "";

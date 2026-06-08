@@ -56,8 +56,8 @@ const failureReasonsList = document.getElementById("failureReasonsList");
 hellDiversMobilizeCheckbox.disabled = true;
 let missionCounter = 1;
 let currentSpecialist = null;
-let specialists = null;
 let restarts = 0;
+let missionsData = [];
 
 let stimsUsed = null;
 let reinforcementsUsed = null;
@@ -98,21 +98,6 @@ missionCompleteModal.addEventListener("hidden.bs.modal", () => {
   }
 });
 
-// specialistsModal.addEventListener("hidden.bs.modal", () => {
-//   // remove the checkmark from all specialists
-//   const elements = document.querySelectorAll(".specialistCheckMarks");
-//   elements.forEach((element) => element.remove());
-
-//   // remove green text from all specialists
-//   const specialistHeaders = document.querySelectorAll(
-//     ".specialistHeadersClass",
-//   );
-//   specialistHeaders.forEach((header) => {
-//     header.classList.remove("text-success");
-//     header.classList.add("text-white");
-//   });
-// });
-
 const generateItemCard = (item) => {
   let imgDir = "equipment";
   if (item.category === "armor") {
@@ -147,6 +132,8 @@ const makeMissionRowFromResourcesUsed = (label, val, id) =>
   </div>`;
 
 const genCurrentMissionInfo = () => {
+  challengeButtonsDiv.classList.toggle("d-none", false);
+  challengeCompleteButtonDiv.classList.toggle("d-none", true);
   if (missionCounter > 6) {
     challengeButtonsDiv.classList.toggle("d-none", true);
     challengeCompleteButtonDiv.classList.toggle("d-none", false);
@@ -203,8 +190,8 @@ const saveProgress = async () => {
           dataName,
           missionCounter,
           currentSpecialist,
-          specialists,
           restarts,
+          missionsData,
           stimsAvailable,
           reinforcementsAvailable,
           stratsAvailable,
@@ -222,8 +209,8 @@ const saveProgress = async () => {
         ...sg,
         missionCounter,
         currentSpecialist,
-        specialists,
         restarts,
+        missionsData,
         stimsAvailable,
         reinforcementsAvailable,
         stratsAvailable,
@@ -243,7 +230,24 @@ const saveProgress = async () => {
   localStorage.setItem("theGauntletSaveData", JSON.stringify(obj));
 };
 
-const proceedToNextLevel = () => {
+const updateMissionsData = () => {
+  const { enemy, text } = getMissionData(missionCounter);
+  const missionData = {
+    stimsUsed,
+    reinforcementsUsed,
+    stratsUsed,
+    difficulty: text,
+    enemy: enemy,
+    specialist: currentSpecialist.displayName,
+    failureReasons,
+  };
+
+  missionsData.push({ ...missionData });
+};
+
+const proceedToNextLevel = async () => {
+  // first, create missionsData entry
+  await updateMissionsData();
   missionCounter++;
   stimsAvailable -= stimsUsed;
   reinforcementsAvailable -= reinforcementsUsed;
@@ -448,6 +452,12 @@ const applySpecialist = async (index, isRestartString = null) => {
   //// logic goes here
   // check to see if they already have a currentSpecialist
   // if yes, will need to deduct the boons from the current specialist from the buckets
+  if (isRestart) {
+    await updateMissionsData();
+    restarts++;
+    failureReasons = [];
+    failureReasonsList.innerHTML = "";
+  }
   if (currentSpecialist) {
     await removePreviousSpecialistBoons();
   }
@@ -474,11 +484,6 @@ const applySpecialist = async (index, isRestartString = null) => {
   stimsCounterText.innerHTML = stimsAvailable;
   reinforcementsCounterText.innerHTML = reinforcementsAvailable;
   stratsCounterText.innerHTML = stratsAvailable;
-  if (isRestart) {
-    restarts++;
-    failureReasons = [];
-    failureReasonsList.innerHTML = "";
-  }
   displaySpecialistLoadout();
   saveProgress();
 };
@@ -495,8 +500,8 @@ const startNewRun = async () => {
   missionCounter = 1;
   currentSpecialist = null;
   restarts = 0;
-  specialists = structuredClone(GAUNTLETSPECIALISTS);
   failureReasons = [];
+  missionsData = [];
 
   stimsUsed = 0;
   reinforcementsUsed = 0;
@@ -530,7 +535,7 @@ const uploadSaveData = async () => {
     stimsAvailable = currentGame.stimsAvailable;
     reinforcementsAvailable = currentGame.reinforcementsAvailable;
     stratsAvailable = currentGame.stratsAvailable;
-    specialists = structuredClone(GAUNTLETSPECIALISTS);
+    missionsData = currentGame.missionsData;
     populateWebPage();
 
     return;
@@ -558,8 +563,8 @@ const saveDataAndRestart = async () => {
   missionCounter = 1;
   currentSpecialist = null;
   restarts = 0;
-  specialists = structuredClone(GAUNTLETSPECIALISTS);
   failureReasons = [];
+  missionsData = [];
 
   stimsUsed = 0;
   reinforcementsUsed = 0;
@@ -577,7 +582,7 @@ const saveDataAndRestart = async () => {
     dataName,
     missionCounter,
     currentSpecialist,
-    specialists,
+    missionsData,
     restarts,
     stimsAvailable,
     reinforcementsAvailable,
@@ -600,6 +605,27 @@ const saveDataAndRestart = async () => {
   // as long as they are not the current game
   // ...this is to prevent the user from having a million saves
   pruneSavedGames();
+};
+
+// get rid of all games that arent the current game and are on the first mission
+const pruneSavedGames = async () => {
+  const theGauntletSaveData = localStorage.getItem("theGauntletSaveData");
+  if (!theGauntletSaveData) {
+    return;
+  }
+  const prunedGames = await JSON.parse(theGauntletSaveData).savedGames.filter(
+    (sg) => {
+      if (sg.currentGame === true || sg.missionCounter !== 1) {
+        return sg;
+      }
+    },
+  );
+  const oldData = JSON.parse(theGauntletSaveData);
+  const newData = {
+    ...oldData,
+    savedGames: prunedGames,
+  };
+  localStorage.setItem("theGauntletSaveData", JSON.stringify(newData));
 };
 
 const clearSaveDataAndRestart = async () => {

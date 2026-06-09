@@ -3,7 +3,6 @@ const specialistPageHeaderText = document.getElementById(
   "specialistPageHeaderText",
 );
 let specialists = structuredClone(GAUNTLETSPECIALISTS);
-
 const genSpecialistItemNames = (spec, type) => {
   let elementsList = "";
   let list = [];
@@ -53,7 +52,7 @@ const genSpecialistCard = (spec, i, isRestart = null) => {
           <h5 class="text-white mb-0 specialistHeadersClass" id="specialistHeader${i}">${displayName}</h5>
           <button class="btn btn-success" onclick="${`applySpecialist('${i}', '${isRestart}')`}">Select</button>
         </div>
-        <div class="card-body ${spec.locked ? "text-center" : ""}">
+        <div class="card-body">
           <p class="text-white mb-0">Stratagems:</p>
           <ul>
             ${genSpecialistItemNames(spec, "strat")}

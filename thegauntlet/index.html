@@ -408,6 +408,71 @@
       </div>
     </div>
 
+    <!-- SQUAD SPECIALISTS MODAL -->
+    <div
+      class="modal fade"
+      id="squadSpecialistsSelectModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="squadSpecialistsSelectModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="">Squad Specialists</h5>
+          </div>
+          <div
+            class="modal-body row d-flex justify-content-center"
+            id="squadSpecialistsSelectModalBody"
+          >
+            <p class="text-white text-center">
+              Input the amount of each specialist in your squad in order to
+              receive their boons. Your boons have already been added, so you
+              don't need to count your own specialist.
+              <br />
+              <br />
+
+              <label for="soloCheckbox">
+                (I'm running solo. Don't show this to me again.)
+              </label>
+              <input
+                class="form-check-input mx-1"
+                type="checkbox"
+                id="soloCheckbox"
+                checked="false"
+              />
+            </p>
+            <div
+              class="row d-flex justify-content-center"
+              id="squadSpecialistsList"
+            ></div>
+          </div>
+          <div class="modal-footer row justify-content-between">
+            <div class="d-flex col justify-content-start">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+            <div class="d-flex col justify-content-end">
+              <button
+                type="button"
+                onclick="createSquad()"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- FLAVOR AND INSTRUCTIONS MODAL -->
     <div
       class="modal fade"
@@ -603,8 +668,8 @@
                           boons can be added to your total resources.
                           <br />
                           <br />
-                          If you're solo, you can simply check the "Solo"
-                          option.
+                          If you're solo, you can simply check the "Solo" option
+                          and you will never see the menu again.
                         </p>
                       </li>
                       <li class="text-white">
@@ -892,6 +957,7 @@
   <script src="../js/utils/downloadSaveFile.js"></script>
   <script src="../js/utils/getCurrentGame.js"></script>
   <script src="../js/thegauntlet/components/genGauntletSpecialistModalContent.js"></script>
+  <script src="../js/thegauntlet/components/genSquadSpecialistModalContent.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
   <script src="../js/thegauntlet/utils/downloadCompletionFile.js"></script>
   <script src="../js/thegauntlet/utils/getMissionData.js"></script>

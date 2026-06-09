@@ -52,10 +52,20 @@ const missionSuccessConfirmationModal = document.getElementById(
   "missionSuccessConfirmationModal",
 );
 const failureReasonsList = document.getElementById("failureReasonsList");
+const squadSpecialistsSelectModal = document.getElementById(
+  "squadSpecialistsSelectModal",
+);
+const soloCheckbox = document.getElementById("soloCheckbox");
+const numOfSquadSpecialistsText = document.getElementById(
+  "numOfSquadSpecialistsText",
+);
 
 hellDiversMobilizeCheckbox.disabled = true;
 let missionCounter = 1;
 let currentSpecialist = null;
+let tempSpecialist = null;
+let tempSquadSpecialists = [];
+let squadSpecialists = [];
 let restarts = 0;
 let missionsData = [];
 
@@ -64,11 +74,14 @@ let reinforcementsUsed = null;
 let stratsUsed = null;
 
 let failureReasons = [];
+let isRestarting = false;
+let numOfSquadSpecialists = 0;
 
 let stimsAvailable = 50;
 let reinforcementsAvailable = 12;
 let stratsAvailable = 110;
 let minutesNumber = 40;
+let boosterNumber = 4;
 
 let primaries = [...PRIMARIES];
 let secondaries = [...SECONDARIES];
@@ -98,6 +111,79 @@ missionCompleteModal.addEventListener("hidden.bs.modal", () => {
   }
 });
 
+document.addEventListener("input", (e) => {
+  if (
+    e.target.classList &&
+    e.target.classList.contains("squadSpecialistInputs")
+  ) {
+    handleSquadSpecialistInputs(e.target);
+  }
+});
+
+document.addEventListener("change", (e) => {
+  if (
+    e.target.classList &&
+    e.target.classList.contains("squadSpecialistInputs")
+  ) {
+    handleSquadSpecialistInputs(e.target);
+  }
+});
+
+let selectedSpecialists = [];
+
+const handleSquadSpecialistInputs = (changedInput) => {
+  const inputs = document.querySelectorAll(".squadSpecialistInputs");
+
+  // Calculate total
+  let total = 0;
+  inputs.forEach((input) => {
+    total += parseInt(input.value) || 0;
+  });
+
+  if (total > 3) {
+    changedInput.value = changedInput.defaultValue;
+    alert("Total squad specialists cannot exceed 3");
+    return;
+  }
+
+  changedInput.defaultValue = changedInput.value;
+
+  // Update the tracking array
+  updateSelectedSpecialists();
+
+  // Disable empty inputs when total reaches 3
+  if (total === 3) {
+    inputs.forEach((input) => {
+      if (parseInt(input.value) === 0) {
+        input.disabled = true;
+      }
+    });
+  } else {
+    inputs.forEach((input) => {
+      input.disabled = false;
+    });
+  }
+};
+
+const updateSelectedSpecialists = () => {
+  const inputs = document.querySelectorAll(".squadSpecialistInputs");
+  tempSquadSpecialists = [];
+
+  inputs.forEach((input) => {
+    const value = parseInt(input.value) || 0;
+    const spc = allSpecialists[parseInt(input.id.split("squadSpecialist")[1])];
+
+    if (value > 0 && spc) {
+      // Push the specialist object to the array 'value' number of times
+      for (let i = 0; i < value; i++) {
+        tempSquadSpecialists.push(spc);
+      }
+    }
+  });
+
+  return tempSquadSpecialists;
+};
+
 // will need to keep track of master list
 for (let y = 0; y < warbondCheckboxes.length; y++) {
   warbondCheckboxes[y].addEventListener("change", (e) => {
@@ -123,7 +209,6 @@ for (let y = 0; y < warbondCheckboxes.length; y++) {
   });
 }
 
-// Handle toggle all warbonds for Special Ops
 const handleToggleAllWarbonds = (e) => {
   const isChecked = e.target.checked;
   const allWarbondCheckboxes = document.querySelectorAll(".warbondCheckboxes");
@@ -314,6 +399,7 @@ const saveProgress = async () => {
           dataName: `The Gauntlet Save Data | ${getCurrentDateTime()} | ${currentSpecialist.displayName}`,
           missionCounter,
           currentSpecialist,
+          squadSpecialists,
           restarts,
           missionsData,
           stimsAvailable,
@@ -333,6 +419,7 @@ const saveProgress = async () => {
         ...sg,
         missionCounter,
         currentSpecialist,
+        squadSpecialists,
         restarts,
         missionsData,
         stimsAvailable,
@@ -496,6 +583,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
   }
 };
 
+// probably want to see boons here?
 const displaySpecialistLoadout = () => {
   if (!currentSpecialist) {
     showSpecialistOptions();
@@ -531,31 +619,58 @@ const showSpecialistOptions = (isRestart = null) => {
 
 const removePreviousSpecialistBoons = () => {
   const { stims, booster, deaths, extraStrats, minutes } = currentSpecialist;
+  let boostersReduction = booster;
+  let minutesReduction = minutes;
+  let stimsReduction = stims;
+  let reinforcementsReduction = deaths;
+  let stratsReduction = extraStrats;
+
+  // if squadSpecialists.length > 0, add squad boons to numbers
+  console.log("got a squad here!", squadSpecialists);
+  if (squadSpecialists.length > 0) {
+    for (let i = 0; i < squadSpecialists.length; i++) {
+      const sqsp = squadSpecialists[i];
+      const { deaths, stims, extraStrats, minutes, booster } = sqsp;
+      boostersReduction += booster;
+      minutesReduction += minutes;
+      reinforcementsReduction += deaths;
+      stimsReduction += stims;
+      stratsReduction += extraStrats;
+    }
+    console.log(
+      boostersReduction,
+      reinforcementsReduction,
+      stimsReduction,
+      stratsReduction,
+      minutesReduction,
+    );
+  }
+
+  console.log(boosterCounterText);
   if (boosterCounterText) {
     let boosterNumber = parseInt(boosterCounterText.innerHTML);
-    boosterNumber -= booster;
+    boosterNumber -= boostersReduction;
     boosterCounterText.innerHTML = boosterNumber;
   }
 
   if (minutesCounterText) {
     minutesNumber = getMissionData(missionCounter);
-    minutesNumber -= minutes;
+    minutesNumber -= minutesReduction;
     minutesCounterText.innerHTML = minutesNumber;
   }
 
-  stimsAvailable -= stims;
-  reinforcementsAvailable -= deaths;
-  stratsAvailable -= extraStrats;
+  stimsAvailable -= stimsReduction;
+  reinforcementsAvailable -= reinforcementsReduction;
+  stratsAvailable -= stratsReduction;
   stimsCounterText.innerHTML = stimsAvailable;
   reinforcementsCounterText.innerHTML = reinforcementsAvailable;
   stratsCounterText.innerHTML = stratsAvailable;
 };
 
 const applySpecialist = async (index, isRestartString = null) => {
-  const isRestart = isRestartString === "true";
-
-  challengePage.classList.toggle("d-none", false);
-  specialistSelectPage.classList.toggle("d-none", true);
+  if (isRestartString && isRestartString !== "null") {
+    isRestarting = true;
+  }
 
   //// just handles the UI decor
   // remove the checkmark from all other specialists
@@ -577,38 +692,97 @@ const applySpecialist = async (index, isRestartString = null) => {
   specCardHeader.classList.add("text-success");
   specCardHeader.classList.remove("text-white");
 
-  //// logic goes here
-  // check to see if they already have a currentSpecialist
-  // if yes, will need to deduct the boons from the current specialist from the buckets
-  if (isRestart) {
+  tempSpecialist = specialists[index];
+
+  const sssModal = new bootstrap.Modal(squadSpecialistsSelectModal);
+  sssModal.show();
+};
+
+const getSquadBoons = () => {
+  let squadBoosters = 0;
+  let squadMinutes = 0;
+  let squadReinforcements = 0;
+  let squadStims = 0;
+  let squadStrats = 0;
+  for (let i = 0; i < squadSpecialists.length; i++) {
+    const sqsp = squadSpecialists[i];
+    const { deaths, stims, extraStrats, minutes, booster } = sqsp;
+    squadBoosters += booster;
+    squadMinutes += minutes;
+    squadReinforcements += deaths;
+    squadStims += stims;
+    squadStrats += extraStrats;
+  }
+  return {
+    squadBoosters,
+    squadMinutes,
+    squadReinforcements,
+    squadStims,
+    squadStrats,
+  };
+};
+
+const createSquad = async () => {
+  challengePage.classList.toggle("d-none", false);
+  specialistSelectPage.classList.toggle("d-none", true);
+
+  if (isRestarting) {
     await updateMissionsData();
     restarts++;
     failureReasons = [];
     failureReasonsList.innerHTML = "";
+    isRestarting = false;
   }
   if (currentSpecialist) {
+    console.log("get here?");
+    // also remove squad boons in this function
     await removePreviousSpecialistBoons();
   }
-  currentSpecialist = specialists[index];
+
+  currentSpecialist = { ...tempSpecialist };
+  squadSpecialists = [...tempSquadSpecialists];
+
   // add specialist boons to total
   const { stims, booster, deaths, extraStrats, minutes } = currentSpecialist;
+  let boostersToAdd = booster;
+  let minutesToAdd = minutes;
+  let stimsToAdd = stims;
+  let reinforcementsToAdd = deaths;
+  let stratsToAdd = extraStrats;
+
+  // add squad boons as well, if any
+  if (squadSpecialists.length > 0) {
+    const {
+      squadBoosters,
+      squadMinutes,
+      squadStims,
+      squadStrats,
+      squadReinforcements,
+    } = await getSquadBoons();
+    console.log(getSquadBoons());
+    boostersToAdd += squadBoosters;
+    minutesToAdd += squadMinutes;
+    stimsToAdd += squadStims;
+    stratsToAdd += squadStrats;
+    reinforcementsToAdd += squadReinforcements;
+  }
   // add booster
   if (boosterCounterText) {
     let boosterNumber = parseInt(boosterCounterText.innerHTML);
-    boosterNumber += booster;
+    boosterNumber += boostersToAdd;
     boosterCounterText.innerHTML = boosterNumber;
   }
 
   // add minutes
   if (minutesCounterText) {
     minutesNumber = getMissionData(missionCounter);
-    minutesNumber += minutes;
+    minutesNumber += minutesToAdd;
     minutesCounterText.innerHTML = minutesNumber;
   }
   // add deaths, strats, stims
-  stimsAvailable += stims;
-  reinforcementsAvailable += deaths;
-  stratsAvailable += extraStrats;
+  stimsAvailable += stimsToAdd;
+  reinforcementsAvailable += reinforcementsToAdd;
+  stratsAvailable += stratsToAdd;
   stimsCounterText.innerHTML = stimsAvailable;
   reinforcementsCounterText.innerHTML = reinforcementsAvailable;
   stratsCounterText.innerHTML = stratsAvailable;
@@ -630,6 +804,7 @@ const startNewRun = async () => {
   restarts = 0;
   failureReasons = [];
   missionsData = [];
+  squadSpecialists = [];
 
   stimsUsed = 0;
   reinforcementsUsed = 0;
@@ -643,10 +818,12 @@ const startNewRun = async () => {
   genCurrentMissionInfo();
   genGauntletMissionCompleteModalContent(missionCounter);
   genSaveDataManagementModalContent();
+  genSquadSpecialistModalContent();
 };
 
 const populateWebPage = async () => {
   genGauntletSpecialistsModalContent();
+  genSquadSpecialistModalContent();
   displaySpecialistLoadout();
   genCurrentMissionInfo();
   genGauntletMissionCompleteModalContent(missionCounter);
@@ -664,6 +841,7 @@ const uploadSaveData = async () => {
     reinforcementsAvailable = currentGame.reinforcementsAvailable;
     stratsAvailable = currentGame.stratsAvailable;
     missionsData = currentGame.missionsData;
+    squadSpecialists = currentGame.squadSpecialists;
     populateWebPage();
 
     return;
@@ -693,6 +871,7 @@ const saveDataAndRestart = async () => {
   restarts = 0;
   failureReasons = [];
   missionsData = [];
+  squadSpecialists = [];
 
   stimsUsed = 0;
   reinforcementsUsed = 0;

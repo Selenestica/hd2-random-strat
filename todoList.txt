@@ -152,6 +152,9 @@ LOADOUT BUILDER
 
 THE GAUNTLET
   - implement total squad boons page (modal pops up after specialists select. checkbox input for solo players)
+    - add squad specialists to missionsData
+    - remove squad boons when changing specialists
+    - add new squad boons when changing specialists
   - info modal and rules
   - specialist balance?
   - specialist images?

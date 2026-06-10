@@ -54,9 +54,13 @@ const squadSpecialistsSelectModal = document.getElementById(
   "squadSpecialistsSelectModal",
 );
 const soloCheckbox = document.getElementById("soloCheckbox");
+const soloCheckboxDiv = document.getElementById("soloCheckboxDiv");
 const numOfSquadSpecialistsText = document.getElementById(
   "numOfSquadSpecialistsText",
 );
+const squadInfoContainer = document.getElementById("squadInfoContainer");
+const squadListDiv = document.getElementById("squadListDiv");
+const specialistBoonsText = document.getElementById("specialistBoonsText");
 
 hellDiversMobilizeCheckbox.disabled = true;
 let missionCounter = 1;
@@ -398,6 +402,57 @@ const genCurrentMissionInfo = () => {
   missionInfoContainer.innerHTML = rows.filter(Boolean).join("\n");
 };
 
+const genSquadInfoContainerContent = () => {
+  squadListDiv.innerHTML = "";
+  for (let i = 0; i < squadSpecialists.length; i++) {
+    const { booster, deaths, minutes, extraStrats, stims, displayName } =
+      squadSpecialists[i];
+    squadListDiv.innerHTML += `
+      <div class="card col-lg-3 col-md-5 tgSpecialistCards col-xs-5 m-1">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <div>
+            <p class="text-white mb-0">
+              ${displayName}
+            </p>
+          </div>
+          <div>
+            ${
+              minutes &&
+              `<p class="text-white mb-0">
+                minutes +${minutes}
+              </p>`
+            }
+            ${
+              booster &&
+              `<p class="text-white mb-0">
+                boosters +${booster}
+              </p>`
+            }
+            ${
+              stims &&
+              `<p class="text-white mb-0">
+                stims +${stims}
+              </p>`
+            }
+            ${
+              deaths &&
+              `<p class="text-white mb-0">
+                reinforcements +${deaths}
+              </p>`
+            }
+            ${
+              extraStrats &&
+              `<p class="text-white mb-0">
+                stratagems +${extraStrats}
+              </p>`
+            }
+          </div>
+        </div>
+      </div>
+    `;
+  }
+};
+
 const saveProgress = async () => {
   let obj = {};
   const theGauntletSaveData = localStorage.getItem("theGauntletSaveData");
@@ -596,7 +651,27 @@ const submitMissionReport = async (isMissionSucceeded) => {
   }
 };
 
-// probably want to see boons here?
+const genSpecialistBoonText = () => {
+  const { boosters, stims, deaths, extraStrats, minutes } = currentSpecialist;
+  let text = [];
+  if (boosters) {
+    text.push(`boosters +${boosters}`);
+  }
+  if (stims) {
+    text.push(`stims +${stims}`);
+  }
+  if (deaths) {
+    text.push(`reinforcements +${deaths}`);
+  }
+  if (extraStrats) {
+    text.push(`stratagems +${extraStrats}`);
+  }
+  if (minutes) {
+    text.push(`minutes +${minutes}`);
+  }
+  return text.join(", ");
+};
+
 const displaySpecialistLoadout = () => {
   if (!currentSpecialist) {
     showSpecialistOptions();
@@ -606,6 +681,7 @@ const displaySpecialistLoadout = () => {
   equipmentContainer.innerHTML = "";
 
   specialistNameText.innerText = currentSpecialist.displayName;
+  specialistBoonsText.innerText = genSpecialistBoonText();
   const primaryObj = primaries[currentSpecialist.primary];
   const secondaryObj = secondaries[currentSpecialist.secondary];
   const throwObj = throwables[currentSpecialist.throwable];
@@ -779,6 +855,7 @@ const createSquad = async () => {
   minutesCounterText.innerHTML = minutesNumber;
   boosterCounterText.innerHTML = boosterNumber;
   displaySpecialistLoadout();
+  genSquadInfoContainerContent();
   saveProgress();
 };
 
@@ -820,6 +897,10 @@ const populateWebPage = async () => {
   displaySpecialistLoadout();
   genCurrentMissionInfo();
   genGauntletMissionCompleteModalContent(missionCounter);
+  if (squadSpecialists.length > 0) {
+    squadInfoContainer.classList.toggle("d-none", false);
+    genSquadInfoContainerContent();
+  }
 };
 
 const uploadSaveData = async () => {

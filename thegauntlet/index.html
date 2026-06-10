@@ -186,14 +186,15 @@
             <div class="col-0 col-lg-2"></div>
           </div>
 
+          <!-- LOADOUT -->
           <div id="lowerContentContainer">
-            <!-- LOADOUT -->
             <hr class="text-white" />
             <div class="text-white d-flex justify-content-center">
-              <b>LOADOUT</b>:<span
-                class="mx-1 mb-1"
-                id="specialistNameText"
-              ></span>
+              <b>LOADOUT</b>:
+              <span class="mx-1 mb-1" id="specialistNameText"></span>
+            </div>
+            <div class="d-flex justify-content-center">
+              <span class="text-white" id="specialistBoonsText"></span>
             </div>
             <div
               id="stratagemsContainer"
@@ -202,6 +203,19 @@
             <div
               id="equipmentContainer"
               class="row d-flex justify-content-center"
+            ></div>
+          </div>
+
+          <!-- YOUR SQUAD -->
+          <div id="squadInfoContainer" class="d-none">
+            <hr class="text-white" />
+            <div class="text-white d-flex justify-content-center">
+              <b>YOUR SQUAD</b>
+              <span class="mx-1 mb-1" id="specialistNameText"></span>
+            </div>
+            <div
+              id="squadListDiv"
+              class="row mb-2 d-flex justify-content-center"
             ></div>
           </div>
         </div>
@@ -432,8 +446,10 @@
               don't need to count your own specialist.
               <br />
               <br />
-
-              <label for="soloCheckbox">
+              If you're solo, you can skip this step. Just press "Apply".
+            </p>
+            <!-- <div id="soloCheckboxDiv d-none">
+              <label class="text-white" for="soloCheckbox">
                 (I'm running solo. Don't show this to me again.)
               </label>
               <input
@@ -441,7 +457,7 @@
                 type="checkbox"
                 id="soloCheckbox"
               />
-            </p>
+            </div> -->
             <div
               class="row d-flex justify-content-center"
               id="squadSpecialistsList"

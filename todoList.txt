@@ -151,7 +151,6 @@ LOADOUT BUILDER
     - 
 
 THE GAUNTLET
-  - make solo button work
   - maybe show boons and squad specialists underneath loadout
   - info modal and rules
   - specialist balance?

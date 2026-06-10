@@ -408,7 +408,7 @@ const genSquadInfoContainerContent = () => {
     const { booster, deaths, minutes, extraStrats, stims, displayName } =
       squadSpecialists[i];
     squadListDiv.innerHTML += `
-      <div class="card col-lg-3 col-md-5 tgSpecialistCards col-xs-5 m-1">
+      <div class="card row tgSpecialistCards m-1">
         <div class="card-header d-flex justify-content-between align-items-center">
           <div>
             <p class="text-white mb-0">

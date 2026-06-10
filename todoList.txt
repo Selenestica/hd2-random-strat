@@ -151,14 +151,13 @@ LOADOUT BUILDER
     - 
 
 THE GAUNTLET
-  - implement total squad boons page (modal pops up after specialists select. checkbox input for solo players)
-    - add squad specialists to missionsData
+  - make solo button work
+  - maybe show boons and squad specialists underneath loadout
   - info modal and rules
   - specialist balance?
   - specialist images?
 
   BUGS:
-    - 
 
 
 NEW PAGE IDEAS:

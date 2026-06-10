@@ -40,14 +40,12 @@ const deathsInput = document.getElementById("deathsInput");
 const stratsUsedInput = document.getElementById("stratsUsedInput");
 const challengePage = document.getElementById("challengePage");
 const specialistSelectPage = document.getElementById("specialistSelectPage");
-const minutesCounterText = document.getElementById("minutesCounterText");
 const challengeCompleteButtonDiv = document.getElementById(
   "challengeCompleteButtonDiv",
 );
 const challengeButtonsDiv = document.getElementById("challengeButtonsDiv");
 const hviObtainedCheck = document.getElementById("hviObtainedCheck");
 const minutesRemainingInput = document.getElementById("minutesRemainingInput");
-const boosterCounterText = document.getElementById("boosterCounterText");
 const missionSuccessConfirmationModal = document.getElementById(
   "missionSuccessConfirmationModal",
 );
@@ -142,7 +140,6 @@ const handleSquadSpecialistInputs = (changedInput) => {
 
   if (total > 3) {
     changedInput.value = changedInput.defaultValue;
-    alert("Total squad specialists cannot exceed 3");
     return;
   }
 
@@ -327,20 +324,32 @@ const genCurrentMissionInfo = () => {
     challengeButtonsDiv.classList.toggle("d-none", true);
     challengeCompleteButtonDiv.classList.toggle("d-none", false);
   }
-  const { boosters, text, minutes, obtainHVI, enemy } =
+  const { text, obtainHVI, enemy, boosters, minutes } =
     getMissionData(missionCounter);
+  boosterNumber = boosters;
+  minutesNumber = minutes;
+
+  if (currentSpecialist) {
+    const { booster } = currentSpecialist;
+    const specMinutes = currentSpecialist.minutes;
+    boosterNumber += booster;
+    minutesNumber += specMinutes;
+  }
+  if (squadSpecialists.length > 0) {
+    const { squadBoosters, squadMinutes } = getSquadBoons();
+    boosterNumber += squadBoosters;
+    minutesNumber += squadMinutes;
+  }
 
   let rows = [
     makeMissionRow("Difficulty:", text, "currentMissionText"),
     makeMissionRow("Enemy:", enemy, "currentEnemyText"),
-    minutes !== -100 &&
-      makeMissionRow(
-        "Minutes Remaining Required:",
-        minutes,
-        "minutesCounterText",
-      ),
-    boosters !== -100 &&
-      makeMissionRow("Booster Slots:", boosters, "boosterCounterText"),
+    makeMissionRow(
+      "Minutes Remaining Required:",
+      minutesNumber,
+      "minutesCounterText",
+    ),
+    makeMissionRow("Booster Slots:", boosterNumber, "boosterCounterText"),
     obtainHVI &&
       makeMissionRow(
         "Special Requirement:",
@@ -405,6 +414,8 @@ const saveProgress = async () => {
           stimsAvailable,
           reinforcementsAvailable,
           stratsAvailable,
+          minutesNumber,
+          boosterNumber,
           currentGame: true,
         },
       ],
@@ -425,6 +436,8 @@ const saveProgress = async () => {
         stimsAvailable,
         reinforcementsAvailable,
         stratsAvailable,
+        minutesNumber,
+        boosterNumber,
         seesRulesOnOpen: false,
         dataName: sg.editedName
           ? sg.dataName
@@ -626,7 +639,6 @@ const removePreviousSpecialistBoons = () => {
   let stratsReduction = extraStrats;
 
   // if squadSpecialists.length > 0, add squad boons to numbers
-  console.log("got a squad here!", squadSpecialists);
   if (squadSpecialists.length > 0) {
     for (let i = 0; i < squadSpecialists.length; i++) {
       const sqsp = squadSpecialists[i];
@@ -637,34 +649,18 @@ const removePreviousSpecialistBoons = () => {
       stimsReduction += stims;
       stratsReduction += extraStrats;
     }
-    console.log(
-      boostersReduction,
-      reinforcementsReduction,
-      stimsReduction,
-      stratsReduction,
-      minutesReduction,
-    );
   }
 
-  console.log(boosterCounterText);
-  if (boosterCounterText) {
-    let boosterNumber = parseInt(boosterCounterText.innerHTML);
-    boosterNumber -= boostersReduction;
-    boosterCounterText.innerHTML = boosterNumber;
-  }
-
-  if (minutesCounterText) {
-    minutesNumber = getMissionData(missionCounter);
-    minutesNumber -= minutesReduction;
-    minutesCounterText.innerHTML = minutesNumber;
-  }
-
+  boosterNumber -= boostersReduction;
+  minutesNumber -= minutesReduction;
   stimsAvailable -= stimsReduction;
   reinforcementsAvailable -= reinforcementsReduction;
   stratsAvailable -= stratsReduction;
   stimsCounterText.innerHTML = stimsAvailable;
   reinforcementsCounterText.innerHTML = reinforcementsAvailable;
   stratsCounterText.innerHTML = stratsAvailable;
+  boosterCounterText.innerHTML = boosterNumber;
+  minutesCounterText.innerHTML = minutesNumber;
 };
 
 const applySpecialist = async (index, isRestartString = null) => {
@@ -734,7 +730,6 @@ const createSquad = async () => {
     isRestarting = false;
   }
   if (currentSpecialist) {
-    console.log("get here?");
     // also remove squad boons in this function
     await removePreviousSpecialistBoons();
   }
@@ -759,7 +754,6 @@ const createSquad = async () => {
       squadStrats,
       squadReinforcements,
     } = await getSquadBoons();
-    console.log(getSquadBoons());
     boostersToAdd += squadBoosters;
     minutesToAdd += squadMinutes;
     stimsToAdd += squadStims;
@@ -769,23 +763,21 @@ const createSquad = async () => {
   // add booster
   if (boosterCounterText) {
     let boosterNumber = parseInt(boosterCounterText.innerHTML);
-    boosterNumber += boostersToAdd;
-    boosterCounterText.innerHTML = boosterNumber;
   }
 
-  // add minutes
-  if (minutesCounterText) {
-    minutesNumber = getMissionData(missionCounter);
-    minutesNumber += minutesToAdd;
-    minutesCounterText.innerHTML = minutesNumber;
-  }
-  // add deaths, strats, stims
+  minutesNumber = getMissionData(missionCounter).minutes;
+  boosterNumber = getMissionData(missionCounter).boosters;
+
+  minutesNumber += minutesToAdd;
+  boosterNumber += boostersToAdd;
   stimsAvailable += stimsToAdd;
   reinforcementsAvailable += reinforcementsToAdd;
   stratsAvailable += stratsToAdd;
   stimsCounterText.innerHTML = stimsAvailable;
   reinforcementsCounterText.innerHTML = reinforcementsAvailable;
   stratsCounterText.innerHTML = stratsAvailable;
+  minutesCounterText.innerHTML = minutesNumber;
+  boosterCounterText.innerHTML = boosterNumber;
   displaySpecialistLoadout();
   saveProgress();
 };
@@ -814,6 +806,7 @@ const startNewRun = async () => {
   reinforcementsAvailable = 12;
   stratsAvailable = 110;
   minutesNumber = 40;
+  boosterNumber = 4;
   showSpecialistOptions();
   genCurrentMissionInfo();
   genGauntletMissionCompleteModalContent(missionCounter);
@@ -840,6 +833,8 @@ const uploadSaveData = async () => {
     stimsAvailable = currentGame.stimsAvailable;
     reinforcementsAvailable = currentGame.reinforcementsAvailable;
     stratsAvailable = currentGame.stratsAvailable;
+    boosterNumber = currentGame.boosterNumber;
+    minutesNumber = currentGame.minutesNumber;
     missionsData = currentGame.missionsData;
     squadSpecialists = currentGame.squadSpecialists;
     populateWebPage();
@@ -881,6 +876,7 @@ const saveDataAndRestart = async () => {
   reinforcementsAvailable = 12;
   stratsAvailable = 110;
   minutesNumber = 40;
+  boosterNumber = 4;
   showSpecialistOptions();
   genCurrentMissionInfo();
   genGauntletMissionCompleteModalContent(missionCounter);
@@ -889,11 +885,14 @@ const saveDataAndRestart = async () => {
     dataName,
     missionCounter,
     currentSpecialist,
+    squadSpecialists,
     missionsData,
     restarts,
     stimsAvailable,
     reinforcementsAvailable,
     stratsAvailable,
+    minutesNumber,
+    boosterNumber,
     currentGame: true,
   };
 

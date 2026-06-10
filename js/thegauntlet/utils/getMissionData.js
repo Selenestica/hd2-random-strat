@@ -6,7 +6,7 @@ const getMissionData = (missionCounter) => {
       boosters: 4,
       stratagems: 48,
       deaths: -100,
-      minutes: -100,
+      minutes: 40,
       obtainHVI: false,
       enemy: "Automatons",
     };
@@ -18,7 +18,7 @@ const getMissionData = (missionCounter) => {
       boosters: 4,
       stratagems: 46,
       deaths: -100,
-      minutes: -100,
+      minutes: 40,
       obtainHVI: false,
       enemy: "Illuminate",
     };

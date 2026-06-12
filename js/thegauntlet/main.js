@@ -348,11 +348,12 @@ const genCurrentMissionInfo = () => {
   let rows = [
     makeMissionRow("Difficulty:", text, "currentMissionText"),
     makeMissionRow("Enemy:", enemy, "currentEnemyText"),
-    makeMissionRow(
-      "Minutes Remaining Required:",
-      minutesNumber,
-      "minutesCounterText",
-    ),
+    missionCounter > 2 &&
+      makeMissionRow(
+        "Minutes Remaining Required:",
+        minutesNumber,
+        "minutesCounterText",
+      ),
     makeMissionRow("Booster Slots:", boosterNumber, "boosterCounterText"),
     obtainHVI &&
       makeMissionRow(

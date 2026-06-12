@@ -151,7 +151,9 @@ LOADOUT BUILDER
     - 
 
 THE GAUNTLET
+  - make minutes more clear: "Extract after X minutes have transpired."
   - info modal and rules
+    - can share equipment during a mission
   - specialist balance?
   - specialist images?
 

@@ -46,8 +46,18 @@ const genSpecialistBoons = (spec) => {
 
 const genSpecialistCard = (spec, i, isRestart = null) => {
   let displayName = spec.displayName;
+  const imageStyle = spec.img
+    ? `
+    background-image: url('../images/gauntletSpecialists/${spec.img}');
+    background-size: cover;
+    background-position: top;
+  `
+    : "";
+
   return `
-      <div class="card col-lg-3 col-md-5 col-xs-12 tgSpecialistCards m-2" id="soSpecialistCard${i}">
+    <div class="card col-12 col-sm-10 col-md-5 col-lg-3 tgSpecialistCards m-2" id="soSpecialistCard${i}" style="position: relative; ${imageStyle}">
+      ${spec.img ? `<div style="position: absolute; inset: 0; background: rgba(0,0,0,0.6);"></div>` : ""}
+      <div style="position: relative;">
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5 class="text-white mb-0 specialistHeadersClass" id="specialistHeader${i}">${displayName}</h5>
           <button class="btn btn-success" onclick="${`applySpecialist('${i}', '${isRestart}')`}">Select</button>
@@ -66,7 +76,9 @@ const genSpecialistCard = (spec, i, isRestart = null) => {
             ${genSpecialistBoons(spec)}
           </ul>
         </div>
-    `;
+      </div>
+    </div>
+  `;
 };
 
 const genGauntletSpecialistsModalContent = (isRestart = null) => {

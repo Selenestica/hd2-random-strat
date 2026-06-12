@@ -11,6 +11,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 2,
+    img: "",
     stims: 0,
   },
   {
@@ -25,6 +26,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 0,
+    img: "arsonist.webp",
     stims: 0,
   },
   {
@@ -39,6 +41,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 1,
     extraStrats: 0,
+    img: "",
     stims: 0,
   },
   {
@@ -53,6 +56,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 1,
+    img: "",
     stims: 0,
   },
   {
@@ -67,6 +71,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 1,
     extraStrats: 0,
+    img: "",
     stims: 0,
   },
   {
@@ -81,6 +86,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 1,
     extraStrats: 0,
+    img: "",
     stims: 0,
   },
   {
@@ -95,6 +101,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 0,
+    img: "",
     stims: 2,
   },
   {
@@ -109,6 +116,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 0,
+    img: "",
     stims: 1,
   },
   {
@@ -123,6 +131,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 0,
     extraStrats: 1,
+    img: "",
     stims: 0,
   },
   {
@@ -137,6 +146,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 0,
     extraStrats: 0,
+    img: "",
     stims: 1,
   },
   {
@@ -151,6 +161,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 1,
     extraStrats: 0,
+    img: "",
     stims: 1,
   },
   {
@@ -165,6 +176,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 2,
     extraStrats: 0,
+    img: "",
     stims: 0,
   },
   {
@@ -179,6 +191,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 0,
+    img: "",
     stims: 1,
   },
   {
@@ -193,6 +206,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 2,
     minutes: 0,
     extraStrats: 0,
+    img: "",
     stims: 0,
   },
   {
@@ -207,6 +221,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 0,
     extraStrats: 0,
+    img: "",
     stims: 1,
   },
   {
@@ -221,6 +236,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 2,
+    img: "",
     stims: 0,
   },
   {
@@ -235,6 +251,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 2,
     extraStrats: 0,
+    img: "",
     stims: 0,
   },
   {
@@ -249,6 +266,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 1,
     extraStrats: 0,
+    img: "",
     stims: 0,
   },
   {
@@ -263,6 +281,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 0,
+    img: "",
     stims: 1,
   },
   {
@@ -277,6 +296,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 0,
     extraStrats: 1,
+    img: "",
     stims: 0,
   },
   {
@@ -291,6 +311,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 0,
+    img: "",
     stims: 0,
   },
   {
@@ -305,6 +326,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 1,
     extraStrats: 0,
+    img: "",
     stims: 0,
   },
   {
@@ -319,6 +341,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 1,
+    img: "",
     stims: 1,
   },
   {
@@ -333,6 +356,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 1,
     extraStrats: 1,
+    img: "",
     stims: 0,
   },
   {
@@ -352,6 +376,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 1,
+    img: "",
     stims: 0,
   },
 ];

@@ -2,7 +2,6 @@ const missionCompleteModalBody = document.getElementById('missionCompleteModalBo
 const missionCompleteModal = document.getElementById('missionCompleteModal');
 const specialistsModal = document.getElementById('specialistsModal');
 const objectiveInputsContainer = document.getElementById('objectiveInputsContainer');
-const planetContainer = document.getElementById('planetContainer');
 const objectivesContainer = document.getElementById('objectivesContainer');
 const stratagemsContainer = document.getElementById('stratagemsContainer');
 const equipmentContainer = document.getElementById('equipmentContainer');
@@ -10,10 +9,8 @@ const armorContainer = document.getElementById('armorContainer');
 const primaryContainer = document.getElementById('primaryContainer');
 const secondaryContainer = document.getElementById('secondaryContainer');
 const throwableContainer = document.getElementById('throwableContainer');
-const planetDropdownList = document.getElementById('planetDropdownList');
-const planetNameText = document.getElementById('planetNameText');
 const enemyNameText = document.getElementById('enemyNameText');
-const hazardsText = document.getElementById('hazardsText');
+const enemyDropdownList = document.getElementById('enemyDropdownList');
 const objectiveNameText = document.getElementById('objectiveNameText');
 const objectiveProgressText = document.getElementById('objectiveProgressText');
 const specialistNameText = document.getElementById('specialistNameText');
@@ -33,17 +30,17 @@ const hellDiversMobilizeCheckbox = document.getElementById('warbond3');
 
 hellDiversMobilizeCheckbox.disabled = true;
 let missionCounter = 1;
-let currentPlanet = null;
 let currentEnemy = null;
 let currentSpecialist = null;
 let latestUnlockedSpecialist = null;
 let currentObjectives = null;
-let campaignsData = null;
 let selectedSpecialist = null;
 let specialists = null;
 let restarts = 0;
 let operationPoints = 0;
 let points = 0;
+
+const FACTIONS = ['Terminids', 'Automatons', 'Illuminate'];
 
 let primaries = [...PRIMARIES];
 let secondaries = [...SECONDARIES];
@@ -181,7 +178,7 @@ const filterSpecialistsByWarbond = async (save = null) => {
   // this probably means that the current specialist has items that were just toggled off
   // so we need to give the player a new specialist
   if (!currentSpecialist || !latestUnlockedSpecialist) {
-    await genNewOperation(true, null, null);
+    await genNewOperation(true, null);
     save = false;
   }
   specialistsList.innerHTML = '';
@@ -225,7 +222,6 @@ const saveProgress = async () => {
       missionCounter,
       currentSpecialist,
       latestUnlockedSpecialist,
-      currentPlanet,
       currentEnemy,
       currentObjectives,
       specialists,
@@ -244,7 +240,6 @@ const saveProgress = async () => {
     missionCounter,
     currentSpecialist,
     latestUnlockedSpecialist,
-    currentPlanet,
     currentEnemy,
     currentObjectives,
     specialists,
@@ -257,54 +252,10 @@ const saveProgress = async () => {
   localStorage.setItem('specialOpsSaveData', JSON.stringify(data));
 };
 
-const fetchCampaignsData = async () => {
-  console.log('Fetching campaign data...');
-  const url = 'https://helldivers2challengesapi.s3.us-east-2.amazonaws.com/helldivers-data.json';
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    const data = await response.json();
-    campaignsData = data;
-    genPlanetsList(data);
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
-
-const genPlanetsList = async (campaigns) => {
-  planetDropdownList.innerHTML = '';
-  for (let i = 0; i < campaigns.length; i++) {
-    const planetName = campaigns[i].planet.name;
-    planetDropdownList.innerHTML += `
-        <li><a class="dropdown-item planetOption" onclick="switchPlanet('${campaigns[i].planet.name}')" href="#">${planetName}</a></li>
-    `;
-  }
-};
-
-const switchPlanet = async (planetName) => {
-  restarts += 1;
-  await genNewOperation(false, planetName, null);
-  saveProgress();
-};
-
-const getCampaignFromPlanetName = async (planetName) => {
-  const newPlanet = await campaignsData.filter((cd) => cd.planet.name === planetName);
-  return newPlanet[0];
-};
-
-const genNewOperation = async (unlockSpecialist, planetName = null, newGame = null) => {
-  // random planet
-  const randPlanetNumber = Math.floor(Math.random() * campaignsData.length);
-  let planetToUse = campaignsData[randPlanetNumber];
-  if (planetName) {
-    planetToUse = await getCampaignFromPlanetName(planetName);
-  }
-  currentPlanet = planetToUse;
-  currentEnemy = getCurrentEnemy(currentPlanet);
-  planetNameText.innerHTML = currentPlanet.planet.name;
+const genNewOperation = async (unlockSpecialist, newGame = null, factionName = null) => {
+  // random enemy faction, unless manually selected
+  currentEnemy = factionName || FACTIONS[Math.floor(Math.random() * FACTIONS.length)];
   enemyNameText.innerHTML = currentEnemy;
-  hazardsText.innerHTML = currentPlanet.planet.hazards[0].name;
 
   // random specialist, only if new game or objectives were met
   if (unlockSpecialist) {
@@ -350,6 +301,21 @@ const genNewOperation = async (unlockSpecialist, planetName = null, newGame = nu
   missionCounter = 1;
   missionCounterText.innerHTML = '1';
   genSOMissionCompleteModalContent(objectives);
+};
+
+const genEnemyList = () => {
+  enemyDropdownList.innerHTML = '';
+  for (let i = 0; i < FACTIONS.length; i++) {
+    enemyDropdownList.innerHTML += `
+        <li><a class="dropdown-item enemyOption" onclick="switchEnemy('${FACTIONS[i]}')" href="#">${FACTIONS[i]}</a></li>
+    `;
+  }
+};
+
+const switchEnemy = async (factionName) => {
+  restarts += 1;
+  await genNewOperation(false, null, factionName);
+  saveProgress();
 };
 
 const renderObjectiveProgressText = () => {
@@ -426,7 +392,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
       pointsCounterText.innerHTML = points;
 
       missionCounter = 1;
-      await genNewOperation(objectivesMet, null, null);
+      await genNewOperation(objectivesMet, null);
       saveProgress();
       return;
     }
@@ -441,16 +407,9 @@ const submitMissionReport = async (isMissionSucceeded) => {
     operationPoints = 0;
     missionCounter = 1;
     restarts += 1;
-    await genNewOperation(false, null, null);
+    await genNewOperation(false, null);
     saveProgress();
   }
-};
-
-const getCurrentEnemy = (planet) => {
-  if (planet.faction === 'Humans') {
-    return planet.planet.currentOwner;
-  }
-  return planet.faction;
 };
 
 const displaySpecialistLoadout = () => {
@@ -501,6 +460,9 @@ const setSpecialist = (index) => {
 };
 
 const applySpecialist = async () => {
+  if (!selectedSpecialist) {
+    return;
+  }
   if (selectedSpecialist.displayName === currentSpecialist.displayName) {
     selectedSpecialist = null;
     return;
@@ -508,7 +470,8 @@ const applySpecialist = async () => {
 
   currentSpecialist = selectedSpecialist;
   displaySpecialistLoadout();
-  await genNewOperation(false, null, null);
+  genSOSpecialistsModalContent(currentSpecialist, latestUnlockedSpecialist);
+  await genNewOperation(false, null);
   saveProgress();
   selectedSpecialist = null;
 };
@@ -523,7 +486,6 @@ const startNewRun = async () => {
 
   // clear the slate
   missionCounter = 1;
-  currentPlanet = null;
   currentEnemy = null;
   currentSpecialist = null;
   latestUnlockedSpecialist = null;
@@ -550,19 +512,17 @@ const startNewRun = async () => {
   // Update toggle button after setting checkboxes
   updateToggleAllButton();
 
-  // get a specialist, objective list, and planet
-  await genNewOperation(true, null, true);
+  // get a specialist and objective list
+  await genNewOperation(true, true);
 
-  // save the randomly selected objectives, planet, and specialist to ls
+  // save the randomly selected objectives and specialist to ls
   // so user doesnt cycle through specialists
   await saveProgress();
   genSOSaveDataManagementModalContent();
 };
 
 const populateWebPage = async () => {
-  planetNameText.innerHTML = currentPlanet.planet.name;
   enemyNameText.innerHTML = currentEnemy;
-  hazardsText.innerHTML = currentPlanet.planet.hazards[0].name;
   pointsCounterText.innerHTML = points;
 
   const missingWarbondCodes = masterWarbondCodes.filter((code) => !warbondCodes.includes(code));
@@ -598,14 +558,9 @@ const populateWebPage = async () => {
 };
 
 const uploadSaveData = async () => {
-  await fetchCampaignsData();
   const specialOpsSaveData = await localStorage.getItem('specialOpsSaveData');
   if (specialOpsSaveData) {
-    // do a check here to make sure the planet they were on is still available
-    // if not, put a warning up that teammates may not be able to select that planet
-
     const data = JSON.parse(specialOpsSaveData);
-    currentPlanet = data.currentPlanet;
     currentObjectives = data.currentObjectives;
     currentEnemy = data.currentEnemy;
     currentSpecialist = data.currentSpecialist;
@@ -650,12 +605,5 @@ const clearSaveDataAndRestart = async () => {
   window.location.reload();
 };
 
+genEnemyList();
 uploadSaveData();
-
-setInterval(fetchCampaignsData, 5 * 60 * 1000);
-
-// https://api.helldivers2.dev/api/v1/war         -o 801_war_v1.json
-// https://api.helldivers2.dev/api/v1/planets     -o 801_planets_v1.json
-// https://api.helldivers2.dev/api/v1/assignments -o 801_assignments_v1.json
-// https://api.helldivers2.dev/api/v1/campaigns   -o 801_campaigns_v1.json
-// https://api.helldivers2.dev/api/v1/dispatches

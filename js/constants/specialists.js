@@ -13,7 +13,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Integrated Explosives"],
     traits: [],
-    imageURL: "zealousMartyr.png",
+    imageURL: "zealousMartyr.webp",
     warbonds: ["warbond1", "warbond13"],
   },
   {
@@ -26,7 +26,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Med-Kit"],
     traits: [],
-    imageURL: "permacuraRep.png",
+    imageURL: "permacuraRep.webp",
     warbonds: ["warbond10"],
   },
   {
@@ -43,7 +43,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Reinforced Epaulettes"],
     traits: [],
-    imageURL: "theFlagBearer.png",
+    imageURL: "theFlagBearer.webp",
     warbonds: ["warbond15"],
   },
   {
@@ -59,7 +59,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Oxygenator"],
     traits: [],
-    imageURL: "speedrunner.png",
+    imageURL: "speedrunner.webp",
     warbonds: [],
   },
   {
@@ -76,7 +76,7 @@ const SPECIALISTS = [
     throwables: ["K-2 Throwing Knife"],
     armorPassives: ["Peak Physique"],
     traits: [],
-    imageURL: "viperCommando.png",
+    imageURL: "viperCommando.webp",
     warbonds: ["warbond8"],
   },
   {
@@ -217,7 +217,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Adreno-Defibrillator"],
     traits: [],
-    imageURL: "testSubject4311.png",
+    imageURL: "testSubject4311.webp",
     warbonds: ["warbond17"],
   },
   {
@@ -385,7 +385,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Supplementary Adrenaline"],
     traits: [],
-    imageURL: "siegebreaker.png",
+    imageURL: "siegebreaker.webp",
     warbonds: ["warbond23"],
   },
   {
@@ -402,7 +402,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Supplementary Adrenaline"],
     traits: [],
-    imageURL: "juggernaut.png",
+    imageURL: "juggernaut.webp",
     warbonds: ["warbond23"],
   },
   {

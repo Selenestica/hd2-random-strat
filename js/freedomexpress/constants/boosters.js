@@ -6,7 +6,7 @@ const FE_BOOSTERS = [
     tags: [],
     warbondCode: "warbond3",
     internalName: "vitalityenhancement",
-    imageURL: "vitalityenhancement.png",
+    imageURL: "vitalityenhancement.webp",
     tier: "s",
   },
   {
@@ -16,7 +16,7 @@ const FE_BOOSTERS = [
     tags: [],
     warbondCode: "warbond3",
     internalName: "muscleenhancement",
-    imageURL: "muscleenhancement.png",
+    imageURL: "muscleenhancement.webp",
     tier: "a",
   },
   {
@@ -26,7 +26,7 @@ const FE_BOOSTERS = [
     tags: [],
     warbondCode: "warbond3",
     internalName: "staminaenhancement",
-    imageURL: "staminaenhancement.png",
+    imageURL: "staminaenhancement.webp",
     tier: "s",
   },
   {
@@ -36,7 +36,7 @@ const FE_BOOSTERS = [
     tags: [],
     warbondCode: "warbond5",
     internalName: "localizationconfusion",
-    imageURL: "localizationconfusion.png",
+    imageURL: "localizationconfusion.webp",
     tier: "b",
   },
   {
@@ -46,7 +46,7 @@ const FE_BOOSTERS = [
     tags: [],
     warbondCode: "warbond3",
     internalName: "hellpodspaceoptimization",
-    imageURL: "hellpodspaceoptimization.png",
+    imageURL: "hellpodspaceoptimization.webp",
     tier: "s",
   },
   {
@@ -56,7 +56,7 @@ const FE_BOOSTERS = [
     tags: [],
     warbondCode: "warbond8",
     internalName: "experimentalinfusion",
-    imageURL: "experimentalinfusion.png",
+    imageURL: "experimentalinfusion.webp",
     tier: "s",
   },
   {
@@ -66,7 +66,7 @@ const FE_BOOSTERS = [
     tags: [],
     warbondCode: "warbond7",
     internalName: "motivationalshocks",
-    imageURL: "motivationalshocks.png",
+    imageURL: "motivationalshocks.webp",
     tier: "b",
   },
   {
@@ -76,7 +76,7 @@ const FE_BOOSTERS = [
     tags: [],
     warbondCode: "warbond6",
     internalName: "expertextractionpilot",
-    imageURL: "expertextractionpilot.png",
+    imageURL: "expertextractionpilot.webp",
     tier: "c",
   },
   {
@@ -86,7 +86,7 @@ const FE_BOOSTERS = [
     tags: [],
     warbondCode: "warbond11",
     internalName: "deadsprint",
-    imageURL: "deadsprint.png",
+    imageURL: "deadsprint.webp",
     tier: "b",
   },
 ];

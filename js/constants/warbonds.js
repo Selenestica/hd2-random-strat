@@ -6,7 +6,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond3",
     internalName: "helldiversMobilizeWB",
-    imageURL: "helldiversMobilizeWB.png",
+    imageURL: "helldiversMobilizeWB.webp",
     tier: "s",
   },
   {
@@ -16,7 +16,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond4",
     internalName: "steeledVeteransWB",
-    imageURL: "steeledVeteransWB.png",
+    imageURL: "steeledVeteransWB.webp",
     tier: "a",
   },
   {
@@ -26,7 +26,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond5",
     internalName: "cuttingEdgeWB",
-    imageURL: "cuttingEdgeWB.png",
+    imageURL: "cuttingEdgeWB.webp",
     tier: "a",
   },
   {
@@ -36,7 +36,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond6",
     internalName: "democraticDetonationWB",
-    imageURL: "democraticDetonationWB.png",
+    imageURL: "democraticDetonationWB.webp",
     tier: "s",
   },
   {
@@ -46,7 +46,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond7",
     internalName: "polarPatriotsWB",
-    imageURL: "polarPatriotsWB.png",
+    imageURL: "polarPatriotsWB.webp",
     tier: "b",
   },
   {
@@ -56,7 +56,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond8",
     internalName: "viperCommandosWB",
-    imageURL: "viperCommandosWB.png",
+    imageURL: "viperCommandosWB.webp",
     tier: "b",
   },
   {
@@ -66,7 +66,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond9",
     internalName: "freedomsFlameWB",
-    imageURL: "freedomsFlameWB.png",
+    imageURL: "freedomsFlameWB.webp",
     tier: "b",
   },
   {
@@ -76,7 +76,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond10",
     internalName: "chemicalAgentsWB",
-    imageURL: "chemicalAgentsWB.png",
+    imageURL: "chemicalAgentsWB.webp",
     tier: "b",
   },
   {
@@ -86,7 +86,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond11",
     internalName: "truthEnforcersWB",
-    imageURL: "truthEnforcersWB.png",
+    imageURL: "truthEnforcersWB.webp",
     tier: "b",
   },
   {
@@ -96,7 +96,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond12",
     internalName: "urbanLegendsWB",
-    imageURL: "urbanLegendsWB.png",
+    imageURL: "urbanLegendsWB.webp",
     tier: "b",
   },
   {
@@ -106,7 +106,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond13",
     internalName: "servantsOfFreedomWB",
-    imageURL: "servantsOfFreedomWB.png",
+    imageURL: "servantsOfFreedomWB.webp",
     tier: "a",
   },
   {
@@ -116,7 +116,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond14",
     internalName: "borderlineJusticeWB",
-    imageURL: "borderlineJusticeWB.png",
+    imageURL: "borderlineJusticeWB.webp",
     tier: "b",
   },
   {
@@ -126,7 +126,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond15",
     internalName: "mastersOfCeremonyWB",
-    imageURL: "mastersOfCeremonyWB.png",
+    imageURL: "mastersOfCeremonyWB.webp",
     tier: "c",
   },
   {
@@ -136,7 +136,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond16",
     internalName: "forceOfLawWB",
-    imageURL: "forceOfLawWB.png",
+    imageURL: "forceOfLawWB.webp",
     tier: "b",
   },
   {
@@ -146,7 +146,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond17",
     internalName: "controlGroupWB",
-    imageURL: "controlGroupWB.png",
+    imageURL: "controlGroupWB.webp",
     tier: "a",
   },
   {
@@ -166,7 +166,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond19",
     internalName: "odstWB",
-    imageURL: "odstWB.png",
+    imageURL: "odstWB.webp",
     tier: "b",
   },
   {
@@ -176,7 +176,7 @@ const WARBONDS = [
     tags: [],
     warbondCode: "warbond20",
     internalName: "dustdevilsWB",
-    imageURL: "dustdevilsWB.png",
+    imageURL: "dustdevilsWB.webp",
     tier: "b",
   },
   {

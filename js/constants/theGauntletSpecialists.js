@@ -11,7 +11,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 2,
-    img: "",
+    img: "helldiver",
     stims: 0,
   },
   {
@@ -26,7 +26,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 0,
-    img: "arsonist.webp",
+    img: "arsonist",
     stims: 0,
   },
   {
@@ -41,7 +41,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 1,
     extraStrats: 0,
-    img: "",
+    img: "engineer",
     stims: 0,
   },
   {
@@ -56,7 +56,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 1,
-    img: "",
+    img: "tankbuster",
     stims: 0,
   },
   {
@@ -71,7 +71,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 1,
     extraStrats: 0,
-    img: "",
+    img: "demoman",
     stims: 0,
   },
   {
@@ -86,7 +86,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 1,
     extraStrats: 0,
-    img: "",
+    img: "ghost",
     stims: 0,
   },
   {
@@ -101,7 +101,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 0,
-    img: "",
+    img: "paramedic",
     stims: 2,
   },
   {
@@ -116,7 +116,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 0,
-    img: "",
+    img: "peaceofficer",
     stims: 1,
   },
   {
@@ -131,7 +131,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 0,
     extraStrats: 1,
-    img: "",
+    img: "overwatch",
     stims: 0,
   },
   {
@@ -146,7 +146,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 0,
     extraStrats: 0,
-    img: "",
+    img: "heavygunner",
     stims: 1,
   },
   {
@@ -161,7 +161,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 1,
     extraStrats: 0,
-    img: "",
+    img: "lightshow",
     stims: 1,
   },
   {
@@ -176,7 +176,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 2,
     extraStrats: 0,
-    img: "",
+    img: "stormcaller",
     stims: 0,
   },
   {
@@ -191,7 +191,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 0,
-    img: "",
+    img: "madscientist",
     stims: 1,
   },
   {
@@ -206,7 +206,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 2,
     minutes: 0,
     extraStrats: 0,
-    img: "",
+    img: "lonepenant",
     stims: 0,
   },
   {
@@ -221,7 +221,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 0,
     extraStrats: 0,
-    img: "",
+    img: "thewall",
     stims: 1,
   },
   {
@@ -236,7 +236,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 2,
-    img: "",
+    img: "supplier",
     stims: 0,
   },
   {
@@ -251,7 +251,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 2,
     extraStrats: 0,
-    img: "",
+    img: "vanguard",
     stims: 0,
   },
   {
@@ -266,7 +266,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 1,
     extraStrats: 0,
-    img: "",
+    img: "recon",
     stims: 0,
   },
   {
@@ -281,7 +281,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 0,
-    img: "",
+    img: "expendable",
     stims: 1,
   },
   {
@@ -296,7 +296,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 1,
     minutes: 0,
     extraStrats: 1,
-    img: "",
+    img: "fieldartillery",
     stims: 0,
   },
   {
@@ -311,7 +311,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 0,
-    img: "",
+    img: "assassin",
     stims: 0,
   },
   {
@@ -326,7 +326,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 1,
     extraStrats: 0,
-    img: "",
+    img: "saboteur",
     stims: 0,
   },
   {
@@ -341,7 +341,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 1,
-    img: "",
+    img: "juggernaut",
     stims: 1,
   },
   {
@@ -356,7 +356,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 1,
     extraStrats: 1,
-    img: "",
+    img: "countersniper",
     stims: 0,
   },
   {
@@ -376,7 +376,7 @@ const GAUNTLETSPECIALISTS = [
     booster: 0,
     minutes: 0,
     extraStrats: 1,
-    img: "",
+    img: "devildog",
     stims: 0,
   },
 ];

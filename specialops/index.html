@@ -182,11 +182,11 @@
             <div class="row d-flex justify-content-center mt-2" id="operationInfoContainer">
               <div class="col text-end" style="border-right: 1px solid grey">
                 <div
-                  id="planetNameDiv"
+                  id="enemyNameDiv"
                   class="text-white justify-content-end d-flex align-items-center"
                 >
-                  <b>Planet</b>:<span class="mx-1" id="planetNameText"></span>
-                  <div class="btn-group" id="planetDropdown">
+                  <b>Enemy</b>:<span class="mx-1" id="enemyNameText"></span>
+                  <div class="btn-group" id="enemyDropdown">
                     <button
                       style="border: none; padding: 0rem !important"
                       type="button"
@@ -196,14 +196,8 @@
                     >
                       <i class="bi bi-globe-americas text-warning"></i>
                     </button>
-                    <ul id="planetDropdownList" class="dropdown-menu scrollablePlanetList"></ul>
+                    <ul id="enemyDropdownList" class="dropdown-menu"></ul>
                   </div>
-                </div>
-                <div class="text-white">
-                  <b>Enemy</b>:<span class="mx-1" id="enemyNameText"></span>
-                </div>
-                <div class="text-white">
-                  <b>Hazards</b>:<span class="mx-1" id="hazardsText"></span>
                 </div>
                 <div class="text-white">
                   <b>Mission</b>:<b class="mx-1 text-warning" id="missionCounterText"></b>
@@ -262,7 +256,7 @@
                 type="button"
                 class="btn btn-primary"
                 onclick="submitMissionReport(true)"
-                data-bs-toggle="modal"
+                data-bs-dismiss="modal"
               >
                 Submit
               </button>
@@ -420,7 +414,7 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      Complete an operation on the given planet using the assigned specialist
+                      Complete an operation using the assigned specialist
                       loadout, and fulfilling all operation goals, in order to unlock new specialist
                       loadouts. There are many specialist loadouts to unlock, with more specialist
                       loadouts to be added in the future as more content is added to the game.
@@ -458,7 +452,7 @@
                       <br />
                       <br />
                       If you fail a mission, click the 'Mission Failed' button. You will be given a
-                      new operation with new goals, on a different planet.
+                      new operation with new goals.
                     </p>
                   </div>
                 </div>
@@ -500,6 +494,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button
@@ -510,7 +505,7 @@
                     aria-expanded="false"
                     aria-controls="collapseFive"
                   >
-                    Choosing a Planet
+                    Choosing an Enemy
                   </button>
                 </h2>
                 <div
@@ -520,24 +515,24 @@
                 >
                   <div class="accordion-body">
                     <p class="text-white">
-                      A planet will be assigned to you along with a set of operation goals, as long
-                      as you weren't previously in the middle of an operation.
+                      An enemy faction will be assigned to you at random along with a set of
+                      operation goals, as long as you weren't previously in the middle of an
+                      operation.
                       <br />
                       <br />
-                      If you're part of a squad and you need to go to a different planet, open the
-                      planet list (
-                      <i class="text-warning bi bi-globe-americas"></i> ) and choose the planet you
-                      want. Only planets that are able to be liberated or defended will show up on
-                      the list. A new set of operation goals will be given to you, and you will lose
-                      your progress on your previous planet.
+                      If you'd rather fight a specific faction, open the enemy list (
+                      <i class="text-warning bi bi-globe-americas"></i> ) and choose Terminids, Automatons, or
+                      Illuminate. A new set of operation goals will be given to you, and you will
+                      lose your progress on your previous operation.
                       <br />
                       <br />
-                      NOTE: Operation goals on a planet may vary from player to player. Work
-                      together to ensure everyone in your squad meets their goals.
+                      If you're part of a squad, make sure everyone selects the same enemy faction so
+                      your operation goals line up.
                     </p>
                   </div>
                 </div>
               </div>
+
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button
@@ -620,15 +615,6 @@
                           For objectives that are impossible to accomplish in the first mission of
                           an operation, 5 points are given for accomplishing the objective at the
                           end of the operation.
-                        </p>
-                      </li>
-                      <li class="text-white">
-                        <b>Q: What if the planet I had an operation on is no longer available?</b>
-                        <p>
-                          A: If you or your squadmates can no longer access that planet in-game,
-                          choose a different planet from the planet list (
-                          <i class="text-warning bi bi-globe-americas"></i>
-                          ). This list updates every ten minutes or so.
                         </p>
                       </li>
                       <li class="text-white">
@@ -947,7 +933,7 @@
   <script src="../js/components/genSOSpecialistsModalContent.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
   <script src="../js/utils/downloadSOScoreSummary.js"></script>
-  <script src="../js/specialops.js"></script>
   <script src="../js/components/genSOMissionCompleteModalContent.js"></script>
   <script src="../js/components/genSOSaveDataManagementModalContent.js"></script>
+  <script src="../js/specialops.js"></script>
 </html>

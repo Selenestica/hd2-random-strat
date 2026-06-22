@@ -139,7 +139,7 @@ ARMOR LAB
   - improve view on desktop
     - add armor passive image
   - when user clicks helmet/armor or cape, a modal shows with the view expanded
-  - random button!
+  - random button! (add lock for weight class)
 
   BUGS
     - 

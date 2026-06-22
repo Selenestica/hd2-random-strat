@@ -48,7 +48,7 @@ const genSpecialistCard = (spec, i, isRestart = null) => {
   let displayName = spec.displayName;
   const imageStyle = spec.img
     ? `
-    background-image: url('../images/gauntletSpecialists/${spec.img}');
+    background-image: url('../images/gauntletSpecialists/${spec.img}.webp');
     background-size: cover;
     background-position: top;
   `

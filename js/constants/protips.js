@@ -76,4 +76,8 @@ const PRO_TIPS = [
   "The G/SH-39 throwable shield generator is excellent for protection when interacting with terminals and valves at objectives.",
   "Make sure to aim high when throwing the TM-01 Lure Mine, as it will explode as soon as it's deployed if you're standing too close.",
   "You can become completely immune to gas damage if you wear heavy armor with the Advanced Filtration passive while the Vitality Enhancement booster is in effect.",
+  "You can defeat a Bile Titan with the Breakthrough Exosuit's shield attack.",
+  "Spore strain Terminids will not release their spores if they die from fire, preventing thier allies from getting a speed boost from their death.",
+  "The Incinerator FRV will detonate with the force of a 500kg bomb upon its destruction, as long as the back-mounted flamethrower has more than 101 fuel. The explosion can destroy Stratagem Jammers, Rogue Research Stations, and other similarly sized objectives.",
+  "The Supply FRV comes with 8 supply packs. You can use a supply pack to reload the FRV's automated turret, which will point straight up when it's out of ammunition.",
 ];

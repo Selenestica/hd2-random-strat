@@ -44,7 +44,7 @@ const SPECOPSSPECS = [
     displayName: "Eagle-1's Favorite",
     stratagems: [49, 44, 43, 45],
     primary: 30,
-    secondary: 17,
+    secondary: 17, // talon
     throwable: 1,
     armorPassive: 11,
     warbonds: ["warbond14", "warbond15"],
@@ -94,7 +94,7 @@ const SPECOPSSPECS = [
     displayName: "The Ghost",
     stratagems: [53, 47, 10, 33],
     primary: 27,
-    secondary: 17,
+    secondary: 17, // talon
     throwable: 8,
     armorPassive: 10,
     warbonds: ["warbond14", "warbond8"],
@@ -232,7 +232,7 @@ const SPECOPSSPECS = [
   {
     locked: true,
     displayName: "The Bullet Whisperer",
-    stratagems: [4, 57, 66, 65],
+    stratagems: [4, 57, 66, 65, 87], // 87=Bullet Storm
     primary: 43,
     secondary: 7,
     throwable: 1,
@@ -332,12 +332,12 @@ const SPECOPSSPECS = [
   {
     locked: true,
     displayName: "Selenestica",
-    stratagems: [5, 40, 60, 51],
-    primary: 41,
-    secondary: 13,
+    stratagems: [5, 40, 60, 51], // MG43,
+    primary: 26, // M90A shotgun
+    secondary: 22, // missile pistol
     throwable: 5,
     armorPassive: 9,
-    warbonds: ["warbond6", "warbond7", "warbond8", "warbond5"],
+    warbonds: ["warbond19", "warbond7", "warbond25", "warbond5"],
   },
   {
     locked: true,
@@ -422,9 +422,9 @@ const SPECOPSSPECS = [
   {
     locked: true,
     displayName: "The Expendable",
-    stratagems: [14, 16, 15, 39, 17, 80], // 80 leveller
+    stratagems: [14, 16, 15, 39, 17, 80, 87], // 80 leveller, 87 bullet storm
     primary: 22,
-    secondary: 17,
+    secondary: 17, // talon
     throwable: 4,
     armorPassive: 14,
     warbonds: ["warbond13", "warbond20", "warbond14", "warbond4"],
@@ -504,15 +504,15 @@ const SPECOPSSPECS = [
     displayName: "The Siege Breaker",
     stratagems: [80, 81, 82, 59, 63], // leveller, bastion tank, 380, mortar sentry
     primary: 46, // trident
-    secondary: 7, // verdict
+    secondary: 22, // missile pistol
     throwable: 18, // shield grenade
     armorPassive: 23, // supplemental adrenaline
-    warbonds: ["warbond23", "warbond7"],
+    warbonds: ["warbond23", "warbond7", "warbond25"],
   },
   {
     locked: true,
     displayName: "The Motor Transport Operator",
-    stratagems: [40, 41, 82, 79], // frv, patriot, bastion, hammer
+    stratagems: [40, 41, 42, 85, 86, 82, 79], // frv, patriot, emancipator, lumberer, breakthrough, bastion, hammer
     primary: 36, // purifier
     secondary: 12, // loyalist
     throwable: 6, // thermite
@@ -559,6 +559,13 @@ const SPECOPSSPECS = [
     armorPassive: 24, // Concussive Padding
     warbonds: ["warbond24", "warbond15"],
   },
+
+  // Paramedic, replace FRV with Supply FRV
+  // Arsonist, add cremator FRV?
+
+  // UNUSED:
+  // Gallant
+
   // {
   //   locked: true,
   //   displayName: "The Protector",
@@ -590,6 +597,4 @@ const SPECOPSSPECS = [
   //   armorPassive: "Unflinching",
   //   warbonds: ["warbond7", "warbond13"],
   // },
-
-  // UNUSED
 ];

@@ -88,7 +88,6 @@ SPECIAL OPERATIONS
 
   BUGS:
     - make green/red progress text a different color for colorblind people
-    - cant select Aecharnar Secundus as a planet
 
 TIER MAKER
   - make filter options checkbox toggles
@@ -107,7 +106,7 @@ DEBT DIVERS
 
 - FREEDOM EXPRESS
   - more booster choices?
-  - 
+  - this challenge is bad and is going away soon
 
 - RANDOMIZER MARATHON
   - PRIMARIES: 42
@@ -145,8 +144,6 @@ ARMOR LAB
     - 
 
 LOADOUT BUILDER
-  - ability to add booster
-
   BUGS
     - 
 
@@ -155,7 +152,6 @@ THE GAUNTLET
   - info modal and rules
     - can share equipment during a mission
   - specialist balance?
-  - specialist images?
 
   BUGS:
 

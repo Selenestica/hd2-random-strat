@@ -21,7 +21,7 @@ const genOtherResourcesList = () => {
     {
       displayName: "hd2random.com",
       url: "https://hd2random.com",
-      description: "Another customizeable, ad-free loadout randomizer",
+      description: "A highly refined, ad-free loadout randomizer",
     },
     // {
     //   displayName: "Helldivers Hub",

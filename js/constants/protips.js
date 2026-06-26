@@ -79,7 +79,8 @@ const PRO_TIPS = [
   "You can defeat a Bile Titan with the Breakthrough Exosuit's shield attack.",
   "Spore strain Terminids will not release their spores if they die from fire, preventing thier allies from getting a speed boost from their death.",
   "The Incinerator FRV will detonate with the force of a 500kg bomb upon its destruction, as long as the back-mounted flamethrower has more than 101 fuel. The explosion can destroy Stratagem Jammers, Rogue Research Stations, and other similarly sized objectives.",
-  "The Supply FRV comes with 8 supply packs. You can use a supply pack to reload the FRV's automated turret, which will point straight up when it's out of ammunition.",
+  "The Supply FRV comes with 8 supply packs. You can use a supply pack to reload the FRV's automated turret, which will point straight up and make a peculiar noise when it's out of ammunition.",
   "The Pacifier can stun Illuminate Appropriators and Harvesters, and Automaton War Striders, by hitting them in their medium armor weak points.",
   "You can quickly kill a War Strider with a flame weapon, such as the Crisper, by shooting the hip joint.",
+  "In order to effectively use the Eagle 110mm Rocket Pods, make sure the stratagem ball lands as close as possible to the enemy you want to be targeted. Do NOT try to lead with the stratagem like you would any other eagle stratagem. Eagle-1 will target the largest enemy that is closest to the stratagem ball at the moment it activates.",
 ];

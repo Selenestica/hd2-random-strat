@@ -1,5 +1,5 @@
 GENERAL:
-  - checklist for when new content comes out
+  - checklist for when new warbond comes out
     - /js
       - /utils
         - warbondCodes.js
@@ -34,8 +34,6 @@ GENERAL:
 
   - fix drawer images for new capes
   - implement code for using item indices
-  - stratagems for Exo Experts
-  - Exo Experts content for Loadout Builder
 
 RANDOMIZER:
   - ability to enable/disable specific items from warbonds

@@ -142,7 +142,7 @@ const SPECOPSSPECS = [
   {
     locked: true,
     displayName: "The Paramedic",
-    stratagems: [47, 71, 35, 40],
+    stratagems: [47, 71, 35, 88],
     primary: 2,
     secondary: 11,
     throwable: 18,
@@ -322,7 +322,7 @@ const SPECOPSSPECS = [
   {
     locked: true,
     displayName: "The Supplier",
-    stratagems: [35, 14, 16, 7],
+    stratagems: [35, 14, 16, 88],
     primary: 34,
     secondary: 11,
     throwable: 11,

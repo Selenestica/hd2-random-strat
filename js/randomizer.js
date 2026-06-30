@@ -1,32 +1,32 @@
 // DOM Elements
 const elements = {
-  stratagemsContainer: document.getElementById('stratagemsContainer'),
-  equipmentContainer: document.getElementById('equipmentContainer'),
-  rollStratsButton: document.getElementById('rollStratsButton'),
-  warbondCheckboxes: document.getElementsByClassName('warbondCheckboxes'),
-  superCitizenCheckBox: document.getElementById('warbond0'),
-  oneSupportCheck: document.getElementById('oneSupportCheck'),
-  oneBackpackCheck: document.getElementById('oneBackpackCheck'),
-  alwaysSupportCheck: document.getElementById('alwaysSupportCheck'),
-  alwaysBackpackCheck: document.getElementById('alwaysBackpackCheck'),
-  proTipsText: document.getElementById('proTipsText'),
-  braschTacticsText: document.getElementById('braschTacticsText'),
+  stratagemsContainer: document.getElementById("stratagemsContainer"),
+  equipmentContainer: document.getElementById("equipmentContainer"),
+  rollStratsButton: document.getElementById("rollStratsButton"),
+  warbondCheckboxes: document.getElementsByClassName("warbondCheckboxes"),
+  superCitizenCheckBox: document.getElementById("warbond0"),
+  oneSupportCheck: document.getElementById("oneSupportCheck"),
+  oneBackpackCheck: document.getElementById("oneBackpackCheck"),
+  alwaysSupportCheck: document.getElementById("alwaysSupportCheck"),
+  alwaysBackpackCheck: document.getElementById("alwaysBackpackCheck"),
+  proTipsText: document.getElementById("proTipsText"),
+  braschTacticsText: document.getElementById("braschTacticsText"),
 };
 
 // Radio button groups
 const stratOptionRadios = [
-  document.getElementById('onlyEaglesRadio'),
-  document.getElementById('noEaglesRadio'),
-  document.getElementById('defaultEaglesRadio'),
-  document.getElementById('onlyOrbitalsRadio'),
-  document.getElementById('noOrbitalsRadio'),
-  document.getElementById('defaultOrbitalsRadio'),
-  document.getElementById('onlyDefenseRadio'),
-  document.getElementById('noDefenseRadio'),
-  document.getElementById('defaultDefenseRadio'),
-  document.getElementById('onlySupplyRadio'),
-  document.getElementById('noSupplyRadio'),
-  document.getElementById('defaultSupplyRadio'),
+  document.getElementById("onlyEaglesRadio"),
+  document.getElementById("noEaglesRadio"),
+  document.getElementById("defaultEaglesRadio"),
+  document.getElementById("onlyOrbitalsRadio"),
+  document.getElementById("noOrbitalsRadio"),
+  document.getElementById("defaultOrbitalsRadio"),
+  document.getElementById("onlyDefenseRadio"),
+  document.getElementById("noDefenseRadio"),
+  document.getElementById("defaultDefenseRadio"),
+  document.getElementById("onlySupplyRadio"),
+  document.getElementById("noSupplyRadio"),
+  document.getElementById("defaultSupplyRadio"),
 ];
 
 // Working lists
@@ -46,68 +46,78 @@ let checkedWarbonds = new Set(); // Use Set for better performance
 
 // Helper: Get current checkbox states
 const getSupplyOptions = () => ({
-  oneSupport: elements.oneSupportCheck.checked && !elements.oneSupportCheck.disabled,
-  oneBackpack: elements.oneBackpackCheck.checked && !elements.oneBackpackCheck.disabled,
-  alwaysSupport: elements.alwaysSupportCheck.checked && !elements.alwaysSupportCheck.disabled,
-  alwaysBackpack: elements.alwaysBackpackCheck.checked && !elements.alwaysBackpackCheck.disabled,
+  oneSupport:
+    elements.oneSupportCheck.checked && !elements.oneSupportCheck.disabled,
+  oneBackpack:
+    elements.oneBackpackCheck.checked && !elements.oneBackpackCheck.disabled,
+  alwaysSupport:
+    elements.alwaysSupportCheck.checked &&
+    !elements.alwaysSupportCheck.disabled,
+  alwaysBackpack:
+    elements.alwaysBackpackCheck.checked &&
+    !elements.alwaysBackpackCheck.disabled,
 });
 
 // Initialize event listeners
 const initEventListeners = () => {
   // Supply options
   const supplyCheckIds = [
-    'oneSupportCheck',
-    'oneBackpackCheck',
-    'alwaysSupportCheck',
-    'alwaysBackpackCheck',
+    "oneSupportCheck",
+    "oneBackpackCheck",
+    "alwaysSupportCheck",
+    "alwaysBackpackCheck",
   ];
   supplyCheckIds.forEach((id) => {
     const el = document.getElementById(id);
     if (el) {
-      el.addEventListener('change', (e) => updateLocalStorage(e.target, 'supplyAmountOptions'));
+      el.addEventListener("change", (e) =>
+        updateLocalStorage(e.target, "supplyAmountOptions"),
+      );
     }
   });
 
   // Stratagem radios
   stratOptionRadios.forEach((radio) => {
     if (radio) {
-      radio.addEventListener('change', handleStratRadioChange);
+      radio.addEventListener("change", handleStratRadioChange);
     }
   });
 
   // Warbond checkboxes
   Array.from(elements.warbondCheckboxes).forEach((cb) => {
-    cb.addEventListener('change', handleWarbondChange);
+    cb.addEventListener("change", handleWarbondChange);
   });
 
   // Add toggle all warbonds functionality
-  const toggleAllButton = document.getElementById('toggleAllWarbonds');
+  const toggleAllButton = document.getElementById("toggleAllWarbonds");
   if (toggleAllButton) {
-    toggleAllButton.addEventListener('change', handleToggleAllWarbonds);
+    toggleAllButton.addEventListener("change", handleToggleAllWarbonds);
   }
 };
 
 // Handle stratagem radio changes
 const handleStratRadioChange = (e) => {
-  updateLocalStorage(e.target, 'stratagemOptions');
+  updateLocalStorage(e.target, "stratagemOptions");
   updateRadioButtonsState();
 };
 
 const updateRadioButtonsState = () => {
   const onlyRadios = [
-    'onlyEaglesRadio',
-    'onlyOrbitalsRadio',
-    'onlyDefenseRadio',
-    'onlySupplyRadio',
+    "onlyEaglesRadio",
+    "onlyOrbitalsRadio",
+    "onlyDefenseRadio",
+    "onlySupplyRadio",
   ];
-  const activeOnlyRadio = onlyRadios.find((id) => document.getElementById(id)?.checked);
+  const activeOnlyRadio = onlyRadios.find(
+    (id) => document.getElementById(id)?.checked,
+  );
 
   // Get all supply checkboxes
   const supplyChecks = [
-    'oneSupportCheck',
-    'oneBackpackCheck',
-    'alwaysBackpackCheck',
-    'alwaysSupportCheck',
+    "oneSupportCheck",
+    "oneBackpackCheck",
+    "alwaysBackpackCheck",
+    "alwaysSupportCheck",
   ];
 
   if (activeOnlyRadio) {
@@ -118,7 +128,7 @@ const updateRadioButtonsState = () => {
     });
 
     // Get the category (Eagle, Orbital, Defense, Supply)
-    const category = activeOnlyRadio.replace('only', '').replace('Radio', '');
+    const category = activeOnlyRadio.replace("only", "").replace("Radio", "");
 
     // Disable radios from other categories, keep same category enabled
     stratOptionRadios.forEach((radio) => {
@@ -140,28 +150,34 @@ const updateRadioButtonsState = () => {
     });
   }
 
-  document.getElementById('stratagemsContainer').addEventListener('click', (e) => {
-    const card = e.target.closest('.itemCards');
-    if (!card) return;
-    rerollItem(card.dataset.internalName, card.dataset.category);
-  });
+  document
+    .getElementById("stratagemsContainer")
+    .addEventListener("click", (e) => {
+      const card = e.target.closest(".itemCards");
+      if (!card) return;
+      rerollItem(card.dataset.internalName, card.dataset.category);
+    });
 
-  document.getElementById('equipmentContainer').addEventListener('click', (e) => {
-    const card = e.target.closest('.itemCards');
-    if (!card) return;
-    rerollItem(card.dataset.internalName, card.dataset.category);
-  });
+  document
+    .getElementById("equipmentContainer")
+    .addEventListener("click", (e) => {
+      const card = e.target.closest(".itemCards");
+      if (!card) return;
+      rerollItem(card.dataset.internalName, card.dataset.category);
+    });
 };
 
 // Update the toggle all button state based on individual checkboxes
 const updateToggleAllButton = () => {
-  const toggleAllButton = document.getElementById('toggleAllWarbonds');
+  const toggleAllButton = document.getElementById("toggleAllWarbonds");
   if (!toggleAllButton) return;
 
-  const allWarbondCheckboxes = document.querySelectorAll('.warbondCheckboxes');
+  const allWarbondCheckboxes = document.querySelectorAll(".warbondCheckboxes");
   if (allWarbondCheckboxes.length === 0) return;
 
-  const checkedCount = Array.from(allWarbondCheckboxes).filter((cb) => cb.checked).length;
+  const checkedCount = Array.from(allWarbondCheckboxes).filter(
+    (cb) => cb.checked,
+  ).length;
   const totalCount = allWarbondCheckboxes.length;
 
   if (checkedCount === 0) {
@@ -178,7 +194,7 @@ const updateToggleAllButton = () => {
 // Handle toggle all warbonds
 const handleToggleAllWarbonds = (e) => {
   const isChecked = e.target.checked;
-  const allWarbondCheckboxes = document.querySelectorAll('.warbondCheckboxes');
+  const allWarbondCheckboxes = document.querySelectorAll(".warbondCheckboxes");
 
   allWarbondCheckboxes.forEach((checkbox) => {
     if (checkbox.checked !== isChecked) {
@@ -192,7 +208,7 @@ const handleToggleAllWarbonds = (e) => {
       }
 
       // Update localStorage
-      updateLocalStorage(checkbox, 'warbondOptions');
+      updateLocalStorage(checkbox, "warbondOptions");
     }
   });
 
@@ -202,12 +218,12 @@ const handleToggleAllWarbonds = (e) => {
   // Re-roll everything to reflect new warbond selection
   rollEquipment();
   rollStratagems();
-  if (typeof rollArmor === 'function') rollArmor();
+  if (typeof rollArmor === "function") rollArmor();
 };
 
 // Handle warbond changes
 const handleWarbondChange = (e) => {
-  updateLocalStorage(e.target, 'warbondOptions');
+  updateLocalStorage(e.target, "warbondOptions");
 
   if (e.target.checked) {
     checkedWarbonds.add(e.target.id);
@@ -223,29 +239,30 @@ const handleWarbondChange = (e) => {
 const filterItemsByWarbond = async () => {
   const filterPromises = Object.keys(workingLists).map(async (key) => {
     const originalList =
-      key === 'strats'
+      key === "strats"
         ? [...STRATAGEMS]
-        : key === 'prims'
+        : key === "prims"
           ? [...PRIMARIES]
-          : key === 'seconds'
+          : key === "seconds"
             ? [...SECONDARIES]
-            : key === 'throws'
+            : key === "throws"
               ? [...THROWABLES]
-              : key === 'boosts'
+              : key === "boosts"
                 ? [...BOOSTERS]
-                : key === 'armorPassives'
+                : key === "armorPassives"
                   ? [...ARMOR_PASSIVES]
                   : [...ARMOR_SETS];
 
     workingLists[key] = await originalList.filter(
-      (item) => checkedWarbonds.has(item.warbondCode) || item.warbondCode === 'none',
+      (item) =>
+        checkedWarbonds.has(item.warbondCode) || item.warbondCode === "none",
     );
   });
 
   await Promise.all(filterPromises);
 
   // Update armor lists AFTER filtering is complete
-  if (typeof updateArmorLists === 'function') {
+  if (typeof updateArmorLists === "function") {
     updateArmorLists(workingLists.armorPassives, workingLists.armorSets);
   }
 };
@@ -255,13 +272,13 @@ const filterStratList = async () => {
   let filteredList = [...workingLists.strats];
 
   const onlyRadios = [
-    { radio: document.getElementById('onlyDefenseRadio'), category: 'Defense' },
-    { radio: document.getElementById('onlyEaglesRadio'), category: 'Eagle' },
+    { radio: document.getElementById("onlyDefenseRadio"), category: "Defense" },
+    { radio: document.getElementById("onlyEaglesRadio"), category: "Eagle" },
     {
-      radio: document.getElementById('onlyOrbitalsRadio'),
-      category: 'Orbital',
+      radio: document.getElementById("onlyOrbitalsRadio"),
+      category: "Orbital",
     },
-    { radio: document.getElementById('onlySupplyRadio'), category: 'Supply' },
+    { radio: document.getElementById("onlySupplyRadio"), category: "Supply" },
   ];
 
   // Check for "only" options first
@@ -273,10 +290,10 @@ const filterStratList = async () => {
 
   // Filter out "no" options
   const noRadios = [
-    { radio: document.getElementById('noDefenseRadio'), category: 'Defense' },
-    { radio: document.getElementById('noEaglesRadio'), category: 'Eagle' },
-    { radio: document.getElementById('noOrbitalsRadio'), category: 'Orbital' },
-    { radio: document.getElementById('noSupplyRadio'), category: 'Supply' },
+    { radio: document.getElementById("noDefenseRadio"), category: "Defense" },
+    { radio: document.getElementById("noEaglesRadio"), category: "Eagle" },
+    { radio: document.getElementById("noOrbitalsRadio"), category: "Orbital" },
+    { radio: document.getElementById("noSupplyRadio"), category: "Supply" },
   ];
 
   const categoriesToFilter = noRadios
@@ -284,7 +301,9 @@ const filterStratList = async () => {
     .map(({ category }) => category);
 
   if (categoriesToFilter.length) {
-    filteredList = filteredList.filter((strat) => !categoriesToFilter.includes(strat.category));
+    filteredList = filteredList.filter(
+      (strat) => !categoriesToFilter.includes(strat.category),
+    );
   }
 
   return filteredList;
@@ -296,15 +315,19 @@ const getRandomUniqueNumbers = (list, options, amt) => {
   let hasBackpack = false;
   let hasSupportWeapon = false;
   let hasExosuit = false;
+  let hasFRV = false;
   const numbers = [];
 
   // Early exit if constraints can't be met
-  if (alwaysSupport && !list.some((item) => item.tags?.includes('Weapons'))) {
-    console.warn('No support weapons available');
+  if (alwaysSupport && !list.some((item) => item.tags?.includes("Weapons"))) {
+    console.warn("No support weapons available");
     return [];
   }
-  if (alwaysBackpack && !list.some((item) => item.tags?.includes('Backpacks'))) {
-    console.warn('No backpacks available');
+  if (
+    alwaysBackpack &&
+    !list.some((item) => item.tags?.includes("Backpacks"))
+  ) {
+    console.warn("No backpacks available");
     return [];
   }
 
@@ -316,9 +339,10 @@ const getRandomUniqueNumbers = (list, options, amt) => {
     const randomNumber = Math.floor(Math.random() * list.length);
     const item = list[randomNumber];
     const tags = item.tags || [];
-    const isSupport = tags.includes('Weapons');
-    const isBackpack = tags.includes('Backpacks');
-    const isExosuit = tags.includes('exosuit');
+    const isSupport = tags.includes("Weapons");
+    const isBackpack = tags.includes("Backpacks");
+    const isExosuit = tags.includes("exosuit");
+    const isFRV = tags.includes("frv");
 
     // Skip duplicates
     if (numbers.includes(randomNumber)) {
@@ -327,6 +351,10 @@ const getRandomUniqueNumbers = (list, options, amt) => {
 
     // If we already have an exosuit, skip any additional exosuits (enforces max 1 exosuit)
     if (hasExosuit && isExosuit) {
+      continue;
+    }
+
+    if (hasFRV && isFRV) {
       continue;
     }
 
@@ -342,13 +370,13 @@ const getRandomUniqueNumbers = (list, options, amt) => {
 
     // For "always" constraints, we need to check if this item helps fulfill a needed requirement
     let needed = [];
-    if (alwaysSupport && !hasSupportWeapon) needed.push('support');
-    if (alwaysBackpack && !hasBackpack) needed.push('backpack');
+    if (alwaysSupport && !hasSupportWeapon) needed.push("support");
+    if (alwaysBackpack && !hasBackpack) needed.push("backpack");
 
     // If we have unmet requirements, this item must satisfy at least one of them
     if (needed.length > 0) {
-      const satisfiesSupport = needed.includes('support') && isSupport;
-      const satisfiesBackpack = needed.includes('backpack') && isBackpack;
+      const satisfiesSupport = needed.includes("support") && isSupport;
+      const satisfiesBackpack = needed.includes("backpack") && isBackpack;
 
       if (!satisfiesSupport && !satisfiesBackpack) {
         continue;
@@ -363,7 +391,7 @@ const getRandomUniqueNumbers = (list, options, amt) => {
   }
 
   if (attempts >= maxAttempts) {
-    console.error('Max attempts reached, returning what we have');
+    console.error("Max attempts reached, returning what we have");
   }
 
   return numbers;
@@ -374,7 +402,7 @@ const rollStratagems = async () => {
   proTipCounter++;
   if (proTipCounter === 3) rollProTip();
 
-  elements.stratagemsContainer.innerHTML = '';
+  elements.stratagemsContainer.innerHTML = "";
   const options = getSupplyOptions();
   const filteredList = await filterStratList();
 
@@ -410,8 +438,8 @@ const rollEquipment = () => {
   proTipCounter++;
   if (proTipCounter === 3) rollProTip();
 
-  elements.equipmentContainer.innerHTML = '';
-  const equipmentCategories = ['prims', 'seconds', 'throws', 'boosts'];
+  elements.equipmentContainer.innerHTML = "";
+  const equipmentCategories = ["prims", "seconds", "throws", "boosts"];
 
   equipmentCategories.forEach((category) => {
     const list = workingLists[category];
@@ -444,7 +472,7 @@ const rollEquipment = () => {
 
 // Reroll individual item (fixed for support/backpack constraints)
 const rerollItem = async (internalName, category) => {
-  if (category === 'strat') {
+  if (category === "strat") {
     const options = getSupplyOptions();
     const filteredList = await filterStratList();
 
@@ -455,12 +483,14 @@ const rerollItem = async (internalName, category) => {
     if (!clickedCard) return;
 
     // Get all stratagem cards
-    const allStratCards = Array.from(document.querySelectorAll('#stratagemsContainer .card'));
+    const allStratCards = Array.from(
+      document.querySelectorAll("#stratagemsContainer .card"),
+    );
     const currentPosition = allStratCards.indexOf(clickedCard);
 
     // Get current items from DOM (their display names)
     const currentDisplayNames = allStratCards.map(
-      (card) => card.querySelector('.card-title')?.innerText,
+      (card) => card.querySelector(".card-title")?.innerText,
     );
 
     // Get the full current items
@@ -472,9 +502,15 @@ const rerollItem = async (internalName, category) => {
     if (!currentItem) return;
 
     // Check other items (excluding the one being rerolled)
-    const otherItems = currentItems.filter((_, index) => index !== currentPosition);
-    const hasSupportInOthers = otherItems.some((s) => s?.tags?.includes('Weapons'));
-    const hasBackpackInOthers = otherItems.some((s) => s?.tags?.includes('Backpacks'));
+    const otherItems = currentItems.filter(
+      (_, index) => index !== currentPosition,
+    );
+    const hasSupportInOthers = otherItems.some((s) =>
+      s?.tags?.includes("Weapons"),
+    );
+    const hasBackpackInOthers = otherItems.some((s) =>
+      s?.tags?.includes("Backpacks"),
+    );
 
     // Build available items based on constraints
     let availableItems = [...filteredList];
@@ -492,26 +528,34 @@ const rerollItem = async (internalName, category) => {
 
     // Apply "one support" constraint
     if (options.oneSupport && hasSupportInOthers) {
-      availableItems = availableItems.filter((item) => !item.tags?.includes('Weapons'));
+      availableItems = availableItems.filter(
+        (item) => !item.tags?.includes("Weapons"),
+      );
     }
 
     // Apply "one backpack" constraint
     if (options.oneBackpack && hasBackpackInOthers) {
-      availableItems = availableItems.filter((item) => !item.tags?.includes('Backpacks'));
+      availableItems = availableItems.filter(
+        (item) => !item.tags?.includes("Backpacks"),
+      );
     }
 
     // Apply "always support" constraint
     if (options.alwaysSupport && !hasSupportInOthers) {
-      availableItems = availableItems.filter((item) => item.tags?.includes('Weapons'));
+      availableItems = availableItems.filter((item) =>
+        item.tags?.includes("Weapons"),
+      );
     }
 
     // Apply "always backpack" constraint
     if (options.alwaysBackpack && !hasBackpackInOthers) {
-      availableItems = availableItems.filter((item) => item.tags?.includes('Backpacks'));
+      availableItems = availableItems.filter((item) =>
+        item.tags?.includes("Backpacks"),
+      );
     }
 
     if (availableItems.length === 0) {
-      console.warn('No valid items available');
+      console.warn("No valid items available");
       return;
     }
 
@@ -520,8 +564,8 @@ const rerollItem = async (internalName, category) => {
     const newItem = availableItems[randomIndex];
 
     // Update the DOM
-    const img = clickedCard.querySelector('img');
-    const nameP = clickedCard.querySelector('.card-title');
+    const img = clickedCard.querySelector("img");
+    const nameP = clickedCard.querySelector(".card-title");
 
     if (img && nameP) {
       img.src = `../images/svgs/${newItem.imageURL}`;
@@ -543,10 +587,10 @@ const rerollItem = async (internalName, category) => {
     if (!clickedCard) return;
 
     const categoryMap = {
-      primary: 'prims',
-      secondary: 'seconds',
-      throwable: 'throws',
-      booster: 'boosts',
+      primary: "prims",
+      secondary: "seconds",
+      throwable: "throws",
+      booster: "boosts",
     };
 
     const listKey = categoryMap[category];
@@ -554,14 +598,18 @@ const rerollItem = async (internalName, category) => {
 
     if (list?.length) {
       // Remove current item to avoid rolling the same one
-      let availableItems = list.filter((item) => item.internalName !== internalName);
+      let availableItems = list.filter(
+        (item) => item.internalName !== internalName,
+      );
 
       // For equipment, also prevent duplicates within the same category
       // Get all equipment cards in the same container
-      const allEquipmentCards = Array.from(document.querySelectorAll('#equipmentContainer .card'));
+      const allEquipmentCards = Array.from(
+        document.querySelectorAll("#equipmentContainer .card"),
+      );
       const otherEquipmentNames = allEquipmentCards
         .filter((card) => card !== clickedCard)
-        .map((card) => card.querySelector('.card-title')?.innerText)
+        .map((card) => card.querySelector(".card-title")?.innerText)
         .filter(Boolean);
 
       // Remove items that are already used in other equipment slots
@@ -570,15 +618,15 @@ const rerollItem = async (internalName, category) => {
       );
 
       if (availableItems.length === 0) {
-        console.warn('No unique equipment available');
+        console.warn("No unique equipment available");
         return;
       }
 
       const randomIndex = Math.floor(Math.random() * availableItems.length);
       const newItem = availableItems[randomIndex];
 
-      const img = clickedCard.querySelector('img');
-      const nameP = clickedCard.querySelector('.card-title');
+      const img = clickedCard.querySelector("img");
+      const nameP = clickedCard.querySelector(".card-title");
 
       if (img && nameP) {
         img.src = `../images/equipment/${newItem.imageURL}`;
@@ -594,18 +642,20 @@ window.rerollItem = rerollItem;
 
 // Local storage management
 const updateLocalStorage = (element, type) => {
-  const randomizerOptions = JSON.parse(localStorage.getItem('randomizerOptions') || '{}');
+  const randomizerOptions = JSON.parse(
+    localStorage.getItem("randomizerOptions") || "{}",
+  );
 
   randomizerOptions[type] = {
     ...randomizerOptions[type],
     [element.id]: element.checked,
   };
 
-  localStorage.setItem('randomizerOptions', JSON.stringify(randomizerOptions));
+  localStorage.setItem("randomizerOptions", JSON.stringify(randomizerOptions));
 };
 
 const checkLocalStorageForOptionsPreferences = async () => {
-  const stored = localStorage.getItem('randomizerOptions');
+  const stored = localStorage.getItem("randomizerOptions");
 
   if (!stored) {
     const defaultOptions = {
@@ -633,7 +683,7 @@ const checkLocalStorageForOptionsPreferences = async () => {
         alwaysSupportCheck: false,
       },
     };
-    localStorage.setItem('randomizerOptions', JSON.stringify(defaultOptions));
+    localStorage.setItem("randomizerOptions", JSON.stringify(defaultOptions));
     await applyStoredOptionsToLists(defaultOptions);
     return;
   }
@@ -664,7 +714,7 @@ const applyStoredOptionsToLists = async (options) => {
 
 // Utility functions
 const rollProTip = () => {
-  if (typeof PRO_TIPS !== 'undefined' && PRO_TIPS?.length) {
+  if (typeof PRO_TIPS !== "undefined" && PRO_TIPS?.length) {
     const randomTip = PRO_TIPS[Math.floor(Math.random() * PRO_TIPS.length)];
     elements.proTipsText.innerHTML = randomTip;
     proTipCounter = 0;
@@ -676,7 +726,7 @@ const randomizeAll = async () => {
   updateToggleAllButton(); // Ensure toggle button reflects current state
   rollEquipment();
   await rollStratagems();
-  if (typeof rollArmor === 'function') rollArmor();
+  if (typeof rollArmor === "function") rollArmor();
   rollProTip();
 };
 

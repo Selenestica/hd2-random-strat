@@ -486,6 +486,12 @@ border 3c434d
   padding: 3px;
 }
 
+.webpIconStyles {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
 @media (min-width: 992px) {
   .modal.right-modal .modal-dialog {
     position: fixed;
@@ -510,11 +516,21 @@ border 3c434d
   .svgIconStyles {
     width: 80px;
   }
+
+  .webpIconStyles {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 @media only screen and (min-width: 769px) {
   .svgIconStyles {
     width: 120px;
+  }
+
+  .webpIconStyles {
+    width: 120px;
+    height: 120px;
   }
 }
 

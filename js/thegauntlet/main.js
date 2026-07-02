@@ -63,6 +63,7 @@ const squadListDiv = document.getElementById("squadListDiv");
 const specialistBoonsText = document.getElementById("specialistBoonsText");
 
 hellDiversMobilizeCheckbox.disabled = true;
+let dataName = "Gauntlet Save 1";
 let missionCounter = 1;
 let currentSpecialist = null;
 let tempSpecialist = null;
@@ -653,10 +654,10 @@ const submitMissionReport = async (isMissionSucceeded) => {
 };
 
 const genSpecialistBoonText = () => {
-  const { boosters, stims, deaths, extraStrats, minutes } = currentSpecialist;
+  const { booster, stims, deaths, extraStrats, minutes } = currentSpecialist;
   let text = [];
-  if (boosters) {
-    text.push(`boosters +${boosters}`);
+  if (booster) {
+    text.push(`boosters +${booster}`);
   }
   if (stims) {
     text.push(`stims +${stims}`);
@@ -853,7 +854,7 @@ const createSquad = async () => {
   stimsCounterText.innerHTML = stimsAvailable;
   reinforcementsCounterText.innerHTML = reinforcementsAvailable;
   stratsCounterText.innerHTML = stratsAvailable;
-  minutesCounterText.innerHTML = minutesNumber;
+  // minutesCounterText.innerHTML = minutesNumber;
   boosterCounterText.innerHTML = boosterNumber;
   displaySpecialistLoadout();
   genSquadInfoContainerContent();
@@ -964,7 +965,7 @@ const saveDataAndRestart = async () => {
   genGauntletMissionCompleteModalContent(missionCounter);
   genSaveDataManagementModalContent();
   const newSaveObj = {
-    dataName,
+    dataName: dataName,
     missionCounter,
     currentSpecialist,
     squadSpecialists,

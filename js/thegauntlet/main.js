@@ -351,9 +351,10 @@ const genCurrentMissionInfo = () => {
     makeMissionRow("Enemy:", enemy, "currentEnemyText"),
     missionCounter > 2 &&
       makeMissionRow(
-        "Minutes Remaining Required:",
-        minutesNumber,
+        "Special Requirement:",
+        `Extract after ${(minutesNumber - 40) * -1} minutes has transpired`,
         "minutesCounterText",
+        "text-warning",
       ),
     makeMissionRow("Booster Slots:", boosterNumber, "boosterCounterText"),
     obtainHVI &&

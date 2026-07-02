@@ -371,7 +371,7 @@ const genCurrentMissionInfo = () => {
       "stimsCounterText",
     ),
     makeMissionRowFromResourcesUsed(
-      "Reinforcements Available:",
+      "Deaths Remaining:",
       reinforcementsAvailable,
       "reinforcementsCounterText",
     ),
@@ -390,7 +390,7 @@ const genCurrentMissionInfo = () => {
         "stimsCounterText",
       ),
       makeMissionRowFromResourcesUsed(
-        "Reinforcements Available:",
+        "Deaths Remaining:",
         reinforcementsAvailable,
         "reinforcementsCounterText",
       ),

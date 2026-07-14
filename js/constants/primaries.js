@@ -599,6 +599,18 @@ const PRIMARIES = [
     tier: "a",
     index: 49,
   },
+  {
+    displayName: "Hyena",
+    type: "Equipment",
+    category: "primary",
+    tags: ["MarksmanRifle", "ap3"],
+    warbondCode: "none",
+    internalName: "r4hyena",
+    imageURL: "r4hyena.webp",
+    antitank: false,
+    tier: "a",
+    index: 50,
+  },
 ];
 
 // s: 7

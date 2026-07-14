@@ -78,6 +78,16 @@ const submitLoadoutName = () => {
   genSaveDataManagementModalContent();
 };
 
+const randomizeLoadout = () => {
+  const randomArmor = ARMOR_SETS[Math.floor(Math.random() * ARMOR_SETS.length)];
+  const randomHelmet = HELMETS[Math.floor(Math.random() * HELMETS.length)];
+  const randomCape = CAPES[Math.floor(Math.random() * CAPES.length)];
+
+  setItem(randomArmor.internalName, "armor");
+  setItem(randomHelmet.internalName, "helmets");
+  setItem(randomCape.internalName, "capes");
+};
+
 const saveLoadout = async () => {
   const data = localStorage.getItem("armorLabSaveData");
 

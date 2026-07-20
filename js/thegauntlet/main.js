@@ -855,18 +855,18 @@ const createSquad = async () => {
   stimsCounterText.innerHTML = stimsAvailable;
   reinforcementsCounterText.innerHTML = reinforcementsAvailable;
   stratsCounterText.innerHTML = stratsAvailable;
-  // minutesCounterText.innerHTML = minutesNumber;
   boosterCounterText.innerHTML = boosterNumber;
   displaySpecialistLoadout();
-  genSquadInfoContainerContent();
+  if (squadSpecialists.length > 0) {
+    squadInfoContainer.classList.toggle("d-none", false);
+    genSquadInfoContainerContent();
+  }
+
   saveProgress();
 };
 
 const startNewRun = async () => {
   const saveData = await localStorage.getItem("theGauntletSaveData");
-  // if (saveData) {
-  //   return;
-  // }
   const infoModal = new bootstrap.Modal(flavorAndInstructionsModal);
   infoModal.show();
 

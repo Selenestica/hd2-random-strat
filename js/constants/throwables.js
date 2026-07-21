@@ -69,7 +69,7 @@ const THROWABLES = [
     imageURL: "g23stungrenade.webp",
     antitank: false,
     index: 5,
-    tier: "a",
+    tier: "b",
   },
   {
     displayName: "G-123 Thermite",
@@ -165,7 +165,7 @@ const THROWABLES = [
     imageURL: "g109urchin.webp",
     antitank: false,
     index: 13,
-    tier: "b",
+    tier: "c",
   },
   {
     displayName: "G-31 Arc",
@@ -237,11 +237,11 @@ const THROWABLES = [
     imageURL: "g48giga.webp",
     antitank: true,
     index: 19,
-    tier: "a",
+    tier: "s",
   },
 ];
 
-// s: 3
-// a: 5
-// b: 7
-// c: 3
+// s: 4
+// a: 4
+// b: 8
+// c: 4

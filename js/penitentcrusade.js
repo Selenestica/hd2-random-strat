@@ -919,7 +919,6 @@ const getRandomItem = async (list) => {
   }
 
   const item = listToUse[Math.floor(Math.random() * listToUse.length)];
-  console.log(starterStratNames);
   if (starterStratNames.includes(item.displayName)) {
     return getRandomItem(list);
   }

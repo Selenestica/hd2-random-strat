@@ -923,4 +923,15 @@ const CAPES = [
     tier: "b",
     index: 83,
   },
+  {
+    displayName: "United In Equality",
+    type: "Equipment",
+    category: "cape",
+    tags: [],
+    warbondCode: "none",
+    internalName: "unitedinequality",
+    imageURL: "unitedinequality.webp",
+    tier: "b",
+    index: 84,
+  },
 ];

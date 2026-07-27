@@ -1152,4 +1152,16 @@ const HELMETS = [
     tier: "b",
     index: 103,
   },
+  {
+    displayName: `KDM-500 Outrider`,
+    type: "Equipment",
+    category: "armor",
+    tags: ["Heavy"],
+    passive: "none",
+    warbondCode: "none",
+    internalName: "kdm500outrider",
+    imageURL: "kdm500outrider.webp",
+    tier: "b",
+    index: 104,
+  },
 ];

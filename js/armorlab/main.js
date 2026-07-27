@@ -332,11 +332,18 @@ const applySpecialRules = () => {
     "sa7headfirst",
     "sa8ram",
     "cpr80bulwark",
+    "kdm500outrider",
   ];
   if (largeHelmets.includes(currentHelmet)) {
     helmetImg.style.width = "84%";
     helmetContainer.style.top = "22px";
     helmetContainer.style.left = "54.5%";
+  }
+
+  if (currentHelmet === "kdm500outrider") {
+    helmetCard.style.clipPath = "inset(1px 25px 6px 20px)";
+    helmetContainer.style.top = "20px";
+    helmetContainer.style.left = "55.5%";
   }
 
   if (currentHelmet === "sa8ram" && currentArmor === "sa8ram") {

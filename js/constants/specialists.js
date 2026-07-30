@@ -514,7 +514,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: ["Ballistic Padding"],
     traits: [],
-    imageURL: "",
+    imageURL: "lawEnforcer.webp",
     warbonds: [],
   },
   {
@@ -592,7 +592,7 @@ const SPECIALISTS = [
     throwables: ["G-123 Thermite"],
     armorPassives: [],
     traits: ["Can only roll anti-tank stratagems"],
-    imageURL: "",
+    imageURL: "tankHunter.webp",
     warbonds: [],
   },
   {

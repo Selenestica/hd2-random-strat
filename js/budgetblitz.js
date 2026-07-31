@@ -110,6 +110,9 @@ const startNewRun = async (isRestart = null) => {
   // Update toggle button after setting checkboxes
   updateToggleAllButton();
 
+  customTierListName = null;
+  clearCustomTierList();
+
   difficulty = "Medium";
 
   await writeItems();
@@ -134,6 +137,7 @@ const startNewRun = async (isRestart = null) => {
   equippedSecondary = [];
   equippedThrowable = [];
   equippedBooster = [];
+  customTierListName = null;
   checkMissionButtons();
   missionCounterText.innerHTML = `${getMissionText()}`;
 
@@ -280,6 +284,22 @@ const uploadSaveData = async () => {
     creditsPerMission = currentGame.creditsPerMission;
     sesItem = currentGame.sesItem;
     difficulty = currentGame.difficulty;
+    customTierListName = currentGame.customTierListName ?? null;
+
+    if (customTierListName !== null) {
+      const tierMakerSaveData = localStorage.getItem("tierMakerSaveData2");
+      if (tierMakerSaveData) {
+        const lists = JSON.parse(tierMakerSaveData).lists;
+        const match = lists.find((l) => l.dataName === customTierListName);
+        if (match) {
+          buildCustomTierMap(match);
+          localStorage.setItem("pcCustomTierListName", customTierListName);
+        }
+      }
+    } else {
+      clearCustomTierList();
+    }
+
     scCounter.innerHTML = `${": " + credits}`;
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
@@ -429,6 +449,7 @@ const saveProgress = async () => {
           creditsPerMission,
           sesItem,
           difficulty,
+          customTierListName,
 
           warbondCodes,
         },
@@ -475,6 +496,7 @@ const saveProgress = async () => {
         creditsPerMission,
         sesItem,
         difficulty,
+        customTierListName,
 
         warbondCodes,
       };
@@ -498,6 +520,9 @@ const saveDataAndRestart = async () => {
   if (!budgetBlitzSaveData) {
     return;
   }
+
+  customTierListName = null;
+  clearCustomTierList();
   const savedGames = JSON.parse(budgetBlitzSaveData).savedGames;
   // make all saved game data currentGame = false
   let updatedSavedGames = await savedGames.map((sg) => {
@@ -549,6 +574,7 @@ const saveDataAndRestart = async () => {
     difficulty,
 
     warbondCodes,
+    customTierListName,
   };
 
   updatedSavedGames.push(newSaveObj);
@@ -591,3 +617,8 @@ const pruneSavedGames = async () => {
 };
 
 uploadSaveData();
+genTierListImportSection(async () => {
+  await writeItems();
+  bbShopItemsContainer.innerHTML = "";
+  populateShopItems();
+});

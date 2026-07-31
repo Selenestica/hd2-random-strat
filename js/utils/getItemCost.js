@@ -1,12 +1,17 @@
 const getItemCost = (difficulty, item, addTimesPurchased = null) => {
   let cost = 0;
 
-  // add cost by tier
-  if (item.tier === "s") {
+  // add cost by tier (use custom tier map if available)
+  const effectiveTier =
+    typeof customTierMap !== "undefined" && customTierMap[item.internalName]
+      ? customTierMap[item.internalName]
+      : item.tier;
+
+  if (effectiveTier === "s") {
     cost += 15;
-  } else if (item.tier === "a") {
+  } else if (effectiveTier === "a") {
     cost += 10;
-  } else if (item.tier === "b") {
+  } else if (effectiveTier === "b") {
     cost += 5;
   }
 

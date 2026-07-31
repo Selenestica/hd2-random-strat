@@ -292,6 +292,8 @@ const startNewRun = async (spec = null, diff = null, removingSpec = null) => {
   currentItems = [];
   currentPunishmentItems = [];
   missionCounter = 1;
+  customTierListName = null;
+  clearCustomTierList();
   if (diff === "quick") {
     missionCounter = 11;
   }

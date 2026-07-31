@@ -70,6 +70,7 @@ let masterThrowsList = [];
 let masterBoostsList = [];
 let masterStratsList = [];
 let masterArmorPassivesList = [];
+let customTierListName = null;
 
 let sesItem = {
   cost: 15,

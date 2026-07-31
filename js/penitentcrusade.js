@@ -70,6 +70,7 @@ let masterThrowsList = [];
 let masterBoostsList = [];
 let masterStratsList = [];
 let masterArmorPassivesList = [];
+let customTierListName = null;
 
 document.addEventListener("change", (e) => {
   if (e.target.name === "starsRadio") {
@@ -868,18 +869,12 @@ const getDropRate = () => {
 const getRandomItemListByTier = async (list) => {
   // apply OG specialist trait here probably
   const num = Math.random() * 100;
-  const sList = await list.filter((item) => {
-    return item.tier === "s";
-  });
-  const aList = await list.filter((item) => {
-    return item.tier === "a";
-  });
-  const bList = await list.filter((item) => {
-    return item.tier === "b";
-  });
-  const cList = await list.filter((item) => {
-    return item.tier === "c";
-  });
+  const getTier = (item) => customTierMap[item.internalName] ?? item.tier;
+
+  const sList = await list.filter((item) => getTier(item) === "s");
+  const aList = await list.filter((item) => getTier(item) === "a");
+  const bList = await list.filter((item) => getTier(item) === "b");
+  const cList = await list.filter((item) => getTier(item) === "c");
   // if the list that we want has no items in it, start from bList and go up rarity until a populated list is found
   const dropRate = await getDropRate();
   if (num <= dropRate[0] && sList.length > 0) {
@@ -1271,6 +1266,7 @@ const saveProgress = async (item = null) => {
           missionCounter,
           specialist,
           difficulty,
+          customTierListName,
           warbondCodes,
           missionsFailed: missionsFailed ?? 0,
           missionTimes: missionTimes ?? [],
@@ -1314,6 +1310,7 @@ const saveProgress = async (item = null) => {
         warbondCodes,
         missionsFailed: missionsFailed ?? 0,
         missionTimes: missionTimes ?? [],
+        customTierListName,
       };
     }
     return sg;
@@ -1359,6 +1356,22 @@ const uploadSaveData = async () => {
     specialist = currentGame.specialist ?? null;
     missionsFailed = currentGame.missionsFailed ?? 0;
     missionTimes = currentGame.missionTimes ?? [];
+    customTierListName = currentGame.customTierListName ?? null;
+
+    if (customTierListName !== null) {
+      const tierMakerSaveData = localStorage.getItem("tierMakerSaveData2");
+      if (tierMakerSaveData) {
+        const lists = JSON.parse(tierMakerSaveData).lists;
+        const match = lists.find((l) => l.dataName === customTierListName);
+        if (match) {
+          buildCustomTierMap(match);
+          localStorage.setItem("pcCustomTierListName", customTierListName);
+        }
+      }
+    } else {
+      clearCustomTierList();
+    }
+
     missionCounterText.innerHTML = `${getMissionText()}`;
     checkMissionButtons();
     if (currentGame.specialist !== null) {
@@ -1418,6 +1431,9 @@ const saveDataAndRestart = async (diff = null) => {
   if (diff === null) {
     pcTitleName.innerHTML = "Penitent Crusade";
   }
+
+  customTierListName = null;
+  clearCustomTierList();
 
   // probably want to set all warbond codes to checked just in case
   warbondCodes = [...masterWarbondCodes];
@@ -1561,3 +1577,4 @@ if (!localStorage.getItem("penitentCrusadeSaveData")) {
 }
 
 uploadSaveData();
+genTierListImportSection();

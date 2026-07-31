@@ -1,34 +1,45 @@
-const viewItemsModalBody = document.getElementById('viewItemsModalBody');
-const stratagemsGallery = document.getElementById('stratagemsGallery');
-const primariesGallery = document.getElementById('primariesGallery');
-const secondariesGallery = document.getElementById('secondariesGallery');
-const throwablesGallery = document.getElementById('throwablesGallery');
-const boostersGallery = document.getElementById('boostersGallery');
-const armorPassivesGallery = document.getElementById('armorPassivesGallery');
+const viewItemsModalBody = document.getElementById("viewItemsModalBody");
+const stratagemsGallery = document.getElementById("stratagemsGallery");
+const primariesGallery = document.getElementById("primariesGallery");
+const secondariesGallery = document.getElementById("secondariesGallery");
+const throwablesGallery = document.getElementById("throwablesGallery");
+const boostersGallery = document.getElementById("boostersGallery");
+const armorPassivesGallery = document.getElementById("armorPassivesGallery");
+
+const getEffectiveTier = (item) => {
+  if (
+    typeof customTierMap !== "undefined" &&
+    customTierMap[item.internalName]
+  ) {
+    return customTierMap[item.internalName];
+  }
+  return item.tier;
+};
 
 const getBadgeColor = (tier) => {
-  if (tier === 's') {
-    return '#C0392B';
+  if (tier === "s") {
+    return "#C0392B";
   }
-  if (tier === 'a') {
-    return '#D4AC0D';
+  if (tier === "a") {
+    return "#D4AC0D";
   }
-  if (tier === 'b') {
-    return '#27AE60';
+  if (tier === "b") {
+    return "#27AE60";
   }
-  if (tier === 'c') {
-    return '#2980B9';
+  if (tier === "c") {
+    return "#2980B9";
   }
 };
 
 const genGalleryCard = (item) => {
-  let imgDir = 'equipment';
-  let badgeColor = getBadgeColor(item.tier);
-  if (item.type === 'Stratagem') {
-    imgDir = 'svgs';
+  let imgDir = "equipment";
+  const effectiveTier = getEffectiveTier(item);
+  let badgeColor = getBadgeColor(effectiveTier);
+  if (item.type === "Stratagem") {
+    imgDir = "svgs";
   }
-  if (item.category === 'armor') {
-    imgDir = 'armorpassives';
+  if (item.category === "armor") {
+    imgDir = "armorpassives";
   }
   return `
     <div class="card d-flex col-2 col-lg-1 pcNoHoverItemCards mx-1">
@@ -41,7 +52,7 @@ const genGalleryCard = (item) => {
         class="costBadges translate-middle badge rounded-pill text-dark" 
         style="background-color: ${badgeColor}"
       >
-        ${item.tier.toUpperCase()}
+        ${effectiveTier.toUpperCase()}
       </span>
       <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center">
           <p class="card-title text-white pcItemCardText">${item.displayName}</p>
@@ -60,37 +71,12 @@ const genItemGalleryModalContent = async () => {
   const sourceLists = [prims, seconds, throws, boosts, strats, armorPassives];
 
   const sortedByTierSourceLists = await sourceLists.map((list) => {
-    const sortedList = list.sort((a, b) => {
-      if (a.tier === b.tier) {
-        return 0;
-      }
-      if (a.tier === 's') {
-        return -1;
-      }
-      if (b.tier === 's') {
-        return 1;
-      }
-      if (a.tier === 'a') {
-        return -1;
-      }
-      if (b.tier === 'a') {
-        return 1;
-      }
-      if (a.tier === 'b') {
-        return -1;
-      }
-      if (b.tier === 'b') {
-        return 1;
-      }
-      if (a.tier === 'c') {
-        return -1;
-      }
-      if (b.tier === 'c') {
-        return 1;
-      }
-      return 0;
+    const tierOrder = { s: 0, a: 1, b: 2, c: 3, d: 4 };
+    return list.slice(0).sort((a, b) => {
+      const tA = tierOrder[getEffectiveTier(a)] ?? 99;
+      const tB = tierOrder[getEffectiveTier(b)] ?? 99;
+      return tA - tB;
     });
-    return sortedList;
   });
 
   sortedByTierSourceLists.forEach((list, i) => {

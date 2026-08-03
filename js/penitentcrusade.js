@@ -356,9 +356,11 @@ const checkMissionButtons = () => {
   for (let y = 0; y < diffRadios.length; y++) {
     diffRadios[y].disabled = false;
   }
-  document.getElementById("applyTierListBtn").disabled = false;
-  document.getElementById("clearTierListBtn").disabled = false;
-  document.getElementById("tierListSelect").disabled = false;
+  if (document.getElementById("applyTierListBtn")) {
+    document.getElementById("applyTierListBtn").disabled = false;
+    document.getElementById("clearTierListBtn").disabled = false;
+    document.getElementById("tierListSelect").disabled = false;
+  }
 
   // disables challenge settings if past the first mission
   // for normal and solo

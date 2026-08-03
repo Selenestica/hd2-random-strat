@@ -17,10 +17,10 @@ const CATEGORY_COLORS = {
 const accordionItem = (cat, index, modifier) => {
   const borderClass = CATEGORY_COLORS[cat] ?? "border-secondary";
   return `
-    <div class="accordion-item acquiredItemsAccordionItem my-1 border-start border-1 ${borderClass}">
+    <div class="accordion-item acquiredItemsAccordionItem my-2 border-start border-1 ${borderClass}">
       <h2 class="accordion-header" id="mainAccordionHeading${index + modifier}">
         <button
-          class="accordion-button text-white"
+          class="accordion-button text-white showAllAccordionItemsModalButtons"
           type="button"
           aria-expanded="true"
           onclick="populateShowAllItemsModal('${cat}AccordionBody')"
@@ -35,7 +35,7 @@ const accordionItem = (cat, index, modifier) => {
         class="accordion-collapse collapse show"
         aria-labelledby="mainAccordionHeading${index + modifier}"
       >
-        <div class="accordion-body d-flex row" id="${cat}AccordionBody"></div>
+        <div class="accordion-body d-flex row py-0" id="${cat}AccordionBody"></div>
       </div>
     </div>
   `;

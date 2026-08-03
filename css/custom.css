@@ -595,3 +595,7 @@ border 3c434d
   width: 100%;
   padding-top: 4rem;
 }
+
+.showAllAccordionItemsModalButtons::after {
+  display: none !important;
+}

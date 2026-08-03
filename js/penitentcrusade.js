@@ -1002,7 +1002,7 @@ const generateItemCard = (
     typeText = `<p class="card-title fst-italic text-white">${type}</p>`;
   }
   return `
-    <div onclick="${fcn}" class="card ${mandatoryStratStyle} d-flex ${style} pcNoHoverItemCards mx-1">
+    <div onclick="${fcn}" class="card ${mandatoryStratStyle} d-flex ${style} pcNoHoverItemCards mx-1 my-1">
     ${typeText}
       <img
           src="../images/${imgDir}/${item.imageURL}"

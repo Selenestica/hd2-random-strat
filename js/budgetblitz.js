@@ -202,6 +202,9 @@ const checkMissionButtons = () => {
     for (let j = 0; j < diffRadios.length; j++) {
       diffRadios[j].disabled = true;
     }
+    document.getElementById("applyTierListBtn").disabled = true;
+    document.getElementById("clearTierListBtn").disabled = true;
+    document.getElementById("tierListSelect").disabled = true;
   }
 
   if (missionCounter >= 23) {
@@ -302,7 +305,6 @@ const uploadSaveData = async () => {
 
     scCounter.innerHTML = `${": " + credits}`;
     missionCounterText.innerHTML = `${getMissionText()}`;
-    checkMissionButtons();
 
     if (difficulty === "Easy") {
       bbDiffRadioEasy.checked = true;
@@ -310,6 +312,7 @@ const uploadSaveData = async () => {
     if (difficulty === "Hard") {
       bbDiffRadioHard.checked = true;
     }
+    checkMissionButtons();
 
     // Ensure warbond3 is always checked and disabled
     const warbond3Checkbox = document.getElementById("warbond3");
@@ -323,6 +326,7 @@ const uploadSaveData = async () => {
 
     // Update toggle button after loading
     updateToggleAllButton();
+
     return;
   }
   startNewRun();
@@ -414,6 +418,9 @@ const saveProgress = async () => {
     for (let j = 0; j < diffRadios.length; j++) {
       diffRadios[j].disabled = true;
     }
+    applyTierListBtn.disabled = true;
+    clearTierListBtn.disabled = true;
+    tierListSelect.disabled = true;
   }
 
   let obj = {};
@@ -617,8 +624,4 @@ const pruneSavedGames = async () => {
 };
 
 uploadSaveData();
-genTierListImportSection(async () => {
-  await writeItems();
-  bbShopItemsContainer.innerHTML = "";
-  populateShopItems();
-});
+genTierListImportSection();

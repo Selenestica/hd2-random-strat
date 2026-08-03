@@ -67,6 +67,12 @@ const genItemGalleryModalContent = async () => {
   let boosts = [...BOOSTERS];
   let strats = [...STRATAGEMS];
   let armorPassives = [...ARMOR_PASSIVES];
+  primariesGallery.innerHTML = "";
+  secondariesGallery.innerHTML = "";
+  throwablesGallery.innerHTML = "";
+  boostersGallery.innerHTML = "";
+  stratagemsGallery.innerHTML = "";
+  armorPassivesGallery.innerHTML = "";
 
   const sourceLists = [prims, seconds, throws, boosts, strats, armorPassives];
 

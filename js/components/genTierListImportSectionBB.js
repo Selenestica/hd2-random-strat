@@ -1,3 +1,5 @@
+const budgetBlitzTitle = document.getElementById("budgetBlitzTitle");
+
 let customTierMap = {};
 
 const TIER_LABEL_MAP = {
@@ -20,7 +22,7 @@ const buildCustomTierMap = (tierList) => {
   customTierMap = map;
 };
 
-const applyCustomTierList = (onApplied = null) => {
+const applyCustomTierList = async (onApplied = null) => {
   const select = document.getElementById("tierListSelect");
   const appliedText = document.getElementById("tierListAppliedText");
   if (!select.value) {
@@ -36,11 +38,18 @@ const applyCustomTierList = (onApplied = null) => {
 
   appliedText.classList.remove("d-none");
 
-  if (onApplied) onApplied();
+  // if Budget Blitz
+  if (budgetBlitzTitle) {
+    await writeItems();
+    bbShopItemsContainer.innerHTML = "";
+    populateShopItems();
+    genItemGalleryModalContent();
+  }
+
   saveProgress();
 };
 
-const clearCustomTierList = (onApplied = null) => {
+const clearCustomTierList = async (onApplied = null) => {
   customTierMap = {};
   customTierListName = null;
   localStorage.removeItem("pcCustomTierListName");
@@ -49,7 +58,13 @@ const clearCustomTierList = (onApplied = null) => {
   const appliedText = document.getElementById("tierListAppliedText");
   if (appliedText) appliedText.classList.add("d-none");
 
-  if (onApplied) onApplied();
+  // if Budget Blitz
+  if (budgetBlitzTitle) {
+    await writeItems();
+    bbShopItemsContainer.innerHTML = "";
+    populateShopItems();
+    genItemGalleryModalContent();
+  }
 };
 
 const genTierListImportSection = (onApplied = null) => {
@@ -92,11 +107,13 @@ const genTierListImportSection = (onApplied = null) => {
         <option value="" ${!savedName ? "selected" : ""}>-- None (use defaults) --</option>
         ${selectOptions}
       </select>
-      <button class="btn btn-success" type="button" onclick="applyCustomTierList(${onAppliedAttr})">Apply</button>
-      <button class="btn btn-secondary" type="button" onclick="clearCustomTierList(${onAppliedAttr})">Clear</button>
+      <button id="applyTierListBtn" class="btn btn-success" type="button" onclick="applyCustomTierList(${onAppliedAttr})">Apply</button>
+      <button id="clearTierListBtn" class="btn btn-secondary" type="button" onclick="clearCustomTierList(${onAppliedAttr})">Clear</button>
     </div>
     <p class="text-success mt-1 mb-0 ${savedName ? "" : "d-none"}" id="tierListAppliedText">✓ Custom tier list applied!</p>
   `;
+
+  genItemGalleryModalContent();
 
   // restore saved selection on page load
   if (savedName) {

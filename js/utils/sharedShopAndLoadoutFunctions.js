@@ -55,6 +55,9 @@ const missionCounterText = document.getElementById("missionCounterText");
 const hellDiversMobilizeCheckbox = document.getElementById("warbond3");
 const warbondCheckboxes = document.getElementsByClassName("warbondCheckboxes");
 const toggleAllButton = document.getElementById("toggleAllWarbonds");
+// const clearTierListBtn = document.getElementById("clearTierListBtn");
+// const applyTierListBtn = document.getElementById("applyTierListBtn");
+// const tierListSelect = document.getElementById("tierListSelect");
 
 let purchasedItems = [];
 let equippedStratagems = [];

@@ -376,9 +376,11 @@ const checkMissionButtons = () => {
       diffRadios[j].disabled = true;
     }
     applySpecialistButton.disabled = true;
-    document.getElementById("applyTierListBtn").disabled = true;
-    document.getElementById("clearTierListBtn").disabled = true;
-    document.getElementById("tierListSelect").disabled = true;
+    if (document.getElementById("applyTierListBtn")) {
+      document.getElementById("applyTierListBtn").disabled = false;
+      document.getElementById("clearTierListBtn").disabled = false;
+      document.getElementById("tierListSelect").disabled = false;
+    }
   }
   // for super PC and solo super PC
   if (
@@ -393,9 +395,11 @@ const checkMissionButtons = () => {
       diffRadios[j].disabled = true;
     }
     applySpecialistButton.disabled = true;
-    document.getElementById("applyTierListBtn").disabled = true;
-    document.getElementById("clearTierListBtn").disabled = true;
-    document.getElementById("tierListSelect").disabled = true;
+    if (document.getElementById("applyTierListBtn")) {
+      document.getElementById("applyTierListBtn").disabled = false;
+      document.getElementById("clearTierListBtn").disabled = false;
+      document.getElementById("tierListSelect").disabled = false;
+    }
   }
   // for quick PC
   if (missionCounter > 11 && difficulty === "quick") {
@@ -407,9 +411,11 @@ const checkMissionButtons = () => {
       diffRadios[j].disabled = true;
     }
     applySpecialistButton.disabled = true;
-    document.getElementById("applyTierListBtn").disabled = true;
-    document.getElementById("clearTierListBtn").disabled = true;
-    document.getElementById("tierListSelect").disabled = true;
+    if (document.getElementById("applyTierListBtn")) {
+      document.getElementById("applyTierListBtn").disabled = false;
+      document.getElementById("clearTierListBtn").disabled = false;
+      document.getElementById("tierListSelect").disabled = false;
+    }
   }
 
   // conditional for when challenge is over

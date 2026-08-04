@@ -241,25 +241,45 @@ const filterItemsByWarbond = async () => {
 
 const writeItems = () => {
   newStrats = OGstratsList.filter((strat) => {
-    return !starterStratNames.includes(strat.displayName);
+    return (
+      !starterStratNames.includes(strat.displayName) &&
+      (warbondCodes.includes(strat.warbondCode) || strat.warbondCode === "none")
+    );
   });
   newPrims = OGprimsList.filter((prim) => {
-    return !starterPrimNames.includes(prim.displayName);
+    return (
+      !starterPrimNames.includes(prim.displayName) &&
+      (warbondCodes.includes(prim.warbondCode) || prim.warbondCode === "none")
+    );
   });
   newSeconds = OGsecondsList.filter((sec) => {
-    return !starterSecNames.includes(sec.displayName);
+    return (
+      !starterSecNames.includes(sec.displayName) &&
+      (warbondCodes.includes(sec.warbondCode) || sec.warbondCode === "none")
+    );
   });
   newThrows = OGthrowsList.filter((throwable) => {
-    return !starterThrowNames.includes(throwable.displayName);
+    return (
+      !starterThrowNames.includes(throwable.displayName) &&
+      (warbondCodes.includes(throwable.warbondCode) ||
+        throwable.warbondCode === "none")
+    );
   });
   newArmorPassives = OGarmorPassivesList.filter((armorPassive) => {
-    return !starterArmorPassiveNames.includes(armorPassive.displayName);
+    return (
+      !starterArmorPassiveNames.includes(armorPassive.displayName) &&
+      (warbondCodes.includes(armorPassive.warbondCode) ||
+        armorPassive.warbondCode === "none")
+    );
   });
   newBoosts = OGboostsList.filter((booster) => {
-    return !starterBoosterNames.includes(booster.displayName);
+    return (
+      !starterBoosterNames.includes(booster.displayName) &&
+      (warbondCodes.includes(booster.warbondCode) ||
+        booster.warbondCode === "none")
+    );
   });
 
-  // primarily for warbond filtering
   masterPrimsList = cloneList(newPrims);
   masterSecondsList = cloneList(newSeconds);
   masterThrowsList = cloneList(newThrows);
@@ -1217,6 +1237,7 @@ const applySpecialist = async (specToApply = null) => {
     boosterAccordionBody.innerHTML = "";
   }
   await getStartingItems(difficulty);
+  writeItems();
   startNewRun(specialist, difficulty, true);
   const traitSpecialists = [
     "16",

@@ -560,8 +560,37 @@ const SPECOPSSPECS = [
     warbonds: ["warbond24", "warbond15"],
   },
 
-  // Paramedic, replace FRV with Supply FRV
-  // Arsonist, add cremator FRV?
+  // {
+  //   locked: true,
+  //   displayName: "Kasrkin Sharpshooter",
+  //   stratagems: [
+  //     "Shield Generator Relay",
+  //     "Directional Shield",
+  //     "Grenadier Battlement",
+  //     "De-Escalator",
+  //   ],
+  //   primary: "Hot Shot Marksman Rifle",
+  //   secondary: Bolt Pistol,
+  //   throwable: high explosive grenades,
+  //   armorPassive: "True Grit",
+  //   warbonds: ["warbond22", "warbond13", "warbond14"],
+  // },
+
+  // {
+  //   locked: true,
+  //   displayName: "Kasrkin Demo-Trooper",
+  //   stratagems: [
+  //     "Meltagun",
+  //     "Directional Shield",
+  //     "Grenadier Battlement",
+  //     "De-Escalator",
+  //   ],
+  //   primary: "Gallant?",
+  //   secondary: Loyalist,
+  //   throwable: Meltamine,
+  //   armorPassive: "True Grit",
+  //   warbonds: ["warbond22", "warbond13", "warbond14"],
+  // },
 
   // UNUSED:
   // Gallant

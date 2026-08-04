@@ -644,7 +644,7 @@ const SPECIALISTS = [
     throwables: [],
     armorPassives: [],
     traits: ["Can only roll expendable stratagems"],
-    imageURL: "",
+    imageURL: "expendable.webp",
     warbonds: [],
   },
   {
@@ -708,4 +708,36 @@ const SPECIALISTS = [
     imageURL: "",
     warbonds: [],
   },
+
+  // replace The Fisherman with this 40k themed Specialist
+  // {
+  //   displayName: "Kasrkin Sharpshooter",
+  //   starterItems: ["Hot Shot Marksman Rifle", "Bolt Pistol", "True Grit armor"],
+  //   stratagems: [],
+  //   primaries: ["Hot Shot Marksman Rifle"],
+  //   boosters: [],
+  //   secondaries: ["Bolt Pistol"],
+  //   throwables: [],
+  //   armorPassives: ["True Grit"],
+  //   traits: [],
+  //   imageURL: "",
+  //   warbonds: [],
+  // },
+
+  // {
+  //   displayName: "Kasrkin Demo-Trooper",
+  //   starterItems: ["Meltagun", "Meltamine", "True Grit armor"],
+  //   stratagems: ["Meltagun"],
+  //   primaries: [],
+  //   boosters: [],
+  //   secondaries: [],
+  //   throwables: ["Meltamine"],
+  //   armorPassives: ["True Grit"],
+  //   traits: [],
+  //   imageURL: "",
+  //   warbonds: [],
+  // },
+
+  // add Bolt Pistol to Assault Marine
+  // add Meltamine to Minesweeper
 ];

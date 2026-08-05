@@ -239,6 +239,19 @@ const THROWABLES = [
     index: 19,
     tier: "s",
   },
+
+  // {
+  //   displayName: "Meltamine",
+  //   type: "Equipment",
+  //   category: "throwable",
+  //   tags: ["at", "explosive"],
+  //   warbondCode: "warbond26",
+  //   internalName: "meltamine",
+  //   imageURL: "meltamine.webp",
+  //   antitank: true,
+  //   index: 20,
+  //   tier: "b",
+  // },
 ];
 
 // s: 4

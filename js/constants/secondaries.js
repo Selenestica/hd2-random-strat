@@ -275,6 +275,19 @@ const SECONDARIES = [
     index: 22,
     tier: "a",
   },
+
+  // {
+  //   displayName: "Bolt Pistol",
+  //   type: "Equipment",
+  //   category: "secondary",
+  //   tags: [],
+  //   warbondCode: "warbond26",
+  //   internalName: "boltpistol",
+  //   imageURL: "boltpistol.webp",
+  //   antitank: false,
+  //   index: 23,
+  //   tier: "a",
+  // },
 ];
 
 // s: 2

@@ -408,6 +408,8 @@ const applySpecialRules = () => {
     "thunderinghoovesofloyalty",
     "dignityoftoil",
     "crestoftheunsullied",
+    "camocloak",
+    "cityfightersresolve",
   ];
   if (skinnyCapes.includes(currentCape)) {
     capeImg.style.width = "45%";

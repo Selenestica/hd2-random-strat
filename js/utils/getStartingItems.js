@@ -30,7 +30,12 @@ let starterSecNames = [
   "Machete",
   "Entrenchment Tool",
 ];
-let starterThrowNames = ["G-12 High Explosive"];
+let starterThrowNames = [
+  "G-3 Smoke",
+  "K-2 Throwing Knife",
+  "G-12 High Explosive",
+  "G-89 Smokescreen",
+];
 let starterArmorPassiveNames = ["Extra Padding"];
 let starterBoosterNames = [];
 

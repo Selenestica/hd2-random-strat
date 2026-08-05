@@ -113,21 +113,29 @@
       <hr class="text-white" />
 
       <div class="row mt-2 justify-content-center text-white">
-        <div class="col-4 d-flex justify-content-start align-items-center">
-          <span id="superCreditsText">Super Credits</span>
-          <span id="superCreditsIcon"
-            ><i class="bi bi-currency-dollar"></i
-          ></span>
-          <span id="scCounter"></span>
+        <div class="col-3 d-flex justify-content-start">
+          <div class="card bg-dark border-primary px-3 py-1 text-center">
+            <span id="superCreditsText">Super Credits</span>
+            <span id="superCreditsIcon"
+              ><i class="bi bi-currency-dollar"></i
+            ></span>
+            <span id="scCounter"></span>
+          </div>
+        </div>
+        <div class="col-6 d-flex align-items-center justify-content-center">
+          <div class="card bg-dark border-primary px-3 py-2 text-center">
+            <small class="text-muted text-uppercase" style="font-size: 0.65rem"
+              >Current Mission</small
+            >
+            <span id="missionCounterText" class="text-white fw-bold"></span>
+          </div>
         </div>
         <div
-          class="col-4 text-white d-flex justify-content-center"
-          id="missionCounterText"
+          class="col-3 d-flex justify-content-start align-items-center"
         ></div>
-        <div class="col-4 d-flex justify-content-end"></div>
       </div>
       <div class="row my-2 justify-content-center">
-        <div class="col-2 d-flex align-items-center justify-content-start">
+        <div class="col-4 d-flex align-items-center justify-content-start">
           <div id="bbMainViewButtonGroup" class="btn-group" role="group">
             <input
               type="radio"
@@ -159,8 +167,15 @@
               <span id="bbShopIcon"><i class="bi bi-cart-fill"></i></span>
             </label>
           </div>
+          <button
+            class="btn btn-outline-primary mx-1"
+            data-bs-toggle="modal"
+            data-bs-target="#viewItemsModal"
+          >
+            <i class="bi bi-grid-3x3-gap"></i>
+          </button>
         </div>
-        <div class="col-8 justify-content-center" id="missionButtonsDiv">
+        <div class="col-4 justify-content-center" id="missionButtonsDiv">
           <div class="btn-group my-2" id="downloadPDFButtonDiv">
             <button
               class="btn btn-primary"
@@ -199,7 +214,7 @@
             </button>
           </div>
         </div>
-        <div class="col-8" id="bbShopFilterDiv">
+        <div class="col-4" id="bbShopFilterDiv">
           <div
             class="btn-group"
             role="group"
@@ -352,7 +367,7 @@
             </button>
           </div>
         </div>
-        <div class="col-2 justify-content-end d-flex align-items-center">
+        <div class="col-4 justify-content-end d-flex align-items-center">
           <button
             class="btn btn-primary mx-2"
             type="button"
@@ -481,7 +496,7 @@
             <div class="accordion-item bg-none">
               <h2 class="accordion-header">
                 <button
-                  class="accordion-button text-white"
+                  class="accordion-button text-white showAllAccordionItemsModalButtons"
                   type="button"
                   style="cursor: default"
                 >
@@ -506,7 +521,7 @@
             <div class="accordion-item bg-none">
               <h2 class="accordion-header">
                 <button
-                  class="accordion-button text-white"
+                  class="accordion-button text-white showAllAccordionItemsModalButtons"
                   type="button"
                   style="cursor: default"
                 >
@@ -737,14 +752,6 @@
               <h5 class="modal-title text-light" id="warbondSelectModalLabel">
                 Challenge Settings
               </h5>
-              <button
-                type="button"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#viewItemsModal"
-              >
-                Item Info
-              </button>
             </div>
             <div class="modal-body">
               <p class="mb-0 text-white">
@@ -1250,6 +1257,43 @@
                         the floppy disk button in the upper right corner. You
                         can also rename your save files to keep them in order.
                       </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button text-white collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseEight"
+                      aria-expanded="false"
+                      aria-controls="collapseEight"
+                    >
+                      Custom Rules
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseEight"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#infoAccordion"
+                  >
+                    <div class="accordion-body">
+                      <p class="text-white">
+                        You can customize the item rarity table
+                      </p>
+                      <ul>
+                        <li class="text-white">
+                          <b>Item Rarity Table</b>: you can create your own item
+                          rarity table with the
+                          <a href="/tiermaker/index.html">Tier List Maker</a>.
+                          The top four tiers in your list will be used, and
+                          items that are not assigned a tier will use their
+                          default tier. Once you've made a list, you can use it
+                          as your item rarity table by selecting and applying it
+                          in the Settings menu.
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>

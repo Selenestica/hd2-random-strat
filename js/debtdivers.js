@@ -1,9 +1,9 @@
 const missionDifficultyInput = document.getElementById(
-  "missionDifficultyInput"
+  "missionDifficultyInput",
 );
 const numOfAccidentalsInput = document.getElementById("numOfAccidentalsInput");
 const operationCompleteCheck = document.getElementById(
-  "operationCompleteCheck"
+  "operationCompleteCheck",
 );
 
 let failedMissions = 0;
@@ -57,7 +57,7 @@ const startNewRun = async (isRestart = null) => {
   credits = 100;
   endingCredits = 0;
   creditsPerMission = [];
-  scCounter.innerHTML = `${": " + credits}`;
+  scCounter.innerHTML = `${" " + credits}`;
   sesItem = {
     cost: 15,
     timesPurchased: 0,
@@ -204,7 +204,7 @@ const uploadSaveData = async () => {
     creditsPerMission = currentGame.creditsPerMission;
     sesItem = currentGame.sesItem;
     difficulty = currentGame.difficulty;
-    scCounter.innerHTML = `${": " + credits}`;
+    scCounter.innerHTML = `${" " + credits}`;
     missionCounterText.innerHTML = `${
       currentGame.successfulMissions + currentGame.failedMissions
     }`;
@@ -262,7 +262,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
       operationCompleteModifier,
       timeRemainingModifier,
       numOfDeathsModifier,
-      numOfAccidentalsModifier
+      numOfAccidentalsModifier,
     );
     const total =
       starsEarnedModifier +
@@ -272,7 +272,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
       numOfDeathsModifier -
       numOfAccidentalsModifier;
     credits += total;
-    scCounter.innerHTML = `${": " + credits}`;
+    scCounter.innerHTML = `${" " + credits}`;
     showBBCreditsEarnedToast(total);
 
     if (endingCredits === 0) {
@@ -328,7 +328,7 @@ const saveProgress = async () => {
   if (credits >= 1000 && endingCredits === 0) {
     endingCredits = credits;
     credits -= 1000;
-    scCounter.innerHTML = `${": " + credits}`;
+    scCounter.innerHTML = `${" " + credits}`;
     showGameOverModal = true;
   }
 
@@ -494,7 +494,7 @@ const saveDataAndRestart = async () => {
   };
   await localStorage.setItem(
     "debtDiversSaveData",
-    JSON.stringify(newdebtDiversSaveData)
+    JSON.stringify(newdebtDiversSaveData),
   );
 
   // remove saved games that are at the first mission of their difficulty,
@@ -517,7 +517,7 @@ const pruneSavedGames = async () => {
       ) {
         return sg;
       }
-    }
+    },
   );
   const oldData = JSON.parse(debtDiversSaveData);
   const newData = {

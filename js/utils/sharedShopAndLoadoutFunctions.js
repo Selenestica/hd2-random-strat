@@ -192,7 +192,7 @@ for (let w = 0; w < diffRadios.length; w++) {
       credits = 50;
       difficulty = "Hard";
     }
-    scCounter.innerHTML = `${": " + credits}`;
+    scCounter.innerHTML = `${" " + credits}`;
     await writeItems();
     if (currentView === "shopButton") {
       bbShopItemsContainer.innerHTML = "";
@@ -720,7 +720,7 @@ const updateUserCredits = (cost) => {
   if (credits < 0) {
     credits = 0;
   }
-  scCounter.innerHTML = `${": " + credits}`;
+  scCounter.innerHTML = `${" " + credits}`;
 };
 
 const updateRenderedItem = (item, isRandom) => {

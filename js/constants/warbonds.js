@@ -229,4 +229,14 @@ const WARBONDS = [
     imageURL: "exoExpertsWB.webp",
     tier: "b",
   },
+  {
+    displayName: "Warhammer 40k",
+    type: "Warbond",
+    category: "",
+    tags: [],
+    warbondCode: "warbond26",
+    internalName: "40kWB",
+    imageURL: "40kWB.webp",
+    tier: "b",
+  },
 ];

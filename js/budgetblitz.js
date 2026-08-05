@@ -119,7 +119,7 @@ const startNewRun = async (isRestart = null) => {
 
   credits = 100;
   creditsPerMission = [];
-  scCounter.innerHTML = `${": " + credits}`;
+  scCounter.innerHTML = `${" " + credits}`;
   sesItem = {
     cost: 15,
     timesPurchased: 0,
@@ -303,7 +303,7 @@ const uploadSaveData = async () => {
       clearCustomTierList();
     }
 
-    scCounter.innerHTML = `${": " + credits}`;
+    scCounter.innerHTML = `${" " + credits}`;
     missionCounterText.innerHTML = `${getMissionText()}`;
 
     if (difficulty === "Easy") {
@@ -361,7 +361,7 @@ const submitMissionReport = async (isMissionSucceeded) => {
       timeRemainingModifier -
       numOfDeathsModifier;
     credits += total;
-    scCounter.innerHTML = `${": " + credits}`;
+    scCounter.innerHTML = `${" " + credits}`;
     showBBCreditsEarnedToast(total);
 
     // update missionCounter

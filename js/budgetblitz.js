@@ -202,9 +202,11 @@ const checkMissionButtons = () => {
     for (let j = 0; j < diffRadios.length; j++) {
       diffRadios[j].disabled = true;
     }
-    document.getElementById("applyTierListBtn").disabled = true;
-    document.getElementById("clearTierListBtn").disabled = true;
-    document.getElementById("tierListSelect").disabled = true;
+    if (document.getElementById("applyTierListBtn")) {
+      document.getElementById("applyTierListBtn").disabled = true;
+      document.getElementById("clearTierListBtn").disabled = true;
+      document.getElementById("tierListSelect").disabled = true;
+    }
   }
 
   if (missionCounter >= 23) {
@@ -418,9 +420,12 @@ const saveProgress = async () => {
     for (let j = 0; j < diffRadios.length; j++) {
       diffRadios[j].disabled = true;
     }
-    applyTierListBtn.disabled = true;
-    clearTierListBtn.disabled = true;
-    tierListSelect.disabled = true;
+
+    if (document.getElementById("applyTierListBtn")) {
+      document.getElementById("applyTierListBtn").disabled = true;
+      document.getElementById("clearTierListBtn").disabled = true;
+      document.getElementById("tierListSelect").disabled = true;
+    }
   }
 
   let obj = {};

@@ -288,7 +288,12 @@ const writeItems = () => {
   masterArmorPassivesList = cloneList(newArmorPassives);
 };
 
-const startNewRun = async (spec = null, diff = null, removingSpec = null) => {
+const startNewRun = async (
+  spec = null,
+  diff = null,
+  removingSpec = null,
+  tierList = null,
+) => {
   // probably want to set all warbond codes to checked just in case
   if (!removingSpec) {
     warbondCodes = [...masterWarbondCodes];
@@ -312,8 +317,11 @@ const startNewRun = async (spec = null, diff = null, removingSpec = null) => {
   currentItems = [];
   currentPunishmentItems = [];
   missionCounter = 1;
-  customTierListName = null;
-  clearCustomTierList();
+  customTierListName = tierList;
+  if (!customTierListName) {
+    clearCustomTierList();
+  }
+
   if (diff === "quick") {
     missionCounter = 11;
   }
@@ -1238,7 +1246,8 @@ const applySpecialist = async (specToApply = null) => {
   }
   await getStartingItems(difficulty);
   writeItems();
-  startNewRun(specialist, difficulty, true);
+
+  await startNewRun(specialist, difficulty, true, customTierListName);
   const traitSpecialists = [
     "16",
     "17",

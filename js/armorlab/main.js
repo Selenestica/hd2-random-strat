@@ -362,7 +362,10 @@ const applySpecialRules = () => {
     helmetContainer.style.left = "52.5%";
   }
 
-  if (currentArmor === "dp8mountainscaled") {
+  if (
+    currentArmor === "dp8mountainscaled" ||
+    currentArmor === "kdm500outrider"
+  ) {
     armorImg.style.marginTop = "-0.2rem";
     if (currentHelmet === "dp8mountainscaled") {
       armorImg.style.marginTop = "-0.5rem";

@@ -60,6 +60,7 @@ let selectedStars = 1;
 let missionsFailed = 0;
 let missionTimes = [];
 let currentItems = [];
+let bannedItems = [];
 let currentPunishmentItems = [];
 let missionCounter = 1;
 let difficulty = "normal";
@@ -707,6 +708,7 @@ const getRewardsItemsLists = () => {
 };
 
 const rollRewardOptions = async () => {
+  await clearItemOptionsModal();
   let rewardQuantity = selectedStars - 1;
   if (difficulty === "super" || difficulty === "supersolo") {
     rewardQuantity = selectedStars - 2;
@@ -732,6 +734,8 @@ const rollRewardOptions = async () => {
     }
     return;
   }
+
+  document.getElementById("skipAndBanButton").classList.remove("d-none");
 
   let itemsLists = await getRewardsItemsLists();
   itemsLists = itemsLists.filter((list) => list.length > 0);
@@ -848,6 +852,7 @@ const rollPunishmentOptions = async () => {
         true,
       );
     }
+    document.getElementById("skipAndBanButton").classList.add("d-none");
     const modal = new bootstrap.Modal(itemOptionsModal);
     modal.show();
     return;
@@ -968,6 +973,28 @@ const getRandomItem = async (list) => {
     return getRandomItem(list);
   }
   return item;
+};
+
+const skipAndBanAll = () => {
+  // add all currently shown reward items to the banned list
+  for (let i = 0; i < currentItems.length; i++) {
+    const item = currentItems[i];
+    bannedItems.push(item.internalName);
+    // remove from the active reward pool so it never comes back
+    const { list } = getItemMetaData(item);
+    removeItemFromList(list, item);
+  }
+
+  // clear current items and close out the same way claimItem does
+  currentItems = [];
+  missionCounter++;
+  checkMissionButtons();
+  if (missionCounter - 1 > missionTimes.length) {
+    missionTimes.push(parseInt(timeRemainingInput.value, 10));
+  }
+  timeRemainingInput.value = 0;
+  clearItemOptionsModal();
+  saveProgress();
 };
 
 // adds cyan outline around stratagems that must be taken because of specialist
@@ -1302,6 +1329,7 @@ const saveProgress = async (item = null) => {
       savedGames: [
         {
           acquiredItems: item ? [item] : [],
+          bannedItems: [],
           newStrats,
           newPrims,
           newSeconds,
@@ -1339,6 +1367,7 @@ const saveProgress = async (item = null) => {
       sg = {
         ...sg,
         currentItems,
+        bannedItems,
         currentPunishmentItems,
         acquiredItems: updatedItems,
         newStrats,
@@ -1404,6 +1433,7 @@ const uploadSaveData = async () => {
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;
     currentItems = currentGame.currentItems ?? [];
+    bannedItems = currentGame.bannedItems ?? [];
     currentPunishmentItems = currentGame.currentPunishmentItems ?? [];
     specialist = currentGame.specialist ?? null;
     missionsFailed = currentGame.missionsFailed ?? 0;
@@ -1526,6 +1556,7 @@ const saveDataAndRestart = async (diff = null) => {
   // some of the same code as restarting a run, but we use this to populate the fresh save
   await writeItems();
   currentItems = [];
+  bannedItems = [];
   currentPunishmentItems = [];
   missionCounter = 1;
   if (diff === "super" || diff === "supersolo") {
@@ -1538,6 +1569,7 @@ const saveDataAndRestart = async (diff = null) => {
   checkMissionButtons();
   const newSaveObj = {
     acquiredItems: [],
+    bannedItems,
     newStrats,
     newPrims,
     newSeconds,

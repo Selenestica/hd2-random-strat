@@ -231,8 +231,6 @@
       tabindex="-1"
       aria-labelledby="itemOptionsModalLabel"
       aria-hidden="true"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
     >
       <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content bg-grey">
@@ -243,19 +241,28 @@
             >
               Choose one...
             </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              onclick="clearItemOptionsModal()"
+              aria-label="Close"
+            ></button>
           </div>
           <div
             class="modal-body d-flex row justify-content-center"
             id="itemOptionsModalBody"
           ></div>
-          <div class="modal-footer">
+          <div class="modal-footer d-flex justify-content-between">
             <button
               type="button"
-              class="btn btn-secondary"
-              onclick="clearItemOptionsModal()"
+              class="btn btn-outline-danger"
+              id="skipAndBanButton"
+              class="d-none"
+              onclick="skipAndBanAll()"
               data-bs-dismiss="modal"
             >
-              Close
+              Skip and Never Show Me These Again!
             </button>
           </div>
         </div>

@@ -235,8 +235,10 @@ const applySpecialRules = () => {
   armorImg.style.objectPosition = "center -40px";
   armorImg.style.marginTop = "0rem";
   armorImg.style.marginLeft = "0rem";
+  armorImg.style.width = "100%";
   helmetImg.style.width = "100%";
   capeImg.style.width = "100%";
+  helmetContainer.style.width = "27.5%";
 
   // has an air filter that juts out
   if (currentHelmet === "ce27groundbreaker") {
@@ -362,14 +364,41 @@ const applySpecialRules = () => {
     helmetContainer.style.left = "52.5%";
   }
 
+  const fortyK = ["tg8sharpshooter", "tg122demotrooper"];
+  if (fortyK.includes(currentHelmet)) {
+    helmetContainer.style.top = "10px";
+    helmetContainer.style.left = "54.5%";
+    helmetContainer.style.width = "29.5%";
+    helmetCard.style.clipPath = "inset(1px 25px 20px 22px)";
+  }
+
+  if (currentHelmet === "tg8sharpshooter") {
+    helmetCard.style.clipPath = "inset(1px 25px 15px 22px)";
+  }
+
   if (
     currentArmor === "dp8mountainscaled" ||
-    currentArmor === "kdm500outrider"
+    currentArmor === "kdm500outrider" ||
+    currentArmor === "tg8sharpshooter"
   ) {
     armorImg.style.marginTop = "-0.2rem";
     if (currentHelmet === "dp8mountainscaled") {
       armorImg.style.marginTop = "-0.5rem";
     }
+    if (fortyK.includes(currentHelmet)) {
+      helmetContainer.style.top = "10px";
+      helmetContainer.style.left = "54.5%";
+      helmetContainer.style.width = "29.5%";
+    }
+  }
+
+  if (currentArmor === "tg8sharpshooter") {
+    armorImg.style.marginTop = "-0.2rem";
+    armorImg.style.marginLeft = "0.05rem";
+  }
+
+  if (currentArmor === "tg122demotrooper") {
+    armorImg.style.width = "95%";
   }
 
   if (currentArmor === "rs100sanctioner") {

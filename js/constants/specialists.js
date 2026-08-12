@@ -610,7 +610,7 @@ const SPECIALISTS = [
     armorPassives: ["True Grit"],
     traits: [],
     imageURL: "",
-    warbonds: [],
+    warbonds: ["warbond16"],
   },
   {
     displayName: "The Demo Man",
@@ -723,6 +723,6 @@ const SPECIALISTS = [
     armorPassives: ["True Grit"],
     traits: [],
     imageURL: "",
-    warbonds: [],
+    warbonds: ["warbond26"],
   },
 ];

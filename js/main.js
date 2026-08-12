@@ -15,9 +15,10 @@ const genChangeLogContent = (commits) => {
     if (i === 0) {
       changeLogDateText.innerHTML = `${formattedDate} | `;
     }
+    const escapedMsg = msg.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     changeLogContent.innerHTML += `
         <li class="text-white mb-2">
-            ${formattedDate} | "${msg}"
+            ${formattedDate} | "${escapedMsg}"
         </li>
     `;
   }

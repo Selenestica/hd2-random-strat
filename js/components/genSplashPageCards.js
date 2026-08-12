@@ -26,11 +26,11 @@ const genSplashPageCards = (type) => {
       internalName: "specialops",
       icon: "soldier.svg",
     },
-    // {
-    //   displayName: "Debt Divers",
-    //   internalName: "debtdivers",
-    //   icon: "bank.svg",
-    // },
+    {
+      displayName: "Freedom Express",
+      internalName: "freedomexpress",
+      icon: "stopwatch.svg",
+    },
   ];
   if (type === "tools") {
     list = [

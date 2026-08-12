@@ -39,4 +39,14 @@ const FE_STRATAGEMS = [
     imageURL: "lift850jumppack.svg",
     tier: "s",
   },
+  {
+    displayName: "Supply FRV",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Vehicles"],
+    warbondCode: "none",
+    internalName: "supplyfrv",
+    imageURL: "supplyfrv.svg",
+    tier: "s",
+  },
 ];

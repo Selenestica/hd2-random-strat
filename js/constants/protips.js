@@ -17,7 +17,7 @@ const PRO_TIPS = [
   "The least risky way to kill a Hulk with the Railgun is to destroy its legs.",
   "The PLAS-39 Accelerator Rifle can destroy tanks and cannon turrets with 2 bursts into the heat sink.",
   "Chargers, Hulks, and Fleshmobs are some of the easiest enemies to stick a stratagem ball.",
-  "Eagle Smoke Strike and Orbital Smoke Strike are generally more effective when used on your current position, rather than throwing it at the enemy.",
+  "Eagle Smoke Strike and Orbital Smoke Strike are generally more effective when used on your current position, rather than throwing it at the enemy. However, they also have the demo force to destroy structures such as fabricators.",
   "Damage taken from the Double-Edge Sickle can be heavily reduced by wearing heavy Inflammable armor, and using the Vitality booster.",
   "The Guard Dog Breath is extremely effective at keeping you safe from the Predator Strain, and in close-range encounters in general.",
   "You can easily kill Hulks, Chargers, Impalers, and Fleshmobs with the Airburst Rocket Launcher by firing a rocket underneath them in Flak mode.",
@@ -53,7 +53,6 @@ const PRO_TIPS = [
   "You can teleport in and out of buddy bunkers, and destroy storage container doors, with the warp pack.",
   "While using the Total firing mode with the Variable, you can prevent yourself from getting knocked over by firing while prone.",
   "To get the maximum distance with the Ultimatum, dive while firing at a 45 degree angle. You can launch the projectile at a maximum range of about 55 meters.",
-  "The Ballistic Shield will block attacks from the Tesla Tower.",
   "The Commando has two firing modes: one mode for laser-guided missiles, and another for dumb-fired missiles.",
   "The missiles from the Commando will travel to the last location that the laser was targeted at, even if you're not actively pointing the laser.",
   "The suppressors on the M7S SMG and M6C/SOCOM don't alert enemies that are over 35 meters away to your presence.",
@@ -83,4 +82,6 @@ const PRO_TIPS = [
   "The Pacifier can stun Illuminate Appropriators and Harvesters, and Automaton War Striders, by hitting them in their medium armor weak points.",
   "You can quickly kill a War Strider with a flame weapon, such as the Crisper, by shooting the hip joint.",
   "In order to effectively use the Eagle 110mm Rocket Pods, make sure the stratagem ball lands as close as possible to the enemy you want to be targeted. Do NOT try to lead with the stratagem like you would any other eagle stratagem. Eagle-1 will target the largest enemy that is closest to the stratagem ball at the moment it activates.",
+  "Meltamines can destroy fabricators, warp ships, and bug holes. Simply throw the mine as close as possible to the structure and trigger it manually by shooting it.",
+  "The Bolt Pistol can destroy Illuminate Lightning Spires with one shot.",
 ];

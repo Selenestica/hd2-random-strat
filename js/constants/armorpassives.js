@@ -285,9 +285,31 @@ const ARMOR_PASSIVES = [
     tier: "b",
     index: 25,
   },
+  {
+    displayName: "Kinetic Displacement Mitigation",
+    type: "Equipment",
+    category: "armor",
+    tags: ["ArmorPassive"],
+    warbondCode: "none",
+    internalName: "kineticdisplacementmitigation",
+    imageURL: "kineticdisplacementmitigation.webp",
+    tier: "b",
+    index: 26,
+  },
+  {
+    displayName: "True Grit",
+    type: "Equipment",
+    category: "armor",
+    tags: ["ArmorPassive"],
+    warbondCode: "warbond26",
+    internalName: "truegrit",
+    imageURL: "truegrit.webp",
+    tier: "a",
+    index: 27,
+  },
 ];
 
 // s: 1
-// a: 7
-// b: 13
+// a: 8
+// b: 14
 // c: 2

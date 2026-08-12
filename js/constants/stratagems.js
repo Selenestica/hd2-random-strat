@@ -1069,19 +1069,18 @@ const STRATAGEMS = [
     tier: "s",
     index: 88,
   },
-
-  // {
-  //   displayName: "Meltagun",
-  //   type: "Stratagem",
-  //   category: "Supply",
-  //   tags: ["at"],
-  //   warbondCode: "warbond26",
-  //   internalName: "meltagun",
-  //   imageURL: "meltagun.svg",
-  //   antitank: true,
-  //   tier: "b",
-  //   index: 89,
-  // },
+  {
+    displayName: "Meltagun",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["at"],
+    warbondCode: "warbond26",
+    internalName: "meltagun",
+    imageURL: "meltagun.svg",
+    antitank: true,
+    tier: "b",
+    index: 89,
+  },
 ];
 
 // s: 11

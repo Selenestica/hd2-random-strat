@@ -611,19 +611,18 @@ const PRIMARIES = [
     tier: "a",
     index: 50,
   },
-
-  // {
-  //   displayName: "Hot Shot Marksman Rifle",
-  //   type: "Equipment",
-  //   category: "primary",
-  //   tags: ["MarksmanRifle", "ap3"],
-  //   warbondCode: "warbond26",
-  //   internalName: "hotshotmarksmanrifle",
-  //   imageURL: "hotshotmarksmanrifle.webp",
-  //   antitank: false,
-  //   tier: "a",
-  //   index: 51,
-  // },
+  {
+    displayName: "Hot Shot Marksman Rifle",
+    type: "Equipment",
+    category: "primary",
+    tags: ["MarksmanRifle", "ap3"],
+    warbondCode: "warbond26",
+    internalName: "hotshotmarksmanrifle",
+    imageURL: "hotshotmarksmanrifle.webp",
+    antitank: false,
+    tier: "a",
+    index: 51,
+  },
 ];
 
 // s: 7

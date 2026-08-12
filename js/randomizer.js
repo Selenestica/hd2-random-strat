@@ -660,7 +660,7 @@ const checkLocalStorageForOptionsPreferences = async () => {
   if (!stored) {
     const defaultOptions = {
       warbondOptions: Object.fromEntries(
-        Array.from({ length: 26 }, (_, i) => [`warbond${i}`, true]),
+        Array.from({ length: 27 }, (_, i) => [`warbond${i}`, true]),
       ),
       stratagemOptions: {
         onlyEaglesRadio: false,

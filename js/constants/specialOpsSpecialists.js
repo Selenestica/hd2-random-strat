@@ -559,7 +559,6 @@ const SPECOPSSPECS = [
     armorPassive: 24, // Concussive Padding
     warbonds: ["warbond24", "warbond15"],
   },
-
   // {
   //   locked: true,
   //   displayName: "Kasrkin Sharpshooter",
@@ -575,7 +574,6 @@ const SPECOPSSPECS = [
   //   armorPassive: "True Grit",
   //   warbonds: ["warbond22", "warbond13", "warbond14"],
   // },
-
   // {
   //   locked: true,
   //   displayName: "Kasrkin Demo-Trooper",

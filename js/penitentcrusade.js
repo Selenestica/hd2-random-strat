@@ -99,7 +99,7 @@ timeRemainingInput.addEventListener("input", () => {
 });
 
 // Handle toggle all warbonds
-const handleToggleAllWarbonds = (e) => {
+const handleToggleAllWarbonds = async (e) => {
   const isChecked = e.target.checked;
   const allWarbondCheckboxes = document.querySelectorAll(".warbondCheckboxes");
 
@@ -129,7 +129,8 @@ const handleToggleAllWarbonds = (e) => {
   });
 
   // Filter items and update UI
-  filterItemsByWarbond();
+  await filterItemsByWarbond();
+  syncBannedItemsWithWarbonds();
   currentItems = [];
   applySpecialist("default");
   genSpecialistsCards();
@@ -141,7 +142,7 @@ if (toggleAllButton) {
 
 // will need to keep track of master list
 for (let y = 0; y < warbondCheckboxes.length; y++) {
-  warbondCheckboxes[y].addEventListener("change", (e) => {
+  warbondCheckboxes[y].addEventListener("change", async (e) => {
     if (e.target.checked && !warbondCodes.includes(e.srcElement.id)) {
       warbondCodes.push(e.srcElement.id);
     }
@@ -149,7 +150,8 @@ for (let y = 0; y < warbondCheckboxes.length; y++) {
       const indexToRemove = warbondCodes.indexOf(e.srcElement.id);
       warbondCodes.splice(indexToRemove, 1);
     }
-    filterItemsByWarbond();
+    await filterItemsByWarbond();
+    syncBannedItemsWithWarbonds();
     currentItems = [];
     applySpecialist("default");
     genSpecialistsCards();
@@ -683,34 +685,43 @@ const closeMaxStarsPromptModal = () => {
 
 const getRewardsItemsLists = () => {
   let lists = [
-    newStrats,
-    newPrims,
-    newSeconds,
-    newThrows,
-    newArmorPassives,
-    newBoosts,
+    newStrats.filter((item) => !bannedItems.includes(item.internalName)),
+    newPrims.filter((item) => !bannedItems.includes(item.internalName)),
+    newSeconds.filter((item) => !bannedItems.includes(item.internalName)),
+    newThrows.filter((item) => !bannedItems.includes(item.internalName)),
+    newArmorPassives.filter((item) => !bannedItems.includes(item.internalName)),
+    newBoosts.filter((item) => !bannedItems.includes(item.internalName)),
   ];
+
   if (specialist === null) {
     return lists;
   }
 
-  lists = [newStrats];
+  lists = [lists[0]]; // newStrats already filtered above
 
-  if (SPECIALISTS[specialist].armorPassives.length === 0) {
-    lists.push(newArmorPassives);
-  }
-  if (SPECIALISTS[specialist].boosters.length === 0) {
-    lists.push(newBoosts);
-  }
-  if (SPECIALISTS[specialist].primaries.length === 0 || specialist === "47") {
-    lists.push(newPrims);
-  }
-  if (SPECIALISTS[specialist].secondaries.length === 0) {
-    lists.push(newSeconds);
-  }
-  if (SPECIALISTS[specialist].throwables.length === 0) {
-    lists.push(newThrows);
-  }
+  if (SPECIALISTS[specialist].armorPassives.length === 0)
+    lists.push(
+      newArmorPassives.filter(
+        (item) => !bannedItems.includes(item.internalName),
+      ),
+    );
+  if (SPECIALISTS[specialist].boosters.length === 0)
+    lists.push(
+      newBoosts.filter((item) => !bannedItems.includes(item.internalName)),
+    );
+  if (SPECIALISTS[specialist].primaries.length === 0 || specialist === "47")
+    lists.push(
+      newPrims.filter((item) => !bannedItems.includes(item.internalName)),
+    );
+  if (SPECIALISTS[specialist].secondaries.length === 0)
+    lists.push(
+      newSeconds.filter((item) => !bannedItems.includes(item.internalName)),
+    );
+  if (SPECIALISTS[specialist].throwables.length === 0)
+    lists.push(
+      newThrows.filter((item) => !bannedItems.includes(item.internalName)),
+    );
+
   return lists;
 };
 
@@ -995,6 +1006,42 @@ const skipAndBanAll = () => {
   }
   timeRemainingInput.value = 0;
   clearItemOptionsModal();
+  saveProgress();
+};
+
+const syncBannedItemsWithWarbonds = () => {
+  const allItems = [
+    ...OGstratsList,
+    ...OGprimsList,
+    ...OGsecondsList,
+    ...OGthrowsList,
+    ...OGboostsList,
+    ...OGarmorPassivesList,
+  ];
+
+  const itemsToUnban = [];
+  const itemsToBan = [];
+
+  for (const item of allItems) {
+    if (item.warbondCode === "none") continue;
+
+    if (!warbondCodes.includes(item.warbondCode)) {
+      itemsToBan.push(item.internalName);
+    } else {
+      itemsToUnban.push(item.internalName);
+    }
+  }
+
+  // apply bans
+  for (const internalName of itemsToBan) {
+    if (!bannedItems.includes(internalName)) {
+      bannedItems.push(internalName);
+    }
+  }
+
+  // apply unbans
+  bannedItems = bannedItems.filter((b) => !itemsToUnban.includes(b));
+
   saveProgress();
 };
 

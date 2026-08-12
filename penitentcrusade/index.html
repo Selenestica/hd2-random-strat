@@ -446,62 +446,11 @@
             </div>
             <div class="p-3" id="pcTierListImportContainer"></div>
             <div class="row p-3">
-              <h5 class="text-white">Custom Item Drops</h5>
-              <p class="text-white">
-                Choose 3 numbers from 0 - 100 (inclusive), separated by commas,
-                in incrementing order
-              </p>
-              <p class="text-white">
-                Examples: 3,15,80 | 10,30,70 | 5,25,75 | 2,18,50
-              </p>
-              <p class="text-white">Example: 5,25,75 means...</p>
-              <p class="text-white">
-                S tier = 5% chance (0 - 5), A tier = 20% chance (5+ - 25), B
-                tier = 50% chance (25+ - 75), C tier = 25% chance (75+ - 100)
-              </p>
-              <div class="col">
-                <label class="form-check-label text-white" for="diff4Input">
-                  Diff 4
-                </label>
-                <input
-                  id="diff4Input"
-                  type="text"
-                  class="form-control"
-                  placeholder=""
-                  aria-label=""
-                />
-              </div>
-              <div class="col">
-                <label class="form-check-label text-white" for="diff6Input">
-                  Diff 6
-                </label>
-                <input
-                  id="diff6Input"
-                  type="text"
-                  class="form-control"
-                  placeholder=""
-                  aria-label=""
-                />
-              </div>
-              <div class="col">
-                <label class="form-check-label text-white" for="diff8Input">
-                  Diff 8
-                </label>
-                <input
-                  id="diff8Input"
-                  type="text"
-                  class="form-control"
-                  placeholder=""
-                  aria-label=""
-                />
-              </div>
-              <small class="text-white my-2">
-                Basically a random number is chosen between 0 and 100 and
-                wherever it falls on the scale is what tier item you will get.
-                Diff 4 are for missions Diff 4 and Diff 5, Diff 6 is for 6 and
-                7, and Diff 8 is for 8 - 10. Diff 3 will always have the this
-                scale: 0,20,70.</small
-              >
+              <h5 class="text-white">Custom Reward Rarity</h5>
+              <div id="pcWeightsTableContainer"></div>
+              <input type="hidden" id="diff4Input" />
+              <input type="hidden" id="diff6Input" />
+              <input type="hidden" id="diff8Input" />
             </div>
           </div>
           <div class="modal-footer">
@@ -1530,6 +1479,7 @@
   <script src="../js/components/genShowAllItemsModal.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
   <script src="../js/components/genTierListImportSectionPC.js"></script>
+  <script src="../js/components/genPCWeightsTable.js"></script>
   <script src="../js/utils/getCurrentGame.js"></script>
   <script src="../js/utils/getStartingItems.js"></script>
   <script src="../js/components/genAcquiredItemsAccordions.js"></script>

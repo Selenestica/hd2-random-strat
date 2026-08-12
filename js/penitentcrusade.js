@@ -316,9 +316,15 @@ const startNewRun = async (
   missionTimes = [];
   missionsFailed = 0;
   currentItems = [];
+  bannedItems = [];
   currentPunishmentItems = [];
   missionCounter = 1;
   customTierListName = tierList;
+  pcWeights = {
+    diff4: [...DEFAULT_PC_WEIGHTS.diff4],
+    diff6: [...DEFAULT_PC_WEIGHTS.diff6],
+    diff8: [...DEFAULT_PC_WEIGHTS.diff8],
+  };
   if (!customTierListName) {
     clearCustomTierList();
   }
@@ -344,6 +350,7 @@ const startNewRun = async (
   if (spec !== null || removingSpec) {
     addDefaultItemsToAccordions(spec);
   }
+  genPCWeightsTable();
 };
 
 const getDefaultItems = () => {
@@ -922,37 +929,31 @@ const getDropRate = () => {
 };
 
 const getRandomItemListByTier = async (list) => {
-  // apply OG specialist trait here probably
   const num = Math.random() * 100;
-  const getTier = (item) => customTierMap[item.internalName] ?? item.tier;
+  const sList = list.filter((item) => item.tier === "s");
+  const aList = list.filter((item) => item.tier === "a");
+  const bList = list.filter((item) => item.tier === "b");
+  const cList = list.filter((item) => item.tier === "c");
+  const dropRate = getDropRate();
 
-  const sList = await list.filter((item) => getTier(item) === "s");
-  const aList = await list.filter((item) => getTier(item) === "a");
-  const bList = await list.filter((item) => getTier(item) === "b");
-  const cList = await list.filter((item) => getTier(item) === "c");
-  // if the list that we want has no items in it, start from bList and go up rarity until a populated list is found
-  const dropRate = await getDropRate();
-  if (num <= dropRate[0] && sList.length > 0) {
-    return sList;
+  // check if total weights add up to 100
+  const currentDiffWeights = getCurrentDiffWeights();
+  const totalWeight = currentDiffWeights.reduce((a, b) => a + b, 0);
+  const remainder = 100 - totalWeight;
+
+  // if num falls in the remainder range, pick completely at random from full list
+  if (remainder > 0 && num > 100 - remainder) {
+    return list;
   }
-  if (num <= dropRate[1] && num > dropRate[0] && aList.length > 0) {
-    return aList;
-  }
-  if (num <= dropRate[2] && num > dropRate[1] && bList.length > 0) {
-    return bList;
-  }
-  if (num > dropRate[2] && cList.length > 0) {
-    return cList;
-  }
-  if (bList.length > 0) {
-    return bList;
-  }
-  if (aList.length > 0) {
-    return aList;
-  }
-  if (sList.length > 0) {
-    return sList;
-  }
+
+  if (num <= dropRate[0] && sList.length > 0) return sList;
+  if (num <= dropRate[1] && num > dropRate[0] && aList.length > 0) return aList;
+  if (num <= dropRate[2] && num > dropRate[1] && bList.length > 0) return bList;
+  if (num > dropRate[2] && cList.length > 0) return cList;
+
+  if (bList.length > 0) return bList;
+  if (aList.length > 0) return aList;
+  if (sList.length > 0) return sList;
   return list;
 };
 
@@ -1350,6 +1351,7 @@ const saveProgress = async (item = null) => {
           warbondCodes,
           missionsFailed: missionsFailed ?? 0,
           missionTimes: missionTimes ?? [],
+          pcWeights,
         },
       ],
     };
@@ -1392,6 +1394,7 @@ const saveProgress = async (item = null) => {
         missionsFailed: missionsFailed ?? 0,
         missionTimes: missionTimes ?? [],
         customTierListName,
+        pcWeights,
       };
     }
     return sg;
@@ -1403,6 +1406,7 @@ const saveProgress = async (item = null) => {
   missionCounterText.innerHTML = `${getMissionText()}`;
   localStorage.setItem("penitentCrusadeSaveData", JSON.stringify(obj));
   genAllRewardsModalContent();
+  genPCWeightsTable();
 };
 
 const uploadSaveData = async () => {
@@ -1439,6 +1443,14 @@ const uploadSaveData = async () => {
     missionsFailed = currentGame.missionsFailed ?? 0;
     missionTimes = currentGame.missionTimes ?? [];
     customTierListName = currentGame.customTierListName ?? null;
+
+    pcWeights = currentGame.pcWeights ?? {
+      diff4: [...DEFAULT_PC_WEIGHTS.diff4],
+      diff6: [...DEFAULT_PC_WEIGHTS.diff6],
+      diff8: [...DEFAULT_PC_WEIGHTS.diff8],
+    };
+    updatePCDropRateInputs();
+    genPCWeightsTable();
 
     if (customTierListName !== null) {
       const tierMakerSaveData = localStorage.getItem("tierMakerSaveData2");
@@ -1555,6 +1567,7 @@ const saveDataAndRestart = async (diff = null) => {
 
   // some of the same code as restarting a run, but we use this to populate the fresh save
   await writeItems();
+
   currentItems = [];
   bannedItems = [];
   currentPunishmentItems = [];
@@ -1567,6 +1580,15 @@ const saveDataAndRestart = async (diff = null) => {
   }
   missionCounterText.innerHTML = `${getMissionText()}`;
   checkMissionButtons();
+
+  pcWeights = {
+    diff4: [...DEFAULT_PC_WEIGHTS.diff4],
+    diff6: [...DEFAULT_PC_WEIGHTS.diff6],
+    diff8: [...DEFAULT_PC_WEIGHTS.diff8],
+  };
+  updatePCDropRateInputs();
+  genPCWeightsTable();
+
   const newSaveObj = {
     acquiredItems: [],
     bannedItems,

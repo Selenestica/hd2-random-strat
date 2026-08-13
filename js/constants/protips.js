@@ -84,4 +84,5 @@ const PRO_TIPS = [
   "In order to effectively use the Eagle 110mm Rocket Pods, make sure the stratagem ball lands as close as possible to the enemy you want to be targeted. Do NOT try to lead with the stratagem like you would any other eagle stratagem. Eagle-1 will target the largest enemy that is closest to the stratagem ball at the moment it activates.",
   "Meltamines can destroy fabricators, warp ships, and bug holes. Simply throw the mine as close as possible to the structure and trigger it manually by shooting it.",
   "The Bolt Pistol can destroy Illuminate Lightning Spires with one shot.",
+  "You can destroy the Illuminate Overship with one shot of the Planetary Defense Cannon by hitting one of the open blue ports underneath the rim of the ship. Destroy its shield first with a weapon with a high rate of fire, such as the Stalwart.",
 ];

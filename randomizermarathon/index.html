@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html id="html" lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -78,8 +78,18 @@
           <div class="d-flex justify-content-end">
             <button
               class="btn btn-primary mx-1"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#optionsModal"
+            >
+              <i class="bi bi-gear-fill"></i>
+            </button>
+            <button
+              class="btn btn-primary"
               onclick="genRMDataManagementModalInfo()"
               type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#saveDataManagementModal"
             >
               <i class="bi bi-save text-light"></i>
             </button>
@@ -91,7 +101,7 @@
           <h2
             class="text-light my-0 d-flex align-items-center cursorPointer"
             data-bs-toggle="modal"
-            data-bs-target="#flavorAndInstructionsModal"
+            data-bs-target="#infoModal"
           >
             Helldivers 2 Marathon<i
               class="bi bi-info-circle mediumFontSize mx-1"
@@ -105,18 +115,9 @@
       <div class="row d-flex justify-content-center">
         <div class="col-sm-12 col-md-8 col-lg-5">
           <div class="row justify-content-center">
-            <div class="col-2 justify-content-start d-flex align-items-center">
-              <div class="btn-group mx-1">
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  data-bs-toggle="modal"
-                  data-bs-target="#optionsModal"
-                >
-                  <i class="bi bi-gear-fill"></i>
-                </button>
-              </div>
-            </div>
+            <div
+              class="col-2 justify-content-start d-flex align-items-center"
+            ></div>
             <div
               class="col-8 d-flex justify-content-center"
               id="missionButtonsDiv"
@@ -174,6 +175,129 @@
               id="boosterContainer"
               class="row pt-2 d-flex justify-content-center"
             ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAVE DATA MANAGEMENT MODAL -->
+    <div
+      class="modal fade"
+      id="saveDataManagementModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="saveDataManagementModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light" id="">Save Data Management</h5>
+          </div>
+          <div
+            class="modal-body row d-flex justify-content-center"
+            id="saveDataManagementModalBody"
+          >
+            <p class="text-white">
+              Download or upload your save files here to make progress on other
+              devices. You can only have one save file for this challenge.
+              <br />
+              <br />
+              WARNING: Deleting your save file will remove <b>all</b> of your
+              progress!
+              <br />
+              <br />
+              WARNING: Uploading a save file will
+              <b>overwrite your current save file</b>.
+            </p>
+            <div class="mb-3 d-flex row">
+              <div class="col-9 px-0">
+                <input
+                  class="form-control"
+                  type="file"
+                  id="saveDataUploadInput"
+                />
+              </div>
+              <div class="col-3">
+                <button
+                  type="button"
+                  onclick="uploadSaveFile()"
+                  class="btn btn-warning"
+                  id="uploadSaveFileButton"
+                  disabled
+                >
+                  Upload
+                </button>
+              </div>
+            </div>
+            <div id="saveDataManagementModalSavesList"></div>
+          </div>
+          <div class="modal-footer row justify-content-between">
+            <div class="d-flex col justify-content-start">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+            <div
+              id="saveDataModalFunctionsDiv"
+              class="d-flex col justify-content-end"
+            >
+              <button
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteSaveDataModal"
+                class="btn btn-danger"
+              >
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DELETE DATA MODAL -->
+    <div
+      class="modal fade"
+      id="deleteSaveDataModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="deleteSaveDataModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light">Delete Save Data</h5>
+          </div>
+          <div class="modal-body row d-flex justify-content-center">
+            <p class="text-white">
+              Are you sure you want to delete your save data? This action is
+              irreversible, and you will lose all progress.
+            </p>
+          </div>
+          <div class="modal-footer d-flex justify-content-between">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onclick="deleteSavedGameData()"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              DELETE
+            </button>
           </div>
         </div>
       </div>
@@ -785,7 +909,9 @@
   <script src="../js/constants/stratagems.js"></script>
   <script src="../js/constants/armorpassives.js"></script>
   <script src="../js/utils/warbondCodes.js"></script>
+  <script src="../js/utils/downloadMonoSaveFile.js"></script>
   <script src="../js/randomizermarathon//utils/showNoRerollTokensToast.js"></script>
   <script src="../js/components/genWarbondCheckboxes.js"></script>
+  <script src="../js/randomizermarathon/components/genRMDataManagementModalInfo.js"></script>
   <script src="../js/randomizermarathon/main.js"></script>
 </html>

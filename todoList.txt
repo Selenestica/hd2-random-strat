@@ -42,7 +42,6 @@ RANDOMIZER:
     - always roll backpack/weapon checkbox interferes with ability to reroll one stratagem
 
 PENITENT CRUSADE:
-  - make specialist details more visible
   - system to track max stars missions, incomplete missions, and failed missions. adding points for each
   - end game modal for showing max star missions, completed missions, and failed missions. number of items earned in each category. and total points calculated.
     - when challenge complete, add "View Results" button so they can see their score again
@@ -93,7 +92,6 @@ TIER MAKER
     a menu to select which list it should go to
   - ability to rate enemies
   - ability to rate armor sets
-  - ability to use your tier lists for Penitent Crusade and Budget Blitz
 
   BUGS
     - sometimes when making a new list, stuff from the old list will persist. unable to recreate
@@ -104,7 +102,6 @@ DEBT DIVERS
 
 - FREEDOM EXPRESS
   - more booster choices?
-  - this challenge is bad and is going away soon
 
 - RANDOMIZER MARATHON
   - PRIMARIES: 42
@@ -136,7 +133,6 @@ ARMOR LAB
   - improve view on desktop
     - add armor passive image
   - when user clicks helmet/armor or cape, a modal shows with the view expanded
-  - random button! (add lock for weight class)
 
   BUGS
     - 
@@ -146,7 +142,6 @@ LOADOUT BUILDER
     - 
 
 THE GAUNTLET
-  - make minutes more clear: "Extract after X minutes have transpired."
   - info modal and rules
     - can share equipment during a mission
   - specialist balance?

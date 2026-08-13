@@ -14,7 +14,9 @@ let uploadedSaveFile = null;
 
 const saveNewSaveFileName = async () => {
   const newSaveFileNameInput = document.getElementById("newSaveFileNameInput");
-  const saveData = JSON.parse(localStorage.getItem("specialOpsSaveData"));
+  const saveData = JSON.parse(
+    localStorage.getItem("randomizerMarathonSaveData"),
+  );
   if (!saveData) return;
   const updatedSaveFile = {
     ...saveData,
@@ -24,11 +26,11 @@ const saveNewSaveFileName = async () => {
     editedName: true,
   };
   await localStorage.setItem(
-    "specialOpsSaveData",
+    "randomizerMarathonSaveData",
     JSON.stringify(updatedSaveFile),
   );
   saveDataManagementModalSavesList.innerHTML = "";
-  genSOSaveDataManagementModalContent();
+  genRMDataManagementModalInfo();
 };
 
 const editSaveName = (oldName) => {
@@ -43,8 +45,10 @@ const editSaveName = (oldName) => {
   `;
 };
 
-const genSOSaveDataManagementModalContent = () => {
-  const saveData = JSON.parse(localStorage.getItem("specialOpsSaveData"));
+const genRMDataManagementModalInfo = () => {
+  const saveData = JSON.parse(
+    localStorage.getItem("randomizerMarathonSaveData"),
+  );
   if (!saveData) {
     return;
   }
@@ -54,14 +58,14 @@ const genSOSaveDataManagementModalContent = () => {
       <div class="my-1" id="soSavedGameOptionDiv">
         <div id="savedGameOptionLabel" class="text-white">${saveData.dataName}</div>
         <button type="button" onclick="editSaveName('${saveData.dataName}')" class="mx-1 btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></button>
-        <button type="button" onclick="downloadMonoSaveFile('${saveData.dataName}', 'so')" class="btn btn-primary btn-sm"><i class="bi bi-download"></i></button>
+        <button type="button" onclick="downloadMonoSaveFile('${saveData.dataName}', 'rm')" class="btn btn-primary btn-sm"><i class="bi bi-download"></i></button>
       </div>
     `;
 };
 
 // delete saved game data
 const deleteSavedGameData = async () => {
-  await localStorage.removeItem("specialOpsSaveData");
+  await localStorage.removeItem("randomizerMarathonSaveData");
   window.location.reload();
   startNewRun();
 };
@@ -85,10 +89,10 @@ saveDataUploadInput.addEventListener("change", (e) => {
 
 const uploadSaveFile = async () => {
   await localStorage.setItem(
-    "specialOpsSaveData",
+    "randomizerMarathonSaveData",
     JSON.stringify(uploadedSaveFile),
   );
-  genSOSaveDataManagementModalContent();
+  genRMDataManagementModalInfo();
   uploadedSaveFile = null;
   saveDataUploadInput.value = "";
   window.location.reload();

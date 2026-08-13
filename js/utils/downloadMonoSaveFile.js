@@ -1,4 +1,4 @@
-const downloadSOSaveFile = (fileName) => {
+const downloadMonoSaveFile = (fileName) => {
   const saveData = JSON.parse(localStorage.getItem("specialOpsSaveData"));
   if (!saveData) return;
   const file = JSON.stringify(saveData);
@@ -12,7 +12,7 @@ const downloadSOSaveFile = (fileName) => {
     link.download = `${fileName}.txt`;
     link.href = window.URL.createObjectURL(blob);
     link.dataset.downloadurl = ["text/json", link.download, link.href].join(
-      ":"
+      ":",
     );
 
     const evt = new MouseEvent("click", {

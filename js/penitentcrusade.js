@@ -71,6 +71,7 @@ let masterThrowsList = [];
 let masterBoostsList = [];
 let masterStratsList = [];
 let masterArmorPassivesList = [];
+let acquiredItems = [];
 let customTierListName = null;
 
 document.addEventListener("change", (e) => {
@@ -509,6 +510,7 @@ const claimItem = (currentItemIndex) => {
     missionTimes.push(parseInt(timeRemainingInput.value, 10));
   }
   timeRemainingInput.value = 0;
+  acquiredItems.push(item);
   saveProgress(item);
 };
 
@@ -530,7 +532,6 @@ const claimPunishment = async (currentItemIndex) => {
 
   // remove item from local storage
   const currentGame = await getCurrentGame("penitentCrusadeSaveData");
-  const acquiredItems = currentGame.acquiredItems;
   const newAcquiredItems = acquiredItems.filter((acquiredItem) => {
     return acquiredItem.displayName !== item.displayName;
   });
@@ -735,6 +736,7 @@ const getRewardsItemsLists = () => {
 const rollRewardOptions = async () => {
   // at the top of rollRewardOptions
   await clearItemOptionsModal();
+  const acquiredRewardNames = acquiredItems?.map((i) => i.internalName) ?? [];
   let rewardQuantity = selectedStars - 1;
   if (difficulty === "super" || difficulty === "supersolo") {
     rewardQuantity = selectedStars - 2;
@@ -846,7 +848,7 @@ const rollRewardOptions = async () => {
     const numsList = Array.from(numbers);
     for (let i = 0; i < rewardQuantity; i++) {
       const list = itemsLists[numsList[i]];
-      const randomItem = await getRandomItem(list);
+      const randomItem = await getRandomItem(list, 0, acquiredRewardNames);
       currentItems.push(randomItem);
       const vals = getItemMetaData(randomItem);
       itemOptionsModalBody.innerHTML += generateItemCard(
@@ -976,7 +978,9 @@ const getRandomItemListByTier = async (list) => {
   return list;
 };
 
-const getRandomItem = async (list) => {
+const getRandomItem = async (list, attempts = 0, acquiredRewardNames) => {
+  if (attempts > 50) return list[Math.floor(Math.random() * list.length)];
+
   let listToUse = await getRandomItemListByTier(list);
 
   // if at the end of diff 5, get all anti-tank options from the list and use the anti-tank list
@@ -989,8 +993,14 @@ const getRandomItem = async (list) => {
   }
 
   const item = listToUse[Math.floor(Math.random() * listToUse.length)];
-  if (starterStratNames.includes(item.displayName)) {
-    return getRandomItem(list);
+  if (
+    starterStratNames.includes(
+      item.displayName ||
+        bannedItems.includes(item.internalName) ||
+        acquiredRewardNames.includes(item.internalNames),
+    )
+  ) {
+    return getRandomItem(list, attempts + 1, acquiredRewardNames);
   }
   return item;
 };
@@ -1384,7 +1394,7 @@ const saveProgress = async (item = null) => {
     obj = {
       savedGames: [
         {
-          acquiredItems: item ? [item] : [],
+          acquiredItems,
           bannedItems: [],
           newStrats,
           newPrims,
@@ -1417,16 +1427,12 @@ const saveProgress = async (item = null) => {
   const data = JSON.parse(penitentCrusadeSaveData);
   const newSavedGames = await data.savedGames.map((sg) => {
     if (sg.currentGame === true) {
-      let updatedItems = sg.acquiredItems;
-      if (item) {
-        updatedItems.push(item);
-      }
       sg = {
         ...sg,
         currentItems,
         bannedItems,
         currentPunishmentItems,
-        acquiredItems: updatedItems,
+        acquiredItems,
         newStrats,
         newPrims,
         newSeconds,
@@ -1481,6 +1487,7 @@ const uploadSaveData = async () => {
     const currentGame = await getCurrentGame("penitentCrusadeSaveData");
     difficulty = currentGame.difficulty ?? "normal";
     warbondCodes = currentGame.warbondCodes ?? warbondCodes;
+    acquiredItems = currentGame.acquiredItems ?? [];
     changeDifficulty(currentGame.difficulty ?? "normal");
     newStrats = currentGame.newStrats;
     newPrims = currentGame.newPrims;
@@ -1488,15 +1495,18 @@ const uploadSaveData = async () => {
     newThrows = currentGame.newThrows;
     newArmorPassives = currentGame.newArmorPassives;
     newBoosts = currentGame.newBoosts;
-    // re-filter against current warbondCodes and bannedItems to catch stale save data
+    const acquiredInternalNames = currentGame.acquiredItems.map(
+      (i) => i.internalName,
+    );
+
     const refilter = (list) =>
-      list.filter((item) => {
-        const passesWarbond =
-          warbondCodes.includes(item.warbondCode) ||
-          item.warbondCode === "none";
-        const passesBan = !bannedItems.includes(item.internalName);
-        return passesWarbond && passesBan;
-      });
+      list.filter(
+        (item) =>
+          (warbondCodes.includes(item.warbondCode) ||
+            item.warbondCode === "none") &&
+          !bannedItems.includes(item.internalName) &&
+          !acquiredInternalNames.includes(item.internalName),
+      );
 
     newStrats = refilter(newStrats);
     newPrims = refilter(newPrims);

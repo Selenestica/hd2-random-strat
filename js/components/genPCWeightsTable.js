@@ -74,7 +74,7 @@ const genPCWeightsTable = () => {
   const container = document.getElementById("pcWeightsTableContainer");
   if (!container) return;
 
-  const locked = missionCounter > 1;
+  const locked = !isFirstMission();
 
   const diffs = [
     { key: "diff4", label: "Diff 4-5" },

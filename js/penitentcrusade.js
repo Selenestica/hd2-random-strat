@@ -221,7 +221,7 @@ for (let w = 0; w < diffRadios.length; w++) {
   });
 }
 
-const filterItemsByWarbond = async () => {
+const filterItemsByWarbond = () => {
   const sourceLists = [
     masterPrimsList,
     masterSecondsList,
@@ -230,7 +230,7 @@ const filterItemsByWarbond = async () => {
     masterStratsList,
     masterArmorPassivesList,
   ];
-  const filteredLists = await sourceLists.map((list) =>
+  const filteredLists = sourceLists.map((list) =>
     list.filter(
       (item) =>
         warbondCodes.includes(item.warbondCode) || item.warbondCode === "none",
@@ -382,6 +382,13 @@ const getDefaultItems = () => {
     defaultArmorPassives,
     defaultBoosters,
   };
+};
+
+const isFirstMission = () => {
+  if (difficulty === "super" || difficulty === "supersolo")
+    return missionCounter === 3;
+  if (difficulty === "quick") return missionCounter === 11;
+  return missionCounter === 1;
 };
 
 const checkMissionButtons = () => {
@@ -726,6 +733,7 @@ const getRewardsItemsLists = () => {
 };
 
 const rollRewardOptions = async () => {
+  // at the top of rollRewardOptions
   await clearItemOptionsModal();
   let rewardQuantity = selectedStars - 1;
   if (difficulty === "super" || difficulty === "supersolo") {
@@ -1299,7 +1307,7 @@ const applySpecialistRules = async () => {
   }
 };
 
-const applySpecialist = async (specToApply = null) => {
+const applySpecialist = (specToApply = null) => {
   if (specialist === null) {
     return;
   }
@@ -1319,10 +1327,10 @@ const applySpecialist = async (specToApply = null) => {
     armorPassiveAccordionBody.innerHTML = "";
     boosterAccordionBody.innerHTML = "";
   }
-  await getStartingItems(difficulty);
+  getStartingItems(difficulty);
   writeItems();
 
-  await startNewRun(specialist, difficulty, true, customTierListName);
+  startNewRun(specialist, difficulty, true, customTierListName);
   const traitSpecialists = [
     "16",
     "17",
@@ -1337,7 +1345,7 @@ const applySpecialist = async (specToApply = null) => {
     "47",
   ];
   if (traitSpecialists.includes(specialist)) {
-    await applySpecialistRules();
+    applySpecialistRules();
   }
   saveProgress();
 };
@@ -1480,6 +1488,23 @@ const uploadSaveData = async () => {
     newThrows = currentGame.newThrows;
     newArmorPassives = currentGame.newArmorPassives;
     newBoosts = currentGame.newBoosts;
+    // re-filter against current warbondCodes and bannedItems to catch stale save data
+    const refilter = (list) =>
+      list.filter((item) => {
+        const passesWarbond =
+          warbondCodes.includes(item.warbondCode) ||
+          item.warbondCode === "none";
+        const passesBan = !bannedItems.includes(item.internalName);
+        return passesWarbond && passesBan;
+      });
+
+    newStrats = refilter(newStrats);
+    newPrims = refilter(newPrims);
+    newSeconds = refilter(newSeconds);
+    newThrows = refilter(newThrows);
+    newArmorPassives = refilter(newArmorPassives);
+    newBoosts = refilter(newBoosts);
+
     seesRulesOnOpen = currentGame.seesRulesOnOpen;
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;

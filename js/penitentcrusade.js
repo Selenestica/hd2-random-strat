@@ -310,6 +310,8 @@ const startNewRun = async (
 
   if (spec === null) {
     specialistNameText.innerHTML = "";
+    specialist = null;
+    tempSpecialist = null;
   }
 
   if (!removingSpec && !spec) {
@@ -495,11 +497,11 @@ const reduceMissionCounter = () => {
   }
 };
 
-const claimItem = (currentItemIndex) => {
+const claimItem = async (currentItemIndex) => {
   const item = currentItems[currentItemIndex];
   const { imgDir, list, accBody } = getItemMetaData(item);
   accBody.innerHTML += generateItemCard(item, false, imgDir);
-  removeItemFromList(list, item);
+  await removeItemFromList(list, item);
   const modal = bootstrap.Modal.getInstance(itemOptionsModal);
   modal.hide();
   clearItemOptionsModal();
@@ -1149,6 +1151,7 @@ const removeItemFromList = (list, item) => {
   if (index > -1) {
     list.splice(index, 1);
   }
+  bannedItems.push(item.internalName);
 };
 
 const clearItemOptionsModal = () => {
@@ -1317,7 +1320,8 @@ const applySpecialistRules = async () => {
   }
 };
 
-const applySpecialist = (specToApply = null) => {
+const applySpecialist = async (specToApply = null) => {
+  specialist = tempSpecialist;
   if (specialist === null) {
     return;
   }
@@ -1337,10 +1341,10 @@ const applySpecialist = (specToApply = null) => {
     armorPassiveAccordionBody.innerHTML = "";
     boosterAccordionBody.innerHTML = "";
   }
-  getStartingItems(difficulty);
-  writeItems();
+  await getStartingItems(difficulty);
+  await writeItems();
 
-  startNewRun(specialist, difficulty, true, customTierListName);
+  await startNewRun(specialist, difficulty, true, customTierListName);
   const traitSpecialists = [
     "16",
     "17",

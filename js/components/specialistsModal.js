@@ -4,6 +4,7 @@ const specialistCheckMarks = document.getElementsByClassName(
 );
 const specialistNameText = document.getElementById("specialistNameText");
 let specialist = null;
+let tempSpecialist = null;
 
 const setSpecialist = (index) => {
   // remove the checkmark from all other specialists
@@ -37,7 +38,7 @@ const setSpecialist = (index) => {
   }
 
   // set the selected specialist
-  specialist = index;
+  tempSpecialist = index;
 };
 
 const genStarterItems = (starterItems) => {

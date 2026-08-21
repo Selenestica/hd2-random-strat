@@ -90,6 +90,14 @@ tierCustomizationModal.addEventListener("hidden.bs.modal", async () => {
   tierPreview.style.backgroundColor = "#151c24";
 });
 
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".tierItem")) {
+    document.querySelectorAll(".tierItemDropdown").forEach((d) => {
+      d.classList.add("d-none");
+    });
+  }
+});
+
 const changeTierPreviewColor = (color) => {
   tierPreview.style.backgroundColor = color;
   newColor = color;
@@ -362,7 +370,6 @@ const populateLooseItems = () => {
 };
 
 const setupCardEvents = (card) => {
-  // Enable native dragging for desktop
   const isTouchDevice =
     "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
@@ -376,38 +383,112 @@ const setupCardEvents = (card) => {
   card.addEventListener("touchstart", handleTouchStart, { passive: false });
   card.addEventListener("touchmove", handleTouchMove, { passive: false });
   card.addEventListener("touchend", handleTouchEnd, { passive: false });
+
+  // click to open tier picker dropdown
+  card.addEventListener("click", (e) => {
+    // don't interfere with drag
+    if (hasStartedDragging) return;
+
+    const dropdown = card.querySelector(".tierItemDropdown");
+    const isOpen = !dropdown.classList.contains("d-none");
+
+    // close all other open dropdowns first
+    document.querySelectorAll(".tierItemDropdown").forEach((d) => {
+      d.classList.add("d-none");
+    });
+
+    if (isOpen) return;
+
+    // build tier options
+    dropdown.innerHTML = "";
+
+    // add a button for each tier
+    tiers.forEach((tier, i) => {
+      const btn = document.createElement("button");
+      btn.className = "btn btn-sm btn-outline-light";
+      btn.style.fontSize = "0.7rem";
+      // btn.style.padding = "2px 6px";
+      btn.textContent = tier.lab;
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        moveItemToTier(card, i);
+        dropdown.classList.add("d-none");
+      });
+      dropdown.appendChild(btn);
+    });
+
+    // add "Pool" option to send back to loose items
+    const poolBtn = document.createElement("button");
+    poolBtn.className = "btn btn-sm btn-secondary";
+    poolBtn.style.fontSize = "0.7rem";
+    poolBtn.style.padding = "2px 6px";
+    poolBtn.textContent = "Pool";
+    poolBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      moveItemToPool(card);
+      dropdown.classList.add("d-none");
+    });
+    dropdown.appendChild(poolBtn);
+
+    dropdown.classList.remove("d-none");
+  });
 };
 
 const generateItemCard = (item) => {
   let imgDir = "equipment";
-  if (item.type === "Stratagem") {
-    imgDir = "svgs";
-  }
-  if (item.type === "Warbond") {
-    imgDir = "warbonds";
-  }
-  if (item.category === "armor") {
-    imgDir = "armorpassives";
-  }
+  if (item.type === "Stratagem") imgDir = "svgs";
+  if (item.type === "Warbond") imgDir = "warbonds";
+  if (item.category === "armor") imgDir = "armorpassives";
+
   const card = document.createElement("div");
   card.dataset.type = getItemType(item);
   card.id = item.internalName;
-  card.className = `card tierItem pcItemCards ${item.warbondCode}`;
+  card.className = `card tierItem pcItemCards ${item.warbondCode} position-relative`;
   card.style.width = itemsSize;
+
   card.innerHTML = `
     <img
       src="../images/${imgDir}/${item.imageURL}"
       class="img-card-top"
       alt="${item.displayName}"
     />
-    <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center ${
-      showText ? "" : "d-none"
-    }">
+    <div class="card-body itemNameContainer p-0 p-lg-2 align-items-center ${showText ? "" : "d-none"}">
       <p class="card-title text-white pcItemCardText">${item.displayName}</p>
     </div>
+    <div class="tierItemDropdown d-none position-absolute top-0 start-0 h-100 d-flex flex-column justify-content-center align-items-center"
+      style="background: rgba(0,0,0,0.5); z-index: 10; border-radius: 4px;">
+    </div>
   `;
+
   setupCardEvents(card);
   return card;
+};
+
+const moveItemToTier = (card, tierIndex) => {
+  const tierCat = document.getElementById(`tierCat${tierIndex}`);
+  if (!tierCat) return;
+
+  // remove from current parent
+  if (card.parentElement) {
+    card.parentElement.removeChild(card);
+  }
+
+  tierCat.appendChild(card);
+  setupCardEvents(card);
+  addItemToTierArray();
+};
+
+const moveItemToPool = (card) => {
+  if (card.parentElement?.id === "looseItemsContainer") return;
+
+  if (card.parentElement) {
+    card.parentElement.removeChild(card);
+  }
+
+  looseItemsContainer.appendChild(card);
+  setupCardEvents(card);
+  addItemToTierArray();
+  populateLooseItems();
 };
 
 const setNewTierIndex = (index) => {

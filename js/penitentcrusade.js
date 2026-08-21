@@ -870,6 +870,8 @@ const rollRewardOptions = async () => {
 };
 
 const rollPunishmentOptions = async () => {
+  document.getElementById("skipAndBanButton").classList.add("d-none");
+
   if (currentPunishmentItems.length > 0) {
     for (let i = 0; i < currentPunishmentItems.length; i++) {
       const vals = getItemMetaData(currentPunishmentItems[i]);
@@ -882,7 +884,7 @@ const rollPunishmentOptions = async () => {
         true,
       );
     }
-    document.getElementById("skipAndBanButton").classList.add("d-none");
+
     const modal = new bootstrap.Modal(itemOptionsModal);
     modal.show();
     return;

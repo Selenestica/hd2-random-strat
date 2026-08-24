@@ -1189,4 +1189,16 @@ const HELMETS = [
     tier: "b",
     index: 106,
   },
+  {
+    displayName: `IX-Voidwalker`,
+    type: "Equipment",
+    category: "armor",
+    tags: ["Heavy"],
+    passive: "none",
+    warbondCode: "none",
+    internalName: "ixvoidwalker",
+    imageURL: "ixvoidwalker.webp",
+    tier: "b",
+    index: 107,
+  },
 ];

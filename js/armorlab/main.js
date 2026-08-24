@@ -335,6 +335,7 @@ const applySpecialRules = () => {
     "sa8ram",
     "cpr80bulwark",
     "kdm500outrider",
+    "ixvoidwalker",
   ];
   if (largeHelmets.includes(currentHelmet)) {
     helmetImg.style.width = "84%";
@@ -342,8 +343,8 @@ const applySpecialRules = () => {
     helmetContainer.style.left = "54.5%";
   }
 
-  if (currentHelmet === "kdm500outrider") {
-    helmetCard.style.clipPath = "inset(1px 25px 6px 20px)";
+  if (currentHelmet === "kdm500outrider" || currentHelmet === "ixvoidwalker") {
+    helmetCard.style.clipPath = "inset(1px 25px 6px 2px)";
     helmetContainer.style.top = "20px";
     helmetContainer.style.left = "55.5%";
   }

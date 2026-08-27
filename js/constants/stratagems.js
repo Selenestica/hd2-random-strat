@@ -1073,7 +1073,7 @@ const STRATAGEMS = [
     displayName: "Meltagun",
     type: "Stratagem",
     category: "Supply",
-    tags: ["at"],
+    tags: ["Weapons", "at"],
     warbondCode: "warbond26",
     internalName: "meltagun",
     imageURL: "meltagun.svg",

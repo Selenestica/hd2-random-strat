@@ -154,7 +154,7 @@ const applySavedGameData = async (isUploadedSave = null) => {
   localStorage.setItem("penitentCrusadeSaveData", JSON.stringify(newSaveObj));
   // clear everything first
   await getStartingItems();
-  startNewRun();
+  await startNewRun();
   stratagemAccordionBody.innerHTML = "";
   primaryAccordionBody.innerHTML = "";
   secondaryAccordionBody.innerHTML = "";
@@ -163,7 +163,7 @@ const applySavedGameData = async (isUploadedSave = null) => {
   boosterAccordionBody.innerHTML = "";
   addDefaultItemsToAccordions();
   // then upload the current save
-  uploadSaveData();
+  await uploadSaveData();
   clearSaveDataManagementModal();
   if (isUploadedSave) {
     saveDataManagementModalInstance.hide();

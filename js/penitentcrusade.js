@@ -322,6 +322,7 @@ const startNewRun = async (
   missionsFailed = 0;
   currentItems = [];
   bannedItems = [];
+  acquiredItems = [];
   currentPunishmentItems = [];
   missionCounter = 1;
   customTierListName = tierList;
@@ -1491,6 +1492,14 @@ const uploadSaveData = async () => {
     }
 
     const currentGame = await getCurrentGame("penitentCrusadeSaveData");
+    if (!currentGame || !currentGame.acquiredItems) {
+      localStorage.removeItem("penitentCrusadeSaveData");
+      const modal = new bootstrap.Modal(oldDataDetectedModal);
+      modal.show();
+      await getStartingItems();
+      startNewRun();
+      return;
+    }
     difficulty = currentGame.difficulty ?? "normal";
     warbondCodes = currentGame.warbondCodes ?? warbondCodes;
     acquiredItems = currentGame.acquiredItems ?? [];
@@ -1501,6 +1510,7 @@ const uploadSaveData = async () => {
     newThrows = currentGame.newThrows;
     newArmorPassives = currentGame.newArmorPassives;
     newBoosts = currentGame.newBoosts;
+    bannedItems = currentGame.bannedItems ?? [];
     const acquiredInternalNames = currentGame.acquiredItems.map(
       (i) => i.internalName,
     );
@@ -1525,7 +1535,6 @@ const uploadSaveData = async () => {
     missionCounter = currentGame.missionCounter;
     dataName = currentGame.dataName;
     currentItems = currentGame.currentItems ?? [];
-    bannedItems = currentGame.bannedItems ?? [];
     currentPunishmentItems = currentGame.currentPunishmentItems ?? [];
     specialist = currentGame.specialist ?? null;
     missionsFailed = currentGame.missionsFailed ?? 0;
@@ -1658,7 +1667,10 @@ const saveDataAndRestart = async (diff = null) => {
 
   currentItems = [];
   bannedItems = [];
+  acquiredItems = [];
   currentPunishmentItems = [];
+  missionTimes = [];
+  missionsFailed = 0;
   missionCounter = 1;
   if (diff === "super" || diff === "supersolo") {
     missionCounter = 3;

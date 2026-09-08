@@ -537,7 +537,7 @@ const STRATAGEMS = [
     internalName: "eagleairstrike",
     imageURL: "eagleairstrike.svg",
     antitank: true,
-    tier: "s",
+    tier: "a",
     index: 44,
   },
   {
@@ -1080,6 +1080,18 @@ const STRATAGEMS = [
     antitank: true,
     tier: "b",
     index: 89,
+  },
+  {
+    displayName: "Eagle Gas Airstrike",
+    type: "Stratagem",
+    category: "Eagle",
+    tags: ["Eagle", "gas"],
+    warbondCode: "none",
+    internalName: "eaglegasstrike",
+    imageURL: "eaglegasstrike.svg",
+    antitank: true,
+    tier: "a",
+    index: 90,
   },
 ];
 

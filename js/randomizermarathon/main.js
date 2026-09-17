@@ -14,13 +14,13 @@ const viewItemsModal = document.getElementById("viewItemsModal");
 const viewItemsModalBody = document.getElementById("viewItemsModalBody");
 const viewItemsModalTitle = document.getElementById("viewItemsModalTitle");
 const viewItemsModalTitleText = document.getElementById(
-  "viewItemsModalTitleText"
+  "viewItemsModalTitleText",
 );
 const viewItemsModalTitleLockedText = document.getElementById(
-  "viewItemsModalTitleLockedText"
+  "viewItemsModalTitleLockedText",
 );
 const randomModeToggleButtonsContainer = document.getElementById(
-  "randomModeToggleButtonsContainer"
+  "randomModeToggleButtonsContainer",
 );
 const numOfRerollTokensText = document.getElementById("numOfRerollTokensText");
 
@@ -116,7 +116,7 @@ const filterItemsByWarbond = async () => {
     let tempList = [...itemsList[i]];
     itemsList[i] = await tempList.filter(
       (item) =>
-        warbondCodes.includes(item.warbondCode) || item.warbondCode === "none"
+        warbondCodes.includes(item.warbondCode) || item.warbondCode === "none",
     );
     if (i === 0) {
       workingPrimsList = itemsList[i];
@@ -145,7 +145,7 @@ const categoryMap = (item, cat = null) => {
   }
   if ((item && item.type === "Stratagem") || cat === "stratagem") {
     cat = "stratagem";
-    imgDir = "svgs";
+    imgDir = "stratagems";
     currentItemReference = currentStratagems;
     container = stratagemsContainer;
   }
@@ -232,8 +232,8 @@ const generateMainItemCard = (item) => {
             <p id="${
               item.internalName
             }-randName" class="text-center card-title text-white">${
-    item.displayName
-  }</p>
+              item.displayName
+            }</p>
         </div>
       </div>
     </div>
@@ -312,7 +312,7 @@ const rerollItem = async () => {
     (item) =>
       item.locked === true &&
       item.displayName !== itemToReroll.displayName &&
-      !stratDisplayNameList.includes(item.displayName)
+      !stratDisplayNameList.includes(item.displayName),
   );
   if (listToUse.length === 0) {
     if (itemToReroll.locked) {
@@ -336,7 +336,7 @@ const rerollItem = async () => {
     stratagemsContainer.innerHTML = "";
     for (let j = 0; j < currentStratagems.length; j++) {
       stratagemsContainer.innerHTML += generateMainItemCard(
-        currentStratagems[j]
+        currentStratagems[j],
       );
     }
   }
@@ -423,7 +423,7 @@ const rollStratagems = async () => {
       alwaysBackpack,
       alwaysSupport,
       4,
-      leftoverStratIndices
+      leftoverStratIndices,
     );
   }
 
@@ -450,7 +450,7 @@ const rollEquipment = async () => {
 
   for (let i = 0; i < equipmentLists.length; i++) {
     let items = await equipmentLists[i].filter(
-      (equip) => equip.locked === true
+      (equip) => equip.locked === true,
     );
     if (items.length < 1) {
       items = equipmentLists[i];
@@ -485,7 +485,7 @@ const getRandomUniqueNumbers = (
   alwaysBackpack,
   alwaysSupport,
   amt,
-  leftoverStratIndices
+  leftoverStratIndices,
 ) => {
   let hasVehicle = false;
   let hasBackpack = false;
@@ -676,7 +676,7 @@ const startNewRun = async () => {
 
 const uploadSaveData = async () => {
   const randomizerMarathonSaveData = localStorage.getItem(
-    "randomizerMarathonSaveData"
+    "randomizerMarathonSaveData",
   );
   if (randomizerMarathonSaveData) {
     const data = JSON.parse(randomizerMarathonSaveData);
@@ -720,12 +720,12 @@ const uploadSaveData = async () => {
     // stratagems
     for (let j = 0; j < currentStratagems.length; j++) {
       stratagemsContainer.innerHTML += generateMainItemCard(
-        currentStratagems[j]
+        currentStratagems[j],
       );
     }
 
     const missingWarbondCodes = masterWarbondCodes.filter(
-      (code) => !warbondCodes.includes(code)
+      (code) => !warbondCodes.includes(code),
     );
     for (let i = 0; i < missingWarbondCodes.length; i++) {
       document.getElementById(missingWarbondCodes[i]).checked = false;

@@ -582,7 +582,7 @@ const getItemMetaData = (item) => {
   let typeText;
   let listKeyName;
   if (type === "Stratagem") {
-    imgDir = "svgs";
+    imgDir = "stratagems";
     list = newStrats;
     accBody = stratagemAccordionBody;
     typeText = "Stratagem";
@@ -1187,7 +1187,7 @@ const addDefaultItemsToAccordions = async (spec = null) => {
     stratagemAccordionBody.innerHTML += generateItemCard(
       defaultStrats[i],
       false,
-      "svgs",
+      "stratagems",
     );
   }
   for (let i = 0; i < defaultPrims.length; i++) {

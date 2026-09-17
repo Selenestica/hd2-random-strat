@@ -1,6 +1,6 @@
 const FE_STRATAGEMS = [
   {
-    displayName: "Fast Recon Vehicle",
+    displayName: "Gunner FRV",
     type: "Stratagem",
     category: "Supply",
     tags: ["Vehicles"],

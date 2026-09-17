@@ -36,7 +36,7 @@ const genGalleryCard = (item) => {
   const effectiveTier = getEffectiveTier(item);
   let badgeColor = getBadgeColor(effectiveTier);
   if (item.type === "Stratagem") {
-    imgDir = "svgs";
+    imgDir = "stratagems";
   }
   if (item.category === "armor") {
     imgDir = "armorpassives";

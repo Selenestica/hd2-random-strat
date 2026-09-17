@@ -49,10 +49,10 @@ const SPECIALISTS = [
   {
     displayName: "The Speedrunner",
     starterItems: [
-      "Fast Recon Vehicle",
+      "Gunner FRV",
       "Expert Extraction Pilot booster or Dead Sprint booster",
     ],
-    stratagems: ["Fast Recon Vehicle"],
+    stratagems: ["Gunner FRV"],
     primaries: [],
     boosters: ["Expert Extraction Pilot", "Dead Sprint"],
     secondaries: [],

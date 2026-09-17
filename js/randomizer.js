@@ -419,7 +419,7 @@ const rollStratagems = async () => {
       <div class="col-3 px-1 d-flex justify-content-center">
         <div class="card itemCards" data-internal-name="${stratagem.internalName}" data-category="strat" data-position="${position}">
           <img
-              src="../images/svgs/${stratagem.imageURL}"
+              src="../images/stratagems/${stratagem.imageURL}"
               class="img-card-top"
               alt="${stratagem.displayName}"
               id="${stratagem.internalName}-randImage"
@@ -568,7 +568,7 @@ const rerollItem = async (internalName, category) => {
     const nameP = clickedCard.querySelector(".card-title");
 
     if (img && nameP) {
-      img.src = `../images/svgs/${newItem.imageURL}`;
+      img.src = `../images/stratagems/${newItem.imageURL}`;
       nameP.innerText = newItem.displayName;
 
       // Update data attribute

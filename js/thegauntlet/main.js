@@ -295,7 +295,7 @@ const generateItemCard = (item) => {
     imgDir = "armorpassives";
   }
   if (item.type === "Stratagem") {
-    imgDir = "svgs";
+    imgDir = "stratagems";
   }
   return `
     <div class="card d-flex col-2 soItemCards mx-1">

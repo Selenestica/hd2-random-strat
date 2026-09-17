@@ -436,7 +436,7 @@ const setupCardEvents = (card) => {
 
 const generateItemCard = (item) => {
   let imgDir = "equipment";
-  if (item.type === "Stratagem") imgDir = "svgs";
+  if (item.type === "Stratagem") imgDir = "stratagems";
   if (item.type === "Warbond") imgDir = "warbonds";
   if (item.category === "armor") imgDir = "armorpassives";
 

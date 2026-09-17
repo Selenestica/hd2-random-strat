@@ -39,7 +39,7 @@ const genFEGameOverModal = async () => {
     if (randomStrat.displayName === "Supply Pack") {
       supplyPacks += 1;
     }
-    if (randomStrat.displayName === "Fast Recon Vehicle") {
+    if (randomStrat.displayName === "Gunner FRV") {
       frvs += 1;
     }
   }
@@ -50,7 +50,7 @@ const genFEGameOverModal = async () => {
   feGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Number of Deaths: ${numberOfDeaths}</p>`;
   feGameOverModalBody.innerHTML += `<p class="mb-0 text-white">High Value Items Collected: ${highValueItemsCollected}</p>`;
   feGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Average Time Remaining: ${averageMissionTime.toFixed(
-    0
+    0,
   )}%</p>`;
   feGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Warp Packs: ${warpPacks}</p>`;
   feGameOverModalBody.innerHTML += `<p class="mb-0 text-white">Jump Packs: ${jumpPacks}</p>`;

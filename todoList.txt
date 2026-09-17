@@ -30,7 +30,7 @@ GENERAL:
         - throwables
       - /helmets 
       - /warbonds
-      - /svgs
+      - /stratagems
 
   - fix drawer images for new capes
   - implement code for using item indices
@@ -153,6 +153,25 @@ NEW PAGE IDEAS:
 - challenge where you play a pre generated Helldiver with a name and loadout and maybe short back story?
 	- you can look ahead and see which Helldiver has what equipment
 	- the amount of times you die in a mission is the amount of Helldivers you'll skip
+
+- challenge based off of warbonds
+
+- P-3 Representative
+  - 6 round .357 revolver    |     - less than verdict, veto, talon
+  - medium pen               |     - senator
+  - recoil: 28               |     - than verdict, veto, senator. + than talon
+  - damage: 200              |     - senator. + verdict, veto
+  - durable damage: 75       |     + senator, talon, verdict, veto
+  - ergonomics: 100          
+  - reload time
+    - speed cylinder: 2sec   |     - senator, talon, veto. + verdict
+    - one round: 1.25sec
+    - +one round: .5sec
+  - fire rate: 300rpm        |     - verdict, talon, veto. + senator
+  - spare rounds 66          |     
+  - stagger force: 20        |     - veto. + talon
+  - total output: 14400      |     + veto, talon, senator (not counting AP diff). - verdict, 
+
 
 
 

@@ -1,9 +1,9 @@
 const missionCompleteModalBody = document.getElementById(
-  "missionCompleteModalBody"
+  "missionCompleteModalBody",
 );
 const missionCompleteModal = document.getElementById("missionCompleteModal");
 const objectiveInputsContainer = document.getElementById(
-  "objectiveInputsContainer"
+  "objectiveInputsContainer",
 );
 const planetContainer = document.getElementById("planetContainer");
 const objectivesContainer = document.getElementById("objectivesContainer");
@@ -18,20 +18,20 @@ const maxStarsModalBody = document.getElementById("maxStarsModalBody");
 const pointsCounterText = document.getElementById("pointsCounterText");
 const missionCounterText = document.getElementById("missionCounterText");
 const flavorAndInstructionsModal = document.getElementById(
-  "flavorAndInstructionsModal"
+  "flavorAndInstructionsModal",
 );
 const missionCompleteButton = document.getElementById("missionCompleteButton");
 const missionFailedButton = document.getElementById("missionFailedButton");
 const missionCompleteButtonDiv = document.getElementById(
-  "missionCompleteButtonDiv"
+  "missionCompleteButtonDiv",
 );
 const missionFailedButtonDiv = document.getElementById(
-  "missionFailedButtonDiv"
+  "missionFailedButtonDiv",
 );
 const downloadPDFButtonDiv = document.getElementById("downloadPDFButtonDiv");
 const maxStarsPromptModal = document.getElementById("maxStarsPromptModal");
 const highValueItemCollectedCheck = document.getElementById(
-  "highValueItemCollectedCheck"
+  "highValueItemCollectedCheck",
 );
 const numOfDeathsInput = document.getElementById("numOfDeathsInput");
 const timeRemainingInput = document.getElementById("timeRemainingInput");
@@ -57,7 +57,7 @@ const generateItemCard = (item) => {
     imgDir = "armor";
   }
   if (item.type === "Stratagem") {
-    imgDir = "svgs";
+    imgDir = "stratagems";
   }
   return `
     <div class="card d-flex col-4 col-lg-2 soItemCards mx-1">
@@ -83,7 +83,7 @@ const saveProgress = async (item = null) => {
           randomStrat,
           seesRulesOnOpen: false,
           dataName: `${getMissionText(
-            missionCounter
+            missionCounter,
           )} | ${getCurrentDateTime()}`,
           currentGame: true,
           missionCounter,
@@ -326,7 +326,7 @@ const saveDataAndRestart = async (missionFailed = null) => {
   };
   await localStorage.setItem(
     "freedomExpressSaveData",
-    JSON.stringify(newfreedomExpressSaveData)
+    JSON.stringify(newfreedomExpressSaveData),
   );
 
   // remove saved games that are at the first mission of their difficulty,
@@ -340,7 +340,7 @@ const pruneSavedGames = async () => {
     return;
   }
   const prunedGames = await JSON.parse(
-    freedomExpressSaveData
+    freedomExpressSaveData,
   ).savedGames.filter((sg) => {
     if ((sg.currentGame === true || sg.missionCounter > 1) && !sg.failed) {
       return sg;

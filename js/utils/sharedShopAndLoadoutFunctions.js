@@ -526,7 +526,7 @@ const generateItemCard = (item, view = null) => {
   let imgDir = "equipment";
   let costBadgeColor = "bg-warning text-dark";
   if (item.type === "Stratagem") {
-    imgDir = "svgs";
+    imgDir = "stratagems";
   }
   if (item.category === "armor") {
     imgDir = "armorpassives";

@@ -48,7 +48,7 @@ const generateTXTContent = async () => {
     if (randomStrat.displayName === "Supply Pack") {
       supplyPacks += 1;
     }
-    if (randomStrat.displayName === "Fast Recon Vehicle") {
+    if (randomStrat.displayName === "Gunner FRV") {
       frvs += 1;
     }
   }

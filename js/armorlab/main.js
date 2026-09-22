@@ -228,7 +228,7 @@ const generateItemCard = (item, type) => {
 
 const applySpecialRules = () => {
   // default styles
-  helmetCard.style.clipPath = "inset(1px 1px 8px 1px)";
+  helmetCard.style.clipPath = "inset(1px 1px 4px 1px)";
 
   helmetContainer.style.top = "27px";
   helmetContainer.style.left = "56%";
@@ -256,6 +256,29 @@ const applySpecialRules = () => {
     helmetImg.style.width = "90%";
     helmetContainer.style.top = "18px";
     helmetContainer.style.left = "54.5%";
+  }
+
+  // helmet is a bit small
+  if (currentHelmet === "cph26commandant") {
+    helmetImg.style.width = "90%";
+    helmetContainer.style.top = "18px";
+    helmetContainer.style.left = "54.5%";
+  }
+
+  // helmet is a bit small
+  if (currentHelmet === "ds42federationsblade") {
+    helmetImg.style.width = "85%";
+    helmetContainer.style.top = "25px";
+    helmetContainer.style.left = "54.5%";
+    helmetCard.style.clipPath = "inset(1px 25px 10px 22px)";
+  }
+
+  // helmet is a bit small
+  if (currentHelmet === "re2310honoraryguard") {
+    helmetImg.style.width = "100%";
+    helmetContainer.style.top = "11px";
+    helmetContainer.style.left = "53.5%";
+    helmetCard.style.clipPath = "inset(1px 25px 5px 25px)";
   }
 
   // helmet is irregular

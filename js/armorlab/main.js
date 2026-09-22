@@ -230,14 +230,14 @@ const applySpecialRules = () => {
   // default styles
   helmetCard.style.clipPath = "inset(1px 1px 4px 1px)";
 
-  helmetContainer.style.top = "27px";
+  helmetContainer.style.top = "15px";
   helmetContainer.style.left = "56%";
   helmetContainer.style.minWidth = "96px";
   helmetContainer.style.width = "27.5%";
 
   helmetImg.style.width = "77%";
 
-  armorImg.style.objectPosition = "center -40px";
+  armorImg.style.objectPosition = "center -55px";
   armorImg.style.marginTop = "0rem";
   armorImg.style.marginLeft = "0rem";
   armorImg.style.width = "100%";
@@ -247,28 +247,29 @@ const applySpecialRules = () => {
   // helmet is small for some reason
   if (currentHelmet === "dp53saviorofthefree") {
     helmetImg.style.width = "100%";
-    helmetContainer.style.top = "10px";
+    helmetContainer.style.top = "-5px";
     helmetContainer.style.left = "54.5%";
+    helmetContainer.style.width = "29%";
   }
 
   // helmet is a bit small
   if (currentHelmet === "sr18roadblock") {
     helmetImg.style.width = "90%";
-    helmetContainer.style.top = "18px";
+    helmetContainer.style.top = "6px";
     helmetContainer.style.left = "54.5%";
   }
 
   // helmet is a bit small
   if (currentHelmet === "cph26commandant") {
     helmetImg.style.width = "90%";
-    helmetContainer.style.top = "18px";
+    helmetContainer.style.top = "6px";
     helmetContainer.style.left = "54.5%";
   }
 
   // helmet is a bit small
   if (currentHelmet === "ds42federationsblade") {
     helmetImg.style.width = "85%";
-    helmetContainer.style.top = "25px";
+    helmetContainer.style.top = "13px";
     helmetContainer.style.left = "54.5%";
     helmetCard.style.clipPath = "inset(1px 25px 10px 22px)";
   }
@@ -276,22 +277,25 @@ const applySpecialRules = () => {
   // helmet is a bit small
   if (currentHelmet === "re2310honoraryguard") {
     helmetImg.style.width = "100%";
-    helmetContainer.style.top = "11px";
+    helmetContainer.style.top = "-1px";
     helmetContainer.style.left = "53.5%";
     helmetCard.style.clipPath = "inset(1px 25px 5px 25px)";
   }
 
   // helmet is irregular
   if (currentHelmet === "ac2obedient") {
-    helmetImg.style.width = "92%";
-    helmetContainer.style.top = "26px";
+    helmetImg.style.width = "95%";
+    helmetContainer.style.top = "10px";
     helmetContainer.style.left = "54.5%";
-    helmetCard.style.clipPath = "inset(1px 25px 12px 25px)";
+    helmetCard.style.clipPath = "inset(1px 2px 12px 2px)";
   }
 
   // has an air filter that juts out
   if (currentHelmet === "ce27groundbreaker") {
-    helmetCard.style.clipPath = "inset(1px 1px 12px 22px)";
+    helmetImg.style.width = "90%";
+    helmetContainer.style.top = "10px";
+    helmetContainer.style.left = "56.5%";
+    helmetCard.style.clipPath = "inset(1px 2px 8px 2px)";
   }
 
   // has a tall neck shield

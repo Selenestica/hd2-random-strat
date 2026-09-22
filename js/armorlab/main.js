@@ -228,187 +228,47 @@ const generateItemCard = (item, type) => {
 
 const applySpecialRules = () => {
   // default styles
-  helmetCard.style.clipPath = "inset(1px 25px 12px 22px)";
-  helmetContainer.style.top = "11px";
-  helmetContainer.style.left = "53.5%";
+  helmetCard.style.clipPath = "inset(1px 1px 8px 1px)";
+
+  helmetContainer.style.top = "27px";
+  helmetContainer.style.left = "56%";
   helmetContainer.style.minWidth = "96px";
+  helmetContainer.style.width = "27.5%";
+
+  helmetImg.style.width = "77%";
+
   armorImg.style.objectPosition = "center -40px";
   armorImg.style.marginTop = "0rem";
   armorImg.style.marginLeft = "0rem";
   armorImg.style.width = "100%";
-  helmetImg.style.width = "100%";
+
   capeImg.style.width = "100%";
-  helmetContainer.style.width = "27.5%";
+
+  // helmet is small for some reason
+  if (currentHelmet === "dp53saviorofthefree") {
+    helmetImg.style.width = "100%";
+    helmetContainer.style.top = "10px";
+    helmetContainer.style.left = "54.5%";
+  }
+
+  // helmet is a bit small
+  if (currentHelmet === "sr18roadblock") {
+    helmetImg.style.width = "90%";
+    helmetContainer.style.top = "18px";
+    helmetContainer.style.left = "54.5%";
+  }
+
+  // helmet is irregular
+  if (currentHelmet === "ac2obedient") {
+    helmetImg.style.width = "92%";
+    helmetContainer.style.top = "26px";
+    helmetContainer.style.left = "54.5%";
+    helmetCard.style.clipPath = "inset(1px 25px 12px 25px)";
+  }
 
   // has an air filter that juts out
   if (currentHelmet === "ce27groundbreaker") {
     helmetCard.style.clipPath = "inset(1px 1px 12px 22px)";
-  }
-
-  // with the Redacted Regiment armors, i fixed them to play a little nicer, but they still need a slight tweak
-  const rrArmors = [
-    "rs89shadowparagon",
-    "rs67nullcipher",
-    "sa7headfirst",
-    "sa8ram",
-  ];
-  if (rrArmors.includes(currentArmor)) {
-    armorImg.style.marginTop = "0.25rem";
-  }
-
-  const edArmors = ["cph26commandant"];
-  if (edArmors.includes(currentArmor)) {
-    armorImg.style.objectPosition = "center -60px";
-    armorImg.style.marginLeft = "0.2rem";
-  }
-  if (edArmors.includes(currentHelmet)) {
-    helmetCard.style.clipPath = "inset(1px 20px 12px 22px)";
-  }
-  if (edArmors.includes(currentHelmet) && edArmors.includes(currentArmor)) {
-    armorImg.style.marginLeft = "0.35rem";
-  }
-
-  const sapperArmor = ["cpg48sapper"];
-  if (sapperArmor.includes(currentArmor)) {
-    armorImg.style.objectPosition = "center -60px";
-    armorImg.style.marginLeft = "0.2rem";
-  }
-  if (sapperArmor.includes(currentHelmet)) {
-    helmetCard.style.clipPath = "inset(1px 10px 16px 22px)";
-    helmetContainer.style.left = "53%";
-  }
-  if (
-    sapperArmor.includes(currentHelmet) &&
-    sapperArmor.includes(currentArmor)
-  ) {
-    armorImg.style.marginLeft = "0.35rem";
-    helmetContainer.style.top = "8px";
-    helmetContainer.style.left = "54%";
-  }
-
-  const exoArmors = ["o2heavyoperator", "o3freespirit", "o44bondedpilot"];
-  if (exoArmors.includes(currentHelmet)) {
-    helmetCard.style.clipPath = "inset(1px 1px 1px 1px)";
-    helmetImg.style.width = "70%";
-    if (currentHelmet === "o44bondedpilot") {
-      helmetCard.style.clipPath = "inset(1px 1px 5px 15px)";
-      helmetContainer.style.top = "24px";
-      helmetImg.style.width = "75%";
-      helmetContainer.style.left = "56%";
-    }
-  }
-
-  const exoArmorHeavy = ["o2heavyoperator"];
-  if (exoArmorHeavy.includes(currentArmor)) {
-    armorImg.style.objectPosition = "center -55px";
-    armorImg.style.marginLeft = "-0.2rem";
-  }
-
-  const exoArmorLight = ["o3freespirit"];
-  if (exoArmorLight.includes(currentArmor)) {
-    armorImg.style.objectPosition = "center -57px";
-    armorImg.style.marginLeft = "0.35rem";
-  }
-
-  if (
-    exoArmors.includes(currentHelmet) &&
-    exoArmors.includes(currentArmor) &&
-    currentHelmet !== "o44bondedpilot"
-  ) {
-    helmetContainer.style.top = "20px";
-    helmetContainer.style.left = "56%";
-  } else if (
-    exoArmors.includes(currentHelmet) &&
-    !exoArmors.includes(currentArmor) &&
-    currentHelmet !== "o44bondedpilot"
-  ) {
-    helmetContainer.style.top = "22px";
-    helmetContainer.style.left = "57%";
-  }
-
-  // the helmets are larger than the others for some reason
-  const largeHelmets = [
-    "rs6fienddestroyer",
-    "rs89shadowparagon",
-    "rs67nullcipher",
-    "sa7headfirst",
-    "sa8ram",
-    "cpr80bulwark",
-    "kdm500outrider",
-    "ixvoidwalker",
-  ];
-  if (largeHelmets.includes(currentHelmet)) {
-    helmetImg.style.width = "84%";
-    helmetContainer.style.top = "22px";
-    helmetContainer.style.left = "54.5%";
-  }
-
-  if (currentHelmet === "kdm500outrider" || currentHelmet === "ixvoidwalker") {
-    helmetCard.style.clipPath = "inset(1px 25px 6px 2px)";
-    helmetContainer.style.top = "20px";
-    helmetContainer.style.left = "55.5%";
-  }
-
-  if (currentHelmet === "sa8ram" && currentArmor === "sa8ram") {
-    helmetContainer.style.top = "12px";
-    helmetCard.style.clipPath = "inset(1px 1px 1px 1px)";
-  }
-
-  if (currentHelmet === "sa7headfirst" && currentArmor === "sa7headfirst") {
-    helmetContainer.style.top = "15px";
-    helmetCard.style.clipPath = "inset(1px 1px 1px 1px)";
-    helmetContainer.style.left = "55%";
-  }
-
-  if (currentHelmet === "dp8mountainscaled") {
-    // helmetContainer.style.top = "15px";
-    helmetContainer.style.left = "52.5%";
-  }
-
-  const fortyK = ["tg8sharpshooter", "tg122demotrooper"];
-  if (fortyK.includes(currentHelmet)) {
-    helmetContainer.style.top = "10px";
-    helmetContainer.style.left = "54.5%";
-    helmetContainer.style.width = "29.5%";
-    helmetCard.style.clipPath = "inset(1px 25px 20px 22px)";
-  }
-
-  if (currentHelmet === "tg8sharpshooter") {
-    helmetCard.style.clipPath = "inset(1px 25px 15px 22px)";
-  }
-
-  if (
-    currentArmor === "dp8mountainscaled" ||
-    currentArmor === "kdm500outrider" ||
-    currentArmor === "tg8sharpshooter"
-  ) {
-    armorImg.style.marginTop = "-0.2rem";
-    if (currentHelmet === "dp8mountainscaled") {
-      armorImg.style.marginTop = "-0.5rem";
-    }
-    if (fortyK.includes(currentHelmet)) {
-      helmetContainer.style.top = "10px";
-      helmetContainer.style.left = "54.5%";
-      helmetContainer.style.width = "29.5%";
-    }
-  }
-
-  if (currentArmor === "tg8sharpshooter") {
-    armorImg.style.marginTop = "-0.2rem";
-    armorImg.style.marginLeft = "0.05rem";
-  }
-
-  if (currentArmor === "tg122demotrooper") {
-    armorImg.style.width = "95%";
-  }
-
-  if (currentArmor === "rs100sanctioner") {
-    armorImg.style.objectPosition = "center -48px";
-    armorImg.style.marginLeft = "0.5rem";
-  }
-
-  if (currentHelmet === "rs100sanctioner") {
-    helmetContainer.style.top = "16px";
   }
 
   // has a tall neck shield
@@ -443,6 +303,7 @@ const applySpecialRules = () => {
     "crestoftheunsullied",
     "camocloak",
     "cityfightersresolve",
+    "freespiritedspangles",
   ];
   if (skinnyCapes.includes(currentCape)) {
     capeImg.style.width = "45%";

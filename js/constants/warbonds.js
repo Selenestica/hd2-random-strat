@@ -239,4 +239,14 @@ const WARBONDS = [
     imageURL: "40kWB.webp",
     tier: "b",
   },
+  {
+    displayName: "Ironclad Democracy",
+    type: "Warbond",
+    category: "",
+    tags: [],
+    warbondCode: "warbond27",
+    internalName: "ironcladDemocracyWB",
+    imageURL: "ironcladDemocracyWB.webp",
+    tier: "b",
+  },
 ];

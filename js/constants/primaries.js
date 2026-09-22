@@ -623,6 +623,30 @@ const PRIMARIES = [
     tier: "a",
     index: 51,
   },
+  {
+    displayName: "Evictor",
+    type: "Equipment",
+    category: "primary",
+    tags: ["explosive", "ap3"],
+    warbondCode: "warbond27",
+    internalName: "gl15evictor",
+    imageURL: "gl15evictor.webp",
+    antitank: false,
+    tier: "a",
+    index: 52,
+  },
+  {
+    displayName: "Arbitrator",
+    type: "Equipment",
+    category: "primary",
+    tags: ["AssaultRifle", "ap2"],
+    warbondCode: "warbond27",
+    internalName: "ar11arbitrator",
+    imageURL: "ar11arbitrator.webp",
+    antitank: false,
+    tier: "b",
+    index: 53,
+  },
 ];
 
 // s: 7

@@ -197,6 +197,29 @@ const BOOSTERS = [
     tier: "b",
     index: 17,
   },
+
+  {
+    displayName: "Integrated Extinguishers",
+    type: "Equipment",
+    category: "booster",
+    tags: [],
+    warbondCode: "warbond27",
+    internalName: "integratedextinguishers",
+    imageURL: "integratedextinguishers.webp",
+    tier: "b",
+    index: 18,
+  },
+  {
+    displayName: "Surplus EAT Allocation",
+    type: "Equipment",
+    category: "booster",
+    tags: [],
+    warbondCode: "warbond27",
+    internalName: "surpluseatallocation",
+    imageURL: "surpluseatallocation.webp",
+    tier: "c",
+    index: 19,
+  },
 ];
 
 // s: 4

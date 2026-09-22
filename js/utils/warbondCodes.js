@@ -56,4 +56,5 @@ let warbondCodes = [
   "warbond24",
   "warbond25",
   "warbond26",
+  "warbond27",
 ];

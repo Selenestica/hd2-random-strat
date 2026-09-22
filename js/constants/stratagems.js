@@ -1093,6 +1093,18 @@ const STRATAGEMS = [
     tier: "a",
     index: 90,
   },
+  {
+    displayName: "Maelstrom",
+    type: "Stratagem",
+    category: "Supply",
+    tags: ["Vehicles"],
+    warbondCode: "none",
+    internalName: "td110maelstrom",
+    imageURL: "td110maelstrom.webp",
+    antitank: true,
+    tier: "s",
+    index: 91,
+  },
 ];
 
 // s: 11

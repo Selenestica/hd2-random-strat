@@ -29,6 +29,7 @@ const warbondsList = [
   "Entrenched Division", //warbond24
   "Exo Experts", //warbond25
   "Warhammer 40k", //warbond26
+  "Ironclad Democracy", //warbond27
 ];
 
 const genWarbondCheckboxes = () => {

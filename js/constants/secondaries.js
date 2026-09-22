@@ -287,6 +287,19 @@ const SECONDARIES = [
     index: 23,
     tier: "a",
   },
+
+  {
+    displayName: "Breacher",
+    type: "Equipment",
+    category: "secondary",
+    tags: ["explosive", "ap5", "pistol", "at"],
+    warbondCode: "warbond27",
+    internalName: "p34breacher",
+    imageURL: "p34breacher.webp",
+    antitank: true,
+    index: 24,
+    tier: "s",
+  },
 ];
 
 // s: 2

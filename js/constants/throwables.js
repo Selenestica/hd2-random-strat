@@ -251,6 +251,30 @@ const THROWABLES = [
     index: 20,
     tier: "b",
   },
+  {
+    displayName: "G-8 Immolation",
+    type: "Equipment",
+    category: "throwable",
+    tags: ["fire"],
+    warbondCode: "warbond27",
+    internalName: "g8immolation",
+    imageURL: "g8immolation.webp",
+    antitank: false,
+    index: 21,
+    tier: "b",
+  },
+  {
+    displayName: "G-60 Anti-Tank Seeker",
+    type: "Equipment",
+    category: "throwable",
+    tags: ["at", "explosive"],
+    warbondCode: "warbond27",
+    internalName: "g60antitankseeker",
+    imageURL: "g60antitankseeker.webp",
+    antitank: true,
+    index: 22,
+    tier: "a",
+  },
 ];
 
 // s: 4

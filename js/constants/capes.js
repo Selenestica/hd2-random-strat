@@ -979,4 +979,15 @@ const CAPES = [
     tier: "b",
     index: 88,
   },
+  {
+    displayName: "Tread of Liberty",
+    type: "Equipment",
+    category: "cape",
+    tags: [],
+    warbondCode: "warbond1",
+    internalName: "treadofliberty",
+    imageURL: "treadofliberty.webp",
+    tier: "b",
+    index: 89,
+  },
 ];

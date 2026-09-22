@@ -1225,4 +1225,16 @@ const HELMETS = [
     tier: "b",
     index: 109,
   },
+  {
+    displayName: `BFM-77 Reformer`,
+    type: "Equipment",
+    category: "armor",
+    tags: ["Medium"],
+    passive: "Blunt Force Mitigation",
+    warbondCode: "warbond1",
+    internalName: "bfm77reformer",
+    imageURL: "bfm77reformer.webp",
+    tier: "b",
+    index: 110,
+  },
 ];

@@ -647,6 +647,18 @@ const PRIMARIES = [
     tier: "b",
     index: 53,
   },
+  {
+    displayName: "SAI",
+    type: "Equipment",
+    category: "primary",
+    tags: ["EnergyWeapon", "ap3", "one-handed"],
+    warbondCode: "warbond1",
+    internalName: "las12sai",
+    imageURL: "las12sai.webp",
+    antitank: false,
+    tier: "a",
+    index: 54,
+  },
 ];
 
 // s: 7

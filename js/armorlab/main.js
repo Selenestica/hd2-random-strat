@@ -275,6 +275,14 @@ const applySpecialRules = () => {
   }
 
   // helmet is a bit small
+  if (currentHelmet === "tg8sharpshooter") {
+    helmetImg.style.width = "90%";
+    helmetContainer.style.top = "9px";
+    helmetContainer.style.left = "54.5%";
+    helmetCard.style.clipPath = "inset(1px 25px 10px 22px)";
+  }
+
+  // helmet is a bit small
   if (currentHelmet === "re2310honoraryguard") {
     helmetImg.style.width = "100%";
     helmetContainer.style.top = "-1px";

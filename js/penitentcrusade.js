@@ -1314,7 +1314,7 @@ const applySpecialistRules = async () => {
     return;
   }
 
-  // only expendables for The Athlete
+  // only one handed primaries for The Athlete
   if (specialist === "47") {
     newPrims = await newPrims.filter(
       (np) => np.tags.includes("onehanded") && np.displayName !== "Defender",

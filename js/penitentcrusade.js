@@ -999,11 +999,9 @@ const getRandomItem = async (list, attempts = 0, acquiredRewardNames) => {
 
   const item = listToUse[Math.floor(Math.random() * listToUse.length)];
   if (
-    starterStratNames.includes(
-      item.displayName ||
-        bannedItems.includes(item.internalName) ||
-        acquiredRewardNames.includes(item.internalNames),
-    )
+    starterStratNames.includes(item.displayName) ||
+    bannedItems.includes(item.internalName) ||
+    acquiredRewardNames.includes(item.internalName)
   ) {
     return getRandomItem(list, attempts + 1, acquiredRewardNames);
   }
@@ -1362,7 +1360,7 @@ const applySpecialist = async (specToApply = null) => {
     "47",
   ];
   if (traitSpecialists.includes(specialist)) {
-    applySpecialistRules();
+    await applySpecialistRules();
   }
   saveProgress();
 };

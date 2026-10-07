@@ -1265,7 +1265,7 @@ const applySpecialistRules = async () => {
     return;
   }
 
-  // only Orbitals for Minesweeper
+  // only mines for Minesweeper
   if (specialist === "32") {
     const mineStrats = ["Anti-Tank Mines", "Incendiary Mines", "Gas Mines"];
     newStrats = await newStrats.filter((ns) =>

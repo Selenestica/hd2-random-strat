@@ -725,4 +725,17 @@ const SPECIALISTS = [
     imageURL: "",
     warbonds: ["warbond26"],
   },
+  {
+    displayName: "The Stormtrooper",
+    starterItems: ["LAS-12 Sai", "Blunt Force Mitigation armor"],
+    stratagems: [],
+    primaries: ["SAI"],
+    boosters: [],
+    secondaries: [],
+    throwables: [],
+    armorPassives: ["Blunt Force Mitigation"],
+    traits: [],
+    imageURL: "",
+    warbonds: ["warbond27"],
+  },
 ];

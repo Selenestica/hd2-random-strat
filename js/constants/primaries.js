@@ -659,6 +659,18 @@ const PRIMARIES = [
     tier: "a",
     index: 54,
   },
+  // {
+  //   displayName: "Sightliner",
+  //   type: "Equipment",
+  //   category: "primary",
+  //   tags: ["ap4", "MarksmanRifle"],
+  //   warbondCode: "warbond28",
+  //   internalName: "r40sightliner",
+  //   imageURL: "r40sightliner.webp",
+  //   antitank: false,
+  //   tier: "b",
+  //   index: 55,
+  // },
 ];
 
 // s: 7

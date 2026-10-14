@@ -318,6 +318,18 @@ const ARMOR_PASSIVES = [
     tier: "b",
     index: 28,
   },
+
+  // {
+  //   displayName: "Stationary Shroud",
+  //   type: "Equipment",
+  //   category: "armor",
+  //   tags: ["ArmorPassive"],
+  //   warbondCode: "warbond28",
+  //   internalName: "stationaryshroud",
+  //   imageURL: "stationaryshroud.webp",
+  //   tier: "b",
+  //   index: 29,
+  // },
 ];
 
 // s: 1

@@ -1105,6 +1105,31 @@ const STRATAGEMS = [
     tier: "s",
     index: 91,
   },
+
+  // {
+  //   displayName: "Nova",
+  //   type: "Stratagem",
+  //   category: "Supply",
+  //   tags: ["Weapons", "ap4"],
+  //   warbondCode: "warbond28",
+  //   internalName: "las44nova",
+  //   imageURL: "las44nova.webp",
+  //   antitank: false,
+  //   tier: "a",
+  //   index: 92,
+  // },
+  // {
+  //   displayName: "Apex",
+  //   type: "Stratagem",
+  //   category: "Supply",
+  //   tags: ["Weapons", "Backpacks", "bullets", "ap4"],
+  //   warbondCode: "warbond28",
+  //   internalName: "amw20apex",
+  //   imageURL: "amw20apex.webp",
+  //   antitank: true,
+  //   tier: "a",
+  //   index: 93,
+  // },
 ];
 
 // s: 11

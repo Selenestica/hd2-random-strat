@@ -738,4 +738,18 @@ const SPECIALISTS = [
     imageURL: "",
     warbonds: ["warbond27"],
   },
+
+  // {
+  //   displayName: "Mellowlink",
+  //   starterItems: ["Apex", "Stationary Shroud armor"],
+  //   stratagems: ["Apex"],
+  //   primaries: [],
+  //   boosters: [],
+  //   secondaries: [],
+  //   throwables: [],
+  //   armorPassives: ["Stationary Shroud"],
+  //   traits: [],
+  //   imageURL: "mellowlink.webp",
+  //   warbonds: ["warbond28"],
+  // },
 ];

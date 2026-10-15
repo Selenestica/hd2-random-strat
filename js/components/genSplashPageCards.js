@@ -31,6 +31,11 @@ const genSplashPageCards = (type) => {
       internalName: "freedomexpress",
       icon: "stopwatch.svg",
     },
+    {
+      displayName: `Griffdive (alpha) <i class="bi bi-box-arrow-up-right"></i>`,
+      internalName: "griffdive",
+      icon: "griffIcon.svg",
+    },
   ];
   if (type === "tools") {
     list = [
@@ -61,12 +66,17 @@ const genSplashPageCards = (type) => {
   for (let i = 0; i < list.length; i++) {
     const li = list[i];
     const card = document.createElement("a");
+    let href = `./${li.internalName}`;
     let iconStyle = "svgIconStyles";
     if (li.icon.includes(".webp")) {
-      console.log("here");
       iconStyle = "webpIconStyles";
     }
-    card.href = `./${li.internalName}`;
+    if (li.internalName === "griffdive") {
+      href = "https://griffdive.com/";
+      card.target = "_blank";
+    }
+
+    card.href = href;
     card.className = `card col-4 col-lg-2 bg-none m-1 p-2 text-center challengeCards`;
     card.innerHTML = `
     <img class="img-fluid ${iconStyle}" src="../images/iconSVGs/${li.icon}" />

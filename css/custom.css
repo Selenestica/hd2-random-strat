@@ -579,6 +579,14 @@ border 3c434d
 }
 
 /* Party Randomizer */
+.randomizerModeSwitch {
+  min-width: 220px;
+}
+
+.randomizerModeSwitch .btn {
+  font-weight: 600;
+}
+
 .party-randomizer-shell {
   max-width: 1440px;
 }

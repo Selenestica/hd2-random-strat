@@ -45,6 +45,11 @@ const genSplashPageCards = (type) => {
         icon: "dice.svg",
       },
       {
+        displayName: "Party Randomizer",
+        internalName: "partyrandomizer",
+        icon: "dice.svg",
+      },
+      {
         displayName: "Tier List Maker",
         internalName: "tiermaker",
         icon: "list.svg",

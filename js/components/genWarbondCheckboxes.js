@@ -30,6 +30,7 @@ const warbondsList = [
   "Exo Experts", //warbond25
   "Warhammer 40k", //warbond26
   "Ironclad Democracy", //warbond27
+  "Scope of Authority", //warbond28
 ];
 
 const genWarbondCheckboxes = () => {

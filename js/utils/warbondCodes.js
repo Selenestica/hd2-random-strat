@@ -26,6 +26,8 @@ const masterWarbondCodes = [
   "warbond24",
   "warbond25",
   "warbond26",
+  "warbond27",
+  "warbond28",
 ];
 
 let warbondCodes = [
@@ -57,4 +59,5 @@ let warbondCodes = [
   "warbond25",
   "warbond26",
   "warbond27",
+  "warbond28",
 ];

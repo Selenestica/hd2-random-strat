@@ -275,19 +275,18 @@ const THROWABLES = [
     index: 22,
     tier: "a",
   },
-
-  // {
-  //   displayName: "G-11 Caltrops",
-  //   type: "Equipment",
-  //   category: "throwable",
-  //   tags: ["stun"],
-  //   warbondCode: "warbond28",
-  //   internalName: "g11caltrops",
-  //   imageURL: "g11caltrops.webp",
-  //   antitank: false,
-  //   index: 23,
-  //   tier: "c",
-  // },
+  {
+    displayName: "G-11 Caltrops",
+    type: "Equipment",
+    category: "throwable",
+    tags: ["stun"],
+    warbondCode: "warbond28",
+    internalName: "g11caltrops",
+    imageURL: "g11caltrops.webp",
+    antitank: false,
+    index: 23,
+    tier: "c",
+  },
 ];
 
 // s: 4

@@ -299,19 +299,18 @@ const SECONDARIES = [
     index: 24,
     tier: "s",
   },
-
-  // {
-  //   displayName: "Mist",
-  //   type: "Equipment",
-  //   category: "secondary",
-  //   tags: ["ap2", "pistol"],
-  //   warbondCode: "warbond28",
-  //   internalName: "p44mist",
-  //   imageURL: "p44mist.webp",
-  //   antitank: false,
-  //   index: 25,
-  //   tier: "b",
-  // },
+  {
+    displayName: "Mist",
+    type: "Equipment",
+    category: "secondary",
+    tags: ["ap2", "pistol"],
+    warbondCode: "warbond28",
+    internalName: "p44mist",
+    imageURL: "p44mist.webp",
+    antitank: false,
+    index: 25,
+    tier: "b",
+  },
 ];
 
 // s: 2

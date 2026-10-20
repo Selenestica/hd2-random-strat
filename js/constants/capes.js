@@ -1012,4 +1012,15 @@ const CAPES = [
     tier: "b",
     index: 91,
   },
+  {
+    displayName: "Arctic Decree",
+    type: "Equipment",
+    category: "cape",
+    tags: [],
+    warbondCode: "warbond1",
+    internalName: "arcticdecree",
+    imageURL: "arcticdecree.webp",
+    tier: "b",
+    index: 92,
+  },
 ];

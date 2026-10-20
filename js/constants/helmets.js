@@ -1261,4 +1261,16 @@ const HELMETS = [
     tier: "b",
     index: 112,
   },
+  {
+    displayName: `SS-500 Pale Prosecutor`,
+    type: "Equipment",
+    category: "armor",
+    tags: ["Medium"],
+    passive: "Stationary Shroud",
+    warbondCode: "warbond1",
+    internalName: "ss500paleprosecutor",
+    imageURL: "ss500paleprosecutor.webp",
+    tier: "b",
+    index: 113,
+  },
 ];

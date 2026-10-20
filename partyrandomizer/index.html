@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/custom.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="../images/dressing/ministryOfTruthIcon.png"
+    />
+    <meta
+      name="description"
+      content="Draft a randomized Helldivers 2 loadout for your whole party."
+    />
+    <title>Helldivers 2: Party Randomizer</title>
+  </head>
+  <body>
+    <main class="container-fluid party-randomizer-shell mb-5">
+      <header class="row align-items-center mt-2 mb-3">
+        <div class="col-6">
+          <a class="btn text-light px-0" href="../index.html">
+            <i class="bi bi-arrow-left"></i> Back to Challenges
+          </a>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+          <a target="_blank" href="https://discord.gg/nphn3YpqvY">
+            <i class="socialIcons bi bi-discord"></i>
+          </a>
+          <a
+            class="mx-2"
+            target="_blank"
+            href="https://github.com/Selenestica/hd2-random-strat"
+          >
+            <i class="socialIcons bi bi-github"></i>
+          </a>
+        </div>
+        <div class="col-12 text-center mt-2">
+          <div class="row align-items-center justify-content-center">
+            <h1
+              class="text-light h2 mb-1 d-flex align-items-center justify-content-center cursorPointer"
+              data-bs-toggle="modal"
+              data-bs-target="#infoModal"
+            >
+              Party Randomizer<i
+                class="bi bi-info-circle mediumFontSize mx-1"
+              ></i>
+            </h1>
+          </div>
+
+          <nav
+            class="d-flex justify-content-center mt-2"
+            aria-label="Randomizer mode"
+          >
+            <div class="btn-group randomizerModeSwitch" role="group">
+              <a class="btn btn-outline-warning" href="../randomizer/">
+                Solo
+              </a>
+              <a class="btn btn-warning" href="./" aria-current="page">
+                Party
+              </a>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <section id="setupPanel" class="party-panel mx-auto">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <h2 class="h4 text-light mb-0">Assemble your party</h2>
+          </div>
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#optionsModal"
+          >
+            <i class="bi bi-gear-fill"></i> Options
+          </button>
+        </div>
+
+        <div
+          id="setupError"
+          class="alert alert-danger d-none"
+          role="alert"
+        ></div>
+
+        <div class="row g-3">
+          <div class="col-sm-4">
+            <label class="form-label text-light" for="partySize"
+              >Party size</label
+            >
+            <select id="partySize" class="form-select">
+              <option value="1">1 player</option>
+              <option value="2">2 players</option>
+              <option value="3">3 players</option>
+              <option value="4" selected>4 players</option>
+            </select>
+          </div>
+          <div class="col-sm-8">
+            <span class="form-label text-light d-block">Player names</span>
+            <div id="playerNameInputs" class="row g-2"></div>
+          </div>
+        </div>
+
+        <hr class="text-secondary" />
+        <h3 class="h5 text-light">Randomized categories</h3>
+        <p class="text-secondary small">
+          Disabled categories become Free Choice for every player.
+        </p>
+        <div id="categoryToggles" class="row g-2"></div>
+
+        <div id="armorModeGroup" class="mt-3">
+          <label class="form-label text-light" for="armorMode"
+            >Armor draft type</label
+          >
+          <select id="armorMode" class="form-select party-armor-select">
+            <option value="passive">Armor Passive</option>
+            <option value="set">Armor Set</option>
+            <option value="size">Armor Size</option>
+          </select>
+        </div>
+
+        <button
+          id="startDraftButton"
+          class="btn btn-warning btn-lg w-100 mt-4"
+          type="button"
+        >
+          Generate Draft
+        </button>
+      </section>
+
+      <section id="draftPanel" class="d-none">
+        <div class="party-toolbar mb-3">
+          <div>
+            <h2 id="draftHeading" class="h4 text-light mb-1">
+              Draft in progress
+            </h2>
+            <div id="draftProgress" class="text-secondary"></div>
+          </div>
+          <div class="d-flex gap-2 flex-wrap">
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#optionsModal"
+            >
+              <i class="bi bi-gear-fill"></i> Options
+            </button>
+            <button
+              id="undoPickButton"
+              class="btn btn-outline-light"
+              type="button"
+            >
+              <i class="bi bi-arrow-counterclockwise"></i> Undo
+            </button>
+            <button
+              id="newDraftButton"
+              class="btn btn-outline-warning"
+              type="button"
+            >
+              New Draft
+            </button>
+          </div>
+        </div>
+
+        <div id="activeDraftArea">
+          <div class="party-current-turn text-center mb-3">
+            <span
+              id="roundLabel"
+              class="badge bg-warning text-dark mb-2"
+            ></span>
+            <h2 id="currentPlayerPrompt" class="text-light h3 mb-2"></h2>
+            <div id="turnOrder" class="party-turn-order"></div>
+          </div>
+
+          <div
+            id="poolHelp"
+            class="text-secondary text-center small mb-2"
+          ></div>
+          <div id="draftPool" class="party-pool mb-3"></div>
+          <div class="d-flex justify-content-center">
+            <button
+              id="confirmPickButton"
+              class="btn btn-warning btn-lg"
+              type="button"
+              disabled
+            >
+              Confirm Pick
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="completionMessage"
+          class="alert alert-success text-center d-none"
+          role="status"
+        >
+          Draft complete. Your squad is ready to dive.
+        </div>
+
+        <h2 class="h4 text-light mt-4">Squad loadouts</h2>
+        <div id="loadoutBoard" class="row g-3"></div>
+
+        <section id="unusedSection" class="d-none mt-4">
+          <h2 class="h5 text-light">Unclaimed options</h2>
+          <div id="unusedOptions" class="row g-2"></div>
+        </section>
+      </section>
+    </main>
+
+    <div
+      class="modal fade"
+      id="optionsModal"
+      tabindex="-1"
+      aria-labelledby="optionsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <div>
+              <h2 class="modal-title h5 text-light" id="optionsModalLabel">
+                Options
+              </h2>
+              <small id="optionsDraftNotice" class="text-warning d-none">
+                Changes apply to your next draft.
+              </small>
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="warbondsChecklistContainer"></div>
+            <hr class="text-secondary" />
+            <h3 class="h5 text-light">Stratagem Amounts</h3>
+            <div class="form-check">
+              <input
+                class="form-check-input supply-option"
+                type="checkbox"
+                id="oneSupportCheck"
+              />
+              <label class="form-check-label text-white" for="oneSupportCheck">
+                Limit the pool to one support weapon per player
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input supply-option"
+                type="checkbox"
+                id="oneBackpackCheck"
+              />
+              <label class="form-check-label text-white" for="oneBackpackCheck">
+                Limit the pool to one backpack per player
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input supply-option"
+                type="checkbox"
+                id="alwaysSupportCheck"
+              />
+              <label
+                class="form-check-label text-white"
+                for="alwaysSupportCheck"
+              >
+                Include at least one support weapon per player in the pool
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input supply-option"
+                type="checkbox"
+                id="alwaysBackpackCheck"
+              />
+              <label
+                class="form-check-label text-white"
+                for="alwaysBackpackCheck"
+              >
+                Include at least one backpack per player in the pool
+              </label>
+            </div>
+
+            <hr class="text-secondary" />
+            <div id="stratagemTypeOptions" class="row g-3"></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLAVOR AND INSTRUCTIONS MODAL -->
+    <div
+      class="modal fade"
+      id="infoModal"
+      tabindex="-1"
+      open="true"
+      aria-labelledby="infoModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-grey">
+          <div class="modal-header">
+            <h5 class="modal-title text-light">Party Randomizer</h5>
+          </div>
+          <div class="modal-body row d-flex justify-content-center">
+            <div class="accordion" id="infoAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    Overview
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse collapse show"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <p class="text-white">
+                      Set your party size and player names, then choose which
+                      categories to draft. Players take turns claiming options
+                      from shared pools until everyone has a loadout. Use
+                      Options to filter items by Warbond and customize the
+                      stratagem pool. Your draft is saved in this browser, so
+                      you can come back to it later.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button text-white collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseNine"
+                    aria-expanded="false"
+                    aria-controls="collapseNine"
+                  >
+                    FAQs
+                  </button>
+                </h2>
+                <div
+                  id="collapseNine"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#infoAccordion"
+                >
+                  <div class="accordion-body">
+                    <ul class="modalAccordionList">
+                      <li class="text-white">
+                        <b>Q: How does a party draft work?</b>
+                        <p>
+                          A: Choose 1–4 players, enter names, and generate a
+                          draft. Players take turns picking from shared pools;
+                          once an option is claimed, the other players cannot
+                          pick it. The turn order is randomized and alternates
+                          direction between stratagem rounds.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: How many options are in each pool?</b>
+                        <p>
+                          A: Each enabled equipment category has one more
+                          option than there are players, so the party has some
+                          choice. The stratagem pool has two extra options
+                          beyond the four picks per player.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: Can players get the same item?</b>
+                        <p>
+                          A: Claimed weapons, boosters, armor passives or sets,
+                          and other equipment are removed from the pool for
+                          everyone else. If Armor Size is selected, sizes may
+                          be chosen by more than one player.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: What does disabling a category do?</b>
+                        <p>
+                          A: That category is skipped during the draft and each
+                          player gets Free Choice for it. For stratagems, Free
+                          Choice means four picks per player.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: How do the stratagem amount options work?</b>
+                        <p>
+                          A: You can cap the pool at one support weapon or
+                          backpack per player, or require at least one of each
+                          per player. These rules apply to the shared pool, so
+                          the available combinations depend on your other
+                          filters and party size.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: Why can't I generate a draft with my filters?</b>
+                        <p>
+                          A: The selected Warbonds, stratagem types, and pool
+                          rules may leave too few eligible options for your
+                          party. Enable more Warbonds or stratagem types, or
+                          relax the support weapon and backpack rules, then try
+                          again.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: Do Options changes affect a draft in progress?</b>
+                        <p>
+                          A: No. The current draft keeps the filters it was
+                          created with. Options changes apply when you generate
+                          your next draft.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: Can I undo a pick or start over?</b>
+                        <p>
+                          A: Use Undo to return the last picked option to its
+                          pool. New Draft clears the current draft and starts
+                          over with your current setup and options.
+                        </p>
+                      </li>
+                      <li class="text-white">
+                        <b>Q: Will my draft still be here if I close the page?</b>
+                        <p>
+                          A: Draft progress is saved in this browser on this
+                          device. Clearing browser storage or using a different
+                          browser or device removes access to that saved draft.
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/constants/primaries.js"></script>
+    <script src="../js/constants/secondaries.js"></script>
+    <script src="../js/constants/boosters.js"></script>
+    <script src="../js/constants/throwables.js"></script>
+    <script src="../js/constants/stratagems.js"></script>
+    <script src="../js/constants/armorsets.js"></script>
+    <script src="../js/constants/armorsizes.js"></script>
+    <script src="../js/constants/armorpassives.js"></script>
+    <script src="../js/components/genWarbondCheckboxes.js"></script>
+    <script src="../js/partyrandomizer/engine.js"></script>
+    <script src="../js/partyrandomizer/main.js"></script>
+  </body>
+</html>

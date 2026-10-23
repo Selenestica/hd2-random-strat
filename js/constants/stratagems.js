@@ -472,7 +472,7 @@ const STRATAGEMS = [
     displayName: "Portable Hellbomb",
     type: "Stratagem",
     category: "Supply",
-    tags: ["Backpacks", "at", "explosive"],
+    tags: ["Backpacks", "at", "explosive", "expendable"],
     warbondCode: "warbond13",
     internalName: "b100portablehellbomb",
     imageURL: "b100portablehellbomb.webp",

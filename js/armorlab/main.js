@@ -339,11 +339,17 @@ const applySpecialRules = () => {
     "bfm77reformer",
     "bfm220ironclad",
     "bfm16tanker",
+    "ss500paleprosecutor",
   ];
   if (largeHelmets.includes(currentHelmet)) {
-    helmetImg.style.width = "84%";
+    helmetImg.style.width = "82%";
     helmetContainer.style.top = "22px";
     helmetContainer.style.left = "54.5%";
+  }
+
+  // SS-500 Pale Prosecutor hood sticks out to the left quite a bit
+  if (currentHelmet === "ss500paleprosecutor") {
+    helmetCard.style.clipPath = "inset(1px 25px 12px 0px)";
   }
 
   const ironcladHelmets = ["bfm77reformer", "bfm220ironclad", "bfm16tanker"];
@@ -353,7 +359,7 @@ const applySpecialRules = () => {
     ironcladHelmets.includes(currentHelmet)
   ) {
     helmetCard.style.clipPath = "inset(1px 25px 6px 2px)";
-    helmetContainer.style.top = "20px";
+    helmetContainer.style.top = "23.5px";
     helmetContainer.style.left = "55.5%";
   }
 
@@ -431,7 +437,7 @@ const applySpecialRules = () => {
   }
 
   // also has a tall neck shield, but not as tall as the other one
-  if (currentArmor === "cpr80bulwark") {
+  if (currentArmor === "cpr80bulwark" || currentArmor === "bfm220ironclad") {
     helmetCard.style.clipPath = "inset(1px 25px 20px 22px)";
     helmetContainer.style.top = "17px";
     armorImg.style.objectPosition = "center -39px";

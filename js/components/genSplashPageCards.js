@@ -32,7 +32,7 @@ const genSplashPageCards = (type) => {
       icon: "stopwatch.svg",
     },
     {
-      displayName: `Griffdive (alpha) <i class="bi bi-box-arrow-up-right"></i>`,
+      displayName: `Griffdive (beta!) <i class="bi bi-box-arrow-up-right"></i>`,
       internalName: "griffdive",
       icon: "griffIcon.svg",
     },

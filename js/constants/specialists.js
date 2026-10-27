@@ -701,9 +701,13 @@ const SPECIALISTS = [
   },
   {
     displayName: "The GW1 Veteran",
-    starterItems: ["Liberator", "Democracy Protects armor"],
+    starterItems: [
+      "Liberator Legacy",
+      "Constitution",
+      "Democracy Protects armor",
+    ],
     stratagems: [],
-    primaries: ["Liberator"],
+    primaries: ["Liberator Legacy", "Constitution"],
     boosters: [],
     secondaries: [],
     throwables: [],

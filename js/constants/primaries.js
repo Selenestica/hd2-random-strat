@@ -671,6 +671,18 @@ const PRIMARIES = [
     tier: "b",
     index: 55,
   },
+  {
+    displayName: "Liberator Legacy",
+    type: "Equipment",
+    category: "primary",
+    tags: ["AssaultRifle", "ap2"],
+    warbondCode: "none",
+    internalName: "ar23lliberatorlegacy",
+    imageURL: "ar23lliberatorlegacy.webp",
+    antitank: false,
+    tier: "b",
+    index: 56,
+  },
 ];
 
 // s: 7
